@@ -7,7 +7,7 @@ tags:
 关于elk搭建的全部产品都可以从elastic的官方网站获取最新版本  
 [elastic官网](https://www.elastic.co/cn/products/)
 
-![](ELK_FileBeats/1.png)
+![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/1.png)
 如图所示  
 当前elastic官方已经不再推荐单纯使用elk(ElasticSearch+LogStash+Kibana)三个产品搭建日志平台, 而是在此基础上加上了轻量级的日志收集插件FileBeats.  
 
@@ -15,7 +15,7 @@ tags:
 我们首先获取安装包  
 进入https://www.elastic.co/cn/downloads/elasticsearch  
 
-![](https://user-gold-cdn.xitu.io/2019/10/7/16da3af23ba1aa25?w=617&h=97&f=png&s=2899)
+![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/2.png)
 在Downloads里点击linux就可以下载到用于linux安装的tar包  
 如果是直接在linux安装,使用wget命令即可  
 如 : wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.0-linux-x86_64.tar.gz  
