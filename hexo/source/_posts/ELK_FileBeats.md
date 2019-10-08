@@ -1,7 +1,11 @@
 ---
 title: 记一次ELK+FileBeats搭建
 date: 2019-10-07 15:19:23
-tags:
+tags: elk
+comments: true
+categories: 
+- 学习
+- 搭建相关
 ---
 ## 获取ElasticSearch+LogStash+Kibana+FileBeats  
 关于elk搭建的全部产品都可以从elastic的官方网站获取最新版本  

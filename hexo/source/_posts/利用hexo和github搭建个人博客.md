@@ -1,7 +1,13 @@
 ---
 title: 利用hexo和github搭建个人博客
 date: 2019-10-08 08:55:33
-tags:
+tags: 
+- hexo
+- github
+comments: true
+categories: 
+- 学习
+- 搭建相关
 ---
 ## github建立个人网站  
 1.github的账号申请不再赘述  
