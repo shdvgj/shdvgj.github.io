@@ -1,306 +1,357 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
-  <title>利用hexo和github搭建个人博客 | shdvgj的个人博客</title>
-  <meta name="keywords" content=" hexo , github ">
-  <meta name="description" content="利用hexo和github搭建个人博客 | shdvgj的个人博客">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="Here&apos;s something encrypted, password is required to continue reading.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="绩效统计">
-<meta property="og:url" content="http://shdvgj.github.io/2019/10/09/绩效统计/index.html">
-<meta property="og:site_name" content="shdvgj的个人博客">
-<meta property="og:description" content="Here&apos;s something encrypted, password is required to continue reading.">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-09T05:51:49.618Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="绩效统计">
-<meta name="twitter:description" content="Here&apos;s something encrypted, password is required to continue reading.">
 
 
-<link rel="icon" href="/img/shdvgj.jpg">
 
-<link href="/css/style.css?v=1.0.1" rel="stylesheet">
 
-<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
 
-<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
 
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
 
-<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script>
-    hljs.initHighlightingOnLoad();
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
 </script>
 
-<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <meta name="description" content="github建立个人网站1.github的账号申请不再赘述2.打开github.com, 点击new, 新建一个项目3.输入项目名称, 注意项目名称的格式必须是”用户名.github.io”的格式4.点击Create Repository完成项目新建5.点击新建的项目, 进入settings, 往下找到GitHub Pages, 点击Choose a theme, 选择一个主题后, 点击selec">
+<meta name="keywords" content="hexo,github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用hexo和github搭建个人博客">
+<meta property="og:url" content="http://shdvgj.github.io/2019/10/08/利用hexo和github搭建个人博客/index.html">
+<meta property="og:site_name" content="shdvgj的个人博客">
+<meta property="og:description" content="github建立个人网站1.github的账号申请不再赘述2.打开github.com, 点击new, 新建一个项目3.输入项目名称, 注意项目名称的格式必须是”用户名.github.io”的格式4.点击Create Repository完成项目新建5.点击新建的项目, 进入settings, 往下找到GitHub Pages, 点击Choose a theme, 选择一个主题后, 点击selec">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/5.png">
+<meta property="og:updated_time" content="2019-10-08T08:05:36.795Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用hexo和github搭建个人博客">
+<meta name="twitter:description" content="github建立个人网站1.github的账号申请不再赘述2.打开github.com, 点击new, 新建一个项目3.输入项目名称, 注意项目名称的格式必须是”用户名.github.io”的格式4.点击Create Repository完成项目新建5.点击新建的项目, 进入settings, 往下找到GitHub Pages, 点击Choose a theme, 选择一个主题后, 点击selec">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/1.png">
+  <link rel="canonical" href="http://shdvgj.github.io/2019/10/08/利用hexo和github搭建个人博客/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>利用hexo和github搭建个人博客 | shdvgj的个人博客</title>
+  
 
 
 
-<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
-<script src="/js/iconfont.js?v=1.0.1"></script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<div style="display: none">
-  <input class="theme_disqus_on" value="false">
-  <input class="theme_preload_comment" value="false">
-  <input class="theme_blog_path" value>
-</div>
 
-<body>
-<aside class="nav">
-    <div class="nav-left">
-        <a href="/" class="avatar_target">
-    <img class="avatar" src="/img/shdvgj.jpg" />
-</a>
-<div class="author">
-    <span>shdvgj</span>
-</div>
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
 
-<div class="icon">
-    
-        
-        <a title="github" href="https://github.com/shdvgj" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-github"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=422409104&site=qq&menu=yes" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-qq"></use>
-                </svg>
-            
-        </a>
-        
-    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shdvgj的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 
-
-
-<ul>
-    <li><div class="all active">全部文章<small>(4)</small></div></li>
-    
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
         
+        <li class="menu-item menu-item-home">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">3</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">3</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">4</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-schedule">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
             
-            <li><div data-rel="学习"><i class="fold iconfont icon-right"></i>学习<small>(3)</small></div>
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2019/10/08/利用hexo和github搭建个人博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shdvgj">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/shdvgj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shdvgj的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">利用hexo和github搭建个人博客
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
                 
-                    <ul class="sub hide">
-                        
-                        <li><div data-rel="搭建相关">搭建相关<small>(3)</small></div>
-                            
-                        </li>
-                            
-                    </ul>
-                
-            </li>
-            
-        
-    
-        
-            
-        
-    
-        
-            
-            <li><div data-rel="绩效">绩效<small>(1)</small></div>
-                
-            </li>
-            
-        
-    
-</ul>
-<div class="left-bottom">
-    <div class="menus">
-    
-    
-    </div>
-    <div></div>
-</div>
-<input type="hidden" id="yelog_site_posts_number" value="4">
-<input type="hidden" id="yelog_site_word_count" value="2.7k">
-<div style="display: none">
-    <span id="busuanzi_value_site_uv"></span>
-    <span id="busuanzi_value_site_pv"></span>
-</div>
+              
 
-    </div>
-    <div class="nav-right">
-        <div class="friends-area">
-    <div class="friends-title">
-        友情链接
-        <i class="back-title-list"></i>
-    </div>
-    <div class="friends-content">
-        <ul>
-            
-            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
-            
-        </ul>
-    </div>
-</div>
-        <div class="title-list">
-    <form onkeydown="if(event.keyCode==13){return false;}">
-        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
-        <i class="cross"></i>
-        <span>
-            <label for="tagswitch">Tags:</label>
-            <input id="tagswitch" type="checkbox" style="display: none" />
-            <i id="tagsWitchIcon"></i>
-        </span>
-    </form>
-    <div class="tags-list">
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">elk</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">hexo</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">github</a>
-    </li>
-    
-    <div class="clearfix"></div>
-</div>
-
-    
-    <nav id="title-list-nav">
-        
-        <a  class="学习 搭建相关 "
-           href="/2019/10/07/ELK_FileBeats/"
-           data-tag="elk"
-           data-author="" >
-            <span class="post-title" title="记一次ELK+FileBeats搭建">记一次ELK+FileBeats搭建</span>
-            <span class="post-date" title="2019-10-07 15:19:23">2019/10/07</span>
-        </a>
-        
-        <a  class="学习 搭建相关 "
-           href="/2019/10/08/hexo使用技巧/"
-           data-tag="hexo"
-           data-author="" >
-            <span class="post-title" title="hexo使用技巧">hexo使用技巧</span>
-            <span class="post-date" title="2019-10-08 16:07:43">2019/10/08</span>
-        </a>
-        
-        <a  class="学习 搭建相关 "
-           href="/2019/10/08/利用hexo和github搭建个人博客/"
-           data-tag="hexo,github"
-           data-author="" >
-            <span class="post-title" title="利用hexo和github搭建个人博客">利用hexo和github搭建个人博客</span>
-            <span class="post-date" title="2019-10-08 08:55:33">2019/10/08</span>
-        </a>
-        
-        <a  class="绩效 "
-           href="/2019/10/09/绩效统计/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="绩效统计">绩效统计</span>
-            <span class="post-date" title="2019-10-09 11:01:53">2019/10/09</span>
-        </a>
-        
-    </nav>
-</div>
-    </div>
-    <div class="hide-list">
-        <div class="semicircle">
-            <div class="brackets first"><</div>
-            <div class="brackets">&gt;</div>
-        </div>
-    </div>
-</aside>
-<div class="post">
-    <div class="pjax">
-        <article id="post-利用hexo和github搭建个人博客" class="article article-type-post" itemscope itemprop="blogPost">
-    
-        <h1 class="article-title">利用hexo和github搭建个人博客</h1>
-    
-    <div class="article-meta">
-        
-        
-        
-        <span class="book">
-            
-                <a href="javascript:" data-rel="学习">学习</a>/
-            
-                <a href="javascript:" data-rel="搭建相关">搭建相关</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="javascript:" class="color5">hexo</a>
-            
-            <a href="javascript:" class="color2">github</a>
-            
-        </span>
-        
-    </div>
-    <div class="article-meta">
-        
-        创建时间:<time class="date" title='更新时间: 2019-10-08 16:05:36'>2019-10-08 08:55</time>
-        
-    </div>
-    <div class="article-meta">
-        
-        <span>字数:688</span>
-        
-        
-        <span id="busuanzi_container_page_pv">
-            阅读:<span id="busuanzi_value_page_pv">
-                <span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
+              <time title="Created: 2019-10-08 08:55:33 / Modified: 16:05:36" itemprop="dateCreated datePublished" datetime="2019-10-08T08:55:33+08:00">2019-10-08</time>
             </span>
-        </span>
-        
-        
-        <span class="top-comment" title="跳转至评论区">
-            <a href="#comments">
-                评论:<span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </a>
-        </span>
-        
-    </div>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习/" itemprop="url" rel="index"><span itemprop="name">学习</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习/搭建相关/" itemprop="url" rel="index"><span itemprop="name">搭建相关</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
     
-    <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#github建立个人网站"><span class="toc-text">github建立个人网站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo搭建博客"><span class="toc-text">hexo搭建博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li></ol>
     
-<style>
-    .left-col .switch-btn,
-    .left-col .switch-area {
-        display: none;
-    }
-    .toc-level-3 i,
-    .toc-level-3 ol {
-        display: none !important;
-    }
-</style>
-</div>
-    
-    <div class="article-entry" itemprop="articleBody">
+    <div class="post-body" itemprop="articleBody">
+
       
         <h2 id="github建立个人网站"><a href="#github建立个人网站" class="headerlink" title="github建立个人网站"></a>github建立个人网站</h2><p>1.github的账号申请不再赘述<br>2.打开github.com, 点击new, 新建一个项目<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/1.png" alt><br>3.输入项目名称, 注意项目名称的格式必须是”用户名.github.io”的格式<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2.png" alt><br>4.点击Create Repository完成项目新建<br>5.点击新建的项目, 进入settings, 往下找到GitHub Pages, 点击Choose a theme, 选择一个主题后, 点击select theme就完成了网站的发布<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/3.png" alt><br>6.在浏览器输入”用户名.github.io”, 就可以看到github为你默认创建的首页  </p>
 <h2 id="hexo搭建博客"><a href="#hexo搭建博客" class="headerlink" title="hexo搭建博客"></a>hexo搭建博客</h2><p>1.在使用hexo搭建博客之前, 需要完成几个基础工作<br><a href="https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git" target="_blank" rel="noopener">安装git</a><br><a href="https://help.github.com/cn/articles/adding-a-new-ssh-key-to-your-github-account" target="_blank" rel="noopener">新增ssh key到github</a><br><a href="http://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="noopener">安装node.js</a><br>2.在本地拉取github上刚刚创建的网页项目(用户名.github.io)<br>3.在项目目录下新建一个文件夹, 可以随意命名, 比如hexo<br>4.进入hexo目录, windows下右键空白处, 点击Git Bash Here<br>5.依次执行命令<br>npm install hexo-cli -g  (安装hexo)<br>hexo init  (初始化网站)<br>npm install hexo-deployer-git –save  (安装hexo发布到git的插件)<br>中间遇到需要确认的信息, 直接按回车即可<br>6.打开hexo目录下的_config.yml文件, 有几个地方可以进行修改<br>title: 你的网站名字<br>author: 网站作者<br>theme: 去<a href="https://hexo.io/themes/" target="_blank" rel="noopener">hexo主题</a>可以选择, 注意要先将主题下载到hexo/themes下才可选择该主题<br>注意: <strong>必须要修改的部分是deploy, 改成如下格式</strong>  </p>
@@ -309,289 +360,241 @@
 <p>其他配置的详细说明在<a href="https://hexo.io/docs/configuration.html" target="_blank" rel="noopener">hexo配置文件说明</a><br>7.接下来就可以开始写博客了<br>使用命令hexo n “博客标题”, 即完成了一个新的博客文件的创建<br>该命令会在hexo/source/_posts目录下新建一个”博客标题.md”的文件<br>该文件内容格式如下<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/4.png" alt><br>正文内容使用markdown语法进行编写, 至于markdown怎么写, 可以参考<a href="http://www.markdown.cn/" target="_blank" rel="noopener">markdown官方文档</a><br>8.博客写完之后, 保存文件, 然后依次执行如下命令<br>hexo g  (根据md文件创建静态网页文件, 注意每次更新博客内容都需要执行这个命令)<br>hexo s  (这一步是启动本地hexo服务器, 主要是为了本地预览博客效果, 浏览器打开localhost:4000预览效果)<br>hexo d (发布网页到github)<br>9.浏览器打开”用户名.github.io”即可看到你刚刚写的博客内容<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/5.png" alt>  </p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>总的来说, hexo+github搭建博客非常的简便, hexo内置的几种主题也都非常的简洁美观, 对于既想要有逼格的有自己的个人博客网站, 又不想太麻烦的人来说, 是个不错的选择</p>
 
-      
-       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 422409104@qq.com </span>
     </div>
-</article>
-
-
-
-<div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>利用hexo和github搭建个人博客</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">688</span></p>
-    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="shdvgj">shdvgj</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-10-08, 08:55:33</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-08, 16:05:36</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/08/利用hexo和github搭建个人博客/" title="利用hexo和github搭建个人博客">http://shdvgj.github.io/2019/10/08/利用hexo和github搭建个人博客/</a>
-    <p>
-        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-    </p>
-</div>
-
-
-
-    <div id="comments"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-
-<script type="text/javascript">
-    $.getScript('/js/gitalk.js', function () {
-        var gitalk = new Gitalk({
-            clientID: 'e1ed5420cf72d3747b1b',
-            clientSecret: '6c71276732dc19402ae304d000c471a4df889cd5',
-            repo: 'shdvgj.github.io',
-            owner: 'shdvgj',
-            admin: ['shdvgj'],
-            id: decodeURI(location.pathname),
-            distractionFreeMode: 'true',
-            language: 'zh-CN',
-            perPage: parseInt('10',10)
-        })
-        gitalk.render('comments')
-    })
-</script>
-
-
-
 
     
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/hexo/" rel="tag"># hexo</a>
+            
+              <a href="/tags/github/" rel="tag"># github</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/10/07/ELK_FileBeats/" rel="next" title="记一次ELK+FileBeats搭建">
+                  <i class="fa fa-chevron-left"></i> 记一次ELK+FileBeats搭建
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/10/08/hexo使用技巧/" rel="prev" title="hexo使用技巧">
+                  hexo使用技巧 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
 
 
+          </div>
+          
 
-
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
-    <div class="copyright">
-        <p class="footer-entry">©2019 shdvgj</p>
-<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+  </div>
 
-    </div>
-    <div class="full-toc">
-        <button class="full"><span class="min "></span></button>
-<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
-<div class="post-toc"><span class="post-toc-title">目录</span>
-    <div class="post-toc-content">
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
 
-    </div>
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#github建立个人网站"><span class="nav-number">1.</span> <span class="nav-text">github建立个人网站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo搭建博客"><span class="nav-number">2.</span> <span class="nav-text">hexo搭建博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/shdvgj.jpg"
+      alt="shdvgj">
+  <p class="site-author-name" itemprop="name">shdvgj</p>
+  <div class="site-description" itemprop="description"></div>
 </div>
-<a class="" id="rocket" href="javascript:void(0)"></a>
-    </div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span>
+        
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
 </div>
-<div class="acParent"></div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/shdvgj" title="GitHub &rarr; https://github.com/shdvgj" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:linqianghuang@gmail.com" title="E-Mail &rarr; mailto:linqianghuang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shdvgj</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
 
 </body>
-<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
-
-<script src="/js/script.js?v=1.0.1" ></script>
-<script>
-    var img_resize = 'default';
-    /*作者、标签的自动补全*/
-    $(function () {
-        $('.search').AutoComplete({
-            'data': ['#elk','#hexo','#github',],
-            'itemHeight': 20,
-            'width': 418
-        }).AutoComplete('show');
-    })
-    function initArticle() {
-        /*渲染对应的表格样式*/
-        
-            $(".post .pjax table").addClass("green_title");
-        
-
-        /*渲染打赏样式*/
-        
-
-        /*高亮代码块行号*/
-        
-        $('pre code').each(function(){
-            var lines = $(this).text().split('\n').length - 1, widther='';
-            if (lines>99) {
-                widther = 'widther'
-            }
-            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
-            $(this).addClass('has-numbering ' + widther)
-                    .parent()
-                    .append($numbering);
-            for(var i=1;i<=lines;i++){
-                $numbering.append($('<li/>').text(i));
-            }
-        });
-        
-
-        /*访问数量*/
-        
-        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
-        
-
-        /*代码高亮，行号对齐*/
-        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
-
-        
-    }
-
-    /*打赏页面隐藏与展示*/
-    
-
-</script>
-
-<!--加入行号的高亮代码块样式-->
-
-<style>
-    pre{
-        position: relative;
-        margin-bottom: 24px;
-        border-radius: 10px;
-        border: 1px solid #e2dede;
-        background: #FFF;
-        overflow: hidden;
-    }
-    code.has-numbering{
-        margin-left: 30px;
-    }
-    code.has-numbering.widther{
-        margin-left: 35px;
-    }
-    .pre-numbering{
-        margin: 0px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 20px;
-        padding: 0.5em 3px 0.7em 5px;
-        border-right: 1px solid #C3CCD0;
-        text-align: right;
-        color: #AAA;
-        background-color: #fafafa;
-    }
-    .pre-numbering.widther {
-        width: 35px;
-    }
-</style>
-
-<!--自定义样式设置-->
-<style>
-    
-    
-    .nav {
-        width: 542px;
-    }
-    .nav.fullscreen {
-        margin-left: -542px;
-    }
-    .nav-left {
-        width: 120px;
-    }
-    
-    
-    @media screen and (max-width: 1468px) {
-        .nav {
-            width: 492px;
-        }
-        .nav.fullscreen {
-            margin-left: -492px;
-        }
-        .nav-left {
-            width: 100px;
-        }
-    }
-    
-    
-    @media screen and (max-width: 1024px) {
-        .nav {
-            width: 492px;
-            margin-left: -492px
-        }
-        .nav.fullscreen {
-            margin-left: 0;
-        }
-        .nav .hide-list.fullscreen {
-            left: 492px
-        }
-    }
-    
-    @media screen and (max-width: 426px) {
-        .nav {
-            width: 100%;
-        }
-        .nav-left {
-            width: 100%;
-        }
-    }
-    
-    
-    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
-        color: #383636;
-    }
-    
-    
-    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
-        color: #5e5e5f;
-    }
-    
-    
-    .nav-right nav a.hover, #local-search-result a.hover{
-        background-color: #e2e0e0;
-    }
-    
-    
-
-    /*列表样式*/
-    
-    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
-        border: #e2dede solid 1px;
-        border-radius: 10px;
-        padding: 10px 32px 10px 56px;
-    }
-    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
-    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
-        margin-bottom: auto;
-        margin-left: auto;
-    }
-    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
-        margin-bottom: auto;
-        margin-left: auto;
-    }
-    
-
-    /* 背景图样式 */
-    
-    
-
-
-    /*引用块样式*/
-    
-
-    /*文章列表背景图*/
-    
-    .nav-right:before {
-        content: ' ';
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.3;
-        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
-        background-repeat: no-repeat;
-        background-position: 50% 0;
-        -ms-background-size: cover;
-        -o-background-size: cover;
-        -moz-background-size: cover;
-        -webkit-background-size: cover;
-        background-size: cover;
-    }
-    
-
-    
-</style>
-
-
-
-
-
-
-
 </html>
