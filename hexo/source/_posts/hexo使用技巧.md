@@ -31,10 +31,10 @@ categories:
 
 
 ## 设置分类和标签  
-1.每一个由hexo生成的md文件, 其内容开头都是由两个"---"组成的, hexo把这部分称为[Font-Matter](https://hexo.io/zh-cn/docs/front-matter), 如图:  
+1.每一个由hexo生成的md文件, 其内容开头都是由两个"---"组成的, hexo把这部分称为[Front-Matter](https://hexo.io/zh-cn/docs/front-matter), 如图:  
 ![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo使用技巧/3.png)  
  
-2.在Font-Matter的区域内可以设置关于文章的诸多信息, 包括标题, 创建时间, 标签, 目录, 是否开启评论等  
+2.在Front-Matter的区域内可以设置关于文章的诸多信息, 包括标题, 创建时间, 标签, 目录, 是否开启评论等  
 
 3.标签的参数名称为tags, 目录的参数名称为categories, 设置单个标签和目录的格式如下:  
 ```
@@ -77,3 +77,7 @@ categories:
 在线编辑的好处不言自明, 不用安装任何软件和插件, 只要有浏览器就行
 推荐https://www.mdeditor.com/ 
 
+## 为博客设置密码  
+1.安装插件: 在hexo主目录下执行npm install --save hexo-blog-encrypt  
+2.在需要设置密码的博客的Front-Matter里面加一个参数  
+password:*****

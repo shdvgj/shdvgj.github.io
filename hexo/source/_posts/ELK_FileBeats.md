@@ -117,7 +117,7 @@ output.logstash:
 ```
 3.进入filebeats主目录, 执行 ./filebeat -e -c filebeat.yml, 启动成功  
 
-# kibana查看日志内容
+## kibana查看日志内容
 将上述Elk+FileBeats都安装搭建完成后, 浏览器进入到kibana的界面.  
 1.打开管理-索引模式-创建索引模式, 进入如下界面:  
 
