@@ -188,19 +188,19 @@
         </a>
         
         <a  class="学习 搭建相关 "
-           href="/2019/10/08/利用hexo和github搭建个人博客/"
-           data-tag="hexo,github"
-           data-author="" >
-            <span class="post-title" title="利用hexo和github搭建个人博客">利用hexo和github搭建个人博客</span>
-            <span class="post-date" title="2019-10-08 08:55:33">2019/10/08</span>
-        </a>
-        
-        <a  class="学习 搭建相关 "
            href="/2019/10/08/hexo使用技巧/"
            data-tag="hexo"
            data-author="" >
             <span class="post-title" title="hexo使用技巧">hexo使用技巧</span>
             <span class="post-date" title="2019-10-08 16:07:43">2019/10/08</span>
+        </a>
+        
+        <a  class="学习 搭建相关 "
+           href="/2019/10/08/利用hexo和github搭建个人博客/"
+           data-tag="hexo,github"
+           data-author="" >
+            <span class="post-title" title="利用hexo和github搭建个人博客">利用hexo和github搭建个人博客</span>
+            <span class="post-date" title="2019-10-08 08:55:33">2019/10/08</span>
         </a>
         
         <a  class="绩效 "
@@ -249,7 +249,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-08 16:05:32'>2019-10-07 15:19</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-09 15:20:32'>2019-10-07 15:19</time>
         
     </div>
     <div class="article-meta">
@@ -284,7 +284,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取ElasticSearch-LogStash-Kibana-FileBeats"><span class="toc-text">获取ElasticSearch+LogStash+Kibana+FileBeats</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装ElasticSearch"><span class="toc-text">安装ElasticSearch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#启动ElasticSearch"><span class="toc-text">启动ElasticSearch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装LogStash"><span class="toc-text">安装LogStash</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置和启动LogStash"><span class="toc-text">配置和启动LogStash</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Kibana"><span class="toc-text">安装Kibana</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置和启动kibana"><span class="toc-text">配置和启动kibana</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装FileBeats"><span class="toc-text">安装FileBeats</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置和启动FileBeats"><span class="toc-text">配置和启动FileBeats</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#kibana查看日志内容"><span class="toc-text">kibana查看日志内容</span></a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取ElasticSearch-LogStash-Kibana-FileBeats"><span class="toc-text">获取ElasticSearch+LogStash+Kibana+FileBeats</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装ElasticSearch"><span class="toc-text">安装ElasticSearch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#启动ElasticSearch"><span class="toc-text">启动ElasticSearch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装LogStash"><span class="toc-text">安装LogStash</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置和启动LogStash"><span class="toc-text">配置和启动LogStash</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Kibana"><span class="toc-text">安装Kibana</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置和启动kibana"><span class="toc-text">配置和启动kibana</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装FileBeats"><span class="toc-text">安装FileBeats</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置和启动FileBeats"><span class="toc-text">配置和启动FileBeats</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kibana查看日志内容"><span class="toc-text">kibana查看日志内容</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -325,7 +325,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">output.logstash:</span><br><span class="line">  hosts: [&quot;100.100.100.101:5044&quot;]</span><br><span class="line">  enabled: true</span><br></pre></td></tr></table></figure>
 
 <p>3.进入filebeats主目录, 执行 ./filebeat -e -c filebeat.yml, 启动成功  </p>
-<h1 id="kibana查看日志内容"><a href="#kibana查看日志内容" class="headerlink" title="kibana查看日志内容"></a>kibana查看日志内容</h1><p>将上述Elk+FileBeats都安装搭建完成后, 浏览器进入到kibana的界面.<br>1.打开管理-索引模式-创建索引模式, 进入如下界面:  </p>
+<h2 id="kibana查看日志内容"><a href="#kibana查看日志内容" class="headerlink" title="kibana查看日志内容"></a>kibana查看日志内容</h2><p>将上述Elk+FileBeats都安装搭建完成后, 浏览器进入到kibana的界面.<br>1.打开管理-索引模式-创建索引模式, 进入如下界面:  </p>
 <p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/7.png" alt><br>2.可以看到有三个索引可以匹配, 在索引模式的输入框内输入自己想要创建的索引, 如other, 然后点击下一步</p>
 <p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/8.png" alt><br>3.选择timestamp, 点击创建索引模式</p>
 <p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/9.png" alt><br>4.创建成功, 点击discover</p>
@@ -345,7 +345,7 @@
     <p><span class="copy-title">文章字数:</span><span class="post-count">1.1k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="shdvgj">shdvgj</a></p>
     <p><span class="copy-title">发布时间:</span>2019-10-07, 15:19:23</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-08, 16:05:32</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-09, 15:20:32</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/07/ELK_FileBeats/" title="记一次ELK+FileBeats搭建">http://shdvgj.github.io/2019/10/07/ELK_FileBeats/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
