@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>记一次ELK+FileBeats搭建 | shdvgj的个人博客</title>
-  <meta name="keywords" content=" elk ">
-  <meta name="description" content="记一次ELK+FileBeats搭建 | shdvgj的个人博客">
+  <title>绩效统计 | shdvgj的个人博客</title>
+  <meta name="keywords" content>
+  <meta name="description" content="绩效统计 | shdvgj的个人博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Here&apos;s something encrypted, password is required to continue reading.">
 <meta property="og:type" content="article">
@@ -223,9 +223,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-ELK_FileBeats" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-绩效统计" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">记一次ELK+FileBeats搭建</h1>
+        <h1 class="article-title">绩效统计</h1>
     
     <div class="article-meta">
         
@@ -233,28 +233,20 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="学习">学习</a>/
-            
-                <a href="javascript:" data-rel="搭建相关">搭建相关</a>
+                <a href="javascript:" data-rel="绩效">绩效</a>
             
         </span>
         
         
-        <span class="tag">
-            
-            <a href="javascript:" class="color4">elk</a>
-            
-        </span>
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-10-09 13:51:49'>2019-10-09 11:01</time>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-08 16:05:32'>2019-10-07 15:19</time>
-        
-    </div>
-    <div class="article-meta">
-        
-        <span>字数:1.1k</span>
+        <span>字数:6</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -284,7 +276,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取ElasticSearch-LogStash-Kibana-FileBeats"><span class="toc-text">获取ElasticSearch+LogStash+Kibana+FileBeats</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装ElasticSearch"><span class="toc-text">安装ElasticSearch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#启动ElasticSearch"><span class="toc-text">启动ElasticSearch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装LogStash"><span class="toc-text">安装LogStash</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置和启动LogStash"><span class="toc-text">配置和启动LogStash</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Kibana"><span class="toc-text">安装Kibana</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置和启动kibana"><span class="toc-text">配置和启动kibana</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装FileBeats"><span class="toc-text">安装FileBeats</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置和启动FileBeats"><span class="toc-text">配置和启动FileBeats</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#kibana查看日志内容"><span class="toc-text">kibana查看日志内容</span></a>
+        
     
 <style>
     .left-col .switch-btn,
@@ -300,39 +292,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="获取ElasticSearch-LogStash-Kibana-FileBeats"><a href="#获取ElasticSearch-LogStash-Kibana-FileBeats" class="headerlink" title="获取ElasticSearch+LogStash+Kibana+FileBeats"></a>获取ElasticSearch+LogStash+Kibana+FileBeats</h2><p>关于elk搭建的全部产品都可以从elastic的官方网站获取最新版本<br><a href="https://www.elastic.co/cn/products/" target="_blank" rel="noopener">elastic官网</a></p>
-<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/1.png" alt><br>如图所示<br>当前elastic官方已经不再推荐单纯使用elk(ElasticSearch+LogStash+Kibana)三个产品搭建日志平台, 而是在此基础上加上了轻量级的日志收集插件FileBeats.  </p>
-<h2 id="安装ElasticSearch"><a href="#安装ElasticSearch" class="headerlink" title="安装ElasticSearch"></a>安装ElasticSearch</h2><p>我们首先获取安装包<br>进入<a href="https://www.elastic.co/cn/downloads/elasticsearch" target="_blank" rel="noopener">https://www.elastic.co/cn/downloads/elasticsearch</a>  </p>
-<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/2.png" alt><br>在Downloads里点击linux就可以下载到用于linux安装的tar包<br>如果是直接在linux安装,使用wget命令即可<br>如 : wget <a href="https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.0-linux-x86_64.tar.gz" target="_blank" rel="noopener">https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.0-linux-x86_64.tar.gz</a><br>如果需要更旧的历史版本, 点击下面的past release即可</p>
-<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/3.png" alt>  </p>
-<p>在获取到安装包之后, windows环境需要将tar包传送到linux , 使用scp(windows需要预装git)命令即可<br>如: scp C:/Users/Administrator/Downloads/elasticsearch-7.3.1-linux-x86_64.tar.gz <a href="mailto:root@100.100.100.100" target="_blank" rel="noopener">root@100.100.100.100</a>:/home/elk/<br>在linux, 进入到安装包的目录, 使用tar -zxvf命令进行解压<br>如: tar -zxvf elasticsearch-7.3.1-linux-x86_64.tar.gz<br>解压完成后, elasticsearch其实就已经完成了安装  </p>
-<h3 id="启动ElasticSearch"><a href="#启动ElasticSearch" class="headerlink" title="启动ElasticSearch"></a>启动ElasticSearch</h3><p>在启动elasticserach之前需要注意:elasticsearch不可以用root用户启动, 因此, 需要事先在linux建立一个非root用户<br><a href="https://www.cnblogs.com/sunyllove/p/9772053.html" target="_blank" rel="noopener">linux如何创建一个管理员用户</a><br>创建完linux用户后, 切换到该用户, 进入到elasticsearch目录, 执行bin/elasticserach即可<br>默认elasticsearch的端口是9200, 打开浏览器, 输入<a href="http://elasticsearch地址:9200/" target="_blank" rel="noopener">http://elasticsearch地址:9200/</a>  , 出现如下画面, 说明elasticsearch启动成功</p>
-<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/4.png" alt></p>
-<h2 id="安装LogStash"><a href="#安装LogStash" class="headerlink" title="安装LogStash"></a>安装LogStash</h2><p>windows环境下载和上传到linux的方法不再赘述, 参照前文<br>linux环境, 参照如下命令即可:<br>1.执行wget <a href="https://artifacts.elastic.co/downloads/logstash/logstash-7.4.0.tar.gz" target="_blank" rel="noopener">https://artifacts.elastic.co/downloads/logstash/logstash-7.4.0.tar.gz</a><br>2.进入logstash安装包目录, 执行tar -zxvf logstash-7.4.0.tar.gz  </p>
-<h3 id="配置和启动LogStash"><a href="#配置和启动LogStash" class="headerlink" title="配置和启动LogStash"></a>配置和启动LogStash</h3><p>1.在启动logstash之前, 需要先新建一个logstash的配置文件<br>参照logstash目录下的config/logstash-sample.config文件(如图), 新建一个logstash-elk.config文件  </p>
-<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/5.png" alt><br>input, 即输入数据的监听端口, 这个一般不需要改.<br>output, 用于将接收到的数据发送到elasitcsearch. 将hosts改成elasticsearch部署的地址, 如果elasticsearch和logstash是同一台机器, 则不需要更改.<br>注意: 如果多个实例中的FileBeats发送过来的数据希望进入同一个elasticsearch实例, 并根据不同的ip地址划分为不同的索引, 按照如下方式配置  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">output &#123;</span><br><span class="line">    if &quot;100.100.100.101&quot; in [host][ip] &#123;</span><br><span class="line">        elasticsearch&#123;</span><br><span class="line">          hosts =&gt; [&quot;localhost:9200&quot;]</span><br><span class="line">          index =&gt; &quot;sample1&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else if &quot;100.100.100.102&quot; in [host][ip] &#123;</span><br><span class="line">        elasticsearch&#123;</span><br><span class="line">          hosts =&gt; [&quot;localhost:9200&quot;]</span><br><span class="line">          index =&gt; &quot;sample2&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      elasticsearch&#123;</span><br><span class="line">        hosts =&gt; [&quot;localhost:9200&quot;]</span><br><span class="line">        index =&gt; &quot;other&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>配置完成后, 启动logstash, 执行bin/logstash -f config/logstash-elk.conf </p>
-<h2 id="安装Kibana"><a href="#安装Kibana" class="headerlink" title="安装Kibana"></a>安装Kibana</h2><p>linux参照如下命令<br>1.wget <a href="https://artifacts.elastic.co/downloads/kibana/kibana-7.4.0-linux-x86_64.tar.gz" target="_blank" rel="noopener">https://artifacts.elastic.co/downloads/kibana/kibana-7.4.0-linux-x86_64.tar.gz</a><br>2.进入kibana安装包目录, 执行tar -zxvf kibana-7.4.0-linux-x86_64.tar.gz  </p>
-<h3 id="配置和启动kibana"><a href="#配置和启动kibana" class="headerlink" title="配置和启动kibana"></a>配置和启动kibana</h3><p>进入config/kibana.yml<br>1.修改server.host为linux机器的实际地址<br>2.修改i18n.locale: “zh-CN” 这样kibana界面会显示为中文<br>3.返回kibana主目录, 执行bin/kibana  (注意:kibana也不能用root用户启动)<br>4.打开浏览器, 输入<a href="http://kibana地址:5601" target="_blank" rel="noopener">http://kibana地址:5601</a>, 出现如下画面  </p>
-<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/6.png" alt></p>
-<h2 id="安装FileBeats"><a href="#安装FileBeats" class="headerlink" title="安装FileBeats"></a>安装FileBeats</h2><p>注意: <strong>FileBeats需要安装在所有需要发送日志的服务器上</strong><br>linux参照如下命令<br>1.wget <a href="https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.4.0-linux-x86_64.tar.gz" target="_blank" rel="noopener">https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.4.0-linux-x86_64.tar.gz</a><br>2.tar -zxvf filebeat-7.4.0-linux-x86_64.tar.gz</p>
-<h3 id="配置和启动FileBeats"><a href="#配置和启动FileBeats" class="headerlink" title="配置和启动FileBeats"></a>配置和启动FileBeats</h3><p>进入filebeats安装目录, vi filebeat.yml<br>1.修改paths下的目录, 输入filebeats所在服务器需要收集的日志地址, 如:  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">paths:</span><br><span class="line">    - /home/sample1/logs/log.*</span><br><span class="line">    - /home/sample2/logs/log.*</span><br></pre></td></tr></table></figure>
-
-<p>2.修改output.logstash下的内容, 将logstash部署的地址输入, 参照如下:  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">output.logstash:</span><br><span class="line">  hosts: [&quot;100.100.100.101:5044&quot;]</span><br><span class="line">  enabled: true</span><br></pre></td></tr></table></figure>
-
-<p>3.进入filebeats主目录, 执行 ./filebeat -e -c filebeat.yml, 启动成功  </p>
-<h1 id="kibana查看日志内容"><a href="#kibana查看日志内容" class="headerlink" title="kibana查看日志内容"></a>kibana查看日志内容</h1><p>将上述Elk+FileBeats都安装搭建完成后, 浏览器进入到kibana的界面.<br>1.打开管理-索引模式-创建索引模式, 进入如下界面:  </p>
-<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/7.png" alt><br>2.可以看到有三个索引可以匹配, 在索引模式的输入框内输入自己想要创建的索引, 如other, 然后点击下一步</p>
-<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/8.png" alt><br>3.选择timestamp, 点击创建索引模式</p>
-<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/9.png" alt><br>4.创建成功, 点击discover</p>
-<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/10.png" alt><br>5.可以看到有一个新的索引other可以选择</p>
-<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/11.png" alt></p>
-<p>6.到此, elk+filebeats的基本搭建工作就已经完成了</p>
-
+        <div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="Hey, password is required here." />
+    <label for="hbePass">Hey, password is required here.</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="701b7101ee8d17e1be223a5d310920406db698099012eff989034ae41f9d09a1">b49bedd6eee7d65bcd33b3a2a7f28436061e78f72325d3696e7abfa02d2e6ebc421db1f3f0d68368ec79b3892bcd8e691ddd01acd6b7ba7f059fafbb6ad1476abdeeb230b963128bc1a96091c7414de461d6e59627529262d554cc69a20b4b6cf42a450321440e15d1ea0cb5b960d770b27c9980e136a6eca80658bcadd7c6fdb69f6dba9a7c758fd67a1812f8d7a07beb141f34907b444c77a75f0fc40852dafe242807b7b74d6ed39a635de483b61d98a65f799d214f89a92e429d1f419573ed96500bf4c5e33360a6901555e3384e1bebf4c7ced7d06d83a3b46d1f8778562634ed717fa168f4bc3f789d159564bb6c720501190df620cd0a5b5b2b07f127e7c74d8b11a6f8ce646001138a484dc0c2b38b68315c2034d60067042de3e2f1858b283799912db4a1e7e60766ff7877c75bc26ef6b6d1256a7b60212bbe79818caf6a1b301603326b2a2898b6fb04518a38dec1b85de75eb2b526cb00153fe88dc6bb511b69e214b304c5ae19f313838d656887a2a96c01371775839f8dad736a90cbce5a6841535b7f16ecd03e07c04e52b1928904413b7b92ecb5c08fa1ebbaacc8fc372edc6ebe1febf7e601f71ed4e86acc274dd6c14b1a599d3a6748a2ebd8c6a0c73080adb2a3e105b446dbbe54a1a3da3f5fc686dca0db940ee5f1ade92eeeaa5464f20d8a5360cf0692ece64608f34caf8b6649f1c7494747d36f117df7aed35a00bda6c08e5a4db1ebb9201903d1fc595cdac5d741eaa7d22af3983fa241983f29cbdbcf6fcf2ad7f5f0c1f8c1ad4ab6eaa602d9f50556d85e0abaaa81540c1ea9ddad848ca678fa83feecfe714b27ffbf8cdfa85df8ea4436a3d1d1a9e3439f29e7a0ddf3096d07b908837ed7efc6e2cb4e59fc6550876f622663a24bdbe8eb8de11d745d46f120486e84ae0a2c769878230db70828bcf3e38c065f49f78030a3ad23ba32409335b8a90b343a821891e06e3f2f572bd8414980d3024d9f5e48ddccdb6301e6b4d03f4813899abc01b629db6b692b51dfebc58b3d4132f0eb3c73dfe94d6d8755a9c107a335baadd185dd4285da54a214551ae149adfdc59a866e61066aec9c59157156a4180325cb23020ecda0e5fae3d727ac47ac2878528bc7344c275a3c554a9a6fe26ffa502ba248c8f4c888c20c429ebcd8b7f156a688d2f0d600cef5b7e0fd9dcd2f69d10239277e8d259176633fdb4fa8ff9812c6fbfee3db2078707197ecd3a9122f01d901eba81adf1e279fd3577ca9cef5d6fb692cab51d1135eddd7564e1c563c1ff66640221a8e46091eb9fcb60c156a15bbaccf989eb1f72d37b201012c5a013468d9fada1cb10dbb8687717bdb9a80bac9482a1a046048a1388ac901296e18920fa4a6e58526fd2314f542cbf5306f500d0ad99770acb42ccb0676b27da50a439081635b30d4f5a4f218144ce032b98fd6ae84299de9dd7d486345b5474f8905323d042c8398f41d5dc567e07db5ab78cf054dfc5a326f8363f0716931c4c66421693800a1af409b115b7574d6c01ab8e3461dd8ed939df4547f631afbcad331fb8172d493f07c1af30cfa0d412b58a7b3592ce60931e5fb633f7bd515e5031328f147478bd43f2519c70bd5b9fc0f42c97b3e10d505d4febabee6d2bda3b86f6ff54617ad74495eb4517a2a2d0c4d8bee3f79a4924be13b280de70b9fef816f6acf97f3335fe983fde40dbd4d4dc7050f8b25bb999cc530b4841e00ef5148cb884f35f59f4252537810f4f3a82c23855e0a310970e60eb3d8376bfded5ea014fa2b01442afeb3a5248746c9c4364d450c498d6bf359ee0f8609efdaf12bc6677109c29088e91b4443232e3b8a04ae8221dd089c846ad4c5a77ef007fc90ec91c5592e28c16605a3d8be89c108713a0f40c99fa9a2ff0d911bdcab6312cb745c6a4da8885c7bee6937d82a65b9f66fcb347ae8a2c10184dfa3a05a4baae08ed22f31d6ce51360780967d5c8dfe71be8a383e936f092b0c4efc78495ae79dafbd0741490697a2444325d71397b635da9d9a564f50770076bdd837a14a74b01ddf92d1dddc319a5d13eb53f011156189469018c5ec0d7e20413544af70d5d1e4d5677b758e80b667cb721fbb1a85ae00f5c75924efad88996cbc64f13d27147b1e26d2adba4d051616bc54f7a34faee11fb108e842ee0c0045ed91f39ee5540f3ec4465fa62088dc45a0f6184e85b64459bda7b13fc51d9636a342c180cfa61c4426076bbb0c10238837cee0fe58ccda632b783806bec32a8ac42b6a2f5209429be9cdd75b4e298db8e73b103ca04a470cb370116897a89701bffe5f30517fe31e17cc557ea6f49a152ee9f1d22b</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 422409104@qq.com </span>
     </div>
@@ -341,38 +309,17 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>记一次ELK+FileBeats搭建</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">1.1k</span></p>
+    <p><span class="copy-title">文章标题:</span>绩效统计</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">6</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="shdvgj">shdvgj</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-10-07, 15:19:23</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-08, 16:05:32</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/07/ELK_FileBeats/" title="记一次ELK+FileBeats搭建">http://shdvgj.github.io/2019/10/07/ELK_FileBeats/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-09, 11:01:53</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-09, 13:51:49</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/09/绩效统计/" title="绩效统计">http://shdvgj.github.io/2019/10/09/绩效统计/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
 </div>
 
-
-
-    <div id="comments"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-
-<script type="text/javascript">
-    $.getScript('/js/gitalk.js', function () {
-        var gitalk = new Gitalk({
-            clientID: 'e1ed5420cf72d3747b1b',
-            clientSecret: '6c71276732dc19402ae304d000c471a4df889cd5',
-            repo: 'shdvgj.github.io',
-            owner: 'shdvgj',
-            admin: ['shdvgj'],
-            id: decodeURI(location.pathname),
-            distractionFreeMode: 'true',
-            language: 'zh-CN',
-            perPage: parseInt('10',10)
-        })
-        gitalk.render('comments')
-    })
-</script>
 
 
 
