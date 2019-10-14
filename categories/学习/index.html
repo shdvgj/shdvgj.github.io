@@ -6,17 +6,17 @@
   <meta name="keywords" content>
   <meta name="description" content="shdvgj的个人博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   12345678bin/logstash -f config/log4j-es.conf &amp;amp;```  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  ## LogStash自动重新加载配置  启动logstash时在后面加上命令--config.reload">
+<meta name="description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   1bin/logstash -f config/log4j-es.conf &amp;amp;  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭   LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic   1b">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ELK日常维护相关">
 <meta property="og:url" content="http://shdvgj.github.io/2019/10/14/ELK日常维护相关/index.html">
 <meta property="og:site_name" content="shdvgj的个人博客">
-<meta property="og:description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   12345678bin/logstash -f config/log4j-es.conf &amp;amp;```  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  ## LogStash自动重新加载配置  启动logstash时在后面加上命令--config.reload">
+<meta property="og:description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   1bin/logstash -f config/log4j-es.conf &amp;amp;  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭   LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic   1b">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-14T07:04:37.120Z">
+<meta property="og:updated_time" content="2019-10-14T07:11:16.970Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ELK日常维护相关">
-<meta name="twitter:description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   12345678bin/logstash -f config/log4j-es.conf &amp;amp;```  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  ## LogStash自动重新加载配置  启动logstash时在后面加上命令--config.reload">
+<meta name="twitter:description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   1bin/logstash -f config/log4j-es.conf &amp;amp;  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭   LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic   1b">
 
 
 <link rel="icon" href="/img/shdvgj.jpg">
@@ -170,11 +170,11 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">hexo</a>
+        <a href="javascript:" class="color4">elk</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">elk</a>
+        <a href="javascript:" class="color5">hexo</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -195,6 +195,14 @@
     
     <nav id="title-list-nav">
         
+        <a  class="学习 搭建相关 "
+           href="/2019/10/07/ELK_FileBeats/"
+           data-tag="elk"
+           data-author="" >
+            <span class="post-title" title="记一次ELK+FileBeats搭建">记一次ELK+FileBeats搭建</span>
+            <span class="post-date" title="2019-10-07 15:19:23">2019/10/07</span>
+        </a>
+        
         <a  class=""
            href="/2019/10/14/ELK日常维护相关/"
            data-tag=""
@@ -209,14 +217,6 @@
            data-author="" >
             <span class="post-title" title="hexo使用技巧">hexo使用技巧</span>
             <span class="post-date" title="2019-10-08 16:07:43">2019/10/08</span>
-        </a>
-        
-        <a  class="学习 搭建相关 "
-           href="/2019/10/07/ELK_FileBeats/"
-           data-tag="elk"
-           data-author="" >
-            <span class="post-title" title="记一次ELK+FileBeats搭建">记一次ELK+FileBeats搭建</span>
-            <span class="post-date" title="2019-10-07 15:19:23">2019/10/07</span>
         </a>
         
         <a  class="绩效 "
@@ -336,7 +336,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#hexo','#elk','#github','#translate','#news',],
+            'data': ['#elk','#hexo','#github','#translate','#news',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');

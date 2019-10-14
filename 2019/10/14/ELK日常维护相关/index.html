@@ -6,17 +6,17 @@
   <meta name="keywords" content>
   <meta name="description" content="ELK日常维护相关 | shdvgj的个人博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   12345678bin/logstash -f config/log4j-es.conf &amp;amp;```  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  ## LogStash自动重新加载配置  启动logstash时在后面加上命令--config.reload">
+<meta name="description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   1bin/logstash -f config/log4j-es.conf &amp;amp;  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭   LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic   1b">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ELK日常维护相关">
 <meta property="og:url" content="http://shdvgj.github.io/2019/10/14/ELK日常维护相关/index.html">
 <meta property="og:site_name" content="shdvgj的个人博客">
-<meta property="og:description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   12345678bin/logstash -f config/log4j-es.conf &amp;amp;```  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  ## LogStash自动重新加载配置  启动logstash时在后面加上命令--config.reload">
+<meta property="og:description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   1bin/logstash -f config/log4j-es.conf &amp;amp;  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭   LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic   1b">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-14T07:04:37.120Z">
+<meta property="og:updated_time" content="2019-10-14T07:11:16.970Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ELK日常维护相关">
-<meta name="twitter:description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   12345678bin/logstash -f config/log4j-es.conf &amp;amp;```  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  ## LogStash自动重新加载配置  启动logstash时在后面加上命令--config.reload">
+<meta name="twitter:description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   1bin/logstash -f config/log4j-es.conf &amp;amp;  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭   LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic   1b">
 
 
 <link rel="icon" href="/img/shdvgj.jpg">
@@ -170,11 +170,11 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">hexo</a>
+        <a href="javascript:" class="color4">elk</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">elk</a>
+        <a href="javascript:" class="color5">hexo</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -195,6 +195,14 @@
     
     <nav id="title-list-nav">
         
+        <a  class="学习 搭建相关 "
+           href="/2019/10/07/ELK_FileBeats/"
+           data-tag="elk"
+           data-author="" >
+            <span class="post-title" title="记一次ELK+FileBeats搭建">记一次ELK+FileBeats搭建</span>
+            <span class="post-date" title="2019-10-07 15:19:23">2019/10/07</span>
+        </a>
+        
         <a  class=""
            href="/2019/10/14/ELK日常维护相关/"
            data-tag=""
@@ -209,14 +217,6 @@
            data-author="" >
             <span class="post-title" title="hexo使用技巧">hexo使用技巧</span>
             <span class="post-date" title="2019-10-08 16:07:43">2019/10/08</span>
-        </a>
-        
-        <a  class="学习 搭建相关 "
-           href="/2019/10/07/ELK_FileBeats/"
-           data-tag="elk"
-           data-author="" >
-            <span class="post-title" title="记一次ELK+FileBeats搭建">记一次ELK+FileBeats搭建</span>
-            <span class="post-date" title="2019-10-07 15:19:23">2019/10/07</span>
         </a>
         
         <a  class="绩效 "
@@ -267,12 +267,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-14 15:04:37'>2019-10-14 13:25</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-14 15:11:16'>2019-10-14 13:25</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:387</span>
+        <span>字数:386</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -302,7 +302,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭"><span class="toc-text">配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重新发送filebeat抓取的内容"><span class="toc-text">重新发送filebeat抓取的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置索引内容30天过期删除"><span class="toc-text">设置索引内容30天过期删除</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭"><span class="toc-text">配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LogStash自动重新加载配置"><span class="toc-text">LogStash自动重新加载配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重新发送filebeat抓取的内容"><span class="toc-text">重新发送filebeat抓取的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置索引内容30天过期删除"><span class="toc-text">设置索引内容30天过期删除</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -319,7 +319,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭"><a href="#配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭" class="headerlink" title="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭"></a>配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭</h2><p>只要在后面加上&amp;即可, 如  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">bin/logstash -f config/log4j-es.conf &amp;</span><br><span class="line">```  </span><br><span class="line">注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span># LogStash自动重新加载配置  </span><br><span class="line">启动logstash时在后面加上命令--config.reload.automatic  </span><br><span class="line">```shell</span><br><span class="line">bin/logstash -f config/log4j-es.conf --config.reload.automatic &amp;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/logstash -f config/log4j-es.conf &amp;</span><br></pre></td></tr></table></figure>
+
+<p>注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  </p>
+<h2 id="LogStash自动重新加载配置"><a href="#LogStash自动重新加载配置" class="headerlink" title="LogStash自动重新加载配置"></a>LogStash自动重新加载配置</h2><p>启动logstash时在后面加上命令–config.reload.automatic  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/logstash -f config/log4j-es.conf --config.reload.automatic &amp;</span><br></pre></td></tr></table></figure>
 
 <h2 id="重新发送filebeat抓取的内容"><a href="#重新发送filebeat抓取的内容" class="headerlink" title="重新发送filebeat抓取的内容"></a>重新发送filebeat抓取的内容</h2><p>1.删除registry下的data.json<br>如:  </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /home/elk/filebeats/filebeat-7.3.1-linux-x86_64/data/registry/filebeat</span><br></pre></td></tr></table></figure>
@@ -348,10 +352,10 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>ELK日常维护相关</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">387</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">386</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="shdvgj">shdvgj</a></p>
     <p><span class="copy-title">发布时间:</span>2019-10-14, 13:25:13</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-14, 15:04:37</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-14, 15:11:16</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/14/ELK日常维护相关/" title="ELK日常维护相关">http://shdvgj.github.io/2019/10/14/ELK日常维护相关/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -416,7 +420,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#hexo','#elk','#github','#translate','#news',],
+            'data': ['#elk','#hexo','#github','#translate','#news',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
