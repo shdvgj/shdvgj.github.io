@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>ELK日常维护相关</title>
+    <url>/2019/10/14/ELK%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭"><a href="#配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭" class="headerlink" title="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭"></a>配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭</h2><p>只要在后面加上&amp;即可, 如  </p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bin/logstash -f config/log4j-es.conf &amp;</span><br></pre></td></tr></table></figure><p>注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  </p><h2 id="LogStash自动重新加载配置"><a href="#LogStash自动重新加载配置" class="headerlink" title="LogStash自动重新加载配置"></a>LogStash自动重新加载配置</h2><p>启动logstash时在后面加上命令–config.reload.automatic  </p><a id="more"></a>
+
+
+
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bin/logstash -f config/log4j-es.conf --config.reload.automatic &amp;</span><br></pre></td></tr></table></figure>
+
+<h2 id="重新发送filebeat抓取的内容"><a href="#重新发送filebeat抓取的内容" class="headerlink" title="重新发送filebeat抓取的内容"></a>重新发送filebeat抓取的内容</h2><p>1.删除registry下的data.json<br>如:  </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rm -rf /home/elk/filebeats/filebeat-7.3.1-linux-x86_64/data/registry/filebeat</span><br></pre></td></tr></table></figure>
+
+<p>2.重启filebeat<br>如果存在正在运行的filebeat, 先kill掉  </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ps aux | grep filebeat  </span><br><span class="line">kill -s 9 pid</span><br></pre></td></tr></table></figure>
+
+<p>然后执行  </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./filebeat -e -c filebeat.yml</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置索引内容30天过期删除"><a href="#设置索引内容30天过期删除" class="headerlink" title="设置索引内容30天过期删除"></a>设置索引内容30天过期删除</h2><p>本来我理解的理论上应该可以用索引的生命周期来实现, 但是半天没整明白, 所以现在<br>是简单粗暴的使用linux的cron任务来实现, 更具体的cron配置详见<a href="https://blog.csdn.net/mengzuchao/article/details/81172305" target="_blank" rel="noopener">cron详解</a><br>1.编辑shell脚本, 文件名为removeDataByTime.sh, 内容如下  </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">limit_date=30</span><br><span class="line">for var in `curl 'localhost:9200/_cat/indices' | awk '!/kibana*/ &#123;print $3&#125;'`</span><br><span class="line">do</span><br><span class="line">  curl -H "Content-Type:application/json" -X POST -d '&#123;"query": &#123;"range": &#123;"@timestamp": &#123;"lt": "now-'$&#123;limit_date&#125;'d/d"&#125;&#125;&#125;&#125;' "http://localhost:9200/$&#123;var&#125;/_delete_by_query"</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<p>2.编辑cron文件, 执行crantab -e, 打开crontab配置文件<br>加上刚才的shell脚本, 设置每天0点15分执行  </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">15 00 * * * /home/elk/removeDataByTime.sh</span><br></pre></td></tr></table></figure>
+
+<p>设置cron重新启动, 执行/sbin/service crond restart  </p>
+<p>3.查看cron执行情况<br>查看cron任务列表 : crontab -l<br>查看cron执行日志 : grep ‘removeDataByTime’ /var/log/cron  </p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>搭建相关</category>
+      </categories>
+      <tags>
+        <tag>elk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>新闻翻译.1</title>
+    <url>/2019/10/10/%E6%96%B0%E9%97%BB%E7%BF%BB%E8%AF%91-1/</url>
+    <content><![CDATA[<p><a href="https://www.latimes.com/politics/story/2019-10-09/trumps-legal-strategy-against-impeachment-shaky-constitutional-grounds-scholars-say" target="_blank" rel="noopener">原文链接</a>  </p><h2 id="Trump’s-legal-strategy-against-impeachment-is-on-shaky-constitutional-grounds-scholars-say"><a href="#Trump’s-legal-strategy-against-impeachment-is-on-shaky-constitutional-grounds-scholars-say" class="headerlink" title="Trump’s legal strategy against impeachment is on shaky constitutional grounds, scholars say"></a>Trump’s legal strategy against impeachment is on shaky constitutional grounds, scholars say</h2><h3 id="学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据"><a href="#学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据" class="headerlink" title="学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据"></a>学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据</h3><p>1.Washington —  Constitutional lawyers said Wednesday that President Trump’s<br>vow not to cooperate with the impeachment inquiry is both unprecedented and<br>unlikely to spare him from being formally charged by the House.<br>In fact, they say, it may only increase the chances that he will be impeached.<br>华盛顿报道 - 宪法律师周三声明, 川普总统发誓不会与弹劾调查进行合作的言论是<br>前所未有的, 而且也很可能使他面临众议院的正式指控. 并且, 他们还说到, 这有可能<br>增加川普被弹劾的可能.</p><a id="more"></a>
+
+<p>2.The Constitution says the “House of Representatives shall have the sole<br>power of impeachment,” and it does not give the president a specific role<br>in the process. A president is in some sense like an ordinary defendant<br>who may be subject to a criminal investigation and an indictment,<br>all without his participation or involvement, scholars say.<br>美国宪法里写到, “众议院拥有弹劾的唯一权力”, 而且没有赋予总统在此过程中的任何<br>特殊角色. 学者认为, 总统在整个过程中都不会参与到弹劾中, 某种意义上和普通被告一样,<br>可能面临刑事调查和指控.  </p>
+<p>3.“The president’s cooperation is not required or needed,” said University of<br>North Carolina law professor Michael J. Gerhardt, an expert on impeachment.<br>And “the House may make that defiance grounds for impeachment,” he added,<br>noting that in 1974, a House committee approved articles of impeachment against<br>President Nixon based in part on his refusal to comply with congressional subpoenas.<br>北卡罗莱纳大学的法律学教授, 同时也是研究弹劾的专家, Michael J.Gerhardt认为,<br>“总统的配合并不是必需的, 众议院可以把这作为违抗理由去弹劾”. 他还补充到, 1974年,<br>众议院委员会通过了一项弹劾决议, 其部分原因就是尼克松总统拒绝了来自国会的传票. </p>
+<p>4.Though both Nixon and President Clinton tried behind the scenes to slow<br>or stop impeachment proceedings, they also attempted to cooperate at times,<br>or at least appear to, out of respect for the process and fear they might<br>look like they were hiding something.<br>尽管尼克松和克林顿总统都试图在幕后减缓或者阻止弹劾的进程, 但至少他们在当时都是<br>试图配合弹劾工作的, 至少看上去是. 对于弹劾的不尊重和害怕会让他们看起来隐藏了<br>一些事.</p>
+<p>5.“There is no precedent for the president doing what President Trump is<br>doing here: saying I will flatly refuse to cooperate and ordering all<br>employees of the executive branch to refuse to cooperate as well,”<br>said professor Frank O. Bowman, who teaches impeachment law at the<br>University of Missouri and Georgetown.<br>来自密苏里和乔治敦大学, 教弹劾法律的教授Frank O.Bowman说:”之前从来没有<br>一份先例像川普总统这样, 说自己断然拒绝合作, 而且还命令所有的行政雇员也拒绝合作.”</p>
+<p>6.In Tuesday’s eight-page letter to House Democrats, White House Counsel<br>Pat Cipillone pronounced Trump innocent of wrongdoing and the inquiry<br>“unconstitutional.”<br>周四一份来自白宫的法律顾问Pat Cipillone的八页信件发往了众议院的民主党派,<br>他宣称川普的错误做法是无辜的, 而且弹劾调查也是违宪的.</p>
+<p>7.He said Trump’s July 25 phone call asking the new president of Ukraine<br>to do him “a favor” and investigate former Vice President Joe Biden and<br>his son Hunter was “completely appropriate. The president did nothing wrong,<br>and there is no legitimate basis for an impeachment inquiry.”<br>他说, 川普在7月25号致电给乌克兰新总统, 要求他帮助和调查前副总统Joe Biden以及<br>他的儿子Hunter是”完全合理的. 总统没有做错什么, 而且也没有一个合法的法律依据<br>可以支撑弹劾的调查”</p>
+<p>8.Legal experts, however, say Trump’s actions were exactly the kinds of<br>things that framers were thinking of when they included an impeachment<br>provision in the Constitution. Trump has acknowledged that even as he asked<br>Ukraine to investigate one of his political opponents, he had ordered<br>that nearly $400 million in aid to Ukraine be withheld.<br>然而法律专家认为, 川普的行为恰好就是制宪者将弹劾条款加入宪法时所考虑过的.<br>川普认识到即使他要求乌克兰去调查他其中的一个政治对手, 他下令资助给乌克兰的<br>将近40亿美元的援助也将被扣留.</p>
+<p>9.The White House letter suggests that the inquiry is invalid because<br>there was no formal House vote to launch it, and that Trump and Republicans<br>have so far not been given the right to see evidence and call witnesses.<br>Based on this conclusion, he said, “President Trump and his administration<br>cannot participate in your partisan and unconstitutional inquiry.”<br>白宫的信件认为调查是无效的, 因为没有任何正式的众议院决议去启动这项调查, 而且<br>川普和共和党至今甚至没有权力见到证据和传唤目击者. 基于这些结论, 他说: “川普<br>总统和他的管理团队不会参与到你们的党派和违宪的调查中去”</p>
+<p>10.Lawyers took to social media to express surprise and disdain, noting<br>that no such rights or requirements exist in the Constitution.<br>律师在社交媒体上表达了他的惊讶和蔑视, 指出在宪法中不存在这样的权力和请求.</p>
+<p>11.“This letter is bananas. A barely-lawyered temper tantrum,” tweeted<br>Gregg Nunziata, a former counsel for Senate Republicans.<br>前任的共和党法律顾问, Gregg Nunziata发推说道:”这封信就是胡闹, 一份没有法律<br>常识的脾气的宣泄”</p>
+<p>12.University of Texas law professor Steve Vladeck said it was remarkable<br>for the top White House lawyer to say in writing that it “is completely<br>appropriate for the president of the United States to actively solicit<br>foreign intervention in U.S. presidential elections. Let’s not lose<br>sight of just how insane that is.”<br>德克萨斯大学的法律教授Steve Vladeck表示, 对于一个顶级的白宫律师, 以书面形式<br>说”美国总统积极的寻求外国介入到美国的总统选择中是完全合理的. 让我们不要忘记<br>这是多么疯狂”, 真是太出色了.(这段真是不知道怎么翻译…)</p>
+<p>13.Lisa Kern Griffin, a Duke law professor, described the letter as a<br>“political stunt that misinterprets the Constitution, ignores relevant<br>precedents and defies common sense.” She said the letter sets the stage<br>for a constitutional crisis.<br>杜克的法律教授, Lisa Kern Griffin形容这个信是”曲解宪法的政治手段, 忽略了<br>相关的先例, 否决了共识”. 她说这封信为宪法的危机奠定了一个基础.</p>
+<p>14.“Of course, the House can proceed with impeachment based on the testimony<br>and evidence it can access, but it strikes me as dangerous for the entire<br>executive branch to defy congressional oversight.”<br>“理所当然的, 众议院可以继续根据已有的证词和证据进行弹劾, 但是令我感到危险的是<br>整个行政部门都违抗国会的监督”</p>
+<p>15.Neal K. Katyal, who was acting solicitor general during the Obama administration,<br>noted that Trump’s lawyers have insisted that he is immune from criminal charges,<br>shielded from congressional and state legal demands, including for his tax returns,<br>and now shielded from an impeachment inquiry.<br>在奥巴马政府期间担任代理司法部副部长的Neal K. Katyal指出, 川普的律师坚持他(川普)<br>是免于刑事指控的, 受国会和国家法律要求的保护, 包括他的报税表, 所以现在也保护他免<br>于收到弹劾的调查.</p>
+<p>16.Gerhardt said the White House letter “shows nothing but contempt for the<br>law and the Constitution. Its principal argument is that the president is<br>above the law. In fact, he is not. Impeachment is one of the unique constitutional<br>processes for holding the president accountable for abusing his power.”<br>Gerhardt认为白宫信件”展示了对于法律和宪法的蔑视. 这里面的主要内容就是总统<br>凌驾于法律之上. 但事实上, 他是错的. 弹劾是宪法中用于控制总统滥用职权的独特<br>法律条文之一”</p>
+<p>17.It’s not clear how or whether House Democrats will respond to Trump’s<br>vow of noncooperation. In recent weeks, leaders of the House inquiry signaled<br>they are reluctant to go to court or seek to hold officials in criminal<br>contempt for refusing to comply with a subpoena.<br>还不清楚众议院民主党派怎么回应或者是否会回应川普拒绝合作的承诺. 在最近几周,<br>众议院调查团队的负责人发出信号, 他们不愿意因为拒绝传票而走上法庭或者让官方<br>人员陷于刑事指控的境地.</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>英语</category>
+      </categories>
+      <tags>
+        <tag>translate</tag>
+        <tag>news</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>绩效统计</title>
+    <url>/2019/10/09/%E7%BB%A9%E6%95%88%E7%BB%9F%E8%AE%A1/</url>
+    <content><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="Hey, password is required here." />
+    <label for="hbePass">Hey, password is required here.</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="e6d00213a2d54c53f4263ed8b2a0fbe321f1cdace44dc41370c11147799a188a">2a0ea628916d6525573f610d39b9ef7122604835935ff8d5b1a744f62a716f045f1ba18d1b5a9fd6f80bee6828f6847a8419eb7cf2a6d62524ff90f7148312eb5d0d108aff95f936fe1c0ac4705eeb30dec3efc852543048e6c68c118627b29f94e9f7f293f07320e8f6d450f5c989939d4510ff34b56020afd46e06191e9a9c1065347aba4002daf12e3b56342e090829b651ea2d34822e537411a83ede116b8d54d9e23b21398adfb343247051f3d057390bdf89c48662c416e296f33956a4086223daf74a8aa3e4676ac493106619e008c3791bcf055fd6e2f1abf96ab6df2d6f990c9a718764e3353af410a86eb5afcc52d620b9ba8266b6eadba008511d0759ac61264205dd90225f188de2ff0c69c1ad8bed89dbc7e100c82467965a0392ca76af5aa15d9ac14a3e230f90c1a000f03b7da4e9d81c93e5da6afdc60f4392e130a11a8da1e94ca45a6a673ff4f50cb22098b8273e87ca2763dc091fd4c9fa38768de77ad42ad8c3f9c98753eb17ad673f56273694de3bb16652bc5343be1e34f8e6825d3601621af93ce348207a5b9b09dd24602c033cad96b1ed840871fb000dcebfe9de09a8ba1ea86b77dcda4b985a8175f64ca3952c52df2c45779c85914a658f6bdd0b4b81e2b2adb7b150d9586cd6835d763549b3d7aa42c1a904f241cc36b3933fa89d48e9913458b848c54a056e167707010fa5f25ce20d0826e7b7bb2802f4cc2a336ee702a931c63547d3c20d8f38b5a3121e703a591d985e098dd69506ee95d75368597b6a9b617810dd9a275c4a2d9d6e65e753c8c76ffe5d47e8eb0a916f5a0ddc802538a3b6758c636d232fe9a764549a660376274b14125e849a50490605205904119e7f1de414217704842272ac33988afc8d51701fd32cd6ccc47082be258215ee58fc799b72ecff50b8d6a01975569e38425bcb2bdb2b470972b6dcd6d45a1eaacf27631c953dba83bc4d14d259e34adaccb3bf93bcc9aa9deeab1c2e915ac97916687adbe95f47d3e2f212825a3cbf6f12e0de508d7b124d866b68273100ee31349493fc809df31732af75181d8553ad0e1bd65eabff433802203b634a1afb9f2ccd88f948d479222cfd52d9dc6884aa8d0bebc19c020d3f1263468b2c80f65171ba29104c73abf31f8b2fbbe4d8934e914cb3d80c37b4cc35dd669f738ea193b02bde2b1f51413b8e66898689d4d994e6faf570c4bf1201318f27fa64e9d39e3aa44f0b3d3d4a89eb5614d5d85a22b52ed568548d985019f62ca88ed3a80b81fd56af8256e363d08b13fe8718f88db68729d4a162f96f281fc7a293c5ae070cbe87795f23bf5f2eabc74454d3ca92c153ec648d52a8f12f6eb1495831feff9ed132ab9dd0a710b231965329cc4fd78b7a2d62c932dbcc2141fb57ae7f0007ac1169547a811c9f8dec5e910072c893345a7b801a04e106e942a3f8306718abd833ffcfa7549b723f02881d6ec89283ae470d0268848794b4b7551a60acedf1f4451407b98a35b3915bea8810537c0bf9a3b91c11ab10854e37dc968c4f770237c686df2268ae9271246c5d71554a7d198c2d91f0904da8b77a5d25437aa098eba28d0dfebd3b7cf94f83cb290d79bdcb3f011b49e709b3d8369e868dcf18906461900638362f00d2daea06eb9972bf3dab9cef69adfa204034dd15f38dc58a0846a224ff72e716f61a584ad4b74683b04da2bad7e0dbb80747bb5f857d5d1d6d7c7d2da784ba5adcc3da9c0e8ca0f9235ded1a7f047ebb0cc81260abd09cfd953f9e46baff0dda02b056cf9f48e12ae948aba44993a25f7e78e6b61f47547350d6b5b3d265f1d1e75e417b07b326f5788a632297391c0b6b6be382362d3f9311a16e564a0d1bc005d6842546ff7d3bc1eadfa2023cfa2d4a663a83287f15a31e6fc54d6c79a02d854bf8e805a1c1365b488ebbad4bc2297b5c1eab996c3c91f86d675206f8ff0c8557ab197c08d7fda36485a69e8ed4cccd52c648deeaba01e226b2357f173edf2501902a931e4137daed6782896cfcb3c9e3913ca7dfad887571ddb1f7a009b1d9f1e1583dd186c2516362d9a10842582e00a05cb9517603723075f2b6f65a22cf746892fcce974572be2e71788a78d685bdddff2673f0cbf686ceb72ebd87fffa81bcb2d27eaf88934e6d24822deaee3303a059ed8afeea3c8513c7d52d70fa7f672f63ddf17139dbaa515812e1b20e5fff334b11550519db6e6b480c47e296b2916351ff6a9a985337e8635e50c4464eb8069c47dd7f51be9064278eed4a67c8b4f7d33fd3e57fdeaceb4baeab3e6d25b45a60676b94fb1871cd9a9543b3ea369de2974b488ae81eb699928adf0d9f4a26834faefdcce00efe65d9575111a15b4b5adb2b14a00cf9941f80f8128fbcdbb935e398145dbc09f2dbc308c9a175e134fc26b809a2de1d968d272862de2ceeb3c9c040144dfccd956c5a04</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>绩效</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>hexo使用技巧</title>
+    <url>/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>1.进入<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a> 可以选择多种主题<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/1.png" alt><br>点击图片进去可以看到这种主题的预览效果<br>点击文字进去将进入这个主题的github站点, 里面会详细说明该主题的安装和配置方式  </p><p>2.目前最流行的hexo主题应该是NexT, 我这次选的是3-hexo作为例子来讲解一下, 这个也是一个优秀的国产hexo主题<br>其最终效果如图<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/2.png" alt>   </p><a id="more"></a>
+
+<p>3.关于3-hexo的安装和设置方法, 都可以直接参照<a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank" rel="noopener">该主题的github主页</a><br>简单介绍一下:  </p>
+<ol>
+<li>获取3-hexo: git clone <a href="https://github.com/yelog/hexo-theme-3-hexo.git" target="_blank" rel="noopener">https://github.com/yelog/hexo-theme-3-hexo.git</a> themes/3-hexo  </li>
+<li>将3-hexo的主题文件夹复制到hexo的themes目录下  </li>
+<li>修改3-hexo目录下的_config.yml文件, 修改方式在_config.yml中已经有详细的注释, 按照注释修改即可  </li>
+<li>hexo主目录下打开git窗口, 依次输入如下命令<br>hexo clean (清除静态页面缓存文件, 防止出现缓存影响页面样式的情况)<br>hexo g (生成静态页面)<br>hexo s (启动本地hexo服务器, 可以打开localhost:4000查看页面效果)<br>hexo d (发布到github)  </li>
+</ol>
+<h2 id="设置分类和标签"><a href="#设置分类和标签" class="headerlink" title="设置分类和标签"></a>设置分类和标签</h2><p>1.每一个由hexo生成的md文件, 其内容开头都是由两个”—“组成的, hexo把这部分称为<a href="https://hexo.io/zh-cn/docs/front-matter" target="_blank" rel="noopener">Front-Matter</a>, 如图:<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/3.png" alt>  </p>
+<p>2.在Front-Matter的区域内可以设置关于文章的诸多信息, 包括标题, 创建时间, 标签, 目录, 是否开启评论等  </p>
+<p>3.标签的参数名称为tags, 目录的参数名称为categories, 设置单个标签和目录的格式如下:  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tags: hexo</span><br><span class="line">categories: hexo</span><br></pre></td></tr></table></figure>
+
+<p>设置多个标签和多级目录的格式如下:  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tags: </span><br><span class="line">- hexo</span><br><span class="line">- blog</span><br><span class="line">categories: </span><br><span class="line">- 学习</span><br><span class="line">- 搭建相关</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意:目录的先后顺序决定了其父子级关系, 如上面的例子中, “学习”目录是”搭建相关”目录的父目录. 在3-hexo主题中的效果如下:</strong><br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/4.png" alt></p>
+<h2 id="MarkDown开发工具"><a href="#MarkDown开发工具" class="headerlink" title="MarkDown开发工具"></a>MarkDown开发工具</h2><p>我本人不太喜欢为markdown开发再安装一个软件, 所以以下都是针对程序员电脑上通常已有的软件上安装插件, 当然如果没有这些软件, 那推荐直接安装<a href="https://typora.io/" target="_blank" rel="noopener">typora</a>  </p>
+<p>1.Notepad++插件MarkdownViewer++<br>如果已经安装了Notepad++, 可以直接下载<a href="https://github.com/nea/MarkdownViewerPlusPlus/releases" target="_blank" rel="noopener">MarkdownViewer++</a>插件<br>下载完成后, 直接将dll文件放入Notepad++主目录下的plugin文件夹下, 然后重新启动Notepad++即可, 在Notepad++的工具栏会出现一个”m”图标:<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/5.png" alt><br>点击即可实时查看页面效果<br>优点: 插件轻量级, 1MB不到, 占用系统的内存消耗极小<br>缺点: 功能非常有限, 只能实时查看效果, 不能对markdown语法高亮  </p>
+<p>2.Idea插件MarkDown Navigator<br>其实Idea自带了一个MarkDown的插件, 但是这个插件不太好用, 所以这里不再介绍了<br>打开Idea, 打开File-Settings-Plugins-Browse Repositories, 查找MarkDown Navigator, 点击Install, 重新启动Idea即可<br>效果如图:<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/6.png" alt><br>优点: 支持MarkDown语法高亮, 支持语法快捷键, 且在Idea内开发, 对于程序员来说比较习惯<br>缺点: 毕竟需要Idea来开发, 对于仅仅只要写博客的人来说, 显得有点笨重  </p>
+<p>3.MarkDown在线编辑器<br>在线编辑的好处不言自明, 不用安装任何软件和插件, 只要有浏览器就行<br>推荐<a href="https://www.mdeditor.com/" target="_blank" rel="noopener">https://www.mdeditor.com/</a> </p>
+<h2 id="为博客设置密码"><a href="#为博客设置密码" class="headerlink" title="为博客设置密码"></a>为博客设置密码</h2><p>1.安装插件: 在hexo主目录下执行npm install –save hexo-blog-encrypt<br>2.在需要设置密码的博客的Front-Matter里面加一个参数<br>password:*****  </p>
+<h2 id="如何上传图片"><a href="#如何上传图片" class="headerlink" title="如何上传图片"></a>如何上传图片</h2><p>1.在github存储图片并在博客内关联图片链接<br>这种方式比较推荐, 因为别的博客网站通常都会有防止外部访问的措施在, 存储<br>在github上的图片不会有外部无法访问的情况. 对于各个版本的hexo都能适用.</p>
+<ol>
+<li><p>打开hexo主目录下的_config.yml文件, 修改参数post_asset_folder为true</p>
+</li>
+<li><p>使用hexo n “博客标题” 新建博客时将会同时新建一个同名的资源文件夹, 如图<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/7.png" alt>  </p>
+</li>
+<li><p>将博客内用到的图片放置到资源文件夹内, 可以按顺序号命名, 如图<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/8.png" alt></p>
+</li>
+<li><p>在博客内链接该图片, 格式为 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">![](https://raw.githubusercontent.com/#username/#username.github.io/master/#YYYY/#MM/#DD/#title/#photoname)  </span><br><span class="line">#username : github用户名</span><br><span class="line">#YYYY/#MM/#DD : 如果没有修改_config.yml里的默认文件夹创建方式的话, 就是填入年月日即可, 如2019/10/14  </span><br><span class="line">#title : 文章标题  </span><br><span class="line">#photoname : 图片名称</span><br></pre></td></tr></table></figure>
+
+<p>比如我这篇博客的图片链接地址如下图<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/9.png" alt>  </p>
+</li>
+<li><p>链接完图片后目前在博客的预览界面还无法看到图片, 需要先执行<br>hexo clean (非必要步骤, 如果博客页面格式显示不正确, 需要执行)<br>hexo g (创建博客静态网页文件)<br>hexo d (这一步用于发布博客, 也同时发布图片)<br>hexo d的命令将会把图片发布到github服务器上, 也就可以在上述格式的图片地址里看到该图片  </p>
+</li>
+</ol>
+<p>2.直接链接本地地址, 这种方式也很方便, 网上也有挺多人使用这种方式, 主要优点<br>是不用多操作一步链接网络地址, 我贴一下该方式:</p>
+<ol>
+<li>打开hexo主目录下的_config.yml文件, 修改参数post_asset_folder为true</li>
+<li>安装图片插件 npm install hexo-asset-image –save  </li>
+<li>在博客内直接引用本地地址即可, 如  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">![](/1.png)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>搭建相关</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>利用hexo和github搭建个人博客</title>
+    <url>/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="github建立个人网站"><a href="#github建立个人网站" class="headerlink" title="github建立个人网站"></a>github建立个人网站</h2><p>1.github的账号申请不再赘述<br>2.打开github.com, 点击new, 新建一个项目<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/1.png" alt><br>3.输入项目名称, 注意项目名称的格式必须是”用户名.github.io”的格式<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2.png" alt><br>4.点击Create Repository完成项目新建<br>5.点击新建的项目, 进入settings, 往下找到GitHub Pages, 点击Choose a theme, 选择一个主题后, 点击select theme就完成了网站的发布<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/3.png" alt><br>6.在浏览器输入”用户名.github.io”, 就可以看到github为你默认创建的首页  </p><a id="more"></a>
+<h2 id="hexo搭建博客"><a href="#hexo搭建博客" class="headerlink" title="hexo搭建博客"></a>hexo搭建博客</h2><p>1.在使用hexo搭建博客之前, 需要完成几个基础工作<br><a href="https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git" target="_blank" rel="noopener">安装git</a><br><a href="https://help.github.com/cn/articles/adding-a-new-ssh-key-to-your-github-account" target="_blank" rel="noopener">新增ssh key到github</a><br><a href="http://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="noopener">安装node.js</a><br>2.在本地拉取github上刚刚创建的网页项目(用户名.github.io)<br>3.在项目目录下新建一个文件夹, 可以随意命名, 比如hexo<br>4.进入hexo目录, windows下右键空白处, 点击Git Bash Here<br>5.依次执行命令<br>npm install hexo-cli -g  (安装hexo)<br>hexo init  (初始化网站)<br>npm install hexo-deployer-git –save  (安装hexo发布到git的插件)<br>中间遇到需要确认的信息, 直接按回车即可<br>6.打开hexo目录下的_config.yml文件, 有几个地方可以进行修改<br>title: 你的网站名字<br>author: 网站作者<br>theme: 去<a href="https://hexo.io/themes/" target="_blank" rel="noopener">hexo主题</a>可以选择, 注意要先将主题下载到hexo/themes下才可选择该主题<br>注意: <strong>必须要修改的部分是deploy, 改成如下格式</strong>  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:yourname/yourname.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<p>其他配置的详细说明在<a href="https://hexo.io/docs/configuration.html" target="_blank" rel="noopener">hexo配置文件说明</a><br>7.接下来就可以开始写博客了<br>使用命令hexo n “博客标题”, 即完成了一个新的博客文件的创建<br>该命令会在hexo/source/_posts目录下新建一个”博客标题.md”的文件<br>该文件内容格式如下<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/4.png" alt><br>正文内容使用markdown语法进行编写, 至于markdown怎么写, 可以参考<a href="http://www.markdown.cn/" target="_blank" rel="noopener">markdown官方文档</a><br>8.博客写完之后, 保存文件, 然后依次执行如下命令<br>hexo g  (根据md文件创建静态网页文件, 注意每次更新博客内容都需要执行这个命令)<br>hexo s  (这一步是启动本地hexo服务器, 主要是为了本地预览博客效果, 浏览器打开localhost:4000预览效果)<br>hexo d (发布网页到github)<br>9.浏览器打开”用户名.github.io”即可看到你刚刚写的博客内容<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/5.png" alt>  </p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>总的来说, hexo+github搭建博客非常的简便, hexo内置的几种主题也都非常的简洁美观, 对于既想要有逼格的有自己的个人博客网站, 又不想太麻烦的人来说, 是个不错的选择</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>搭建相关</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记一次ELK+FileBeats搭建</title>
+    <url>/2019/10/07/ELK_FileBeats/</url>
+    <content><![CDATA[<h2 id="获取ElasticSearch-LogStash-Kibana-FileBeats"><a href="#获取ElasticSearch-LogStash-Kibana-FileBeats" class="headerlink" title="获取ElasticSearch+LogStash+Kibana+FileBeats"></a>获取ElasticSearch+LogStash+Kibana+FileBeats</h2><p>关于elk搭建的全部产品都可以从elastic的官方网站获取最新版本<br><a href="https://www.elastic.co/cn/products/" target="_blank" rel="noopener">elastic官网</a></p><p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/1.png" alt><br>如图所示<br>当前elastic官方已经不再推荐单纯使用elk(ElasticSearch+LogStash+Kibana)三个产品搭建日志平台, 而是在此基础上加上了轻量级的日志收集插件FileBeats.  </p><a id="more"></a>
+
+<h2 id="安装ElasticSearch"><a href="#安装ElasticSearch" class="headerlink" title="安装ElasticSearch"></a>安装ElasticSearch</h2><p>我们首先获取安装包<br>进入<a href="https://www.elastic.co/cn/downloads/elasticsearch" target="_blank" rel="noopener">https://www.elastic.co/cn/downloads/elasticsearch</a>  </p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/2.png" alt><br>在Downloads里点击linux就可以下载到用于linux安装的tar包<br>如果是直接在linux安装,使用wget命令即可<br>如 : wget <a href="https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.0-linux-x86_64.tar.gz" target="_blank" rel="noopener">https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.0-linux-x86_64.tar.gz</a><br>如果需要更旧的历史版本, 点击下面的past release即可</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/3.png" alt>  </p>
+<p>在获取到安装包之后, windows环境需要将tar包传送到linux , 使用scp(windows需要预装git)命令即可<br>如: scp C:/Users/Administrator/Downloads/elasticsearch-7.3.1-linux-x86_64.tar.gz <a href="mailto:root@100.100.100.100" target="_blank" rel="noopener">root@100.100.100.100</a>:/home/elk/<br>在linux, 进入到安装包的目录, 使用tar -zxvf命令进行解压<br>如: tar -zxvf elasticsearch-7.3.1-linux-x86_64.tar.gz<br>解压完成后, elasticsearch其实就已经完成了安装  </p>
+<h3 id="启动ElasticSearch"><a href="#启动ElasticSearch" class="headerlink" title="启动ElasticSearch"></a>启动ElasticSearch</h3><p>在启动elasticserach之前需要注意:elasticsearch不可以用root用户启动, 因此, 需要事先在linux建立一个非root用户<br><a href="https://www.cnblogs.com/sunyllove/p/9772053.html" target="_blank" rel="noopener">linux如何创建一个管理员用户</a><br>创建完linux用户后, 切换到该用户, 进入到elasticsearch目录, 执行bin/elasticserach即可<br>默认elasticsearch的端口是9200, 打开浏览器, 输入<a href="http://elasticsearch地址:9200/" target="_blank" rel="noopener">http://elasticsearch地址:9200/</a>  , 出现如下画面, 说明elasticsearch启动成功</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/4.png" alt></p>
+<h2 id="安装LogStash"><a href="#安装LogStash" class="headerlink" title="安装LogStash"></a>安装LogStash</h2><p>windows环境下载和上传到linux的方法不再赘述, 参照前文<br>linux环境, 参照如下命令即可:<br>1.执行wget <a href="https://artifacts.elastic.co/downloads/logstash/logstash-7.4.0.tar.gz" target="_blank" rel="noopener">https://artifacts.elastic.co/downloads/logstash/logstash-7.4.0.tar.gz</a><br>2.进入logstash安装包目录, 执行tar -zxvf logstash-7.4.0.tar.gz  </p>
+<h3 id="配置和启动LogStash"><a href="#配置和启动LogStash" class="headerlink" title="配置和启动LogStash"></a>配置和启动LogStash</h3><p>1.在启动logstash之前, 需要先新建一个logstash的配置文件<br>参照logstash目录下的config/logstash-sample.config文件(如图), 新建一个logstash-elk.config文件  </p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/5.png" alt><br>input, 即输入数据的监听端口, 这个一般不需要改.<br>output, 用于将接收到的数据发送到elasitcsearch. 将hosts改成elasticsearch部署的地址, 如果elasticsearch和logstash是同一台机器, 则不需要更改.<br>注意: 如果多个实例中的FileBeats发送过来的数据希望进入同一个elasticsearch实例, 并根据不同的ip地址划分为不同的索引, 按照如下方式配置  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">output &#123;</span><br><span class="line">    if &quot;100.100.100.101&quot; in [host][ip] &#123;</span><br><span class="line">        elasticsearch&#123;</span><br><span class="line">          hosts =&gt; [&quot;localhost:9200&quot;]</span><br><span class="line">          index =&gt; &quot;sample1&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else if &quot;100.100.100.102&quot; in [host][ip] &#123;</span><br><span class="line">        elasticsearch&#123;</span><br><span class="line">          hosts =&gt; [&quot;localhost:9200&quot;]</span><br><span class="line">          index =&gt; &quot;sample2&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      elasticsearch&#123;</span><br><span class="line">        hosts =&gt; [&quot;localhost:9200&quot;]</span><br><span class="line">        index =&gt; &quot;other&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置完成后, 启动logstash, 执行bin/logstash -f config/logstash-elk.conf </p>
+<h2 id="安装Kibana"><a href="#安装Kibana" class="headerlink" title="安装Kibana"></a>安装Kibana</h2><p>linux参照如下命令<br>1.wget <a href="https://artifacts.elastic.co/downloads/kibana/kibana-7.4.0-linux-x86_64.tar.gz" target="_blank" rel="noopener">https://artifacts.elastic.co/downloads/kibana/kibana-7.4.0-linux-x86_64.tar.gz</a><br>2.进入kibana安装包目录, 执行tar -zxvf kibana-7.4.0-linux-x86_64.tar.gz  </p>
+<h3 id="配置和启动kibana"><a href="#配置和启动kibana" class="headerlink" title="配置和启动kibana"></a>配置和启动kibana</h3><p>进入config/kibana.yml<br>1.修改server.host为linux机器的实际地址<br>2.修改i18n.locale: “zh-CN” 这样kibana界面会显示为中文<br>3.返回kibana主目录, 执行bin/kibana  (注意:kibana也不能用root用户启动)<br>4.打开浏览器, 输入<a href="http://kibana地址:5601" target="_blank" rel="noopener">http://kibana地址:5601</a>, 出现如下画面  </p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/6.png" alt></p>
+<h2 id="安装FileBeats"><a href="#安装FileBeats" class="headerlink" title="安装FileBeats"></a>安装FileBeats</h2><p>注意: <strong>FileBeats需要安装在所有需要发送日志的服务器上</strong><br>linux参照如下命令<br>1.wget <a href="https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.4.0-linux-x86_64.tar.gz" target="_blank" rel="noopener">https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.4.0-linux-x86_64.tar.gz</a><br>2.tar -zxvf filebeat-7.4.0-linux-x86_64.tar.gz</p>
+<h3 id="配置和启动FileBeats"><a href="#配置和启动FileBeats" class="headerlink" title="配置和启动FileBeats"></a>配置和启动FileBeats</h3><p>进入filebeats安装目录, vi filebeat.yml<br>1.修改paths下的目录, 输入filebeats所在服务器需要收集的日志地址, 如:  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">paths:</span><br><span class="line">    - /home/sample1/logs/log.*</span><br><span class="line">    - /home/sample2/logs/log.*</span><br></pre></td></tr></table></figure>
+
+<p>2.修改output.logstash下的内容, 将logstash部署的地址输入, 参照如下:  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">output.logstash:</span><br><span class="line">  hosts: [&quot;100.100.100.101:5044&quot;]</span><br><span class="line">  enabled: true</span><br></pre></td></tr></table></figure>
+
+<p>3.进入filebeats主目录, 执行 ./filebeat -e -c filebeat.yml, 启动成功  </p>
+<h2 id="kibana查看日志内容"><a href="#kibana查看日志内容" class="headerlink" title="kibana查看日志内容"></a>kibana查看日志内容</h2><p>将上述Elk+FileBeats都安装搭建完成后, 浏览器进入到kibana的界面.<br>1.打开管理-索引模式-创建索引模式, 进入如下界面:  </p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/7.png" alt><br>2.可以看到有三个索引可以匹配, 在索引模式的输入框内输入自己想要创建的索引, 如other, 然后点击下一步</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/8.png" alt><br>3.选择timestamp, 点击创建索引模式</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/9.png" alt><br>4.创建成功, 点击discover</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/10.png" alt><br>5.可以看到有一个新的索引other可以选择</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/11.png" alt></p>
+<p>6.到此, elk+filebeats的基本搭建工作就已经完成了</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>搭建相关</category>
+      </categories>
+      <tags>
+        <tag>elk</tag>
+      </tags>
+  </entry>
+</search>
