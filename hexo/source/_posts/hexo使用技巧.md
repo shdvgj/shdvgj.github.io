@@ -80,4 +80,38 @@ categories:
 ## 为博客设置密码  
 1.安装插件: 在hexo主目录下执行npm install --save hexo-blog-encrypt  
 2.在需要设置密码的博客的Front-Matter里面加一个参数  
-password:*****
+password:*****  
+
+## 如何上传图片  
+1.在github存储图片并在博客内关联图片链接  
+这种方式比较推荐, 因为别的博客网站通常都会有防止外部访问的措施在, 存储
+在github上的图片不会有外部无法访问的情况. 对于各个版本的hexo都能适用.
+  1. 打开hexo主目录下的_config.yml文件, 修改参数post_asset_folder为true
+  2. 使用hexo n "博客标题" 新建博客时将会同时新建一个同名的资源文件夹, 如图  
+  ![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo使用技巧/7.png)  
+  3. 将博客内用到的图片放置到资源文件夹内, 可以按顺序号命名, 如图  
+  ![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo使用技巧/8.png)
+  4. 在博客内链接该图片, 格式为 
+  ```hexo
+  ![](https://raw.githubusercontent.com/#username/#username.github.io/master/#YYYY/#MM/#DD/#title/#photoname)  
+  #username : github用户名
+  #YYYY/#MM/#DD : 如果没有修改_config.yml里的默认文件夹创建方式的话, 就是填入年月日即可, 如2019/10/14  
+  #title : 文章标题  
+  #photoname : 图片名称  
+  ```
+  比如我这篇博客的图片链接地址如下图  
+  ![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo使用技巧/9.png)  
+  5. 链接完图片后目前在博客的预览界面还无法看到图片, 需要先执行  
+  hexo clean (非必要步骤, 如果博客页面格式显示不正确, 需要执行)  
+  hexo g (创建博客静态网页文件)  
+  hexo d (这一步用于发布博客, 也同时发布图片)  
+  hexo d的命令将会把图片发布到github服务器上, 也就可以在上述格式的图片地址里看到该图片  
+  
+2.直接链接本地地址, 这种方式也很方便, 网上也有挺多人使用这种方式, 主要优点
+是不用多操作一步链接网络地址, 我贴一下该方式:
+  1. 打开hexo主目录下的_config.yml文件, 修改参数post_asset_folder为true
+  2. 安装图片插件 npm install hexo-asset-image --save  
+  3. 在博客内直接引用本地地址即可, 如  
+  ``` hexo
+  ![](/1.png)
+  ```
