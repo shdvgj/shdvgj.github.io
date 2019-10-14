@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>新闻翻译.1 | shdvgj的个人博客</title>
-  <meta name="keywords" content=" translate , news ">
-  <meta name="description" content="新闻翻译.1 | shdvgj的个人博客">
+  <title>ELK日常维护相关 | shdvgj的个人博客</title>
+  <meta name="keywords" content>
+  <meta name="description" content="ELK日常维护相关 | shdvgj的个人博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   12345678bin/logstash -f config/log4j-es.conf &amp;amp;```  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  ## LogStash自动重新加载配置  启动logstash时在后面加上命令--config.reload">
 <meta property="og:type" content="article">
@@ -255,40 +255,24 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-新闻翻译-1" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-ELK日常维护相关" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">新闻翻译.1</h1>
+        <h1 class="article-title">ELK日常维护相关</h1>
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            
-                <a href="javascript:" data-rel="学习">学习</a>/
-            
-                <a href="javascript:" data-rel="英语">英语</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="javascript:" class="color5">translate</a>
-            
-            <a href="javascript:" class="color5">news</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-10 14:45:03'>2019-10-10 09:09</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-14 15:04:37'>2019-10-14 13:25</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:2k</span>
+        <span>字数:387</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -318,7 +302,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Trump’s-legal-strategy-against-impeachment-is-on-shaky-constitutional-grounds-scholars-say"><span class="toc-text">Trump’s legal strategy against impeachment is on shaky constitutional grounds, scholars say</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据"><span class="toc-text">学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭"><span class="toc-text">配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重新发送filebeat抓取的内容"><span class="toc-text">重新发送filebeat抓取的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置索引内容30天过期删除"><span class="toc-text">设置索引内容30天过期删除</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -334,24 +318,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://www.latimes.com/politics/story/2019-10-09/trumps-legal-strategy-against-impeachment-shaky-constitutional-grounds-scholars-say" target="_blank" rel="noopener">原文链接</a>  </p>
-<h2 id="Trump’s-legal-strategy-against-impeachment-is-on-shaky-constitutional-grounds-scholars-say"><a href="#Trump’s-legal-strategy-against-impeachment-is-on-shaky-constitutional-grounds-scholars-say" class="headerlink" title="Trump’s legal strategy against impeachment is on shaky constitutional grounds, scholars say"></a>Trump’s legal strategy against impeachment is on shaky constitutional grounds, scholars say</h2><h3 id="学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据"><a href="#学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据" class="headerlink" title="学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据"></a>学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据</h3><p>1.Washington —  Constitutional lawyers said Wednesday that President Trump’s<br>vow not to cooperate with the impeachment inquiry is both unprecedented and<br>unlikely to spare him from being formally charged by the House.<br>In fact, they say, it may only increase the chances that he will be impeached.<br>华盛顿报道 - 宪法律师周三声明, 川普总统发誓不会与弹劾调查进行合作的言论是<br>前所未有的, 而且也很可能使他面临众议院的正式指控. 并且, 他们还说到, 这有可能<br>增加川普被弹劾的可能.</p>
-<p>2.The Constitution says the “House of Representatives shall have the sole<br>power of impeachment,” and it does not give the president a specific role<br>in the process. A president is in some sense like an ordinary defendant<br>who may be subject to a criminal investigation and an indictment,<br>all without his participation or involvement, scholars say.<br>美国宪法里写到, “众议院拥有弹劾的唯一权力”, 而且没有赋予总统在此过程中的任何<br>特殊角色. 学者认为, 总统在整个过程中都不会参与到弹劾中, 某种意义上和普通被告一样,<br>可能面临刑事调查和指控.  </p>
-<p>3.“The president’s cooperation is not required or needed,” said University of<br>North Carolina law professor Michael J. Gerhardt, an expert on impeachment.<br>And “the House may make that defiance grounds for impeachment,” he added,<br>noting that in 1974, a House committee approved articles of impeachment against<br>President Nixon based in part on his refusal to comply with congressional subpoenas.<br>北卡罗莱纳大学的法律学教授, 同时也是研究弹劾的专家, Michael J.Gerhardt认为,<br>“总统的配合并不是必需的, 众议院可以把这作为违抗理由去弹劾”. 他还补充到, 1974年,<br>众议院委员会通过了一项弹劾决议, 其部分原因就是尼克松总统拒绝了来自国会的传票. </p>
-<p>4.Though both Nixon and President Clinton tried behind the scenes to slow<br>or stop impeachment proceedings, they also attempted to cooperate at times,<br>or at least appear to, out of respect for the process and fear they might<br>look like they were hiding something.<br>尽管尼克松和克林顿总统都试图在幕后减缓或者阻止弹劾的进程, 但至少他们在当时都是<br>试图配合弹劾工作的, 至少看上去是. 对于弹劾的不尊重和害怕会让他们看起来隐藏了<br>一些事.</p>
-<p>5.“There is no precedent for the president doing what President Trump is<br>doing here: saying I will flatly refuse to cooperate and ordering all<br>employees of the executive branch to refuse to cooperate as well,”<br>said professor Frank O. Bowman, who teaches impeachment law at the<br>University of Missouri and Georgetown.<br>来自密苏里和乔治敦大学, 教弹劾法律的教授Frank O.Bowman说:”之前从来没有<br>一份先例像川普总统这样, 说自己断然拒绝合作, 而且还命令所有的行政雇员也拒绝合作.”</p>
-<p>6.In Tuesday’s eight-page letter to House Democrats, White House Counsel<br>Pat Cipillone pronounced Trump innocent of wrongdoing and the inquiry<br>“unconstitutional.”<br>周四一份来自白宫的法律顾问Pat Cipillone的八页信件发往了众议院的民主党派,<br>他宣称川普的错误做法是无辜的, 而且弹劾调查也是违宪的.</p>
-<p>7.He said Trump’s July 25 phone call asking the new president of Ukraine<br>to do him “a favor” and investigate former Vice President Joe Biden and<br>his son Hunter was “completely appropriate. The president did nothing wrong,<br>and there is no legitimate basis for an impeachment inquiry.”<br>他说, 川普在7月25号致电给乌克兰新总统, 要求他帮助和调查前副总统Joe Biden以及<br>他的儿子Hunter是”完全合理的. 总统没有做错什么, 而且也没有一个合法的法律依据<br>可以支撑弹劾的调查”</p>
-<p>8.Legal experts, however, say Trump’s actions were exactly the kinds of<br>things that framers were thinking of when they included an impeachment<br>provision in the Constitution. Trump has acknowledged that even as he asked<br>Ukraine to investigate one of his political opponents, he had ordered<br>that nearly $400 million in aid to Ukraine be withheld.<br>然而法律专家认为, 川普的行为恰好就是制宪者将弹劾条款加入宪法时所考虑过的.<br>川普认识到即使他要求乌克兰去调查他其中的一个政治对手, 他下令资助给乌克兰的<br>将近40亿美元的援助也将被扣留.</p>
-<p>9.The White House letter suggests that the inquiry is invalid because<br>there was no formal House vote to launch it, and that Trump and Republicans<br>have so far not been given the right to see evidence and call witnesses.<br>Based on this conclusion, he said, “President Trump and his administration<br>cannot participate in your partisan and unconstitutional inquiry.”<br>白宫的信件认为调查是无效的, 因为没有任何正式的众议院决议去启动这项调查, 而且<br>川普和共和党至今甚至没有权力见到证据和传唤目击者. 基于这些结论, 他说: “川普<br>总统和他的管理团队不会参与到你们的党派和违宪的调查中去”</p>
-<p>10.Lawyers took to social media to express surprise and disdain, noting<br>that no such rights or requirements exist in the Constitution.<br>律师在社交媒体上表达了他的惊讶和蔑视, 指出在宪法中不存在这样的权力和请求.</p>
-<p>11.“This letter is bananas. A barely-lawyered temper tantrum,” tweeted<br>Gregg Nunziata, a former counsel for Senate Republicans.<br>前任的共和党法律顾问, Gregg Nunziata发推说道:”这封信就是胡闹, 一份没有法律<br>常识的脾气的宣泄”</p>
-<p>12.University of Texas law professor Steve Vladeck said it was remarkable<br>for the top White House lawyer to say in writing that it “is completely<br>appropriate for the president of the United States to actively solicit<br>foreign intervention in U.S. presidential elections. Let’s not lose<br>sight of just how insane that is.”<br>德克萨斯大学的法律教授Steve Vladeck表示, 对于一个顶级的白宫律师, 以书面形式<br>说”美国总统积极的寻求外国介入到美国的总统选择中是完全合理的. 让我们不要忘记<br>这是多么疯狂”, 真是太出色了.(这段真是不知道怎么翻译…)</p>
-<p>13.Lisa Kern Griffin, a Duke law professor, described the letter as a<br>“political stunt that misinterprets the Constitution, ignores relevant<br>precedents and defies common sense.” She said the letter sets the stage<br>for a constitutional crisis.<br>杜克的法律教授, Lisa Kern Griffin形容这个信是”曲解宪法的政治手段, 忽略了<br>相关的先例, 否决了共识”. 她说这封信为宪法的危机奠定了一个基础.</p>
-<p>14.“Of course, the House can proceed with impeachment based on the testimony<br>and evidence it can access, but it strikes me as dangerous for the entire<br>executive branch to defy congressional oversight.”<br>“理所当然的, 众议院可以继续根据已有的证词和证据进行弹劾, 但是令我感到危险的是<br>整个行政部门都违抗国会的监督”</p>
-<p>15.Neal K. Katyal, who was acting solicitor general during the Obama administration,<br>noted that Trump’s lawyers have insisted that he is immune from criminal charges,<br>shielded from congressional and state legal demands, including for his tax returns,<br>and now shielded from an impeachment inquiry.<br>在奥巴马政府期间担任代理司法部副部长的Neal K. Katyal指出, 川普的律师坚持他(川普)<br>是免于刑事指控的, 受国会和国家法律要求的保护, 包括他的报税表, 所以现在也保护他免<br>于收到弹劾的调查.</p>
-<p>16.Gerhardt said the White House letter “shows nothing but contempt for the<br>law and the Constitution. Its principal argument is that the president is<br>above the law. In fact, he is not. Impeachment is one of the unique constitutional<br>processes for holding the president accountable for abusing his power.”<br>Gerhardt认为白宫信件”展示了对于法律和宪法的蔑视. 这里面的主要内容就是总统<br>凌驾于法律之上. 但事实上, 他是错的. 弹劾是宪法中用于控制总统滥用职权的独特<br>法律条文之一”</p>
-<p>17.It’s not clear how or whether House Democrats will respond to Trump’s<br>vow of noncooperation. In recent weeks, leaders of the House inquiry signaled<br>they are reluctant to go to court or seek to hold officials in criminal<br>contempt for refusing to comply with a subpoena.<br>还不清楚众议院民主党派怎么回应或者是否会回应川普拒绝合作的承诺. 在最近几周,<br>众议院调查团队的负责人发出信号, 他们不愿意因为拒绝传票而走上法庭或者让官方<br>人员陷于刑事指控的境地.</p>
+        <h2 id="配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭"><a href="#配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭" class="headerlink" title="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭"></a>配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭</h2><p>只要在后面加上&amp;即可, 如  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">bin/logstash -f config/log4j-es.conf &amp;</span><br><span class="line">```  </span><br><span class="line">注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span># LogStash自动重新加载配置  </span><br><span class="line">启动logstash时在后面加上命令--config.reload.automatic  </span><br><span class="line">```shell</span><br><span class="line">bin/logstash -f config/log4j-es.conf --config.reload.automatic &amp;</span><br></pre></td></tr></table></figure>
+
+<h2 id="重新发送filebeat抓取的内容"><a href="#重新发送filebeat抓取的内容" class="headerlink" title="重新发送filebeat抓取的内容"></a>重新发送filebeat抓取的内容</h2><p>1.删除registry下的data.json<br>如:  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /home/elk/filebeats/filebeat-7.3.1-linux-x86_64/data/registry/filebeat</span><br></pre></td></tr></table></figure>
+
+<p>2.重启filebeat<br>如果存在正在运行的filebeat, 先kill掉  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep filebeat  </span><br><span class="line">kill -s 9 pid</span><br></pre></td></tr></table></figure>
+
+<p>然后执行  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./filebeat -e -c filebeat.yml</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置索引内容30天过期删除"><a href="#设置索引内容30天过期删除" class="headerlink" title="设置索引内容30天过期删除"></a>设置索引内容30天过期删除</h2><p>本来我理解的理论上应该可以用索引的生命周期来实现, 但是半天没整明白, 所以现在<br>是简单粗暴的使用linux的cron任务来实现, 更具体的cron配置详见<a href="https://blog.csdn.net/mengzuchao/article/details/81172305" target="_blank" rel="noopener">cron详解</a><br>1.编辑shell脚本, 文件名为removeDataByTime.sh, 内容如下  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">limit_date=30</span><br><span class="line">for var in `curl 'localhost:9200/_cat/indices' | awk '!/kibana*/ &#123;print $3&#125;'`</span><br><span class="line">do</span><br><span class="line">  curl -H "Content-Type:application/json" -X POST -d '&#123;"query": &#123;"range": &#123;"@timestamp": &#123;"lt": "now-'$&#123;limit_date&#125;'d/d"&#125;&#125;&#125;&#125;' "http://localhost:9200/$&#123;var&#125;/_delete_by_query"</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<p>2.编辑cron文件, 执行crantab -e, 打开crontab配置文件<br>加上刚才的shell脚本, 设置每天0点15分执行  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">15 00 * * * /home/elk/removeDataByTime.sh</span><br></pre></td></tr></table></figure>
+
+<p>设置cron重新启动, 执行/sbin/service crond restart  </p>
+<p>3.查看cron执行情况<br>查看cron任务列表 : crontab -l<br>查看cron执行日志 : grep ‘removeDataByTime’ /var/log/cron  </p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 422409104@qq.com </span>
@@ -361,17 +347,38 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>新闻翻译.1</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">2k</span></p>
+    <p><span class="copy-title">文章标题:</span>ELK日常维护相关</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">387</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="shdvgj">shdvgj</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-10-10, 09:09:54</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-10, 14:45:03</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/10/新闻翻译-1/" title="新闻翻译.1">http://shdvgj.github.io/2019/10/10/新闻翻译-1/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-14, 13:25:13</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-14, 15:04:37</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/14/ELK日常维护相关/" title="ELK日常维护相关">http://shdvgj.github.io/2019/10/14/ELK日常维护相关/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
 </div>
 
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'e1ed5420cf72d3747b1b',
+            clientSecret: '6c71276732dc19402ae304d000c471a4df889cd5',
+            repo: 'shdvgj.github.io',
+            owner: 'shdvgj',
+            admin: ['shdvgj'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
 
 
 
