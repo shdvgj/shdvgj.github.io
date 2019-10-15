@@ -56,13 +56,13 @@
   };
 </script>
 
-  <meta name="description" content="获取ElasticSearch+LogStash+Kibana+FileBeats关于elk搭建的全部产品都可以从elastic的官方网站获取最新版本elastic官网如图所示当前elastic官方已经不再推荐单纯使用elk(ElasticSearch+LogStash+Kibana)三个产品搭建日志平台, 而是在此基础上加上了轻量级的日志收集插件FileBeats.">
+  <meta name="description" content="获取ElasticSearch+LogStash+Kibana+FileBeats关于elk搭建的全部产品都可以从elastic的官方网站获取最新版本elastic官网 如图所示当前elastic官方已经不再推荐单纯使用elk(ElasticSearch+LogStash+Kibana)三个产品搭建日志平台, 而是在此基础上加上了轻量级的日志收集插件FileBeats.   安装ElasticSe">
 <meta name="keywords" content="elk">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次ELK+FileBeats搭建">
 <meta property="og:url" content="http://shdvgj.github.io/2019/10/07/ELK_FileBeats/index.html">
 <meta property="og:site_name" content="shdvgj的个人博客">
-<meta property="og:description" content="获取ElasticSearch+LogStash+Kibana+FileBeats关于elk搭建的全部产品都可以从elastic的官方网站获取最新版本elastic官网如图所示当前elastic官方已经不再推荐单纯使用elk(ElasticSearch+LogStash+Kibana)三个产品搭建日志平台, 而是在此基础上加上了轻量级的日志收集插件FileBeats.">
+<meta property="og:description" content="获取ElasticSearch+LogStash+Kibana+FileBeats关于elk搭建的全部产品都可以从elastic的官方网站获取最新版本elastic官网 如图所示当前elastic官方已经不再推荐单纯使用elk(ElasticSearch+LogStash+Kibana)三个产品搭建日志平台, 而是在此基础上加上了轻量级的日志收集插件FileBeats.   安装ElasticSe">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/2.png">
@@ -78,7 +78,7 @@
 <meta property="og:updated_time" content="2019-10-09T07:41:51.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次ELK+FileBeats搭建">
-<meta name="twitter:description" content="获取ElasticSearch+LogStash+Kibana+FileBeats关于elk搭建的全部产品都可以从elastic的官方网站获取最新版本elastic官网如图所示当前elastic官方已经不再推荐单纯使用elk(ElasticSearch+LogStash+Kibana)三个产品搭建日志平台, 而是在此基础上加上了轻量级的日志收集插件FileBeats.">
+<meta name="twitter:description" content="获取ElasticSearch+LogStash+Kibana+FileBeats关于elk搭建的全部产品都可以从elastic的官方网站获取最新版本elastic官网 如图所示当前elastic官方已经不再推荐单纯使用elk(ElasticSearch+LogStash+Kibana)三个产品搭建日志平台, 而是在此基础上加上了轻量级的日志收集插件FileBeats.   安装ElasticSe">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/1.png">
   <link rel="canonical" href="http://shdvgj.github.io/2019/10/07/ELK_FileBeats/">
 
@@ -366,6 +366,14 @@
           
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
         </div>
       </header>
@@ -376,8 +384,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="获取ElasticSearch-LogStash-Kibana-FileBeats"><a href="#获取ElasticSearch-LogStash-Kibana-FileBeats" class="headerlink" title="获取ElasticSearch+LogStash+Kibana+FileBeats"></a>获取ElasticSearch+LogStash+Kibana+FileBeats</h2><p>关于elk搭建的全部产品都可以从elastic的官方网站获取最新版本<br><a href="https://www.elastic.co/cn/products/" target="_blank" rel="noopener">elastic官网</a></p><p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/1.png" alt><br>如图所示<br>当前elastic官方已经不再推荐单纯使用elk(ElasticSearch+LogStash+Kibana)三个产品搭建日志平台, 而是在此基础上加上了轻量级的日志收集插件FileBeats.  </p><a id="more"></a>
-
+        <h2 id="获取ElasticSearch-LogStash-Kibana-FileBeats"><a href="#获取ElasticSearch-LogStash-Kibana-FileBeats" class="headerlink" title="获取ElasticSearch+LogStash+Kibana+FileBeats"></a>获取ElasticSearch+LogStash+Kibana+FileBeats</h2><p>关于elk搭建的全部产品都可以从elastic的官方网站获取最新版本<br><a href="https://www.elastic.co/cn/products/" target="_blank" rel="noopener">elastic官网</a></p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/1.png" alt><br>如图所示<br>当前elastic官方已经不再推荐单纯使用elk(ElasticSearch+LogStash+Kibana)三个产品搭建日志平台, 而是在此基础上加上了轻量级的日志收集插件FileBeats.  </p>
 <h2 id="安装ElasticSearch"><a href="#安装ElasticSearch" class="headerlink" title="安装ElasticSearch"></a>安装ElasticSearch</h2><p>我们首先获取安装包<br>进入<a href="https://www.elastic.co/cn/downloads/elasticsearch" target="_blank" rel="noopener">https://www.elastic.co/cn/downloads/elasticsearch</a>  </p>
 <p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/2.png" alt><br>在Downloads里点击linux就可以下载到用于linux安装的tar包<br>如果是直接在linux安装,使用wget命令即可<br>如 : wget <a href="https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.0-linux-x86_64.tar.gz" target="_blank" rel="noopener">https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.0-linux-x86_64.tar.gz</a><br>如果需要更旧的历史版本, 点击下面的past release即可</p>
 <p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/3.png" alt>  </p>
@@ -568,6 +576,28 @@
         <a href="mailto:linqianghuang@gmail.com" title="E-Mail &rarr; mailto:linqianghuang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
     
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://twitter.com/shdvgj" title="Twitter &rarr; https://twitter.com/shdvgj" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram &rarr; https://instagram.com/xiaoqianglalala" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+    
   </div>
 
 
@@ -595,6 +625,29 @@
   <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
 
         
+<div class="busuanzi-count">
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
 
 
 

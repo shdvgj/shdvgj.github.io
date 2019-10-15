@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="什么是最左匹配原则关于最左匹配原则的解释, 网上找了很多, 但是我感觉都不是特别准确, 于是一怒之下直接找了官网的文档, 一下子就清晰了. 下面贴下官网的解释, 然后我自己翻译了一下.  来自官方文档的解释原文链接   MySQL can create composite indexes (that is, indexes on multiple columns). An index may co">
+  <meta name="description" content="什么是最左匹配原则关于最左匹配原则的解释, 网上找了很多, 但是我感觉都不是特别准确, 于是一怒之下直接找了官网的文档, 一下子就清晰了. 下面贴下官网的解释, 然后我自己翻译了一下.   来自官方文档的解释原文链接    MySQL can create composite indexes (that is, indexes on multiple columns). An index may">
 <meta name="keywords" content="translate,mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="官方文档解释MySQL最左匹配(最左前缀)原则">
 <meta property="og:url" content="http://shdvgj.github.io/2019/10/15/官方文档解释MySQL最左匹配(最左前缀)原则/index.html">
 <meta property="og:site_name" content="shdvgj的个人博客">
-<meta property="og:description" content="什么是最左匹配原则关于最左匹配原则的解释, 网上找了很多, 但是我感觉都不是特别准确, 于是一怒之下直接找了官网的文档, 一下子就清晰了. 下面贴下官网的解释, 然后我自己翻译了一下.  来自官方文档的解释原文链接   MySQL can create composite indexes (that is, indexes on multiple columns). An index may co">
+<meta property="og:description" content="什么是最左匹配原则关于最左匹配原则的解释, 网上找了很多, 但是我感觉都不是特别准确, 于是一怒之下直接找了官网的文档, 一下子就清晰了. 下面贴下官网的解释, 然后我自己翻译了一下.   来自官方文档的解释原文链接    MySQL can create composite indexes (that is, indexes on multiple columns). An index may">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-10-15T03:41:33.621Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="官方文档解释MySQL最左匹配(最左前缀)原则">
-<meta name="twitter:description" content="什么是最左匹配原则关于最左匹配原则的解释, 网上找了很多, 但是我感觉都不是特别准确, 于是一怒之下直接找了官网的文档, 一下子就清晰了. 下面贴下官网的解释, 然后我自己翻译了一下.  来自官方文档的解释原文链接   MySQL can create composite indexes (that is, indexes on multiple columns). An index may co">
+<meta name="twitter:description" content="什么是最左匹配原则关于最左匹配原则的解释, 网上找了很多, 但是我感觉都不是特别准确, 于是一怒之下直接找了官网的文档, 一下子就清晰了. 下面贴下官网的解释, 然后我自己翻译了一下.   来自官方文档的解释原文链接    MySQL can create composite indexes (that is, indexes on multiple columns). An index may">
   <link rel="canonical" href="http://shdvgj.github.io/2019/10/15/官方文档解释MySQL最左匹配(最左前缀)原则/">
 
 
@@ -346,6 +346,14 @@
           
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
         </div>
       </header>
@@ -356,11 +364,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="什么是最左匹配原则"><a href="#什么是最左匹配原则" class="headerlink" title="什么是最左匹配原则"></a>什么是最左匹配原则</h2><p>关于最左匹配原则的解释, 网上找了很多, 但是我感觉都不是特别准确, 于是一怒之下<br>直接找了官网的文档, 一下子就清晰了. 下面贴下官网的解释, 然后我自己翻译了一下.  </p><h3 id="来自官方文档的解释"><a href="#来自官方文档的解释" class="headerlink" title="来自官方文档的解释"></a>来自官方文档的解释</h3><p><a href="https://dev.mysql.com/doc/refman/8.0/en/multiple-column-indexes.html" target="_blank" rel="noopener">原文链接</a>  </p><blockquote>
+        <h2 id="什么是最左匹配原则"><a href="#什么是最左匹配原则" class="headerlink" title="什么是最左匹配原则"></a>什么是最左匹配原则</h2><p>关于最左匹配原则的解释, 网上找了很多, 但是我感觉都不是特别准确, 于是一怒之下<br>直接找了官网的文档, 一下子就清晰了. 下面贴下官网的解释, 然后我自己翻译了一下.  </p>
+<h3 id="来自官方文档的解释"><a href="#来自官方文档的解释" class="headerlink" title="来自官方文档的解释"></a>来自官方文档的解释</h3><p><a href="https://dev.mysql.com/doc/refman/8.0/en/multiple-column-indexes.html" target="_blank" rel="noopener">原文链接</a>  </p>
+<blockquote>
 <p>MySQL can create composite indexes (that is, indexes on multiple columns).<br> An index may consist of up to 16 columns. For certain data types,<br> you can index a prefix of the column (see<br> <a href="https://dev.mysql.com/doc/refman/8.0/en/column-indexes.html" target="_blank" rel="noopener">Section 8.3.5, “Column Indexes”</a>).  </p>
-</blockquote><a id="more"></a>
-
-
+</blockquote>
 <p>MySQL可以创建联合索引(即, 多列的索引). 一个索引可以包含最多16列. 对于<br>某些数据类型, 你可以索引列的前缀(这里说的是对于Blob和Text类型, 索引列的前几位就可以,<br>如INDEX(blob_col(10)), 详见<a href="https://dev.mysql.com/doc/refman/8.0/en/column-indexes.html" target="_blank" rel="noopener">索引文档</a>)  </p>
 <blockquote>
 <p>MySQL can use multiple-column indexes for queries that test all the columns in the index,<br>or queries that test just the first column, the first two columns, the first three columns, and so on.<br>If you specify the columns in the right order in the index definition,<br>a single composite index can speed up several kinds of queries on the same table.  </p>
@@ -587,6 +595,28 @@
         <a href="mailto:linqianghuang@gmail.com" title="E-Mail &rarr; mailto:linqianghuang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
     
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://twitter.com/shdvgj" title="Twitter &rarr; https://twitter.com/shdvgj" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram &rarr; https://instagram.com/xiaoqianglalala" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+    
   </div>
 
 
@@ -614,6 +644,29 @@
   <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
 
         
+<div class="busuanzi-count">
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
 
 
 

@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如  1bin/logstash -f config/log4j-es.conf &amp;amp;注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic">
+  <meta name="description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   1bin/logstash -f config/log4j-es.conf &amp;amp;  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭   LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic   1b">
 <meta name="keywords" content="elk">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ELK日常维护相关">
 <meta property="og:url" content="http://shdvgj.github.io/2019/10/14/ELK日常维护相关/index.html">
 <meta property="og:site_name" content="shdvgj的个人博客">
-<meta property="og:description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如  1bin/logstash -f config/log4j-es.conf &amp;amp;注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic">
+<meta property="og:description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   1bin/logstash -f config/log4j-es.conf &amp;amp;  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭   LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic   1b">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-10-14T08:04:51.506Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ELK日常维护相关">
-<meta name="twitter:description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如  1bin/logstash -f config/log4j-es.conf &amp;amp;注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic">
+<meta name="twitter:description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   1bin/logstash -f config/log4j-es.conf &amp;amp;  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭   LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic   1b">
   <link rel="canonical" href="http://shdvgj.github.io/2019/10/14/ELK日常维护相关/">
 
 
@@ -346,6 +346,14 @@
           
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
         </div>
       </header>
@@ -356,11 +364,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭"><a href="#配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭" class="headerlink" title="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭"></a>配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭</h2><p>只要在后面加上&amp;即可, 如  </p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/logstash -f config/log4j-es.conf &amp;</span><br></pre></td></tr></table></figure><p>注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  </p><h2 id="LogStash自动重新加载配置"><a href="#LogStash自动重新加载配置" class="headerlink" title="LogStash自动重新加载配置"></a>LogStash自动重新加载配置</h2><p>启动logstash时在后面加上命令–config.reload.automatic  </p><a id="more"></a>
+        <h2 id="配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭"><a href="#配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭" class="headerlink" title="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭"></a>配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭</h2><p>只要在后面加上&amp;即可, 如  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/logstash -f config/log4j-es.conf &amp;</span><br></pre></td></tr></table></figure>
 
-
-
-
+<p>注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  </p>
+<h2 id="LogStash自动重新加载配置"><a href="#LogStash自动重新加载配置" class="headerlink" title="LogStash自动重新加载配置"></a>LogStash自动重新加载配置</h2><p>启动logstash时在后面加上命令–config.reload.automatic  </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/logstash -f config/log4j-es.conf --config.reload.automatic &amp;</span><br></pre></td></tr></table></figure>
 
 <h2 id="重新发送filebeat抓取的内容"><a href="#重新发送filebeat抓取的内容" class="headerlink" title="重新发送filebeat抓取的内容"></a>重新发送filebeat抓取的内容</h2><p>1.删除registry下的data.json<br>如:  </p>
@@ -544,6 +552,28 @@
         <a href="mailto:linqianghuang@gmail.com" title="E-Mail &rarr; mailto:linqianghuang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
     
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://twitter.com/shdvgj" title="Twitter &rarr; https://twitter.com/shdvgj" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram &rarr; https://instagram.com/xiaoqianglalala" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+    
   </div>
 
 
@@ -571,6 +601,29 @@
   <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
 
         
+<div class="busuanzi-count">
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
 
 
 
