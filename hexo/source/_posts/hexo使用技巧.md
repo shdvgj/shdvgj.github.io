@@ -20,10 +20,10 @@ categories:
 
 3.关于3-hexo的安装和设置方法, 都可以直接参照[该主题的github主页](https://github.com/yelog/hexo-theme-3-hexo)  
 简单介绍一下:  
-  1.    获取3-hexo: git clone https://github.com/yelog/hexo-theme-3-hexo.git themes/3-hexo  
-  2.    将3-hexo的主题文件夹复制到hexo的themes目录下  
-  3.    修改3-hexo目录下的_config.yml文件, 修改方式在_config.yml中已经有详细的注释, 按照注释修改即可  
-  4.    hexo主目录下打开git窗口, 依次输入如下命令  
+  - 获取3-hexo: git clone https://github.com/yelog/hexo-theme-3-hexo.git themes/3-hexo  
+  - 将3-hexo的主题文件夹复制到hexo的themes目录下  
+  - 修改3-hexo目录下的_config.yml文件, 修改方式在_config.yml中已经有详细的注释, 按照注释修改即可  
+  - hexo主目录下打开git窗口, 依次输入如下命令  
     hexo clean (清除静态页面缓存文件, 防止出现缓存影响页面样式的情况)  
     hexo g (生成静态页面)  
     hexo s (启动本地hexo服务器, 可以打开localhost:4000查看页面效果)  
@@ -86,12 +86,12 @@ password:*****
 1.在github存储图片并在博客内关联图片链接  
 这种方式比较推荐, 因为别的博客网站通常都会有防止外部访问的措施在, 存储
 在github上的图片不会有外部无法访问的情况. 对于各个版本的hexo都能适用.
-  1. 打开hexo主目录下的_config.yml文件, 修改参数post_asset_folder为true
-  2. 使用hexo n "博客标题" 新建博客时将会同时新建一个同名的资源文件夹, 如图  
+  - 打开hexo主目录下的_config.yml文件, 修改参数post_asset_folder为true
+  - 使用hexo n "博客标题" 新建博客时将会同时新建一个同名的资源文件夹, 如图  
   ![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo使用技巧/7.png)  
-  3. 将博客内用到的图片放置到资源文件夹内, 可以按顺序号命名, 如图  
+  - 将博客内用到的图片放置到资源文件夹内, 可以按顺序号命名, 如图  
   ![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo使用技巧/8.png)
-  4. 在博客内链接该图片, 格式为 
+  - 在博客内链接该图片, 格式为 
   ```hexo
   ![](https://raw.githubusercontent.com/#username/#username.github.io/master/#YYYY/#MM/#DD/#title/#photoname)  
   #username : github用户名
@@ -101,7 +101,7 @@ password:*****
   ```
   比如我这篇博客的图片链接地址如下图  
   ![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo使用技巧/9.png)  
-  5. 链接完图片后目前在博客的预览界面还无法看到图片, 需要先执行  
+  - 链接完图片后目前在博客的预览界面还无法看到图片, 需要先执行  
   hexo clean (非必要步骤, 如果博客页面格式显示不正确, 需要执行)  
   hexo g (创建博客静态网页文件)  
   hexo d (这一步用于发布博客, 也同时发布图片)  
@@ -115,3 +115,5 @@ password:*****
   ``` hexo
   ![](/1.png)
   ```
+  
+

@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb1a2061-9faa-44a6-ac5c-9db79a1d0099" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/hexo/source/_posts/ELK日常维护相关.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧/7.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧/8.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧/9.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/hexo/source/categories/index.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/hexo/source/tags/index.md" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/hexo/_config.yml" afterPath="$PROJECT_DIR$/hexo/_config.yml" />
-      <change beforePath="$PROJECT_DIR$/hexo/package-lock.json" afterPath="$PROJECT_DIR$/hexo/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/hexo/package.json" afterPath="$PROJECT_DIR$/hexo/package.json" />
       <change beforePath="$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧.md" afterPath="$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧.md" />
-      <change beforePath="$PROJECT_DIR$/hexo/themes/NexT/_config.yml" afterPath="$PROJECT_DIR$/hexo/themes/NexT/_config.yml" />
-      <change beforePath="$PROJECT_DIR$/hexo/themes/NexT/crowdin.yml" afterPath="$PROJECT_DIR$/hexo/themes/NexT/crowdin.yml" />
+      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/绩效统计.md" afterPath="$PROJECT_DIR$/hexo/source/_posts/绩效统计.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,12 +23,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ELK日常维护相关.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ELK日常维护相关.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hexo/source/_posts/ELK日常维护相关.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="108">
-                <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+              <first_editor relative-caret-position="-194">
+                <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
                 <folding>
                   <marker date="1571040291505" expanded="true" signature="11:20" ph="ELK日常维护相关" />
                   <marker date="1571040291505" expanded="true" signature="27:46" ph="2019-10-14 13:25:13" />
@@ -57,21 +47,60 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="官方文档解释MySQL最左匹配(最左前缀)原则.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hexo/source/_posts/官方文档解释MySQL最左匹配(最左前缀)原则.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="-2187">
+                <caret line="18" column="77" lean-forward="true" selection-start-line="18" selection-start-column="77" selection-end-line="18" selection-end-column="77" />
+                <folding>
+                  <marker date="1571110893621" expanded="true" signature="11:34" ph="官方文档解释MyS…匹配(最左前缀)原则" />
+                  <marker date="1571110893621" expanded="true" signature="35:87" ph="date: &lt;2 items&gt;" />
+                  <marker date="1571110893621" expanded="true" signature="41:60" ph="2019-10-15 08:48:10" />
+                  <marker date="1571110893621" expanded="true" signature="61:87" ph="tags: &lt;2 items&gt;" />
+                  <marker date="1571110893621" expanded="true" signature="70:75" ph="mysql" />
+                  <marker date="1571110893621" expanded="true" signature="78:87" ph="translate" />
+                  <marker date="1571110893621" expanded="true" signature="98:102" ph="true" />
+                  <marker date="1571110893621" expanded="true" signature="103:126" ph="categories: &lt;2 items&gt;" />
+                  <marker date="1571110893621" expanded="true" signature="118:120" ph="学习" />
+                  <marker date="1571110893621" expanded="true" signature="123:126" ph="数据库" />
+                  <marker date="1571110893621" expanded="true" signature="1944:2036" ph="SELECT * FRO... tbl_name" />
+                  <marker date="1571110893621" expanded="true" signature="2117:2295" ph="CREATE TABLE... test" />
+                  <marker date="1571110893621" expanded="true" signature="2920:2962" ph="SELECT * FRO... test" />
+                  <marker date="1571110893621" expanded="true" signature="2965:3031" ph="SELECT * FRO... test" />
+                  <marker date="1571110893621" expanded="true" signature="3034:3124" ph="SELECT * FRO... test" />
+                  <marker date="1571110893621" expanded="true" signature="3127:3215" ph="SELECT * FRO... test" />
+                  <marker date="1571110893621" expanded="true" signature="3331:3373" ph="SELECT * FRO... test" />
+                  <marker date="1571110893621" expanded="true" signature="3376:3441" ph="SELECT * FRO... test" />
+                  <marker date="1571110893621" expanded="true" signature="3533:3587" ph="SELECT * FRO... tbl_name" />
+                  <marker date="1571110893621" expanded="true" signature="4868:4906" ph="SELECT * FRO... tbl_name" />
+                  <marker date="1571110893621" expanded="true" signature="4908:4960" ph="SELECT * FRO... tbl_name" />
+                  <marker date="1571110893621" expanded="true" signature="4963:5001" ph="SELECT * FRO... tbl_name" />
+                  <marker date="1571110893621" expanded="true" signature="5003:5055" ph="SELECT * FRO... tbl_name" />
+                </folding>
+              </first_editor>
+              <second_editor>
+                <markdownNavigatorState />
+              </second_editor>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="hexo使用技巧.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="81">
-                <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="8" selection-end-column="6" />
+              <first_editor relative-caret-position="108">
+                <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="8" selection-end-column="6" />
                 <folding>
-                  <marker date="1571032872674" expanded="true" signature="11:19" ph="hexo使用技巧" />
-                  <marker date="1571032872674" expanded="true" signature="26:45" ph="2019-10-08 16:07:43" />
-                  <marker date="1571032872674" expanded="true" signature="46:59" ph="tags: &lt;1 item&gt;" />
-                  <marker date="1571032872674" expanded="true" signature="55:59" ph="hexo" />
-                  <marker date="1571032872674" expanded="true" signature="70:74" ph="true" />
-                  <marker date="1571032872674" expanded="true" signature="75:99" ph="categories: &lt;2 items&gt;" />
-                  <marker date="1571032872674" expanded="true" signature="90:92" ph="学习" />
-                  <marker date="1571032872674" expanded="true" signature="95:99" ph="搭建相关" />
+                  <marker date="1571043023929" expanded="true" signature="11:19" ph="hexo使用技巧" />
+                  <marker date="1571043023929" expanded="true" signature="26:45" ph="2019-10-08 16:07:43" />
+                  <marker date="1571043023929" expanded="true" signature="46:59" ph="tags: &lt;1 item&gt;" />
+                  <marker date="1571043023929" expanded="true" signature="55:59" ph="hexo" />
+                  <marker date="1571043023929" expanded="true" signature="70:74" ph="true" />
+                  <marker date="1571043023929" expanded="true" signature="75:99" ph="categories: &lt;2 items&gt;" />
+                  <marker date="1571043023929" expanded="true" signature="90:92" ph="学习" />
+                  <marker date="1571043023929" expanded="true" signature="95:99" ph="搭建相关" />
                 </folding>
               </first_editor>
               <second_editor>
@@ -107,12 +136,14 @@
       <list>
         <option value="$PROJECT_DIR$/hexo/source/_posts/利用hexo和github搭建个人博客.md" />
         <option value="$PROJECT_DIR$/hexo/source/_posts/ELK_FileBeats.md" />
-        <option value="$PROJECT_DIR$/hexo/source/_posts/绩效统计.md" />
         <option value="$PROJECT_DIR$/hexo/source/_posts/文档翻译-java-String.md" />
         <option value="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-1.md" />
         <option value="$PROJECT_DIR$/hexo/source/_posts/kibana使用方式.md" />
-        <option value="$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧.md" />
         <option value="$PROJECT_DIR$/hexo/source/_posts/ELK日常维护相关.md" />
+        <option value="$PROJECT_DIR$/hexo/source/_posts/绩效统计.md" />
+        <option value="$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧.md" />
+        <option value="$PROJECT_DIR$/hexo/source/_posts/实例讲解MySql最左匹配原则.md" />
+        <option value="$PROJECT_DIR$/hexo/source/_posts/官方文档解释MySQL最左匹配(最左前缀)原则.md" />
       </list>
     </option>
   </component>
@@ -380,7 +411,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50847000" />
+    <option name="totallyTimeSpent" value="63203000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -399,7 +430,7 @@
       <window_info id="Word Book" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17377399" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06236674" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -719,11 +750,11 @@
           <first_editor relative-caret-position="81">
             <caret line="3" column="15" lean-forward="false" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
             <folding>
-              <marker date="1570607025071" expanded="true" signature="11:15" ph="绩效统计" />
-              <marker date="1570607025071" expanded="true" signature="22:41" ph="2019-10-09 11:01:53" />
-              <marker date="1570607025071" expanded="true" signature="52:58" ph="hlqxyy" />
-              <marker date="1570607025071" expanded="true" signature="71:73" ph="绩效" />
-              <marker date="1570607025071" expanded="true" signature="84:89" ph="false" />
+              <marker date="1571042205439" expanded="true" signature="11:15" ph="绩效统计" />
+              <marker date="1571042205439" expanded="true" signature="22:41" ph="2019-10-09 11:01:53" />
+              <marker date="1571042205439" expanded="true" signature="52:58" ph="hlqxyy" />
+              <marker date="1571042205439" expanded="true" signature="71:73" ph="绩效" />
+              <marker date="1571042205439" expanded="true" signature="84:89" ph="false" />
             </folding>
           </first_editor>
           <second_editor>
@@ -872,25 +903,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hexo/source/_posts/绩效统计.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="108">
-            <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="14" />
-            <folding>
-              <marker date="1570607025071" expanded="true" signature="11:15" ph="绩效统计" />
-              <marker date="1570607025071" expanded="true" signature="22:41" ph="2019-10-09 11:01:53" />
-              <marker date="1570607025071" expanded="true" signature="52:58" ph="hlqxyy" />
-              <marker date="1570607025071" expanded="true" signature="71:73" ph="绩效" />
-              <marker date="1570607025071" expanded="true" signature="84:89" ph="false" />
-            </folding>
-          </first_editor>
-          <second_editor>
-            <markdownNavigatorState />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hexo/source/_posts/利用hexo和github搭建个人博客.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
@@ -950,21 +962,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/hexo/source/_posts/绩效统计.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="513">
+            <caret line="19" column="50" lean-forward="false" selection-start-line="19" selection-start-column="50" selection-end-line="19" selection-end-column="50" />
+            <folding>
+              <marker date="1571042205439" expanded="true" signature="11:15" ph="绩效统计" />
+              <marker date="1571042205439" expanded="true" signature="22:41" ph="2019-10-09 11:01:53" />
+              <marker date="1571042205439" expanded="true" signature="52:58" ph="hlqxyy" />
+              <marker date="1571042205439" expanded="true" signature="71:73" ph="绩效" />
+              <marker date="1571042205439" expanded="true" signature="84:89" ph="false" />
+            </folding>
+          </first_editor>
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="81">
-            <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="8" selection-end-column="6" />
+          <first_editor relative-caret-position="108">
+            <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="8" selection-end-column="6" />
             <folding>
-              <marker date="1571032872674" expanded="true" signature="11:19" ph="hexo使用技巧" />
-              <marker date="1571032872674" expanded="true" signature="26:45" ph="2019-10-08 16:07:43" />
-              <marker date="1571032872674" expanded="true" signature="46:59" ph="tags: &lt;1 item&gt;" />
-              <marker date="1571032872674" expanded="true" signature="55:59" ph="hexo" />
-              <marker date="1571032872674" expanded="true" signature="70:74" ph="true" />
-              <marker date="1571032872674" expanded="true" signature="75:99" ph="categories: &lt;2 items&gt;" />
-              <marker date="1571032872674" expanded="true" signature="90:92" ph="学习" />
-              <marker date="1571032872674" expanded="true" signature="95:99" ph="搭建相关" />
+              <marker date="1571043023929" expanded="true" signature="11:19" ph="hexo使用技巧" />
+              <marker date="1571043023929" expanded="true" signature="26:45" ph="2019-10-08 16:07:43" />
+              <marker date="1571043023929" expanded="true" signature="46:59" ph="tags: &lt;1 item&gt;" />
+              <marker date="1571043023929" expanded="true" signature="55:59" ph="hexo" />
+              <marker date="1571043023929" expanded="true" signature="70:74" ph="true" />
+              <marker date="1571043023929" expanded="true" signature="75:99" ph="categories: &lt;2 items&gt;" />
+              <marker date="1571043023929" expanded="true" signature="90:92" ph="学习" />
+              <marker date="1571043023929" expanded="true" signature="95:99" ph="搭建相关" />
             </folding>
+          </first_editor>
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hexo/source/_posts/实例讲解MySql最左匹配原则.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="27">
+            <caret line="1" column="7" lean-forward="true" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="30" />
+            <folding />
           </first_editor>
           <second_editor>
             <markdownNavigatorState />
@@ -975,8 +1019,8 @@
     <entry file="file://$PROJECT_DIR$/hexo/source/_posts/ELK日常维护相关.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="108">
-            <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+          <first_editor relative-caret-position="-194">
+            <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
             <folding>
               <marker date="1571040291505" expanded="true" signature="11:20" ph="ELK日常维护相关" />
               <marker date="1571040291505" expanded="true" signature="27:46" ph="2019-10-14 13:25:13" />
@@ -986,6 +1030,43 @@
               <marker date="1571040291505" expanded="true" signature="75:99" ph="categories: &lt;2 items&gt;" />
               <marker date="1571040291505" expanded="true" signature="90:92" ph="学习" />
               <marker date="1571040291505" expanded="true" signature="95:99" ph="搭建相关" />
+            </folding>
+          </first_editor>
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hexo/source/_posts/官方文档解释MySQL最左匹配(最左前缀)原则.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-2187">
+            <caret line="18" column="77" lean-forward="true" selection-start-line="18" selection-start-column="77" selection-end-line="18" selection-end-column="77" />
+            <folding>
+              <marker date="1571110893621" expanded="true" signature="11:34" ph="官方文档解释MyS…匹配(最左前缀)原则" />
+              <marker date="1571110893621" expanded="true" signature="35:87" ph="date: &lt;2 items&gt;" />
+              <marker date="1571110893621" expanded="true" signature="41:60" ph="2019-10-15 08:48:10" />
+              <marker date="1571110893621" expanded="true" signature="61:87" ph="tags: &lt;2 items&gt;" />
+              <marker date="1571110893621" expanded="true" signature="70:75" ph="mysql" />
+              <marker date="1571110893621" expanded="true" signature="78:87" ph="translate" />
+              <marker date="1571110893621" expanded="true" signature="98:102" ph="true" />
+              <marker date="1571110893621" expanded="true" signature="103:126" ph="categories: &lt;2 items&gt;" />
+              <marker date="1571110893621" expanded="true" signature="118:120" ph="学习" />
+              <marker date="1571110893621" expanded="true" signature="123:126" ph="数据库" />
+              <marker date="1571110893621" expanded="true" signature="1944:2036" ph="SELECT * FRO... tbl_name" />
+              <marker date="1571110893621" expanded="true" signature="2117:2295" ph="CREATE TABLE... test" />
+              <marker date="1571110893621" expanded="true" signature="2920:2962" ph="SELECT * FRO... test" />
+              <marker date="1571110893621" expanded="true" signature="2965:3031" ph="SELECT * FRO... test" />
+              <marker date="1571110893621" expanded="true" signature="3034:3124" ph="SELECT * FRO... test" />
+              <marker date="1571110893621" expanded="true" signature="3127:3215" ph="SELECT * FRO... test" />
+              <marker date="1571110893621" expanded="true" signature="3331:3373" ph="SELECT * FRO... test" />
+              <marker date="1571110893621" expanded="true" signature="3376:3441" ph="SELECT * FRO... test" />
+              <marker date="1571110893621" expanded="true" signature="3533:3587" ph="SELECT * FRO... tbl_name" />
+              <marker date="1571110893621" expanded="true" signature="4868:4906" ph="SELECT * FRO... tbl_name" />
+              <marker date="1571110893621" expanded="true" signature="4908:4960" ph="SELECT * FRO... tbl_name" />
+              <marker date="1571110893621" expanded="true" signature="4963:5001" ph="SELECT * FRO... tbl_name" />
+              <marker date="1571110893621" expanded="true" signature="5003:5055" ph="SELECT * FRO... tbl_name" />
             </folding>
           </first_editor>
           <second_editor>
