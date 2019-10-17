@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>MySql 8.0参考手册中文版（一）</title>
+    <url>/2019/10/17/MySql-Document/</url>
+    <content><![CDATA[<p><a href="https://dev.mysql.com/doc/refman/8.0/en/" target="_blank" rel="noopener">原文文档</a><br>该文档纯粹自己手动翻译, 也许网上有更好的版本, 但是我这个属于自己学习的版本, 为了提高英语水平和对MySQL的理解, 如有理解错误, 还请指正.  </p>
+<h2 id="MySQL-8-0-参考手册"><a href="#MySQL-8-0-参考手册" class="headerlink" title="MySQL 8.0 参考手册"></a>MySQL 8.0 参考手册</h2><h3 id="包含MySQL-NDB引擎-8-0"><a href="#包含MySQL-NDB引擎-8-0" class="headerlink" title="包含MySQL NDB引擎 8.0"></a>包含MySQL NDB引擎 8.0</h3><h4 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h4><p>这是一份MySQL参考手册。 该文档分别记录了MySQL8.0到8.0.20，以及基于NDB8.0版本到NDB8.0.19版本的NDB引擎发布版本。这份文档可能包括一些目前还没发布的MySQL版本的特性。想要了解哪些版本已经发布，请查看<a href="https://dev.mysql.com/doc/relnotes/mysql/8.0/en/" target="_blank" rel="noopener">MySQL8.0发布日志</a>。  </p>
+<p><strong>MySQL8.0特性</strong>。这份手册描述的特性并没有包含在所有版本的MySQL8.0中；这些特性可能不包含在你所购买的MySQL8.0版本中。如果你有任何问题是关于你的MySQL8.0版本中所包含的特性的，请参阅你的MySQL8.0许可协议或者联系你的oracle销售代表。  </p>
+<p>有关每个发布版本的变化，请查看<a href="https://dev.mysql.com/doc/relnotes/mysql/8.0/en/" target="_blank" rel="noopener">MySQL8.0发布日志</a>。  </p>
+<p>有关法律信息和许可信息，请查看<a href="https://dev.mysql.com/doc/refman/8.0/en/preface.html" target="_blank" rel="noopener">前言和法律声明</a>。  </p>
+<p>在使用MySQL中需要帮助，请访问<a href="http://forums.mysql.com/" target="_blank" rel="noopener">MySQL论坛</a>，你可以在那里向别的MySQL用户描述你的问题。  </p>
+<p>文档创建于：2019-10-16  </p>
+<h2 id="1-一般信息"><a href="#1-一般信息" class="headerlink" title="1.  一般信息"></a>1.  一般信息</h2><p>MySQL提供了非常快速的，多线程，多用户，和健壮的SQL数据库服务。MySQL服务用于关键服务，高负荷生产的系统以及嵌入大量部署的软件。Oracle是Oracle公司及其分支机构的注册商标。MySQL是Oracle公司及其分支机构的商标，未经Oracle正式的书面许可，客户不得使用。其他的名字可能是其各自所有者的商标。  </p>
+<p>MySQL软件具有双重许可。用户可以在GNU通用公共许可 (<a href="http://www.fsf.org/licenses/" target="_blank" rel="noopener">http://www.fsf.org/licenses/</a>)  条款下将MySQL软件作为开源软件产品使用，或者从Oracle购买一份标准的商业许可。访问 <a href="http://www.mysql.com/company/legal/licensing/" target="_blank" rel="noopener">http://www.mysql.com/company/legal/licensing/</a>  以获取更多关于授权政策的信息。  </p>
+<p>下面的列表描述了一些在本手册中需要特别关注的部分：  </p>
+<ul>
+<li><p>访问<a href="https://dev.mysql.com/doc/refman/8.0/en/features.html" target="_blank" rel="noopener">1.3.2章节，“MySql的主要特性”</a>，讨论关于MySQL数据库服务的功能。</p>
+</li>
+<li><p>访问<a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-nutshell.html" target="_blank" rel="noopener">1.4章节，“MySQL8.0更新了什么”</a>，获取关于MySQL新功能的概况。访问<a href="https://dev.mysql.com/doc/relnotes/mysql/8.0/en/" target="_blank" rel="noopener">发布日志</a>，获取关于每个版本的更新信息。</p>
+</li>
+<li><p>访问<a href="https://dev.mysql.com/doc/refman/8.0/en/installing.html" target="_blank" rel="noopener">2章节，安装和升级MySQL</a>，获取安装介绍。访问<a href="https://dev.mysql.com/doc/refman/8.0/en/upgrading.html" target="_blank" rel="noopener">章节2.11</a>，获取MySQL升级说明。  </p>
+</li>
+<li><p>访问<a href="https://dev.mysql.com/doc/refman/8.0/en/tutorial.html" target="_blank" rel="noopener">第3章节，教程</a>，获取MySQL数据库服务的教程介绍。</p>
+</li>
+<li><p>访问 <a href="https://dev.mysql.com/doc/refman/8.0/en/server-administration.html" target="_blank" rel="noopener">第5章节，MySQL服务管理</a>，获取关于MySQL服务的配置和管理的信息。</p>
+</li>
+<li><p>访问 <a href="https://dev.mysql.com/doc/refman/8.0/en/security.html" target="_blank" rel="noopener">第6章节，安全</a>，获取关于MySQL的安全信息。</p>
+</li>
+<li><p>访问 <a href="https://dev.mysql.com/doc/refman/8.0/en/replication.html" target="_blank" rel="noopener">第17章节，复制</a>，获取关于设置复制服务器的信息。</p>
+</li>
+<li><p>访问<a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-enterprise.html" target="_blank" rel="noopener">第30章节，MySQL企业版</a>，获取关于MySQL企业版的信息，商用版的MySQL会发布一些进阶的功能和管理工具。</p>
+</li>
+<li><p>访问 <a href="https://dev.mysql.com/doc/refman/8.0/en/faqs.html" target="_blank" rel="noopener">附录A，MySQL8.0常见问题</a>，获取关于MySQL服务及其功能的一些常见问题的答案。</p>
+</li>
+<li><p>访问<a href="https://dev.mysql.com/doc/relnotes/mysql/8.0/en/" target="_blank" rel="noopener">发布日志</a>，获取关于新特性和bug修复的发布信息。</p>
+</li>
+</ul>
+<p>   <strong>重要</strong>  </p>
+<p>   如果要报告问题或者bug，请按照<a href="https://dev.mysql.com/doc/refman/8.0/en/bug-reports.html" target="_blank" rel="noopener">章节17，“如何报告bug和问题”</a>的指示。如果你发现在MySQL中的一个敏感的安全性的bug，请立即发送邮件信息到&lt; <a href="mailto:secalert_us@oracle.com" target="_blank" rel="noopener">secalert_us@oracle.com</a> &gt;让我们知晓。例外：支持客户应该报告所有的问题，包括安全bug，发送给Oracle支持部门。  </p>
+<h3 id="1-1-关于本手册"><a href="#1-1-关于本手册" class="headerlink" title="1.1 关于本手册"></a>1.1 关于本手册</h3><p>这份参考手册适用于MySQL数据库系统8.0版本到8.0.20版。在本文中关于和MySQL8.0镜像版本的区别参照了（8.0.x）的发行版本。查看<a href="https://dev.mysql.com/doc/refman/8.0/en/preface.html#legalnotice" target="_blank" rel="noopener">法律声明</a>，获取许可的信息。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>translate</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux日常维护命令</title>
     <url>/2019/10/16/linux%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><h3 id="删除测试库创建日期在10天以前的日志"><a href="#删除测试库创建日期在10天以前的日志" class="headerlink" title="删除测试库创建日期在10天以前的日志"></a>删除测试库创建日期在10天以前的日志</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">find /home -ctime +10 -type f -name "*log.log.20*" | xargs rm -rf</span><br></pre></td></tr></table></figure>
@@ -9,7 +57,7 @@
 
 <h3 id="查看目录下大文件"><a href="#查看目录下大文件" class="headerlink" title="查看目录下大文件"></a>查看目录下大文件</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">du -h --max-depth=1</span><br></pre></td></tr></table></figure>
 
-<h2 id="查看进程中的java程序"><a href="#查看进程中的java程序" class="headerlink" title="查看进程中的java程序"></a>查看进程中的java程序</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ps aux | grep java</span><br><span class="line"><span class="meta">#</span> 杀死某个进程</span><br><span class="line">kill -s 9 pid</span><br></pre></td></tr></table></figure>
+<h2 id="查看进程中的java程序"><a href="#查看进程中的java程序" class="headerlink" title="查看进程中的java程序"></a>查看进程中的java程序</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ps aux | grep java</span><br><span class="line"><span class="meta">#</span> 杀死某个进程</span><br><span class="line">kill -9 pid</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -98,8 +146,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>translate</tag>
         <tag>mysql</tag>
+        <tag>translate</tag>
       </tags>
   </entry>
   <entry>
@@ -178,7 +226,7 @@
     <label for="hbePass">Hey, password is required here.</label>
     <div class="bottom-line"></div>
   </div>
-  <script id="hbeData" type="hbeData" data-hmacdigest="a6627e7779e2f1616c6520c42fb98cac759c035e941ead793018828d6b70eda0">2a0ea628916d6525573f610d39b9ef7122604835935ff8d5b1a744f62a716f045f1ba18d1b5a9fd6f80bee6828f6847a8419eb7cf2a6d62524ff90f7148312eb5d0d108aff95f936fe1c0ac4705eeb30dec3efc852543048e6c68c118627b29f94e9f7f293f07320e8f6d450f5c989939d4510ff34b56020afd46e06191e9a9c1065347aba4002daf12e3b56342e090829b651ea2d34822e537411a83ede116b8d54d9e23b21398adfb343247051f3d057390bdf89c48662c416e296f33956a4086223daf74a8aa3e4676ac493106619e008c3791bcf055fd6e2f1abf96ab6df2d6f990c9a718764e3353af410a86eb5afcc52d620b9ba8266b6eadba008511d0759ac61264205dd90225f188de2ff0c69c1ad8bed89dbc7e100c82467965a0392ca76af5aa15d9ac14a3e230f90c1a000f03b7da4e9d81c93e5da6afdc60f4392e130a11a8da1e94ca45a6a673ff4f50cb22098b8273e87ca2763dc091fd4c9fa38768de77ad42ad8c3f9c98753eb17ad673f56273694de3bb16652bc5343be1e34f8e6825d3601621af93ce348207a5b9b09dd24602c033cad96b1ed840871fb000dcebfe9de09a8ba1ea86b77dcda4b985a8175f64ca3952c52df2c45779c85914a658f6bdd0b4b81e2b2adb7b150d9586cd6835d763549b3d7aa42c1a904f241cc36b3933fa89d48e9913458b848c54a056e167707010fa5f25ce20d0826e7b7bb2802f4cc2a336ee702a931c63547d3c20d8f38b5a3121e703a591d985e098dd69506ee95d75368597b6a9b617810dd9a275c4a2d9d6e65e753c8c76ffe5d47e8eb0a916f5a0ddc802538a3b6758c636d232fe9a764549a660376274b14125e849a50490605205904119e7f1de414217704842272ac33988afc8d51701fd32cd6ccc47082be258215ee58fc799b72ecff50b8d6a01975569e38425bcb2bdb2b470972b6dcd6d45a1eaacf27631c953dba83bc4d14d259e34adaccb3bf93bcc9aa9deeab1c2e915ac97916687adbe95f47d3e2f212825a3cbf6f12e0de508d7b124d866b68273100ee31349493fc809df31732af75181d8553ad0e1bd65eabff433802203b634a1afb9f2ccd88f948d479222cfd52d9dc6884aa8d0bebc19c020d3f1263468b2c80f65171ba29104c73abf31f8b2fbbe4d8934e914cb3d80c37b4cc35dd669f738ea193b02bde2b1f51413b8e66898689d4d994e6faf570c4bf1201318f27fa64e9d39e3aa44f0b3d3d4a89eb5614d5d85a22b52ed568548d985019f62ca88ed3a80b81fd56af8256e363d08b13fe8718f88db68729d4a162f96f281fc7a293c5ae070cbe87795f23bf5f2eabc74454d3ca92c153ec648d52a8f12f6eb1495831feff9ed132ab9dd0a710b231965329cc4fd78b7a2d62c932dbcc2141fb57ae7f0007ac1169547a811c9f8dec5e910072c893345a7b801a04e106e942a3f8306718abd833ffcfa7549b723f02881d6ec89283ae470d0268848794b4b7551a60acedf1f4451407b98a35b3915bea8810537c0bf9a3b91c11ab10854e37dc968c4f770237c686df2268ae9271246c5d71554a7d198c2d91f0904da8b77a5d25437aa098eba28d0dfebd3b7cf94f83cb290d79bdcb3f011b49e709b3d8369e868dcf18906461900638362f00d2daea06eb9972bf3dab9cef69adfa204034dd15f38dc58a0846a224ff72e716f61a584ad4b74683b04da2bad7e0dbb80747bb5f857d5d1d6d7c7d2da784ba5adcc3da9c0e8ca0f9235ded1a7f047ebb0cc81260abd09cfd953f9e46baff0dda02b056cf9f48e12ae948aba44993a25f7e78e6b61f47547350d6b5b3d265f1d1e75e417b07b326f5788a632297391c0b6b6be382362d3f9311a16e564a0d1bc005d6842546ff7d3bc1eadfa2023cfa2d4a663a83287f15a31e6fc54d6c79a02d854bf8e805a1c1365b488ebbad4bc2297b5c1eab996c3c91f86d675206f8ff0c8557ab197c08d7fda36485a69e8ed4cccd52c648deeaba01e226b2357f173edf2501902a931e4137daed6782896cfcb3c9e3913ca7dfad887571ddb1f7a009b1d9f1e1583dd186c2516362d9a10842582e00a05cb9517603723075f2b6f65a22cf746892fcce974572be2e71788a78d685bdddff2673f0cbf686ceb72ebd87fffa81bcb2d27eaf88934e6d24822deaee3303a059ed8afeea3c8513c7d52d70fa7f672f63ddf17139dbaa515812e1b20e5fff334b11550519db6e6b480c47e296b2916351ff6a9a985337e8635e50c4464eb8069c47dd7f51be9064278eed4a67c8b4f7d33fd3e57fdeaceb4baeab3e6d25b45a60676b94fb1871cd9a9543b3ea369de2974b488ae81eb699928adf0d9f4a26834faefdcce00efe65d9575111a15b4b5adb2b14a00cf9941f80f8128fbcdbb935e398145dbc09f2dbc308f820a1046e1e0c3d1e51a6f534770fcd50cd65df38ff27be969c8d41088cdf957012b412f768c8b6b17ab5147f0b48f2e5f0f0f101c155d282c8206d276ca867f147fec28d2122077b80283a3b31d521891a47a813e8a8854db6f2debefcb6d6ef90af65705ba5fe6a2b13e2e846af080af2cbd6acea9d972e97e0d2e1fee23df70b7c2eb790f9af4e2f1553226bfdc32d0e531293fc4b98743ef4c09961e06f8f9bd426a8b61446c30b7e8c76345a53ed2080e2d48b73028fe255c81a1b1410648b0801f6c40bd9ed66d2714cd864d3891bde3397c1991b53966d6ecdd55b2e</script>
+  <script id="hbeData" type="hbeData" data-hmacdigest="4d257d92a3b83e25b0bb1290d517bda03b24f6dcee0eb2aa97da790a393b8fc9">2a0ea628916d6525573f610d39b9ef7122604835935ff8d5b1a744f62a716f045f1ba18d1b5a9fd6f80bee6828f6847a8419eb7cf2a6d62524ff90f7148312eb5d0d108aff95f936fe1c0ac4705eeb30dec3efc852543048e6c68c118627b29f94e9f7f293f07320e8f6d450f5c989939d4510ff34b56020afd46e06191e9a9c1065347aba4002daf12e3b56342e090829b651ea2d34822e537411a83ede116b8d54d9e23b21398adfb343247051f3d057390bdf89c48662c416e296f33956a4086223daf74a8aa3e4676ac493106619e008c3791bcf055fd6e2f1abf96ab6df2d6f990c9a718764e3353af410a86eb5afcc52d620b9ba8266b6eadba008511d0759ac61264205dd90225f188de2ff0c69c1ad8bed89dbc7e100c82467965a0392ca76af5aa15d9ac14a3e230f90c1a000f03b7da4e9d81c93e5da6afdc60f4392e130a11a8da1e94ca45a6a673ff4f50cb22098b8273e87ca2763dc091fd4c9fa38768de77ad42ad8c3f9c98753eb17ad673f56273694de3bb16652bc5343be1e34f8e6825d3601621af93ce348207a5b9b09dd24602c033cad96b1ed840871fb000dcebfe9de09a8ba1ea86b77dcda4b985a8175f64ca3952c52df2c45779c85914a658f6bdd0b4b81e2b2adb7b150d9586cd6835d763549b3d7aa42c1a904f241cc36b3933fa89d48e9913458b848c54a056e167707010fa5f25ce20d0826e7b7bb2802f4cc2a336ee702a931c63547d3c20d8f38b5a3121e703a591d985e098dd69506ee95d75368597b6a9b617810dd9a275c4a2d9d6e65e753c8c76ffe5d47e8eb0a916f5a0ddc802538a3b6758c636d232fe9a764549a660376274b14125e849a50490605205904119e7f1de414217704842272ac33988afc8d51701fd32cd6ccc47082be258215ee58fc799b72ecff50b8d6a01975569e38425bcb2bdb2b470972b6dcd6d45a1eaacf27631c953dba83bc4d14d259e34adaccb3bf93bcc9aa9deeab1c2e915ac97916687adbe95f47d3e2f212825a3cbf6f12e0de508d7b124d866b68273100ee31349493fc809df31732af75181d8553ad0e1bd65eabff433802203b634a1afb9f2ccd88f948d479222cfd52d9dc6884aa8d0bebc19c020d3f1263468b2c80f65171ba29104c73abf31f8b2fbbe4d8934e914cb3d80c37b4cc35dd669f738ea193b02bde2b1f51413b8e66898689d4d994e6faf570c4bf1201318f27fa64e9d39e3aa44f0b3d3d4a89eb5614d5d85a22b52ed568548d985019f62ca88ed3a80b81fd56af8256e363d08b13fe8718f88db68729d4a162f96f281fc7a293c5ae070cbe87795f23bf5f2eabc74454d3ca92c153ec648d52a8f12f6eb1495831feff9ed132ab9dd0a710b231965329cc4fd78b7a2d62c932dbcc2141fb57ae7f0007ac1169547a811c9f8dec5e910072c893345a7b801a04e106e942a3f8306718abd833ffcfa7549b723f02881d6ec89283ae470d0268848794b4b7551a60acedf1f4451407b98a35b3915bea8810537c0bf9a3b91c11ab10854e37dc968c4f770237c686df2268ae9271246c5d71554a7d198c2d91f0904da8b77a5d25437aa098eba28d0dfebd3b7cf94f83cb290d79bdcb3f011b49e709b3d8369e868dcf18906461900638362f00d2daea06eb9972bf3dab9cef69adfa204034dd15f38dc58a0846a224ff72e716f61a584ad4b74683b04da2bad7e0dbb80747bb5f857d5d1d6d7c7d2da784ba5adcc3da9c0e8ca0f9235ded1a7f047ebb0cc81260abd09cfd953f9e46baff0dda02b056cf9f48e12ae948aba44993a25f7e78e6b61f47547350d6b5b3d265f1d1e75e417b07b326f5788a632297391c0b6b6be382362d3f9311a16e564a0d1bc005d6842546ff7d3bc1eadfa2023cfa2d4a663a83287f15a31e6fc54d6c79a02d854bf8e805a1c1365b488ebbad4bc2297b5c1eab996c3c91f86d675206f8ff0c8557ab197c08d7fda36485a69e8ed4cccd52c648deeaba01e226b2357f173edf2501902a931e4137daed6782896cfcb3c9e3913ca7dfad887571ddb1f7a009b1d9f1e1583dd186c2516362d9a10842582e00a05cb9517603723075f2b6f65a22cf746892fcce974572be2e71788a78d685bdddff2673f0cbf686ceb72ebd87fffa81bcb2d27eaf88934e6d24822deaee3303a059ed8afeea3c8513c7d52d70fa7f672f63ddf17139dbaa515812e1b20e5fff334b11550519db6e6b480c47e296b2916351ff6a9a985337e8635e50c4464eb8069c47dd7f51be9064278eed4a67c8b4f7d33fd3e57fdeaceb4baeab3e6d25b45a60676b94fb1871cd9a9543b3ea369de2974b488ae81eb699928adf0d9f4a26834faefdcce00efe65d9575111a15b4b5adb2b14a00cf9941f80f8128fbcdbb935e398145dbc09f2dbc308f820a1046e1e0c3d1e51a6f534770fcd50cd65df38ff27be969c8d41088cdf957012b412f768c8b6b17ab5147f0b48f2e5f0f0f101c155d282c8206d276ca867f147fec28d2122077b80283a3b31d521891a47a813e8a8854db6f2debefcb6d6ef90af65705ba5fe6a2b13e2e846af080af2cbd6acea9d972e97e0d2e1fee23df70b7c2eb790f9af4e2f1553226bfdc32d0e531293fc4b98743ef4c09961e06f8f9bd426a8b61446c30b7e8c76345a53ed2080e2d48b73028fe255c81a1b1410dfa3d2cc3dcd56b2b236c72d0013a5b182b011f2c99888c689de334fe5e5fd71e037c31e703e8699c3b2491e01c301187e32772110bc422a8d4ffb445100bc4d282cba3317ea8f2ba2eb7b48b1b583a7719f900ab4629b7d4881352d3ad52fdabc231e20297efbf220091a11dcb86586eee5d688d1666d9145649c0412de3e604d7a79b0eb7b1e87a34083b23c84ea955a50e5c2eab1b1a4735df47a6d7a32f17b71978fa51b910f89d27566693b09cf9887a6cad18b09da9db17982075a4b37817cd99c4dc435b40d45cbd68666e46277252f3939fb987f6b995a10a5b3febf0ce986c5062fa7a53cbae4bd62b8218c835052c7db429627c126e4a23ab09cccd9995d9a8d5a74ba40f9bb96c8ea0a871b0c1dc09496ab5133d565a14c7ae14fb8dc53de6fcd9b8320c2699cab1193a01953f3091456c5716348388422877fcbd5d7d81d1c9f27b6a98b5796c119b628e349385b7971b3452175cbf43847cbc49280ce83346aa2c637e570dada6c6841b3af8b3f79d0e466c1ccc090556604bc10caafea72aa78a8cc183fc49b54c1aa498e3dab524b89529c2011ac54f10c9f1ab6d68e7caa48e284a718076e2b573157f449369e6b148afd6078d4b0dfc74e056336254526d7fd1331060282a552403906b2a85e53127203cb7254a5a69cca</script>
 </div>
 <script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
