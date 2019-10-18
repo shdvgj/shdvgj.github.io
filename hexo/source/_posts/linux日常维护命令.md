@@ -15,8 +15,6 @@ categories:
 find /home -ctime +10 -type f -name "*log.log.20*" | xargs rm -rf
 ```
 
-
-
 ## 查看磁盘空间和大文件  
 
 ### 查看磁盘剩余空间  
@@ -31,15 +29,11 @@ df -h
 du -h --max-depth=1
 ```
 
-
-
 ## 查看进程中的java程序  
 
 ```shell
 ps aux | grep java
 # 杀死某个进程
-kill -s 9 pid
+kill -9 pid
 ```
-
-
 
