@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="shdvgj的个人博客">
 <meta property="og:description" content="原文文档   声明 该文档纯粹自己手动翻译， 也许网上有更好的版本， 但是我这个属于自己学习的版本， 为了提高英语水平和对MySQL的理解， 后续不保证会持续更新，内容如有理解错误， 还请指正。 MySQL 8.0 参考手册包含MySQL NDB集群8.0摘要这是一份MySQL参考手册。 该文档分别记录了MySQL8.0到8.0.20，以及基于NDB8.0版本到NDB8.0.19版本的NDB集群发">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-18T01:41:04.048Z">
+<meta property="og:updated_time" content="2019-10-18T06:51:40.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySql 8.0参考手册中文版（一）">
 <meta name="twitter:description" content="原文文档   声明 该文档纯粹自己手动翻译， 也许网上有更好的版本， 但是我这个属于自己学习的版本， 为了提高英语水平和对MySQL的理解， 后续不保证会持续更新，内容如有理解错误， 还请指正。 MySQL 8.0 参考手册包含MySQL NDB集群8.0摘要这是一份MySQL参考手册。 该文档分别记录了MySQL8.0到8.0.20，以及基于NDB8.0版本到NDB8.0.19版本的NDB集群发">
@@ -328,7 +328,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-18 09:41:04" itemprop="dateModified" datetime="2019-10-18T09:41:04+08:00">2019-10-18</time>
+                <time title="修改时间：2019-10-18 14:51:40" itemprop="dateModified" datetime="2019-10-18T14:51:40+08:00">2019-10-18</time>
               </span>
             
           
@@ -471,6 +471,70 @@
 <li>为使用客户端/服务端环境提供了作为单独程序的服务，作为一个库可以嵌入到独立的应用中。这种应用可以单独使用或者在网络无法访问的环境中使用。</li>
 </ul>
 <p><strong>数据类型</strong></p>
+<ul>
+<li>很多的数据类型：带符号/无符号的整数类型，1、2、3、4以及8比特的长度， <a href="https://dev.mysql.com/doc/refman/8.0/en/floating-point-types.html" target="_blank" rel="noopener"><code>FLOAT</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/floating-point-types.html" target="_blank" rel="noopener"><code>DOUBLE</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/char.html" target="_blank" rel="noopener"><code>CHAR</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/char.html" target="_blank" rel="noopener"><code>VARCHAR</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/binary-varbinary.html" target="_blank" rel="noopener"><code>BINARY</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/binary-varbinary.html" target="_blank" rel="noopener"><code>VARBINARY</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/blob.html" target="_blank" rel="noopener"><code>TEXT</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/blob.html" target="_blank" rel="noopener"><code>BLOB</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html" target="_blank" rel="noopener"><code>DATE</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/time.html" target="_blank" rel="noopener"><code>TIME</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html" target="_blank" rel="noopener"><code>DATETIME</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html" target="_blank" rel="noopener"><code>TIMESTAMP</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/year.html" target="_blank" rel="noopener"><code>YEAR</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/set.html" target="_blank" rel="noopener"><code>SET</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/enum.html" target="_blank" rel="noopener"><code>ENUM</code></a> ，以及OpenGIS的空间数据类型。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/data-types.html" target="_blank" rel="noopener">章节11，数据类型</a>。</li>
+<li>固定长度和可变长度的字符串类型。</li>
+</ul>
+<p><strong>语句和功能</strong></p>
+<ul>
+<li><p>所有的操作符和功能支持都在Select列表和Where条件语句查询中。比如：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT CONCAT(first_name, ' ', last_name)</span><br><span class="line">    -&gt; FROM citizen</span><br><span class="line">    -&gt; WHERE income/dependents &gt; 10000 AND age &gt; 30;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>完全支持SQL中的<code>Group By</code>和<code>Order By</code>条件。提供Group的功能的支持（ <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_count" target="_blank" rel="noopener"><code>COUNT()</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_avg" target="_blank" rel="noopener"><code>AVG()</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_std" target="_blank" rel="noopener"><code>STD()</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_sum" target="_blank" rel="noopener"><code>SUM()</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_max" target="_blank" rel="noopener"><code>MAX()</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_min" target="_blank" rel="noopener"><code>MIN()</code></a>, 和 <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_group-concat" target="_blank" rel="noopener"><code>GROUP_CONCAT()</code></a>) ）</p>
+</li>
+<li><p>完全支持拥有SQL和ODBC语法的 <code>LEFT OUTER JOIN</code> 和 <code>RIGHT OUTER JOIN</code>  </p>
+</li>
+<li><p>支持标准SQL要求的表和列的别名。</p>
+</li>
+<li><p>支持<code>Delete</code>，<code>Insert</code>，<code>Replace</code>，以及在<code>update</code>时返回修改的数量，或者返回匹配的行数，而不是在连接服务器时设置一个标识。</p>
+</li>
+<li><p>支持MySQL特定的<code>show</code>语句，用于返回数据库，存储引擎，表，以及索引的信息。支持 <code>INFORMATION_SCHEMA</code>数据库，实现自标准SQL。</p>
+</li>
+<li><p><a href="https://dev.mysql.com/doc/refman/8.0/en/explain.html" target="_blank" rel="noopener"><code>EXPLAIN</code></a> 语句会展现优化器如何处理查询语句的。</p>
+</li>
+<li><p>函数名称独立于表明和列名。比如，<code>ABS</code>是一个合法的列明。唯一的限制是在调用函数时，在函数名和(之间不能存在空格。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/keywords.html" target="_blank" rel="noopener">章节9.3，关键字和保留字</a>。</p>
+</li>
+<li><p>你可以在一个语句内指定不同数据库的表。</p>
+</li>
+</ul>
+<p><strong>安全性</strong></p>
+<ul>
+<li>权限和密码系统非常灵活和安全，并支持基于主机的认证。</li>
+<li>连接服务器时，通过对所有密码通信进行加密来实现密码安全。</li>
+</ul>
+<p><strong>可拓展性和限制</strong></p>
+<ul>
+<li>支持大型数据库。我们使用的MySQL服务拥有可以包含5000万条数据的数据库。我们也知道拥有20万张表和50亿条数据的MySQL服务器的用户。</li>
+<li>支持每张表最多64个索引。每个索引可以包含1-16列或者部分列。InnoDB表的索引最大宽度为767字节或者3072字节。详见 <a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-restrictions.html" target="_blank" rel="noopener">章节15.6.1.16，“InnoDB表的限制”</a>。MyISAM表的最大索引宽度为1000字节。详见 <a href="https://dev.mysql.com/doc/refman/8.0/en/myisam-storage-engine.html" target="_blank" rel="noopener">章节16.2，“MyISAM存储引擎”</a>。可以使用Char，Varchar，Blob或者Text字段类型的前缀作为一个索引。</li>
+</ul>
+<p><strong>可连接性</strong></p>
+<ul>
+<li>客户端可以通过不同的协议连接MySQL服务：<ul>
+<li>客户端可以在任何平台上使用TCP/IP端口进行连接。</li>
+<li>在windows系统，如果服务端启用了 <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_named_pipe" target="_blank" rel="noopener"><code>named_pipe</code></a> 系统参数进行启动，那客户端就可以使用name pipe进行连接。如果服务端启用了 <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_shared_memory" target="_blank" rel="noopener"><code>shared_memory</code></a>  系统参数进行启动，那客户端也可以使用  <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_shared_memory" target="_blank" rel="noopener"><code>shared_memory</code></a>  方式进行连接。客户端可以通过使用  <a href="https://dev.mysql.com/doc/refman/8.0/en/connection-options.html#option_general_protocol" target="_blank" rel="noopener"><code>--protocol=memory</code></a> 选项来进行shared memory的连接。</li>
+<li>在unix系统，客户端可以使用Unix域的套接字文件来进行连接。</li>
+</ul>
+</li>
+<li>MySQL的客户端程序可以用不同的语言编写。一个C语言编写的客户端库可以用于C语言和C++编写的客户端，或者任何别的提供C语言绑定的语言。</li>
+<li>C, C++, Eiffel, Java, Perl, PHP, Python, Ruby, 和 Tcl 的API都是可用的，使得MySQL客户端可以被多种语言编写。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/connectors-apis.html" target="_blank" rel="noopener">章节28，连接器和API</a>.</li>
+<li>连接器/ODBC（MyODBC）接口为那些使用ODBC（Open Datebase Connectivity）连接的客户端程序提供了MySQL支持。比如说，你可以使用MS Access去连接你的MySQL服务器。客户端可以运行在Windows或者Unix。连接器/ODBC源是可用的。和很多其他的功能一样，所有的ODBC2.5的功能都是被支持的。详见<a href="https://dev.mysql.com/doc/connector-odbc/en/" target="_blank" rel="noopener">MySQL 连接器/ODBC开发者指南</a>。</li>
+<li>连接器/J 接口为那些使用了JDBC连接器的java客户端程序提供了MySQL支持。客户端可以运行于Windows或者Unix。连接器/J 源是可用的。详见<a href="https://dev.mysql.com/doc/connector-j/5.1/en/" target="_blank" rel="noopener">MySQL连接器/J 5.1开发者指南</a>。</li>
+<li>MySQL连接器/NET 允许开发者创建一个要求安全和高性能数据连接MySQL的.NET应用程序。它实现了必须的ADO.NET的接口并融入进了ADO.NET的感知工具。开发者可以选择他们的.NET语言去构建应用。MySQL连接器/NET是一个完全托管的ADO.NET驱动，100%由纯粹的C#编写。详见<a href="https://dev.mysql.com/doc/connector-net/en/" target="_blank" rel="noopener">MySQL连接器/NET开发者指南</a>。</li>
+</ul>
+<p><strong>本地化</strong></p>
+<ul>
+<li>服务器可以提供各种语言的报错信息。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/error-message-language.html" target="_blank" rel="noopener">章节10.12，设置错误提示的语言</a>。</li>
+<li>完全支持不同的字符集，包括 <code>latin1</code> (cp1252)，<code>german</code>，<code>big5</code>，<code>ujis</code> ，几种Unicode编码，以及别的。比如， Scandinavian 的字符 “<code>å</code>”, “<code>ä</code>” 和“<code>ö</code>” 可以用在表和列的名字中。</li>
+<li>所有的数据以选定的字符集存储。</li>
+<li>根据默认的字符集和校对规则进行排序和比较。当MySQL服务运行的时候也可以对该规则进行更改(详见<a href="https://dev.mysql.com/doc/refman/8.0/en/charset-server.html" target="_blank" rel="noopener">章节10.3.2，“服务器字符集和校验”</a>)。一个非常高级的排序例子，可以看下捷克的排序编码。MySQL支持多种可以在编译和运行阶段指定的字符集。</li>
+<li>服务器时区可以动态的改变，而且单独的客户端可以指定各自的时区。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/time-zone-support.html" target="_blank" rel="noopener">章节5.1.13，MySQL服务器时区支持</a>。</li>
+</ul>
+<p><strong>客户端和工具</strong></p>
+<ul>
+<li>MySQL包含多个客户端和实用程序。包括命令行程序，比如 <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html" target="_blank" rel="noopener"><strong>mysqldump</strong></a> 和 <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqladmin.html" target="_blank" rel="noopener"><strong>mysqladmin</strong></a> ，以及图形化程序 <a href="https://dev.mysql.com/doc/refman/8.0/en/workbench.html" target="_blank" rel="noopener">MySQL Workbench</a> 。</li>
+<li>MySQL服务器内置了对于SQL语句的检查，优化和表修复的支持。这些语句可以通过<a href="https://dev.mysql.com/doc/refman/8.0/en/mysqlcheck.html" target="_blank" rel="noopener">mysqlcheck</a>客户端从命令行使用。MySQL也包含了<a href="https://dev.mysql.com/doc/refman/8.0/en/myisamchk.html" target="_blank" rel="noopener">myisamchk</a>工具，一个非常快速的命令行工具，用于在MyISAM表提交这些操作。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/programs.html" target="_blank" rel="noopener">章节4，MySQL程序</a>。</li>
+<li>可以调用 –help 和 -?来呼叫MySQL程序用以获取在线协助。</li>
+</ul>
 
     </div>
 
