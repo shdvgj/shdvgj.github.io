@@ -230,3 +230,61 @@ MySQL是最受欢迎的开源的SQL数据库管理系统，由Oracle公司开发
 - MySQL包含多个客户端和实用程序。包括命令行程序，比如 [**mysqldump**](https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html) 和 [**mysqladmin**](https://dev.mysql.com/doc/refman/8.0/en/mysqladmin.html) ，以及图形化程序 [MySQL Workbench](https://dev.mysql.com/doc/refman/8.0/en/workbench.html) 。
 - MySQL服务器内置了对于SQL语句的检查，优化和表修复的支持。这些语句可以通过[mysqlcheck](https://dev.mysql.com/doc/refman/8.0/en/mysqlcheck.html)客户端从命令行使用。MySQL也包含了[myisamchk](https://dev.mysql.com/doc/refman/8.0/en/myisamchk.html)工具，一个非常快速的命令行工具，用于在MyISAM表提交这些操作。详见[章节4，MySQL程序](https://dev.mysql.com/doc/refman/8.0/en/programs.html)。
 - 可以调用 --help 和 -?来呼叫MySQL程序用以获取在线协助。
+
+#### 1.3.3 MySQL的历史
+
+我们一开始想要用我们自己的快速，低级的引擎来使用mSQL数据库来连接我们的表。然而，经过了一些测试后，我们认为mSQL的速度和灵活性达不到我们的要求。这导致了我们的数据库的一个新的SQL接口，但是其API接口和mSQL几乎一样。该API设计为允许那些为mSQL编写的第三方代码可以很方便的移植以用于MySQL。
+
+MySQL得名于联合创建人Monty Widenius的女儿，My。
+
+MySQL的海豚（我们的logo）的名字是“Sakila”，这来自于“为海豚取名”的比赛中用户建议的庞大的名字列表里选择出来的。最后获胜的名字由来自非洲Swaziland， 一个名叫Ambrose Twebaze的开源软件开发者提供。据 Ambrose所说，这个女性化的名字Sakila出自 Swaziland 的当地语Siswati。Sakila也是坦桑尼亚的 Arusha 的一个城镇的名字，邻近 Ambrose 的原籍国乌干达。
+
+### 1.4 MySQL8.0更新了什么
+
+这一节总结了在MySQL8.0中哪些被添加，启用，以及移除。随附的部分罗列了在MySQL8.0中已经被新增，启用，移除的选项和变量。详见 [章节1.5，“服务器，状态变量和选项在MySQL8.0中的添加，弃用和删除”](https://dev.mysql.com/doc/refman/8.0/en/added-deprecated-removed.html)。
+
+**MySQL8.0新增的特性**
+
+以下特性被加入到MySQL8.0中：
+
+- **数据字典。**MySQL现在合并了一个可以存储数据库对象的事务化的数据字典。在之前的MySQL发行版中，数据字典存储在元数据文件和非事务的表。关于更多信息，详见[章节14，MySQL数据字典](https://dev.mysql.com/doc/refman/8.0/en/data-dictionary.html)。
+
+- **原子数据定义语句(原子DDL)。**一个原子DDL语句包含了数据字典的升级，存储引擎的操作，以及将关联DDL操作的二进制日志写入到单独的原子事务中。要获取更多信息，详见[章节13.1.1，“原子数据定义语句的支持”](https://dev.mysql.com/doc/refman/8.0/en/atomic-ddl.html)。
+
+- **升级过程。**在以前，安装了一个新版本的MySQL后，MySQL服务器会在下一次启动时自动升级数据字典表，在此之后，需要DBA在mysql的schema里手动调用 [**mysql_upgrade**](https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html) 去升级系统表，也包括在别的schema比如sys schema和user schema里面的对象。
+
+  对于MySQL8.0.16来说，服务器会执行先前由 [**mysql_upgrade**](https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html) 控制的任务。在安装了新版本的MySQL之后，服务器会在下次升级时自动执行所有的升级任务，而不是依赖DBA去调用 [**mysql_upgrade**](https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html) 。而且，服务器会更新帮助表里面的内容（这是 [**mysql_upgrade**](https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html) 没有做的）。一个新的 [`--upgrade`](https://dev.mysql.com/doc/refman/8.0/en/server-options.html#option_mysqld_upgrade) 服务器参数为服务器如何自动执行数据字典和服务器升级的选项提供了控制。想要了解更多，详见[章节2.11.3，MySQL的升级流程升级了什么](https://dev.mysql.com/doc/refman/8.0/en/upgrading-what-is-upgraded.html)。
+
+- **安全和账户管理**。增加下列增强的功能后，可以提高安全性以及增加DBA在账户管理方面的灵活性：
+
+  - 在mysql系统数据库中的授权表现在属于InnoDB（事务型）表。以前它们是MyISAM（非事务型）表。授权表的存储引擎的变化是伴随账户管理语句变化的基础。以前一句命名多个用户的账户管理的语句（如 [`CREATE USER`](https://dev.mysql.com/doc/refman/8.0/en/create-user.html) 或 [`DROP USER`](https://dev.mysql.com/doc/refman/8.0/en/drop-user.html)) ，在其中一些用户命名失败的情况下也可以对别的用户命名成功。现在，每一个语句都是事务的，且要么所有的命名用户都成功，要么其中任何一个失败之后语句都会回滚并不发生任何效果。语句如果成功会被写入二进制表中，但是在失败时不会写入；在这种情况下，会发生回滚且没有任何变化发生。想要了解更多，详见[13.1.1“原子数据定义语句的支持”](https://dev.mysql.com/doc/refman/8.0/en/atomic-ddl.html)。
+
+  - 一个新的 `caching_sha2_password`  认证插件已经可用。类似于 `sha256_password`  插件， caching_sha2_password 实现了 SHA-256 的密码Hash，但是在连接时用缓存来解决延迟问题。它也支持更多的连接协议，而且不需要为了基于RAS密钥对的密码交换功能和OpenSSL进行连接。
+
+     caching_sha2_password 和 sha256_password 的认证方式相比 mysql_native_password 插件提供了更多的安全加密方式，而且 caching_sha2_password 的性能比sha256_password更好。由于这些 caching_sha2_password 卓越的安全和性能的特点，现在已经成为首选的认证插件，而且也是默认的认证插件，而不是  `mysql_native_password` 。想要了解这种默认插件的变化对于服务器操作和服务器与客户端及连接器之间的兼容性的信息，详见 [ caching_sha2_password 作为首选的认证插件](https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password)。
+
+  - MySQL如今支持角色，即权限集合的命名。角色可以被创建和删除。角色可以被授权和撤销权限。角色可以从用户账号中授权和删除。一个账户下的活跃的适用角色可以从账户里已授权的角色中选择，也可以在账户的登陆期间进行修改。想要了解更多信息，详见[6.2.10，使用角色](https://dev.mysql.com/doc/refman/8.0/en/roles.html)。
+
+  - MySQL现在包含了用户账号目录的概念，根据系统和普通用户区分他们是否有 [`SYSTEM_USER`](https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html#priv_system-user) 权限。详见[6.2.11，账户目录](https://dev.mysql.com/doc/refman/8.0/en/account-categories.html)。
+
+  - 在以前，除非在某些schema里，否则不能授予一个全局的权限。现在只要设置 [`partial_revokes`](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_partial_revokes)  系统参数为 enabled 就可以做到。详见[6.2.12，使用部分撤销的权限限制](https://dev.mysql.com/doc/refman/8.0/en/partial-revokes.html)。
+
+  - 授权语句拥有一个可以指定额外的权限信息的用户条件去用于语句执行。这种语法在SQL层面可见， 尽管其主要目的是使在部分撤销所施加的授予者特权限制的所有节点之间实现统一复制， 通过使这些限制出现在二进制日志中。
+
+  - MySQL现在会保留历史密码信息，限制重复使用以前的密码。DBA可以要求一些数量的密码更改或者一段时间内不可以从以前的密码中选择。可以为全局和每个账户建立密码重新使用的策略。
+
+    现在可以通过指定当前要被取代的密码来验证更改密码的操作。这可以让DBA去避免那些不能提供他们知道的当前密码的用户去修改密码。可以为全局或每个账户建立密码验证策略。
+
+    账户现在允许使用双重验证，这使得在复杂的多服务器系统上可以无缝的提交分阶段的密码修改，而不需要停机。
+
+    这些功能为DBA提供了对密码管理的完全掌控。关于更多信息，详见[6.2.15，密码管理](https://dev.mysql.com/doc/refman/8.0/en/password-management.html)。
+
+  - MySQL现在支持FIPS模式，它使用OpenSSL编译，在运行时一个OpenSSL库和FIPS对象模式都是可用的。FIPS模式为密码相关操作强加了一些条件，比如对于可接受的加密方式的限制，或者对于密码长度的要求。详见[6.5，FIPS支持](https://dev.mysql.com/doc/refman/8.0/en/fips-mode.html)。
+
+  -  服务器现在可以在运行时重新配置服务器用于新连接的SSL上下文。该功能可能会很有用，比如，在一个MySQL服务器运行太久而SSL证书过期，可以避免去重启该服务器。详见 [加密连接的服务器端运行时配置](https://dev.mysql.com/doc/refman/8.0/en/using-encrypted-connections.html#using-encrypted-connections-server-side-runtime-configuration)。
+
+  - OpenSSL1.1.1支持用于加密连接的TLS1.3协议，如果服务端和客户端都用OpenSSL或更高版本来编译，那么MySQL8.0.16和更高版本下也将支持TLS1.3协议。详见[6.3.2，加密连接TLS协议和密码](https://dev.mysql.com/doc/refman/8.0/en/encrypted-connection-protocols-ciphers.html)。
+
+  - MySQL现在授予客户端在已命名的管道上用于windows尽量少的必要连接的访问控制。新的MySQL客户端软件可以不用任何额外配置打开命名管道连接。如果更早版本的客户端软件不能马上升级，那么新的 [`named_pipe_full_access_group`](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_named_pipe_full_access_group)系统参数可以给予windows用户组必要的权限用于打开命名管道连接。完全访问权限的用户组的成员应该是暂时的且被限制的。
+
+- **资源管理。**

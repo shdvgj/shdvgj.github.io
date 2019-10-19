@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb1a2061-9faa-44a6-ac5c-9db79a1d0099" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/linux日常维护命令.md" afterPath="$PROJECT_DIR$/hexo/source/_posts/linux日常维护命令.md" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/绩效统计.md" afterPath="$PROJECT_DIR$/hexo/source/_posts/绩效统计.md" />
-      <change beforePath="$PROJECT_DIR$/hexo/themes/NexT/_config.yml" afterPath="$PROJECT_DIR$/hexo/themes/NexT/_config.yml" />
-    </list>
+    <list default="true" id="cb1a2061-9faa-44a6-ac5c-9db79a1d0099" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -487,7 +483,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74437000" />
+    <option name="totallyTimeSpent" value="74976000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
