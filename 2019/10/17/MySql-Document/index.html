@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="shdvgj的个人博客">
 <meta property="og:description" content="原文文档   声明 该文档纯粹自己手动翻译， 也许网上有更好的版本， 但是我这个属于自己学习的版本， 为了提高英语水平和对MySQL的理解， 后续不保证会持续更新，内容如有理解错误， 还请指正。 MySQL 8.0 参考手册包含MySQL NDB集群8.0摘要这是一份MySQL参考手册。 该文档分别记录了MySQL8.0到8.0.20，以及基于NDB8.0版本到NDB8.0.19版本的NDB集群发">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-19T02:53:27.006Z">
+<meta property="og:updated_time" content="2019-10-19T06:58:45.592Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySql 8.0参考手册中文版（一）">
 <meta name="twitter:description" content="原文文档   声明 该文档纯粹自己手动翻译， 也许网上有更好的版本， 但是我这个属于自己学习的版本， 为了提高英语水平和对MySQL的理解， 后续不保证会持续更新，内容如有理解错误， 还请指正。 MySQL 8.0 参考手册包含MySQL NDB集群8.0摘要这是一份MySQL参考手册。 该文档分别记录了MySQL8.0到8.0.20，以及基于NDB8.0版本到NDB8.0.19版本的NDB集群发">
@@ -328,7 +328,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-19 10:53:27" itemprop="dateModified" datetime="2019-10-19T10:53:27+08:00">2019-10-19</time>
+                <time title="修改时间：2019-10-19 14:58:45" itemprop="dateModified" datetime="2019-10-19T14:58:45+08:00">2019-10-19</time>
               </span>
             
           
@@ -556,9 +556,30 @@
 <li><p>一个新的 <code>caching_sha2_password</code>  认证插件已经可用。类似于 <code>sha256_password</code>  插件， caching_sha2_password 实现了 SHA-256 的密码Hash，但是在连接时用缓存来解决延迟问题。它也支持更多的连接协议，而且不需要为了基于RAS密钥对的密码交换功能和OpenSSL进行连接。</p>
 <p> caching_sha2_password 和 sha256_password 的认证方式相比 mysql_native_password 插件提供了更多的安全加密方式，而且 caching_sha2_password 的性能比sha256_password更好。由于这些 caching_sha2_password 卓越的安全和性能的特点，现在已经成为首选的认证插件，而且也是默认的认证插件，而不是  <code>mysql_native_password</code> 。想要了解这种默认插件的变化对于服务器操作和服务器与客户端及连接器之间的兼容性的信息，详见 <a href="https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password" target="_blank" rel="noopener"> caching_sha2_password 作为首选的认证插件</a>。</p>
 </li>
-<li><p>MySQL如今支持角色，即权限集合的命名。</p>
+<li><p>MySQL如今支持角色，即权限集合的命名。角色可以被创建和删除。角色可以被授权和撤销权限。角色可以从用户账号中授权和删除。一个账户下的活跃的适用角色可以从账户里已授权的角色中选择，也可以在账户的登陆期间进行修改。想要了解更多信息，详见<a href="https://dev.mysql.com/doc/refman/8.0/en/roles.html" target="_blank" rel="noopener">6.2.10，使用角色</a>。</p>
+</li>
+<li><p>MySQL现在包含了用户账号目录的概念，根据系统和普通用户区分他们是否有 <a href="https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html#priv_system-user" target="_blank" rel="noopener"><code>SYSTEM_USER</code></a> 权限。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/account-categories.html" target="_blank" rel="noopener">6.2.11，账户目录</a>。</p>
+</li>
+<li><p>在以前，除非在某些schema里，否则不能授予一个全局的权限。现在只要设置 <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_partial_revokes" target="_blank" rel="noopener"><code>partial_revokes</code></a>  系统参数为 enabled 就可以做到。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/partial-revokes.html" target="_blank" rel="noopener">6.2.12，使用部分撤销的权限限制</a>。</p>
+</li>
+<li><p>授权语句拥有一个可以指定额外的权限信息的用户条件去用于语句执行。这种语法在SQL层面可见， 尽管其主要目的是使在部分撤销所施加的授予者特权限制的所有节点之间实现统一复制， 通过使这些限制出现在二进制日志中。</p>
+</li>
+<li><p>MySQL现在会保留历史密码信息，限制重复使用以前的密码。DBA可以要求一些数量的密码更改或者一段时间内不可以从以前的密码中选择。可以为全局和每个账户建立密码重新使用的策略。</p>
+<p>现在可以通过指定当前要被取代的密码来验证更改密码的操作。这可以让DBA去避免那些不能提供他们知道的当前密码的用户去修改密码。可以为全局或每个账户建立密码验证策略。</p>
+<p>账户现在允许使用双重验证，这使得在复杂的多服务器系统上可以无缝的提交分阶段的密码修改，而不需要停机。</p>
+<p>这些功能为DBA提供了对密码管理的完全掌控。关于更多信息，详见<a href="https://dev.mysql.com/doc/refman/8.0/en/password-management.html" target="_blank" rel="noopener">6.2.15，密码管理</a>。</p>
+</li>
+<li><p>MySQL现在支持FIPS模式，它使用OpenSSL编译，在运行时一个OpenSSL库和FIPS对象模式都是可用的。FIPS模式为密码相关操作强加了一些条件，比如对于可接受的加密方式的限制，或者对于密码长度的要求。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/fips-mode.html" target="_blank" rel="noopener">6.5，FIPS支持</a>。</p>
+</li>
+<li><p>服务器现在可以在运行时重新配置服务器用于新连接的SSL上下文。该功能可能会很有用，比如，在一个MySQL服务器运行太久而SSL证书过期，可以避免去重启该服务器。详见 <a href="https://dev.mysql.com/doc/refman/8.0/en/using-encrypted-connections.html#using-encrypted-connections-server-side-runtime-configuration" target="_blank" rel="noopener">加密连接的服务器端运行时配置</a>。</p>
+</li>
+<li><p>OpenSSL1.1.1支持用于加密连接的TLS1.3协议，如果服务端和客户端都用OpenSSL或更高版本来编译，那么MySQL8.0.16和更高版本下也将支持TLS1.3协议。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/encrypted-connection-protocols-ciphers.html" target="_blank" rel="noopener">6.3.2，加密连接TLS协议和密码</a>。</p>
+</li>
+<li><p>MySQL现在授予客户端在已命名的管道上用于windows尽量少的必要连接的访问控制。新的MySQL客户端软件可以不用任何额外配置打开命名管道连接。如果更早版本的客户端软件不能马上升级，那么新的 <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_named_pipe_full_access_group" target="_blank" rel="noopener"><code>named_pipe_full_access_group</code></a>系统参数可以给予windows用户组必要的权限用于打开命名管道连接。完全访问权限的用户组的成员应该是暂时的且被限制的。</p>
 </li>
 </ul>
+</li>
+<li><p><strong>资源管理。</strong></p>
 </li>
 </ul>
 
