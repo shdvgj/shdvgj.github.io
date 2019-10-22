@@ -57,14 +57,14 @@
 </script>
 
   <meta name="description" content="原文文档   声明 该文档纯粹自己手动翻译， 也许网上有更好的版本， 但是我这个属于自己学习的版本， 为了提高英语水平和对MySQL的理解， 后续不保证会持续更新，内容如有理解错误， 还请指正。 MySQL 8.0 参考手册包含MySQL NDB集群8.0摘要这是一份MySQL参考手册。 该文档分别记录了MySQL8.0到8.0.20，以及基于NDB8.0版本到NDB8.0.19版本的NDB集群发">
-<meta name="keywords" content="translate,mysql">
+<meta name="keywords" content="mysql,translate">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySql 8.0参考手册中文版（一）">
 <meta property="og:url" content="http://shdvgj.github.io/2019/10/17/MySql-Document/index.html">
 <meta property="og:site_name" content="shdvgj的个人博客">
 <meta property="og:description" content="原文文档   声明 该文档纯粹自己手动翻译， 也许网上有更好的版本， 但是我这个属于自己学习的版本， 为了提高英语水平和对MySQL的理解， 后续不保证会持续更新，内容如有理解错误， 还请指正。 MySQL 8.0 参考手册包含MySQL NDB集群8.0摘要这是一份MySQL参考手册。 该文档分别记录了MySQL8.0到8.0.20，以及基于NDB8.0版本到NDB8.0.19版本的NDB集群发">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-22T03:53:51.185Z">
+<meta property="og:updated_time" content="2019-10-22T08:57:39.727Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySql 8.0参考手册中文版（一）">
 <meta name="twitter:description" content="原文文档   声明 该文档纯粹自己手动翻译， 也许网上有更好的版本， 但是我这个属于自己学习的版本， 为了提高英语水平和对MySQL的理解， 后续不保证会持续更新，内容如有理解错误， 还请指正。 MySQL 8.0 参考手册包含MySQL NDB集群8.0摘要这是一份MySQL参考手册。 该文档分别记录了MySQL8.0到8.0.20，以及基于NDB8.0版本到NDB8.0.19版本的NDB集群发">
@@ -328,7 +328,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-22 11:53:51" itemprop="dateModified" datetime="2019-10-22T11:53:51+08:00">2019-10-22</time>
+                <time title="修改时间：2019-10-22 16:57:39" itemprop="dateModified" datetime="2019-10-22T16:57:39+08:00">2019-10-22</time>
               </span>
             
           
@@ -581,7 +581,8 @@
 </li>
 <li><p><strong>资源管理。</strong>MySQL现在支持资源组的创建和管理，并且允许跟服务器一起运行的线程分配给特定的组，以便线程根据组的可用的资源执行。组属性可以控制其资源，允许或者限制组内线程的资源消费。DBA可以根据不同的工作量来调整这些属性为合适的值。现在，CPU时间是可以管理的资源，其概念由”虚拟CPU”来表示，其包含了CPU内核，超线程，硬件线程等等。服务器在启动时决定有多少虚拟CPU可用，并且拥有相应权限的数据库管理员可以将这些CPU与资源组关联并分配线程给组。要了解更多信息，详见<a href="https://dev.mysql.com/doc/refman/8.0/en/resource-groups.html" target="_blank" rel="noopener">8.12.5，资源组</a>。</p>
 </li>
-<li></li>
+<li><p><strong>表加密管理。</strong></p>
+</li>
 </ul>
 
     </div>
@@ -598,9 +599,9 @@
           
           <div class="post-tags">
             
-              <a href="/tags/translate/" rel="tag"><i class="fa fa-tag"></i> translate</a>
-            
               <a href="/tags/mysql/" rel="tag"><i class="fa fa-tag"></i> mysql</a>
+            
+              <a href="/tags/translate/" rel="tag"><i class="fa fa-tag"></i> translate</a>
             
           </div>
         
