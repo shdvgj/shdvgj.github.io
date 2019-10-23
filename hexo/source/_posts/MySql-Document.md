@@ -287,4 +287,6 @@ MySQL的海豚（我们的logo）的名字是“Sakila”，这来自于“为�
 
   - MySQL现在授予客户端在已命名的管道上用于windows尽量少的必要连接的访问控制。新的MySQL客户端软件可以不用任何额外配置打开命名管道连接。如果更早版本的客户端软件不能马上升级，那么新的 [`named_pipe_full_access_group`](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_named_pipe_full_access_group)系统参数可以给予windows用户组必要的权限用于打开命名管道连接。完全访问权限的用户组的成员应该是暂时的且被限制的。
 
-- **资源管理。**
+- **资源管理。**MySQL现在支持资源组的创建和管理，并且允许跟服务器一起运行的线程分配给特定的组，以便线程根据组的可用的资源执行。组属性可以控制其资源，允许或者限制组内线程的资源消费。DBA可以根据不同的工作量来调整这些属性为合适的值。现在，CPU时间是可以管理的资源，其概念由"虚拟CPU"来表示，其包含了CPU内核，超线程，硬件线程等等。服务器在启动时决定有多少虚拟CPU可用，并且拥有相应权限的数据库管理员可以将这些CPU与资源组关联并分配线程给组。要了解更多信息，详见[8.12.5，资源组](https://dev.mysql.com/doc/refman/8.0/en/resource-groups.html)。
+
+- **表加密管理。**
