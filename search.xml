@@ -9,13 +9,16 @@
 <li><input checked disabled type="checkbox"> 数据库层连接：Hibernate / Mybatis / JPA</li>
 <li><input checked disabled type="checkbox"> 分页</li>
 <li><input checked disabled type="checkbox"> 日志：Log4j  </li>
-<li><input checked disabled type="checkbox"> 数据库连接池：druid</li>
+<li><input checked disabled type="checkbox"> 数据库连接池：Druid</li>
 <li><input disabled type="checkbox"> 消息中间件：Dubbo / Grpc</li>
 <li><input disabled type="checkbox"> 缓存：Redis</li>
 <li><input disabled type="checkbox"> 权限：Spring Security</li>
 <li><input checked disabled type="checkbox"> 包管理仓库：Maven / Gradle</li>
 <li><input disabled type="checkbox"> 统一日志记录-数据库层面</li>
 <li><input checked disabled type="checkbox"> JSON处理：FastJSON</li>
+<li><input disabled type="checkbox"> 统一返回结果处理</li>
+<li><input disabled type="checkbox"> Zookeeper</li>
+<li><input disabled type="checkbox"> MQ组建：RabbitMQ / RocketMQ / Kafka</li>
 </ul>
 ]]></content>
       <categories>
