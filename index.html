@@ -1015,7 +1015,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-30 10:40:09" itemprop="dateModified" datetime="2019-10-30T10:40:09+08:00">2019-10-30</time>
+                <time title="修改时间：2019-10-30 11:14:50" itemprop="dateModified" datetime="2019-10-30T11:14:50+08:00">2019-10-30</time>
               </span>
             
           
@@ -1076,6 +1076,9 @@
 <p>设置cron重新启动, 执行/sbin/service crond restart  </p>
 <p>3.查看cron执行情况<br>查看cron任务列表 : crontab -l<br>查看cron执行日志 : grep ‘removeDataByTime’ /var/log/cron  </p>
 <h2 id="设置LogStash不写入指定的内容"><a href="#设置LogStash不写入指定的内容" class="headerlink" title="设置LogStash不写入指定的内容"></a>设置LogStash不写入指定的内容</h2><p>在logstash中写入如下内容即可 ：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">filter &#123;</span><br><span class="line"><span class="meta">	#</span> 过滤message中的内容 , 注意drop后面有一个空格</span><br><span class="line">    if "somethingA" in [message] &#123;</span><br><span class="line">      drop &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    # 过滤tags中的内容</span><br><span class="line">    if "somethingB" in [tags] &#123;</span><br><span class="line">      drop &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 
         
       
@@ -1250,7 +1253,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-30 10:41:41" itemprop="dateModified" datetime="2019-10-30T10:41:41+08:00">2019-10-30</time>
+                <time title="修改时间：2019-10-30 11:13:00" itemprop="dateModified" datetime="2019-10-30T11:13:00+08:00">2019-10-30</time>
               </span>
             
           
