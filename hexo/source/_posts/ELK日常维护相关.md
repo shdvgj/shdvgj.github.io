@@ -61,8 +61,25 @@ done
 查看cron任务列表 : crontab -l  
 查看cron执行日志 : grep 'removeDataByTime' /var/log/cron  
 
+## 设置LogStash不写入指定的内容
+
+在logstash中写入如下内容即可 ：
+
+```shell
+filter {
+	# 过滤message中的内容 , 注意drop后面有一个空格
+    if "somethingA" in [message] {
+      drop {}
+    }
+    # 过滤tags中的内容
+    if "somethingB" in [tags] {
+      drop {}
+    }
+}
+```
 
 
 
-  
+
+
   
