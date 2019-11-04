@@ -226,7 +226,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">11</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">12</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -278,6 +278,145 @@
           <div id="content" class="content">
             
   <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2019/11/04/解决Dubbo无法处理自定义异常的问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shdvgj">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/shdvgj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shdvgj的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/11/04/解决Dubbo无法处理自定义异常的问题/" class="post-title-link" itemprop="url">解决Dubbo无法处理自定义异常的问题</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-04 16:05:58 / 修改时间：17:13:19" itemprop="dateCreated datePublished" datetime="2019-11-04T16:05:58+08:00">2019-11-04</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习/" itemprop="url" rel="index"><span itemprop="name">学习</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习/搭建相关/" itemprop="url" rel="index"><span itemprop="name">搭建相关</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>Dubbo有一个比较奇怪的问题，目前不知道Apache和Alibaba公司出于什么样的考虑，貌似一直都没有一个比较合适的解决方案，问题如下：</p>
+<ul>
+<li><p>项目搭建中你需要自定义一个本地的Exception，命名为比如BusinessException。比较一般的书写代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> linqiang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2019/10/24 16:20</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> 业务异常类</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BusinessException</span> <span class="keyword">extends</span> <span class="title">RuntimeException</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BusinessException</span><span class="params">(Integer code, String msg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">        <span class="keyword">this</span>.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getMsg</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通常这个BusinessException是要能够跨模块使用的，一般放在commons或者core模块中，同时别的模块的pom.xml文件引入这些模块，使得整个项目都可以使用这个BusinessException。</p>
+</li>
+<li><p>问题来了，如果在A模块调用了B模块，B模块抛出了一个BusinessException，这时A模块接收到的不是BusinessException，而是一个RuntimeException，而且关于BusinessException的细节已经完全丢失，只会剩下一个类名的描述。</p>
+</li>
+</ul>
+<h3 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h3><p>关于该问题出现的原因，参考<a href="https://blog.csdn.net/qq_25673113/article/details/78574514" target="_blank" rel="noopener">这篇文章</a>，归纳一下，就是在Dubbo的传输信息过程中，类ExceptionFilter.java会对Exception做一个过滤，其过滤器的关键代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// directly throw if it's checked exception</span></span><br><span class="line"><span class="keyword">if</span> (!(exception <span class="keyword">instanceof</span> RuntimeException) &amp;&amp; (exception <span class="keyword">instanceof</span> Exception)) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// directly throw if the exception appears in the signature</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    Method method = invoker.getInterface().getMethod(invocation.getMethodName(), invocation.getParameterTypes());</span><br><span class="line">    Class&lt;?&gt;[] exceptionClassses = method.getExceptionTypes();</span><br><span class="line">    <span class="keyword">for</span> (Class&lt;?&gt; exceptionClass : exceptionClassses) &#123;</span><br><span class="line">        <span class="keyword">if</span> (exception.getClass().equals(exceptionClass)) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// for the exception not found in method's signature, print ERROR message in server's log.</span></span><br><span class="line">logger.error(<span class="string">"Got unchecked and undeclared exception which called by "</span> + RpcContext.getContext().getRemoteHost() + <span class="string">". service: "</span> + invoker.getInterface().getName() + <span class="string">", method: "</span> + invocation.getMethodName() + <span class="string">", exception: "</span> + exception.getClass().getName() + <span class="string">": "</span> + exception.getMessage(), exception);</span><br><span class="line"></span><br><span class="line"><span class="comment">// directly throw if exception class and interface class are in the same jar file.</span></span><br><span class="line">String serviceFile = ReflectUtils.getCodeBase(invoker.getInterface());</span><br><span class="line">String exceptionFile = ReflectUtils.getCodeBase(exception.getClass());</span><br><span class="line"><span class="keyword">if</span> (serviceFile == <span class="keyword">null</span> || exceptionFile == <span class="keyword">null</span> || serviceFile.equals(exceptionFile)) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// directly throw if it's JDK exception</span></span><br><span class="line">String className = exception.getClass().getName();</span><br><span class="line"><span class="keyword">if</span> (className.startsWith(<span class="string">"java."</span>) || className.startsWith(<span class="string">"javax."</span>)) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// directly throw if it's dubbo exception</span></span><br><span class="line"><span class="keyword">if</span> (exception <span class="keyword">instanceof</span> RpcException) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// otherwise, wrap with RuntimeException and throw back to the client</span></span><br><span class="line">appResponse.setException(<span class="keyword">new</span> RuntimeException(StringUtils.toString(exception)));</span><br><span class="line"><span class="keyword">return</span>;</span><br></pre></td></tr></table></figure>
+
+<p>即Dubbo在遇到异常时会这样处理：</p>
+<ul>
+<li>非RuntimeException不处理，直接返回</li>
+<li>抛出的是方法上注明的异常，直接返回</li>
+<li>如果异常类和接口类在同一jar包，直接返回</li>
+<li>java或者javax目录下的异常类，直接返回</li>
+<li>Dubbo自带的RpcException，直接返回</li>
+<li>其他的异常，会被封装为RuntimeException返回</li>
+</ul>
+<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>根据以上的分析，那么很显然，自定义异常是被直接封装为RuntimeException返回了，而且只带了自定义异常的类名信息，丢失了别的细节。</p>
+<p>那么我们想要自定义异常进行正常返回，那只有满足这个FIlter所写的上述条件。我们可以分析一下：</p>
+<ul>
+<li><p>不继承RuntimeException，以检查时异常抛出。<strong>不推荐，正常的业务异常应该是运行时异常。</strong></p>
+</li>
+<li><p>在接口方法上要写上throws BusinessException，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">DemoService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">DemoUser <span class="title">getUserInfo</span><span class="params">(Long userID)</span> <span class="keyword">throws</span> BusinessException</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>不推荐，不符合接口设计原则，且这样是把运行时异常作为检查时异常处理。</strong></p>
+</li>
+<li><p>把自定义异常类和接口放在同一个包目录下。<strong>不推荐，毕竟这样相当于绑定了异常类的目录，耦合性变高。</strong></p>
+</li>
+<li><p>改包名，以“java.”或者“javax.”来开头。<strong>不推荐，违反了类命名原则。</strong></p>
+</li>
+<li><p>继承Dubbo的RpcException。RpcException也是继承了RuntimeException，因此能够以RuntimeException的方式进行处理。<strong>不推荐，相当于自定义异常属于Dubbo的RpcException，这在程序设计上不合理。</strong></p>
+</li>
+</ul>
+<p>我们发现，想要满足Dubbo的过滤器直接返回异常的条件，我们就必须做出一些违反程序设计的操作，如果一定要从这些方法中选择一种的话，相对来说，<strong>自定义异常类和接口放在同一目录下，以及继承RpcException</strong>是对于程序侵入性更小的方式。</p>
+<h3 id="其他解决方式"><a href="#其他解决方式" class="headerlink" title="其他解决方式"></a>其他解决方式</h3><p>参考 <a href="https://blog.csdn.net/yangzaizi/article/details/80638306" target="_blank" rel="noopener">这篇文章</a>，提供了两种解决方式：</p>
+<p>1.在配置文件中配置如下，效果是：关闭ExceptionFIlter，使所有异常绕过该过滤器直接返回。<strong>不推荐，Dubbo既然设置了这个异常过滤类，一定是出于安全和功能上的考虑，直接禁用可能会引发别的问题。</strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dubbo:</span></span><br><span class="line"><span class="attr">  provider:</span></span><br><span class="line"><span class="attr">    filter:</span> <span class="bullet">-exception</span></span><br></pre></td></tr></table></figure>
+
+<p>2.修改Dubbo源文件ExceptionFilter，使其遇到BusinessException也能直接返回。<strong>不推荐，相当于定制了本地的Dubbo包，是一个后续很容易被人忽略的大坑。</strong></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Dubbo在处理自定义异常时，会直接返回RuntimeException，且抹去自定义异常的所有细节，导致无法处理。</p>
+<p>本文写下的时候，Dubbo版本为2.7.3，该问题还没有非常完美的解决方案，相对来说，把<strong>自定义异常和接口类放在同一目录下</strong>是侵入性最小的方案。</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
         <article itemscope itemtype="http://schema.org/Article">
   
   
@@ -1586,112 +1725,6 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2019/10/08/利用hexo和github搭建个人博客/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shdvgj">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/shdvgj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shdvgj的个人博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/10/08/利用hexo和github搭建个人博客/" class="post-title-link" itemprop="url">利用hexo和github搭建个人博客</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-08 08:55:33" itemprop="dateCreated datePublished" datetime="2019-10-08T08:55:33+08:00">2019-10-08</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-09 15:41:51" itemprop="dateModified" datetime="2019-10-09T15:41:51+08:00">2019-10-09</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习/" itemprop="url" rel="index"><span itemprop="name">学习</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习/搭建相关/" itemprop="url" rel="index"><span itemprop="name">搭建相关</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="github建立个人网站"><a href="#github建立个人网站" class="headerlink" title="github建立个人网站"></a>github建立个人网站</h2><p>1.github的账号申请不再赘述<br>2.打开github.com, 点击new, 新建一个项目<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/1.png" alt><br>3.输入项目名称, 注意项目名称的格式必须是”用户名.github.io”的格式<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2.png" alt><br>4.点击Create Repository完成项目新建<br>5.点击新建的项目, 进入settings, 往下找到GitHub Pages, 点击Choose a theme, 选择一个主题后, 点击select theme就完成了网站的发布<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/3.png" alt><br>6.在浏览器输入”用户名.github.io”, 就可以看到github为你默认创建的首页  </p>
-<h2 id="hexo搭建博客"><a href="#hexo搭建博客" class="headerlink" title="hexo搭建博客"></a>hexo搭建博客</h2><p>1.在使用hexo搭建博客之前, 需要完成几个基础工作<br><a href="https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git" target="_blank" rel="noopener">安装git</a><br><a href="https://help.github.com/cn/articles/adding-a-new-ssh-key-to-your-github-account" target="_blank" rel="noopener">新增ssh key到github</a><br><a href="http://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="noopener">安装node.js</a><br>2.在本地拉取github上刚刚创建的网页项目(用户名.github.io)<br>3.在项目目录下新建一个文件夹, 可以随意命名, 比如hexo<br>4.进入hexo目录, windows下右键空白处, 点击Git Bash Here<br>5.依次执行命令<br>npm install hexo-cli -g  (安装hexo)<br>hexo init  (初始化网站)<br>npm install hexo-deployer-git –save  (安装hexo发布到git的插件)<br>中间遇到需要确认的信息, 直接按回车即可<br>6.打开hexo目录下的_config.yml文件, 有几个地方可以进行修改<br>title: 你的网站名字<br>author: 网站作者<br>theme: 去<a href="https://hexo.io/themes/" target="_blank" rel="noopener">hexo主题</a>可以选择, 注意要先将主题下载到hexo/themes下才可选择该主题<br>注意: <strong>必须要修改的部分是deploy, 改成如下格式</strong>  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:yourname/yourname.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
-<p>其他配置的详细说明在<a href="https://hexo.io/docs/configuration.html" target="_blank" rel="noopener">hexo配置文件说明</a><br>7.接下来就可以开始写博客了<br>使用命令hexo n “博客标题”, 即完成了一个新的博客文件的创建<br>该命令会在hexo/source/_posts目录下新建一个”博客标题.md”的文件<br>该文件内容格式如下<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/4.png" alt><br>正文内容使用markdown语法进行编写, 至于markdown怎么写, 可以参考<a href="http://www.markdown.cn/" target="_blank" rel="noopener">markdown官方文档</a><br>8.博客写完之后, 保存文件, 然后依次执行如下命令<br>hexo g  (根据md文件创建静态网页文件, 注意每次更新博客内容都需要执行这个命令)<br>hexo s  (这一步是启动本地hexo服务器, 主要是为了本地预览博客效果, 浏览器打开localhost:4000预览效果)<br>hexo d (发布网页到github)<br>9.浏览器打开”用户名.github.io”即可看到你刚刚写的博客内容<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/5.png" alt>  </p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>总的来说, hexo+github搭建博客非常的简便, hexo内置的几种主题也都非常的简洁美观, 对于既想要有逼格的有自己的个人博客网站, 又不想太麻烦的人来说, 是个不错的选择</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1745,7 +1778,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
