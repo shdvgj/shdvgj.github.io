@@ -56,19 +56,24 @@
   };
 </script>
 
-  <meta name="description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   1bin/logstash -f config/log4j-es.conf &amp;amp;  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭   LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic   1b">
-<meta name="keywords" content="elk">
+  <meta name="description" content="解决maven库中无法引入Oracle jdbc driver1.在maven库中直接引入oracle jdbc driver是不能下载到本地的，原因是oracle的jdbc工具包不是开放给公众下载的，需要用户是oracle的注册用户才能在oracle官网下载到。 2.解决方式：目前没有发现更简便的方法，只能从oracle官网上下载jdbc driver的包，然后从本地upload到本地仓库。">
+<meta name="keywords" content="solved">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ELK日常维护相关">
-<meta property="og:url" content="http://shdvgj.github.io/2019/10/14/ELK日常维护相关/index.html">
+<meta property="og:title" content="解决maven库中无法引入Oracle jdbc driver">
+<meta property="og:url" content="http://shdvgj.github.io/2019/11/04/解决maven库中无法引入Oracle jdbc driver/index.html">
 <meta property="og:site_name" content="shdvgj的个人博客">
-<meta property="og:description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   1bin/logstash -f config/log4j-es.conf &amp;amp;  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭   LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic   1b">
+<meta property="og:description" content="解决maven库中无法引入Oracle jdbc driver1.在maven库中直接引入oracle jdbc driver是不能下载到本地的，原因是oracle的jdbc工具包不是开放给公众下载的，需要用户是oracle的注册用户才能在oracle官网下载到。 2.解决方式：目前没有发现更简便的方法，只能从oracle官网上下载jdbc driver的包，然后从本地upload到本地仓库。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-30T03:14:50.885Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/%E6%90%AD%E5%BB%BA%E6%A1%86%E6%9E%B6%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/%E6%90%AD%E5%BB%BA%E6%A1%86%E6%9E%B6%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/%E6%90%AD%E5%BB%BA%E6%A1%86%E6%9E%B6%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/%E6%90%AD%E5%BB%BA%E6%A1%86%E6%9E%B6%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/4.png">
+<meta property="og:updated_time" content="2019-11-04T07:22:56.585Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ELK日常维护相关">
-<meta name="twitter:description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   1bin/logstash -f config/log4j-es.conf &amp;amp;  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭   LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic   1b">
-  <link rel="canonical" href="http://shdvgj.github.io/2019/10/14/ELK日常维护相关/">
+<meta name="twitter:title" content="解决maven库中无法引入Oracle jdbc driver">
+<meta name="twitter:description" content="解决maven库中无法引入Oracle jdbc driver1.在maven库中直接引入oracle jdbc driver是不能下载到本地的，原因是oracle的jdbc工具包不是开放给公众下载的，需要用户是oracle的注册用户才能在oracle官网下载到。 2.解决方式：目前没有发现更简便的方法，只能从oracle官网上下载jdbc driver的包，然后从本地upload到本地仓库。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/%E6%90%AD%E5%BB%BA%E6%A1%86%E6%9E%B6%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/1.png">
+  <link rel="canonical" href="http://shdvgj.github.io/2019/11/04/解决maven库中无法引入Oracle jdbc driver/">
 
 
 <script id="page-configurations">
@@ -82,7 +87,7 @@
   };
 </script>
 
-  <title>ELK日常维护相关 | shdvgj的个人博客</title>
+  <title>解决maven库中无法引入Oracle jdbc driver | shdvgj的个人博客</title>
   
 
 
@@ -289,7 +294,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2019/10/14/ELK日常维护相关/">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2019/11/04/解决maven库中无法引入Oracle jdbc driver/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shdvgj">
@@ -301,7 +306,7 @@
       <meta itemprop="name" content="shdvgj的个人博客">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">ELK日常维护相关
+        <h1 class="post-title" itemprop="name headline">解决maven库中无法引入Oracle jdbc driver
 
           
         </h1>
@@ -317,19 +322,11 @@
                 
               
 
-              <time title="创建时间：2019-10-14 13:25:13" itemprop="dateCreated datePublished" datetime="2019-10-14T13:25:13+08:00">2019-10-14</time>
+              <time title="创建时间：2019-11-04 14:02:10 / 修改时间：15:22:56" itemprop="dateCreated datePublished" datetime="2019-11-04T14:02:10+08:00">2019-11-04</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-30 11:14:50" itemprop="dateModified" datetime="2019-10-30T11:14:50+08:00">2019-10-30</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -372,34 +369,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭"><a href="#配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭" class="headerlink" title="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭"></a>配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭</h2><p>只要在后面加上&amp;即可, 如  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/logstash -f config/log4j-es.conf &amp;</span><br></pre></td></tr></table></figure>
+        <h2 id="解决maven库中无法引入Oracle-jdbc-driver"><a href="#解决maven库中无法引入Oracle-jdbc-driver" class="headerlink" title="解决maven库中无法引入Oracle jdbc driver"></a>解决maven库中无法引入Oracle jdbc driver</h2><p>1.在maven库中直接引入oracle jdbc driver是不能下载到本地的，原因是oracle的jdbc工具包不是开放给公众下载的，需要用户是oracle的注册用户才能在oracle官网下载到。</p>
+<p>2.解决方式：目前没有发现更简便的方法，只能从oracle官网上下载jdbc driver的包，然后从本地upload到本地仓库。</p>
+<ul>
+<li>进入JDBC<a href="https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html" target="_blank" rel="noopener">下载网站</a>，选择自己需要的JDBC driver版本，点击进入。</li>
+</ul>
+<p>​     <img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/%E6%90%AD%E5%BB%BA%E6%A1%86%E6%9E%B6%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/1.png" alt></p>
+<ul>
+<li><p>下载需要的JDBC driver的jar包</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/%E6%90%AD%E5%BB%BA%E6%A1%86%E6%9E%B6%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/2.png" alt></p>
+</li>
+<li><p>如果还没有登陆oracle账号，需要你登陆以后才能下载，没有注册过的注册一个账号，这里不再赘述。</p>
+</li>
+<li><p>下载完成后，进入下载完成的文件夹。在这里需要手动执行命令，在该文件夹打开git窗口，如何在windows安装git请自行百度。执行如下命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn deploy:deploy-file -Dmaven.test.skip=<span class="literal">true</span> -Dfile=ojdbc6.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.0.0.7 -Dpackaging=jar -DrepositoryId=localmaven -Durl=http://localhost/nexus/content/repositories/releases</span><br></pre></td></tr></table></figure>
 
-<p>注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  </p>
-<h2 id="LogStash自动重新加载配置"><a href="#LogStash自动重新加载配置" class="headerlink" title="LogStash自动重新加载配置"></a>LogStash自动重新加载配置</h2><p>启动logstash时在后面加上命令–config.reload.automatic  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/logstash -f config/log4j-es.conf --config.reload.automatic &amp;</span><br></pre></td></tr></table></figure>
-
-<h2 id="重新发送filebeat抓取的内容"><a href="#重新发送filebeat抓取的内容" class="headerlink" title="重新发送filebeat抓取的内容"></a>重新发送filebeat抓取的内容</h2><p>1.删除registry下的data.json<br>如:  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /home/elk/filebeats/filebeat-7.3.1-linux-x86_64/data/registry/filebeat</span><br></pre></td></tr></table></figure>
-
-<p>2.重启filebeat<br>如果存在正在运行的filebeat, 先kill掉  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep filebeat  </span><br><span class="line">kill -s 9 pid</span><br></pre></td></tr></table></figure>
-
-<p>然后执行  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./filebeat -e -c filebeat.yml</span><br></pre></td></tr></table></figure>
-
-<h2 id="设置索引内容30天过期删除"><a href="#设置索引内容30天过期删除" class="headerlink" title="设置索引内容30天过期删除"></a>设置索引内容30天过期删除</h2><p>本来我理解的理论上应该可以用索引的生命周期来实现, 但是半天没整明白, 所以现在<br>是简单粗暴的使用linux的cron任务来实现, 更具体的cron配置详见<a href="https://blog.csdn.net/mengzuchao/article/details/81172305" target="_blank" rel="noopener">cron详解</a><br>1.编辑shell脚本, 文件名为removeDataByTime.sh, 内容如下  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">limit_date=30</span><br><span class="line">for var in `curl 'localhost:9200/_cat/indices' | awk '!/kibana*/ &#123;print $3&#125;'`</span><br><span class="line">do</span><br><span class="line">  curl -H "Content-Type:application/json" -X POST -d '&#123;"query": &#123;"range": &#123;"@timestamp": &#123;"lt": "now-'$&#123;limit_date&#125;'d/d"&#125;&#125;&#125;&#125;' "http://localhost:9200/$&#123;var&#125;/_delete_by_query"</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-
-<p>2.编辑cron文件, 执行crantab -e, 打开crontab配置文件<br>加上刚才的shell脚本, 设置每天0点15分执行  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">15 00 * * * /home/elk/removeDataByTime.sh</span><br></pre></td></tr></table></figure>
-
-<p>设置cron重新启动, 执行/sbin/service crond restart  </p>
-<p>3.查看cron执行情况<br>查看cron任务列表 : crontab -l<br>查看cron执行日志 : grep ‘removeDataByTime’ /var/log/cron  </p>
-<h2 id="设置LogStash不写入指定的内容"><a href="#设置LogStash不写入指定的内容" class="headerlink" title="设置LogStash不写入指定的内容"></a>设置LogStash不写入指定的内容</h2><p>在logstash中写入如下内容即可 ：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">filter &#123;</span><br><span class="line"><span class="meta">	#</span> 过滤message中的内容 , 注意drop后面有一个空格</span><br><span class="line">    if "somethingA" in [message] &#123;</span><br><span class="line">      drop &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    # 过滤tags中的内容</span><br><span class="line">    if "somethingB" in [tags] &#123;</span><br><span class="line">      drop &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+<p>各个参数含义如下：</p>
+<p>-Dmaven.test.skip ：是否跳过jar包检测。这种官方的包，我们不需要对其进行测试，设置为true即可。</p>
+<p>-Dfile：需要上传的jar包名。建议直接在jar包所在目录执行上述命令，可以避免再输入jar包的地址。</p>
+<p>-DgroupId，-DartifactId，-Dversion：jar包在本地maven库中的地址。理论上这三个值都是自己定义的，只要自己能够区分出来即可。建议地址不要和官方的maven地址完全一致，改一个版本号，或者artifactId都行，这样可以避免自动从官方maven库下载jar包，导致还是不能引入。</p>
+<p>-Dpackaging：打包方式。一般选择下载的是jar包，这里也写jar就行。</p>
+<p>-DrepositoryId：部署的仓库ID。这个ID配置在maven的setings.xml中，参考如下：</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/%E6%90%AD%E5%BB%BA%E6%A1%86%E6%9E%B6%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/3.png" alt></p>
+<p>自行写入本地仓库的用户名和密码。</p>
+<p>-Durl：部署的本地仓库的地址。</p>
+</li>
+<li><p>执行完成后，显示如下页面，就表示上传成功。</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/%E6%90%AD%E5%BB%BA%E6%A1%86%E6%9E%B6%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/4.png" alt></p>
+</li>
+<li><p>在项目的pom.xml文件下需要做如下配置即可：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--增加本地仓库地址--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>java.net2<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://localhost/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--引入oracle包--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--oracle--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.oracle<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ojdbc6<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>11.0.0.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
 
     </div>
 
@@ -415,7 +415,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/elk/" rel="tag"><i class="fa fa-tag"></i> elk</a>
+              <a href="/tags/solved/" rel="tag"><i class="fa fa-tag"></i> solved</a>
             
           </div>
         
@@ -425,8 +425,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/10/10/新闻翻译-1/" rel="next" title="新闻翻译.1">
-                  <i class="fa fa-chevron-left"></i> 新闻翻译.1
+                <a href="/2019/10/22/搭建新项目的框架/" rel="next" title="搭建新项目的框架">
+                  <i class="fa fa-chevron-left"></i> 搭建新项目的框架
                 </a>
               
             </div>
@@ -434,10 +434,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/10/15/官方文档解释MySQL最左匹配(最左前缀)原则/" rel="prev" title="官方文档解释MySQL最左匹配(最左前缀)原则">
-                  官方文档解释MySQL最左匹配(最左前缀)原则 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -489,7 +485,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭"><span class="nav-text">配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LogStash自动重新加载配置"><span class="nav-text">LogStash自动重新加载配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重新发送filebeat抓取的内容"><span class="nav-text">重新发送filebeat抓取的内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置索引内容30天过期删除"><span class="nav-text">设置索引内容30天过期删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置LogStash不写入指定的内容"><span class="nav-text">设置LogStash不写入指定的内容</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决maven库中无法引入Oracle-jdbc-driver"><span class="nav-text">解决maven库中无法引入Oracle jdbc driver</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -757,7 +753,7 @@ window.addEventListener('pjax:success', () => {
       repo: 'shdvgj.github.io',
       owner: 'shdvgj',
       admin: ['shdvgj'],
-      id: 'bd92687e914803d9955e97bd01ed7479',
+      id: 'de931fb04abc7f992811e14f92e3a00d',
         language: 'zh-CN',
       
       distractionFreeMode: 'true'

@@ -56,33 +56,28 @@
   };
 </script>
 
-  <meta name="description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   1bin/logstash -f config/log4j-es.conf &amp;amp;  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭   LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic   1b">
-<meta name="keywords" content="elk">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ELK日常维护相关">
-<meta property="og:url" content="http://shdvgj.github.io/2019/10/14/ELK日常维护相关/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="shdvgj的个人博客">
+<meta property="og:url" content="http://shdvgj.github.io/page/2/index.html">
 <meta property="og:site_name" content="shdvgj的个人博客">
-<meta property="og:description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   1bin/logstash -f config/log4j-es.conf &amp;amp;  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭   LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic   1b">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-30T03:14:50.885Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ELK日常维护相关">
-<meta name="twitter:description" content="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭只要在后面加上&amp;amp;即可, 如   1bin/logstash -f config/log4j-es.conf &amp;amp;  注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭   LogStash自动重新加载配置启动logstash时在后面加上命令–config.reload.automatic   1b">
-  <link rel="canonical" href="http://shdvgj.github.io/2019/10/14/ELK日常维护相关/">
+<meta name="twitter:title" content="shdvgj的个人博客">
+  <link rel="canonical" href="http://shdvgj.github.io/page/2/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
+    isHome: true,
+    isPost: false,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>ELK日常维护相关 | shdvgj的个人博客</title>
+  <title>shdvgj的个人博客</title>
   
 
 
@@ -282,14 +277,13 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
   <div id="posts" class="posts-expand">
-      <article itemscope itemtype="http://schema.org/Article">
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2019/10/14/ELK日常维护相关/">
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2019/10/07/ELK_FileBeats/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shdvgj">
@@ -301,8 +295,9 @@
       <meta itemprop="name" content="shdvgj的个人博客">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">ELK日常维护相关
-
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/10/07/ELK_FileBeats/" class="post-title-link" itemprop="url">记一次ELK+FileBeats搭建</a>
           
         </h1>
 
@@ -317,7 +312,7 @@
                 
               
 
-              <time title="创建时间：2019-10-14 13:25:13" itemprop="dateCreated datePublished" datetime="2019-10-14T13:25:13+08:00">2019-10-14</time>
+              <time title="创建时间：2019-10-07 15:19:23" itemprop="dateCreated datePublished" datetime="2019-10-07T15:19:23+08:00">2019-10-07</time>
             </span>
           
             
@@ -328,7 +323,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-30 11:14:50" itemprop="dateModified" datetime="2019-10-30T11:14:50+08:00">2019-10-30</time>
+                <time title="修改时间：2019-10-09 15:41:51" itemprop="dateModified" datetime="2019-10-09T15:41:51+08:00">2019-10-09</time>
               </span>
             
           
@@ -354,14 +349,6 @@
           
 
           
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-          
 
         </div>
       </header>
@@ -372,92 +359,67 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭"><a href="#配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭" class="headerlink" title="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭"></a>配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭</h2><p>只要在后面加上&amp;即可, 如  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/logstash -f config/log4j-es.conf &amp;</span><br></pre></td></tr></table></figure>
+          <h2 id="获取ElasticSearch-LogStash-Kibana-FileBeats"><a href="#获取ElasticSearch-LogStash-Kibana-FileBeats" class="headerlink" title="获取ElasticSearch+LogStash+Kibana+FileBeats"></a>获取ElasticSearch+LogStash+Kibana+FileBeats</h2><p>关于elk搭建的全部产品都可以从elastic的官方网站获取最新版本<br><a href="https://www.elastic.co/cn/products/" target="_blank" rel="noopener">elastic官网</a></p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/1.png" alt><br>如图所示<br>当前elastic官方已经不再推荐单纯使用elk(ElasticSearch+LogStash+Kibana)三个产品搭建日志平台, 而是在此基础上加上了轻量级的日志收集插件FileBeats.  </p>
+<h2 id="安装ElasticSearch"><a href="#安装ElasticSearch" class="headerlink" title="安装ElasticSearch"></a>安装ElasticSearch</h2><p>我们首先获取安装包<br>进入<a href="https://www.elastic.co/cn/downloads/elasticsearch" target="_blank" rel="noopener">https://www.elastic.co/cn/downloads/elasticsearch</a>  </p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/2.png" alt><br>在Downloads里点击linux就可以下载到用于linux安装的tar包<br>如果是直接在linux安装,使用wget命令即可<br>如 : wget <a href="https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.0-linux-x86_64.tar.gz" target="_blank" rel="noopener">https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.0-linux-x86_64.tar.gz</a><br>如果需要更旧的历史版本, 点击下面的past release即可</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/3.png" alt>  </p>
+<p>在获取到安装包之后, windows环境需要将tar包传送到linux , 使用scp(windows需要预装git)命令即可<br>如: scp C:/Users/Administrator/Downloads/elasticsearch-7.3.1-linux-x86_64.tar.gz <a href="mailto:root@100.100.100.100" target="_blank" rel="noopener">root@100.100.100.100</a>:/home/elk/<br>在linux, 进入到安装包的目录, 使用tar -zxvf命令进行解压<br>如: tar -zxvf elasticsearch-7.3.1-linux-x86_64.tar.gz<br>解压完成后, elasticsearch其实就已经完成了安装  </p>
+<h3 id="启动ElasticSearch"><a href="#启动ElasticSearch" class="headerlink" title="启动ElasticSearch"></a>启动ElasticSearch</h3><p>在启动elasticserach之前需要注意:elasticsearch不可以用root用户启动, 因此, 需要事先在linux建立一个非root用户<br><a href="https://www.cnblogs.com/sunyllove/p/9772053.html" target="_blank" rel="noopener">linux如何创建一个管理员用户</a><br>创建完linux用户后, 切换到该用户, 进入到elasticsearch目录, 执行bin/elasticserach即可<br>默认elasticsearch的端口是9200, 打开浏览器, 输入<a href="http://elasticsearch地址:9200/" target="_blank" rel="noopener">http://elasticsearch地址:9200/</a>  , 出现如下画面, 说明elasticsearch启动成功</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/4.png" alt></p>
+<h2 id="安装LogStash"><a href="#安装LogStash" class="headerlink" title="安装LogStash"></a>安装LogStash</h2><p>windows环境下载和上传到linux的方法不再赘述, 参照前文<br>linux环境, 参照如下命令即可:<br>1.执行wget <a href="https://artifacts.elastic.co/downloads/logstash/logstash-7.4.0.tar.gz" target="_blank" rel="noopener">https://artifacts.elastic.co/downloads/logstash/logstash-7.4.0.tar.gz</a><br>2.进入logstash安装包目录, 执行tar -zxvf logstash-7.4.0.tar.gz  </p>
+<h3 id="配置和启动LogStash"><a href="#配置和启动LogStash" class="headerlink" title="配置和启动LogStash"></a>配置和启动LogStash</h3><p>1.在启动logstash之前, 需要先新建一个logstash的配置文件<br>参照logstash目录下的config/logstash-sample.config文件(如图), 新建一个logstash-elk.config文件  </p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/5.png" alt><br>input, 即输入数据的监听端口, 这个一般不需要改.<br>output, 用于将接收到的数据发送到elasitcsearch. 将hosts改成elasticsearch部署的地址, 如果elasticsearch和logstash是同一台机器, 则不需要更改.<br>注意: 如果多个实例中的FileBeats发送过来的数据希望进入同一个elasticsearch实例, 并根据不同的ip地址划分为不同的索引, 按照如下方式配置  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">output &#123;</span><br><span class="line">    if &quot;100.100.100.101&quot; in [host][ip] &#123;</span><br><span class="line">        elasticsearch&#123;</span><br><span class="line">          hosts =&gt; [&quot;localhost:9200&quot;]</span><br><span class="line">          index =&gt; &quot;sample1&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else if &quot;100.100.100.102&quot; in [host][ip] &#123;</span><br><span class="line">        elasticsearch&#123;</span><br><span class="line">          hosts =&gt; [&quot;localhost:9200&quot;]</span><br><span class="line">          index =&gt; &quot;sample2&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      elasticsearch&#123;</span><br><span class="line">        hosts =&gt; [&quot;localhost:9200&quot;]</span><br><span class="line">        index =&gt; &quot;other&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  </p>
-<h2 id="LogStash自动重新加载配置"><a href="#LogStash自动重新加载配置" class="headerlink" title="LogStash自动重新加载配置"></a>LogStash自动重新加载配置</h2><p>启动logstash时在后面加上命令–config.reload.automatic  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/logstash -f config/log4j-es.conf --config.reload.automatic &amp;</span><br></pre></td></tr></table></figure>
+<p>配置完成后, 启动logstash, 执行bin/logstash -f config/logstash-elk.conf </p>
+<h2 id="安装Kibana"><a href="#安装Kibana" class="headerlink" title="安装Kibana"></a>安装Kibana</h2><p>linux参照如下命令<br>1.wget <a href="https://artifacts.elastic.co/downloads/kibana/kibana-7.4.0-linux-x86_64.tar.gz" target="_blank" rel="noopener">https://artifacts.elastic.co/downloads/kibana/kibana-7.4.0-linux-x86_64.tar.gz</a><br>2.进入kibana安装包目录, 执行tar -zxvf kibana-7.4.0-linux-x86_64.tar.gz  </p>
+<h3 id="配置和启动kibana"><a href="#配置和启动kibana" class="headerlink" title="配置和启动kibana"></a>配置和启动kibana</h3><p>进入config/kibana.yml<br>1.修改server.host为linux机器的实际地址<br>2.修改i18n.locale: “zh-CN” 这样kibana界面会显示为中文<br>3.返回kibana主目录, 执行bin/kibana  (注意:kibana也不能用root用户启动)<br>4.打开浏览器, 输入<a href="http://kibana地址:5601" target="_blank" rel="noopener">http://kibana地址:5601</a>, 出现如下画面  </p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/6.png" alt></p>
+<h2 id="安装FileBeats"><a href="#安装FileBeats" class="headerlink" title="安装FileBeats"></a>安装FileBeats</h2><p>注意: <strong>FileBeats需要安装在所有需要发送日志的服务器上</strong><br>linux参照如下命令<br>1.wget <a href="https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.4.0-linux-x86_64.tar.gz" target="_blank" rel="noopener">https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.4.0-linux-x86_64.tar.gz</a><br>2.tar -zxvf filebeat-7.4.0-linux-x86_64.tar.gz</p>
+<h3 id="配置和启动FileBeats"><a href="#配置和启动FileBeats" class="headerlink" title="配置和启动FileBeats"></a>配置和启动FileBeats</h3><p>进入filebeats安装目录, vi filebeat.yml<br>1.修改paths下的目录, 输入filebeats所在服务器需要收集的日志地址, 如:  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">paths:</span><br><span class="line">    - /home/sample1/logs/log.*</span><br><span class="line">    - /home/sample2/logs/log.*</span><br></pre></td></tr></table></figure>
 
-<h2 id="重新发送filebeat抓取的内容"><a href="#重新发送filebeat抓取的内容" class="headerlink" title="重新发送filebeat抓取的内容"></a>重新发送filebeat抓取的内容</h2><p>1.删除registry下的data.json<br>如:  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /home/elk/filebeats/filebeat-7.3.1-linux-x86_64/data/registry/filebeat</span><br></pre></td></tr></table></figure>
+<p>2.修改output.logstash下的内容, 将logstash部署的地址输入, 参照如下:  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">output.logstash:</span><br><span class="line">  hosts: [&quot;100.100.100.101:5044&quot;]</span><br><span class="line">  enabled: true</span><br></pre></td></tr></table></figure>
 
-<p>2.重启filebeat<br>如果存在正在运行的filebeat, 先kill掉  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep filebeat  </span><br><span class="line">kill -s 9 pid</span><br></pre></td></tr></table></figure>
+<p>3.进入filebeats主目录, 执行 ./filebeat -e -c filebeat.yml, 启动成功  </p>
+<h2 id="kibana查看日志内容"><a href="#kibana查看日志内容" class="headerlink" title="kibana查看日志内容"></a>kibana查看日志内容</h2><p>将上述Elk+FileBeats都安装搭建完成后, 浏览器进入到kibana的界面.<br>1.打开管理-索引模式-创建索引模式, 进入如下界面:  </p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/7.png" alt><br>2.可以看到有三个索引可以匹配, 在索引模式的输入框内输入自己想要创建的索引, 如other, 然后点击下一步</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/8.png" alt><br>3.选择timestamp, 点击创建索引模式</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/9.png" alt><br>4.创建成功, 点击discover</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/10.png" alt><br>5.可以看到有一个新的索引other可以选择</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/07/ELK_FileBeats/11.png" alt></p>
+<p>6.到此, elk+filebeats的基本搭建工作就已经完成了</p>
 
-<p>然后执行  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./filebeat -e -c filebeat.yml</span><br></pre></td></tr></table></figure>
-
-<h2 id="设置索引内容30天过期删除"><a href="#设置索引内容30天过期删除" class="headerlink" title="设置索引内容30天过期删除"></a>设置索引内容30天过期删除</h2><p>本来我理解的理论上应该可以用索引的生命周期来实现, 但是半天没整明白, 所以现在<br>是简单粗暴的使用linux的cron任务来实现, 更具体的cron配置详见<a href="https://blog.csdn.net/mengzuchao/article/details/81172305" target="_blank" rel="noopener">cron详解</a><br>1.编辑shell脚本, 文件名为removeDataByTime.sh, 内容如下  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">limit_date=30</span><br><span class="line">for var in `curl 'localhost:9200/_cat/indices' | awk '!/kibana*/ &#123;print $3&#125;'`</span><br><span class="line">do</span><br><span class="line">  curl -H "Content-Type:application/json" -X POST -d '&#123;"query": &#123;"range": &#123;"@timestamp": &#123;"lt": "now-'$&#123;limit_date&#125;'d/d"&#125;&#125;&#125;&#125;' "http://localhost:9200/$&#123;var&#125;/_delete_by_query"</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-
-<p>2.编辑cron文件, 执行crantab -e, 打开crontab配置文件<br>加上刚才的shell脚本, 设置每天0点15分执行  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">15 00 * * * /home/elk/removeDataByTime.sh</span><br></pre></td></tr></table></figure>
-
-<p>设置cron重新启动, 执行/sbin/service crond restart  </p>
-<p>3.查看cron执行情况<br>查看cron任务列表 : crontab -l<br>查看cron执行日志 : grep ‘removeDataByTime’ /var/log/cron  </p>
-<h2 id="设置LogStash不写入指定的内容"><a href="#设置LogStash不写入指定的内容" class="headerlink" title="设置LogStash不写入指定的内容"></a>设置LogStash不写入指定的内容</h2><p>在logstash中写入如下内容即可 ：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">filter &#123;</span><br><span class="line"><span class="meta">	#</span> 过滤message中的内容 , 注意drop后面有一个空格</span><br><span class="line">    if "somethingA" in [message] &#123;</span><br><span class="line">      drop &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    # 过滤tags中的内容</span><br><span class="line">    if "somethingB" in [tags] &#123;</span><br><span class="line">      drop &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+        
+      
     </div>
 
     
     
     
-        
-      
-
       <footer class="post-footer">
-          
-            
-          
-          <div class="post-tags">
-            
-              <a href="/tags/elk/" rel="tag"><i class="fa fa-tag"></i> elk</a>
-            
-          </div>
-        
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-              
-                <a href="/2019/10/10/新闻翻译-1/" rel="next" title="新闻翻译.1">
-                  <i class="fa fa-chevron-left"></i> 新闻翻译.1
-                </a>
-              
-            </div>
-
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/10/15/官方文档解释MySQL最左匹配(最左前缀)原则/" rel="prev" title="官方文档解释MySQL最左匹配(最左前缀)原则">
-                  官方文档解释MySQL最左匹配(最左前缀)原则 <i class="fa fa-chevron-right"></i>
-                </a>
-              
-            </div>
-          </div>
+          <div class="post-eof"></div>
         
       </footer>
-    
   </div>
   
   
   
   </article>
 
+    
   </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 
           </div>
           
-    
-    <div class="comments" id="gitalk-container"></div>
-  
 
         </div>
           
@@ -472,11 +434,6 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
-        
-        
-        
-        
-      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
@@ -489,8 +446,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭"><span class="nav-text">配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LogStash自动重新加载配置"><span class="nav-text">LogStash自动重新加载配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重新发送filebeat抓取的内容"><span class="nav-text">重新发送filebeat抓取的内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置索引内容30天过期删除"><span class="nav-text">设置索引内容30天过期删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置LogStash不写入指定的内容"><span class="nav-text">设置LogStash不写入指定的内容</span></a></li></ol></div>
-        
       </div>
       <!--/noindex-->
 
@@ -747,24 +702,6 @@ window.addEventListener('pjax:success', () => {
 
   
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID: 'e1ed5420cf72d3747b1b',
-      clientSecret: '6c71276732dc19402ae304d000c471a4df889cd5',
-      repo: 'shdvgj.github.io',
-      owner: 'shdvgj',
-      admin: ['shdvgj'],
-      id: 'bd92687e914803d9955e97bd01ed7479',
-        language: 'zh-CN',
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-</script>
 
     </div>
 </body>
