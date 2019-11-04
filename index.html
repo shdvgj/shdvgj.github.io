@@ -312,7 +312,7 @@
                 
               
 
-              <time title="创建时间：2019-11-04 14:02:10 / 修改时间：15:22:56" itemprop="dateCreated datePublished" datetime="2019-11-04T14:02:10+08:00">2019-11-04</time>
+              <time title="创建时间：2019-11-04 14:02:10 / 修改时间：15:46:50" itemprop="dateCreated datePublished" datetime="2019-11-04T14:02:10+08:00">2019-11-04</time>
             </span>
           
             
@@ -351,15 +351,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="解决maven库中无法引入Oracle-jdbc-driver"><a href="#解决maven库中无法引入Oracle-jdbc-driver" class="headerlink" title="解决maven库中无法引入Oracle jdbc driver"></a>解决maven库中无法引入Oracle jdbc driver</h2><p>1.在maven库中直接引入oracle jdbc driver是不能下载到本地的，原因是oracle的jdbc工具包不是开放给公众下载的，需要用户是oracle的注册用户才能在oracle官网下载到。</p>
+          <p>1.在maven库中直接引入oracle jdbc driver是不能下载到本地的，原因是oracle的jdbc工具包不是开放给公众下载的，需要用户是oracle的注册用户才能在oracle官网下载到。</p>
 <p>2.解决方式：目前没有发现更简便的方法，只能从oracle官网上下载jdbc driver的包，然后从本地upload到本地仓库。</p>
 <ul>
 <li>进入JDBC<a href="https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html" target="_blank" rel="noopener">下载网站</a>，选择自己需要的JDBC driver版本，点击进入。</li>
 </ul>
-<p>​     <img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/%E6%90%AD%E5%BB%BA%E6%A1%86%E6%9E%B6%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/1.png" alt></p>
+<p>​     ![](<a href="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/解决maven库中无法引入Oracle" target="_blank" rel="noopener">https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/解决maven库中无法引入Oracle</a> jdbc driver/1.png)</p>
 <ul>
 <li><p>下载需要的JDBC driver的jar包</p>
-<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/%E6%90%AD%E5%BB%BA%E6%A1%86%E6%9E%B6%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/2.png" alt></p>
+<p>![](<a href="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/解决maven库中无法引入Oracle" target="_blank" rel="noopener">https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/解决maven库中无法引入Oracle</a> jdbc driver/2.png)</p>
 </li>
 <li><p>如果还没有登陆oracle账号，需要你登陆以后才能下载，没有注册过的注册一个账号，这里不再赘述。</p>
 </li>
@@ -372,12 +372,12 @@
 <p>-DgroupId，-DartifactId，-Dversion：jar包在本地maven库中的地址。理论上这三个值都是自己定义的，只要自己能够区分出来即可。建议地址不要和官方的maven地址完全一致，改一个版本号，或者artifactId都行，这样可以避免自动从官方maven库下载jar包，导致还是不能引入。</p>
 <p>-Dpackaging：打包方式。一般选择下载的是jar包，这里也写jar就行。</p>
 <p>-DrepositoryId：部署的仓库ID。这个ID配置在maven的setings.xml中，参考如下：</p>
-<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/%E6%90%AD%E5%BB%BA%E6%A1%86%E6%9E%B6%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/3.png" alt></p>
+<p>![](<a href="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/解决maven库中无法引入Oracle" target="_blank" rel="noopener">https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/解决maven库中无法引入Oracle</a> jdbc driver/3.png)</p>
 <p>自行写入本地仓库的用户名和密码。</p>
 <p>-Durl：部署的本地仓库的地址。</p>
 </li>
 <li><p>执行完成后，显示如下页面，就表示上传成功。</p>
-<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/%E6%90%AD%E5%BB%BA%E6%A1%86%E6%9E%B6%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/4.png" alt></p>
+<p>![](<a href="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/解决maven库中无法引入Oracle" target="_blank" rel="noopener">https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/解决maven库中无法引入Oracle</a> jdbc driver/4.png)</p>
 </li>
 <li><p>在项目的pom.xml文件下需要做如下配置即可：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--增加本地仓库地址--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>java.net2<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://localhost/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--引入oracle包--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--oracle--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.oracle<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ojdbc6<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>11.0.0.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
