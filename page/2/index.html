@@ -226,7 +226,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">12</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">13</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -278,6 +278,155 @@
           <div id="content" class="content">
             
   <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2019/10/08/hexo使用技巧/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shdvgj">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/shdvgj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shdvgj的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/10/08/hexo使用技巧/" class="post-title-link" itemprop="url">hexo使用技巧</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-08 16:07:43" itemprop="dateCreated datePublished" datetime="2019-10-08T16:07:43+08:00">2019-10-08</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-14 16:50:23" itemprop="dateModified" datetime="2019-10-14T16:50:23+08:00">2019-10-14</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习/" itemprop="url" rel="index"><span itemprop="name">学习</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习/搭建相关/" itemprop="url" rel="index"><span itemprop="name">搭建相关</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>1.进入<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a> 可以选择多种主题<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/1.png" alt><br>点击图片进去可以看到这种主题的预览效果<br>点击文字进去将进入这个主题的github站点, 里面会详细说明该主题的安装和配置方式  </p>
+<p>2.目前最流行的hexo主题应该是NexT, 我这次选的是3-hexo作为例子来讲解一下, 这个也是一个优秀的国产hexo主题<br>其最终效果如图<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/2.png" alt>   </p>
+<p>3.关于3-hexo的安装和设置方法, 都可以直接参照<a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank" rel="noopener">该主题的github主页</a><br>简单介绍一下:  </p>
+<ul>
+<li>获取3-hexo: git clone <a href="https://github.com/yelog/hexo-theme-3-hexo.git" target="_blank" rel="noopener">https://github.com/yelog/hexo-theme-3-hexo.git</a> themes/3-hexo  </li>
+<li>将3-hexo的主题文件夹复制到hexo的themes目录下  </li>
+<li>修改3-hexo目录下的_config.yml文件, 修改方式在_config.yml中已经有详细的注释, 按照注释修改即可  </li>
+<li>hexo主目录下打开git窗口, 依次输入如下命令<br>hexo clean (清除静态页面缓存文件, 防止出现缓存影响页面样式的情况)<br>hexo g (生成静态页面)<br>hexo s (启动本地hexo服务器, 可以打开localhost:4000查看页面效果)<br>hexo d (发布到github)  </li>
+</ul>
+<h2 id="设置分类和标签"><a href="#设置分类和标签" class="headerlink" title="设置分类和标签"></a>设置分类和标签</h2><p>1.每一个由hexo生成的md文件, 其内容开头都是由两个”—“组成的, hexo把这部分称为<a href="https://hexo.io/zh-cn/docs/front-matter" target="_blank" rel="noopener">Front-Matter</a>, 如图:<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/3.png" alt>  </p>
+<p>2.在Front-Matter的区域内可以设置关于文章的诸多信息, 包括标题, 创建时间, 标签, 目录, 是否开启评论等  </p>
+<p>3.标签的参数名称为tags, 目录的参数名称为categories, 设置单个标签和目录的格式如下:  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tags: hexo</span><br><span class="line">categories: hexo</span><br></pre></td></tr></table></figure>
+
+<p>设置多个标签和多级目录的格式如下:  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tags: </span><br><span class="line">- hexo</span><br><span class="line">- blog</span><br><span class="line">categories: </span><br><span class="line">- 学习</span><br><span class="line">- 搭建相关</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意:目录的先后顺序决定了其父子级关系, 如上面的例子中, “学习”目录是”搭建相关”目录的父目录. 在3-hexo主题中的效果如下:</strong><br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/4.png" alt></p>
+<h2 id="MarkDown开发工具"><a href="#MarkDown开发工具" class="headerlink" title="MarkDown开发工具"></a>MarkDown开发工具</h2><p>我本人不太喜欢为markdown开发再安装一个软件, 所以以下都是针对程序员电脑上通常已有的软件上安装插件, 当然如果没有这些软件, 那推荐直接安装<a href="https://typora.io/" target="_blank" rel="noopener">typora</a>  </p>
+<p>1.Notepad++插件MarkdownViewer++<br>如果已经安装了Notepad++, 可以直接下载<a href="https://github.com/nea/MarkdownViewerPlusPlus/releases" target="_blank" rel="noopener">MarkdownViewer++</a>插件<br>下载完成后, 直接将dll文件放入Notepad++主目录下的plugin文件夹下, 然后重新启动Notepad++即可, 在Notepad++的工具栏会出现一个”m”图标:<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/5.png" alt><br>点击即可实时查看页面效果<br>优点: 插件轻量级, 1MB不到, 占用系统的内存消耗极小<br>缺点: 功能非常有限, 只能实时查看效果, 不能对markdown语法高亮  </p>
+<p>2.Idea插件MarkDown Navigator<br>其实Idea自带了一个MarkDown的插件, 但是这个插件不太好用, 所以这里不再介绍了<br>打开Idea, 打开File-Settings-Plugins-Browse Repositories, 查找MarkDown Navigator, 点击Install, 重新启动Idea即可<br>效果如图:<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/6.png" alt><br>优点: 支持MarkDown语法高亮, 支持语法快捷键, 且在Idea内开发, 对于程序员来说比较习惯<br>缺点: 毕竟需要Idea来开发, 对于仅仅只要写博客的人来说, 显得有点笨重  </p>
+<p>3.MarkDown在线编辑器<br>在线编辑的好处不言自明, 不用安装任何软件和插件, 只要有浏览器就行<br>推荐<a href="https://www.mdeditor.com/" target="_blank" rel="noopener">https://www.mdeditor.com/</a> </p>
+<h2 id="为博客设置密码"><a href="#为博客设置密码" class="headerlink" title="为博客设置密码"></a>为博客设置密码</h2><p>1.安装插件: 在hexo主目录下执行npm install –save hexo-blog-encrypt<br>2.在需要设置密码的博客的Front-Matter里面加一个参数<br>password:*****  </p>
+<h2 id="如何上传图片"><a href="#如何上传图片" class="headerlink" title="如何上传图片"></a>如何上传图片</h2><p>1.在github存储图片并在博客内关联图片链接<br>这种方式比较推荐, 因为别的博客网站通常都会有防止外部访问的措施在, 存储<br>在github上的图片不会有外部无法访问的情况. 对于各个版本的hexo都能适用.</p>
+<ul>
+<li><p>打开hexo主目录下的_config.yml文件, 修改参数post_asset_folder为true</p>
+</li>
+<li><p>使用hexo n “博客标题” 新建博客时将会同时新建一个同名的资源文件夹, 如图<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/7.png" alt>  </p>
+</li>
+<li><p>将博客内用到的图片放置到资源文件夹内, 可以按顺序号命名, 如图<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/8.png" alt></p>
+</li>
+<li><p>在博客内链接该图片, 格式为 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">![](https://raw.githubusercontent.com/#username/#username.github.io/master/#YYYY/#MM/#DD/#title/#photoname)  </span><br><span class="line">#username : github用户名</span><br><span class="line">#YYYY/#MM/#DD : 如果没有修改_config.yml里的默认文件夹创建方式的话, 就是填入年月日即可, 如2019/10/14  </span><br><span class="line">#title : 文章标题  </span><br><span class="line">#photoname : 图片名称</span><br></pre></td></tr></table></figure>
+
+<p>比如我这篇博客的图片链接地址如下图<br><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/9.png" alt>  </p>
+</li>
+<li><p>链接完图片后目前在博客的预览界面还无法看到图片, 需要先执行<br>hexo clean (非必要步骤, 如果博客页面格式显示不正确, 需要执行)<br>hexo g (创建博客静态网页文件)<br>hexo d (这一步用于发布博客, 也同时发布图片)<br>hexo d的命令将会把图片发布到github服务器上, 也就可以在上述格式的图片地址里看到该图片  </p>
+</li>
+</ul>
+<p>2.直接链接本地地址, 这种方式也很方便, 网上也有挺多人使用这种方式, 主要优点<br>是不用多操作一步链接网络地址, 我贴一下该方式:</p>
+<ol>
+<li>打开hexo主目录下的_config.yml文件, 修改参数post_asset_folder为true</li>
+<li>安装图片插件 npm install hexo-asset-image –save  </li>
+<li>在博客内直接引用本地地址即可, 如  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](/1.png)</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
         <article itemscope itemtype="http://schema.org/Article">
   
   
@@ -569,7 +718,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
