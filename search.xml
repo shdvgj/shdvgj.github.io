@@ -134,10 +134,10 @@
 <li><input checked disabled type="checkbox"> JSON处理：FastJSON</li>
 <li><input checked disabled type="checkbox"> 统一返回结果处理</li>
 <li><input checked disabled type="checkbox"> Zookeeper</li>
-<li><input disabled type="checkbox"> MQ组建：RabbitMQ / RocketMQ / Kafka</li>
+<li><input disabled type="checkbox"> MQ组件：RabbitMQ / RocketMQ / Kafka</li>
 <li><input checked disabled type="checkbox"> 统一Exception处理</li>
 <li><input disabled type="checkbox"> 公用Util类</li>
-<li><input disabled type="checkbox"> 测试用例：JUnit</li>
+<li><input checked disabled type="checkbox"> 测试用例：JUnit</li>
 </ul>
 ]]></content>
       <categories>
