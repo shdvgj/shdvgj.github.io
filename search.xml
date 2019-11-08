@@ -128,7 +128,7 @@
 <li><input checked disabled type="checkbox"> 数据库连接池：Druid</li>
 <li><input checked disabled type="checkbox"> 消息中间件：Dubbo / Grpc</li>
 <li><input disabled type="checkbox"> 缓存：Redis</li>
-<li><input disabled type="checkbox"> 权限：Spring Security</li>
+<li><input disabled type="checkbox"> 权限：Spring Security / Shiro</li>
 <li><input checked disabled type="checkbox"> 包管理仓库：Maven / Gradle</li>
 <li><input disabled type="checkbox"> 统一日志记录-数据库层面</li>
 <li><input checked disabled type="checkbox"> JSON处理：FastJSON</li>
@@ -136,8 +136,9 @@
 <li><input checked disabled type="checkbox"> Zookeeper</li>
 <li><input disabled type="checkbox"> MQ组件：RabbitMQ / RocketMQ / Kafka</li>
 <li><input checked disabled type="checkbox"> 统一Exception处理</li>
-<li><input disabled type="checkbox"> 公用Util类</li>
+<li><input checked disabled type="checkbox"> 公用Util类</li>
 <li><input checked disabled type="checkbox"> 测试用例：JUnit</li>
+<li><input disabled type="checkbox"> 集群</li>
 </ul>
 ]]></content>
       <categories>
@@ -379,7 +380,7 @@
 
 <h3 id="查看目录下大文件"><a href="#查看目录下大文件" class="headerlink" title="查看目录下大文件"></a>查看目录下大文件</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">du -h --max-depth=1</span><br></pre></td></tr></table></figure>
 
-<h2 id="查看进程中的java程序"><a href="#查看进程中的java程序" class="headerlink" title="查看进程中的java程序"></a>查看进程中的java程序</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ps aux | grep java</span><br><span class="line"><span class="meta">#</span><span class="bash"> 杀死某个进程</span></span><br><span class="line">kill -9 pid</span><br></pre></td></tr></table></figure>
+<h2 id="查看进程中的java程序"><a href="#查看进程中的java程序" class="headerlink" title="查看进程中的java程序"></a>查看进程中的java程序</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ps aux | grep java</span><br><span class="line"><span class="meta">#</span> 杀死某个进程</span><br><span class="line">kill -9 pid</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
