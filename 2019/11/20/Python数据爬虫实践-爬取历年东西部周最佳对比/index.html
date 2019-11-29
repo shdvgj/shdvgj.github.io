@@ -56,13 +56,13 @@
   };
 </script>
 
-  <meta name="description" content="数据来源历年周最佳的数据来自于NBA数据官网，链接为 http://www.stat-nba.com/award/item18.html  这里可以看到每个赛季的周最佳球员。然后每个球员旁边有个数据的链接，表示的就是这名球员当周的平均数据。比如11月11日-11月17日的东部周最佳是武切维奇，其数据链接为http://www.stat-nba.com/player/3672.html  数据处理爬">
+  <meta name="description" content="数据来源历年周最佳的数据来自于NBA数据官网，链接为 http://www.stat-nba.com/award/item18.html这里可以看到每个赛季的周最佳球员。然后每个球员旁边有个数据的链接，表示的就是这名球员当周的平均数据。比如11月11日-11月17日的东部周最佳是武切维奇，其数据链接为http://www.stat-nba.com/player/3672.html">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python数据爬虫实践-爬取历年东西部周最佳对比">
 <meta property="og:url" content="http://shdvgj.github.io/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/index.html">
 <meta property="og:site_name" content="shdvgj的个人博客">
-<meta property="og:description" content="数据来源历年周最佳的数据来自于NBA数据官网，链接为 http://www.stat-nba.com/award/item18.html  这里可以看到每个赛季的周最佳球员。然后每个球员旁边有个数据的链接，表示的就是这名球员当周的平均数据。比如11月11日-11月17日的东部周最佳是武切维奇，其数据链接为http://www.stat-nba.com/player/3672.html  数据处理爬">
+<meta property="og:description" content="数据来源历年周最佳的数据来自于NBA数据官网，链接为 http://www.stat-nba.com/award/item18.html这里可以看到每个赛季的周最佳球员。然后每个球员旁边有个数据的链接，表示的就是这名球员当周的平均数据。比如11月11日-11月17日的东部周最佳是武切维奇，其数据链接为http://www.stat-nba.com/player/3672.html">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/2.png">
@@ -78,7 +78,7 @@
 <meta property="og:updated_time" content="2019-11-29T03:23:43.298Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python数据爬虫实践-爬取历年东西部周最佳对比">
-<meta name="twitter:description" content="数据来源历年周最佳的数据来自于NBA数据官网，链接为 http://www.stat-nba.com/award/item18.html  这里可以看到每个赛季的周最佳球员。然后每个球员旁边有个数据的链接，表示的就是这名球员当周的平均数据。比如11月11日-11月17日的东部周最佳是武切维奇，其数据链接为http://www.stat-nba.com/player/3672.html  数据处理爬">
+<meta name="twitter:description" content="数据来源历年周最佳的数据来自于NBA数据官网，链接为 http://www.stat-nba.com/award/item18.html这里可以看到每个赛季的周最佳球员。然后每个球员旁边有个数据的链接，表示的就是这名球员当周的平均数据。比如11月11日-11月17日的东部周最佳是武切维奇，其数据链接为http://www.stat-nba.com/player/3672.html">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/1.png">
   <link rel="canonical" href="http://shdvgj.github.io/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/">
 
@@ -364,9 +364,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h2><p>历年周最佳的数据来自于NBA数据官网，链接为 <a href="http://www.stat-nba.com/award/item18.html" target="_blank" rel="noopener">http://www.stat-nba.com/award/item18.html</a></p>
-<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/1.png" alt></p>
-<p>这里可以看到每个赛季的周最佳球员。然后每个球员旁边有个数据的链接，表示的就是这名球员当周的平均数据。比如11月11日-11月17日的东部周最佳是武切维奇，其数据链接为<a href="http://www.stat-nba.com/player/3672.html" target="_blank" rel="noopener">http://www.stat-nba.com/player/3672.html</a></p>
+        <h2 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h2><p>历年周最佳的数据来自于NBA数据官网，链接为 <a href="http://www.stat-nba.com/award/item18.html" target="_blank" rel="noopener">http://www.stat-nba.com/award/item18.html</a></p><p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/1.png" alt></p><p>这里可以看到每个赛季的周最佳球员。然后每个球员旁边有个数据的链接，表示的就是这名球员当周的平均数据。比如11月11日-11月17日的东部周最佳是武切维奇，其数据链接为<a href="http://www.stat-nba.com/player/3672.html" target="_blank" rel="noopener">http://www.stat-nba.com/player/3672.html</a></p><a id="more"></a>
+
+
 <p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/2.png" alt></p>
 <h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><h3 id="爬取周最佳球员"><a href="#爬取周最佳球员" class="headerlink" title="爬取周最佳球员"></a>爬取周最佳球员</h3><p>首先看周最佳的页面，链接是<a href="http://www.stat-nba.com/award/item18.html，选中武切维奇的名字，右键打开右键菜单，选择“查看页面元素”。出现如下页面：" target="_blank" rel="noopener">http://www.stat-nba.com/award/item18.html，选中武切维奇的名字，右键打开右键菜单，选择“查看页面元素”。出现如下页面：</a></p>
 <p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/3.png" alt></p>
