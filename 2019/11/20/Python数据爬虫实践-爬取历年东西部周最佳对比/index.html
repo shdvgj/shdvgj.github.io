@@ -56,14 +56,24 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="shdvgj的个人博客">
-<meta property="og:url" content="http://shdvgj.github.io/categories/学习/英语/index.html">
+  <meta name="description" content="数据来源历年周最佳的数据来自于NBA数据官网，链接为 http://www.stat-nba.com/award/item18.html  这里可以看到每个赛季的周最佳球员。然后每个球员旁边有个数据的链接，表示的就是这名球员当周的平均数据。比如11月11日-11月17日的东部周最佳是武切维奇，其数据链接为http://www.stat-nba.com/player/3672.html  数据处理爬">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python数据爬虫实践-爬取历年东西部周最佳对比">
+<meta property="og:url" content="http://shdvgj.github.io/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/index.html">
 <meta property="og:site_name" content="shdvgj的个人博客">
+<meta property="og:description" content="数据来源历年周最佳的数据来自于NBA数据官网，链接为 http://www.stat-nba.com/award/item18.html  这里可以看到每个赛季的周最佳球员。然后每个球员旁边有个数据的链接，表示的就是这名球员当周的平均数据。比如11月11日-11月17日的东部周最佳是武切维奇，其数据链接为http://www.stat-nba.com/player/3672.html  数据处理爬">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/21/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/21/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/21/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/21/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/4.png">
+<meta property="og:updated_time" content="2019-11-29T01:48:39.422Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shdvgj的个人博客">
-  <link rel="canonical" href="http://shdvgj.github.io/categories/学习/英语/">
+<meta name="twitter:title" content="Python数据爬虫实践-爬取历年东西部周最佳对比">
+<meta name="twitter:description" content="数据来源历年周最佳的数据来自于NBA数据官网，链接为 http://www.stat-nba.com/award/item18.html  这里可以看到每个赛季的周最佳球员。然后每个球员旁边有个数据的链接，表示的就是这名球员当周的平均数据。比如11月11日-11月17日的东部周最佳是武切维奇，其数据链接为http://www.stat-nba.com/player/3672.html  数据处理爬">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/21/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/1.png">
+  <link rel="canonical" href="http://shdvgj.github.io/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/">
 
 
 <script id="page-configurations">
@@ -71,13 +81,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>分类: 英语 | shdvgj的个人博客</title>
+  <title>Python数据爬虫实践-爬取历年东西部周最佳对比 | shdvgj的个人博客</title>
   
 
 
@@ -239,21 +249,6 @@
 
     
 
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-  
-
 </nav>
   <div class="site-search">
     <div class="popup search-popup">
@@ -293,64 +288,140 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block category">
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1 class="collection-header">英语<small>分类</small>
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shdvgj">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/shdvgj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shdvgj的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Python数据爬虫实践-爬取历年东西部周最佳对比
+
+          
         </h1>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-20 16:43:40" itemprop="dateCreated datePublished" datetime="2019-11-20T16:43:40+08:00">2019-11-20</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-29 09:48:39" itemprop="dateModified" datetime="2019-11-29T09:48:39+08:00">2019-11-29</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+        <h2 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h2><p>历年周最佳的数据来自于NBA数据官网，链接为 <a href="http://www.stat-nba.com/award/item18.html" target="_blank" rel="noopener">http://www.stat-nba.com/award/item18.html</a></p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/21/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/1.png" alt></p>
+<p>这里可以看到每个赛季的周最佳球员。然后每个球员旁边有个数据的链接，表示的就是这名球员当周的平均数据。比如11月11日-11月17日的东部周最佳是武切维奇，其数据链接为<a href="http://www.stat-nba.com/player/3672.html" target="_blank" rel="noopener">http://www.stat-nba.com/player/3672.html</a></p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/21/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/2.png" alt></p>
+<h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><h3 id="爬取周最佳球员"><a href="#爬取周最佳球员" class="headerlink" title="爬取周最佳球员"></a>爬取周最佳球员</h3><p>首先看周最佳的页面，链接是<a href="http://www.stat-nba.com/award/item18.html，选中武切维奇的名字，右键打开右键菜单，选择“查看页面元素”。出现如下页面：" target="_blank" rel="noopener">http://www.stat-nba.com/award/item18.html，选中武切维奇的名字，右键打开右键菜单，选择“查看页面元素”。出现如下页面：</a></p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/21/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/3.png" alt></p>
+<p>注意，我们需要获取到的是<strong>所有的周最佳数据</strong>，而不是某个人的，因此我们需要找到这个页面元素的父元素，因此才能找到这个父元素下面的所有子元素-即所有的周最佳数据。</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/21/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/4.png" alt></p>
+<p>如图所示，周最佳数据的节点来自于<td class="current"> — <table class="stat-box" style="width:170px;border:0">  — <td></td></table></td></p>
+<p>根据网页上下文的查看，可以知道<td class="current">是赛季的节点，<table class="stat-box" style="width:170px;border:0">是每个赛季下每周的节点，而<td>就是每周下面每个球员的节点。</td></table></td></p>
+<p>因此我们根据节点的继承关系，可以写出如下的基本的爬虫逻辑。</p>
 
-  
-  
+    </div>
 
-  
     
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
-    </div>
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-10T09:09:54+08:00"
-              content="2019-10-10">
-          10-10
-        </time>
-      </div>
-
-      <h2 class="post-title">
+    
+    
         
-          <a class="post-title-link" href="/2019/10/10/新闻翻译-1/" itemprop="url">
-            <span itemprop="name">新闻翻译.1</span>
-          </a>
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+            
+          </div>
         
-      </h2>
 
-    </header>
-  </article>
+        
 
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/11/05/logback日志配置模板/" rel="next" title="logback日志配置模板">
+                  <i class="fa fa-chevron-left"></i> logback日志配置模板
+                </a>
+              
+            </div>
 
+            <span class="post-nav-divider"></span>
 
-    </div>
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
   </div>
   
   
   
+  </article>
 
-  
-
+  </div>
 
 
           </div>
           
+    
+    <div class="comments" id="gitalk-container"></div>
+  
 
         </div>
           
@@ -365,6 +436,11 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
+        
+        
+        
+        
+      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
@@ -377,6 +453,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据来源"><span class="nav-text">数据来源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据处理"><span class="nav-text">数据处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#爬取周最佳球员"><span class="nav-text">爬取周最佳球员</span></a></li></ol></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
@@ -633,6 +711,24 @@ window.addEventListener('pjax:success', () => {
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'e1ed5420cf72d3747b1b',
+      clientSecret: '6c71276732dc19402ae304d000c471a4df889cd5',
+      repo: 'shdvgj.github.io',
+      owner: 'shdvgj',
+      admin: ['shdvgj'],
+      id: '8c14a6a64678478027c0873d0cc54af0',
+        language: 'zh-CN',
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
 
     </div>
 </body>
