@@ -422,7 +422,7 @@
 
 <h3 id="查看目录下大文件"><a href="#查看目录下大文件" class="headerlink" title="查看目录下大文件"></a>查看目录下大文件</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">du -h --max-depth=1</span><br></pre></td></tr></table></figure>
 
-<h2 id="查看进程中的java程序"><a href="#查看进程中的java程序" class="headerlink" title="查看进程中的java程序"></a>查看进程中的java程序</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ps aux | grep java</span><br><span class="line"><span class="meta">#</span> 杀死某个进程</span><br><span class="line">kill -9 pid</span><br></pre></td></tr></table></figure>
+<h2 id="查看进程中的java程序"><a href="#查看进程中的java程序" class="headerlink" title="查看进程中的java程序"></a>查看进程中的java程序</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ps aux | grep java</span><br><span class="line"><span class="meta">#</span><span class="bash"> 杀死某个进程</span></span><br><span class="line">kill -9 pid</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -545,7 +545,23 @@
 <h2 id="设置LogStash不写入指定的内容"><a href="#设置LogStash不写入指定的内容" class="headerlink" title="设置LogStash不写入指定的内容"></a>设置LogStash不写入指定的内容</h2><p>在logstash中写入如下内容即可 ：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">filter &#123;</span><br><span class="line"><span class="meta">	#</span> 过滤message中的内容 , 注意drop后面有一个空格</span><br><span class="line">    if "somethingA" in [message] &#123;</span><br><span class="line">      drop &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    # 过滤tags中的内容</span><br><span class="line">    if "somethingB" in [tags] &#123;</span><br><span class="line">      drop &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="设置索引别名来实现中文索引搜索"><a href="#设置索引别名来实现中文索引搜索" class="headerlink" title="设置索引别名来实现中文索引搜索"></a>设置索引别名来实现中文索引搜索</h2><p>有时候需要在搜索页面使用中文的索引名，但是在ES中不支持直接用中文名来命名索引，原因我认为应该是跟索引的Btree算法有关。</p>
+<p>但是我们可以给索引设置别名来在搜索页面使用中文的索引来搜索。</p>
+<p>可以按照如下方式来设置</p>
+<ul>
+<li>在postman发送如下请求（前提：在ElasticSearch中已经存在datadocking和activity-provider两个索引）：</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">POST: 192.168.15.161:9200/_aliases</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">"actions"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"add"</span>: &#123;</span><br><span class="line">                <span class="attr">"alias"</span>: <span class="string">"外部对接"</span>,</span><br><span class="line">                <span class="attr">"index"</span>: <span class="string">"datadocking"</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"add"</span>: &#123;</span><br><span class="line">                <span class="attr">"alias"</span>: <span class="string">"微商城活动"</span>,</span><br><span class="line">                <span class="attr">"index"</span>: <span class="string">"activity-provider"</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li><p>进入项目的索引模式</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/14/ELK%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E7%9B%B8%E5%85%B3/1.png" alt></p>
+<p>输入刚刚设置的中文名，就可以直接对应到英文的索引名，然后按照步骤创建索引模式</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/14/ELK%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E7%9B%B8%E5%85%B3/2.png" alt></p>
+<p>在搜索界面就可以使用中文的索引名来搜索</p>
+<p><img src="https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/14/ELK%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E7%9B%B8%E5%85%B3/3.png" alt></p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>学习</category>
