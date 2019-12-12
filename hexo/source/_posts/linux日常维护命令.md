@@ -37,3 +37,16 @@ ps aux | grep java
 kill -9 pid
 ```
 
+## 修改hostname
+
+```shell
+vi /etc/sysconfig/network
+```
+
+## 传输文件
+
+```shell
+scp C:/Users/Administrator/Downloads/elasticsearch-7.3.1-linux-x86_64.tar.gz root@192.168.15.161:/home/bos-provider/bos-provider-1.0-SNAPSHOT/bin
+
+```
+

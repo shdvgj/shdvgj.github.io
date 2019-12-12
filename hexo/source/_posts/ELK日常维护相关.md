@@ -80,6 +80,44 @@ filter {
 
 
 
+## 设置索引别名来实现中文索引搜索
 
+有时候需要在搜索页面使用中文的索引名，但是在ES中不支持直接用中文名来命名索引，原因我认为应该是跟索引的Btree算法有关。
 
-  
+但是我们可以给索引设置别名来在搜索页面使用中文的索引来搜索。
+
+可以按照如下方式来设置
+
+- 在postman发送如下请求（前提：在ElasticSearch中已经存在datadocking和activity-provider两个索引）：
+
+```json
+POST: 192.168.15.161:9200/_aliases
+{
+    "actions": [
+        {
+            "add": {
+                "alias": "外部对接",
+                "index": "datadocking"
+            }
+        },
+        {
+            "add": {
+                "alias": "微商城活动",
+                "index": "activity-provider"
+            }
+        }
+    ]
+}
+```
+
+- 进入项目的索引模式
+
+  ![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/14/ELK日常维护相关/1.png)
+
+  输入刚刚设置的中文名，就可以直接对应到英文的索引名，然后按照步骤创建索引模式
+
+  ![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/14/ELK日常维护相关/2.png)
+
+  在搜索界面就可以使用中文的索引名来搜索
+
+  ![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/14/ELK日常维护相关/3.png)
