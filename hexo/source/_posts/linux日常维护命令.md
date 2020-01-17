@@ -50,3 +50,26 @@ scp C:/Users/Administrator/Downloads/elasticsearch-7.3.1-linux-x86_64.tar.gz roo
 
 ```
 
+## MQ查询命令
+
+#### 查询某条消息的生产者和消费者，以及消息的track路径
+
+1.进入/usr/java/rocketmq/bin
+2.根据key查找
+
+```shell
+sh mqadmin queryMsgBykey -n 127.0.0.1:9876 -k b6df2c64-4654-409d-b457-ec1db294a606 -t ORDER
+```
+
+3.根据key可以找到ID
+   根据ID查找消费者和生产者
+
+```shell
+sh mqadmin queryMsgById -n 127.0.0.1:9876 -i C0A8074100002A9F00000001A2BC9012
+```
+
+#### 查看topiclist
+```shell
+sh mqadmin topicList –n 127.0.0.1:9876
+```
+
