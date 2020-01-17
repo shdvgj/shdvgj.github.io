@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="shdvgj的个人博客">
 <meta property="og:description" content="find删除测试库创建日期在10天以前的日志1find /home -ctime +10 -type f -name &quot;*log.log.20*&quot; | xargs rm -rf查看磁盘空间和大文件查看磁盘剩余空间">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-06T07:51:08.952Z">
+<meta property="og:updated_time" content="2020-01-17T09:22:08.275Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux日常维护命令">
 <meta name="twitter:description" content="find删除测试库创建日期在10天以前的日志1find /home -ctime +10 -type f -name &quot;*log.log.20*&quot; | xargs rm -rf查看磁盘空间和大文件查看磁盘剩余空间">
@@ -328,7 +328,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 15:51:08" itemprop="dateModified" datetime="2019-12-06T15:51:08+08:00">2019-12-06</time>
+                <time title="修改时间：2020-01-17 17:22:08" itemprop="dateModified" datetime="2020-01-17T17:22:08+08:00">2020-01-17</time>
               </span>
             
           
@@ -383,6 +383,14 @@
 <h2 id="修改hostname"><a href="#修改hostname" class="headerlink" title="修改hostname"></a>修改hostname</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network</span><br></pre></td></tr></table></figure>
 
 <h2 id="传输文件"><a href="#传输文件" class="headerlink" title="传输文件"></a>传输文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp C:/Users/Administrator/Downloads/elasticsearch-7.3.1-linux-x86_64.tar.gz root@192.168.15.161:/home/bos-provider/bos-provider-1.0-SNAPSHOT/bin</span><br></pre></td></tr></table></figure>
+
+<h2 id="MQ查询命令"><a href="#MQ查询命令" class="headerlink" title="MQ查询命令"></a>MQ查询命令</h2><h4 id="查询某条消息的生产者和消费者，以及消息的track路径"><a href="#查询某条消息的生产者和消费者，以及消息的track路径" class="headerlink" title="查询某条消息的生产者和消费者，以及消息的track路径"></a>查询某条消息的生产者和消费者，以及消息的track路径</h4><p>1.进入/usr/java/rocketmq/bin<br>2.根据key查找</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh mqadmin queryMsgBykey -n 127.0.0.1:9876 -k b6df2c64-4654-409d-b457-ec1db294a606 -t ORDER</span><br></pre></td></tr></table></figure>
+
+<p>3.根据key可以找到ID<br>   根据ID查找消费者和生产者</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh mqadmin queryMsgById -n 127.0.0.1:9876 -i C0A8074100002A9F00000001A2BC9012</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看topiclist"><a href="#查看topiclist" class="headerlink" title="查看topiclist"></a>查看topiclist</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh mqadmin topicList –n 127.0.0.1:9876</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -473,7 +481,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-text">find</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#删除测试库创建日期在10天以前的日志"><span class="nav-text">删除测试库创建日期在10天以前的日志</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看磁盘空间和大文件"><span class="nav-text">查看磁盘空间和大文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看磁盘剩余空间"><span class="nav-text">查看磁盘剩余空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看目录下大文件"><span class="nav-text">查看目录下大文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看进程中的java程序"><span class="nav-text">查看进程中的java程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改hostname"><span class="nav-text">修改hostname</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传输文件"><span class="nav-text">传输文件</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-text">find</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#删除测试库创建日期在10天以前的日志"><span class="nav-text">删除测试库创建日期在10天以前的日志</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看磁盘空间和大文件"><span class="nav-text">查看磁盘空间和大文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看磁盘剩余空间"><span class="nav-text">查看磁盘剩余空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看目录下大文件"><span class="nav-text">查看目录下大文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看进程中的java程序"><span class="nav-text">查看进程中的java程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改hostname"><span class="nav-text">修改hostname</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传输文件"><span class="nav-text">传输文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MQ查询命令"><span class="nav-text">MQ查询命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询某条消息的生产者和消费者，以及消息的track路径"><span class="nav-text">查询某条消息的生产者和消费者，以及消息的track路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看topiclist"><span class="nav-text">查看topiclist</span></a></li></ol></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->

@@ -428,6 +428,14 @@
 
 <h2 id="传输文件"><a href="#传输文件" class="headerlink" title="传输文件"></a>传输文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp C:/Users/Administrator/Downloads/elasticsearch-7.3.1-linux-x86_64.tar.gz root@192.168.15.161:/home/bos-provider/bos-provider-1.0-SNAPSHOT/bin</span><br></pre></td></tr></table></figure>
 
+<h2 id="MQ查询命令"><a href="#MQ查询命令" class="headerlink" title="MQ查询命令"></a>MQ查询命令</h2><h4 id="查询某条消息的生产者和消费者，以及消息的track路径"><a href="#查询某条消息的生产者和消费者，以及消息的track路径" class="headerlink" title="查询某条消息的生产者和消费者，以及消息的track路径"></a>查询某条消息的生产者和消费者，以及消息的track路径</h4><p>1.进入/usr/java/rocketmq/bin<br>2.根据key查找</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sh mqadmin queryMsgBykey -n 127.0.0.1:9876 -k b6df2c64-4654-409d-b457-ec1db294a606 -t ORDER</span><br></pre></td></tr></table></figure>
+
+<p>3.根据key可以找到ID<br>   根据ID查找消费者和生产者</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sh mqadmin queryMsgById -n 127.0.0.1:9876 -i C0A8074100002A9F00000001A2BC9012</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看topiclist"><a href="#查看topiclist" class="headerlink" title="查看topiclist"></a>查看topiclist</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sh mqadmin topicList –n 127.0.0.1:9876</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>学习</category>
@@ -539,7 +547,7 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./filebeat -e -c filebeat.yml</span><br></pre></td></tr></table></figure>
 
 <h2 id="设置索引内容30天过期删除"><a href="#设置索引内容30天过期删除" class="headerlink" title="设置索引内容30天过期删除"></a>设置索引内容30天过期删除</h2><p>本来我理解的理论上应该可以用索引的生命周期来实现, 但是半天没整明白, 所以现在<br>是简单粗暴的使用linux的cron任务来实现, 更具体的cron配置详见<a href="https://blog.csdn.net/mengzuchao/article/details/81172305" target="_blank" rel="noopener">cron详解</a><br>1.编辑shell脚本, 文件名为removeDataByTime.sh, 内容如下  </p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">limit_date=30</span><br><span class="line">for var in `curl 'localhost:9200/_cat/indices' | awk '!/kibana*/ &#123;print $3&#125;'`</span><br><span class="line">do</span><br><span class="line">  curl -H "Content-Type:application/json" -X POST -d '&#123;"query": &#123;"range": &#123;"@timestamp": &#123;"lt": "now-'$&#123;limit_date&#125;'d/d"&#125;&#125;&#125;&#125;' "http://localhost:9200/$&#123;var&#125;/_delete_by_query"</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">limit_date=30</span><br><span class="line">for var in `curl 'localhost:9200/_cat/indices' | awk '!/kibana*/ &#123;print $3&#125;'`</span><br><span class="line">do</span><br><span class="line">  curl -H "Content-Type:application/json" -X POST -d '&#123;"query": &#123;"range": &#123;"@timestamp": &#123;"lt": "now-'$&#123;limit_date&#125;'d/d"&#125;&#125;&#125;&#125;' "http://localhost:9200/$&#123;var&#125;/_delete_by_query"</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 
 <p>2.编辑cron文件, 执行crantab -e, 打开crontab配置文件<br>加上刚才的shell脚本, 设置每天0点15分执行  </p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">15 00 * * * /home/elk/removeDataByTime.sh</span><br></pre></td></tr></table></figure>
@@ -547,7 +555,7 @@
 <p>设置cron重新启动, 执行/sbin/service crond restart  </p>
 <p>3.查看cron执行情况<br>查看cron任务列表 : crontab -l<br>查看cron执行日志 : grep ‘removeDataByTime’ /var/log/cron  </p>
 <h2 id="设置LogStash不写入指定的内容"><a href="#设置LogStash不写入指定的内容" class="headerlink" title="设置LogStash不写入指定的内容"></a>设置LogStash不写入指定的内容</h2><p>在logstash中写入如下内容即可 ：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">filter &#123;</span><br><span class="line"><span class="meta">	#</span><span class="bash"> 过滤message中的内容 , 注意drop后面有一个空格</span></span><br><span class="line">    if "somethingA" in [message] &#123;</span><br><span class="line">      drop &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    # 过滤tags中的内容</span><br><span class="line">    if "somethingB" in [tags] &#123;</span><br><span class="line">      drop &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">filter &#123;</span><br><span class="line"><span class="meta">	#</span> 过滤message中的内容 , 注意drop后面有一个空格</span><br><span class="line">    if "somethingA" in [message] &#123;</span><br><span class="line">      drop &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    # 过滤tags中的内容</span><br><span class="line">    if "somethingB" in [tags] &#123;</span><br><span class="line">      drop &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="设置索引别名来实现中文索引搜索"><a href="#设置索引别名来实现中文索引搜索" class="headerlink" title="设置索引别名来实现中文索引搜索"></a>设置索引别名来实现中文索引搜索</h2><p>有时候需要在搜索页面使用中文的索引名，但是在ES中不支持直接用中文名来命名索引，原因我认为应该是跟索引的Btree算法有关。</p>
 <p>但是我们可以给索引设置别名来在搜索页面使用中文的索引来搜索。</p>
