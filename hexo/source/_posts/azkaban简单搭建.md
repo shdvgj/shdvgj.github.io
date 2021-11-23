@@ -124,3 +124,34 @@ bin/start-web.sh;
 用户名密码默认均为azkban，可以在 ../azkaban-3.81.0/azkaban-web-server/build/install/azkaban-web-server/conf/azkaban-users.xml 修改用户和密码  
 
 ## 配置定时任务  
+1.打开azkaban主页面，点击create project，在弹出页面输入项目名和描述
+![](3.png)
+2.随后点击项目名进入配置页面，azkaban目前无法在页面直接配置，需要通过上传和下载配置文件来完成对定时任务的增删改，也就是用到页面上的upload和download按钮
+![](4.png)
+3.在本地新建一个test.flow文件，azkaban的基本配置文件需要用flow后缀的文件进行配置，配置的基本格式如下
+```properties
+
+---
+config:
+  failure.emails: user@qq.com
+
+nodes:
+  - name: testA
+    type: command
+    config:
+      command: echo 'hello wrold'
+  - name: testB
+    type: command
+    config:
+      command: echo 'hello wrold'
+```
+其中nodes节点下的就是执行的任务，commnad写的就是该任务需要执行的指令，azkaban还支持其他job类型，具体见[官方文档](https://azkaban.readthedocs.io/en/latest/jobTypes.html)
+我暂时只用到commond
+4.同时新建一个flow20.project文件，里面只需要一条内容，如下
+azkaban-flow-version: 2.0
+5.将flow文件和flow20.project文件打包成 **【项目名.zip】**，然后在azkaban页面点击upload，上传该zip文件
+6.点击项目名就可以看到刚创建的job，然后点击execute flow-schedule，就可以配置cron表达式，设置该任务的运行周期
+![](5.png)
+![](6.png)
+7.以后对于任务的新增和命令修改，都只能通过在azkaban页面点击download下载zip文件，然后修改里面的内容，再重新上传来完成
+      

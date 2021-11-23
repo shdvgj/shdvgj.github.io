@@ -9,7 +9,7 @@
 <p><img src="/2019/10/07/ELK_FileBeats/2.png"><br>在Downloads里点击linux就可以下载到用于linux安装的tar包<br>如果是直接在linux安装,使用wget命令即可<br>如 : wget <a href="https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.0-linux-x86_64.tar.gz">https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.0-linux-x86_64.tar.gz</a><br>如果需要更旧的历史版本, 点击下面的past release即可</p>
 <span id="more"></span>
 <p><img src="/2019/10/07/ELK_FileBeats/3.png">  </p>
-<p>在获取到安装包之后, windows环境需要将tar包传送到linux , 使用scp(windows需要预装git)命令即可<br>如: scp C:/Users/Administrator/Downloads/elasticsearch-7.3.1-linux-x86_64.tar.gz <a href="mailto:&#114;&#x6f;&#x6f;&#x74;&#64;&#x31;&#48;&#x30;&#x2e;&#x31;&#x30;&#x30;&#x2e;&#49;&#48;&#48;&#46;&#x31;&#48;&#48;">&#114;&#x6f;&#x6f;&#x74;&#64;&#x31;&#48;&#x30;&#x2e;&#x31;&#x30;&#x30;&#x2e;&#49;&#48;&#48;&#46;&#x31;&#48;&#48;</a>:/home/elk/<br>在linux, 进入到安装包的目录, 使用tar -zxvf命令进行解压<br>如: tar -zxvf elasticsearch-7.3.1-linux-x86_64.tar.gz<br>解压完成后, elasticsearch其实就已经完成了安装  </p>
+<p>在获取到安装包之后, windows环境需要将tar包传送到linux , 使用scp(windows需要预装git)命令即可<br>如: scp C:/Users/Administrator/Downloads/elasticsearch-7.3.1-linux-x86_64.tar.gz <a href="mailto:&#114;&#x6f;&#x6f;&#116;&#x40;&#x31;&#x30;&#x30;&#46;&#49;&#x30;&#48;&#x2e;&#49;&#48;&#x30;&#x2e;&#x31;&#48;&#48;">&#114;&#x6f;&#x6f;&#116;&#x40;&#x31;&#x30;&#x30;&#46;&#49;&#x30;&#48;&#x2e;&#49;&#48;&#x30;&#x2e;&#x31;&#48;&#48;</a>:/home/elk/<br>在linux, 进入到安装包的目录, 使用tar -zxvf命令进行解压<br>如: tar -zxvf elasticsearch-7.3.1-linux-x86_64.tar.gz<br>解压完成后, elasticsearch其实就已经完成了安装  </p>
 <h3 id="启动ElasticSearch"><a href="#启动ElasticSearch" class="headerlink" title="启动ElasticSearch"></a>启动ElasticSearch</h3><p>在启动elasticserach之前需要注意:elasticsearch不可以用root用户启动, 因此, 需要事先在linux建立一个非root用户<br><a href="https://www.cnblogs.com/sunyllove/p/9772053.html">linux如何创建一个管理员用户</a><br>创建完linux用户后, 切换到该用户, 进入到elasticsearch目录, 执行bin/elasticserach即可<br>默认elasticsearch的端口是9200, 打开浏览器, 输入<a href="http://elasticsearch地址:9200/">http://elasticsearch地址:9200/</a>  , 出现如下画面, 说明elasticsearch启动成功</p>
 <p><img src="/2019/10/07/ELK_FileBeats/4.png"></p>
 <h2 id="安装LogStash"><a href="#安装LogStash" class="headerlink" title="安装LogStash"></a>安装LogStash</h2><p>windows环境下载和上传到linux的方法不再赘述, 参照前文<br>linux环境, 参照如下命令即可:<br>1.执行wget <a href="https://artifacts.elastic.co/downloads/logstash/logstash-7.4.0.tar.gz">https://artifacts.elastic.co/downloads/logstash/logstash-7.4.0.tar.gz</a><br>2.进入logstash安装包目录, 执行tar -zxvf logstash-7.4.0.tar.gz  </p>
@@ -229,7 +229,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi ../azkaban-3.81.0/azkaban-web-server/build/install/azkaban-exec-server/conf/azkaban.properties</span><br></pre></td></tr></table></figure>
 <p>需要修改的内容如下  </p>
 <blockquote>
-<p>default.timezone.id=Asia/Shanghai # 修改为中国时区<br>#邮件配置<br>mail.sender=<a href="mailto:&#x38;&#x38;&#x38;&#x38;&#x38;&#56;&#x40;&#113;&#x71;&#46;&#99;&#111;&#109;">&#x38;&#x38;&#x38;&#x38;&#x38;&#56;&#x40;&#113;&#x71;&#46;&#99;&#111;&#109;</a> # 发送邮件的邮箱<br>mail.host=smtp.qq.com  # 邮件服务器<br>mail.user=<a href="mailto:&#56;&#x38;&#x38;&#x38;&#56;&#x38;&#x40;&#113;&#x71;&#46;&#99;&#111;&#109;">&#56;&#x38;&#x38;&#x38;&#56;&#x38;&#x40;&#113;&#x71;&#46;&#99;&#111;&#109;</a> # 邮件用户<br>mail.password=abc123456 #密码需要取qq邮箱中获取到的授权码<br>job.failure.email=<a href="mailto:&#56;&#x38;&#x38;&#56;&#56;&#56;&#56;&#64;&#x71;&#113;&#x2e;&#x63;&#111;&#109;">&#56;&#x38;&#x38;&#56;&#56;&#56;&#56;&#64;&#x71;&#113;&#x2e;&#x63;&#111;&#109;</a> # 定时任务执行失败发送邮件的邮箱<br>#数据库配置，指向azkban建表的数据库，根据实际的数据库配置来<br>database.type=mysql<br>mysql.port=3306<br>mysql.host=110.110.110.110<br>mysql.database=azkaban<br>mysql.user=azkaban<br>mysql.password=azkaban</p>
+<p>default.timezone.id=Asia/Shanghai # 修改为中国时区<br>#邮件配置<br>mail.sender=<a href="mailto:&#56;&#x38;&#56;&#56;&#56;&#56;&#x40;&#113;&#x71;&#x2e;&#99;&#111;&#x6d;">&#56;&#x38;&#56;&#56;&#56;&#56;&#x40;&#113;&#x71;&#x2e;&#99;&#111;&#x6d;</a> # 发送邮件的邮箱<br>mail.host=smtp.qq.com  # 邮件服务器<br>mail.user=<a href="mailto:&#x38;&#x38;&#56;&#56;&#56;&#56;&#64;&#x71;&#x71;&#x2e;&#99;&#111;&#x6d;">&#x38;&#x38;&#56;&#56;&#56;&#56;&#64;&#x71;&#x71;&#x2e;&#99;&#111;&#x6d;</a> # 邮件用户<br>mail.password=abc123456 #密码需要取qq邮箱中获取到的授权码<br>job.failure.email=<a href="mailto:&#56;&#56;&#56;&#x38;&#56;&#x38;&#56;&#64;&#x71;&#113;&#46;&#99;&#x6f;&#109;">&#56;&#56;&#56;&#x38;&#56;&#x38;&#56;&#64;&#x71;&#113;&#46;&#99;&#x6f;&#109;</a> # 定时任务执行失败发送邮件的邮箱<br>#数据库配置，指向azkban建表的数据库，根据实际的数据库配置来<br>database.type=mysql<br>mysql.port=3306<br>mysql.host=110.110.110.110<br>mysql.database=azkaban<br>mysql.user=azkaban<br>mysql.password=azkaban</p>
 </blockquote>
 </li>
 <li><p>启动azkaban-web-server  </p>
@@ -237,7 +237,11 @@
 <h3 id="访问azkaban"><a href="#访问azkaban" class="headerlink" title="访问azkaban"></a>访问azkaban</h3><p>浏览器输入 localhost:8199，出现如下界面<br><img src="/2020/04/29/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/2.png"><br>用户名密码默认均为azkban，可以在 ../azkaban-3.81.0/azkaban-web-server/build/install/azkaban-web-server/conf/azkaban-users.xml 修改用户和密码  </p>
 </li>
 </ul>
-<h2 id="配置定时任务"><a href="#配置定时任务" class="headerlink" title="配置定时任务"></a>配置定时任务</h2>]]></content>
+<h2 id="配置定时任务"><a href="#配置定时任务" class="headerlink" title="配置定时任务"></a>配置定时任务</h2><p>1.打开azkaban主页面，点击create project，在弹出页面输入项目名和描述<br><img src="/2020/04/29/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/3.png"><br>2.随后点击项目名进入配置页面，azkaban目前无法在页面直接配置，需要通过上传和下载配置文件来完成对定时任务的增删改，也就是用到页面上的upload和download按钮<br><img src="/2020/04/29/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/4.png"><br>3.在本地新建一个test.flow文件，azkaban的基本配置文件需要用flow后缀的文件进行配置，配置的基本格式如下</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">---</span></span><br><span class="line"><span class="attr">config</span>:<span class="string"></span></span><br><span class="line">  <span class="meta">failure.emails</span>: <span class="string">user@qq.com</span></span><br><span class="line"></span><br><span class="line"><span class="attr">nodes</span>:<span class="string"></span></span><br><span class="line">  <span class="meta">-</span> <span class="string">name: testA</span></span><br><span class="line">    <span class="attr">type</span>: <span class="string">command</span></span><br><span class="line">    <span class="attr">config</span>:<span class="string"></span></span><br><span class="line">      <span class="attr">command</span>: <span class="string">echo &#x27;hello wrold&#x27;</span></span><br><span class="line">  <span class="meta">-</span> <span class="string">name: testB</span></span><br><span class="line">    <span class="attr">type</span>: <span class="string">command</span></span><br><span class="line">    <span class="attr">config</span>:<span class="string"></span></span><br><span class="line">      <span class="attr">command</span>: <span class="string">echo &#x27;hello wrold&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>其中nodes节点下的就是执行的任务，commnad写的就是该任务需要执行的指令，azkaban还支持其他job类型，具体见<a href="https://azkaban.readthedocs.io/en/latest/jobTypes.html">官方文档</a><br>我暂时只用到commond<br>4.同时新建一个flow20.project文件，里面只需要一条内容，如下<br>azkaban-flow-version: 2.0<br>5.将flow文件和flow20.project文件打包成 <strong>【项目名.zip】</strong>，然后在azkaban页面点击upload，上传该zip文件<br>6.点击项目名就可以看到刚创建的job，然后点击execute flow-schedule，就可以配置cron表达式，设置该任务的运行周期<br><img src="/2020/04/29/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/5.png"><br><img src="/2020/04/29/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/6.png"><br>7.以后对于任务的新增和命令修改，都只能通过在azkaban页面点击download下载zip文件，然后修改里面的内容，再重新上传来完成
+      </p>
+]]></content>
       <categories>
         <category>学习</category>
         <category>搭建相关</category>
@@ -399,6 +403,36 @@
       </tags>
   </entry>
   <entry>
+    <title>搭建新项目的框架</title>
+    <url>/2019/10/22/%E6%90%AD%E5%BB%BA%E6%96%B0%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%A1%86%E6%9E%B6/</url>
+    <content><![CDATA[<ul>
+<li><input checked="" disabled="" type="checkbox"> 基础架构：Spring Boot / Spring Cloud</li>
+<li><input checked="" disabled="" type="checkbox"> 数据库：MySQL / Oracle</li>
+<li><input checked="" disabled="" type="checkbox"> 数据库层连接：Hibernate / Mybatis / JPA</li>
+<li><input checked="" disabled="" type="checkbox"> 分页</li>
+<li><input checked="" disabled="" type="checkbox"> 日志：Log4j / Slf4J</li>
+<li><input checked="" disabled="" type="checkbox"> 数据库连接池：Druid</li>
+<li><input checked="" disabled="" type="checkbox"> 消息中间件：Dubbo / Grpc</li>
+<li><input disabled="" type="checkbox"> 缓存：Redis</li>
+<li><input checked="" disabled="" type="checkbox"> 权限：Spring Security / Shiro</li>
+<li><input checked="" disabled="" type="checkbox"> 包管理仓库：Maven / Gradle</li>
+<li><input disabled="" type="checkbox"> 统一日志记录-数据库层面</li>
+<li><input checked="" disabled="" type="checkbox"> JSON处理：FastJSON</li>
+<li><input checked="" disabled="" type="checkbox"> 统一返回结果处理</li>
+<li><input checked="" disabled="" type="checkbox"> Zookeeper</li>
+<li><input disabled="" type="checkbox"> MQ组件：RabbitMQ / RocketMQ / Kafka</li>
+<li><input checked="" disabled="" type="checkbox"> 统一Exception处理</li>
+<li><input checked="" disabled="" type="checkbox"> 公用Util类</li>
+<li><input checked="" disabled="" type="checkbox"> 测试用例：JUnit</li>
+<li><input disabled="" type="checkbox"> 集群</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>搭建相关</category>
+      </categories>
+  </entry>
+  <entry>
     <title>官方文档解释MySQL最左匹配(最左前缀)原则</title>
     <url>/2019/10/15/%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E8%A7%A3%E9%87%8AMySQL%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D(%E6%9C%80%E5%B7%A6%E5%89%8D%E7%BC%80)%E5%8E%9F%E5%88%99/</url>
     <content><![CDATA[<h2 id="什么是最左匹配原则"><a href="#什么是最左匹配原则" class="headerlink" title="什么是最左匹配原则"></a>什么是最左匹配原则</h2><p>关于最左匹配原则的解释, 网上找了很多, 但是我感觉都不是特别准确, 于是一怒之下<br>直接找了官网的文档, 一下子就清晰了. 下面贴下官网的解释, 然后我自己翻译了一下.  </p>
@@ -481,36 +515,6 @@
       </tags>
   </entry>
   <entry>
-    <title>搭建新项目的框架</title>
-    <url>/2019/10/22/%E6%90%AD%E5%BB%BA%E6%96%B0%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%A1%86%E6%9E%B6/</url>
-    <content><![CDATA[<ul>
-<li><input checked="" disabled="" type="checkbox"> 基础架构：Spring Boot / Spring Cloud</li>
-<li><input checked="" disabled="" type="checkbox"> 数据库：MySQL / Oracle</li>
-<li><input checked="" disabled="" type="checkbox"> 数据库层连接：Hibernate / Mybatis / JPA</li>
-<li><input checked="" disabled="" type="checkbox"> 分页</li>
-<li><input checked="" disabled="" type="checkbox"> 日志：Log4j / Slf4J</li>
-<li><input checked="" disabled="" type="checkbox"> 数据库连接池：Druid</li>
-<li><input checked="" disabled="" type="checkbox"> 消息中间件：Dubbo / Grpc</li>
-<li><input disabled="" type="checkbox"> 缓存：Redis</li>
-<li><input checked="" disabled="" type="checkbox"> 权限：Spring Security / Shiro</li>
-<li><input checked="" disabled="" type="checkbox"> 包管理仓库：Maven / Gradle</li>
-<li><input disabled="" type="checkbox"> 统一日志记录-数据库层面</li>
-<li><input checked="" disabled="" type="checkbox"> JSON处理：FastJSON</li>
-<li><input checked="" disabled="" type="checkbox"> 统一返回结果处理</li>
-<li><input checked="" disabled="" type="checkbox"> Zookeeper</li>
-<li><input disabled="" type="checkbox"> MQ组件：RabbitMQ / RocketMQ / Kafka</li>
-<li><input checked="" disabled="" type="checkbox"> 统一Exception处理</li>
-<li><input checked="" disabled="" type="checkbox"> 公用Util类</li>
-<li><input checked="" disabled="" type="checkbox"> 测试用例：JUnit</li>
-<li><input disabled="" type="checkbox"> 集群</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>搭建相关</category>
-      </categories>
-  </entry>
-  <entry>
     <title>新闻翻译.1</title>
     <url>/2019/10/10/%E6%96%B0%E9%97%BB%E7%BF%BB%E8%AF%91-1/</url>
     <content><![CDATA[<p><a href="https://www.latimes.com/politics/story/2019-10-09/trumps-legal-strategy-against-impeachment-shaky-constitutional-grounds-scholars-say">原文链接</a>  </p>
@@ -541,338 +545,6 @@
         <tag>translate</tag>
         <tag>news</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>绩效统计</title>
-    <url>/2019/10/09/%E7%BB%A9%E6%95%88%E7%BB%9F%E8%AE%A1/</url>
-    <content><![CDATA[<table>
-<thead>
-<tr>
-<th align="center">序号</th>
-<th align="center">工作模块</th>
-<th align="center">工作内容</th>
-<th align="center">开始时间</th>
-<th align="center">结束时间</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">1</td>
-<td align="center">BOS接口</td>
-<td align="center">样衣尺码限制为只能填写00, 36, 240</td>
-<td align="center">2019.09.12</td>
-<td align="center">2019.09.13</td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td align="center">BOS接口</td>
-<td align="center">修复季节字段参数错误</td>
-<td align="center">2019.09.13</td>
-<td align="center">2019.09.13</td>
-</tr>
-<tr>
-<td align="center">3</td>
-<td align="center">BOS接口</td>
-<td align="center">新增支持款式和样衣的条码更新</td>
-<td align="center">2019.09.16</td>
-<td align="center">2019.09.19</td>
-</tr>
-<tr>
-<td align="center">4</td>
-<td align="center">BOS接口</td>
-<td align="center">新增总工价字段</td>
-<td align="center">2019.09.19</td>
-<td align="center">2019.09.19</td>
-</tr>
-<tr>
-<td align="center">5</td>
-<td align="center">BOS接口</td>
-<td align="center">新增采购退审逻辑</td>
-<td align="center">2019.09.20</td>
-<td align="center">2019.09.24</td>
-</tr>
-<tr>
-<td align="center">6</td>
-<td align="center">BOS接口</td>
-<td align="center">采购审核通过时修改订单合同号</td>
-<td align="center">2019.09.25</td>
-<td align="center">2019.09.30</td>
-</tr>
-<tr>
-<td align="center">7</td>
-<td align="center">BOS接口</td>
-<td align="center">增加若干打印日志</td>
-<td align="center">2019.10.08</td>
-<td align="center">2019.10.08</td>
-</tr>
-<tr>
-<td align="center">8</td>
-<td align="center">整体框架</td>
-<td align="center">搭建ELK+Filebeats日志框架</td>
-<td align="center">2019.09.15</td>
-<td align="center">2019.10.15</td>
-</tr>
-<tr>
-<td align="center">9</td>
-<td align="center">整体框架</td>
-<td align="center">增加所有测试机和部分生产机的日志发送功能</td>
-<td align="center">2019.10.12</td>
-<td align="center">2019.10.16</td>
-</tr>
-<tr>
-<td align="center">10</td>
-<td align="center">PLM接口</td>
-<td align="center">校验PLM线上和测试环境的数据库差异</td>
-<td align="center">2019.10.15</td>
-<td align="center">2019.10.16</td>
-</tr>
-<tr>
-<td align="center">11</td>
-<td align="center">整体框架</td>
-<td align="center">搭建项目基础框架</td>
-<td align="center">2019.10.18</td>
-<td align="center">2019.10.30</td>
-</tr>
-<tr>
-<td align="center">12</td>
-<td align="center">PLM接口</td>
-<td align="center">PLM对接BOS接口字段增加</td>
-<td align="center">2019.10.21</td>
-<td align="center">2019.10.25</td>
-</tr>
-<tr>
-<td align="center">13</td>
-<td align="center">PLM接口</td>
-<td align="center">增加PLM物料详细信息页面</td>
-<td align="center">2019.10.26</td>
-<td align="center">2019.10.29</td>
-</tr>
-<tr>
-<td align="center">14</td>
-<td align="center">O2O接口</td>
-<td align="center">修改首页分类中的图片和接口</td>
-<td align="center">2019.10.28</td>
-<td align="center">2019.10.29</td>
-</tr>
-<tr>
-<td align="center">15</td>
-<td align="center">POS接口</td>
-<td align="center">修正UTI自动生成的PDF图片遮住LOGO的bug</td>
-<td align="center">2019.10.28</td>
-<td align="center">2019.10.29</td>
-</tr>
-<tr>
-<td align="center">16</td>
-<td align="center">PLM接口</td>
-<td align="center">PLM传送面辅料信息的接口中区分面辅料大类</td>
-<td align="center">2019.10.29</td>
-<td align="center">2019.10.30</td>
-</tr>
-<tr>
-<td align="center">17</td>
-<td align="center">PLM接口</td>
-<td align="center">根据PLM来源来判断是否可以更新款号</td>
-<td align="center">2019.10.30</td>
-<td align="center">2019.10.31</td>
-</tr>
-<tr>
-<td align="center">18</td>
-<td align="center">整体框架</td>
-<td align="center">修改ELK日志格式</td>
-<td align="center">2019.11.01</td>
-<td align="center">2019.11.01</td>
-</tr>
-<tr>
-<td align="center">19</td>
-<td align="center">POS接口</td>
-<td align="center">增加支持POS优惠策略中的自动翻倍规则</td>
-<td align="center">2019.11.04</td>
-<td align="center">2019.11.05</td>
-</tr>
-<tr>
-<td align="center">20</td>
-<td align="center">PLM接口</td>
-<td align="center">熟悉并接手PLM项目开发</td>
-<td align="center">2019.11.06</td>
-<td align="center">2019.11.10</td>
-</tr>
-<tr>
-<td align="center">21</td>
-<td align="center">日志框架</td>
-<td align="center">修改日志索引以中文显示</td>
-<td align="center">2019.11.15</td>
-<td align="center">2019.11.16</td>
-</tr>
-<tr>
-<td align="center">22</td>
-<td align="center">BUG修复</td>
-<td align="center">修复短信发送接口</td>
-<td align="center">2019.11.18</td>
-<td align="center">2019.11.20</td>
-</tr>
-<tr>
-<td align="center">23</td>
-<td align="center">微商城接口</td>
-<td align="center">增加对于特定供应商的过滤</td>
-<td align="center">2019.11.22</td>
-<td align="center">2019.11.25</td>
-</tr>
-<tr>
-<td align="center">24</td>
-<td align="center">BUG修复</td>
-<td align="center">修复POS中满减优惠计算错误</td>
-<td align="center">2019.11.26</td>
-<td align="center">2019.11.26</td>
-</tr>
-<tr>
-<td align="center">25</td>
-<td align="center">微商城接口</td>
-<td align="center">新增微商城中领取和查看优惠券的接口</td>
-<td align="center">2019.11.28</td>
-<td align="center">2019.12.05</td>
-</tr>
-<tr>
-<td align="center">26</td>
-<td align="center">PLM项目</td>
-<td align="center">取消外购样衣中借出按钮时清空借出数量，借出人，借出时间</td>
-<td align="center">2019.12.08</td>
-<td align="center">2019.12.09</td>
-</tr>
-<tr>
-<td align="center">27</td>
-<td align="center">微商城接口</td>
-<td align="center">设置特卖会总仓不过滤品牌</td>
-<td align="center">2019.12.10</td>
-<td align="center">2019.12.11</td>
-</tr>
-<tr>
-<td align="center">28</td>
-<td align="center">BUG修复</td>
-<td align="center">修正线上服务器日志级别过低导致服务器空间不足的问题</td>
-<td align="center">2019.12.12</td>
-<td align="center">2019.12.13</td>
-</tr>
-<tr>
-<td align="center">29</td>
-<td align="center">微商城接口</td>
-<td align="center">修改直营全字段统计报表的取数逻辑</td>
-<td align="center">2019.12.16</td>
-<td align="center">2019.12.19</td>
-</tr>
-<tr>
-<td align="center">30</td>
-<td align="center">安卓TV接口</td>
-<td align="center">图片压缩显示，并增加二维码，按照价格波次倒序排列</td>
-<td align="center">2019.12.25</td>
-<td align="center">2019.12.30</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>序号</th>
-<th>问题时间</th>
-<th>发布人</th>
-<th>问题描述</th>
-<th>紧急程度</th>
-<th>预计完成时间</th>
-<th>实际完成时间</th>
-<th>处理过程</th>
-<th>处理结果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>2019.01.01</td>
-<td>杨鹏达</td>
-<td>平下限逻辑修改，改为由收款金额来确定</td>
-<td>三级</td>
-<td>2019.01.01</td>
-<td>2019.01.01</td>
-<td>修改代码对应字段</td>
-<td></td>
-</tr>
-<tr>
-<td>2</td>
-<td>2019.01.03</td>
-<td>姜王</td>
-<td>修改组织架构，一级经理和总监的过滤条件修改</td>
-<td>二级</td>
-<td>2019.01.04</td>
-<td>2019.01.04</td>
-<td>一级经理和总监的过滤条件修改</td>
-<td></td>
-</tr>
-<tr>
-<td>3</td>
-<td>2019.01.03</td>
-<td>范里</td>
-<td>完成预收接口</td>
-<td>三级</td>
-<td>2019.01.06</td>
-<td>2019.01.06</td>
-<td>在bos-provider模块增加预收接口，前端异步调用后端是否成功的状态</td>
-<td></td>
-</tr>
-<tr>
-<td>4</td>
-<td>2019.01.07</td>
-<td>范里</td>
-<td>安卓TV压缩图片和二维码功能</td>
-<td>二级</td>
-<td>2019.01.09</td>
-<td>2019.01.09</td>
-<td>使用阿里云API进行图片处理</td>
-<td></td>
-</tr>
-<tr>
-<td>5</td>
-<td>2019.01.10</td>
-<td>詹林珠</td>
-<td>内购部分产品无法下单</td>
-<td>三级</td>
-<td>2019.01.11</td>
-<td>2019.01.11</td>
-<td>修改代码逻辑</td>
-<td></td>
-</tr>
-<tr>
-<td>6</td>
-<td>2019.01.14</td>
-<td>陈磊</td>
-<td>TV部分店铺无法切换频道</td>
-<td>三级</td>
-<td>2019.01.14</td>
-<td>2019.01.14</td>
-<td>修改代码逻辑</td>
-<td></td>
-</tr>
-<tr>
-<td>7</td>
-<td>2019.01.14</td>
-<td>姜王</td>
-<td>ios客户端退货列表无法显示一年以前的数据</td>
-<td>二级</td>
-<td>2019.01.14</td>
-<td>2019.01.14</td>
-<td>将过滤条件修改为三年</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>绩效</category>
-      </categories>
   </entry>
   <entry>
     <title>解决Dubbo无法处理自定义异常的问题</title>
