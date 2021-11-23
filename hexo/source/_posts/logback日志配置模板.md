@@ -38,7 +38,6 @@ categories:
             <charset>${DEFAULT_CHARSET}</charset>
         </encoder>
     </appender>
-
     <springProfile name="!local">
         <!-- 服务器上使用的appender start -->
         <!-- 默认的file appender，按天切分日志 -->

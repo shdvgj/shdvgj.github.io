@@ -242,7 +242,7 @@ MySQL的海豚（我们的logo）的名字是“Sakila”，这来自于“为�
 ### 1.4 MySQL8.0更新了什么
 
 这一节总结了在MySQL8.0中哪些被添加，启用，以及移除。随附的部分罗列了在MySQL8.0中已经被新增，启用，移除的选项和变量。详见 [章节1.5，“服务器，状态变量和选项在MySQL8.0中的添加，弃用和删除”](https://dev.mysql.com/doc/refman/8.0/en/added-deprecated-removed.html)。
-
+<!-- more -->
 **MySQL8.0新增的特性**
 
 以下特性被加入到MySQL8.0中：

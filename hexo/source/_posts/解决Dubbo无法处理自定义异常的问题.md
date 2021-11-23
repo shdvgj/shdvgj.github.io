@@ -66,7 +66,7 @@ try {
 } catch (NoSuchMethodException e) {
     return;
 }
-
+<!-- more -->
 // for the exception not found in method's signature, print ERROR message in server's log.
 logger.error("Got unchecked and undeclared exception which called by " + RpcContext.getContext().getRemoteHost() + ". service: " + invoker.getInterface().getName() + ", method: " + invocation.getMethodName() + ", exception: " + exception.getClass().getName() + ": " + exception.getMessage(), exception);
 

@@ -54,7 +54,7 @@ SELECT * FROM tbl_name
   WHERE hash_col=MD5(CONCAT(val1,val2))
   AND col1=val1 AND col2=val2;
 ```
-
+<!-- more -->
 > Suppose that a table has the following specification:
 
 假设有如下表定义:

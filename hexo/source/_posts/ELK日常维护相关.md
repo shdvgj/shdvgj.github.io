@@ -37,7 +37,7 @@ kill -s 9 pid
 ```shell
 ./filebeat -e -c filebeat.yml
 ```
-
+<!-- more -->
 ## 设置索引内容30天过期删除  
 本来我理解的理论上应该可以用索引的生命周期来实现, 但是半天没整明白, 所以现在
 是简单粗暴的使用linux的cron任务来实现, 更具体的cron配置详见[cron详解](https://blog.csdn.net/mengzuchao/article/details/81172305)  
@@ -112,12 +112,12 @@ POST: 192.168.15.161:9200/_aliases
 
 - 进入项目的索引模式
 
-  ![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/14/ELK日常维护相关/1.png)
+  ![](1.png)
 
   输入刚刚设置的中文名，就可以直接对应到英文的索引名，然后按照步骤创建索引模式
 
-  ![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/14/ELK日常维护相关/2.png)
+  ![](2.png)
 
   在搜索界面就可以使用中文的索引名来搜索
 
-  ![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/10/14/ELK日常维护相关/3.png)
+  ![](3.png)

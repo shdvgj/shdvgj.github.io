@@ -8,11 +8,11 @@ tags: python
 
 历年周最佳的数据来自于NBA数据官网，链接为 http://www.stat-nba.com/award/item18.html
 
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/1.png)
+![](1.png)
 
 这里可以看到每个赛季的周最佳球员。然后每个球员旁边有个数据的链接，表示的就是这名球员当周的平均数据。比如11月11日-11月17日的东部周最佳是武切维奇，其数据链接为http://www.stat-nba.com/player/3672.html
 
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/2.png)
+![](2.png)
 
 ## 数据处理
 
@@ -20,18 +20,18 @@ tags: python
 
 首先看周最佳的页面，链接是http://www.stat-nba.com/award/item18.html，选中武切维奇的名字，右键打开右键菜单，选择“查看页面元素”。出现如下页面：
 
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/3.png)
+![](3.png)
 
 注意，我们需要获取到的是**所有的周最佳数据**，而不是某个人的，因此我们需要找到这个页面元素的父元素，因此才能找到这个父元素下面的所有子元素-即所有的周最佳数据。
 
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/4.png)
+![](4.png)
 
 ```
 如图所示，周最佳数据的节点来自于<td class='current'> -> <table class='stat-box'  style='width:170px;border:0'>  -> <td>
 
 根据网页上下文的查看，可以知道"<td class="current">是赛季的节点，<table class="stat-box" style="width:170px;border:0">是每个赛季下每周的节点，而<td>就是每周下面每个球员的节点。
 ```
-
+<!-- more -->
 因此我们根据节点的继承关系，可以写出如下的基本的爬虫逻辑。
 
 ```python
@@ -61,7 +61,7 @@ for i in range(len(outResult)):
 
 输出结果如下：
 
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/5.png)
+![](5.png)
 
 
 
@@ -69,15 +69,15 @@ for i in range(len(outResult)):
 
 接下来我们爬取每个球员的周最佳数据，点击球员旁边的“数据”按钮，会跳转到周数据页面。
 
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/6.png)
+![](6.png)
 
 
 
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/7.png)
+![](7.png)
 
 根据看到数据页面是在球员td标签下的第二个a标签下
 
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/8.png)
+![](8.png)
 
 根据a标签的结构使用如下代码来获取球员数据的链接：
 
@@ -182,7 +182,7 @@ f.save('nbastat-week.xls')
 
 输出的结果如下：
 
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/9.png)
+![](9.png)
 
 
 
@@ -190,6 +190,6 @@ f.save('nbastat-week.xls')
 
 分析过程我就懒得再写一遍了，之前已经将分析结果发布到虎扑，链接是https://bbs.hupu.com/30738461.html
 
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/10.png)
+![](10.png)
 
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/11.png)
+![](11.png)

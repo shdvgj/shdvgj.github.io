@@ -36,7 +36,7 @@ candidates="
 /usr/java/jdk1.8.0_121/jre/bin/java
 "
 ``` 
-
+<!-- more -->
 修改jenkins端口 
 ```shell
 vi /etc/sysconfig/jenkins
@@ -52,11 +52,11 @@ service jenkins start
 service jenkins status
 ``` 
 出现以下截图说明成功启动
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2020/05/14/jenkins简单搭建/1.png)  
+![](1.png)  
 
 ## 配置jenkins
 访问 http://localhost:8999/ 即可看到jenkins的启动页面，稍等一会儿，看到如下页面：
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2020/05/14/jenkins简单搭建/2.png)  
+![](2.png)  
 接下来按照页面指引一步步安装即可。
 - 需要注意的点：插件按照推荐插件安装后，可能会有个别插件无法完成安装，这时不要选择重试，直接跳过，在Manage Jenkins - Mange Plugins - 高级，修改URL为 http://mirror.esuni.jp/jenkins/updates/update-center.json ，然后再更新插件即可。  
 

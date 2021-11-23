@@ -14,16 +14,16 @@ categories:
 2.解决方式：目前没有发现更简便的方法，只能从oracle官网上下载jdbc driver的包，然后从本地upload到本地仓库。
 
 - 进入JDBC[下载网站](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html)，选择自己需要的JDBC driver版本，点击进入。
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/OracleJDBC/1.png)
+![](1.png)
 
 - 下载需要的JDBC driver的jar包
 
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/OracleJDBC/2.png)
+![](2.png)
 
 - 如果还没有登陆oracle账号，需要你登陆以后才能下载，没有注册过的注册一个账号，这里不再赘述。
 
 - 下载完成后，进入下载完成的文件夹。在这里需要手动执行命令，在该文件夹打开git窗口，如何在windows安装git请自行百度。执行如下命令。
-
+<!-- more -->
   ```bash
   mvn deploy:deploy-file -Dmaven.test.skip=true -Dfile=ojdbc6.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.0.0.7 -Dpackaging=jar -DrepositoryId=localmaven -Durl=http://localhost/nexus/content/repositories/releases
   ```
@@ -40,7 +40,7 @@ categories:
 
   -DrepositoryId：部署的仓库ID。这个ID配置在maven的setings.xml中，参考如下：
 
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/OracleJDBC/3.png)
+![](3.png)
 
   自行写入本地仓库的用户名和密码。
 
@@ -48,7 +48,7 @@ categories:
 
 - 执行完成后，显示如下页面，就表示上传成功。
 
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2019/11/04/OracleJDBC/4.png)
+![](4.png)
 
 - 在项目的pom.xml文件下需要做如下配置即可：
 

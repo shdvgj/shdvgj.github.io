@@ -49,7 +49,7 @@ vi /etc/sysconfig/network
 scp C:/Users/Administrator/Downloads/elasticsearch-7.3.1-linux-x86_64.tar.gz root@192.168.15.161:/home/bos-provider/bos-provider-1.0-SNAPSHOT/bin
 
 ```
-
+<!-- more -->
 ## MQ查询命令
 
 #### 查询某条消息的生产者和消费者，以及消息的track路径

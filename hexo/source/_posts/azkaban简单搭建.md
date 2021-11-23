@@ -23,7 +23,8 @@ wget https://github.com/azkaban/azkaban/archive/3.84.10.tar.gz
 tar -zxvf azkaban-3.81.10.tar.gz
 ```
 解压完成后目录结构如下图  
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2020/04/29/azkaban简单搭建/1.png)  
+<!-- more -->
+![](1.png)  
 如果使用solo-server方式的话，不需要建表，下面的步骤也都可以不用看，直接跳转看[solo-server](https://azkaban.readthedocs.io/en/latest/getStarted.html#getting-started-with-the-solo-server)  
 但是个人理解solo-server只适用于小型简单的项目，如果考虑项目以后的扩充和发展的话，建议一开始就使用multi-executor-server方式，该方式需要建表。  
 步骤如下：
@@ -119,7 +120,7 @@ bin/start-web.sh;
 ```
 ### 访问azkaban  
 浏览器输入 localhost:8199，出现如下界面 
-![](https://raw.githubusercontent.com/shdvgj/shdvgj.github.io/master/2020/04/29/azkaban简单搭建/2.png)  
+![](2.png)  
 用户名密码默认均为azkban，可以在 ../azkaban-3.81.0/azkaban-web-server/build/install/azkaban-web-server/conf/azkaban-users.xml 修改用户和密码  
 
 ## 配置定时任务  
