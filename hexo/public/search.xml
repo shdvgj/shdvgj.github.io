@@ -1,0 +1,1215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>记一次ELK+FileBeats搭建</title>
+    <url>/2019/10/07/ELK_FileBeats/</url>
+    <content><![CDATA[<h2 id="获取ElasticSearch-LogStash-Kibana-FileBeats"><a href="#获取ElasticSearch-LogStash-Kibana-FileBeats" class="headerlink" title="获取ElasticSearch+LogStash+Kibana+FileBeats"></a>获取ElasticSearch+LogStash+Kibana+FileBeats</h2><p>关于elk搭建的全部产品都可以从elastic的官方网站获取最新版本<br><a href="https://www.elastic.co/cn/products/">elastic官网</a></p>
+<p><img src="/2019/10/07/ELK_FileBeats/1.png"><br>如图所示<br>当前elastic官方已经不再推荐单纯使用elk(ElasticSearch+LogStash+Kibana)三个产品搭建日志平台, 而是在此基础上加上了轻量级的日志收集插件FileBeats.  </p>
+<h2 id="安装ElasticSearch"><a href="#安装ElasticSearch" class="headerlink" title="安装ElasticSearch"></a>安装ElasticSearch</h2><p>我们首先获取安装包<br>进入<a href="https://www.elastic.co/cn/downloads/elasticsearch">https://www.elastic.co/cn/downloads/elasticsearch</a>  </p>
+<p><img src="/2019/10/07/ELK_FileBeats/2.png"><br>在Downloads里点击linux就可以下载到用于linux安装的tar包<br>如果是直接在linux安装,使用wget命令即可<br>如 : wget <a href="https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.0-linux-x86_64.tar.gz">https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.0-linux-x86_64.tar.gz</a><br>如果需要更旧的历史版本, 点击下面的past release即可</p>
+<span id="more"></span>
+<p><img src="/2019/10/07/ELK_FileBeats/3.png">  </p>
+<p>在获取到安装包之后, windows环境需要将tar包传送到linux , 使用scp(windows需要预装git)命令即可<br>如: scp C:/Users/Administrator/Downloads/elasticsearch-7.3.1-linux-x86_64.tar.gz <a href="mailto:&#114;&#x6f;&#x6f;&#x74;&#64;&#x31;&#48;&#x30;&#x2e;&#x31;&#x30;&#x30;&#x2e;&#49;&#48;&#48;&#46;&#x31;&#48;&#48;">&#114;&#x6f;&#x6f;&#x74;&#64;&#x31;&#48;&#x30;&#x2e;&#x31;&#x30;&#x30;&#x2e;&#49;&#48;&#48;&#46;&#x31;&#48;&#48;</a>:/home/elk/<br>在linux, 进入到安装包的目录, 使用tar -zxvf命令进行解压<br>如: tar -zxvf elasticsearch-7.3.1-linux-x86_64.tar.gz<br>解压完成后, elasticsearch其实就已经完成了安装  </p>
+<h3 id="启动ElasticSearch"><a href="#启动ElasticSearch" class="headerlink" title="启动ElasticSearch"></a>启动ElasticSearch</h3><p>在启动elasticserach之前需要注意:elasticsearch不可以用root用户启动, 因此, 需要事先在linux建立一个非root用户<br><a href="https://www.cnblogs.com/sunyllove/p/9772053.html">linux如何创建一个管理员用户</a><br>创建完linux用户后, 切换到该用户, 进入到elasticsearch目录, 执行bin/elasticserach即可<br>默认elasticsearch的端口是9200, 打开浏览器, 输入<a href="http://elasticsearch地址:9200/">http://elasticsearch地址:9200/</a>  , 出现如下画面, 说明elasticsearch启动成功</p>
+<p><img src="/2019/10/07/ELK_FileBeats/4.png"></p>
+<h2 id="安装LogStash"><a href="#安装LogStash" class="headerlink" title="安装LogStash"></a>安装LogStash</h2><p>windows环境下载和上传到linux的方法不再赘述, 参照前文<br>linux环境, 参照如下命令即可:<br>1.执行wget <a href="https://artifacts.elastic.co/downloads/logstash/logstash-7.4.0.tar.gz">https://artifacts.elastic.co/downloads/logstash/logstash-7.4.0.tar.gz</a><br>2.进入logstash安装包目录, 执行tar -zxvf logstash-7.4.0.tar.gz  </p>
+<h3 id="配置和启动LogStash"><a href="#配置和启动LogStash" class="headerlink" title="配置和启动LogStash"></a>配置和启动LogStash</h3><p>1.在启动logstash之前, 需要先新建一个logstash的配置文件<br>参照logstash目录下的config/logstash-sample.config文件(如图), 新建一个logstash-elk.config文件  </p>
+<p><img src="/2019/10/07/ELK_FileBeats/5.png"><br>input, 即输入数据的监听端口, 这个一般不需要改.<br>output, 用于将接收到的数据发送到elasitcsearch. 将hosts改成elasticsearch部署的地址, 如果elasticsearch和logstash是同一台机器, 则不需要更改.<br>注意: 如果多个实例中的FileBeats发送过来的数据希望进入同一个elasticsearch实例, 并根据不同的ip地址划分为不同的索引, 按照如下方式配置  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">output &#123;</span><br><span class="line">    if &quot;100.100.100.101&quot; in [host][ip] &#123;</span><br><span class="line">        elasticsearch&#123;</span><br><span class="line">          hosts =&gt; [&quot;localhost:9200&quot;]</span><br><span class="line">          index =&gt; &quot;sample1&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else if &quot;100.100.100.102&quot; in [host][ip] &#123;</span><br><span class="line">        elasticsearch&#123;</span><br><span class="line">          hosts =&gt; [&quot;localhost:9200&quot;]</span><br><span class="line">          index =&gt; &quot;sample2&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      elasticsearch&#123;</span><br><span class="line">        hosts =&gt; [&quot;localhost:9200&quot;]</span><br><span class="line">        index =&gt; &quot;other&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置完成后, 启动logstash, 执行bin/logstash -f config/logstash-elk.conf </p>
+<h2 id="安装Kibana"><a href="#安装Kibana" class="headerlink" title="安装Kibana"></a>安装Kibana</h2><p>linux参照如下命令<br>1.wget <a href="https://artifacts.elastic.co/downloads/kibana/kibana-7.4.0-linux-x86_64.tar.gz">https://artifacts.elastic.co/downloads/kibana/kibana-7.4.0-linux-x86_64.tar.gz</a><br>2.进入kibana安装包目录, 执行tar -zxvf kibana-7.4.0-linux-x86_64.tar.gz  </p>
+<h3 id="配置和启动kibana"><a href="#配置和启动kibana" class="headerlink" title="配置和启动kibana"></a>配置和启动kibana</h3><p>进入config/kibana.yml<br>1.修改server.host为linux机器的实际地址<br>2.修改i18n.locale: “zh-CN” 这样kibana界面会显示为中文<br>3.返回kibana主目录, 执行bin/kibana  (注意:kibana也不能用root用户启动)<br>4.打开浏览器, 输入<a href="http://kibana地址:5601/">http://kibana地址:5601</a>, 出现如下画面  </p>
+<p><img src="/2019/10/07/ELK_FileBeats/6.png"></p>
+<h2 id="安装FileBeats"><a href="#安装FileBeats" class="headerlink" title="安装FileBeats"></a>安装FileBeats</h2><p>注意: <strong>FileBeats需要安装在所有需要发送日志的服务器上</strong><br>linux参照如下命令<br>1.wget <a href="https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.4.0-linux-x86_64.tar.gz">https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.4.0-linux-x86_64.tar.gz</a><br>2.tar -zxvf filebeat-7.4.0-linux-x86_64.tar.gz</p>
+<h3 id="配置和启动FileBeats"><a href="#配置和启动FileBeats" class="headerlink" title="配置和启动FileBeats"></a>配置和启动FileBeats</h3><p>进入filebeats安装目录, vi filebeat.yml<br>1.修改paths下的目录, 输入filebeats所在服务器需要收集的日志地址, 如:  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">paths:</span><br><span class="line">    - /home/sample1/logs/log.*</span><br><span class="line">    - /home/sample2/logs/log.*</span><br></pre></td></tr></table></figure>
+
+<p>2.修改output.logstash下的内容, 将logstash部署的地址输入, 参照如下:  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">output.logstash:</span><br><span class="line">  hosts: [&quot;100.100.100.101:5044&quot;]</span><br><span class="line">  enabled: true</span><br></pre></td></tr></table></figure>
+<p>3.进入filebeats主目录, 执行 ./filebeat -e -c filebeat.yml, 启动成功  </p>
+<h2 id="kibana查看日志内容"><a href="#kibana查看日志内容" class="headerlink" title="kibana查看日志内容"></a>kibana查看日志内容</h2><p>将上述Elk+FileBeats都安装搭建完成后, 浏览器进入到kibana的界面.<br>1.打开管理-索引模式-创建索引模式, 进入如下界面:  </p>
+<p><img src="/2019/10/07/ELK_FileBeats/7.png"><br>2.可以看到有三个索引可以匹配, 在索引模式的输入框内输入自己想要创建的索引, 如other, 然后点击下一步</p>
+<p><img src="/2019/10/07/ELK_FileBeats/8.png"><br>3.选择timestamp, 点击创建索引模式</p>
+<p><img src="/2019/10/07/ELK_FileBeats/9.png"><br>4.创建成功, 点击discover</p>
+<p><img src="/2019/10/07/ELK_FileBeats/10.png"><br>5.可以看到有一个新的索引other可以选择</p>
+<p><img src="/2019/10/07/ELK_FileBeats/11.png"></p>
+<p>6.到此, elk+filebeats的基本搭建工作就已经完成了</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>搭建相关</category>
+      </categories>
+      <tags>
+        <tag>elk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ELK日常维护相关</title>
+    <url>/2019/10/14/ELK%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭"><a href="#配置启动ELK-FileBeats后台运行-不随着窗口关闭而关闭" class="headerlink" title="配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭"></a>配置启动ELK+FileBeats后台运行, 不随着窗口关闭而关闭</h2><p>只要在后面加上&amp;即可, 如  </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bin/logstash -f config/log4j-es.conf &amp;</span><br></pre></td></tr></table></figure>
+<p>注意: 退出时使用Ctrl+D命令, 直接关闭窗口依然有可能使得进程关闭  </p>
+<h2 id="LogStash自动重新加载配置"><a href="#LogStash自动重新加载配置" class="headerlink" title="LogStash自动重新加载配置"></a>LogStash自动重新加载配置</h2><p>启动logstash时在后面加上命令–config.reload.automatic  </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bin/logstash -f config/log4j-es.conf --config.reload.automatic &amp;</span><br></pre></td></tr></table></figure>
+
+<h2 id="重新发送filebeat抓取的内容"><a href="#重新发送filebeat抓取的内容" class="headerlink" title="重新发送filebeat抓取的内容"></a>重新发送filebeat抓取的内容</h2><p>1.删除registry下的data.json<br>如:  </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rm -rf /home/elk/filebeats/filebeat-7.3.1-linux-x86_64/data/registry/filebeat</span><br></pre></td></tr></table></figure>
+<p>2.重启filebeat<br>如果存在正在运行的filebeat, 先kill掉  </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ps aux | grep filebeat  </span><br><span class="line">kill -s 9 pid</span><br></pre></td></tr></table></figure>
+<p>然后执行  </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./filebeat -e -c filebeat.yml</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="设置索引内容30天过期删除"><a href="#设置索引内容30天过期删除" class="headerlink" title="设置索引内容30天过期删除"></a>设置索引内容30天过期删除</h2><p>本来我理解的理论上应该可以用索引的生命周期来实现, 但是半天没整明白, 所以现在<br>是简单粗暴的使用linux的cron任务来实现, 更具体的cron配置详见<a href="https://blog.csdn.net/mengzuchao/article/details/81172305">cron详解</a><br>1.编辑shell脚本, 文件名为removeDataByTime.sh, 内容如下  </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">limit_date=30</span><br><span class="line">for var in `curl &#x27;localhost:9200/_cat/indices&#x27; | awk &#x27;!/kibana*/ &#123;print $3&#125;&#x27;`</span><br><span class="line">do</span><br><span class="line">  curl -H &quot;Content-Type:application/json&quot; -X POST -d &#x27;&#123;&quot;query&quot;: &#123;&quot;range&quot;: &#123;&quot;@timestamp&quot;: &#123;&quot;lt&quot;: &quot;now-&#x27;$&#123;limit_date&#125;&#x27;d/d&quot;&#125;&#125;&#125;&#125;&#x27; &quot;http://localhost:9200/$&#123;var&#125;/_delete_by_query&quot;</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p>2.编辑cron文件, 执行crantab -e, 打开crontab配置文件<br>加上刚才的shell脚本, 设置每天0点15分执行  </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">15 00 * * * /home/elk/removeDataByTime.sh</span><br></pre></td></tr></table></figure>
+<p>设置cron重新启动, 执行/sbin/service crond restart  </p>
+<p>3.查看cron执行情况<br>查看cron任务列表 : crontab -l<br>查看cron执行日志 : grep ‘removeDataByTime’ /var/log/cron  </p>
+<h2 id="设置LogStash不写入指定的内容"><a href="#设置LogStash不写入指定的内容" class="headerlink" title="设置LogStash不写入指定的内容"></a>设置LogStash不写入指定的内容</h2><p>在logstash中写入如下内容即可 ：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">filter &#123;</span><br><span class="line"><span class="meta">	#</span><span class="bash"> 过滤message中的内容 , 注意drop后面有一个空格</span></span><br><span class="line">    if &quot;somethingA&quot; in [message] &#123;</span><br><span class="line">      drop &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    # 过滤tags中的内容</span><br><span class="line">    if &quot;somethingB&quot; in [tags] &#123;</span><br><span class="line">      drop &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="设置索引别名来实现中文索引搜索"><a href="#设置索引别名来实现中文索引搜索" class="headerlink" title="设置索引别名来实现中文索引搜索"></a>设置索引别名来实现中文索引搜索</h2><p>有时候需要在搜索页面使用中文的索引名，但是在ES中不支持直接用中文名来命名索引，原因我认为应该是跟索引的Btree算法有关。</p>
+<p>但是我们可以给索引设置别名来在搜索页面使用中文的索引来搜索。</p>
+<p>可以按照如下方式来设置</p>
+<ul>
+<li>在postman发送如下请求（前提：在ElasticSearch中已经存在datadocking和activity-provider两个索引）：</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">POST: <span class="number">192.168</span><span class="number">.15</span><span class="number">.161</span>:<span class="number">9200</span>/_aliases</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;actions&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;add&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;alias&quot;</span>: <span class="string">&quot;外部对接&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;index&quot;</span>: <span class="string">&quot;datadocking&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;add&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;alias&quot;</span>: <span class="string">&quot;微商城活动&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;index&quot;</span>: <span class="string">&quot;activity-provider&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>进入项目的索引模式</p>
+<p><img src="/2019/10/14/ELK%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E7%9B%B8%E5%85%B3/1.png"></p>
+<p>输入刚刚设置的中文名，就可以直接对应到英文的索引名，然后按照步骤创建索引模式</p>
+<p><img src="/2019/10/14/ELK%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E7%9B%B8%E5%85%B3/2.png"></p>
+<p>在搜索界面就可以使用中文的索引名来搜索</p>
+<p><img src="/2019/10/14/ELK%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E7%9B%B8%E5%85%B3/3.png"></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>搭建相关</category>
+      </categories>
+      <tags>
+        <tag>elk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决maven库中无法引入Oracle_jdbc_driver</title>
+    <url>/2019/11/04/OracleJDBC/</url>
+    <content><![CDATA[<p>1.在maven库中直接引入oracle jdbc driver是不能下载到本地的，原因是oracle的jdbc工具包不是开放给公众下载的，需要用户是oracle的注册用户才能在oracle官网下载到。</p>
+<p>2.解决方式：目前没有发现更简便的方法，只能从oracle官网上下载jdbc driver的包，然后从本地upload到本地仓库。</p>
+<ul>
+<li><p>进入JDBC<a href="https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html">下载网站</a>，选择自己需要的JDBC driver版本，点击进入。<br><img src="/2019/11/04/OracleJDBC/1.png"></p>
+</li>
+<li><p>下载需要的JDBC driver的jar包</p>
+</li>
+</ul>
+<p><img src="/2019/11/04/OracleJDBC/2.png"></p>
+<ul>
+<li><p>如果还没有登陆oracle账号，需要你登陆以后才能下载，没有注册过的注册一个账号，这里不再赘述。</p>
+</li>
+<li><p>下载完成后，进入下载完成的文件夹。在这里需要手动执行命令，在该文件夹打开git窗口，如何在windows安装git请自行百度。执行如下命令。</p>
+<span id="more"></span>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mvn deploy:deploy-file -Dmaven.test.skip=<span class="literal">true</span> -Dfile=ojdbc6.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.0.0.7 -Dpackaging=jar -DrepositoryId=localmaven -Durl=http://localhost/nexus/content/repositories/releases</span><br></pre></td></tr></table></figure>
+
+<p>各个参数含义如下：</p>
+<p>-Dmaven.test.skip ：是否跳过jar包检测。这种官方的包，我们不需要对其进行测试，设置为true即可。</p>
+<p>-Dfile：需要上传的jar包名。建议直接在jar包所在目录执行上述命令，可以避免再输入jar包的地址。</p>
+<p>-DgroupId，-DartifactId，-Dversion：jar包在本地maven库中的地址。理论上这三个值都是自己定义的，只要自己能够区分出来即可。建议地址不要和官方的maven地址完全一致，改一个版本号，或者artifactId都行，这样可以避免自动从官方maven库下载jar包，导致还是不能引入。</p>
+<p>-Dpackaging：打包方式。一般选择下载的是jar包，这里也写jar就行。</p>
+<p>-DrepositoryId：部署的仓库ID。这个ID配置在maven的setings.xml中，参考如下：</p>
+</li>
+</ul>
+<p><img src="/2019/11/04/OracleJDBC/3.png"></p>
+<p>  自行写入本地仓库的用户名和密码。</p>
+<p>  -Durl：部署的本地仓库的地址。</p>
+<ul>
+<li>执行完成后，显示如下页面，就表示上传成功。</li>
+</ul>
+<p><img src="/2019/11/04/OracleJDBC/4.png"></p>
+<ul>
+<li><p>在项目的pom.xml文件下需要做如下配置即可：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--增加本地仓库地址--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>java.net2<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://localhost/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--引入oracle包--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--oracle--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.oracle<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ojdbc6<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>11.0.0.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>搭建相关</category>
+      </categories>
+      <tags>
+        <tag>solved</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python数据爬虫实践-爬取历年东西部周最佳对比</title>
+    <url>/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/</url>
+    <content><![CDATA[<h2 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h2><p>历年周最佳的数据来自于NBA数据官网，链接为 <a href="http://www.stat-nba.com/award/item18.html">http://www.stat-nba.com/award/item18.html</a></p>
+<p><img src="/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/1.png"></p>
+<p>这里可以看到每个赛季的周最佳球员。然后每个球员旁边有个数据的链接，表示的就是这名球员当周的平均数据。比如11月11日-11月17日的东部周最佳是武切维奇，其数据链接为<a href="http://www.stat-nba.com/player/3672.html">http://www.stat-nba.com/player/3672.html</a></p>
+<p><img src="/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/2.png"></p>
+<h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><h3 id="爬取周最佳球员"><a href="#爬取周最佳球员" class="headerlink" title="爬取周最佳球员"></a>爬取周最佳球员</h3><p>首先看周最佳的页面，链接是<a href="http://www.stat-nba.com/award/item18.html%EF%BC%8C%E9%80%89%E4%B8%AD%E6%AD%A6%E5%88%87%E7%BB%B4%E5%A5%87%E7%9A%84%E5%90%8D%E5%AD%97%EF%BC%8C%E5%8F%B3%E9%94%AE%E6%89%93%E5%BC%80%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%EF%BC%8C%E9%80%89%E6%8B%A9%E2%80%9C%E6%9F%A5%E7%9C%8B%E9%A1%B5%E9%9D%A2%E5%85%83%E7%B4%A0%E2%80%9D%E3%80%82%E5%87%BA%E7%8E%B0%E5%A6%82%E4%B8%8B%E9%A1%B5%E9%9D%A2%EF%BC%9A">http://www.stat-nba.com/award/item18.html，选中武切维奇的名字，右键打开右键菜单，选择“查看页面元素”。出现如下页面：</a></p>
+<p><img src="/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/3.png"></p>
+<p>注意，我们需要获取到的是<strong>所有的周最佳数据</strong>，而不是某个人的，因此我们需要找到这个页面元素的父元素，因此才能找到这个父元素下面的所有子元素-即所有的周最佳数据。</p>
+<p><img src="/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/4.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">如图所示，周最佳数据的节点来自于&lt;td class=&#x27;current&#x27;&gt; -&gt; &lt;table class=&#x27;stat-box&#x27;  style=&#x27;width:170px;border:0&#x27;&gt;  -&gt; &lt;td&gt;</span><br><span class="line"></span><br><span class="line">根据网页上下文的查看，可以知道&quot;&lt;td class=&quot;current&quot;&gt;是赛季的节点，&lt;table class=&quot;stat-box&quot; style=&quot;width:170px;border:0&quot;&gt;是每个赛季下每周的节点，而&lt;td&gt;就是每周下面每个球员的节点。</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>因此我们根据节点的继承关系，可以写出如下的基本的爬虫逻辑。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span> urlopen</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取周最佳页面</span></span><br><span class="line">html = urlopen(<span class="string">&quot;http://www.stat-nba.com/award/item18.html&quot;</span>).read().decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># 格式化为lxml</span></span><br><span class="line">soup = BeautifulSoup(html, features=<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line"><span class="comment"># 查找&lt;td class=&quot;current&quot;&gt; 获取各个赛季</span></span><br><span class="line">outResult = soup.find_all(<span class="string">&quot;td&quot;</span>, &#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;current&quot;</span>&#125;)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(outResult)):</span><br><span class="line">    single = outResult[i]</span><br><span class="line">    <span class="comment"># 获取每赛季数据 </span></span><br><span class="line">    data = single.parent.find_all(<span class="string">&quot;table&quot;</span>, &#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;stat_box&quot;</span>, <span class="string">&quot;style&quot;</span>: <span class="string">&quot;width:170px;border:0&quot;</span>&#125;)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)):</span><br><span class="line">        singleData = data[j]</span><br><span class="line">        <span class="comment"># 获取周</span></span><br><span class="line">        week = singleData.find(<span class="string">&quot;th&quot;</span>)</span><br><span class="line">        tdList = singleData.find_all(<span class="string">&quot;td&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(tdList)):</span><br><span class="line">            singleTd = tdList[k]</span><br><span class="line">            <span class="built_in">print</span>(week.text, singleTd.text)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>输出结果如下：</p>
+<p><img src="/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/5.png"></p>
+<h3 id="爬取周最佳数据"><a href="#爬取周最佳数据" class="headerlink" title="爬取周最佳数据"></a>爬取周最佳数据</h3><p>接下来我们爬取每个球员的周最佳数据，点击球员旁边的“数据”按钮，会跳转到周数据页面。</p>
+<p><img src="/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/6.png"></p>
+<p><img src="/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/7.png"></p>
+<p>根据看到数据页面是在球员td标签下的第二个a标签下</p>
+<p><img src="/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/8.png"></p>
+<p>根据a标签的结构使用如下代码来获取球员数据的链接：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tdData = singleTd.find_all(<span class="string">&quot;a&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(tdData) &gt; <span class="number">1</span>:</span><br><span class="line">    <span class="comment"># 爬取最佳周数据</span></span><br><span class="line">    playerUrl = tdData[<span class="number">1</span>].attrs[<span class="string">&#x27;href&#x27;</span>].replace(<span class="string">&quot;..&quot;</span>, <span class="string">&quot;http://www.stat-nba.com&quot;</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>获取到链接之后，按照前文所述来爬取球员的详细数据：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 爬取最佳周数据</span></span><br><span class="line">playerUrl = tdData[<span class="number">1</span>].attrs[<span class="string">&#x27;href&#x27;</span>].replace(<span class="string">&quot;..&quot;</span>, <span class="string">&quot;http://www.stat-nba.com&quot;</span>, <span class="number">1</span>)</span><br><span class="line">playerHtml = urlopen(playerUrl).read().decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">playerSoup = BeautifulSoup(playerHtml, features=<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">playerTable = playerSoup.find(<span class="string">&quot;table&quot;</span>, &#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;stat_box&quot;</span>&#125;)</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">hasattr</span>(playerTable, <span class="string">&#x27;find_all&#x27;</span>):</span><br><span class="line">    playerStatList = playerTable.find_all(<span class="string">&quot;td&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">hasattr</span>(playerTable, <span class="string">&#x27;find_all&#x27;</span>):</span><br><span class="line">        <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(playerStatList)):</span><br><span class="line">            playerStat = playerStatList[m]</span><br><span class="line">            <span class="comment"># 打印数据</span></span><br><span class="line">            <span class="built_in">print</span>(playerStat.text)</span><br></pre></td></tr></table></figure>
+
+<h3 id="输出数据到Excel"><a href="#输出数据到Excel" class="headerlink" title="输出数据到Excel"></a>输出数据到Excel</h3><p>将前文进行整合，并将数据输出到Excel，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span> urlopen</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> xlwt <span class="keyword">as</span> xlwt</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义单元格格式</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_style</span>(<span class="params">name=<span class="string">&#x27;Times New Roman&#x27;</span>, height=<span class="number">220</span>, bold=<span class="literal">False</span></span>):</span></span><br><span class="line">    style = xlwt.XFStyle()</span><br><span class="line">    font = xlwt.Font()</span><br><span class="line">    font.name = name</span><br><span class="line">    font.bold = bold</span><br><span class="line">    font.color_index = <span class="number">4</span></span><br><span class="line">    font.height = height</span><br><span class="line">    style.font = font</span><br><span class="line">    <span class="keyword">return</span> style</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">html = urlopen(<span class="string">&quot;http://www.stat-nba.com/award/item18.html&quot;</span>).read().decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">soup = BeautifulSoup(html, features=<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">outResult = soup.find_all(<span class="string">&quot;td&quot;</span>, &#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;current&quot;</span>&#125;)</span><br><span class="line"><span class="comment"># 创建excel</span></span><br><span class="line">f = xlwt.Workbook()</span><br><span class="line">sheet1 = f.add_sheet(<span class="string">&#x27;周最佳数据&#x27;</span>, cell_overwrite_ok=<span class="literal">True</span>)</span><br><span class="line">num = <span class="number">0</span></span><br><span class="line">style = set_style()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(outResult)):</span><br><span class="line">    single = outResult[i]</span><br><span class="line">    <span class="comment"># 2000年以前数据不再显示</span></span><br><span class="line">    <span class="keyword">if</span> single.text.startswith(<span class="string">&quot;19&quot;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="comment"># 获取每赛季数据</span></span><br><span class="line">    data = single.parent.find_all(<span class="string">&quot;table&quot;</span>, &#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;stat_box&quot;</span>, <span class="string">&quot;style&quot;</span>: <span class="string">&quot;width:170px;border:0&quot;</span>&#125;)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)):</span><br><span class="line">        singleData = data[j]</span><br><span class="line">        <span class="comment"># 打印周</span></span><br><span class="line">        week = singleData.find(<span class="string">&quot;th&quot;</span>)</span><br><span class="line">        tdList = singleData.find_all(<span class="string">&quot;td&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(tdList)):</span><br><span class="line">            singleTd = tdList[k]</span><br><span class="line">            <span class="comment"># 暂停随机时间，以避免被反爬虫</span></span><br><span class="line">            sleeptime = random.randint(<span class="number">0</span>, <span class="number">1000</span>)</span><br><span class="line">            time.sleep(sleeptime / <span class="number">1000</span>)</span><br><span class="line">            tdData = singleTd.find_all(<span class="string">&quot;a&quot;</span>)</span><br><span class="line">            <span class="comment"># 获取球员名</span></span><br><span class="line">            playerName = tdData[<span class="number">0</span>].text</span><br><span class="line">            <span class="built_in">print</span>(single.text, week.text, playerName)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(tdData) &gt; <span class="number">1</span>:</span><br><span class="line">                <span class="comment"># 爬取最佳周数据</span></span><br><span class="line">                playerUrl = tdData[<span class="number">1</span>].attrs[<span class="string">&#x27;href&#x27;</span>].replace(<span class="string">&quot;..&quot;</span>, <span class="string">&quot;http://www.stat-nba.com&quot;</span>, <span class="number">1</span>)</span><br><span class="line">                playerHtml = urlopen(playerUrl).read().decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">                playerSoup = BeautifulSoup(playerHtml, features=<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">                playerTable = playerSoup.find(<span class="string">&quot;table&quot;</span>, &#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;stat_box&quot;</span>&#125;)</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">hasattr</span>(playerTable, <span class="string">&#x27;find_all&#x27;</span>):</span><br><span class="line">                    playerStatList = playerTable.find_all(<span class="string">&quot;td&quot;</span>)</span><br><span class="line">                sheet1.write(num, <span class="number">0</span>, single.text, style)</span><br><span class="line">                sheet1.write(num, <span class="number">1</span>, week.text, style)</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">hasattr</span>(playerTable, <span class="string">&#x27;find_all&#x27;</span>):</span><br><span class="line">                    <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(playerStatList)):</span><br><span class="line">                        playerStat = playerStatList[m]</span><br><span class="line">                        <span class="comment"># 打印赛季</span></span><br><span class="line">                        sheet1.write(num, <span class="number">1</span> + m, playerStat.text, style)</span><br><span class="line">                num = num + <span class="number">1</span></span><br><span class="line">f.save(<span class="string">&#x27;nbastat-week.xls&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>输出的结果如下：</p>
+<p><img src="/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/9.png"></p>
+<h2 id="分析数据"><a href="#分析数据" class="headerlink" title="分析数据"></a>分析数据</h2><p>分析过程我就懒得再写一遍了，之前已经将分析结果发布到虎扑，链接是<a href="https://bbs.hupu.com/30738461.html">https://bbs.hupu.com/30738461.html</a></p>
+<p><img src="/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/10.png"></p>
+<p><img src="/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/11.png"></p>
+]]></content>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>azkaban简单搭建</title>
+    <url>/2020/04/29/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<p>前言：<br>azkaban的用处和好处不再赘述，这里只讲怎么将azkaban在项目中使用起来。<br>另外非常推荐直接看<a href="https://azkaban.readthedocs.io/en/latest/">官方的英文文档</a>进行学习，那将是最新最可靠的教程。</p>
+<h2 id="下载和安装azkaban"><a href="#下载和安装azkaban" class="headerlink" title="下载和安装azkaban"></a>下载和安装azkaban</h2><h3 id="下载azkaban"><a href="#下载azkaban" class="headerlink" title="下载azkaban"></a>下载azkaban</h3><p>方法1：直接到azkaban的github网页下载tar.gz包。截止2020.4.29日最新版本的包地址为(<a href="https://github.com/azkaban/azkaban/archive/3.84.10.tar.gz">https://github.com/azkaban/azkaban/archive/3.84.10.tar.gz</a>)<br>方法2：在linux执行   </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget https://github.com/azkaban/azkaban/archive/3.84.10.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="安装azkaban"><a href="#安装azkaban" class="headerlink" title="安装azkaban"></a>安装azkaban</h3><p>将包进行解压，执行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -zxvf azkaban-3.81.10.tar.gz</span><br></pre></td></tr></table></figure>
+<p>解压完成后目录结构如下图  </p>
+<span id="more"></span>
+<p><img src="/2020/04/29/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/1.png"><br>如果使用solo-server方式的话，不需要建表，下面的步骤也都可以不用看，直接跳转看<a href="https://azkaban.readthedocs.io/en/latest/getStarted.html#getting-started-with-the-solo-server">solo-server</a><br>但是个人理解solo-server只适用于小型简单的项目，如果考虑项目以后的扩充和发展的话，建议一开始就使用multi-executor-server方式，该方式需要建表。<br>步骤如下：</p>
+<h3 id="新增azkaban相关表"><a href="#新增azkaban相关表" class="headerlink" title="新增azkaban相关表"></a>新增azkaban相关表</h3><p>复制如下文件内的sql语句，在事先建好的数据库内执行  </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi azkaban-3.81.10/azkaban-db/build/sql/create-all-sql-0.1.0-SNAPSHOT.sql</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>可能有的坑：<br>早期版本的mysql可能不支持长度过长的字段设为索引和主键，遇到这种报错时，需要将对应的字段改短再执行。过长的字段比如 execution_logs.name，sql给设置的长度是varchar(640)，在我的mysql数据库中执行会报错，我改成了varchar(200)，这个字段的含义是任务名，一般来说你正常命名的话完全用不到640个字段的长度，所以可以放心修改。  </p>
+<h3 id="编译azkaban"><a href="#编译azkaban" class="headerlink" title="编译azkaban"></a>编译azkaban</h3><p>在azkaban目录下执行  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./gradlew build installDist</span><br></pre></td></tr></table></figure>
+<p>可能有的坑:</p>
+</li>
+<li><p>部分依赖包可能无法下载，修改build.gradle，将repositories指向国内阿里云地址，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">  repositories &#123;</span><br><span class="line">        maven &#123;</span><br><span class="line">            url &#x27;http://maven.aliyun.com/nexus/content/groups/public/&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">        maven &#123;</span><br><span class="line">            url &#x27;http://maven.aliyun.com/repository/google&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">        maven &#123;</span><br><span class="line">            url &#x27;http://maven.aliyun.com/repository/jcenter&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  dependencies &#123;</span><br><span class="line">    classpath &#x27;com.cinnober.gradle:semver-git:2.2.3&#x27;</span><br><span class="line">    classpath &#x27;net.ltgt.gradle:gradle-errorprone-plugin:0.0.14&#x27;</span><br><span class="line">    classpath  &#x27;com.github.jengelman.gradle.plugins:shadow:4.0.0&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>如果出现编译报错的情况，可以尝试将编译期间的test过程注释掉，或者进入azkaban-executor-server和azkban-web-server目录下单独编译这两个包。  </p>
+</li>
+</ul>
+<h3 id="启动azkban-executor-server"><a href="#启动azkban-executor-server" class="headerlink" title="启动azkban-executor-server"></a>启动azkban-executor-server</h3><ul>
+<li><p>修改配置文件 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi ../azkaban-3.81.0/azkaban-exec-server/build/install/azkaban-exec-server/conf/azkaban.properties</span><br></pre></td></tr></table></figure>
+<p>需要修改的内容如下  </p>
+<blockquote>
+<p>default.timezone.id=Asia/Shanghai # 修改为中国时区<br>azkaban.webserver.url=localhost:8199 # 指向本地的azkaban-web-server地址<br>#数据库配置，指向azkban建表的数据库，根据实际的数据库配置来<br>database.type=mysql<br>mysql.port=3306<br>mysql.host=110.110.110.110<br>mysql.database=azkaban<br>mysql.user=azkaban<br>mysql.password=azkaban  </p>
+</blockquote>
+</li>
+<li><p>启动azkaban-executor-server  </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ../azkaban-3.81.0/azkaban-exec-server/build/install/azkaban-exec-server;</span><br><span class="line">bin/start-exec.sh; # 注意一定要按照这个语句执行,不要在bin目录下执行./start-exe.sh，否则某些资源文件会加载不到，导致报错</span><br></pre></td></tr></table></figure></li>
+<li><p> 激活executor</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 指向executor地址和端口</span><br><span class="line">curl localhost:port/executor?action=activate</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="启动azkaban-web-server"><a href="#启动azkaban-web-server" class="headerlink" title="启动azkaban-web-server"></a>启动azkaban-web-server</h3><ul>
+<li><p>修改配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi ../azkaban-3.81.0/azkaban-web-server/build/install/azkaban-exec-server/conf/azkaban.properties</span><br></pre></td></tr></table></figure>
+<p>需要修改的内容如下  </p>
+<blockquote>
+<p>default.timezone.id=Asia/Shanghai # 修改为中国时区<br>#邮件配置<br>mail.sender=<a href="mailto:&#x38;&#x38;&#x38;&#x38;&#x38;&#56;&#x40;&#113;&#x71;&#46;&#99;&#111;&#109;">&#x38;&#x38;&#x38;&#x38;&#x38;&#56;&#x40;&#113;&#x71;&#46;&#99;&#111;&#109;</a> # 发送邮件的邮箱<br>mail.host=smtp.qq.com  # 邮件服务器<br>mail.user=<a href="mailto:&#56;&#x38;&#x38;&#x38;&#56;&#x38;&#x40;&#113;&#x71;&#46;&#99;&#111;&#109;">&#56;&#x38;&#x38;&#x38;&#56;&#x38;&#x40;&#113;&#x71;&#46;&#99;&#111;&#109;</a> # 邮件用户<br>mail.password=abc123456 #密码需要取qq邮箱中获取到的授权码<br>job.failure.email=<a href="mailto:&#56;&#x38;&#x38;&#56;&#56;&#56;&#56;&#64;&#x71;&#113;&#x2e;&#x63;&#111;&#109;">&#56;&#x38;&#x38;&#56;&#56;&#56;&#56;&#64;&#x71;&#113;&#x2e;&#x63;&#111;&#109;</a> # 定时任务执行失败发送邮件的邮箱<br>#数据库配置，指向azkban建表的数据库，根据实际的数据库配置来<br>database.type=mysql<br>mysql.port=3306<br>mysql.host=110.110.110.110<br>mysql.database=azkaban<br>mysql.user=azkaban<br>mysql.password=azkaban</p>
+</blockquote>
+</li>
+<li><p>启动azkaban-web-server  </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ../azkaban-3.81.0/azkaban-web-server/build/install/azkaban-web-server;</span><br><span class="line">bin/start-web.sh;</span><br></pre></td></tr></table></figure>
+<h3 id="访问azkaban"><a href="#访问azkaban" class="headerlink" title="访问azkaban"></a>访问azkaban</h3><p>浏览器输入 localhost:8199，出现如下界面<br><img src="/2020/04/29/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/2.png"><br>用户名密码默认均为azkban，可以在 ../azkaban-3.81.0/azkaban-web-server/build/install/azkaban-web-server/conf/azkaban-users.xml 修改用户和密码  </p>
+</li>
+</ul>
+<h2 id="配置定时任务"><a href="#配置定时任务" class="headerlink" title="配置定时任务"></a>配置定时任务</h2>]]></content>
+      <categories>
+        <category>学习</category>
+        <category>搭建相关</category>
+      </categories>
+      <tags>
+        <tag>azkaban</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo使用技巧</title>
+    <url>/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>1.进入<a href="https://hexo.io/themes/">https://hexo.io/themes/</a> 可以选择多种主题<br><img src="/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/1.png"><br>点击图片进去可以看到这种主题的预览效果<br>点击文字进去将进入这个主题的github站点, 里面会详细说明该主题的安装和配置方式  </p>
+<p>2.目前最流行的hexo主题应该是NexT, 我这次选的是3-hexo作为例子来讲解一下, 这个也是一个优秀的国产hexo主题<br>其最终效果如图<br><img src="/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/2.png">   </p>
+<p>3.关于3-hexo的安装和设置方法, 都可以直接参照<a href="https://github.com/yelog/hexo-theme-3-hexo">该主题的github主页</a><br>简单介绍一下:  </p>
+<ul>
+<li>获取3-hexo: git clone <a href="https://github.com/yelog/hexo-theme-3-hexo.git">https://github.com/yelog/hexo-theme-3-hexo.git</a> themes/3-hexo  </li>
+<li>将3-hexo的主题文件夹复制到hexo的themes目录下  </li>
+<li>修改3-hexo目录下的_config.yml文件, 修改方式在_config.yml中已经有详细的注释, 按照注释修改即可  </li>
+<li>hexo主目录下打开git窗口, 依次输入如下命令<br>hexo clean (清除静态页面缓存文件, 防止出现缓存影响页面样式的情况)<br>hexo g (生成静态页面)<br>hexo s (启动本地hexo服务器, 可以打开localhost:4000查看页面效果)<br>hexo d (发布到github)  <span id="more"></span></li>
+</ul>
+<h2 id="设置分类和标签"><a href="#设置分类和标签" class="headerlink" title="设置分类和标签"></a>设置分类和标签</h2><p>1.每一个由hexo生成的md文件, 其内容开头都是由两个”—“组成的, hexo把这部分称为<a href="https://hexo.io/zh-cn/docs/front-matter">Front-Matter</a>, 如图:<br><img src="/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/3.png">  </p>
+<p>2.在Front-Matter的区域内可以设置关于文章的诸多信息, 包括标题, 创建时间, 标签, 目录, 是否开启评论等  </p>
+<p>3.标签的参数名称为tags, 目录的参数名称为categories, 设置单个标签和目录的格式如下:  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tags: hexo</span><br><span class="line">categories: hexo</span><br></pre></td></tr></table></figure>
+<p>设置多个标签和多级目录的格式如下:  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tags: </span><br><span class="line">- hexo</span><br><span class="line">- blog</span><br><span class="line">categories: </span><br><span class="line">- 学习</span><br><span class="line">- 搭建相关</span><br></pre></td></tr></table></figure>
+<p><strong>注意:目录的先后顺序决定了其父子级关系, 如上面的例子中, “学习”目录是”搭建相关”目录的父目录. 在3-hexo主题中的效果如下:</strong><br><img src="/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/4.png"></p>
+<h3 id="以下是我的hexo更新之后需要额外操作的步骤"><a href="#以下是我的hexo更新之后需要额外操作的步骤" class="headerlink" title="以下是我的hexo更新之后需要额外操作的步骤"></a>以下是我的hexo更新之后需要额外操作的步骤</h3><p>4.使用命令创建tags和categories目录<br> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure><br>这样会在source目录下生成tags和categories目录，并在该目录下生成index.md文件<br>5.在tags目录下index.md文件内增加一行 <strong>type: tags</strong>，如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: tags</span><br><span class="line">date: 2021-11-23 08:46:12</span><br><span class="line">type: tags</span><br></pre></td></tr></table></figure>
+<p>在categories.md文件内增加一行 <strong>type: categories</strong>，如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: categories</span><br><span class="line">date: 2021-11-23 08:46:12</span><br><span class="line">type: categories</span><br></pre></td></tr></table></figure>
+<p>6.重新执行hexo g即生成目录和标签</p>
+<h2 id="MarkDown开发工具"><a href="#MarkDown开发工具" class="headerlink" title="MarkDown开发工具"></a>MarkDown开发工具</h2><p>我本人不太喜欢为markdown开发再安装一个软件, 所以以下都是针对程序员电脑上通常已有的软件上安装插件, 当然如果没有这些软件, 那推荐直接安装<a href="https://typora.io/">typora</a>  </p>
+<p>1.Notepad++插件MarkdownViewer++<br>如果已经安装了Notepad++, 可以直接下载<a href="https://github.com/nea/MarkdownViewerPlusPlus/releases">MarkdownViewer++</a>插件<br>下载完成后, 直接将dll文件放入Notepad++主目录下的plugin文件夹下, 然后重新启动Notepad++即可, 在Notepad++的工具栏会出现一个”m”图标:<br><img src="/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/5.png"><br>点击即可实时查看页面效果<br>优点: 插件轻量级, 1MB不到, 占用系统的内存消耗极小<br>缺点: 功能非常有限, 只能实时查看效果, 不能对markdown语法高亮  </p>
+<p>2.Idea插件MarkDown Navigator<br>其实Idea自带了一个MarkDown的插件, 但是这个插件不太好用, 所以这里不再介绍了<br>打开Idea, 打开File-Settings-Plugins-Browse Repositories, 查找MarkDown Navigator, 点击Install, 重新启动Idea即可<br>效果如图:<br><img src="/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/6.png"><br>优点: 支持MarkDown语法高亮, 支持语法快捷键, 且在Idea内开发, 对于程序员来说比较习惯<br>缺点: 毕竟需要Idea来开发, 对于仅仅只要写博客的人来说, 显得有点笨重  </p>
+<p>3.MarkDown在线编辑器<br>在线编辑的好处不言自明, 不用安装任何软件和插件, 只要有浏览器就行<br>推荐<a href="https://www.mdeditor.com/">https://www.mdeditor.com/</a> </p>
+<h2 id="为博客设置密码"><a href="#为博客设置密码" class="headerlink" title="为博客设置密码"></a>为博客设置密码</h2><p>1.安装插件: 在hexo主目录下执行npm install –save hexo-blog-encrypt<br>2.在需要设置密码的博客的Front-Matter里面加一个参数<br>password:*****  </p>
+<h2 id="如何上传图片"><a href="#如何上传图片" class="headerlink" title="如何上传图片"></a>如何上传图片</h2><p>1.在github存储图片并在博客内关联图片链接<br>这种方式比较推荐, 因为别的博客网站通常都会有防止外部访问的措施在, 存储<br>在github上的图片不会有外部无法访问的情况. 对于各个版本的hexo都能适用.</p>
+<ul>
+<li>打开hexo主目录下的_config.yml文件, 修改参数post_asset_folder为true</li>
+<li>使用hexo n “博客标题” 新建博客时将会同时新建一个同名的资源文件夹, 如图<br><img src="/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/7.png">  </li>
+<li>将博客内用到的图片放置到资源文件夹内, 可以按顺序号命名, 如图<br><img src="/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/8.png"></li>
+<li>在博客内链接该图片, 格式为 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![](https://raw.githubusercontent.com/#username/#username.github.io/master/#YYYY/#MM/#DD/#title/#photoname)  </span><br><span class="line">#username : github用户名</span><br><span class="line">#YYYY/#MM/#DD : 如果没有修改_config.yml里的默认文件夹创建方式的话, 就是填入年月日即可, 如2019/10/14  </span><br><span class="line">#title : 文章标题  </span><br><span class="line">#photoname : 图片名称  </span><br></pre></td></tr></table></figure>
+比如我这篇博客的图片链接地址如下图<br><img src="/2019/10/08/hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/9.png">  </li>
+<li>链接完图片后目前在博客的预览界面还无法看到图片, 需要先执行<br>hexo clean (非必要步骤, 如果博客页面格式显示不正确, 需要执行)<br>hexo g (创建博客静态网页文件)<br>hexo d (这一步用于发布博客, 也同时发布图片)<br>hexo d的命令将会把图片发布到github服务器上, 也就可以在上述格式的图片地址里看到该图片  </li>
+</ul>
+<p>2.直接链接本地地址, 这种方式也很方便, 网上也有挺多人使用这种方式, 主要优点<br>是不用多操作一步链接网络地址, 我贴一下该方式:</p>
+<ol>
+<li>打开hexo主目录下的_config.yml文件, 修改参数post_asset_folder为true</li>
+<li>安装图片插件 npm install hexo-asset-image –save<br>或者安装  npm install hexo-renderer-marked -s</li>
+<li>在博客内直接引用本地地址即可, 如  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![](/1.png)</span><br></pre></td></tr></table></figure>
+<h2 id="设置首页文章摘要"><a href="#设置首页文章摘要" class="headerlink" title="设置首页文章摘要"></a>设置首页文章摘要</h2>有三种方法，推荐使用第一种，更加灵活的根据文章进行不同长度的摘要截断，而且对于不同的插件也有最好的适应性</li>
+<li>在文章中使用 <!-- more --> 手动进行截断，Hexo 提供的方式</li>
+<li>在文章的 front-matter 中添加 description，并提供文章摘录 </li>
+<li>自动形成摘要，在 主题配置文件 中添加<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">auto_excerpt</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">enable</span>: <span class="string">true</span></span><br><span class="line">  <span class="attr">length</span>: <span class="string">150</span></span><br></pre></td></tr></table></figure>
+默认截取的长度为 150 字符，可以根据需要自行设定</li>
+</ol>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>搭建相关</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jenkins简单搭建</title>
+    <url>/2020/05/14/jenkins%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<h2 id="下载和安装jenkins"><a href="#下载和安装jenkins" class="headerlink" title="下载和安装jenkins"></a>下载和安装jenkins</h2><p>相对简单的办法，依次执行以下语句(前提，需要先安装rpm) </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">获取jenkins的rpm安装文件</span></span><br><span class="line">wget https://pkg.jenkins.io/redhat-stable/jenkins-2.222.3-1.1.noarch.rpm</span><br><span class="line"><span class="meta">#</span><span class="bash">使用rpm安装</span></span><br><span class="line">rpm -ivh jenkins-2.222.3-1.1.noarch.rpm </span><br></pre></td></tr></table></figure>
+
+<h2 id="启动jenkins"><a href="#启动jenkins" class="headerlink" title="启动jenkins"></a>启动jenkins</h2><p>jenkins启动需要先安装java，java的安装不再赘述，java安装完成后，修改jenkins配置文件，指向java的安装目录 </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/init.d/jenkins</span><br></pre></td></tr></table></figure>
+<p>在”candidates=”这一行加入java安装目录，如果默认配置里面已经指向了你的java安装目录，则不需要再次配置。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">candidates=&quot;</span><br><span class="line">/etc/alternatives/java</span><br><span class="line">/usr/lib/jvm/java-1.8.0/bin/java</span><br><span class="line">/usr/lib/jvm/jre-1.8.0/bin/java</span><br><span class="line">/usr/lib/jvm/java-1.7.0/bin/java</span><br><span class="line">/usr/lib/jvm/jre-1.7.0/bin/java</span><br><span class="line">/usr/lib/jvm/java-11.0/bin/java</span><br><span class="line">/usr/lib/jvm/jre-11.0/bin/java</span><br><span class="line">/usr/lib/jvm/java-11-openjdk-amd64</span><br><span class="line">/usr/bin/java</span><br><span class="line">/usr/java/jdk1.8.0_121/jre/bin/java</span><br><span class="line">&quot;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>修改jenkins端口 </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/sysconfig/jenkins</span><br><span class="line"><span class="meta">#</span><span class="bash"> JENKINS_PORT=<span class="string">&quot;8999&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>配置完成后，执行：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service jenkins start</span><br></pre></td></tr></table></figure>
+<p>执行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service jenkins status</span><br></pre></td></tr></table></figure>
+<p>出现以下截图说明成功启动<br><img src="/2020/05/14/jenkins%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/1.png">  </p>
+<h2 id="配置jenkins"><a href="#配置jenkins" class="headerlink" title="配置jenkins"></a>配置jenkins</h2><p>访问 <a href="http://localhost:8999/">http://localhost:8999/</a> 即可看到jenkins的启动页面，稍等一会儿，看到如下页面：<br><img src="/2020/05/14/jenkins%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/2.png"><br>接下来按照页面指引一步步安装即可。</p>
+<ul>
+<li>需要注意的点：插件按照推荐插件安装后，可能会有个别插件无法完成安装，这时不要选择重试，直接跳过，在Manage Jenkins - Mange Plugins - 高级，修改URL为 <a href="http://mirror.esuni.jp/jenkins/updates/update-center.json">http://mirror.esuni.jp/jenkins/updates/update-center.json</a> ，然后再更新插件即可。  </li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>搭建相关</category>
+      </categories>
+      <tags>
+        <tag>jenkins</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux日常维护命令</title>
+    <url>/2019/10/16/linux%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><h3 id="删除测试库创建日期在10天以前的日志"><a href="#删除测试库创建日期在10天以前的日志" class="headerlink" title="删除测试库创建日期在10天以前的日志"></a>删除测试库创建日期在10天以前的日志</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">find /home -ctime +10 -type f -name &quot;*log.log.20*&quot; | xargs rm -rf</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看磁盘空间和大文件"><a href="#查看磁盘空间和大文件" class="headerlink" title="查看磁盘空间和大文件"></a>查看磁盘空间和大文件</h2><h3 id="查看磁盘剩余空间"><a href="#查看磁盘剩余空间" class="headerlink" title="查看磁盘剩余空间"></a>查看磁盘剩余空间</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看目录下大文件"><a href="#查看目录下大文件" class="headerlink" title="查看目录下大文件"></a>查看目录下大文件</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">du -h --max-depth=1</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看进程中的java程序"><a href="#查看进程中的java程序" class="headerlink" title="查看进程中的java程序"></a>查看进程中的java程序</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ps aux | grep java</span><br><span class="line"><span class="meta">#</span><span class="bash"> 杀死某个进程</span></span><br><span class="line">kill -9 pid</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改hostname"><a href="#修改hostname" class="headerlink" title="修改hostname"></a>修改hostname</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/sysconfig/network</span><br></pre></td></tr></table></figure>
+
+<h2 id="传输文件"><a href="#传输文件" class="headerlink" title="传输文件"></a>传输文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp C:/Users/Administrator/Downloads/elasticsearch-7.3.1-linux-x86_64.tar.gz root@192.168.15.161:/home/bos-provider/bos-provider-1.0-SNAPSHOT/bin</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="MQ查询命令"><a href="#MQ查询命令" class="headerlink" title="MQ查询命令"></a>MQ查询命令</h2><h4 id="查询某条消息的生产者和消费者，以及消息的track路径"><a href="#查询某条消息的生产者和消费者，以及消息的track路径" class="headerlink" title="查询某条消息的生产者和消费者，以及消息的track路径"></a>查询某条消息的生产者和消费者，以及消息的track路径</h4><p>1.进入/usr/java/rocketmq/bin<br>2.根据key查找</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sh mqadmin queryMsgBykey -n 127.0.0.1:9876 -k b6df2c64-4654-409d-b457-ec1db294a606 -t ORDER</span><br></pre></td></tr></table></figure>
+
+<p>3.根据key可以找到ID<br>   根据ID查找消费者和生产者</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sh mqadmin queryMsgById -n 127.0.0.1:9876 -i C0A8074100002A9F00000001A2BC9012</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看topiclist"><a href="#查看topiclist" class="headerlink" title="查看topiclist"></a>查看topiclist</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sh mqadmin topicList –n 127.0.0.1:9876</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>logback日志配置模板</title>
+    <url>/2019/11/05/logback%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE%E6%A8%A1%E6%9D%BF/</url>
+    <content><![CDATA[<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 常量定义start --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 默认日志输出格式--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;HOST_NAME&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Project_Name&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;DEFAULT_PATTERN&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">value</span>=<span class="string">&quot;%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; ** $&#123;HOST_NAME&#125; ** [%thread] ** %level ** [%logger] ** - %file:%line ** [%method] - ** %msg%n&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;MAX_HISTORY&quot;</span> <span class="attr">value</span>=<span class="string">&quot;30&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;ASYNC_QUEUE_SIZE&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1024&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;DEFAULT_CHARSET&quot;</span> <span class="attr">value</span>=<span class="string">&quot;UTF-8&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 常量定义end --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 默认日志的console appender，本地使用的日志 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.ConsoleAppender&quot;</span> <span class="attr">name</span>=<span class="string">&quot;STDOUT&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;DEFAULT_PATTERN&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">charset</span>&gt;</span>$&#123;DEFAULT_CHARSET&#125;<span class="tag">&lt;/<span class="name">charset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;</span> <span class="attr">name</span>=<span class="string">&quot;ROLLING_FILE_DEFAULT&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">append</span>&gt;</span>true<span class="tag">&lt;/<span class="name">append</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span>E:/logs/$&#123;HOST_NAME&#125;/$&#123;HOST_NAME&#125;-%d&#123;yyyyMMdd&#125;.log<span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>$&#123;MAX_HISTORY&#125;<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;DEFAULT_PATTERN&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">charset</span>&gt;</span>$&#123;DEFAULT_CHARSET&#125;<span class="tag">&lt;/<span class="name">charset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">springProfile</span> <span class="attr">name</span>=<span class="string">&quot;!local&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 服务器上使用的appender start --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 默认的file appender，按天切分日志 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;</span> <span class="attr">name</span>=<span class="string">&quot;ROLLING_FILE_DEFAULT&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">append</span>&gt;</span>true<span class="tag">&lt;/<span class="name">append</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span>/home/logs/$&#123;HOSTNAME&#125;/$&#123;HOSTNAME&#125;-%d&#123;yyyyMMdd&#125;.log<span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>$&#123;MAX_HISTORY&#125;<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;DEFAULT_PATTERN&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">charset</span>&gt;</span>$&#123;DEFAULT_CHARSET&#125;<span class="tag">&lt;/<span class="name">charset</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 错误日志，按天切分 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;</span> <span class="attr">name</span>=<span class="string">&quot;ROLLING_FILE_ERROR&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.classic.filter.LevelFilter&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">level</span>&gt;</span>ERROR<span class="tag">&lt;/<span class="name">level</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">onMatch</span>&gt;</span>ACCEPT<span class="tag">&lt;/<span class="name">onMatch</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">onMismatch</span>&gt;</span>DENY<span class="tag">&lt;/<span class="name">onMismatch</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">append</span>&gt;</span>true<span class="tag">&lt;/<span class="name">append</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span>/home/logs/$&#123;HOSTNAME&#125;/$&#123;HOSTNAME&#125;_error-%d&#123;yyyyMMdd&#125;.log<span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>$&#123;MAX_HISTORY&#125;<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;DEFAULT_PATTERN&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">charset</span>&gt;</span>$&#123;DEFAULT_CHARSET&#125;<span class="tag">&lt;/<span class="name">charset</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.classic.AsyncAppender&quot;</span> <span class="attr">name</span>=<span class="string">&quot;ASYNC_ROLLING_FILE_DEFAULT&quot;</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">discardingThreshold</span>&gt;</span>-1<span class="tag">&lt;/<span class="name">discardingThreshold</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 更改默认的队列的深度,该值会影响性能.默认值为256 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">queueSize</span>&gt;</span>2048<span class="tag">&lt;/<span class="name">queueSize</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">includeCallerData</span>&gt;</span>true<span class="tag">&lt;/<span class="name">includeCallerData</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 添加附加的appender,最多只能添加一个 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;ROLLING_FILE_DEFAULT&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.classic.AsyncAppender&quot;</span> <span class="attr">name</span>=<span class="string">&quot;ASYNC_ROLLING_FILE_ERROR&quot;</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">discardingThreshold</span>&gt;</span>-1<span class="tag">&lt;/<span class="name">discardingThreshold</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 更改默认的队列的深度,该值会影响性能.默认值为256 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">queueSize</span>&gt;</span>2048<span class="tag">&lt;/<span class="name">queueSize</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">includeCallerData</span>&gt;</span>true<span class="tag">&lt;/<span class="name">includeCallerData</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 添加附加的appender,最多只能添加一个 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;ROLLING_FILE_ERROR&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">springProfile</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">&quot;info&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;STDOUT&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;ROLLING_FILE_DEFAULT&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>搭建相关</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>利用hexo和github搭建个人博客</title>
+    <url>/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="github建立个人网站"><a href="#github建立个人网站" class="headerlink" title="github建立个人网站"></a>github建立个人网站</h2><p>1.github的账号申请不再赘述<br>2.打开github.com, 点击new, 新建一个项目<br><img src="/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/1.png"><br>3.输入项目名称, 注意项目名称的格式必须是”用户名.github.io”的格式<br><img src="/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2.png"><br>4.点击Create Repository完成项目新建<br>5.点击新建的项目, 进入settings, 往下找到GitHub Pages, 点击Choose a theme, 选择一个主题后, 点击select theme就完成了网站的发布<br><img src="/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/3.png"><br>6.在浏览器输入”用户名.github.io”, 就可以看到github为你默认创建的首页  </p>
+<h2 id="hexo搭建博客"><a href="#hexo搭建博客" class="headerlink" title="hexo搭建博客"></a>hexo搭建博客</h2><p>1.在使用hexo搭建博客之前, 需要完成几个基础工作<br><a href="https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git">安装git</a><br><a href="https://help.github.com/cn/articles/adding-a-new-ssh-key-to-your-github-account">新增ssh key到github</a><br><a href="http://www.runoob.com/nodejs/nodejs-install-setup.html">安装node.js</a><br>2.在本地拉取github上刚刚创建的网页项目(用户名.github.io)<br>3.在项目目录下新建一个文件夹, 可以随意命名, 比如hexo<br>4.进入hexo目录, windows下右键空白处, 点击Git Bash Here<br>5.依次执行命令<br>npm install hexo-cli -g  (安装hexo)<br>hexo init  (初始化网站)<br>npm install hexo-deployer-git –save  (安装hexo发布到git的插件)<br>中间遇到需要确认的信息, 直接按回车即可<br>6.打开hexo目录下的_config.yml文件, 有几个地方可以进行修改<br>title: 你的网站名字<br>author: 网站作者<br>theme: 去<a href="https://hexo.io/themes/">hexo主题</a>可以选择, 注意要先将主题下载到hexo/themes下才可选择该主题<br>注意: <strong>必须要修改的部分是deploy, 改成如下格式</strong>  </p>
+<span id="more"></span>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:yourname/yourname.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>其他配置的详细说明在<a href="https://hexo.io/docs/configuration.html">hexo配置文件说明</a><br>7.接下来就可以开始写博客了<br>使用命令hexo n “博客标题”, 即完成了一个新的博客文件的创建<br>该命令会在hexo/source/_posts目录下新建一个”博客标题.md”的文件<br>该文件内容格式如下<br><img src="/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/4.png"><br>正文内容使用markdown语法进行编写, 至于markdown怎么写, 可以参考<a href="http://www.markdown.cn/">markdown官方文档</a><br>8.博客写完之后, 保存文件, 然后依次执行如下命令<br>hexo g  (根据md文件创建静态网页文件, 注意每次更新博客内容都需要执行这个命令)<br>hexo s  (这一步是启动本地hexo服务器, 主要是为了本地预览博客效果, 浏览器打开localhost:4000预览效果)<br>hexo d (发布网页到github)<br>9.浏览器打开”用户名.github.io”即可看到你刚刚写的博客内容<br><img src="/2019/10/08/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/5.png">  </p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>总的来说, hexo+github搭建博客非常的简便, hexo内置的几种主题也都非常的简洁美观, 对于既想要有逼格的有自己的个人博客网站, 又不想太麻烦的人来说, 是个不错的选择</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>搭建相关</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>官方文档解释MySQL最左匹配(最左前缀)原则</title>
+    <url>/2019/10/15/%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E8%A7%A3%E9%87%8AMySQL%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D(%E6%9C%80%E5%B7%A6%E5%89%8D%E7%BC%80)%E5%8E%9F%E5%88%99/</url>
+    <content><![CDATA[<h2 id="什么是最左匹配原则"><a href="#什么是最左匹配原则" class="headerlink" title="什么是最左匹配原则"></a>什么是最左匹配原则</h2><p>关于最左匹配原则的解释, 网上找了很多, 但是我感觉都不是特别准确, 于是一怒之下<br>直接找了官网的文档, 一下子就清晰了. 下面贴下官网的解释, 然后我自己翻译了一下.  </p>
+<h3 id="来自官方文档的解释"><a href="#来自官方文档的解释" class="headerlink" title="来自官方文档的解释"></a>来自官方文档的解释</h3><p><a href="https://dev.mysql.com/doc/refman/8.0/en/multiple-column-indexes.html">原文链接</a>  </p>
+<blockquote>
+<p>MySQL can create composite indexes (that is, indexes on multiple columns).<br> An index may consist of up to 16 columns. For certain data types,<br> you can index a prefix of the column (see<br> <a href="https://dev.mysql.com/doc/refman/8.0/en/column-indexes.html">Section 8.3.5, “Column Indexes”</a>).  </p>
+</blockquote>
+<p>MySQL可以创建联合索引(即, 多列的索引). 一个索引可以包含最多16列. 对于<br>某些数据类型, 你可以索引列的前缀(这里说的是对于Blob和Text类型, 索引列的前几位就可以,<br>如INDEX(blob_col(10)), 详见<a href="https://dev.mysql.com/doc/refman/8.0/en/column-indexes.html">索引文档</a>)  </p>
+<blockquote>
+<p>MySQL can use multiple-column indexes for queries that test all the columns in the index,<br>or queries that test just the first column, the first two columns, the first three columns, and so on.<br>If you specify the columns in the right order in the index definition,<br>a single composite index can speed up several kinds of queries on the same table.  </p>
+</blockquote>
+<p>MySQL的联合索引可以用于包含索引中所有列的查询条件的语句, 或者包含索引中的第一列的查询条件的语句,<br>以及索引中前两列, 索引中的前三列, 以此类推. 如果你在索引定义中以正确的顺序指定列,<br>那么联合索引就可以加速同一张表中的多个不同类型的查询.  </p>
+<blockquote>
+<p>A multiple-column index can be considered a sorted array, the rows of<br>which contain values that are created by concatenating the values of the indexed columns.  </p>
+</blockquote>
+<p>一个联合索引可以看作是一个有序队列, 里面有值的列是根据连接索引列的值创建的.(这句可能不准确)  </p>
+<blockquote>
+<p>Note<br>As an alternative to a composite index, you can introduce a column that<br>is “hashed” based on information from other columns. If this column is<br>short, reasonably unique, and indexed, it might be faster than a “wide”<br>index on many columns. In MySQL, it is very easy to use this extra column:  </p>
+</blockquote>
+<p>提示<br>作为联合索引的一个替代项, 你可以采用一个Hash值列, 这个列的Hash值来自其他的列.<br>如果该列简短, 合理唯一, 且被索引, 那该列就可能比一个很”宽”的由多个列构成的索引<br>更快. MySQL里可以很容易的使用这种列:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> tbl_name</span><br><span class="line">  <span class="keyword">WHERE</span> hash_col<span class="operator">=</span>MD5(CONCAT(val1,val2))</span><br><span class="line">  <span class="keyword">AND</span> col1<span class="operator">=</span>val1 <span class="keyword">AND</span> col2<span class="operator">=</span>val2;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<blockquote>
+<p>Suppose that a table has the following specification:</p>
+</blockquote>
+<p>假设有如下表定义:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> test (</span><br><span class="line">    id         <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    last_name  <span class="type">CHAR</span>(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    first_name <span class="type">CHAR</span>(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (id),</span><br><span class="line">    INDEX name (last_name,first_name)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>The name index is an index over the last_name and first_name columns.<br>The index can be used for lookups in queries that specify values in a known<br>range for combinations of last_name and first_name values. It can also be used<br>for queries that specify just a last_name value because that column is a<br>leftmost prefix of the index (as described later in this section).<br>Therefore, the name index is used for lookups in the following queries:  </p>
+</blockquote>
+<p>索引name是一个包含了last_name和first_name列的索引. 该索引可以用于为last_name<br>和first_name值的组合指定一个已知范围内的查询. 同样也可以用于只指定了last_name列值的查询,<br>因为这个列是索引的一个最左前缀(就如下一节所说). 因此, 索引name可以用于下列的查询语句:  </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> test <span class="keyword">WHERE</span> last_name<span class="operator">=</span><span class="string">&#x27;Jones&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> test</span><br><span class="line">  <span class="keyword">WHERE</span> last_name<span class="operator">=</span><span class="string">&#x27;Jones&#x27;</span> <span class="keyword">AND</span> first_name<span class="operator">=</span><span class="string">&#x27;John&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> test</span><br><span class="line">  <span class="keyword">WHERE</span> last_name<span class="operator">=</span><span class="string">&#x27;Jones&#x27;</span></span><br><span class="line">  <span class="keyword">AND</span> (first_name<span class="operator">=</span><span class="string">&#x27;John&#x27;</span> <span class="keyword">OR</span> first_name<span class="operator">=</span><span class="string">&#x27;Jon&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> test</span><br><span class="line">  <span class="keyword">WHERE</span> last_name<span class="operator">=</span><span class="string">&#x27;Jones&#x27;</span></span><br><span class="line">  <span class="keyword">AND</span> first_name <span class="operator">&gt;=</span><span class="string">&#x27;M&#x27;</span> <span class="keyword">AND</span> first_name <span class="operator">&lt;</span> <span class="string">&#x27;N&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>However, the name index is not used for lookups in the following queries:  </p>
+</blockquote>
+<p>然而, 索引name不能用于下列的查询:  </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> test <span class="keyword">WHERE</span> first_name<span class="operator">=</span><span class="string">&#x27;John&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> test</span><br><span class="line">  <span class="keyword">WHERE</span> last_name<span class="operator">=</span><span class="string">&#x27;Jones&#x27;</span> <span class="keyword">OR</span> first_name<span class="operator">=</span><span class="string">&#x27;John&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Suppose that you issue the following SELECT statement:  </p>
+</blockquote>
+<p>假设存在以下select语句:  </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> tbl_name</span><br><span class="line">  <span class="keyword">WHERE</span> col1<span class="operator">=</span>val1 <span class="keyword">AND</span> col2<span class="operator">=</span>val2;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>If a multiple-column index exists on col1 and col2, the appropriate<br>rows can be fetched directly. If separate single-column indexes exist<br>on col1 and col2, the optimizer attempts to use the Index Merge optimization<br>(see Section 8.2.1.3, “Index Merge Optimization”), or attempts to find<br>the most restrictive index by deciding which index excludes more rows<br>and using that index to fetch the rows.  </p>
+</blockquote>
+<p>如果一个联合索引存在于col1和col2, 相应的列会被直接抓取. 如果是分为单独的索引<br>分别存在于col1和col2, 优化器会尝试利用索引联合优化(详见8.2.1.3, <a href="https://dev.mysql.com/doc/refman/8.0/en/index-merge-optimization.html">“索引联合<br>优化”</a>),<br>或者尝试去寻找包含最多列, 最大限制的索引, 并利用该索引去抓取列.  </p>
+<blockquote>
+<p><strong>If the table has a multiple-column index, any leftmost prefix of the<br>index can be used by the optimizer to look up rows. For example,<br>if you have a three-column index on (col1, col2, col3), you have indexed<br>search capabilities on (col1), (col1, col2), and (col1, col2, col3).</strong>  </p>
+</blockquote>
+<p><strong>如果表拥有一个联合索引, 任何一个索引的最左前缀都会被优化器用于查找列. 比如,<br>如果你创建了一个三列的联合索引包含(col1, col2, col3), 你的索引会生效于(col1),<br>(col1, col2), 以及(col1, col2, col3)</strong>  </p>
+<blockquote>
+<p><strong>MySQL cannot use the index to perform lookups if the columns do not<br>form a leftmost prefix of the index. Suppose that you have the SELECT<br>statements shown here:</strong>  </p>
+</blockquote>
+<p><strong>如果查询的列不是索引的最左前缀, 那MySQL不会将索引用于执行查询. 假设你有<br>下列查询语句:</strong> </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> tbl_name <span class="keyword">WHERE</span> col1<span class="operator">=</span>val1;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> tbl_name <span class="keyword">WHERE</span> col1<span class="operator">=</span>val1 <span class="keyword">AND</span> col2<span class="operator">=</span>val2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> tbl_name <span class="keyword">WHERE</span> col2<span class="operator">=</span>val2;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> tbl_name <span class="keyword">WHERE</span> col2<span class="operator">=</span>val2 <span class="keyword">AND</span> col3<span class="operator">=</span>val3;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>If an index exists on (col1, col2, col3), only the first two queries<br>use the index. The third and fourth queries do involve indexed columns,<br>but do not use an index to perform lookups because (col2) and (col2, col3)<br>are not leftmost prefixes of (col1, col2, col3).  </p>
+</blockquote>
+<p>如果索引存在于(col1, col2, col3), 那只有头两个查询语句用到了索引. 第三个和<br>第四个查询包含索引的列, 但是不会用索引去执行查询. 因为(col2)和(col2, col3)<br>不是(col1, col2, col3)的最左前缀  </p>
+<h2 id="官方文档小结"><a href="#官方文档小结" class="headerlink" title="官方文档小结"></a>官方文档小结</h2><p>其实官方文档已经解释的非常详细了, 总结关于最左匹配的解释, 那其实只有这么<br>几句话:<br>1.按照文档, 更准确的说法应该是最左前缀原则, 即如果你创建一个联合索引, 那<br>这个索引的任何前缀都会用于查询, (col1, col2, col3)这个联合索引的所有前缀<br>就是(col1), (col1, col2), (col1, col2, col3), 包含这些列的查询都会启用索<br>引查询.<br>2.其他所有不在最左前缀里的列都不会启用索引, 即使包含了联合索引里的部分列<br>也不行. 即上述中的(col2), (col3), (col2, col3) 都不会启用索引去查询.<br><strong>注意, (col1, col3)会启用(col1)的索引查询</strong>  </p>
+<h3 id="官方文档的其他细节"><a href="#官方文档的其他细节" class="headerlink" title="官方文档的其他细节"></a>官方文档的其他细节</h3><p>读一下官方文档, 还有很多别的发现, 跟最左前缀无关, 关于联合索引的别的细节,<br>总结如下:  </p>
+<ul>
+<li>联合索引最多只能包含16列  </li>
+<li>blob和text也能创建索引, 但是必须指定前面多少位  </li>
+<li>官方推荐了一种联合索引的替代方案: 可以额外创建一列, 其列值由联合索引包含<br>的所有列值所生成的hash值来构成(个人认为似乎破坏了第一范式的设计规则) </li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>translate</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搭建新项目的框架</title>
+    <url>/2019/10/22/%E6%90%AD%E5%BB%BA%E6%96%B0%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%A1%86%E6%9E%B6/</url>
+    <content><![CDATA[<ul>
+<li><input checked="" disabled="" type="checkbox"> 基础架构：Spring Boot / Spring Cloud</li>
+<li><input checked="" disabled="" type="checkbox"> 数据库：MySQL / Oracle</li>
+<li><input checked="" disabled="" type="checkbox"> 数据库层连接：Hibernate / Mybatis / JPA</li>
+<li><input checked="" disabled="" type="checkbox"> 分页</li>
+<li><input checked="" disabled="" type="checkbox"> 日志：Log4j / Slf4J</li>
+<li><input checked="" disabled="" type="checkbox"> 数据库连接池：Druid</li>
+<li><input checked="" disabled="" type="checkbox"> 消息中间件：Dubbo / Grpc</li>
+<li><input disabled="" type="checkbox"> 缓存：Redis</li>
+<li><input checked="" disabled="" type="checkbox"> 权限：Spring Security / Shiro</li>
+<li><input checked="" disabled="" type="checkbox"> 包管理仓库：Maven / Gradle</li>
+<li><input disabled="" type="checkbox"> 统一日志记录-数据库层面</li>
+<li><input checked="" disabled="" type="checkbox"> JSON处理：FastJSON</li>
+<li><input checked="" disabled="" type="checkbox"> 统一返回结果处理</li>
+<li><input checked="" disabled="" type="checkbox"> Zookeeper</li>
+<li><input disabled="" type="checkbox"> MQ组件：RabbitMQ / RocketMQ / Kafka</li>
+<li><input checked="" disabled="" type="checkbox"> 统一Exception处理</li>
+<li><input checked="" disabled="" type="checkbox"> 公用Util类</li>
+<li><input checked="" disabled="" type="checkbox"> 测试用例：JUnit</li>
+<li><input disabled="" type="checkbox"> 集群</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>搭建相关</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>新闻翻译.1</title>
+    <url>/2019/10/10/%E6%96%B0%E9%97%BB%E7%BF%BB%E8%AF%91-1/</url>
+    <content><![CDATA[<p><a href="https://www.latimes.com/politics/story/2019-10-09/trumps-legal-strategy-against-impeachment-shaky-constitutional-grounds-scholars-say">原文链接</a>  </p>
+<h2 id="Trump’s-legal-strategy-against-impeachment-is-on-shaky-constitutional-grounds-scholars-say"><a href="#Trump’s-legal-strategy-against-impeachment-is-on-shaky-constitutional-grounds-scholars-say" class="headerlink" title="Trump’s legal strategy against impeachment is on shaky constitutional grounds, scholars say"></a>Trump’s legal strategy against impeachment is on shaky constitutional grounds, scholars say</h2><h3 id="学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据"><a href="#学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据" class="headerlink" title="学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据"></a>学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据</h3><p>1.Washington —  Constitutional lawyers said Wednesday that President Trump’s<br>vow not to cooperate with the impeachment inquiry is both unprecedented and<br>unlikely to spare him from being formally charged by the House.<br>In fact, they say, it may only increase the chances that he will be impeached.<br>华盛顿报道 - 宪法律师周三声明, 川普总统发誓不会与弹劾调查进行合作的言论是<br>前所未有的, 而且也很可能使他面临众议院的正式指控. 并且, 他们还说到, 这有可能<br>增加川普被弹劾的可能.</p>
+<p>2.The Constitution says the “House of Representatives shall have the sole<br>power of impeachment,” and it does not give the president a specific role<br>in the process. A president is in some sense like an ordinary defendant<br>who may be subject to a criminal investigation and an indictment,<br>all without his participation or involvement, scholars say.<br>美国宪法里写到, “众议院拥有弹劾的唯一权力”, 而且没有赋予总统在此过程中的任何<br>特殊角色. 学者认为, 总统在整个过程中都不会参与到弹劾中, 某种意义上和普通被告一样,<br>可能面临刑事调查和指控.  </p>
+<p>3.“The president’s cooperation is not required or needed,” said University of<br>North Carolina law professor Michael J. Gerhardt, an expert on impeachment.<br>And “the House may make that defiance grounds for impeachment,” he added,<br>noting that in 1974, a House committee approved articles of impeachment against<br>President Nixon based in part on his refusal to comply with congressional subpoenas.<br>北卡罗莱纳大学的法律学教授, 同时也是研究弹劾的专家, Michael J.Gerhardt认为,<br>“总统的配合并不是必需的, 众议院可以把这作为违抗理由去弹劾”. 他还补充到, 1974年,<br>众议院委员会通过了一项弹劾决议, 其部分原因就是尼克松总统拒绝了来自国会的传票. </p>
+<span id="more"></span>
+<p>4.Though both Nixon and President Clinton tried behind the scenes to slow<br>or stop impeachment proceedings, they also attempted to cooperate at times,<br>or at least appear to, out of respect for the process and fear they might<br>look like they were hiding something.<br>尽管尼克松和克林顿总统都试图在幕后减缓或者阻止弹劾的进程, 但至少他们在当时都是<br>试图配合弹劾工作的, 至少看上去是. 对于弹劾的不尊重和害怕会让他们看起来隐藏了<br>一些事.</p>
+<p>5.“There is no precedent for the president doing what President Trump is<br>doing here: saying I will flatly refuse to cooperate and ordering all<br>employees of the executive branch to refuse to cooperate as well,”<br>said professor Frank O. Bowman, who teaches impeachment law at the<br>University of Missouri and Georgetown.<br>来自密苏里和乔治敦大学, 教弹劾法律的教授Frank O.Bowman说:”之前从来没有<br>一份先例像川普总统这样, 说自己断然拒绝合作, 而且还命令所有的行政雇员也拒绝合作.”</p>
+<p>6.In Tuesday’s eight-page letter to House Democrats, White House Counsel<br>Pat Cipillone pronounced Trump innocent of wrongdoing and the inquiry<br>“unconstitutional.”<br>周四一份来自白宫的法律顾问Pat Cipillone的八页信件发往了众议院的民主党派,<br>他宣称川普的错误做法是无辜的, 而且弹劾调查也是违宪的.</p>
+<p>7.He said Trump’s July 25 phone call asking the new president of Ukraine<br>to do him “a favor” and investigate former Vice President Joe Biden and<br>his son Hunter was “completely appropriate. The president did nothing wrong,<br>and there is no legitimate basis for an impeachment inquiry.”<br>他说, 川普在7月25号致电给乌克兰新总统, 要求他帮助和调查前副总统Joe Biden以及<br>他的儿子Hunter是”完全合理的. 总统没有做错什么, 而且也没有一个合法的法律依据<br>可以支撑弹劾的调查”</p>
+<p>8.Legal experts, however, say Trump’s actions were exactly the kinds of<br>things that framers were thinking of when they included an impeachment<br>provision in the Constitution. Trump has acknowledged that even as he asked<br>Ukraine to investigate one of his political opponents, he had ordered<br>that nearly $400 million in aid to Ukraine be withheld.<br>然而法律专家认为, 川普的行为恰好就是制宪者将弹劾条款加入宪法时所考虑过的.<br>川普认识到即使他要求乌克兰去调查他其中的一个政治对手, 他下令资助给乌克兰的<br>将近40亿美元的援助也将被扣留.</p>
+<p>9.The White House letter suggests that the inquiry is invalid because<br>there was no formal House vote to launch it, and that Trump and Republicans<br>have so far not been given the right to see evidence and call witnesses.<br>Based on this conclusion, he said, “President Trump and his administration<br>cannot participate in your partisan and unconstitutional inquiry.”<br>白宫的信件认为调查是无效的, 因为没有任何正式的众议院决议去启动这项调查, 而且<br>川普和共和党至今甚至没有权力见到证据和传唤目击者. 基于这些结论, 他说: “川普<br>总统和他的管理团队不会参与到你们的党派和违宪的调查中去”</p>
+<p>10.Lawyers took to social media to express surprise and disdain, noting<br>that no such rights or requirements exist in the Constitution.<br>律师在社交媒体上表达了他的惊讶和蔑视, 指出在宪法中不存在这样的权力和请求.</p>
+<p>11.“This letter is bananas. A barely-lawyered temper tantrum,” tweeted<br>Gregg Nunziata, a former counsel for Senate Republicans.<br>前任的共和党法律顾问, Gregg Nunziata发推说道:”这封信就是胡闹, 一份没有法律<br>常识的脾气的宣泄”</p>
+<p>12.University of Texas law professor Steve Vladeck said it was remarkable<br>for the top White House lawyer to say in writing that it “is completely<br>appropriate for the president of the United States to actively solicit<br>foreign intervention in U.S. presidential elections. Let’s not lose<br>sight of just how insane that is.”<br>德克萨斯大学的法律教授Steve Vladeck表示, 对于一个顶级的白宫律师, 以书面形式<br>说”美国总统积极的寻求外国介入到美国的总统选择中是完全合理的. 让我们不要忘记<br>这是多么疯狂”, 真是太出色了.(这段真是不知道怎么翻译…)</p>
+<p>13.Lisa Kern Griffin, a Duke law professor, described the letter as a<br>“political stunt that misinterprets the Constitution, ignores relevant<br>precedents and defies common sense.” She said the letter sets the stage<br>for a constitutional crisis.<br>杜克的法律教授, Lisa Kern Griffin形容这个信是”曲解宪法的政治手段, 忽略了<br>相关的先例, 否决了共识”. 她说这封信为宪法的危机奠定了一个基础.</p>
+<p>14.“Of course, the House can proceed with impeachment based on the testimony<br>and evidence it can access, but it strikes me as dangerous for the entire<br>executive branch to defy congressional oversight.”<br>“理所当然的, 众议院可以继续根据已有的证词和证据进行弹劾, 但是令我感到危险的是<br>整个行政部门都违抗国会的监督”</p>
+<p>15.Neal K. Katyal, who was acting solicitor general during the Obama administration,<br>noted that Trump’s lawyers have insisted that he is immune from criminal charges,<br>shielded from congressional and state legal demands, including for his tax returns,<br>and now shielded from an impeachment inquiry.<br>在奥巴马政府期间担任代理司法部副部长的Neal K. Katyal指出, 川普的律师坚持他(川普)<br>是免于刑事指控的, 受国会和国家法律要求的保护, 包括他的报税表, 所以现在也保护他免<br>于收到弹劾的调查.</p>
+<p>16.Gerhardt said the White House letter “shows nothing but contempt for the<br>law and the Constitution. Its principal argument is that the president is<br>above the law. In fact, he is not. Impeachment is one of the unique constitutional<br>processes for holding the president accountable for abusing his power.”<br>Gerhardt认为白宫信件”展示了对于法律和宪法的蔑视. 这里面的主要内容就是总统<br>凌驾于法律之上. 但事实上, 他是错的. 弹劾是宪法中用于控制总统滥用职权的独特<br>法律条文之一”</p>
+<p>17.It’s not clear how or whether House Democrats will respond to Trump’s<br>vow of noncooperation. In recent weeks, leaders of the House inquiry signaled<br>they are reluctant to go to court or seek to hold officials in criminal<br>contempt for refusing to comply with a subpoena.<br>还不清楚众议院民主党派怎么回应或者是否会回应川普拒绝合作的承诺. 在最近几周,<br>众议院调查团队的负责人发出信号, 他们不愿意因为拒绝传票而走上法庭或者让官方<br>人员陷于刑事指控的境地.</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>英语</category>
+      </categories>
+      <tags>
+        <tag>translate</tag>
+        <tag>news</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>绩效统计</title>
+    <url>/2019/10/09/%E7%BB%A9%E6%95%88%E7%BB%9F%E8%AE%A1/</url>
+    <content><![CDATA[<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="center">工作模块</th>
+<th align="center">工作内容</th>
+<th align="center">开始时间</th>
+<th align="center">结束时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">BOS接口</td>
+<td align="center">样衣尺码限制为只能填写00, 36, 240</td>
+<td align="center">2019.09.12</td>
+<td align="center">2019.09.13</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">BOS接口</td>
+<td align="center">修复季节字段参数错误</td>
+<td align="center">2019.09.13</td>
+<td align="center">2019.09.13</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">BOS接口</td>
+<td align="center">新增支持款式和样衣的条码更新</td>
+<td align="center">2019.09.16</td>
+<td align="center">2019.09.19</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">BOS接口</td>
+<td align="center">新增总工价字段</td>
+<td align="center">2019.09.19</td>
+<td align="center">2019.09.19</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">BOS接口</td>
+<td align="center">新增采购退审逻辑</td>
+<td align="center">2019.09.20</td>
+<td align="center">2019.09.24</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">BOS接口</td>
+<td align="center">采购审核通过时修改订单合同号</td>
+<td align="center">2019.09.25</td>
+<td align="center">2019.09.30</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">BOS接口</td>
+<td align="center">增加若干打印日志</td>
+<td align="center">2019.10.08</td>
+<td align="center">2019.10.08</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">整体框架</td>
+<td align="center">搭建ELK+Filebeats日志框架</td>
+<td align="center">2019.09.15</td>
+<td align="center">2019.10.15</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">整体框架</td>
+<td align="center">增加所有测试机和部分生产机的日志发送功能</td>
+<td align="center">2019.10.12</td>
+<td align="center">2019.10.16</td>
+</tr>
+<tr>
+<td align="center">10</td>
+<td align="center">PLM接口</td>
+<td align="center">校验PLM线上和测试环境的数据库差异</td>
+<td align="center">2019.10.15</td>
+<td align="center">2019.10.16</td>
+</tr>
+<tr>
+<td align="center">11</td>
+<td align="center">整体框架</td>
+<td align="center">搭建项目基础框架</td>
+<td align="center">2019.10.18</td>
+<td align="center">2019.10.30</td>
+</tr>
+<tr>
+<td align="center">12</td>
+<td align="center">PLM接口</td>
+<td align="center">PLM对接BOS接口字段增加</td>
+<td align="center">2019.10.21</td>
+<td align="center">2019.10.25</td>
+</tr>
+<tr>
+<td align="center">13</td>
+<td align="center">PLM接口</td>
+<td align="center">增加PLM物料详细信息页面</td>
+<td align="center">2019.10.26</td>
+<td align="center">2019.10.29</td>
+</tr>
+<tr>
+<td align="center">14</td>
+<td align="center">O2O接口</td>
+<td align="center">修改首页分类中的图片和接口</td>
+<td align="center">2019.10.28</td>
+<td align="center">2019.10.29</td>
+</tr>
+<tr>
+<td align="center">15</td>
+<td align="center">POS接口</td>
+<td align="center">修正UTI自动生成的PDF图片遮住LOGO的bug</td>
+<td align="center">2019.10.28</td>
+<td align="center">2019.10.29</td>
+</tr>
+<tr>
+<td align="center">16</td>
+<td align="center">PLM接口</td>
+<td align="center">PLM传送面辅料信息的接口中区分面辅料大类</td>
+<td align="center">2019.10.29</td>
+<td align="center">2019.10.30</td>
+</tr>
+<tr>
+<td align="center">17</td>
+<td align="center">PLM接口</td>
+<td align="center">根据PLM来源来判断是否可以更新款号</td>
+<td align="center">2019.10.30</td>
+<td align="center">2019.10.31</td>
+</tr>
+<tr>
+<td align="center">18</td>
+<td align="center">整体框架</td>
+<td align="center">修改ELK日志格式</td>
+<td align="center">2019.11.01</td>
+<td align="center">2019.11.01</td>
+</tr>
+<tr>
+<td align="center">19</td>
+<td align="center">POS接口</td>
+<td align="center">增加支持POS优惠策略中的自动翻倍规则</td>
+<td align="center">2019.11.04</td>
+<td align="center">2019.11.05</td>
+</tr>
+<tr>
+<td align="center">20</td>
+<td align="center">PLM接口</td>
+<td align="center">熟悉并接手PLM项目开发</td>
+<td align="center">2019.11.06</td>
+<td align="center">2019.11.10</td>
+</tr>
+<tr>
+<td align="center">21</td>
+<td align="center">日志框架</td>
+<td align="center">修改日志索引以中文显示</td>
+<td align="center">2019.11.15</td>
+<td align="center">2019.11.16</td>
+</tr>
+<tr>
+<td align="center">22</td>
+<td align="center">BUG修复</td>
+<td align="center">修复短信发送接口</td>
+<td align="center">2019.11.18</td>
+<td align="center">2019.11.20</td>
+</tr>
+<tr>
+<td align="center">23</td>
+<td align="center">微商城接口</td>
+<td align="center">增加对于特定供应商的过滤</td>
+<td align="center">2019.11.22</td>
+<td align="center">2019.11.25</td>
+</tr>
+<tr>
+<td align="center">24</td>
+<td align="center">BUG修复</td>
+<td align="center">修复POS中满减优惠计算错误</td>
+<td align="center">2019.11.26</td>
+<td align="center">2019.11.26</td>
+</tr>
+<tr>
+<td align="center">25</td>
+<td align="center">微商城接口</td>
+<td align="center">新增微商城中领取和查看优惠券的接口</td>
+<td align="center">2019.11.28</td>
+<td align="center">2019.12.05</td>
+</tr>
+<tr>
+<td align="center">26</td>
+<td align="center">PLM项目</td>
+<td align="center">取消外购样衣中借出按钮时清空借出数量，借出人，借出时间</td>
+<td align="center">2019.12.08</td>
+<td align="center">2019.12.09</td>
+</tr>
+<tr>
+<td align="center">27</td>
+<td align="center">微商城接口</td>
+<td align="center">设置特卖会总仓不过滤品牌</td>
+<td align="center">2019.12.10</td>
+<td align="center">2019.12.11</td>
+</tr>
+<tr>
+<td align="center">28</td>
+<td align="center">BUG修复</td>
+<td align="center">修正线上服务器日志级别过低导致服务器空间不足的问题</td>
+<td align="center">2019.12.12</td>
+<td align="center">2019.12.13</td>
+</tr>
+<tr>
+<td align="center">29</td>
+<td align="center">微商城接口</td>
+<td align="center">修改直营全字段统计报表的取数逻辑</td>
+<td align="center">2019.12.16</td>
+<td align="center">2019.12.19</td>
+</tr>
+<tr>
+<td align="center">30</td>
+<td align="center">安卓TV接口</td>
+<td align="center">图片压缩显示，并增加二维码，按照价格波次倒序排列</td>
+<td align="center">2019.12.25</td>
+<td align="center">2019.12.30</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>问题时间</th>
+<th>发布人</th>
+<th>问题描述</th>
+<th>紧急程度</th>
+<th>预计完成时间</th>
+<th>实际完成时间</th>
+<th>处理过程</th>
+<th>处理结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>2019.01.01</td>
+<td>杨鹏达</td>
+<td>平下限逻辑修改，改为由收款金额来确定</td>
+<td>三级</td>
+<td>2019.01.01</td>
+<td>2019.01.01</td>
+<td>修改代码对应字段</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>2019.01.03</td>
+<td>姜王</td>
+<td>修改组织架构，一级经理和总监的过滤条件修改</td>
+<td>二级</td>
+<td>2019.01.04</td>
+<td>2019.01.04</td>
+<td>一级经理和总监的过滤条件修改</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>2019.01.03</td>
+<td>范里</td>
+<td>完成预收接口</td>
+<td>三级</td>
+<td>2019.01.06</td>
+<td>2019.01.06</td>
+<td>在bos-provider模块增加预收接口，前端异步调用后端是否成功的状态</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>2019.01.07</td>
+<td>范里</td>
+<td>安卓TV压缩图片和二维码功能</td>
+<td>二级</td>
+<td>2019.01.09</td>
+<td>2019.01.09</td>
+<td>使用阿里云API进行图片处理</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>2019.01.10</td>
+<td>詹林珠</td>
+<td>内购部分产品无法下单</td>
+<td>三级</td>
+<td>2019.01.11</td>
+<td>2019.01.11</td>
+<td>修改代码逻辑</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>2019.01.14</td>
+<td>陈磊</td>
+<td>TV部分店铺无法切换频道</td>
+<td>三级</td>
+<td>2019.01.14</td>
+<td>2019.01.14</td>
+<td>修改代码逻辑</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>2019.01.14</td>
+<td>姜王</td>
+<td>ios客户端退货列表无法显示一年以前的数据</td>
+<td>二级</td>
+<td>2019.01.14</td>
+<td>2019.01.14</td>
+<td>将过滤条件修改为三年</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>绩效</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>解决Dubbo无法处理自定义异常的问题</title>
+    <url>/2019/11/04/%E8%A7%A3%E5%86%B3Dubbo%E6%97%A0%E6%B3%95%E5%A4%84%E7%90%86%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>Dubbo有一个比较奇怪的问题，目前不知道Apache和Alibaba公司出于什么样的考虑，貌似一直都没有一个比较合适的解决方案，问题如下：</p>
+<ul>
+<li><p>项目搭建中你需要自定义一个本地的Exception，命名为比如BusinessException。比较一般的书写代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> linqiang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2019/10/24 16:20</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> 业务异常类</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BusinessException</span> <span class="keyword">extends</span> <span class="title">RuntimeException</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BusinessException</span><span class="params">(Integer code, String msg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">        <span class="keyword">this</span>.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getMsg</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>通常这个BusinessException是要能够跨模块使用的，一般放在commons或者core模块中，同时别的模块的pom.xml文件引入这些模块，使得整个项目都可以使用这个BusinessException。</p>
+</li>
+<li><p>问题来了，如果在A模块调用了B模块，B模块抛出了一个BusinessException，这时A模块接收到的不是BusinessException，而是一个RuntimeException，而且关于BusinessException的细节已经完全丢失，只会剩下一个类名的描述。</p>
+</li>
+</ul>
+<h3 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h3><p>关于该问题出现的原因，参考<a href="https://blog.csdn.net/qq_25673113/article/details/78574514">这篇文章</a>，归纳一下，就是在Dubbo的传输信息过程中，类ExceptionFilter.java会对Exception做一个过滤，其过滤器的关键代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// directly throw if it&#x27;s checked exception</span></span><br><span class="line"><span class="keyword">if</span> (!(exception <span class="keyword">instanceof</span> RuntimeException) &amp;&amp; (exception <span class="keyword">instanceof</span> Exception)) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// directly throw if the exception appears in the signature</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    Method method = invoker.getInterface().getMethod(invocation.getMethodName(), invocation.getParameterTypes());</span><br><span class="line">    Class&lt;?&gt;[] exceptionClassses = method.getExceptionTypes();</span><br><span class="line">    <span class="keyword">for</span> (Class&lt;?&gt; exceptionClass : exceptionClassses) &#123;</span><br><span class="line">        <span class="keyword">if</span> (exception.getClass().equals(exceptionClass)) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">&lt;!-- more --&gt;</span><br><span class="line"><span class="comment">// for the exception not found in method&#x27;s signature, print ERROR message in server&#x27;s log.</span></span><br><span class="line">logger.error(<span class="string">&quot;Got unchecked and undeclared exception which called by &quot;</span> + RpcContext.getContext().getRemoteHost() + <span class="string">&quot;. service: &quot;</span> + invoker.getInterface().getName() + <span class="string">&quot;, method: &quot;</span> + invocation.getMethodName() + <span class="string">&quot;, exception: &quot;</span> + exception.getClass().getName() + <span class="string">&quot;: &quot;</span> + exception.getMessage(), exception);</span><br><span class="line"></span><br><span class="line"><span class="comment">// directly throw if exception class and interface class are in the same jar file.</span></span><br><span class="line">String serviceFile = ReflectUtils.getCodeBase(invoker.getInterface());</span><br><span class="line">String exceptionFile = ReflectUtils.getCodeBase(exception.getClass());</span><br><span class="line"><span class="keyword">if</span> (serviceFile == <span class="keyword">null</span> || exceptionFile == <span class="keyword">null</span> || serviceFile.equals(exceptionFile)) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// directly throw if it&#x27;s JDK exception</span></span><br><span class="line">String className = exception.getClass().getName();</span><br><span class="line"><span class="keyword">if</span> (className.startsWith(<span class="string">&quot;java.&quot;</span>) || className.startsWith(<span class="string">&quot;javax.&quot;</span>)) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// directly throw if it&#x27;s dubbo exception</span></span><br><span class="line"><span class="keyword">if</span> (exception <span class="keyword">instanceof</span> RpcException) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// otherwise, wrap with RuntimeException and throw back to the client</span></span><br><span class="line">appResponse.setException(<span class="keyword">new</span> RuntimeException(StringUtils.toString(exception)));</span><br><span class="line"><span class="keyword">return</span>;</span><br></pre></td></tr></table></figure>
+
+<p>即Dubbo在遇到异常时会这样处理：</p>
+<ul>
+<li>非RuntimeException不处理，直接返回</li>
+<li>抛出的是方法上注明的异常，直接返回</li>
+<li>如果异常类和接口类在同一jar包，直接返回</li>
+<li>java或者javax目录下的异常类，直接返回</li>
+<li>Dubbo自带的RpcException，直接返回</li>
+<li>其他的异常，会被封装为RuntimeException返回</li>
+</ul>
+<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>根据以上的分析，那么很显然，自定义异常是被直接封装为RuntimeException返回了，而且只带了自定义异常的类名信息，丢失了别的细节。</p>
+<p>那么我们想要自定义异常进行正常返回，那只有满足这个FIlter所写的上述条件。我们可以分析一下：</p>
+<ul>
+<li><p>不继承RuntimeException，以检查时异常抛出。<strong>不推荐，正常的业务异常应该是运行时异常。</strong></p>
+</li>
+<li><p>在接口方法上要写上throws BusinessException，如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">DemoService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">DemoUser <span class="title">getUserInfo</span><span class="params">(Long userID)</span> <span class="keyword">throws</span> BusinessException</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>不推荐，不符合接口设计原则，且这样是把运行时异常作为检查时异常处理。</strong></p>
+</li>
+<li><p>把自定义异常类和接口放在同一个包目录下。<strong>不推荐，毕竟这样相当于绑定了异常类的目录，耦合性变高。</strong></p>
+</li>
+<li><p>改包名，以“java.”或者“javax.”来开头。<strong>不推荐，违反了类命名原则。</strong></p>
+</li>
+<li><p>继承Dubbo的RpcException。RpcException也是继承了RuntimeException，因此能够以RuntimeException的方式进行处理。<strong>不推荐，相当于自定义异常属于Dubbo的RpcException，这在程序设计上不合理。</strong></p>
+</li>
+</ul>
+<p>我们发现，想要满足Dubbo的过滤器直接返回异常的条件，我们就必须做出一些违反程序设计的操作，如果一定要从这些方法中选择一种的话，相对来说，<strong>自定义异常类和接口放在同一目录下，以及继承RpcException</strong>是对于程序侵入性更小的方式。</p>
+<h3 id="其他解决方式"><a href="#其他解决方式" class="headerlink" title="其他解决方式"></a>其他解决方式</h3><p>参考 <a href="https://blog.csdn.net/yangzaizi/article/details/80638306">这篇文章</a>，提供了两种解决方式：</p>
+<p>1.在配置文件中配置如下，效果是：关闭ExceptionFIlter，使所有异常绕过该过滤器直接返回。<strong>不推荐，Dubbo既然设置了这个异常过滤类，一定是出于安全和功能上的考虑，直接禁用可能会引发别的问题。</strong></p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">dubbo:</span></span><br><span class="line">  <span class="attr">provider:</span></span><br><span class="line">    <span class="attr">filter:</span> <span class="string">-exception</span></span><br></pre></td></tr></table></figure>
+
+<p>2.修改Dubbo源文件ExceptionFilter，使其遇到BusinessException也能直接返回。<strong>不推荐，相当于定制了本地的Dubbo包，是一个后续很容易被人忽略的大坑。</strong></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Dubbo在处理自定义异常时，会直接返回RuntimeException，且抹去自定义异常的所有细节，导致无法处理。</p>
+<p>本文写下的时候，Dubbo版本为2.7.3，该问题还没有非常完美的解决方案，相对来说，把<strong>自定义异常和接口类放在同一目录下</strong>是侵入性最小的方案。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>搭建相关</category>
+      </categories>
+      <tags>
+        <tag>solved</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记一次用代码分辨坑爹保险产品的经历</title>
+    <url>/2021/11/19/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%A8%E4%BB%A3%E7%A0%81%E5%88%86%E8%BE%A8%E5%9D%91%E7%88%B9%E4%BF%9D%E9%99%A9%E4%BA%A7%E5%93%81%E7%9A%84%E7%BB%8F%E5%8E%86/</url>
+    <content><![CDATA[<h2 id="问题起源"><a href="#问题起源" class="headerlink" title="问题起源"></a>问题起源</h2><p>这两天刚好一年交一次的保险开始催我交年费，最近由于基金太绿，手头实在有点紧，因此这个年费一直拖着还没交，于是我动了是不是要退保的想法。</p>
+<p>而销售则继续去年的话术，说我这个交满20年就可以不交了，现在交到12年退保太可惜了之类的。</p>
+<p>今年我没有轻易把这话听进去，于是我又去搜了下这个保险产品的条例，这个产品的介绍如下图。<br><img src="/2021/11/19/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%A8%E4%BB%A3%E7%A0%81%E5%88%86%E8%BE%A8%E5%9D%91%E7%88%B9%E4%BF%9D%E9%99%A9%E4%BA%A7%E5%93%81%E7%9A%84%E7%BB%8F%E5%8E%86/1.png"></p>
+<p>按照我当前的情况，排除意外身故的情况，简单概括下就是：</p>
+<ul>
+<li>我每年交7600，交20年</li>
+<li>到66岁每两年领一次总保额(总保额是50000)的8%，我这份产品从19岁开始买，到66岁总共可以领23次</li>
+<li>66岁一次性给100%全保额</li>
+<li>66岁开始每年领一次总保额的8%，我假设我能活到88岁，那总共领22次<span id="more"></span></li>
+</ul>
+<h2 id="简单计算"><a href="#简单计算" class="headerlink" title="简单计算"></a>简单计算</h2><p>剔除别的因素，最简单的加减算法就是</p>
+<ul>
+<li>交的保费是20*7600 = 152000</li>
+<li>到66岁每两年领一次8%，领23次，那就是23*(50000*0.08)=92000</li>
+<li>66岁一次性领100%总保额，就是50000</li>
+<li>66-88岁每年领一次8%，领22次，22*(50000*0.08)=88000<br>简单说来总保费是 <strong>152000</strong>，<strong>最后收益是230000</strong></li>
+</ul>
+<p>其实就算是这么简单的计算，也会发现这是一份很坑的产品，230000的最终收益前提是要活到88岁。而我在39岁就会交完152000的总保费，相当于从39岁<br>到88岁之间的49年时间，这份产品只帮我赚到了8万的收益，如果换算成一个理财产品的话，那这份产品的年收益是可怜的0.9%……</p>
+<p>我感觉已经不用分析了，这破产品分析到这已经是垃圾中的战斗机了啊。</p>
+<p>但是不行，我还要继续分析，因为如果考虑到通货膨胀率之类的东西，我得出的结论是，买这个产品，甚至收益完全是负的。。。</p>
+<h2 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h2><p>之前的分析还是有点粗浅的，如果仔细分析的话其实还需要考虑至少下面几点</p>
+<ul>
+<li>产品分红会每年加到总保额里，每年收益应当是(50000+分红)*0.08</li>
+<li>钱是会通货膨胀的，今年给你的收益4000，到明年就不值4000了</li>
+<li>同样的因为通货膨胀，你今年交的保费7600，到明年可能就不值7600了</li>
+</ul>
+<p>我直接上代码解决吧</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">countInsuranceIncome</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> eachYearOut = <span class="number">7600</span>;<span class="comment">//每年缴纳费用</span></span><br><span class="line">    <span class="keyword">let</span> eachYearRate = <span class="number">0.08</span>;<span class="comment">//年金率</span></span><br><span class="line">    <span class="keyword">let</span> inflationRate = <span class="number">0.05</span>;<span class="comment">//每年通胀率</span></span><br><span class="line">    <span class="keyword">let</span> eachYearIncreaseRate = <span class="number">0.01</span>;<span class="comment">//每年获得分红率</span></span><br><span class="line">    <span class="keyword">let</span> allMoney = <span class="number">50000</span>;<span class="comment">//总保额</span></span><br><span class="line">    <span class="keyword">let</span> allOut = <span class="number">0</span>;<span class="comment">//总支出</span></span><br><span class="line">    <span class="keyword">let</span> allIn = <span class="number">0</span>;<span class="comment">//总收入</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">20</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// 从第二年开始算通胀</span></span><br><span class="line">            eachYearOut = eachYearOut * (<span class="number">1</span>-inflationRate);</span><br><span class="line">        &#125;</span><br><span class="line">        allOut = allOut + eachYearOut;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 到66岁每两年领一次8%</span></span><br><span class="line">    <span class="comment">// 总共领23次</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">23</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> rate = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (i &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// 从第二年开始算通胀</span></span><br><span class="line">            rate = <span class="number">1</span> + eachYearIncreaseRate - inflationRate;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 总保额每年变化，由于是两年一次，所以乘两次</span></span><br><span class="line">        allMoney = allMoney * rate * rate;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;第&quot;</span> + i + <span class="string">&quot;次计算得总保额为&quot;</span> + allMoney.toFixed(<span class="number">2</span>));</span><br><span class="line">        allIn = allMoney * eachYearRate + allIn;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;第&quot;</span> + i + <span class="string">&quot;次年金为&quot;</span> + (allMoney * eachYearRate).toFixed(<span class="number">2</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 66岁一次性给100%</span></span><br><span class="line">    allIn = allIn + allMoney;</span><br><span class="line">    <span class="comment">//66岁开始假设活到88岁，每年领一次8%</span></span><br><span class="line">    <span class="comment">//总共领22次</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">22</span>; i++) &#123;</span><br><span class="line">        allIn = allMoney * (<span class="number">1</span> + eachYearIncreaseRate - inflationRate) * eachYearRate + allIn;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;总共支出&#x27;</span> + allOut.toFixed(<span class="number">2</span>) + <span class="string">&#x27;，总共收入&#x27;</span> + allIn.toFixed(<span class="number">2</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码逻辑基本上就是把我列的条件都写进去了，不多解释，总之最后的计算结果非常让我震惊。<br>假设从今年开始买这个产品，基于当前物价水平</p>
+<ul>
+<li>基于5%的通胀率，1%的分红率</li>
+<li>付出<strong>97510.14</strong>元</li>
+<li>收益<strong>65532.89</strong>元 </li>
+<li>收益 <strong>-31977.25</strong>元</li>
+</ul>
+<p>也就是说考虑到通货膨胀，拉长到将近70年的周期，这份产品最终是让你倒亏3万多。<br>而通胀率我设置的其实不算高，5%算是偏低水平，1%的每年分红率我甚至还比现实更高。而且现实中也基本不太可能每年保持1%的分红率，如果调整成6%的通胀率，和0.9%的分红率，</p>
+<ul>
+<li>基于6%的通胀率，0.9%的分红率</li>
+<li>付出<strong>89919.88</strong>元</li>
+<li>收益<strong>49962.45</strong>元</li>
+<li>收益 <strong>-39957.43</strong>元</li>
+</ul>
+<p>不得不说，算还是保险公司会算，你乍一看，只要交20年，然后长达70年给你持续分红和年金，似乎怎么想都是划算的，而且分红方式还按照不固定的分红增长，给人以更大的迷惑性。<br>让你如果不依靠专业的工具，自己根本算不清楚，只能任保险公司鱼肉。</p>
+<p>最后，如果想要这份产品能够盈利，那最低条件是通胀率要小于等于3%，且年均分红率要稳定在1%，这样70年后能够血赚2000。。。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>solved</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySql 8.0参考手册中文版（一）</title>
+    <url>/2019/10/17/MySql-Document/</url>
+    <content><![CDATA[<p><a href="https://dev.mysql.com/doc/refman/8.0/en/">原文文档</a>  </p>
+<p><strong>声明</strong></p>
+<p>该文档纯粹自己手动翻译， 也许网上有更好的版本， 但是我这个属于自己学习的版本， 为了提高英语水平和对MySQL的理解， 后续不保证会持续更新，内容如有理解错误， 还请指正。</p>
+<h2 id="MySQL-8-0-参考手册"><a href="#MySQL-8-0-参考手册" class="headerlink" title="MySQL 8.0 参考手册"></a>MySQL 8.0 参考手册</h2><h3 id="包含MySQL-NDB集群8-0"><a href="#包含MySQL-NDB集群8-0" class="headerlink" title="包含MySQL NDB集群8.0"></a>包含MySQL NDB集群8.0</h3><h4 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h4><p>这是一份MySQL参考手册。 该文档分别记录了MySQL8.0到8.0.20，以及基于NDB8.0版本到NDB8.0.19版本的NDB集群发布版本。这份文档可能包括一些目前还没发布的MySQL版本的特性。想要了解哪些版本已经发布，请查看<a href="https://dev.mysql.com/doc/relnotes/mysql/8.0/en/">MySQL8.0发布日志</a>。  </p>
+<p><strong>MySQL8.0特性</strong>。这份手册描述的特性并没有包含在所有版本的MySQL8.0中；这些特性可能不包含在你所购买的MySQL8.0版本中。如果你有任何问题是关于你的MySQL8.0版本中所包含的特性的，请参阅你的MySQL8.0许可协议或者联系你的oracle销售代表。  </p>
+<p>有关每个发布版本的变化，请查看<a href="https://dev.mysql.com/doc/relnotes/mysql/8.0/en/">MySQL8.0发布日志</a>。  </p>
+<p>有关法律信息和许可信息，请查看<a href="https://dev.mysql.com/doc/refman/8.0/en/preface.html">前言和法律声明</a>。  </p>
+<p>在使用MySQL中需要帮助，请访问<a href="http://forums.mysql.com/">MySQL论坛</a>，你可以在那里向别的MySQL用户描述你的问题。  </p>
+<p>文档创建于：2019-10-16  </p>
+<h2 id="1-一般信息"><a href="#1-一般信息" class="headerlink" title="1.  一般信息"></a>1.  一般信息</h2><p>MySQL提供了非常快速的，多线程，多用户，和健壮的SQL数据库服务。MySQL服务用于关键服务，高负荷生产的系统以及嵌入大量部署的软件。Oracle是Oracle公司及其分支机构的注册商标。MySQL是Oracle公司及其分支机构的商标，未经Oracle正式的书面许可，客户不得使用。其他的名字可能是其各自所有者的商标。  </p>
+<p>MySQL软件具有双重许可。用户可以在GNU通用公共许可 (<a href="http://www.fsf.org/licenses/">http://www.fsf.org/licenses/</a>)  条款下将MySQL软件作为开源软件产品使用，或者从Oracle购买一份标准的商业许可。访问 <a href="http://www.mysql.com/company/legal/licensing/">http://www.mysql.com/company/legal/licensing/</a>  以获取更多关于授权政策的信息。  </p>
+<p>下面的列表描述了一些在本手册中需要特别关注的部分：  </p>
+<ul>
+<li><p>访问<a href="https://dev.mysql.com/doc/refman/8.0/en/features.html">1.3.2章节，“MySql的主要特性”</a>，讨论关于MySQL数据库服务的功能。</p>
+</li>
+<li><p>访问<a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-nutshell.html">1.4章节，“MySQL8.0更新了什么”</a>，获取关于MySQL新功能的概况。访问<a href="https://dev.mysql.com/doc/relnotes/mysql/8.0/en/">发布日志</a>，获取关于每个版本的更新信息。</p>
+</li>
+<li><p>访问<a href="https://dev.mysql.com/doc/refman/8.0/en/installing.html">2章节，安装和升级MySQL</a>，获取安装介绍。访问<a href="https://dev.mysql.com/doc/refman/8.0/en/upgrading.html">章节2.11</a>，获取MySQL升级说明。  </p>
+</li>
+<li><p>访问<a href="https://dev.mysql.com/doc/refman/8.0/en/tutorial.html">第3章节，教程</a>，获取MySQL数据库服务的教程介绍。</p>
+</li>
+<li><p>访问 <a href="https://dev.mysql.com/doc/refman/8.0/en/server-administration.html">第5章节，MySQL服务管理</a>，获取关于MySQL服务的配置和管理的信息。</p>
+</li>
+<li><p>访问 <a href="https://dev.mysql.com/doc/refman/8.0/en/security.html">第6章节，安全</a>，获取关于MySQL的安全信息。</p>
+</li>
+<li><p>访问 <a href="https://dev.mysql.com/doc/refman/8.0/en/replication.html">第17章节，复制</a>，获取关于设置复制服务器的信息。</p>
+</li>
+<li><p>访问<a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-enterprise.html">第30章节，MySQL企业版</a>，获取关于MySQL企业版的信息，商用版的MySQL会发布一些进阶的功能和管理工具。</p>
+</li>
+<li><p>访问 <a href="https://dev.mysql.com/doc/refman/8.0/en/faqs.html">附录A，MySQL8.0常见问题</a>，获取关于MySQL服务及其功能的一些常见问题的答案。</p>
+</li>
+<li><p>访问<a href="https://dev.mysql.com/doc/relnotes/mysql/8.0/en/">发布日志</a>，获取关于新特性和bug修复的发布信息。</p>
+<p><strong>重要</strong>  </p>
+<p>如果要报告问题或者bug，请按照<a href="https://dev.mysql.com/doc/refman/8.0/en/bug-reports.html">章节17，“如何报告bug和问题”</a>的指示。如果你发现在MySQL中的一个敏感的安全性的bug，请立即发送邮件信息到&lt; <a href="mailto:secalert_us@oracle.com">secalert_us@oracle.com</a> &gt;让我们知晓。例外：支持客户应该报告所有的问题，包括安全bug，发送给Oracle支持部门。  </p>
+</li>
+</ul>
+<h3 id="1-1-关于本手册"><a href="#1-1-关于本手册" class="headerlink" title="1.1 关于本手册"></a>1.1 关于本手册</h3><p>这份参考手册适用于MySQL数据库系统8.0版本到8.0.20版。在本文中关于和MySQL8.0镜像版本的区别参照了（8.0.x）的发行版本。查看<a href="https://dev.mysql.com/doc/refman/8.0/en/preface.html#legalnotice">法律声明</a>，获取许可的信息。</p>
+<p>本手册不适用于MySQL软件的更早版本，因为在MySQL8.0和更早版本之间存在着很多功能及别的方面的不同。如果你正在使用MySQL软件的早期发布版本，请参考对应的手册。比如：<a href="https://dev.mysql.com/doc/refman/5.7/en/">MySQL5.7操作手册</a>可以覆盖MySQL软件的5.7发布版本系列。</p>
+<p>由于这个手册是作为参考来使用，因此不会提供关于SQL或关联的数据库概念的一般介绍。同样也不会教你如何使用你的操作系统或命令行解释器。</p>
+<p>MySQL数据库软件在经历不断的发展，其手册同样也会不断的更新。最新版本的手册可以在 <a href="https://dev.mysql.com/doc/">https://dev.mysql.com/doc/</a> 在线搜索到。其他格式也可以在这里获取，包括HTML，PDF和EPUB版本。</p>
+<p>参考手册的源文件由DocBook XML格式写成。其HTML版本和其他版本都自动生成，主要使用DocBook XSL样式表。关于DocBook的信息，详见 <a href="http://docbook.org/">http://docbook.org/</a> 。</p>
+<p>MySQL的源代码包括内部文档，由Doxygen编写。已完成的Doxygen内容可以访问 <a href="https://dev.mysql.com/doc/index-other.html">https://dev.mysql.com/doc/index-other.html</a> 。同样也可以按照 <a href="https://dev.mysql.com/doc/refman/8.0/en/source-installation-doxygen.html">章节2.9.10，“创建MySQL Doxygen文档内容”</a>的介绍从MySQL源分发创建本地的内容。</p>
+<p>如果你有使用MySQL的的问题，加入 <a href="https://mysqlcommunity.slack.com/">MySQL开发者社区</a>，或者在我们的论坛提问；详见 <a href="https://dev.mysql.com/doc/refman/8.0/en/forums.html">章节1.6.2，“MySQL论坛的MySQL社区支持”</a>。如果你对本手册有补充或者更正的建议，请发送到 <a href="http://www.mysql.com/company/contact/%E3%80%82">http://www.mysql.com/company/contact/。</a></p>
+<p>本手册最初由 David Axmark 和 Michael “Monty” Widenius 编写。主要由MySQL文档团队编写，成员包括 Chris Cole， Paul DuBois， Margaret Fisher， Edward Gilmore， Stefan Hinz， David Moss， Philip Olson， Daniel Price， Daniel So， 以及 Jon Stephens 。</p>
+<h3 id="1-2-排版和语法约定"><a href="#1-2-排版和语法约定" class="headerlink" title="1.2  排版和语法约定"></a>1.2  排版和语法约定</h3><p>本手册使用下列的排版约定：</p>
+<p>// TODO</p>
+<h3 id="1-3-MySQL数据库管理系统总览"><a href="#1-3-MySQL数据库管理系统总览" class="headerlink" title="1.3 MySQL数据库管理系统总览"></a>1.3 MySQL数据库管理系统总览</h3><h4 id="1-3-1-什么是MySQL？"><a href="#1-3-1-什么是MySQL？" class="headerlink" title="1.3.1 什么是MySQL？"></a>1.3.1 什么是MySQL？</h4><p>MySQL是最受欢迎的开源的SQL数据库管理系统，由Oracle公司开发，发布和支持。</p>
+<p><a href="http://www.mysql.com/">MySQL官网</a>提供了MySQL软件的最新版本的信息。</p>
+<ul>
+<li><p>MySQL是一个数据库管理系统  </p>
+<p>数据库是数据的结构化集合。它可以是任何东西，从简单的购物清单，到一个图片集，或者公司网络中的海量信息。在一个计算机数据库上添加，访问和执行数据存储，你需要一个像MySQL服务器一样的数据库管理系统。由于计算机非常善于处理大量的数据，数据库管理系统就在计算机中扮演了一个中心角色，无论是作为一个独立的程序，还是别的应用的一部分。</p>
+</li>
+<li><p>MySQL数据库是关系型的</p>
+<p>一个关系型数据库将数据存储在不同的表中，而不是把所有的数据放在一个大的存储库中。数据库结构组织成物理文件以优化速度。具有对象（诸如数据库，表，视图，行和列）的逻辑模型提供了灵活的程序设计环境。你可以建立规则去管理不同字段之间的关系，比如一对一，一对多，唯一，必填或者选填，以及不同表之间的指向。数据库强制执行这些规则，所以一个良好设计的数据库，可以使你的程序避免看到不一致，重复，孤立，过期，或者缺失的数据。</p>
+<p>MySQL中的SQL代表“结构化查询语言”。SQL是用于访问数据库的最通用的标准化语言。基于你的程序设计环境，又可以直接输入SQL（比如，用于创建报表），用另一种语言把SQL注入到代码中，或者使用隐含SQL语法的特定语言的API。</p>
+<p>SQL由 ANSI/ISO 的SQL标准来定义。SQL的标准从1986年以来不断发展，存在多个不同的版本。在本手册中，“SQL-92”是指1992年发布的标准，“SQL:1999”是指在1999年发布的版本，以及“SQL:2003”，指现在的版本。我们在任何时用到“SQL标准”这个词时，都是指当前版本的SQL标准。</p>
+</li>
+<li><p>MySQL软件是开源的</p>
+<p>开源意味着对于任何人来说都可以使用和修改该软件。任何人都可以从网络上下载MySQL软件并且免费使用。你也可以按照你的意愿去学习和更改源代码以适应你的需求。MySQL软件使用<a href="http://www.fsf.org/licenses/">GPL</a>)（通用公共许可），来定义你在不同情景下对软件能做的和不能做的事。如果你对GPL感到不适，或者想要将MySQL的代码注入到一个商用软件中，你可以从我们这里购买一份商用许可。访问<a href="http://www.mysql.com/company/legal/licensing/">MySQL许可概览</a>以获取更多信息。</p>
+</li>
+<li><p>MySQL数据库服务快速，可靠，可拓展且易用</p>
+<p>如果你寻求的就是这个，你应该去尝试一下。MySQL服务可以在笔记本或者台式机上与其他应用，网络服务一起舒适的运行，只需要一点甚至无需额外的关注。如果你将整台机器都用于MySQL，你可以调整设置利用所有的内存，CPU功率，以及IO性能。MySQL同样可以扩大网络和机器的集群。</p>
+<p>MySQL服务最初开发用来比现有方式更快的处理数据，而且成功的应用在高要求的生产环境很多年。尽管经历了不断的发展，MySQL如今提供了一组丰富而有用的功能。其可连接性，速度以及安全性使得MySQL服务高度适合在网络上访问数据库。</p>
+</li>
+<li><p>MySQL服务运行于客户端/服务端或者嵌入式系统</p>
+<p>MySQL数据库软件是一个客户端/服务端系统，其包含了一个多线程的SQL服务器用于支持不同的后端，不同的客户端程序以及库，管理工具，以及大范围的应用程序接口。</p>
+<p>我们也提供MySQL服务作为一个嵌入的多线程库，你可以将其链接到你的应用以实现一个更小，更快，易于管理的独立产品。</p>
+</li>
+<li><p>大量捐赠的MySQL软件已经可用</p>
+<p>MySQL服务有一些使用的功能是由与我们密切合作的用户开发的。很有可能你最喜欢的应用或者语言由MySQL数据库服务支持。</p>
+</li>
+</ul>
+<p>“MySQL”的官方读法是“ My Ess Que Ell ”（而不是 “my sequel” ），但是我们不介意你把它读作“my sequel”或者别的当地的读法。</p>
+<h4 id="1-3-2-MySQL的主要功能"><a href="#1-3-2-MySQL的主要功能" class="headerlink" title="1.3.2 MySQL的主要功能"></a>1.3.2 MySQL的主要功能</h4><p>本节描述了一些MySQL数据库软件的重要特征。在大部分情况下，该路线图适用于所有版本的MySQL。想要知道在特定版本的MySQL中引入的功能，请在“In a Nutshell”章节查看对应的手册：</p>
+<ul>
+<li>MySQL8.0：<a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-nutshell.html">章节1.4，“MySQL8.0更新了什么”</a></li>
+<li>MySQL5.7：<a href="https://dev.mysql.com/doc/refman/5.7/en/mysql-nutshell.html">MySQL5.7更新了什么</a></li>
+<li>MySQL5.6：<a href="https://dev.mysql.com/doc/refman/5.6/en/mysql-nutshell.html">MySQL5.6更新了什么</a></li>
+<li>MySQL5.5：<a href="https://dev.mysql.com/doc/refman/5.5/en/mysql-nutshell.html">MySQL5.5更新了什么</a></li>
+</ul>
+<p><strong>内部实现和可移植性</strong></p>
+<ul>
+<li>由C和C++实现</li>
+<li>通过了大规模的不同编译器的测试</li>
+<li>在多个不同的平台上运行。详见<a href="https://www.mysql.com/support/supportedplatforms/database.html">https://www.mysql.com/support/supportedplatforms/database.html</a></li>
+<li>关于移植，MySQL5.5及以上的版本使用CMake命令。更早的版本使用GNU Automake，Autoconf和Libtool。</li>
+<li>经过了Purify（一个商用的内存泄漏探测器）以及Valgrind（一个GPL工具）的测试。（<a href="http://developer.kde.org/~sewardj/%EF%BC%89">http://developer.kde.org/~sewardj/）</a></li>
+<li>使用具有独立模块的多层服务的设计。</li>
+<li>设计为使用核心线程的多线程方式，如果多核CPU可用，则可以很容易的被使用。</li>
+<li>提供了基于事务和非事务的存储引擎。</li>
+<li>使用索引压缩的非常快速的B-tree磁盘（MyISAM）</li>
+<li>设计为可以相对简单的增加另一个存储引擎。如果你想为一个内部的数据库提供一个SQL接口，这会非常有用。</li>
+<li>使用了非常快速的基于线程的内存分配系统。</li>
+<li>使用了一种优化了的内部循环的join来非常快速的执行join。</li>
+<li>实现了在内存的hash table，其作为临时表来使用。</li>
+<li>使用了一种尽可能快的高度优化的类库来实现SQL功能。在所有的查询初始化后一般就不会再有内存分配。</li>
+<li>为使用客户端/服务端环境提供了作为单独程序的服务，作为一个库可以嵌入到独立的应用中。这种应用可以单独使用或者在网络无法访问的环境中使用。</li>
+</ul>
+<p><strong>数据类型</strong></p>
+<ul>
+<li>很多的数据类型：带符号/无符号的整数类型，1、2、3、4以及8比特的长度， <a href="https://dev.mysql.com/doc/refman/8.0/en/floating-point-types.html"><code>FLOAT</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/floating-point-types.html"><code>DOUBLE</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/char.html"><code>CHAR</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/char.html"><code>VARCHAR</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/binary-varbinary.html"><code>BINARY</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/binary-varbinary.html"><code>VARBINARY</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/blob.html"><code>TEXT</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/blob.html"><code>BLOB</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html"><code>DATE</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/time.html"><code>TIME</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html"><code>DATETIME</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html"><code>TIMESTAMP</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/year.html"><code>YEAR</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/set.html"><code>SET</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/enum.html"><code>ENUM</code></a> ，以及OpenGIS的空间数据类型。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/data-types.html">章节11，数据类型</a>。</li>
+<li>固定长度和可变长度的字符串类型。</li>
+</ul>
+<p><strong>语句和功能</strong></p>
+<ul>
+<li><p>所有的操作符和功能支持都在Select列表和Where条件语句查询中。比如：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> CONCAT(first_name, <span class="string">&#x27; &#x27;</span>, last_name)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">FROM</span> citizen</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">WHERE</span> income<span class="operator">/</span>dependents <span class="operator">&gt;</span> <span class="number">10000</span> <span class="keyword">AND</span> age <span class="operator">&gt;</span> <span class="number">30</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>完全支持SQL中的<code>Group By</code>和<code>Order By</code>条件。提供Group的功能的支持（ <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_count"><code>COUNT()</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_avg"><code>AVG()</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_std"><code>STD()</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_sum"><code>SUM()</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_max"><code>MAX()</code></a>, <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_min"><code>MIN()</code></a>, 和 <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_group-concat"><code>GROUP_CONCAT()</code></a>) ）</p>
+</li>
+<li><p>完全支持拥有SQL和ODBC语法的 <code>LEFT OUTER JOIN</code> 和 <code>RIGHT OUTER JOIN</code>  </p>
+</li>
+<li><p>支持标准SQL要求的表和列的别名。</p>
+</li>
+<li><p>支持<code>Delete</code>，<code>Insert</code>，<code>Replace</code>，以及在<code>update</code>时返回修改的数量，或者返回匹配的行数，而不是在连接服务器时设置一个标识。</p>
+</li>
+<li><p>支持MySQL特定的<code>show</code>语句，用于返回数据库，存储引擎，表，以及索引的信息。支持 <code>INFORMATION_SCHEMA</code>数据库，实现自标准SQL。</p>
+</li>
+<li><p> <a href="https://dev.mysql.com/doc/refman/8.0/en/explain.html"><code>EXPLAIN</code></a> 语句会展现优化器如何处理查询语句的。</p>
+</li>
+<li><p>函数名称独立于表明和列名。比如，<code>ABS</code>是一个合法的列明。唯一的限制是在调用函数时，在函数名和(之间不能存在空格。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/keywords.html">章节9.3，关键字和保留字</a>。</p>
+</li>
+<li><p>你可以在一个语句内指定不同数据库的表。</p>
+</li>
+</ul>
+<p><strong>安全性</strong></p>
+<ul>
+<li>权限和密码系统非常灵活和安全，并支持基于主机的认证。</li>
+<li>连接服务器时，通过对所有密码通信进行加密来实现密码安全。</li>
+</ul>
+<p><strong>可拓展性和限制</strong></p>
+<ul>
+<li>支持大型数据库。我们使用的MySQL服务拥有可以包含5000万条数据的数据库。我们也知道拥有20万张表和50亿条数据的MySQL服务器的用户。</li>
+<li>支持每张表最多64个索引。每个索引可以包含1-16列或者部分列。InnoDB表的索引最大宽度为767字节或者3072字节。详见 <a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-restrictions.html">章节15.6.1.16，“InnoDB表的限制”</a>。MyISAM表的最大索引宽度为1000字节。详见 <a href="https://dev.mysql.com/doc/refman/8.0/en/myisam-storage-engine.html">章节16.2，“MyISAM存储引擎”</a>。可以使用Char，Varchar，Blob或者Text字段类型的前缀作为一个索引。</li>
+</ul>
+<p><strong>可连接性</strong></p>
+<ul>
+<li>客户端可以通过不同的协议连接MySQL服务：<ul>
+<li>客户端可以在任何平台上使用TCP/IP端口进行连接。</li>
+<li>在windows系统，如果服务端启用了 <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_named_pipe"><code>named_pipe</code></a> 系统参数进行启动，那客户端就可以使用name pipe进行连接。如果服务端启用了 <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_shared_memory"><code>shared_memory</code></a>  系统参数进行启动，那客户端也可以使用  <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_shared_memory"><code>shared_memory</code></a>  方式进行连接。客户端可以通过使用  <a href="https://dev.mysql.com/doc/refman/8.0/en/connection-options.html#option_general_protocol"><code>--protocol=memory</code></a> 选项来进行shared memory的连接。</li>
+<li>在unix系统，客户端可以使用Unix域的套接字文件来进行连接。</li>
+</ul>
+</li>
+<li>MySQL的客户端程序可以用不同的语言编写。一个C语言编写的客户端库可以用于C语言和C++编写的客户端，或者任何别的提供C语言绑定的语言。</li>
+<li> C, C++, Eiffel, Java, Perl, PHP, Python, Ruby, 和 Tcl 的API都是可用的，使得MySQL客户端可以被多种语言编写。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/connectors-apis.html">章节28，连接器和API</a>.</li>
+<li>连接器/ODBC（MyODBC）接口为那些使用ODBC（Open Datebase Connectivity）连接的客户端程序提供了MySQL支持。比如说，你可以使用MS Access去连接你的MySQL服务器。客户端可以运行在Windows或者Unix。连接器/ODBC源是可用的。和很多其他的功能一样，所有的ODBC2.5的功能都是被支持的。详见<a href="https://dev.mysql.com/doc/connector-odbc/en/">MySQL 连接器/ODBC开发者指南</a>。</li>
+<li>连接器/J 接口为那些使用了JDBC连接器的java客户端程序提供了MySQL支持。客户端可以运行于Windows或者Unix。连接器/J 源是可用的。详见<a href="https://dev.mysql.com/doc/connector-j/5.1/en/">MySQL连接器/J 5.1开发者指南</a>。</li>
+<li>MySQL连接器/NET 允许开发者创建一个要求安全和高性能数据连接MySQL的.NET应用程序。它实现了必须的ADO.NET的接口并融入进了ADO.NET的感知工具。开发者可以选择他们的.NET语言去构建应用。MySQL连接器/NET是一个完全托管的ADO.NET驱动，100%由纯粹的C#编写。详见<a href="https://dev.mysql.com/doc/connector-net/en/">MySQL连接器/NET开发者指南</a>。</li>
+</ul>
+<p><strong>本地化</strong></p>
+<ul>
+<li>服务器可以提供各种语言的报错信息。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/error-message-language.html">章节10.12，设置错误提示的语言</a>。</li>
+<li>完全支持不同的字符集，包括 <code>latin1</code> (cp1252)，<code>german</code>，<code>big5</code>，<code>ujis</code> ，几种Unicode编码，以及别的。比如， Scandinavian 的字符 “<code>å</code>”, “<code>ä</code>” 和“<code>ö</code>” 可以用在表和列的名字中。</li>
+<li>所有的数据以选定的字符集存储。</li>
+<li>根据默认的字符集和校对规则进行排序和比较。当MySQL服务运行的时候也可以对该规则进行更改(详见<a href="https://dev.mysql.com/doc/refman/8.0/en/charset-server.html">章节10.3.2，“服务器字符集和校验”</a>)。一个非常高级的排序例子，可以看下捷克的排序编码。MySQL支持多种可以在编译和运行阶段指定的字符集。</li>
+<li>服务器时区可以动态的改变，而且单独的客户端可以指定各自的时区。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/time-zone-support.html">章节5.1.13，MySQL服务器时区支持</a>。</li>
+</ul>
+<p><strong>客户端和工具</strong></p>
+<ul>
+<li>MySQL包含多个客户端和实用程序。包括命令行程序，比如 <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html"><strong>mysqldump</strong></a> 和 <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqladmin.html"><strong>mysqladmin</strong></a> ，以及图形化程序 <a href="https://dev.mysql.com/doc/refman/8.0/en/workbench.html">MySQL Workbench</a> 。</li>
+<li>MySQL服务器内置了对于SQL语句的检查，优化和表修复的支持。这些语句可以通过<a href="https://dev.mysql.com/doc/refman/8.0/en/mysqlcheck.html">mysqlcheck</a>客户端从命令行使用。MySQL也包含了<a href="https://dev.mysql.com/doc/refman/8.0/en/myisamchk.html">myisamchk</a>工具，一个非常快速的命令行工具，用于在MyISAM表提交这些操作。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/programs.html">章节4，MySQL程序</a>。</li>
+<li>可以调用 –help 和 -?来呼叫MySQL程序用以获取在线协助。</li>
+</ul>
+<h4 id="1-3-3-MySQL的历史"><a href="#1-3-3-MySQL的历史" class="headerlink" title="1.3.3 MySQL的历史"></a>1.3.3 MySQL的历史</h4><p>我们一开始想要用我们自己的快速，低级的引擎来使用mSQL数据库来连接我们的表。然而，经过了一些测试后，我们认为mSQL的速度和灵活性达不到我们的要求。这导致了我们的数据库的一个新的SQL接口，但是其API接口和mSQL几乎一样。该API设计为允许那些为mSQL编写的第三方代码可以很方便的移植以用于MySQL。</p>
+<p>MySQL得名于联合创建人Monty Widenius的女儿，My。</p>
+<p>MySQL的海豚（我们的logo）的名字是“Sakila”，这来自于“为海豚取名”的比赛中用户建议的庞大的名字列表里选择出来的。最后获胜的名字由来自非洲Swaziland， 一个名叫Ambrose Twebaze的开源软件开发者提供。据 Ambrose所说，这个女性化的名字Sakila出自 Swaziland 的当地语Siswati。Sakila也是坦桑尼亚的 Arusha 的一个城镇的名字，邻近 Ambrose 的原籍国乌干达。</p>
+<h3 id="1-4-MySQL8-0更新了什么"><a href="#1-4-MySQL8-0更新了什么" class="headerlink" title="1.4 MySQL8.0更新了什么"></a>1.4 MySQL8.0更新了什么</h3><p>这一节总结了在MySQL8.0中哪些被添加，启用，以及移除。随附的部分罗列了在MySQL8.0中已经被新增，启用，移除的选项和变量。详见 <a href="https://dev.mysql.com/doc/refman/8.0/en/added-deprecated-removed.html">章节1.5，“服务器，状态变量和选项在MySQL8.0中的添加，弃用和删除”</a>。</p>
+<span id="more"></span>
+<p><strong>MySQL8.0新增的特性</strong></p>
+<p>以下特性被加入到MySQL8.0中：</p>
+<ul>
+<li><p><strong>数据字典。</strong>MySQL现在合并了一个可以存储数据库对象的事务化的数据字典。在之前的MySQL发行版中，数据字典存储在元数据文件和非事务的表。关于更多信息，详见<a href="https://dev.mysql.com/doc/refman/8.0/en/data-dictionary.html">章节14，MySQL数据字典</a>。</p>
+</li>
+<li><p><strong>原子数据定义语句(原子DDL)。</strong>一个原子DDL语句包含了数据字典的升级，存储引擎的操作，以及将关联DDL操作的二进制日志写入到单独的原子事务中。要获取更多信息，详见<a href="https://dev.mysql.com/doc/refman/8.0/en/atomic-ddl.html">章节13.1.1，“原子数据定义语句的支持”</a>。</p>
+</li>
+<li><p><strong>升级过程。</strong>在以前，安装了一个新版本的MySQL后，MySQL服务器会在下一次启动时自动升级数据字典表，在此之后，需要DBA在mysql的schema里手动调用 <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html"><strong>mysql_upgrade</strong></a> 去升级系统表，也包括在别的schema比如sys schema和user schema里面的对象。</p>
+<p>对于MySQL8.0.16来说，服务器会执行先前由 <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html"><strong>mysql_upgrade</strong></a> 控制的任务。在安装了新版本的MySQL之后，服务器会在下次升级时自动执行所有的升级任务，而不是依赖DBA去调用 <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html"><strong>mysql_upgrade</strong></a> 。而且，服务器会更新帮助表里面的内容（这是 <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html"><strong>mysql_upgrade</strong></a> 没有做的）。一个新的 <a href="https://dev.mysql.com/doc/refman/8.0/en/server-options.html#option_mysqld_upgrade"><code>--upgrade</code></a> 服务器参数为服务器如何自动执行数据字典和服务器升级的选项提供了控制。想要了解更多，详见<a href="https://dev.mysql.com/doc/refman/8.0/en/upgrading-what-is-upgraded.html">章节2.11.3，MySQL的升级流程升级了什么</a>。</p>
+</li>
+<li><p><strong>安全和账户管理</strong>。增加下列增强的功能后，可以提高安全性以及增加DBA在账户管理方面的灵活性：</p>
+<ul>
+<li><p>在mysql系统数据库中的授权表现在属于InnoDB（事务型）表。以前它们是MyISAM（非事务型）表。授权表的存储引擎的变化是伴随账户管理语句变化的基础。以前一句命名多个用户的账户管理的语句（如 <a href="https://dev.mysql.com/doc/refman/8.0/en/create-user.html"><code>CREATE USER</code></a> 或 <a href="https://dev.mysql.com/doc/refman/8.0/en/drop-user.html"><code>DROP USER</code></a>) ，在其中一些用户命名失败的情况下也可以对别的用户命名成功。现在，每一个语句都是事务的，且要么所有的命名用户都成功，要么其中任何一个失败之后语句都会回滚并不发生任何效果。语句如果成功会被写入二进制表中，但是在失败时不会写入；在这种情况下，会发生回滚且没有任何变化发生。想要了解更多，详见<a href="https://dev.mysql.com/doc/refman/8.0/en/atomic-ddl.html">13.1.1“原子数据定义语句的支持”</a>。</p>
+</li>
+<li><p>一个新的 <code>caching_sha2_password</code>  认证插件已经可用。类似于 <code>sha256_password</code>  插件， caching_sha2_password 实现了 SHA-256 的密码Hash，但是在连接时用缓存来解决延迟问题。它也支持更多的连接协议，而且不需要为了基于RAS密钥对的密码交换功能和OpenSSL进行连接。</p>
+<p> caching_sha2_password 和 sha256_password 的认证方式相比 mysql_native_password 插件提供了更多的安全加密方式，而且 caching_sha2_password 的性能比sha256_password更好。由于这些 caching_sha2_password 卓越的安全和性能的特点，现在已经成为首选的认证插件，而且也是默认的认证插件，而不是  <code>mysql_native_password</code> 。想要了解这种默认插件的变化对于服务器操作和服务器与客户端及连接器之间的兼容性的信息，详见 <a href="https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password"> caching_sha2_password 作为首选的认证插件</a>。</p>
+</li>
+<li><p>MySQL如今支持角色，即权限集合的命名。角色可以被创建和删除。角色可以被授权和撤销权限。角色可以从用户账号中授权和删除。一个账户下的活跃的适用角色可以从账户里已授权的角色中选择，也可以在账户的登陆期间进行修改。想要了解更多信息，详见<a href="https://dev.mysql.com/doc/refman/8.0/en/roles.html">6.2.10，使用角色</a>。</p>
+</li>
+<li><p>MySQL现在包含了用户账号目录的概念，根据系统和普通用户区分他们是否有 <a href="https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html#priv_system-user"><code>SYSTEM_USER</code></a> 权限。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/account-categories.html">6.2.11，账户目录</a>。</p>
+</li>
+<li><p>在以前，除非在某些schema里，否则不能授予一个全局的权限。现在只要设置 <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_partial_revokes"><code>partial_revokes</code></a>  系统参数为 enabled 就可以做到。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/partial-revokes.html">6.2.12，使用部分撤销的权限限制</a>。</p>
+</li>
+<li><p>授权语句拥有一个可以指定额外的权限信息的用户条件去用于语句执行。这种语法在SQL层面可见， 尽管其主要目的是使在部分撤销所施加的授予者特权限制的所有节点之间实现统一复制， 通过使这些限制出现在二进制日志中。</p>
+</li>
+<li><p>MySQL现在会保留历史密码信息，限制重复使用以前的密码。DBA可以要求一些数量的密码更改或者一段时间内不可以从以前的密码中选择。可以为全局和每个账户建立密码重新使用的策略。</p>
+<p>现在可以通过指定当前要被取代的密码来验证更改密码的操作。这可以让DBA去避免那些不能提供他们知道的当前密码的用户去修改密码。可以为全局或每个账户建立密码验证策略。</p>
+<p>账户现在允许使用双重验证，这使得在复杂的多服务器系统上可以无缝的提交分阶段的密码修改，而不需要停机。</p>
+<p>这些功能为DBA提供了对密码管理的完全掌控。关于更多信息，详见<a href="https://dev.mysql.com/doc/refman/8.0/en/password-management.html">6.2.15，密码管理</a>。</p>
+</li>
+<li><p>MySQL现在支持FIPS模式，它使用OpenSSL编译，在运行时一个OpenSSL库和FIPS对象模式都是可用的。FIPS模式为密码相关操作强加了一些条件，比如对于可接受的加密方式的限制，或者对于密码长度的要求。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/fips-mode.html">6.5，FIPS支持</a>。</p>
+</li>
+<li><p> 服务器现在可以在运行时重新配置服务器用于新连接的SSL上下文。该功能可能会很有用，比如，在一个MySQL服务器运行太久而SSL证书过期，可以避免去重启该服务器。详见 <a href="https://dev.mysql.com/doc/refman/8.0/en/using-encrypted-connections.html#using-encrypted-connections-server-side-runtime-configuration">加密连接的服务器端运行时配置</a>。</p>
+</li>
+<li><p>OpenSSL1.1.1支持用于加密连接的TLS1.3协议，如果服务端和客户端都用OpenSSL或更高版本来编译，那么MySQL8.0.16和更高版本下也将支持TLS1.3协议。详见<a href="https://dev.mysql.com/doc/refman/8.0/en/encrypted-connection-protocols-ciphers.html">6.3.2，加密连接TLS协议和密码</a>。</p>
+</li>
+<li><p>MySQL现在授予客户端在已命名的管道上用于windows尽量少的必要连接的访问控制。新的MySQL客户端软件可以不用任何额外配置打开命名管道连接。如果更早版本的客户端软件不能马上升级，那么新的 <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_named_pipe_full_access_group"><code>named_pipe_full_access_group</code></a>系统参数可以给予windows用户组必要的权限用于打开命名管道连接。完全访问权限的用户组的成员应该是暂时的且被限制的。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>资源管理。</strong>MySQL现在支持资源组的创建和管理，并且允许跟服务器一起运行的线程分配给特定的组，以便线程根据组的可用的资源执行。组属性可以控制其资源，允许或者限制组内线程的资源消费。DBA可以根据不同的工作量来调整这些属性为合适的值。现在，CPU时间是可以管理的资源，其概念由”虚拟CPU”来表示，其包含了CPU内核，超线程，硬件线程等等。服务器在启动时决定有多少虚拟CPU可用，并且拥有相应权限的数据库管理员可以将这些CPU与资源组关联并分配线程给组。要了解更多信息，详见<a href="https://dev.mysql.com/doc/refman/8.0/en/resource-groups.html">8.12.5，资源组</a>。</p>
+</li>
+<li><p><strong>表加密管理。</strong></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>translate</tag>
+      </tags>
+  </entry>
+</search>
