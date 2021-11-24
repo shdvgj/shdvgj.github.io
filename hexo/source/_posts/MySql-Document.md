@@ -247,11 +247,11 @@ MySQL的海豚（我们的logo）的名字是“Sakila”，这来自于“为�
 
 以下特性被加入到MySQL8.0中：
 
-- **数据字典。**MySQL现在合并了一个可以存储数据库对象的事务化的数据字典。在之前的MySQL发行版中，数据字典存储在元数据文件和非事务的表。关于更多信息，详见[章节14，MySQL数据字典](https://dev.mysql.com/doc/refman/8.0/en/data-dictionary.html)。
+- **数据字典。** MySQL现在合并了一个可以存储数据库对象的事务化的数据字典。在之前的MySQL发行版中，数据字典存储在元数据文件和非事务的表。关于更多信息，详见[章节14，MySQL数据字典](https://dev.mysql.com/doc/refman/8.0/en/data-dictionary.html)。
 
-- **原子数据定义语句(原子DDL)。**一个原子DDL语句包含了数据字典的升级，存储引擎的操作，以及将关联DDL操作的二进制日志写入到单独的原子事务中。要获取更多信息，详见[章节13.1.1，“原子数据定义语句的支持”](https://dev.mysql.com/doc/refman/8.0/en/atomic-ddl.html)。
+- **原子数据定义语句(原子DDL)。** 一个原子DDL语句包含了数据字典的升级，存储引擎的操作，以及将关联DDL操作的二进制日志写入到单独的原子事务中。要获取更多信息，详见[章节13.1.1，“原子数据定义语句的支持”](https://dev.mysql.com/doc/refman/8.0/en/atomic-ddl.html)。
 
-- **升级过程。**在以前，安装了一个新版本的MySQL后，MySQL服务器会在下一次启动时自动升级数据字典表，在此之后，需要DBA在mysql的schema里手动调用 [**mysql_upgrade**](https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html) 去升级系统表，也包括在别的schema比如sys schema和user schema里面的对象。
+- **升级过程。** 在以前，安装了一个新版本的MySQL后，MySQL服务器会在下一次启动时自动升级数据字典表，在此之后，需要DBA在mysql的schema里手动调用 [**mysql_upgrade**](https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html) 去升级系统表，也包括在别的schema比如sys schema和user schema里面的对象。
 
   对于MySQL8.0.16来说，服务器会执行先前由 [**mysql_upgrade**](https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html) 控制的任务。在安装了新版本的MySQL之后，服务器会在下次升级时自动执行所有的升级任务，而不是依赖DBA去调用 [**mysql_upgrade**](https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html) 。而且，服务器会更新帮助表里面的内容（这是 [**mysql_upgrade**](https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html) 没有做的）。一个新的 [`--upgrade`](https://dev.mysql.com/doc/refman/8.0/en/server-options.html#option_mysqld_upgrade) 服务器参数为服务器如何自动执行数据字典和服务器升级的选项提供了控制。想要了解更多，详见[章节2.11.3，MySQL的升级流程升级了什么](https://dev.mysql.com/doc/refman/8.0/en/upgrading-what-is-upgraded.html)。
 
@@ -281,12 +281,28 @@ MySQL的海豚（我们的logo）的名字是“Sakila”，这来自于“为�
 
   - MySQL现在支持FIPS模式，它使用OpenSSL编译，在运行时一个OpenSSL库和FIPS对象模式都是可用的。FIPS模式为密码相关操作强加了一些条件，比如对于可接受的加密方式的限制，或者对于密码长度的要求。详见[6.5，FIPS支持](https://dev.mysql.com/doc/refman/8.0/en/fips-mode.html)。
 
-  -  服务器现在可以在运行时重新配置服务器用于新连接的SSL上下文。该功能可能会很有用，比如，在一个MySQL服务器运行太久而SSL证书过期，可以避免去重启该服务器。详见 [加密连接的服务器端运行时配置](https://dev.mysql.com/doc/refman/8.0/en/using-encrypted-connections.html#using-encrypted-connections-server-side-runtime-configuration)。
+  - 服务器现在可以在运行时重新配置服务器用于新连接的SSL上下文。该功能可能会很有用，比如，在一个MySQL服务器运行太久而SSL证书过期，可以避免去重启该服务器。详见 [加密连接的服务器端运行时配置](https://dev.mysql.com/doc/refman/8.0/en/using-encrypted-connections.html#using-encrypted-connections-server-side-runtime-configuration)。
 
   - OpenSSL1.1.1支持用于加密连接的TLS1.3协议，如果服务端和客户端都用OpenSSL或更高版本来编译，那么MySQL8.0.16和更高版本下也将支持TLS1.3协议。详见[6.3.2，加密连接TLS协议和密码](https://dev.mysql.com/doc/refman/8.0/en/encrypted-connection-protocols-ciphers.html)。
 
   - MySQL现在授予客户端在已命名的管道上用于windows尽量少的必要连接的访问控制。新的MySQL客户端软件可以不用任何额外配置打开命名管道连接。如果更早版本的客户端软件不能马上升级，那么新的 [`named_pipe_full_access_group`](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_named_pipe_full_access_group)系统参数可以给予windows用户组必要的权限用于打开命名管道连接。完全访问权限的用户组的成员应该是暂时的且被限制的。
 
-- **资源管理。**MySQL现在支持资源组的创建和管理，并且允许跟服务器一起运行的线程分配给特定的组，以便线程根据组的可用的资源执行。组属性可以控制其资源，允许或者限制组内线程的资源消费。DBA可以根据不同的工作量来调整这些属性为合适的值。现在，CPU时间是可以管理的资源，其概念由"虚拟CPU"来表示，其包含了CPU内核，超线程，硬件线程等等。服务器在启动时决定有多少虚拟CPU可用，并且拥有相应权限的数据库管理员可以将这些CPU与资源组关联并分配线程给组。要了解更多信息，详见[8.12.5，资源组](https://dev.mysql.com/doc/refman/8.0/en/resource-groups.html)。
+- **资源管理。** MySQL现在支持资源组的创建和管理，并且允许跟服务器一起运行的线程分配给特定的组，以便线程根据组的可用的资源执行。组属性可以控制其资源，允许或者限制组内线程的资源消费。DBA可以根据不同的工作量来调整这些属性为合适的值。现在，CPU时间是可以管理的资源，其概念由"虚拟CPU"来表示，其包含了CPU内核，超线程，硬件线程等等。服务器在启动时决定有多少虚拟CPU可用，并且拥有相应权限的数据库管理员可以将这些CPU与资源组关联并分配线程给组。要了解更多信息，详见[8.12.5，资源组](https://dev.mysql.com/doc/refman/8.0/en/resource-groups.html)。
 
-- **表加密管理。**
+- **表加密管理。** 现在可以通过定义和强制加密默认值来全局管理表加密。default_table_encryption常量为新创建的schema和一般表空间定义了一个加密默认值。当创建一个schema时，加密默认值同时也可以用DEFAULT ENCRYPTION条款来进行定义。默认情况下，创建一个表的同时
+会继承当前的schema或一般表空间的加密方式。设置table_encryption_privilege_check常量为可用，会强制使用加密默认值。当创建和修改一个不同于默认表加密设置的schema或表空间，或创建和修改一个不同于默认schema加密设置的表时，会发生权限检查。在table_encryption_privilege_check常量
+为可用时，TABLE_ENCRYPTION_ADMIN权限会允许覆盖默认加密设置。想要了解更多这方面信息，查看《为Schemas和一般表空间定义一个加密默认值》章节。
+
+- **InnoDB的优化** 包含以下对于InnoDB的优化：
+  - 当前最大的自增计数器发生值改变时，会写入到redo日志，并在每一次检查点保存在私有引擎的系统表里。这个改进使得自增计数器的值在系统重启时保持不变。额外的：
+    - 服务器重启时不会取消表选项里`AUTO_INCREMENT=N`的效果。如果你重新设置了自增计数器的值，或者你将自增计数器的值修改为一个很大的值，新的值也会在服务器重启时保持不变。
+    - 服务器重启时会立刻跟随一项[ROLLBACK](https://dev.mysql.com/doc/refman/8.0/en/commit.html)的操作，而不再重新使用事务回滚后的自增值。
+    - 如果你将自增列的值修改为一个比当前最大自增值更大的值（比如一个update的操作），新的值会持久化，并且随之的新增操作会在这个值基础上自增。
+  更多的信息，详见15.6.1.6章节，[InnoDB中的自增操作](https://dev.mysql.com/doc/refman/8.0/en/innodb-auto-increment-handling.html)，以及[InnoDB自增计数器的初始化](https://dev.mysql.com/doc/refman/8.0/en/innodb-auto-increment-handling.html#innodb-auto-increment-initialization)。
+  - 当索引树的损坏发生时，InnoDB会往redo日志写入一个损坏标识，这会保证损坏标识安全的销毁。InnoDB也会在每个检查点往私有引擎的系统表里写入内存崩溃的标识数据。在还原时，InnoDB在表和索引被标识为崩溃对象前会从这两个地方读取崩溃标识并合并结果内容。
+  - InnoDB缓存插件支持多种get操作（在一个缓存查询中获取多种key-value组合）和范围查询。详见15.20.4章节，[InnoDB缓存的多种get和范围查询支持](https://dev.mysql.com/doc/refman/8.0/en/innodb-memcached-multiple-get-range-query.html)
+  - innodb_deadlock_detect是一个新的动态变量，可以用于对不可用的死锁的监控。在高级的金融系统中，死锁监控可以缓解大量的线程等待同一个锁的情况。同时，在死锁发生时，使用在事务回滚时的innodb_lock_wait_timeout的设置并关闭死锁监控也可能是更有效的办法。
+  - 新的`INFORMATION_SCHEMA.INNODB_CACHED_INDEXES`表会在InnoDB缓冲池中为每个索引记录索引页缓存的数量。
+  - 现在，InnoDB的临时表会在共享的临时表空间ibtmp1中创建。
+  - InnoDB表空间加密功能支持对于redo日志和undo日志数据的加密。详见[Redo日志加密](https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html#innodb-data-encryption-redo-log)和[Undo日志加密](https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html#innodb-data-encryption-undo-log)。
+  - 
