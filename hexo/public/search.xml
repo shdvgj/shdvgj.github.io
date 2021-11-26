@@ -901,4 +901,31 @@
         <tag>translate</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Express框架中使用get和post</title>
+    <url>/2021/11/26/Express%E6%A1%86%E6%9E%B6%E4%B8%AD%E4%BD%BF%E7%94%A8get%E5%92%8Cpost/</url>
+    <content><![CDATA[<p>之所以有这个文章，是因为遇到在nodejs中使用express框架直接接受post请求时，无法获取到body中的内容，于是google了一篇英文文章解决了这个问题。<br>翻译自<a href="https://codeforgeek.com/handle-get-post-request-express-4/">codeforgeek</a></p>
+<hr>
+<p>GET和POST是两种用于构建REST接口的普通HTTP请求。两者的命名包含着不同的使用目的。<br>根据定义，GET请求从指定的地址抓取数据，POST请求则是发送数据到指定的地址。</p>
+<p>Express框架提供了router()方法用于构建HTTP终端。下面让我们看下怎么使用Express来实现GET和POST请求。</p>
+<h2 id="GET请求"><a href="#GET请求" class="headerlink" title="GET请求"></a>GET请求</h2><p>在Express中使用GET请求非常直接。你首先必须创建一个express和router的实例。下面是实现的一小段代码。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&quot;express&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> router = express.Router();</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line">router.get(‘/handle’,<span class="function">(<span class="params">request,response</span>) =&gt;</span> &#123;</span><br><span class="line"><span class="comment">//code to perform particular action.</span></span><br><span class="line"><span class="comment">//To access GET variable use req.query() and req.params() methods.</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// add router in the Express app.</span></span><br><span class="line">app.use(<span class="string">&quot;/&quot;</span>, router);</span><br></pre></td></tr></table></figure>
+<p>GET请求会缓存在浏览器历史中。这就是为什么不推荐使用GET请求发送敏感数据（密码，ATM取款码，等等）。你应该只使用GET请求从服务器获取数据。</p>
+<h2 id="POST请求"><a href="#POST请求" class="headerlink" title="POST请求"></a>POST请求</h2><p>Express需要一个额外的中间件模块提取POST请求中的数据。这个中间件叫做”body-parser”。我们需要在Express的实例中安装和配置它。<br>你可以使用如下命令安装body-parser。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo npm install --save body-parser</span><br></pre></td></tr></table></figure>
+<p>你需要在你的项目中导入这个包并告知Express去使用这个中间件。参考如下代码。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&quot;express&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">&quot;body-parser&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> router = express.Router();</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line"><span class="comment">//Here we are configuring express to use body-parser as middle-ware.</span></span><br><span class="line">app.use(bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;));</span><br><span class="line">app.use(bodyParser.json());</span><br><span class="line"></span><br><span class="line">router.post(‘/handle’,<span class="function">(<span class="params">request,response</span>) =&gt;</span> &#123;</span><br><span class="line"><span class="comment">//code to perform particular action.</span></span><br><span class="line"><span class="comment">//To access POST variable use req.body()methods.</span></span><br><span class="line"><span class="built_in">console</span>.log(request.body);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// add router in the Express app.</span></span><br><span class="line">app.use(<span class="string">&quot;/&quot;</span>, router);</span><br></pre></td></tr></table></figure>
+<p>通过这种方式，你可以在Express框架中使用GET和POST请求。（译者注：注意先后顺序，body-parser的注入一定要在router的注入之前，否则也会不起作用）</p>
+<hr>
+<p>后面的内容是博主写的demo，感觉也没必要发上来，就略过了。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>搭建相关</category>
+      </categories>
+      <tags>
+        <tag>translate</tag>
+        <tag>node.js</tag>
+      </tags>
+  </entry>
 </search>

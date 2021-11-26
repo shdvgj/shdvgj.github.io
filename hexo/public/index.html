@@ -82,9 +82,9 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">16</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">17</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -166,7 +166,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -210,6 +210,97 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2021/11/26/Express%E6%A1%86%E6%9E%B6%E4%B8%AD%E4%BD%BF%E7%94%A8get%E5%92%8Cpost/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="shdvgj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shdvgj的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/11/26/Express%E6%A1%86%E6%9E%B6%E4%B8%AD%E4%BD%BF%E7%94%A8get%E5%92%8Cpost/" class="post-title-link" itemprop="url">Express框架中使用get和post</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-11-26 10:06:45 / 修改时间：10:37:25" itemprop="dateCreated datePublished" datetime="2021-11-26T10:06:45+08:00">2021-11-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/%E6%90%AD%E5%BB%BA%E7%9B%B8%E5%85%B3/" itemprop="url" rel="index"><span itemprop="name">搭建相关</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>之所以有这个文章，是因为遇到在nodejs中使用express框架直接接受post请求时，无法获取到body中的内容，于是google了一篇英文文章解决了这个问题。<br>翻译自<a target="_blank" rel="noopener" href="https://codeforgeek.com/handle-get-post-request-express-4/">codeforgeek</a></p>
+<hr>
+<p>GET和POST是两种用于构建REST接口的普通HTTP请求。两者的命名包含着不同的使用目的。<br>根据定义，GET请求从指定的地址抓取数据，POST请求则是发送数据到指定的地址。</p>
+<p>Express框架提供了router()方法用于构建HTTP终端。下面让我们看下怎么使用Express来实现GET和POST请求。</p>
+<h2 id="GET请求"><a href="#GET请求" class="headerlink" title="GET请求"></a>GET请求</h2><p>在Express中使用GET请求非常直接。你首先必须创建一个express和router的实例。下面是实现的一小段代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&quot;express&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> router = express.Router();</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line">router.get(‘/handle’,<span class="function">(<span class="params">request,response</span>) =&gt;</span> &#123;</span><br><span class="line"><span class="comment">//code to perform particular action.</span></span><br><span class="line"><span class="comment">//To access GET variable use req.query() and req.params() methods.</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// add router in the Express app.</span></span><br><span class="line">app.use(<span class="string">&quot;/&quot;</span>, router);</span><br></pre></td></tr></table></figure>
+<p>GET请求会缓存在浏览器历史中。这就是为什么不推荐使用GET请求发送敏感数据（密码，ATM取款码，等等）。你应该只使用GET请求从服务器获取数据。</p>
+<h2 id="POST请求"><a href="#POST请求" class="headerlink" title="POST请求"></a>POST请求</h2><p>Express需要一个额外的中间件模块提取POST请求中的数据。这个中间件叫做”body-parser”。我们需要在Express的实例中安装和配置它。<br>你可以使用如下命令安装body-parser。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install --save body-parser</span><br></pre></td></tr></table></figure>
+<p>你需要在你的项目中导入这个包并告知Express去使用这个中间件。参考如下代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&quot;express&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">&quot;body-parser&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> router = express.Router();</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line"><span class="comment">//Here we are configuring express to use body-parser as middle-ware.</span></span><br><span class="line">app.use(bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;));</span><br><span class="line">app.use(bodyParser.json());</span><br><span class="line"></span><br><span class="line">router.post(‘/handle’,<span class="function">(<span class="params">request,response</span>) =&gt;</span> &#123;</span><br><span class="line"><span class="comment">//code to perform particular action.</span></span><br><span class="line"><span class="comment">//To access POST variable use req.body()methods.</span></span><br><span class="line"><span class="built_in">console</span>.log(request.body);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// add router in the Express app.</span></span><br><span class="line">app.use(<span class="string">&quot;/&quot;</span>, router);</span><br></pre></td></tr></table></figure>
+<p>通过这种方式，你可以在Express框架中使用GET和POST请求。（译者注：注意先后顺序，body-parser的注入一定要在router的注入之前，否则也会不起作用）</p>
+<hr>
+<p>后面的内容是博主写的demo，感觉也没必要发上来，就略过了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1240,107 +1331,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/10/17/MySql-Document/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2019/10/16/linux%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="shdvgj">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shdvgj的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/10/16/linux%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">linux日常维护命令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-10-16 14:32:27" itemprop="dateCreated datePublished" datetime="2019-10-16T14:32:27+08:00">2019-10-16</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-23 10:43:25" itemprop="dateModified" datetime="2021-11-23T10:43:25+08:00">2021-11-23</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><h3 id="删除测试库创建日期在10天以前的日志"><a href="#删除测试库创建日期在10天以前的日志" class="headerlink" title="删除测试库创建日期在10天以前的日志"></a>删除测试库创建日期在10天以前的日志</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /home -ctime +10 -type f -name &quot;*log.log.20*&quot; | xargs rm -rf</span><br></pre></td></tr></table></figure>
-
-<h2 id="查看磁盘空间和大文件"><a href="#查看磁盘空间和大文件" class="headerlink" title="查看磁盘空间和大文件"></a>查看磁盘空间和大文件</h2><h3 id="查看磁盘剩余空间"><a href="#查看磁盘剩余空间" class="headerlink" title="查看磁盘剩余空间"></a>查看磁盘剩余空间</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
-
-<h3 id="查看目录下大文件"><a href="#查看目录下大文件" class="headerlink" title="查看目录下大文件"></a>查看目录下大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -h --max-depth=1</span><br></pre></td></tr></table></figure>
-
-<h2 id="查看进程中的java程序"><a href="#查看进程中的java程序" class="headerlink" title="查看进程中的java程序"></a>查看进程中的java程序</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep java</span><br><span class="line"><span class="meta">#</span><span class="bash"> 杀死某个进程</span></span><br><span class="line">kill -9 pid</span><br></pre></td></tr></table></figure>
-
-<h2 id="修改hostname"><a href="#修改hostname" class="headerlink" title="修改hostname"></a>修改hostname</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network</span><br></pre></td></tr></table></figure>
-
-<h2 id="传输文件"><a href="#传输文件" class="headerlink" title="传输文件"></a>传输文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp C:/Users/Administrator/Downloads/elasticsearch-7.3.1-linux-x86_64.tar.gz root@192.168.15.161:/home/bos-provider/bos-provider-1.0-SNAPSHOT/bin</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/16/linux%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E5%91%BD%E4%BB%A4/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
