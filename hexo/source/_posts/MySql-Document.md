@@ -304,5 +304,14 @@ MySQL的海豚（我们的logo）的名字是“Sakila”，这来自于“为�
   - innodb_deadlock_detect是一个新的动态变量，可以用于对不可用的死锁的监控。在高级的金融系统中，死锁监控可以缓解大量的线程等待同一个锁的情况。同时，在死锁发生时，使用在事务回滚时的innodb_lock_wait_timeout的设置并关闭死锁监控也可能是更有效的办法。
   - 新的`INFORMATION_SCHEMA.INNODB_CACHED_INDEXES`表会在InnoDB缓冲池中为每个索引记录索引页缓存的数量。
   - 现在，InnoDB的临时表会在共享的临时表空间ibtmp1中创建。
-  - InnoDB表空间加密功能支持对于redo日志和undo日志数据的加密。详见[Redo日志加密](https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html#innodb-data-encryption-redo-log)和[Undo日志加密](https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html#innodb-data-encryption-undo-log)。
+  - InnoDB[表空间加密功能](https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html)支持对于redo日志和undo日志数据的加密。详见[Redo日志加密](https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html#innodb-data-encryption-redo-log)和[Undo日志加密](https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html#innodb-data-encryption-undo-log)。
+  - 对于`SELECT ... FOR SHARE`和`SELECT ... FOR UPDATE`这样的加锁读取语句，InnoDB支持使用`NOWAIT`和`SKIP LOCKED`选项。语句中的`NOWAIT`选项的效果是当一列被请求的行被另一个事务锁定时立刻返回结果。`SKIP LOCKED`会在结果集中移除被锁定的行。详见[并发锁读中使用NOWAIT和SKIP LOCKED](https://dev.mysql.com/doc/refman/8.0/en/innodb-locking-reads.html#innodb-locking-reads-nowait-skip-locked)。
+    `SELECT ... FOR SHARE`语句取代`SELECT ... LOCK IN SHARE MODE`，但是`LOCK IN SHARE MODE`依然保持着向后的兼容性。两个语句是等效的。但是`FOR UPDATE`和`FOR SHARE`支持`NOWAIT'，'SKIP LOCKED`，以及`OF`之类的`tbl_name`选项。
+    详见13.2.10章节，[SELECT STATEMENT](https://dev.mysql.com/doc/refman/8.0/en/select.html)。`OF`这个`tbl_name`值用于锁定对命名的表的查询(TODO)。
   - 
+    ADD PARTITION, DROP PARTITION, COALESCE PARTITION, REORGANIZE PARTITION, and REBUILD PARTITION ALTER TABLE options are supported by native partitioning 
+    in-place APIs and may be used with ALGORITHM={COPY|INPLACE} and LOCK clauses.
+    
+    DROP PARTITION with ALGORITHM=INPLACE deletes data stored in the partition and drops the partition. However, 
+    DROP PARTITION with ALGORITHM=COPY or old_alter_table=ON rebuilds the partitioned table and attempts to move data from the dropped partition 
+    to another partition with a compatible PARTITION ... VALUES definition. Data that cannot be moved to another partition is deleted. 

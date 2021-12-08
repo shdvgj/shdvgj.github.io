@@ -28,7 +28,7 @@
 <meta property="og:description" content="原文文档   声明 该文档纯粹自己手动翻译， 也许网上有更好的版本， 但是我这个属于自己学习的版本， 为了提高英语水平和对MySQL的理解， 后续不保证会持续更新，内容如有理解错误， 还请指正。 MySQL 8.0 参考手册包含MySQL NDB集群8.0摘要这是一份MySQL参考手册。 该文档分别记录了MySQL8.0到8.0.20，以及基于NDB8.0版本到NDB8.0.19版本的NDB集群发">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-10-17T01:03:03.000Z">
-<meta property="article:modified_time" content="2021-11-24T02:58:00.000Z">
+<meta property="article:modified_time" content="2021-11-29T01:17:04.000Z">
 <meta property="article:author" content="shdvgj">
 <meta property="article:tag" content="mysql">
 <meta property="article:tag" content="translate">
@@ -90,7 +90,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">17</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">19</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -162,7 +162,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -186,7 +186,7 @@
         <a href="mailto:linqianghuang@gmail.com" title="E-Mail → mailto:linqianghuang@gmail.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://twitter.com/shdvgj" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;shdvgj" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+        <a href="https://twitter.com/RickyLoveCindy" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;RickyLoveCindy" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
       </span>
       <span class="links-of-author-item">
         <a href="https://instagram.com/xiaoqianglalala" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoqianglalala" rel="noopener" target="_blank"><i class="instagram fa-fw"></i>Instagram</a>
@@ -258,7 +258,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-24 10:58:00" itemprop="dateModified" datetime="2021-11-24T10:58:00+08:00">2021-11-24</time>
+        <time title="修改时间：2021-11-29 09:17:04" itemprop="dateModified" datetime="2021-11-29T09:17:04+08:00">2021-11-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -508,8 +508,9 @@
 <li>innodb_deadlock_detect是一个新的动态变量，可以用于对不可用的死锁的监控。在高级的金融系统中，死锁监控可以缓解大量的线程等待同一个锁的情况。同时，在死锁发生时，使用在事务回滚时的innodb_lock_wait_timeout的设置并关闭死锁监控也可能是更有效的办法。</li>
 <li>新的<code>INFORMATION_SCHEMA.INNODB_CACHED_INDEXES</code>表会在InnoDB缓冲池中为每个索引记录索引页缓存的数量。</li>
 <li>现在，InnoDB的临时表会在共享的临时表空间ibtmp1中创建。</li>
-<li>InnoDB表空间加密功能支持对于redo日志和undo日志数据的加密。详见<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html#innodb-data-encryption-redo-log">Redo日志加密</a>和<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html#innodb-data-encryption-undo-log">Undo日志加密</a>。</li>
-<li></li>
+<li>InnoDB<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html">表空间加密功能</a>支持对于redo日志和undo日志数据的加密。详见<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html#innodb-data-encryption-redo-log">Redo日志加密</a>和<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html#innodb-data-encryption-undo-log">Undo日志加密</a>。</li>
+<li>对于<code>SELECT ... FOR SHARE</code>和<code>SELECT ... FOR UPDATE</code>这样的加锁读取语句，InnoDB支持使用<code>NOWAIT</code>和<code>SKIP LOCKED</code>选项。语句中的<code>NOWAIT</code>选项的效果是当一列被请求的行被另一个事务锁定时立刻返回结果。<code>SKIP LOCKED</code>会在结果集中移除被锁定的行。详见<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/innodb-locking-reads.html#innodb-locking-reads-nowait-skip-locked">并发锁读中使用NOWAIT和SKIP LOCKED</a>。<br><code>SELECT ... FOR SHARE</code>语句取代<code>SELECT ... LOCK IN SHARE MODE</code>，但是<code>LOCK IN SHARE MODE</code>依然保持着向后的兼容性。两个语句是等效的。但是<code>FOR UPDATE</code>和<code>FOR SHARE</code>支持<code>NOWAIT&#39;，&#39;SKIP LOCKED</code>，以及<code>OF</code>之类的<code>tbl_name</code>选项。<br>详见13.2.10章节，<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/select.html">SELECT STATEMENT</a>。<code>OF</code>这个<code>tbl_name</code>值用于锁定对命名的表的查询(TODO)。</li>
+<li>ADD PARTITION, DROP PARTITION, COALESCE PARTITION, REORGANIZE PARTITION, and REBUILD PARTITION ALTER TABLE options are supported by native partitioning<br>in-place APIs and may be used with ALGORITHM={COPY|INPLACE} and LOCK clauses.DROP PARTITION with ALGORITHM=INPLACE deletes data stored in the partition and drops the partition. However,<br>DROP PARTITION with ALGORITHM=COPY or old_alter_table=ON rebuilds the partitioned table and attempts to move data from the dropped partition<br>to another partition with a compatible PARTITION … VALUES definition. Data that cannot be moved to another partition is deleted. </li>
 </ul>
 </li>
 </ul>
