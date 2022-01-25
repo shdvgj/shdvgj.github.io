@@ -1286,7 +1286,7 @@
       </tags>
   </entry>
   <entry>
-    <title>一周文章收集-20210117</title>
+    <title>一周文章收集-20220117</title>
     <url>/2022/01/19/%E4%B8%80%E5%91%A8%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%94%B6%E9%9B%86-20210117/</url>
     <content><![CDATA[<p>我发现逐篇翻译看到的技术博文并不是那么高效，还是像阮老师那样把一周看到的有价值的文章收集起来，作为一个归档会更加有用。</p>
 <hr>
@@ -1295,6 +1295,17 @@
 <h2 id="权力的游戏和指环王等奇幻故事里的地图"><a href="#权力的游戏和指环王等奇幻故事里的地图" class="headerlink" title="权力的游戏和指环王等奇幻故事里的地图"></a><a href="https://www.smithsonianmag.com/smart-news/explore-literary-maps-of-famous-authors-180979409/"><code>权力的游戏</code>和<code>指环王</code>等奇幻故事里的地图</a></h2><p>这篇文章介绍了奇幻小说中的地图，这些地图的创作倾注了作者的心血和巧思，可以给读者带来沉浸的阅读感受。原文中有更多的地图介绍。<br><img src="/2022/01/19/%E4%B8%80%E5%91%A8%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%94%B6%E9%9B%86-20210117/map1.png" alt="`奥德赛`的扉页地图"></p>
 <h2 id="13个程序员必看的博客网站"><a href="#13个程序员必看的博客网站" class="headerlink" title="13个程序员必看的博客网站"></a><a href="https://blog.bit.ai/programming-blogs-and-websites/">13个程序员必看的博客网站</a></h2><p>技术博客是程序员保持技术新鲜度非常重要的一个渠道，不仅仅是看其他的技术博客，自己维护一个博客也是很有必要。文章介绍了13个可以提升技术水平的博客网站，可以作为参考。<br>P.S.后面发现里面大部分网站的质量不高，要么得收费，要么更新频率低，要么没啥有价值的文章。。。<br><img src="/2022/01/19/%E4%B8%80%E5%91%A8%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%94%B6%E9%9B%86-20210117/blog.jpg"></p>
 <h2 id="深入详解Node-js线程池"><a href="#深入详解Node-js线程池" class="headerlink" title="深入详解Node.js线程池"></a><a href="https://betterprogramming.pub/a-deep-dive-into-the-node-js-thread-pool-a1f32a4f8628">深入详解Node.js线程池</a></h2><p>这篇文章介绍了使用BigQuery这个Node插件后出现的错误，应该有点深度，以我有限的Node.js知识和英文水平，并没有怎么看懂。<br>P.S.这个网站居然是收费的，一个月一篇免费博客。。。</p>
+]]></content>
+      <categories>
+        <category>一周文章收集</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>一周文章收集-20220124</title>
+    <url>/2022/01/25/%E4%B8%80%E5%91%A8%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%94%B6%E9%9B%86-20220124/</url>
+    <content><![CDATA[<h2 id="为什么网络游戏Wordle病毒式的传播，来听听心理学家的解释"><a href="#为什么网络游戏Wordle病毒式的传播，来听听心理学家的解释" class="headerlink" title="为什么网络游戏Wordle病毒式的传播，来听听心理学家的解释"></a><a href="https://www.smithsonianmag.com/smart-news/heres-why-the-word-game-wordle-went-viral-180979439/">为什么网络游戏<code>Wordle</code>病毒式的传播，来听听心理学家的解释</a></h2><p>近期有个网络游戏<code>Wordle</code>在推特上及其流行，这是字谜类的游戏。规则比较简单，玩家需要猜一个5个字母组成的单词。其特别之处在于拥有社交属性，即一盘游戏是需要好几个人参与的，通过不同色块提示字母和位置的正确与否，这样每个人都能看到别人猜的进度，形成一种竞争体验。<br><img src="/2022/01/25/%E4%B8%80%E5%91%A8%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%94%B6%E9%9B%86-20220124/wordle.png"></p>
+<h2 id="开源工具Arthas在线诊断java程序"><a href="#开源工具Arthas在线诊断java程序" class="headerlink" title="开源工具Arthas在线诊断java程序"></a><a href="https://arthas.aliyun.com/doc/">开源工具Arthas在线诊断java程序</a></h2><p><code>Arthas</code>是Alibaba开源的Java诊断工具，可以实现在线监控执行方法，观测返回值等，在很多特殊的场景下，比如在家里无法部署开发环境却需要检查线上程序具体问题，或者需要查问题的程序只有线上包没有源代码，可以使用Arthas进行在线诊断并处理，以后将会专门写一篇关于如何使用Arthas的文章。</p>
+<h2 id="如何在Debian-11安装CSF"><a href="#如何在Debian-11安装CSF" class="headerlink" title="如何在Debian 11安装CSF"></a><a href="https://vitux.com/how-to-install-config-server-firewall-csf-on-debian/">如何在Debian 11安装CSF</a></h2><p>CSF全称是Config Server Firewall，是一套可以轻松对防火墙策略和规则进行配置的防火墙软件，适合不熟悉linux防火墙的新手使用，本文介绍了如何安装和使用CSF，以增强linux的安全性。</p>
 ]]></content>
       <categories>
         <category>一周文章收集</category>
