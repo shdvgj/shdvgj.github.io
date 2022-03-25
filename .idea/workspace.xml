@@ -4,73 +4,7 @@
     <list default="true" id="cb1a2061-9faa-44a6-ac5c-9db79a1d0099" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hexo/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/07/ELK_FileBeats/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/07/ELK_FileBeats/10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/07/ELK_FileBeats/11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/07/ELK_FileBeats/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/07/ELK_FileBeats/3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/07/ELK_FileBeats/4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/07/ELK_FileBeats/5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/07/ELK_FileBeats/6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/07/ELK_FileBeats/7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/07/ELK_FileBeats/8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/07/ELK_FileBeats/9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/07/ELK_FileBeats/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/08/hexo使用技巧/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/08/hexo使用技巧/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/08/hexo使用技巧/3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/08/hexo使用技巧/4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/08/hexo使用技巧/5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/08/hexo使用技巧/6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/08/hexo使用技巧/7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/08/hexo使用技巧/8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/08/hexo使用技巧/9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/08/hexo使用技巧/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/08/利用hexo和github搭建个人博客/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/08/利用hexo和github搭建个人博客/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/08/利用hexo和github搭建个人博客/3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/08/利用hexo和github搭建个人博客/4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/08/利用hexo和github搭建个人博客/5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/08/利用hexo和github搭建个人博客/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/10/新闻翻译-1/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/14/ELK日常维护相关/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/14/ELK日常维护相关/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/14/ELK日常维护相关/3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/14/ELK日常维护相关/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/15/官方文档解释MySQL最左匹配(最左前缀)原则/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/16/linux日常维护命令/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/17/MySql-Document/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/10/22/搭建新项目的框架/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/04/OracleJDBC/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/04/OracleJDBC/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/04/OracleJDBC/3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/04/OracleJDBC/4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/04/OracleJDBC/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/04/解决Dubbo无法处理自定义异常的问题/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/05/logback日志配置模板/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2020/04/29/azkaban简单搭建/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2020/04/29/azkaban简单搭建/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2020/04/29/azkaban简单搭建/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2020/05/14/jenkins简单搭建/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2020/05/14/jenkins简单搭建/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2020/05/14/jenkins简单搭建/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2021/11/19/记一次用代码分辨坑爹保险产品的经历/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/2021/11/19/记一次用代码分辨坑爹保险产品的经历/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/public/archives/2019/10/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/public/archives/2019/10/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hexo/public/archives/2019/10/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/hexo/public/archives/2019/11/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/public/archives/2019/11/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hexo/public/archives/2019/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/public/archives/2019/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hexo/public/archives/2019/page/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/public/archives/2019/page/2/index.html" afterDir="false" />
@@ -103,117 +37,6 @@
       <change beforePath="$PROJECT_DIR$/hexo/public/tags/python/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/public/tags/python/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hexo/public/tags/solved/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/public/tags/solved/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hexo/public/tags/translate/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/public/tags/translate/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/ELK_FileBeats.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/ELK_FileBeats.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/ELK_FileBeats/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/ELK_FileBeats/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/ELK_FileBeats/10.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/ELK_FileBeats/10.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/ELK_FileBeats/11.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/ELK_FileBeats/11.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/ELK_FileBeats/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/ELK_FileBeats/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/ELK_FileBeats/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/ELK_FileBeats/3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/ELK_FileBeats/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/ELK_FileBeats/4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/ELK_FileBeats/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/ELK_FileBeats/5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/ELK_FileBeats/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/ELK_FileBeats/6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/ELK_FileBeats/7.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/ELK_FileBeats/7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/ELK_FileBeats/8.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/ELK_FileBeats/8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/ELK_FileBeats/9.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/ELK_FileBeats/9.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/ELK日常维护相关.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/ELK日常维护相关.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/ELK日常维护相关/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/ELK日常维护相关/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/ELK日常维护相关/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/ELK日常维护相关/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/ELK日常维护相关/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/ELK日常维护相关/3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/Express框架中使用get和post.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/Express框架中使用get和post.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/MySql-Document.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/MySql-Document.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/OracleJDBC.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/OracleJDBC.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/OracleJDBC/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/OracleJDBC/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/OracleJDBC/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/OracleJDBC/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/OracleJDBC/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/OracleJDBC/3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/OracleJDBC/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/OracleJDBC/4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/Python数据爬虫实践-爬取历年东西部周最佳对比.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/Python数据爬虫实践-爬取历年东西部周最佳对比.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/Python数据爬虫实践-爬取历年东西部周最佳对比/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/Python数据爬虫实践-爬取历年东西部周最佳对比/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/Python数据爬虫实践-爬取历年东西部周最佳对比/10.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/Python数据爬虫实践-爬取历年东西部周最佳对比/10.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/Python数据爬虫实践-爬取历年东西部周最佳对比/11.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/Python数据爬虫实践-爬取历年东西部周最佳对比/11.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/Python数据爬虫实践-爬取历年东西部周最佳对比/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/Python数据爬虫实践-爬取历年东西部周最佳对比/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/Python数据爬虫实践-爬取历年东西部周最佳对比/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/Python数据爬虫实践-爬取历年东西部周最佳对比/3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/Python数据爬虫实践-爬取历年东西部周最佳对比/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/Python数据爬虫实践-爬取历年东西部周最佳对比/4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/Python数据爬虫实践-爬取历年东西部周最佳对比/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/Python数据爬虫实践-爬取历年东西部周最佳对比/5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/Python数据爬虫实践-爬取历年东西部周最佳对比/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/Python数据爬虫实践-爬取历年东西部周最佳对比/6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/Python数据爬虫实践-爬取历年东西部周最佳对比/7.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/Python数据爬虫实践-爬取历年东西部周最佳对比/7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/Python数据爬虫实践-爬取历年东西部周最佳对比/8.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/Python数据爬虫实践-爬取历年东西部周最佳对比/8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/Python数据爬虫实践-爬取历年东西部周最佳对比/9.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/Python数据爬虫实践-爬取历年东西部周最佳对比/9.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/azkaban简单搭建.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/azkaban简单搭建.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/azkaban简单搭建/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/azkaban简单搭建/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/azkaban简单搭建/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/azkaban简单搭建/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/azkaban简单搭建/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/azkaban简单搭建/3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/azkaban简单搭建/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/azkaban简单搭建/4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/azkaban简单搭建/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/azkaban简单搭建/5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/azkaban简单搭建/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/azkaban简单搭建/6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/hexo使用技巧.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/hexo使用技巧/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/hexo使用技巧/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/hexo使用技巧/3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/hexo使用技巧/4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/hexo使用技巧/5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/hexo使用技巧/6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧/7.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/hexo使用技巧/7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧/8.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/hexo使用技巧/8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/hexo使用技巧/9.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/hexo使用技巧/9.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/jenkins简单搭建.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/jenkins简单搭建.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/jenkins简单搭建/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/jenkins简单搭建/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/jenkins简单搭建/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/jenkins简单搭建/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/linux日常维护命令.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/linux日常维护命令.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/linux版本过低情况下使用高版本nodejs.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/linux版本过低情况下使用高版本nodejs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/logback日志配置模板.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/logback日志配置模板.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/一周技术博客收集-20210117.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/blog/一周技术博客收集-20210117.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/一周技术博客收集-20210117/blog.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/blog/一周技术博客收集-20210117/blog.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/一周技术博客收集-20210117/map1.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/blog/一周技术博客收集-20210117/map1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/一周技术博客收集-20210117/programmerhumor.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/blog/一周技术博客收集-20210117/programmerhumor.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/一周技术博客收集-20220124.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/blog/一周技术博客收集-20220124.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/一周技术博客收集-20220124/wordle.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/blog/一周技术博客收集-20220124/wordle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/利用hexo和github搭建个人博客.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/利用hexo和github搭建个人博客.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/利用hexo和github搭建个人博客/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/利用hexo和github搭建个人博客/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/利用hexo和github搭建个人博客/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/利用hexo和github搭建个人博客/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/利用hexo和github搭建个人博客/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/利用hexo和github搭建个人博客/3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/利用hexo和github搭建个人博客/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/利用hexo和github搭建个人博客/4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/利用hexo和github搭建个人博客/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/利用hexo和github搭建个人博客/5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/官方文档解释MySQL最左匹配(最左前缀)原则.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/官方文档解释MySQL最左匹配(最左前缀)原则.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/技术博客翻译-12例bash脚本最佳实践.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/blog/技术博客翻译-12例bash脚本最佳实践.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/搭建新项目的框架.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/搭建新项目的框架.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/搭建框架中遇到的问题/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/搭建框架中遇到的问题/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/搭建框架中遇到的问题/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/搭建框架中遇到的问题/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/搭建框架中遇到的问题/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/搭建框架中遇到的问题/3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/搭建框架中遇到的问题/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/搭建框架中遇到的问题/4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-1.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-1.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-2.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-2.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-2/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-2/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-3.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-3/CmonCmon.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-3/CmonCmon.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-3/DriveMyCar.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-3/DriveMyCar.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-3/ParallelMothers.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-3/ParallelMothers.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-3/Passing.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-3/Passing.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-3/SummerofSoul.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-3/SummerofSoul.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-3/TheDisciple.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-3/TheDisciple.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-3/ThePoweroftheDog.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-3/ThePoweroftheDog.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-3/TheSouvenirPartII.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-3/TheSouvenirPartII.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-3/TheTragedyofMacbeth.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-3/TheTragedyofMacbeth.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-3/TheWorstPersonintheWorld.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-3/TheWorstPersonintheWorld.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-Metacritic评选的2021年度十佳pc游戏.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-Metacritic评选的2021年度十佳pc游戏.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-Metacritic评选的2021年度十佳pc游戏/chicory.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-Metacritic评选的2021年度十佳pc游戏/chicory.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-Metacritic评选的2021年度十佳pc游戏/deathloop.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-Metacritic评选的2021年度十佳pc游戏/deathloop.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-Metacritic评选的2021年度十佳pc游戏/discoelysium.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-Metacritic评选的2021年度十佳pc游戏/discoelysium.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-Metacritic评选的2021年度十佳pc游戏/enderlilies.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-Metacritic评选的2021年度十佳pc游戏/enderlilies.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-Metacritic评选的2021年度十佳pc游戏/forzahorizon5.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-Metacritic评选的2021年度十佳pc游戏/forzahorizon5.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-Metacritic评选的2021年度十佳pc游戏/hitman3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-Metacritic评选的2021年度十佳pc游戏/hitman3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-Metacritic评选的2021年度十佳pc游戏/ittakestwo.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-Metacritic评选的2021年度十佳pc游戏/ittakestwo.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-Metacritic评选的2021年度十佳pc游戏/masseffect.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-Metacritic评选的2021年度十佳pc游戏/masseffect.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-Metacritic评选的2021年度十佳pc游戏/psychonauts2.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-Metacritic评选的2021年度十佳pc游戏/psychonauts2.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-Metacritic评选的2021年度十佳pc游戏/wildermyth.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-Metacritic评选的2021年度十佳pc游戏/wildermyth.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-地质发现罕见的中古符文.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-地质发现罕见的中古符文.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-地质发现罕见的中古符文/bone.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-地质发现罕见的中古符文/bone.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-地质发现罕见的中古符文/bone2.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-地质发现罕见的中古符文/bone2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-地质发现罕见的中古符文/bone3.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-地质发现罕见的中古符文/bone3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/用curl计时.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/用curl计时.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/用ssh加密文件.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/用ssh加密文件.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/解决Dubbo无法处理自定义异常的问题.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/解决Dubbo无法处理自定义异常的问题.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/记一次用代码分辨坑爹保险产品的经历.md" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/记一次用代码分辨坑爹保险产品的经历.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/记一次用代码分辨坑爹保险产品的经历/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/hexo/source/_posts/tech/记一次用代码分辨坑爹保险产品的经历/1.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -245,12 +68,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/hexo/source/_posts/read/读书笔记-置身事内.md">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hexo/source/_posts/read/读书笔记-人类简史.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="4889">
-                <caret line="340" column="7" selection-start-line="340" selection-start-column="7" selection-end-line="340" selection-end-column="7" />
+              <first_editor relative-caret-position="417">
+                <caret line="101" column="59" lean-forward="true" selection-start-line="101" selection-start-column="59" selection-end-line="101" selection-end-column="59" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hexo/source/_posts/read/读书笔记-算法.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="418">
+                <caret line="117" column="13" lean-forward="true" selection-start-line="117" selection-start-column="13" selection-end-line="117" selection-end-column="13" />
               </first_editor>
               <second_editor />
             </state>
@@ -325,7 +160,6 @@
         <option value="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-1.md" />
         <option value="$PROJECT_DIR$/hexo/source/_posts/解决Dubbo无法处理自定义异常的问题.md" />
         <option value="$PROJECT_DIR$/hexo/source/_posts/logback日志配置模板.md" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/hexo/source/_posts/azkaban简单搭建.md" />
         <option value="$PROJECT_DIR$/hexo/source/_posts/Express框架中使用get和post.md" />
         <option value="$PROJECT_DIR$/hexo/source/_posts/MySql-Document.md" />
@@ -342,6 +176,10 @@
         <option value="$PROJECT_DIR$/hexo/source/_posts/一周技术博客收集-20210117.md" />
         <option value="$PROJECT_DIR$/hexo/source/_posts/一周技术博客收集-20220124.md" />
         <option value="$PROJECT_DIR$/hexo/source/_posts/读书笔记-置身事内.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/hexo/source/_posts/read/读书笔记-数据结构和算法图解.md" />
+        <option value="$PROJECT_DIR$/hexo/source/_posts/read/读书笔记-人类简史.md" />
+        <option value="$PROJECT_DIR$/hexo/source/_posts/read/读书笔记-算法.md" />
       </list>
     </option>
   </component>
@@ -429,6 +267,12 @@
               <item name="shdvgj.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="shdvgj.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="hexo" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shdvgj.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shdvgj.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="hexo" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -437,6 +281,40 @@
               <item name="hexo" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shdvgj.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shdvgj.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="hexo" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="_posts" type="462c0819:PsiDirectoryNode" />
+              <item name="news" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shdvgj.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shdvgj.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="hexo" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="_posts" type="462c0819:PsiDirectoryNode" />
+              <item name="read" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shdvgj.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shdvgj.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="hexo" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="_posts" type="462c0819:PsiDirectoryNode" />
+              <item name="read" type="462c0819:PsiDirectoryNode" />
+              <item name="读书笔记-人类简史" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shdvgj.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shdvgj.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="hexo" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="_posts" type="462c0819:PsiDirectoryNode" />
+              <item name="read" type="462c0819:PsiDirectoryNode" />
+              <item name="读书笔记-算法" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -451,23 +329,23 @@
     <property name="add_unversioned_files" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1647829422147" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1648198983177" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Confirmation" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/hexo/source/_posts/read/读书笔记-算法" />
+      <recent name="$PROJECT_DIR$/hexo/source/_posts/read/读书笔记-人类简史" />
+      <recent name="$PROJECT_DIR$/hexo/source/_posts/read/读书笔记-数据结构和算法图解" />
       <recent name="$PROJECT_DIR$/hexo/source/_posts/读书笔记-置身事内" />
       <recent name="$PROJECT_DIR$/hexo/source/_posts/一周技术博客收集-20220124" />
-      <recent name="$PROJECT_DIR$/hexo/source/_posts/一周技术博客收集-20210117" />
-      <recent name="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-地质发现罕见的中古符文" />
-      <recent name="$PROJECT_DIR$/hexo/source/_posts/新闻翻译-Metacritic评选的2021年度十佳pc游戏" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/hexo/source/_posts/read" />
@@ -607,17 +485,18 @@
       <workItem from="1646181532805" duration="533000" />
       <workItem from="1646617506142" duration="580000" />
       <workItem from="1646618383844" duration="20000" />
-      <workItem from="1646618441945" duration="51965000" />
+      <workItem from="1646618441945" duration="109659000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="322280000" />
+    <option name="totallyTimeSpent" value="379974000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1008" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24760383" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24760383" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -634,7 +513,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32960895" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="CheckStyle" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.27729258" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.27729258" />
       <window_info anchor="bottom" id="Problems" order="11" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
@@ -690,28 +569,6 @@
     </ignored-roots>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hexo/public/search.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2127" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hexo/public/tags/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1694">
-          <caret line="287" lean-forward="true" selection-start-line="287" selection-end-line="287" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hexo/themes/landscape/_config.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hexo/node_modules/hexo-theme-next/_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-352">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hexo/source/tags/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -825,13 +682,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="6" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -993,26 +843,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-1.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-1211">
-            <caret line="22" selection-start-line="22" selection-end-line="22" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-2.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="103">
-            <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="10" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-Metacritic评选的2021年度十佳pc游戏.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
@@ -1093,11 +923,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/hexo/source/_posts/read.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-1.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="330">
+            <caret line="22" selection-start-line="22" selection-end-line="22" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/hexo/source/_posts/read/读书笔记-置身事内.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="4889">
-            <caret line="340" column="7" selection-start-line="340" selection-start-column="7" selection-end-line="340" selection-end-column="7" />
+          <first_editor relative-caret-position="-305">
+            <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="10" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hexo/source/_posts/news/新闻翻译-2.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="285">
+            <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="10" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hexo/source/_posts/read/读书笔记-数据结构和算法图解.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="105">
+            <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="10" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hexo/source/_posts/read/读书笔记-人类简史.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="417">
+            <caret line="101" column="59" lean-forward="true" selection-start-line="101" selection-start-column="59" selection-end-line="101" selection-end-column="59" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hexo/source/_posts/read/读书笔记-算法.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="418">
+            <caret line="117" column="13" lean-forward="true" selection-start-line="117" selection-start-column="13" selection-end-line="117" selection-end-column="13" />
           </first_editor>
           <second_editor />
         </state>
