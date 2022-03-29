@@ -404,7 +404,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-25 16:58:15" itemprop="dateModified" datetime="2022-03-25T16:58:15+08:00">2022-03-25</time>
+        <time title="修改时间：2022-03-28 15:00:54" itemprop="dateModified" datetime="2022-03-28T15:00:54+08:00">2022-03-28</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -427,7 +427,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/algrithm.jpg"></p>
-<p><strong>配套网站：<a target="_blank" rel="noopener" href="https://algs4.cs.princeton.edu/home/"></a></strong></p>
+<p><strong>配套网站：<a target="_blank" rel="noopener" href="https://algs4.cs.princeton.edu/home/">https://algs4.cs.princeton.edu/home/</a></strong></p>
 <h2 id="第一章-基础"><a href="#第一章-基础" class="headerlink" title="第一章 基础"></a>第一章 基础</h2><ul>
 <li>无论在任何应用领域，精心设计的算法都是解决大型问题最有效的方法</li>
 <li>我们把描述和实现算法所用到的语言特性、软件库和操作系统特性总称为<strong>基础编程模型</strong></li>
@@ -515,8 +515,8 @@
 <li>执行每条语句的频率</li>
 </ul>
 </li>
-<li>常见的增长数量级函数<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/algrithm1.png"><br><img src="/algrithm2.png"><br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/algrithm3.png"></li>
-<li>从增长率来看，效率排行是<strong>常数&gt;N&gt;logN&gt;N^2&gt;2^N&gt;N^3</strong></li>
+<li>常见的增长数量级函数<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/algrithm1.png"><br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/algrithm2.png"><br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/algrithm3.png"></li>
+<li>从增长率来看，效率排行是<strong>常数&gt;logN&gt;N&gt;N^2&gt;2^N&gt;N^3</strong></li>
 </ul>
 </li>
 <li>解决3-sum问题<ul>
@@ -573,7 +573,7 @@
 </ul>
 </li>
 <li><strong>速度太慢的程序和错误的程序一样无用</strong></li>
-<li>union-find算法<ul>
+<li><strong>union-find算法</strong><ul>
 <li>问题的输入是一列整数对，其中每个整数都表示一个某种类型的对象，一对整数pq可以被理解为“p和q是相连的”</li>
 <li>规则<ul>
 <li>自反性：p和p是相连的</li>
@@ -583,7 +583,8 @@
 </li>
 <li>动态连通性问题<ul>
 <li>当程序从输入中读取了整数对pq时，如果已知的所有整数对都不能说明p和q是相连的，那么则将这一对整数写入到输出中</li>
-<li>如果已知的数据可以说明p和q是相连的，那么程序应该忽略pq这对整数并继续处理输入中的下一对整数<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/unionfind.png"></li>
+<li>如果已知的数据可以说明p和q是相连的，那么程序应该忽略pq这对整数并继续处理输入中的下一对整数</li>
+<li>比如没有连通数据时，输入1，3，将其连通，输出1-3；接下来再输入3，5，将其连通，输出3-5；这样在输出记录中，存在1-3-5的连通记录；此时，输入1，5，根据连通规则，1和5是连通的，所以忽略这对数据<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/unionfind.png"></li>
 </ul>
 </li>
 <li>用处<ul>
@@ -593,6 +594,56 @@
 </li>
 <li>术语<ul>
 <li>将对象称为<strong>触点</strong>，将整数对称为<strong>连接</strong>，将等价类称为<strong>连通分量</strong>或是简称<strong>分量</strong></li>
+</ul>
+</li>
+<li>实现方法<ul>
+<li>用一个以触点为索引的数组id[]作为基本数据结构来表示所有分量</li>
+<li>定义四个基本API<br>  <img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/unionfind2.png">   </li>
+<li>quick-find算法<ul>
+<li>connected(p,q)只需要判断id[p]==id[q]</li>
+<li>我们需要遍历整个数组，将所有和id[p]相等的元素的值变为id[q]的值。我们也可以将所有和id[q]相等的元素的值变为id[p]的值——两者皆可<ul>
+<li>举例来说，1-3本来相连，则数组id[]中id[1]和id[3]的值相等，比如都等于1</li>
+<li>这时需要连接另一对触点，比如5-6，数组id[]中id[5]和id[6]的值相等，比如都等于5</li>
+<li>现在需要将3和5连接，此时遍历数组，找到与id[3]和id[5]的值相同的索引，即1和6，此时将索引1,3,5,6的值都改为1或者都改为5<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/quickyfind.png"><br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/quickyfind2.png"><br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/quickyfind3.png"></li>
+</ul>
+</li>
+<li>union方法包含三步，一步是find，找到各自对应的值，复杂度为O(1)，第二步是遍历数组，复杂度为O(N)，第三步是修改数组中的值，根据连通量的不同，可能需要1——N-1步</li>
+<li>最差的情况下，只得到一个连通分量，如1-5的数组，最终连通分路只有一条1-2-3-4-5，其复杂度接近O(N^2)<ul>
+<li>两个数组连通每次都需要N+3步，即两次find为2步，遍历数组N步，改变值1步，2+N+1=N+3步</li>
+<li>只有一个通路的情况下，数组中依次比较需要N-1步，如1-5的数组，步骤为1-2,2-3,3-4,4-5。</li>
+<li>所以最终步骤为(N+3)*(N-1)，时间复杂度记为O(N^2)</li>
+<li>这个时间复杂度在数据量达到上亿的情况下显然效率过低，不予考虑</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>quick-union算法<ul>
+<li>每个触点所对应的id[]元素都是同一个分量中的另一个触点的名称，称为<strong>链接</strong><br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/quickunion.png">  </li>
+<li>在数组被初始化之后，每个节点的链接都指向它自己</li>
+<li>每次union之后节点都会指向某个父节点，id[i]的值除非是根节点，否则不会等于自身，因此代码中的find会一直追溯到父结点<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/quickunion2.png"></li>
+<li>与quick-find相比，最明显的改变就是每次union的操作无需遍历数组，只需将子节点指向父节点即可，这个过程只需一步<ul>
+<li>相比之下，就要付出额外的成本去追溯父节点，这个过程最快1步，最慢需要N-1步</li>
+</ul>
+</li>
+<li>在最坏的情况下，所有的节点的链接都指向前一个节点，那么每次find都需要遍历之前的每个节点，总的find的步骤就是3+5+6+……+(2N-1)～N^2<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/quickunion3.png">       </li>
+<li>在一般情况下都会比quick-find更快，但是无法保证出现最坏情况下仍然是O(N^2)的时间复杂度</li>
+</ul>
+</li>
+<li>加权quick-union算法<ul>
+<li>记录每一棵树的大小并总是将较小的树连接到较大的树上</li>
+<li>需要添加一个数组和一些代码来记录树中的节点数<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/weightquickunion.png">        </li>
+<li>对于N个触点，加权quickunion算法构造的森林中的任意节点的深度最多为lgN</li>
+<li>多出来记录节点数量的数组并不会增加多少复杂度，只会在每次union中多出两步操作</li>
+<li>使得find成本大大降低，随着数量级的提升，时间复杂度只会以lgN的数量级增长</li>
+</ul>
+</li>
+<li>路径压缩的加权quick-union算法<ul>
+<li>我们希望每个节点都直接链接到它的根节点上，但我们又不想像quickfind算法那样通过修改大量链接做到这一点</li>
+<li>要实现路径压缩，只需要为find()添加一个循环，将在路径上遇到的所有节点都直接链接到根节点</li>
+<li>我们所得到的结果是几乎完全扁平化的树，它和quickfind算法理想情况下所得到的树非常接近</li>
+<li>是目前的最优解  </li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
