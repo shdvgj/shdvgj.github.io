@@ -84,7 +84,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">33</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -219,6 +219,288 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/04/01/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%B8%89%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="shdvgj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shdvgj的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/01/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%B8%89%E7%AB%A0/" class="post-title-link" itemprop="url">读书笔记-算法-第三章</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-01 09:15:26" itemprop="dateCreated datePublished" datetime="2022-04-01T09:15:26+08:00">2022-04-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-04-06 15:42:29" itemprop="dateModified" datetime="2022-04-06T15:42:29+08:00">2022-04-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="第三章-查找"><a href="#第三章-查找" class="headerlink" title="第三章 查找"></a>第三章 查找</h2><ul>
+<li><p>符号表</p>
+<ul>
+<li>符号表最主要的目的就是将一个键和一个值联系起来</li>
+<li>能够将一个键值对插入符号表并希望在之后能够从符号表的所有键值对中按照键直接找到相对应的值</li>
+<li>设计原则<ul>
+<li>每个键只对应着一个值（表中不允许存在重复的键）</li>
+<li>当用例代码向表中存入的键值对和表中已有的键（及关联的值）冲突时，新的值会替代旧的值</li>
+<li>键不能为空</li>
+<li>不允许有空值</li>
+<li>删除操作<ul>
+<li>延时删除<ul>
+<li>put(key,null)是delete(key)的一种简单的（延时型）实现</li>
+</ul>
+</li>
+<li>即时删除</li>
+</ul>
+</li>
+<li>基础API<br><img src="/2022/04/01/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%B8%89%E7%AB%A0/search1.png"></li>
+<li>有序的符号表API<ul>
+<li>通过实现comparabel接口带来接口的有序性<br><img src="/2022/04/01/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%B8%89%E7%AB%A0/search2.png"></li>
+</ul>
+</li>
+<li>最大键和最小键<ul>
+<li>区别在于优先队列中可以存在重复的键但符号表中不行，而且有序符号表支持的操作更多</li>
+</ul>
+</li>
+<li>向下取整和向上取整<ul>
+<li>向下取整（floor）操作（找出小于等于该键的最大键）</li>
+<li>向上取整（ceiling）操作（找出大于等于该键的最小键）</li>
+</ul>
+</li>
+<li>排名和选择</li>
+<li>范围查找</li>
+<li>例外情况<ul>
+<li>当一个方法需要返回一个键但表中却没有合适的键可以返回时，我们约定抛出一个异常（另一种合理的方法是在这种情况下返回空）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>成本模型<ul>
+<li>统计比较的次数（等价性测试或是键的相互比较）</li>
+<li>在内循环不进行比较（极少）的情况下，我们会统计数组的访问次数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>无序链表的顺序查找</p>
+<ul>
+<li>符号表中使用的数据结构的一个简单选择是链表，每个结点存储一个键值对<ul>
+<li>每次查找遍历链表，使用equals方法进行比较</li>
+<li>插入也是遍历链表，如果匹配，则进行更新，没有匹配的就插入</li>
+</ul>
+</li>
+<li><strong>我们使用命中表示一次成功的查找，未命中表示一次失败的查找</strong><br><img src="/2022/04/01/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%B8%89%E7%AB%A0/noseqmap1.png"><br><img src="/2022/04/01/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%B8%89%E7%AB%A0/noseqmap2.png"></li>
+<li>注意其中的node构建方法，以及get和put方法</li>
+<li>性能分析<ul>
+<li>在含有N对键值的基于（无序）链表的符号表中，未命中的查找和插入操作都需要N次比较。命中的查找在最坏情况下需要N次比较。特别地，向一个空表中插入N个不同的键需要~(N^2)/2次比较<ul>
+<li>查找一个已经存在的键并不需要线性级别的时间。一种度量方法是查找表中的每个键，并将总时间除以N。</li>
+<li>在查找表中的每个键的可能性都相同的情况下时，这个结果就是一次查找平均所需的比较数。我们将它称为<strong>随机命中</strong>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/04/01/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%B8%89%E7%AB%A0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/03/29/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="shdvgj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shdvgj的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/29/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/" class="post-title-link" itemprop="url">读书笔记-算法-第二章</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-29 09:28:29" itemprop="dateCreated datePublished" datetime="2022-03-29T09:28:29+08:00">2022-03-29</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-04-01 09:55:26" itemprop="dateModified" datetime="2022-04-01T09:55:26+08:00">2022-04-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="第二章-排序"><a href="#第二章-排序" class="headerlink" title="第二章 排序"></a>第二章 排序</h2><p><img src="/2022/03/29/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/basesort.png"></p>
+<ul>
+<li>初级排序算法<ul>
+<li>排序就是将数组的<strong>主键</strong>按照某种方式排序</li>
+<li>排序成本模型：我们需要计算<strong>比较</strong>和<strong>交换</strong>的数量。对于不交换元素的算法，我们会计算访问数组的次数</li>
+<li>java的compareTo方法必须实现一个全序关系：<ul>
+<li>自反性：对于所有的v，v=v</li>
+<li>反对称性：对于所有的v&lt;w都有w&gt;v，且v=w时w=v</li>
+<li>传递性：对于所有的v，w和x，如果v&lt;=w且w&lt;=x，则v&lt;=x</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>选择排序<ul>
+<li>基本步骤<ul>
+<li>找到数组中最小的那个元素</li>
+<li>将它和数组的第一个元素交换位置</li>
+<li>在剩下的元素中找到最小的元素，将它与数组的第二个元素交换位置，如此反复</li>
+</ul>
+</li>
+<li>分析效率<ul>
+<li>对于长度为N的数组，选择排序需要大约N^2/2次比较和N次交换</li>
+<li>为了找出最小的元素而扫描一遍数组并不能为下一遍扫描提供什么信息</li>
+<li>可以看到，对于长度为N的数组，交换次数固定为N次，是所有数组中，交换步数最少的</li>
+<li>简单，但效率颇低<br><img src="/2022/03/29/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/selectsort.png"> </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>插入排序<ul>
+<li>基本步骤<ul>
+<li>从索引1开始，对比索引1的数字和索引0的数字，如果索引0数字比索引1数字大，则两个数字交换位置</li>
+<li>索引移到2，对比索引2和索引1所在数字，同样的，如果索引1比索引2数字大，则交换位置</li>
+<li>接下来对比索引1和索引0，以此类推</li>
+</ul>
+</li>
+<li>分析效率<ul>
+<li>对于随机排列的长度为N且主键不重复的数组，平均情况下插入排序需要(N^2)/4次比较以及(N^2)/4次交换。最坏情况下需要(N^2)/2次比较和(N^2)/2次交换，最好情况下需要N-1次比较和0次交换。</li>
+<li>插入排序对于实际应用中常见的某些类型的非随机数组很有效<ul>
+<li>数组中每个元素距离它的最终位置都不远</li>
+<li>一个有序的大数组接一个小数组</li>
+<li>数组中只有几个元素的位置不正确</li>
+<li>当倒置的数量很少时，插入排序很可能比本章中的其他任何算法都要快<br><img src="/2022/03/29/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/insertsort.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>排序算法可视化
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/29/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E4%BA%BA%E7%B1%BB%E7%AE%80%E5%8F%B2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -250,7 +532,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-25 09:19:33" itemprop="dateModified" datetime="2022-03-25T09:19:33+08:00">2022-03-25</time>
+        <time title="修改时间：2022-04-01 16:15:08" itemprop="dateModified" datetime="2022-04-01T16:15:08+08:00">2022-04-01</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -386,7 +668,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">读书笔记-算法</a>
+          <a href="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">读书笔记-算法-第一章</a>
         </h2>
 
         <div class="post-meta-container">
@@ -404,7 +686,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-28 15:00:54" itemprop="dateModified" datetime="2022-03-28T15:00:54+08:00">2022-03-28</time>
+        <time title="修改时间：2022-03-29 09:27:58" itemprop="dateModified" datetime="2022-03-29T09:27:58+08:00">2022-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -503,153 +785,15 @@
 </ul>
 </li>
 <li>栈用于带括号的运算符计算<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/dijkstra.png" alt="dijkstra双栈算术表达式求值"></li>
-<li><strong>Java标准库中有栈和队列吗</strong><ul>
-<li>Java有一个内置的库，叫做java.util.Stack，但你需要栈的时候请不要使用它。</li>
-<li>它新增了几个一般不属于栈的方法，例如获取第i个元素。它还允许从栈底添加元素（而非栈顶），所以它可以被当做队列使用</li>
-<li>java.util.Stack的API是<strong>宽接口</strong>的一个典型例子</li>
 </ul>
-</li>
-<li><strong>算法分析</strong><ul>
-<li>一个程序运行的总时间主要和两点有关<ul>
-<li>执行每条语句的耗时</li>
-<li>执行每条语句的频率</li>
-</ul>
-</li>
-<li>常见的增长数量级函数<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/algrithm1.png"><br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/algrithm2.png"><br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/algrithm3.png"></li>
-<li>从增长率来看，效率排行是<strong>常数&gt;logN&gt;N&gt;N^2&gt;2^N&gt;N^3</strong></li>
-</ul>
-</li>
-<li>解决3-sum问题<ul>
-<li>即在给定的数组中找到和为0的三个数</li>
-<li>解决2-sum问题<ul>
-<li>使用归并排序对数组进行排序，复杂度为NlogN</li>
-<li>遍历数组，第一个数找到后使用二分查找在排序后的数组中获取相反数，时间复杂度为NlogN</li>
-<li>因此整个2-sum问题的时间复杂度为logN</li>
-</ul>
-</li>
-<li>将解决2-sum问题的方法推广<ul>
-<li>使用归并排序对数组进行排序，复杂度为NlogN</li>
-<li>遍历数组，但是这时，需要遍历两遍，相当于先把两个数相加后再用二分法去找数组中的相反数，因此时间复杂度为(N^2)*logN</li>
-<li>这样3-sum的问题的时间复杂度为(N^2)*logN</li>
-</ul>
-</li>
-<li>可以看到，针对这样的问题，先排序一遍所需的成本在总成本中几乎可以忽略不计，而排序后可以使用二分法则可以将整个时间复杂度降一个量级<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/algrithm4.png"></li>
-</ul>
-</li>
-<li>考虑数量级的注意事项<ul>
-<li>大常数，考虑数量级一般情况下不需要去考虑常数，如2N^2 + cN，通常情况下是看成N^2，然而如果某些情况下，c的值非常大，大到在具体业务场景中无法忽略的话，还是需要将常数考虑进去</li>
-<li>非决定性的内循环<ul>
-<li>内循环是决定性因素的假设并不总是正确的</li>
-<li>有些程序在内循环之外也有大量指令需要考虑</li>
-</ul>
-</li>
-<li>指令时间<ul>
-<li>每条指令执行所需的时间总是相同的假设并不总是正确的</li>
-<li>例如，大多数现代计算机系统都会使用缓存技术来组织内存</li>
-</ul>
-</li>
-<li>系统因素<ul>
-<li>Java只是争夺资源的众多应用程序之一，而且Java本身也有许多能够大大影响程序性能的选项和设置</li>
-<li>某种垃圾收集器或是JIT编译器或是正在从因特网中进行的下载都可能极大地影响实验的结果</li>
-</ul>
-</li>
-<li><strong>对输入的依赖</strong><ul>
-<li>某些特殊值导致的运行时间的陡然差异不应该考虑进我们对于程序整体运行时间的评估</li>
-<li>考虑最坏情况下对于性能的保证</li>
-<li>引入随机化算法<ul>
-<li>需要模拟随机数的输入</li>
-</ul>
-</li>
-<li>考虑操作序列<ul>
-<li>即某些情况下，进行ABC操作和进行CBA操作的顺序可能也会对性能造成影响</li>
-</ul>
-</li>
-<li>均摊分析<ul>
-<li>提供性能保证的另一种方法是通过记录所有操作的总成本并除以操作总数来将成本均摊    </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>速度太慢的程序和错误的程序一样无用</strong></li>
-<li><strong>union-find算法</strong><ul>
-<li>问题的输入是一列整数对，其中每个整数都表示一个某种类型的对象，一对整数pq可以被理解为“p和q是相连的”</li>
-<li>规则<ul>
-<li>自反性：p和p是相连的</li>
-<li>对称性：如果p和q是相连的，那么q和p也是相连的</li>
-<li>传递性：如果p和q是相连的且q和r是相连的，那么p和r也是相连的</li>
-</ul>
-</li>
-<li>动态连通性问题<ul>
-<li>当程序从输入中读取了整数对pq时，如果已知的所有整数对都不能说明p和q是相连的，那么则将这一对整数写入到输出中</li>
-<li>如果已知的数据可以说明p和q是相连的，那么程序应该忽略pq这对整数并继续处理输入中的下一对整数</li>
-<li>比如没有连通数据时，输入1，3，将其连通，输出1-3；接下来再输入3，5，将其连通，输出3-5；这样在输出记录中，存在1-3-5的连通记录；此时，输入1，5，根据连通规则，1和5是连通的，所以忽略这对数据<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/unionfind.png"></li>
-</ul>
-</li>
-<li>用处<ul>
-<li>这个程序能够判定我们是否需要在p和q之间架设一条新的连接才能进行通信，或是我们可以通过已有的连接在两者之间建立通信线路</li>
-<li>这些整数表示的可能是社交网络中的人，而整数对表示的是朋友关系</li>
-</ul>
-</li>
-<li>术语<ul>
-<li>将对象称为<strong>触点</strong>，将整数对称为<strong>连接</strong>，将等价类称为<strong>连通分量</strong>或是简称<strong>分量</strong></li>
-</ul>
-</li>
-<li>实现方法<ul>
-<li>用一个以触点为索引的数组id[]作为基本数据结构来表示所有分量</li>
-<li>定义四个基本API<br>  <img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/unionfind2.png">   </li>
-<li>quick-find算法<ul>
-<li>connected(p,q)只需要判断id[p]==id[q]</li>
-<li>我们需要遍历整个数组，将所有和id[p]相等的元素的值变为id[q]的值。我们也可以将所有和id[q]相等的元素的值变为id[p]的值——两者皆可<ul>
-<li>举例来说，1-3本来相连，则数组id[]中id[1]和id[3]的值相等，比如都等于1</li>
-<li>这时需要连接另一对触点，比如5-6，数组id[]中id[5]和id[6]的值相等，比如都等于5</li>
-<li>现在需要将3和5连接，此时遍历数组，找到与id[3]和id[5]的值相同的索引，即1和6，此时将索引1,3,5,6的值都改为1或者都改为5<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/quickyfind.png"><br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/quickyfind2.png"><br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/quickyfind3.png"></li>
-</ul>
-</li>
-<li>union方法包含三步，一步是find，找到各自对应的值，复杂度为O(1)，第二步是遍历数组，复杂度为O(N)，第三步是修改数组中的值，根据连通量的不同，可能需要1——N-1步</li>
-<li>最差的情况下，只得到一个连通分量，如1-5的数组，最终连通分路只有一条1-2-3-4-5，其复杂度接近O(N^2)<ul>
-<li>两个数组连通每次都需要N+3步，即两次find为2步，遍历数组N步，改变值1步，2+N+1=N+3步</li>
-<li>只有一个通路的情况下，数组中依次比较需要N-1步，如1-5的数组，步骤为1-2,2-3,3-4,4-5。</li>
-<li>所以最终步骤为(N+3)*(N-1)，时间复杂度记为O(N^2)</li>
-<li>这个时间复杂度在数据量达到上亿的情况下显然效率过低，不予考虑</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>quick-union算法<ul>
-<li>每个触点所对应的id[]元素都是同一个分量中的另一个触点的名称，称为<strong>链接</strong><br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/quickunion.png">  </li>
-<li>在数组被初始化之后，每个节点的链接都指向它自己</li>
-<li>每次union之后节点都会指向某个父节点，id[i]的值除非是根节点，否则不会等于自身，因此代码中的find会一直追溯到父结点<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/quickunion2.png"></li>
-<li>与quick-find相比，最明显的改变就是每次union的操作无需遍历数组，只需将子节点指向父节点即可，这个过程只需一步<ul>
-<li>相比之下，就要付出额外的成本去追溯父节点，这个过程最快1步，最慢需要N-1步</li>
-</ul>
-</li>
-<li>在最坏的情况下，所有的节点的链接都指向前一个节点，那么每次find都需要遍历之前的每个节点，总的find的步骤就是3+5+6+……+(2N-1)～N^2<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/quickunion3.png">       </li>
-<li>在一般情况下都会比quick-find更快，但是无法保证出现最坏情况下仍然是O(N^2)的时间复杂度</li>
-</ul>
-</li>
-<li>加权quick-union算法<ul>
-<li>记录每一棵树的大小并总是将较小的树连接到较大的树上</li>
-<li>需要添加一个数组和一些代码来记录树中的节点数<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/weightquickunion.png">        </li>
-<li>对于N个触点，加权quickunion算法构造的森林中的任意节点的深度最多为lgN</li>
-<li>多出来记录节点数量的数组并不会增加多少复杂度，只会在每次union中多出两步操作</li>
-<li>使得find成本大大降低，随着数量级的提升，时间复杂度只会以lgN的数量级增长</li>
-</ul>
-</li>
-<li>路径压缩的加权quick-union算法<ul>
-<li>我们希望每个节点都直接链接到它的根节点上，但我们又不想像quickfind算法那样通过修改大量链接做到这一点</li>
-<li>要实现路径压缩，只需要为find()添加一个循环，将在路径上遇到的所有节点都直接链接到根节点</li>
-<li>我们所得到的结果是几乎完全扁平化的树，它和quickfind算法理想情况下所得到的树非常接近</li>
-<li>是目前的最优解  </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1271,205 +1415,6 @@
 <hr>
 <p>Medieval 中世纪<br>Runes 符文<br>unearthed 出土；发掘<br>inscribed 在…上写(词语、名字等);题;刻<br>only days apart 相隔几天<br>stunning 令人震惊的<br>heritage 遗产(指国家或社会长期形成的历史、传统和特色)<br>Norse 挪威语<br>inscription 碑文；铭文<br>stick with 紧随；和……呆在一起<br>ongoing 不间断的<br>excavations (对古物的)发掘;发掘现场;挖掘;开凿;挖土<br>wrapping up 总结<br>per a translation 根据翻译<br>trench 沟槽;沟;海沟;战壕;堑壕;渠;大洋沟<br>prone 有做…倾向的;俯卧的;易于遭受;有做(坏事)的倾向;易于遭受…的<br>dated to the medieval era 追溯到中世纪<br>fragments 碎片<br>runology 符文学<br>diversity 多样性<br>preliminary 初步的<br>manus 手<br>redeemed 补偿<br>The object bears the Norse inscription 该物品带有北欧符文<br>That runes are short pieces of text with highly context-dependent meanings 符文是具有高度上下文相关含义的短文本<br>a broad segment of the population 相当一部分人<br>falcon 猎鹰<br>Scandinavian depictions of falconry 斯堪的纳维亚人对猎鹰的描绘<br>figurine 雕像</p>
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2021/12/24/news/%E6%96%B0%E9%97%BB%E7%BF%BB%E8%AF%91-Metacritic%E8%AF%84%E9%80%89%E7%9A%842021%E5%B9%B4%E5%BA%A6%E5%8D%81%E4%BD%B3pc%E6%B8%B8%E6%88%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="shdvgj">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shdvgj的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/24/news/%E6%96%B0%E9%97%BB%E7%BF%BB%E8%AF%91-Metacritic%E8%AF%84%E9%80%89%E7%9A%842021%E5%B9%B4%E5%BA%A6%E5%8D%81%E4%BD%B3pc%E6%B8%B8%E6%88%8F/" class="post-title-link" itemprop="url">新闻翻译-Metacritic评选的2021年度十佳PC游戏</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-12-24 13:53:50" itemprop="dateCreated datePublished" datetime="2021-12-24T13:53:50+08:00">2021-12-24</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-12-28 15:31:54" itemprop="dateModified" datetime="2021-12-28T15:31:54+08:00">2021-12-28</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%8B%B1%E8%AF%AD/" itemprop="url" rel="index"><span itemprop="name">英语</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://www.gamespot.com/articles/best-pc-games-of-2021-according-to-metacritic/1100-6498757/">原文链接</a> </p>
-<p>全都没玩过，甚至基本都没听过，看来确实是老了。。。</p>
-<hr>
-<p><em>本文提到的产品完全是我们编辑的独立选择。如果你通过我们的链接购买游戏的话，GameSpot会得到一些佣金。</em></p>
-<h2 id="Metacritic评选的2021年度十佳PC游戏"><a href="#Metacritic评选的2021年度十佳PC游戏" class="headerlink" title="Metacritic评选的2021年度十佳PC游戏"></a>Metacritic评选的2021年度十佳PC游戏</h2><h3 id="PC游戏爱好者们今年有理由感到高兴，毕竟今年有很多的优秀游戏"><a href="#PC游戏爱好者们今年有理由感到高兴，毕竟今年有很多的优秀游戏" class="headerlink" title="PC游戏爱好者们今年有理由感到高兴，毕竟今年有很多的优秀游戏"></a>PC游戏爱好者们今年有理由感到高兴，毕竟今年有很多的优秀游戏</h3><hr>
-<p>今年也许是被刚上市的PS5和xbox series X|S统治的一年，但是PC游戏在2021年也比以往更加出色。诸多游戏平台充斥着独立制作和3A大作的标题，但是他们中哪一款是最出色的呢？通过GameSpot的兄弟网站Metacritci，我们优中选优，一致讨论出了即使批评家们也挑不出毛病的10款PC游戏。列出的结果包含了众多体裁，但是他们都有共同点，至少有一点是一样的：他们在2021年为你们贡献了最佳的游戏乐趣。</p>
-<h2 id="终焉之莉莉：骑士寂夜（Ender-Lilies-Quietus-of-the-Knights）"><a href="#终焉之莉莉：骑士寂夜（Ender-Lilies-Quietus-of-the-Knights）" class="headerlink" title="终焉之莉莉：骑士寂夜（Ender Lilies: Quietus of the Knights）"></a>终焉之莉莉：骑士寂夜（Ender Lilies: Quietus of the Knights）</h2><p><img src="/2021/12/24/news/%E6%96%B0%E9%97%BB%E7%BF%BB%E8%AF%91-Metacritic%E8%AF%84%E9%80%89%E7%9A%842021%E5%B9%B4%E5%BA%A6%E5%8D%81%E4%BD%B3pc%E6%B8%B8%E6%88%8F/enderlilies.jpg"><br>受到<code>空洞骑士</code>和<code>黑暗之魂</code>的启发并将其二者融合，并伴随着大量的<code>银河战士</code>设计的影响，你将体验到的是一场美味的2D动作角色扮演游戏的盛宴，让你直到结尾也回味无穷。更棒的是，<code>终焉之莉莉</code>在以往那些老掉牙的探索和紧张战斗的套路中加入了一些现代化的改进，沿着路线攻克一些非常棘手的任务然后直接将你置于最强的boss之中，这个游戏中都将可能发生。</p>
-<p>Meta评分: 86</p>
-<h2 id="死亡循环（Deathloop）"><a href="#死亡循环（Deathloop）" class="headerlink" title="死亡循环（Deathloop）"></a>死亡循环（Deathloop）</h2><p><img src="/2021/12/24/news/%E6%96%B0%E9%97%BB%E7%BF%BB%E8%AF%91-Metacritic%E8%AF%84%E9%80%89%E7%9A%842021%E5%B9%B4%E5%BA%A6%E5%8D%81%E4%BD%B3pc%E6%B8%B8%E6%88%8F/deathloop.jpeg"><br>在土拨鼠日带着抢，身怀时间操控的能力，并且口吐芬芳，这听起来像是美好时光的秘方，而在<code>死亡循环</code>里，这些元素烹制出了2021年的最佳游戏之一。<code>死亡循环</code>主要侧重于其绝妙的时间循环的玩法，但这游戏的美妙之处也在于如何在每一次新的循环中奖励你新的知识，技巧，以及最终逃离暴力的黑礁大陆之后，产生的顿悟。</p>
-<p>这很可能是开发商Arkane目前的最佳作品，一个无尽的沙盒，充满创造力和魅力，并且满溢着个人风格和充满自信的大屠杀。</p>
-<p>Meta评分: 86</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/12/24/news/%E6%96%B0%E9%97%BB%E7%BF%BB%E8%AF%91-Metacritic%E8%AF%84%E9%80%89%E7%9A%842021%E5%B9%B4%E5%BA%A6%E5%8D%81%E4%BD%B3pc%E6%B8%B8%E6%88%8F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2021/12/17/tech/linux%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E6%83%85%E5%86%B5%E4%B8%8B%E4%BD%BF%E7%94%A8%E9%AB%98%E7%89%88%E6%9C%ACnodejs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="shdvgj">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shdvgj的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/17/tech/linux%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E6%83%85%E5%86%B5%E4%B8%8B%E4%BD%BF%E7%94%A8%E9%AB%98%E7%89%88%E6%9C%ACnodejs/" class="post-title-link" itemprop="url">linux版本过低情况下使用高版本nodejs</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-12-17 11:13:26" itemprop="dateCreated datePublished" datetime="2021-12-17T11:13:26+08:00">2021-12-17</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-12-22 13:36:18" itemprop="dateModified" datetime="2021-12-22T13:36:18+08:00">2021-12-22</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong>我这里针对的低版本linux指的是centos6。</strong></p>
-<h2 id="问题起源"><a href="#问题起源" class="headerlink" title="问题起源"></a>问题起源</h2><p>最近需要写一个页面，我前段时间一直在用nodejs开发，所以我就选择了react来写页面。在本机开发调试完成之后，部署到linux上出现问题，在运行npm install命令的时候出现如下报错：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">npm WARN notsup Unsupported engine for react-scripts@5.0.0: wanted: &#123;&quot;node&quot;:&quot;&gt;=14.0.0&quot;&#125; (current: &#123;&quot;node&quot;:&quot;10.24.1&quot;,&quot;npm&quot;:&quot;6.14.12&quot;&#125;)</span><br><span class="line">npm WARN notsup Not compatible with your version of node/npm: react-scripts@5.0.0</span><br><span class="line">npm WARN notsup Unsupported engine for css-loader@6.5.1: wanted: &#123;&quot;node&quot;:&quot;&gt;= 12.13.0&quot;&#125; (current: &#123;&quot;node&quot;:&quot;10.24.1&quot;,&quot;npm&quot;:&quot;6.14.12&quot;&#125;)</span><br><span class="line">npm WARN notsup Not compatible with your version of node/npm: css-loader@6.5.1</span><br><span class="line">npm WARN notsup Unsupported engine for css-minimizer-webpack-plugin@3.3.1: wanted: &#123;&quot;node&quot;:&quot;&gt;= 12.13.0&quot;&#125; (current: &#123;&quot;node&quot;:&quot;10.24.1&quot;,&quot;npm&quot;:&quot;6.14.12&quot;&#125;)</span><br><span class="line">npm WARN notsup Not compatible with your version of node/npm: css-minimizer-webpack-plugin@3.3.1</span><br><span class="line">npm WARN notsup Unsupported engine for eslint@8.5.0: wanted: &#123;&quot;node&quot;:&quot;^12.22.0 || ^14.17.0 || &gt;=16.0.0&quot;&#125; (current: &#123;&quot;node&quot;:&quot;10.24.1&quot;,&quot;npm&quot;:&quot;6.14.12&quot;&#125;)</span><br><span class="line">npm WARN notsup Not compatible with your version of node/npm: eslint@8.5.0</span><br><span class="line">.....</span><br></pre></td></tr></table></figure>
-<p>显然，根据提示是因为node版本太低导致，那首先想到的必然就是升级node版本。</p>
-<h2 id="尝试升级node版本失败，gcc版本过低"><a href="#尝试升级node版本失败，gcc版本过低" class="headerlink" title="尝试升级node版本失败，gcc版本过低"></a>尝试升级node版本失败，gcc版本过低</h2><p>升级node版本有几种办法：</p>
-<ul>
-<li>通过下载<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/releases/">官网</a>的二进制包，然后解压缩到目录，再通过ln指令进行node版本的关联。</li>
-<li>第二种方法比较简单，安装node的一个版本管理工具，叫<a target="_blank" rel="noopener" href="https://github.com/tj/n">n</a>，然后运行如下指令就可以完成安装：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g n</span><br><span class="line">n node版本号</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/12/17/tech/linux%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E6%83%85%E5%86%B5%E4%B8%8B%E4%BD%BF%E7%94%A8%E9%AB%98%E7%89%88%E6%9C%ACnodejs/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
