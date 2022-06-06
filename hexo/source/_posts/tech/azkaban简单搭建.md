@@ -154,4 +154,14 @@ azkaban-flow-version: 2.0
 ![](5.png)
 ![](6.png)
 7.以后对于任务的新增和命令修改，都只能通过在azkaban页面点击download下载zip文件，然后修改里面的内容，再重新上传来完成
+
+## 清理历史定时任务执行日志
+
+简单粗暴的方法，在azkaban的数据库执行以下语句：
+
+```sql
+truncate execution_flows;
+truncate execution_jobs;
+truncate execution_logs;
+```
       
