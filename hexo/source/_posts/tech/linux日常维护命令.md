@@ -73,3 +73,14 @@ sh mqadmin queryMsgById -n 127.0.0.1:9876 -i C0A8074100002A9F00000001A2BC9012
 sh mqadmin topicList –n 127.0.0.1:9876
 ```
 
+### curl发送post请求
+
+```jshelllanguage
+date=`date +%Y-%m-%d `;curl -H "Content-Type: application/json" -X POST -d '{"dateBegin":"'$date' 00:00:00","dateEnd":"'$date' 23:59:59"}' "http://192.168.15.162:8082/hr/syncPunchRecordByUser"
+```
+
+参数 内容
+-H 请求头
+-d POST内容
+-X 请求协议
+
