@@ -17,20 +17,19 @@ categories:
 - [ ] Synchronized，Reentrantlock和AQS
 - [ ] Java新版本特性
 - [ ] 集合源码
+    - [ ] 红黑树
 - [ ] 两种代理模式
 - [ ] IO模型，三种javaIO模型
 - [ ] 数据库主从分离方式
     - [ ] 代理方式
     - [ ] 组件方式
 
-
-
 ## 框架了解
 
 - [ ] 注册中心 [Zookeeper](https://github.com/apache/zookeeper), [Consul](https://github.com/hashicorp/consul), [Eureka](https://github.com/Netflix/eureka), [Nacos](https://github.com/alibaba/nacos)
 - [ ] 客户端/进程内负载均衡器 [Ribbon](https://github.com/Netflix/ribbon), [Nginx](https://github.com/nginx/nginx)
 - [ ] Rpc调用 [OpenFeign](https://github.com/spring-cloud/spring-cloud-openfeign), [Dubbo](https://github.com/apache/dubbo), [Grpc](https://github.com/grpc/grpc)
-- [ ] 熔断降级 [Hystrix](https://github.com/Netflix/Hystrix)
+- [ ] 熔断降级 [Hystrix](https://github.com/Netflix/Hystrix), [Sentinel](https://github.com/alibaba/Sentinel)
 - [ ] 微服务网关 [Zuul](https://github.com/Netflix/zuul), [Spring Cloud Gateway](https://github.com/spring-cloud/spring-cloud-gateway), [Kong](https://github.com/Kong/kong), **[APISIX](https://github.com/apache/apisix)**, [Shenyu](https://github.com/apache/incubator-shenyu)
 - [ ] 配置中心 [Spring Cloud Config](https://github.com/spring-cloud/spring-cloud-config) + [Spring Cloud Bus](https://github.com/spring-cloud/spring-cloud-bus), [Apollo](https://github.com/apolloconfig/apollo)
 - [ ] 开源式分布式NoSQL数据库 [Cassandra](https://github.com/apache/cassandra)
