@@ -38,6 +38,13 @@ categories:
 - [ ] MySQL主从分离中间件 [MySQL Router](https://github.com/mysql/mysql-router)（官方）、[Atlas](https://github.com/Qihoo360/Atlas)（基于 MySQL Proxy）、[Maxscale](https://github.com/mariadb-corporation/MaxScale)、[MyCat](https://github.com/MyCATApache/Mycat-Server)
 - [ ] 分库分表 [ShardingSphere](https://github.com/apache/shardingsphere)
 
+## 算法
+
+- KMP算法
+- variable-precision SWAR算法
+- RAFT算法
+
+
 <!-- more -->
 
 ## [使用 try-with-resources 代替try-catch-finally](https://javaguide.cn/java/basis/java-basic-questions-03.html#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-try-with-resources-%E4%BB%A3%E6%9B%BFtry-catch-finally)
