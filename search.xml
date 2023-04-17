@@ -4578,13 +4578,12 @@
 </li>
 </ul>
 <h3 id="生成CSR"><a href="#生成CSR" class="headerlink" title="生成CSR"></a>生成CSR</h3><ul>
-<li>什么是CSR<blockquote>
+<li><p>什么是CSR</p>
+<blockquote>
 <p>CSR code (Certificate Signing Request) is a specific code and an essential part for the SSL activation. It contains information about website name and the company contact details. For many reasons, the code should be created on the hosting server end. On some servers, it is the obligatory condition.</p>
 </blockquote>
-</li>
-</ul>
 <p>总之CSR是一段关于你网站的身份信息的加密文件，对于激活ssl证书是必须的，在服务器端生成。</p>
-<ul>
+</li>
 <li><p>通过openssl命令生成<br>有很多种方式生成csr文件，甚至有在线网站可以直接生成，通常不建议在线生成，因为csr是ssl的必要依赖，关联到网站的安全性，最好是不要冒泄露的风险。</p>
 <ul>
 <li>新建.key文件夹，执行如下命令<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install openssl</span><br><span class="line">cd .key</span><br><span class="line">openssl req -nodes -newkey rsa:2048 -keyout $serverName.key -out $serverName.csr</span><br></pre></td></tr></table></figure>
@@ -4599,7 +4598,7 @@
 <li><p>完成后进入证书管理界面，按照如下操作<br><img src="/2023/04/12/2023/04/how_to_create_new_site/act_done_1.png"><br>此时会获取到下一步会用到的cname的host和target<br><img src="/2023/04/12/2023/04/how_to_create_new_site/cname_content.png"></p>
 </li>
 </ul>
-<h3 id="注册DNS"><a href="#注册DNS" class="headerlink" title="注册DNS"></a>注册DNS</h3><p>一般的域名供应商都会提供有dns服务，namecheap也有，但是功能都比较基础，通常建议使用第三方DNS供应商。国外的有google，cloud flare，国内也有阿里，百度等。<br>以cloudflare为例</p>
+<h3 id="注册DNS"><a href="#注册DNS" class="headerlink" title="注册DNS"></a>注册DNS</h3><p>  一般的域名供应商都会提供有dns服务，namecheap也有，但是功能都比较基础，通常建议使用第三方DNS供应商。国外的有google，cloud flare，国内也有阿里，百度等。<br>  以cloudflare为例</p>
 <ul>
 <li>点击add site，输入你的域名，选择free计划</li>
 <li>输入你的域名和服务器的公网ip</li>
