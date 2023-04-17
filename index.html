@@ -250,7 +250,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-04-17 11:02:48" itemprop="dateModified" datetime="2023-04-17T11:02:48+08:00">2023-04-17</time>
+        <time title="修改时间：2023-04-17 12:34:05" itemprop="dateModified" datetime="2023-04-17T12:34:05+08:00">2023-04-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -279,31 +279,41 @@
 <li>如果是开发小程序和公众号，有另一种选择，跳过购买域名和服务器，直接使用腾讯的<a target="_blank" rel="noopener" href="https://cloud.weixin.qq.com/">云托管平台</a></li>
 </ul>
 <h3 id="购买域名和ssl证书"><a href="#购买域名和ssl证书" class="headerlink" title="购买域名和ssl证书"></a>购买域名和ssl证书</h3><p>需要注意，目前情况而言，购买域名的同时也几乎必须得购买ssl证书，因为现在http的网站已经不再被各大浏览器所推荐，流量优先级会被调低，甚至小程序直接不支持指向http网站，如果建站的目的是希望获得收入，那拥有ssl证书的https网站是必须的。</p>
-<h4 id="国内"><a href="#国内" class="headerlink" title="国内"></a>国内</h4><ul>
+<ul>
+<li><p>国内</p>
+<ul>
 <li>易名中国：域名价格约为50元人民币/年起，SSL证书价格约为100元人民币/年起。</li>
 <li>西部数码：域名价格约为60元人民币/年起，SSL证书价格约为100元人民币/年起。</li>
 <li>新网：域名价格约为50元人民币/年起，SSL证书价格约为200元人民币/年起。</li>
 <li>阿里云：域名价格约为60元人民币/年起，SSL证书价格约为300元人民币/年起。</li>
 <li>巨牛网：域名价格约为50元人民币/年起，SSL证书价格约为150元人民币/年起。</li>
 </ul>
-<h4 id="国外"><a href="#国外" class="headerlink" title="国外"></a>国外</h4><ul>
+</li>
+<li><p>国外</p>
+<ul>
 <li>GoDaddy：域名价格约为$12/年起，SSL证书价格约为$70/年起。</li>
 <li>Namecheap：域名价格约为$8/年起，SSL证书价格约为$9/年起。</li>
 <li>Google Domains：域名价格约为$12/年起，SSL证书价格约为$20/年起。</li>
 <li>Network Solutions：域名价格约为$35/年起，SSL证书价格约为$60/年起。</li>
 <li>Name.com：域名价格约为$10/年起，SSL证书价格约为$9/年起。</li>
 </ul>
-<h3 id="生成CSR"><a href="#生成CSR" class="headerlink" title="生成CSR"></a>生成CSR</h3><h4 id="什么是CSR"><a href="#什么是CSR" class="headerlink" title="什么是CSR"></a>什么是CSR</h4><blockquote>
+</li>
+</ul>
+<h3 id="生成CSR"><a href="#生成CSR" class="headerlink" title="生成CSR"></a>生成CSR</h3><ul>
+<li>什么是CSR<blockquote>
 <p>CSR code (Certificate Signing Request) is a specific code and an essential part for the SSL activation. It contains information about website name and the company contact details. For many reasons, the code should be created on the hosting server end. On some servers, it is the obligatory condition.</p>
 </blockquote>
+</li>
+</ul>
 <p>总之CSR是一段关于你网站的身份信息的加密文件，对于激活ssl证书是必须的，在服务器端生成。</p>
-<h4 id="通过openssl命令生成"><a href="#通过openssl命令生成" class="headerlink" title="通过openssl命令生成"></a>通过openssl命令生成</h4><p>有很多种方式生成csr文件，甚至有在线网站可以直接生成，通常不建议在线生成，因为csr是ssl的必要依赖，关联到网站的安全性，最好是不要冒泄露的风险。</p>
+<ul>
+<li><p>通过openssl命令生成<br>有很多种方式生成csr文件，甚至有在线网站可以直接生成，通常不建议在线生成，因为csr是ssl的必要依赖，关联到网站的安全性，最好是不要冒泄露的风险。</p>
 <ul>
 <li>新建.key文件夹，执行如下命令<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install openssl</span><br><span class="line">cd .key</span><br><span class="line">openssl req -nodes -newkey rsa:2048 -keyout $serverName.key -out $serverName.csr</span><br></pre></td></tr></table></figure>
 注意，$serverName用你的网站名替换，会生成两个文件，以你网站名为命名的key文件和csr文件。<br>生成时会要求你填入国家，公司，email等，根据提示填入。</li>
 </ul>
 <p><em><strong>国内域名商的流程会不太一样，因为是要备案实名制，所以还会要求身份证信息等，而且是界面操作，无需通过以上命令行</strong></em></p>
-<ul>
+</li>
 <li><p>复制csr文件中的内容，通常如下：<br><img src="/2023/04/12/2023/04/how_to_create_new_site/csr-content.png"><br>复制时要包含全部内容，不要略去BEGIN和END那一行。</p>
 </li>
 <li><p>将csr粘贴到域名供应商配置界面，以namecheap为例，在你已购买的ssl证书界面点击active。<br><img src="/2023/04/12/2023/04/how_to_create_new_site/activate_ssl.png"><br>将刚才csr文件中的内容粘贴到该界面中。<br><img src="/2023/04/12/2023/04/how_to_create_new_site/copy_csr.png"><br>下一步中选择Add CNAME record<br><img src="/2023/04/12/2023/04/how_to_create_new_site/act_dcv_choice.png"><br>下一步中输入你的电子邮箱</p>
