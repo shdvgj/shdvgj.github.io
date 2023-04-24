@@ -4620,4 +4620,37 @@
         <tag>建站</tag>
       </tags>
   </entry>
+  <entry>
+    <title>使用fetchAPI获取post请求中的stream数据</title>
+    <url>/2023/04/24/2023/04/how-to-receive-stream-data-in-fetch/</url>
+    <content><![CDATA[<h1 id="问题起源"><a href="#问题起源" class="headerlink" title="问题起源"></a>问题起源</h1><ul>
+<li>希望用miniprogram实现调用chatGPT接口</li>
+<li>miniprogram国内直接调用api.openai.com接口不通，需要国外购买服务器建站中转，即miniprogram-国外服务器-openai接口来实现</li>
+<li>miniprogram线上环境无法调用任何没在国内备案的网站，因此无法通过上述中转方案实现</li>
+<li>有两套替代方案，购买国内备案服务器，或者直接使用miniprogram云托管来实现，选择了后者，因为无需备案</li>
+<li>miniprogram云托管中转调用国外服务器，再调用openai接口，可以实现</li>
+<li>miniprogram云托管单个接口最大返回时间固定为15秒，而openai接口的完整数据返回往往大于这个时间</li>
+<li>通过设定接口参数 <code>stream:true</code> 来实现流式传输，即接口数据可以先部分返回，通过长连接持续传输</li>
+<li>流式传输有两种方案，<code>Server-Sent Events</code> 和 <code>fetch stream</code></li>
+</ul>
+<h1 id="SSE（Server-sent-Event）方案实现"><a href="#SSE（Server-sent-Event）方案实现" class="headerlink" title="SSE（Server-sent Event）方案实现"></a>SSE（Server-sent Event）方案实现</h1><p>参考<a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events">mdn文档</a>和<a href="https://www.ruanyifeng.com/blog/2017/05/server-sent_events.html">阮一峰sse教程</a></p>
+<h3 id="创建一个EventSource实例"><a href="#创建一个EventSource实例" class="headerlink" title="创建一个EventSource实例"></a>创建一个EventSource实例</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> evtSource = <span class="keyword">new</span> EventSource(<span class="string">&quot;ssedemo.php&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> evtSource = <span class="keyword">new</span> EventSource(<span class="string">&quot;//api.example.com/ssedemo.php&quot;</span>, &#123;</span><br><span class="line">  <span class="attr">withCredentials</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="监听返回数据"><a href="#监听返回数据" class="headerlink" title="监听返回数据"></a>监听返回数据</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">evtSource.onmessage = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> newElement = <span class="built_in">document</span>.createElement(<span class="string">&quot;li&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> eventList = <span class="built_in">document</span>.getElementById(<span class="string">&quot;list&quot;</span>);</span><br><span class="line"></span><br><span class="line">  newElement.textContent = <span class="string">`message: <span class="subst">$&#123;event.data&#125;</span>`</span>;</span><br><span class="line">  eventList.appendChild(newElement);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="定制监听事件"><a href="#定制监听事件" class="headerlink" title="定制监听事件"></a>定制监听事件</h3><p>在下述代码中，将会监听返回数据中事件字段中的<code>ping</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">evtSource.addEventListener(<span class="string">&quot;ping&quot;</span>, <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> newElement = <span class="built_in">document</span>.createElement(<span class="string">&quot;li&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> eventList = <span class="built_in">document</span>.getElementById(<span class="string">&quot;list&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> time = <span class="built_in">JSON</span>.parse(event.data).time;</span><br><span class="line">  newElement.textContent = <span class="string">`ping at <span class="subst">$&#123;time&#125;</span>`</span>;</span><br><span class="line">  eventList.appendChild(newElement);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="方法尝试结论"><a href="#方法尝试结论" class="headerlink" title="方法尝试结论"></a>方法尝试结论</h3><p>最终并不能实现需求，原因在于sse天生只支持get方式获取数据，对于post请求无法支持。<br><em><strong>另外发现miniprogram不支持server-sent events。</strong></em></p>
+<h1 id="Fetch获取数据流"><a href="#Fetch获取数据流" class="headerlink" title="Fetch获取数据流"></a>Fetch获取数据流</h1><p>参考<a href="https://www.ruanyifeng.com/blog/2020/12/fetch-tutorial.html">阮一峰fetch教程</a><br>核心处理方式就是利用fetch异步获取流的方式。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> reqData = <span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">    <span class="string">&quot;user&quot;</span>: <span class="string">&quot;superman&quot;</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> response = <span class="keyword">await</span> fetch(<span class="string">&#x27;https://example.com/api&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">    <span class="attr">body</span>: reqData</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> reader = response.body.getReader();</span><br><span class="line"><span class="keyword">const</span> decoder = <span class="keyword">new</span> TextDecoder();</span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;value, done&#125; = <span class="keyword">await</span> reader.read();</span><br><span class="line">    <span class="keyword">if</span> (done) &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">let</span> str = decoder.decode(value);</span><br><span class="line">    <span class="built_in">console</span>.log(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样获取到的数据格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">data: some text</span><br><span class="line">data: another message</span><br><span class="line">data: with two lines</span><br></pre></td></tr></table></figure>
+<p>需要进行进一步的分析处理</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>node.js</tag>
+      </tags>
+  </entry>
 </search>
