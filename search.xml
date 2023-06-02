@@ -4653,4 +4653,17 @@
         <tag>node.js</tag>
       </tags>
   </entry>
+  <entry>
+    <title>一周文章收集-20230602</title>
+    <url>/2022/01/25/2023/06/weekly-tech-blog-collection-20230602/</url>
+    <content><![CDATA[<h2 id="radiation-hardened-quine-即使删除代码中任意字符，代码仍可以修正并运行"><a href="#radiation-hardened-quine-即使删除代码中任意字符，代码仍可以修正并运行" class="headerlink" title="radiation-hardened-quine: 即使删除代码中任意字符，代码仍可以修正并运行"></a><a href="https://github.com/mame/radiation-hardened-quine">radiation-hardened-quine: 即使删除代码中任意字符，代码仍可以修正并运行</a></h2><p>一个健壮的开源项目，如标题所述，可以修正错误的ruby代码，在缺少任一字符的情况下仍能正常运行。这个是有点神奇，细想一下要实现这样的算法并不是那么容易。感兴趣的可以研究下。</p>
+<h2 id="如何使用R和OpenStreetMap制作精美的公路旅行地图"><a href="#如何使用R和OpenStreetMap制作精美的公路旅行地图" class="headerlink" title="如何使用R和OpenStreetMap制作精美的公路旅行地图"></a><a href="https://www.andrewheiss.com/blog/2023/06/01/geocoding-routing-openstreetmap-r/">如何使用R和OpenStreetMap制作精美的公路旅行地图</a></h2><p>作者利用R语言和开源项目<a href="https://www.openstreetmap.org/">OpenStreetMap</a>来绘制和家庭的旅程地图，就最后的呈现效果来说，个人觉得比较一般。<br><img src="/2022/01/25/2023/06/weekly-tech-blog-collection-20230602/openstreetmap.png"></p>
+<h2 id="SHOW-HN：通过简历自动搜寻合适的工作"><a href="#SHOW-HN：通过简历自动搜寻合适的工作" class="headerlink" title="SHOW HN：通过简历自动搜寻合适的工作"></a><a href="https://hnresumetojobs.com/">SHOW HN：通过简历自动搜寻合适的工作</a></h2><p>据称通过AI分析你的简历，然后搜寻合适的工作。随便试了下，结果出来的很快，快的让人觉得不太像经过AI分析。评论里也说到担心隐私的问题，谨慎使用吧。</p>
+<h2 id="WITCH：一款用于替换macOS切屏的软件"><a href="#WITCH：一款用于替换macOS切屏的软件" class="headerlink" title="WITCH：一款用于替换macOS切屏的软件"></a><a href="https://manytricks.com/witch/">WITCH：一款用于替换macOS切屏的软件</a></h2><p>不仅可以在应用间切换，也可以在窗口和tab页之间切换，能够绑定到不同的按键，以更方便的进行不同的切换。</p>
+<h2 id="MERCURY：一款可以将python代码转换为网页应用的软件"><a href="#MERCURY：一款可以将python代码转换为网页应用的软件" class="headerlink" title="MERCURY：一款可以将python代码转换为网页应用的软件"></a><a href="https://runmercury.com/">MERCURY：一款可以将python代码转换为网页应用的软件</a></h2><p>通过在python当中调用MERCURY的API，就可以实现对于网页应用的转换。</p>
+]]></content>
+      <categories>
+        <category>一周文章收集</category>
+      </categories>
+  </entry>
 </search>
