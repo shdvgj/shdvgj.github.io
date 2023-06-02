@@ -219,6 +219,131 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/06/02/tech/Java%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9A%8F%E7%AC%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/06/02/tech/Java%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9A%8F%E7%AC%94/" class="post-title-link" itemprop="url">Java面试八股文知识点随笔</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-06-02 11:14:41" itemprop="dateCreated datePublished" datetime="2022-06-02T11:14:41+08:00">2022-06-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="复习关键字"><a href="#复习关键字" class="headerlink" title="复习关键字"></a>复习关键字</h2><ul>
+<li><input disabled="" type="checkbox"> new对象的过程</li>
+<li><input disabled="" type="checkbox"> 类加载过程<ul>
+<li><input disabled="" type="checkbox"> 双亲委派机制</li>
+<li><input disabled="" type="checkbox"> 类加载器</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Synchronized，Reentrantlock和AQS</li>
+<li><input disabled="" type="checkbox"> Java新版本特性</li>
+<li><input disabled="" type="checkbox"> 集合源码<ul>
+<li><input disabled="" type="checkbox"> 红黑树</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 两种代理模式</li>
+<li><input disabled="" type="checkbox"> IO模型，三种javaIO模型</li>
+<li><input disabled="" type="checkbox"> 数据库主从分离方式<ul>
+<li><input disabled="" type="checkbox"> 代理方式</li>
+<li><input disabled="" type="checkbox"> 组件方式</li>
+</ul>
+</li>
+</ul>
+<h2 id="框架了解"><a href="#框架了解" class="headerlink" title="框架了解"></a>框架了解</h2><ul>
+<li><input disabled="" type="checkbox"> 注册中心 <a target="_blank" rel="noopener" href="https://github.com/apache/zookeeper">Zookeeper</a>, <a target="_blank" rel="noopener" href="https://github.com/hashicorp/consul">Consul</a>, <a target="_blank" rel="noopener" href="https://github.com/Netflix/eureka">Eureka</a>, <a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos">Nacos</a></li>
+<li><input disabled="" type="checkbox"> 客户端/进程内负载均衡器 <a target="_blank" rel="noopener" href="https://github.com/Netflix/ribbon">Ribbon</a>, <a target="_blank" rel="noopener" href="https://github.com/nginx/nginx">Nginx</a></li>
+<li><input disabled="" type="checkbox"> Rpc调用 <a target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-openfeign">OpenFeign</a>, <a target="_blank" rel="noopener" href="https://github.com/apache/dubbo">Dubbo</a>, <a target="_blank" rel="noopener" href="https://github.com/grpc/grpc">Grpc</a></li>
+<li><input disabled="" type="checkbox"> 熔断降级 <a target="_blank" rel="noopener" href="https://github.com/Netflix/Hystrix">Hystrix</a>, <a target="_blank" rel="noopener" href="https://github.com/alibaba/Sentinel">Sentinel</a></li>
+<li><input disabled="" type="checkbox"> 微服务网关 <a target="_blank" rel="noopener" href="https://github.com/Netflix/zuul">Zuul</a>, <a target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-gateway">Spring Cloud Gateway</a>, <a target="_blank" rel="noopener" href="https://github.com/Kong/kong">Kong</a>, <strong><a target="_blank" rel="noopener" href="https://github.com/apache/apisix">APISIX</a></strong>, <a target="_blank" rel="noopener" href="https://github.com/apache/incubator-shenyu">Shenyu</a></li>
+<li><input disabled="" type="checkbox"> 配置中心 <a target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-config">Spring Cloud Config</a> + <a target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-bus">Spring Cloud Bus</a>, <a target="_blank" rel="noopener" href="https://github.com/apolloconfig/apollo">Apollo</a></li>
+<li><input disabled="" type="checkbox"> 开源式分布式NoSQL数据库 <a target="_blank" rel="noopener" href="https://github.com/apache/cassandra">Cassandra</a></li>
+<li><input disabled="" type="checkbox"> 分布式ID <a target="_blank" rel="noopener" href="https://github.com/didi/tinyid/">Tinyid</a>, Snowflake(twitter的开源库已删，有很多替代方案如美团的<a target="_blank" rel="noopener" href="https://github.com/Meituan-Dianping/Leaf">Leaf</a>，百度的UidGenerator)</li>
+<li><input disabled="" type="checkbox"> 分布式Redis <a target="_blank" rel="noopener" href="https://github.com/CodisLabs/codis/">Codis</a></li>
+<li><input disabled="" type="checkbox"> MySQL主从分离中间件 <a target="_blank" rel="noopener" href="https://github.com/mysql/mysql-router">MySQL Router</a>（官方）、<a target="_blank" rel="noopener" href="https://github.com/Qihoo360/Atlas">Atlas</a>（基于 MySQL Proxy）、<a target="_blank" rel="noopener" href="https://github.com/mariadb-corporation/MaxScale">Maxscale</a>、<a target="_blank" rel="noopener" href="https://github.com/MyCATApache/Mycat-Server">MyCat</a></li>
+<li><input disabled="" type="checkbox"> 分库分表 <a target="_blank" rel="noopener" href="https://github.com/apache/shardingsphere">ShardingSphere</a></li>
+</ul>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><ul>
+<li>KMP算法</li>
+<li>variable-precision SWAR算法</li>
+<li>RAFT算法</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/02/tech/Java%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9A%8F%E7%AC%94/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/05/09/blog/leetcode%E7%AE%97%E6%B3%95%E9%A2%98%E6%80%BB%E7%BB%932022-3-2022-5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1517,88 +1642,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/01/25/blog/%E4%B8%80%E5%91%A8%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%94%B6%E9%9B%86-20220124/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/01/25/blog/%E4%B8%80%E5%91%A8%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%94%B6%E9%9B%86-20220124/" class="post-title-link" itemprop="url">一周文章收集-20220124</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-01-25 14:52:13" itemprop="dateCreated datePublished" datetime="2022-01-25T14:52:13+08:00">2022-01-25</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E4%B8%80%E5%91%A8%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">一周文章收集</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="为什么网络游戏Wordle病毒式的传播，来听听心理学家的解释"><a href="#为什么网络游戏Wordle病毒式的传播，来听听心理学家的解释" class="headerlink" title="为什么网络游戏Wordle病毒式的传播，来听听心理学家的解释"></a><a target="_blank" rel="noopener" href="https://www.smithsonianmag.com/smart-news/heres-why-the-word-game-wordle-went-viral-180979439/">为什么网络游戏<code>Wordle</code>病毒式的传播，来听听心理学家的解释</a></h2><p>近期有个网络游戏<code>Wordle</code>在推特上及其流行，这是字谜类的游戏。规则比较简单，玩家需要猜一个5个字母组成的单词。其特别之处在于拥有社交属性，即一盘游戏是需要好几个人参与的，通过不同色块提示字母和位置的正确与否，这样每个人都能看到别人猜的进度，形成一种竞争体验。<br><img src="/2022/01/25/blog/%E4%B8%80%E5%91%A8%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%94%B6%E9%9B%86-20220124/wordle.png"></p>
-<h2 id="开源工具Arthas在线诊断java程序"><a href="#开源工具Arthas在线诊断java程序" class="headerlink" title="开源工具Arthas在线诊断java程序"></a><a target="_blank" rel="noopener" href="https://arthas.aliyun.com/doc/">开源工具Arthas在线诊断java程序</a></h2><p><code>Arthas</code>是Alibaba开源的Java诊断工具，可以实现在线监控执行方法，观测返回值等，在很多特殊的场景下，比如在家里无法部署开发环境却需要检查线上程序具体问题，或者需要查问题的程序只有线上包没有源代码，可以使用Arthas进行在线诊断并处理，以后将会专门写一篇关于如何使用Arthas的文章。</p>
-<h2 id="如何在Debian-11安装CSF"><a href="#如何在Debian-11安装CSF" class="headerlink" title="如何在Debian 11安装CSF"></a><a target="_blank" rel="noopener" href="https://vitux.com/how-to-install-config-server-firewall-csf-on-debian/">如何在Debian 11安装CSF</a></h2><p>CSF全称是Config Server Firewall，是一套可以轻松对防火墙策略和规则进行配置的防火墙软件，适合不熟悉linux防火墙的新手使用，本文介绍了如何安装和使用CSF，以增强linux的安全性。</p>
-
       
     </div>
 
