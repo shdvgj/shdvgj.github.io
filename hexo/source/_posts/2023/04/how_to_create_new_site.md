@@ -19,61 +19,59 @@ categories:
 
 需要注意，目前情况而言，购买域名的同时也几乎必须得购买ssl证书，因为现在http的网站已经不再被各大浏览器所推荐，流量优先级会被调低，甚至小程序直接不支持指向http网站，如果建站的目的是希望获得收入，那拥有ssl证书的https网站是必须的。
 
-#### 国内
-- 易名中国：域名价格约为50元人民币/年起，SSL证书价格约为100元人民币/年起。
-- 西部数码：域名价格约为60元人民币/年起，SSL证书价格约为100元人民币/年起。
-- 新网：域名价格约为50元人民币/年起，SSL证书价格约为200元人民币/年起。
-- 阿里云：域名价格约为60元人民币/年起，SSL证书价格约为300元人民币/年起。
-- 巨牛网：域名价格约为50元人民币/年起，SSL证书价格约为150元人民币/年起。
+- 国内
+  - 易名中国：域名价格约为50元人民币/年起，SSL证书价格约为100元人民币/年起。
+  - 西部数码：域名价格约为60元人民币/年起，SSL证书价格约为100元人民币/年起。
+  - 新网：域名价格约为50元人民币/年起，SSL证书价格约为200元人民币/年起。
+  - 阿里云：域名价格约为60元人民币/年起，SSL证书价格约为300元人民币/年起。
+  - 巨牛网：域名价格约为50元人民币/年起，SSL证书价格约为150元人民币/年起。
 
-#### 国外
-- GoDaddy：域名价格约为$12/年起，SSL证书价格约为$70/年起。
-- Namecheap：域名价格约为$8/年起，SSL证书价格约为$9/年起。
-- Google Domains：域名价格约为$12/年起，SSL证书价格约为$20/年起。
-- Network Solutions：域名价格约为$35/年起，SSL证书价格约为$60/年起。
-- Name.com：域名价格约为$10/年起，SSL证书价格约为$9/年起。
+- 国外
+  - GoDaddy：域名价格约为$12/年起，SSL证书价格约为$70/年起。
+  - Namecheap：域名价格约为$8/年起，SSL证书价格约为$9/年起。
+  - Google Domains：域名价格约为$12/年起，SSL证书价格约为$20/年起。
+  - Network Solutions：域名价格约为$35/年起，SSL证书价格约为$60/年起。
+  - Name.com：域名价格约为$10/年起，SSL证书价格约为$9/年起。
 
 ### 生成CSR
 
-#### 什么是CSR
+- 什么是CSR
 > CSR code (Certificate Signing Request) is a specific code and an essential part for the SSL activation. It contains information about website name and the company contact details. For many reasons, the code should be created on the hosting server end. On some servers, it is the obligatory condition.
 
-总之CSR是一段关于你网站的身份信息的加密文件，对于激活ssl证书是必须的，在服务器端生成。
+  总之CSR是一段关于你网站的身份信息的加密文件，对于激活ssl证书是必须的，在服务器端生成。
 
-#### 通过openssl命令生成
-有很多种方式生成csr文件，甚至有在线网站可以直接生成，通常不建议在线生成，因为csr是ssl的必要依赖，关联到网站的安全性，最好是不要冒泄露的风险。
-- 新建.key文件夹，执行如下命令
-```shell
-npm install openssl
-cd .key
-openssl req -nodes -newkey rsa:2048 -keyout $serverName.key -out $serverName.csr
-```
-注意，$serverName用你的网站名替换，会生成两个文件，以你网站名为命名的key文件和csr文件。
-生成时会要求你填入国家，公司，email等，根据提示填入。
-***国内域名商的流程会不太一样，因为是要备案实名制，所以还会要求身份证信息等，而且是界面操作，无需通过以上命令行***
+- 通过openssl命令生成
+  有很多种方式生成csr文件，甚至有在线网站可以直接生成，通常不建议在线生成，因为csr是ssl的必要依赖，关联到网站的安全性，最好是不要冒泄露的风险。
+  - 新建.key文件夹，执行如下命令
+  ```shell
+  npm install openssl
+  cd .key
+  openssl req -nodes -newkey rsa:2048 -keyout $serverName.key -out $serverName.csr
+  ```
+  注意，$serverName用你的网站名替换，会生成两个文件，以你网站名为命名的key文件和csr文件。
+  生成时会要求你填入国家，公司，email等，根据提示填入。
+  ***国内域名商的流程会不太一样，因为是要备案实名制，所以还会要求身份证信息等，而且是界面操作，无需通过以上命令行***
 
 - 复制csr文件中的内容，通常如下：
 ![](csr-content.png)
-复制时要包含全部内容，不要略去BEGIN和END那一行。
+  复制时要包含全部内容，不要略去BEGIN和END那一行。
 
 - 将csr粘贴到域名供应商配置界面，以namecheap为例，在你已购买的ssl证书界面点击active。
 ![](activate_ssl.png)
-将刚才csr文件中的内容粘贴到该界面中。
+  将刚才csr文件中的内容粘贴到该界面中。
 ![](copy_csr.png)
-下一步中选择Add CNAME record
+  下一步中选择Add CNAME record
 ![](act_dcv_choice.png)
-下一步中输入你的电子邮箱
+  下一步中输入你的电子邮箱
 
 - 完成后进入证书管理界面，按照如下操作
 ![](act_done_1.png)
-此时会获取到下一步会用到的cname的host和target
+  此时会获取到下一步会用到的cname的host和target
 ![](cname_content.png)
 
-### 注册DNS
-
-一般的域名供应商都会提供有dns服务，namecheap也有，但是功能都比较基础，通常建议使用第三方DNS供应商。国外的有google，cloud flare，国内也有阿里，百度等。
-以cloudflare为例
-
+### 注册DNS  
+  一般的域名供应商都会提供有dns服务，namecheap也有，但是功能都比较基础，通常建议使用第三方DNS供应商。国外的有google，cloud flare，国内也有阿里，百度等。
+  以cloudflare为例
 - 点击add site，输入你的域名，选择free计划
 - 输入你的域名和服务器的公网ip
 - 在namecheap中的namerserver界面选择Custom DNS，输入cloudflare提供的两个dns服务器地址
