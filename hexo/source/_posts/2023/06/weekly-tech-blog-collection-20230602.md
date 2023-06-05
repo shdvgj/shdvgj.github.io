@@ -1,6 +1,6 @@
 ---
 title: 一周文章收集-20230602
-date: 2022-06-02 14:52:13
+date: 2023-06-02 14:52:13
 comments: true
 categories: 
 - 一周文章收集
@@ -21,3 +21,12 @@ categories:
 
 ## [MERCURY：一款可以将python代码转换为网页应用的软件](https://runmercury.com/)
 通过在python当中调用MERCURY的API，就可以实现对于网页应用的转换。
+
+## [brute.fail: 一个实时记录当前世界上用各种用户名密码组合进行非法入侵的尝试](https://brute.fail/)
+![](brute.fail.png)
+
+## [AITemplate: 开源的AI推理框架](https://facebookincubator.github.io/AITemplate/)
+Meta公司推出的AI推理框架，可在Nvidia和AMD的GPU上进行运行。
+
+## [一种新的攻击可以在任何主要浏览器上揭开匿名用户的面纱](https://www.wired.com/story/web-deanonymization-side-channel-attack-njit/)
+由新泽西理工学院的工程师发现，黑客可以通过用户的行为来获取用户的信息，比如是否拒绝网站的使用cookie信息和是否登陆的请求。
