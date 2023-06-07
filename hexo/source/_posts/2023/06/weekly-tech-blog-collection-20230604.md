@@ -31,5 +31,10 @@ categories:
 
 ## [RARBG IPFS：搜索IPFS资源](https://ipfs.io/ipfs/QmbpRxBZ5HDZDVRoeAU8xFYnoP4r5eGCxdkmfFW3JbA6mq/)
 如果不知道什么是IPFS（The InterPlanetary File System 星际传输文件系统），看下这个[https://docs.ipfs.tech/](https://docs.ipfs.tech/)，有点类似以前的磁力链接，是去中心化趋势中的产物。下载客户端就意味着你的机器成为一台IPFS的资源主机，可用的下载链接将会在网络上进行传播。可以看看下面的这个图片里的讨论.
-![](IPFS.pgn)
+![](IPFS.png)
 
+## [privateGPT:可以在本地实现问答的聊天机器人](https://github.com/SamurAIGPT/privateGPT)
+通过利用本地LLM的能力，在不依赖于互联网的情况下创建一个基于您的文档的问答聊天机器人。确保完全的隐私和安全性，因为您的数据永远不会离开本地执行环境。即使没有互联网连接，也可以无缝地处理和查询您的文档。
+
+## [Arroyo：一个用Rust编写的分布式流处理引擎](https://github.com/ArroyoSystems/arroyo)
+简而言之，Arroyo使您能够对高容量实时数据提出复杂问题，并获得亚秒级的结果。相比起世面已存在的流引擎（Apache Flink、Spark Streaming和Kafka Streams），Arroyo有如下特点，是无服务的，高性能SQL，以及为非专家设计。
