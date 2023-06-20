@@ -84,7 +84,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">15</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">48</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">49</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -210,6 +210,129 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/06/19/2023/06/weekly-tech-blog-collection-202306019/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/06/19/2023/06/weekly-tech-blog-collection-202306019/" class="post-title-link" itemprop="url">一周文章收集-20230619</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-06-19 16:28:13" itemprop="dateCreated datePublished" datetime="2023-06-19T16:28:13+08:00">2023-06-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2023-06-20 15:29:46" itemprop="dateModified" datetime="2023-06-20T15:29:46+08:00">2023-06-20</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%B8%80%E5%91%A8%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">一周文章收集</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="OpenLLM：开源的大语言模型"><a href="#OpenLLM：开源的大语言模型" class="headerlink" title="OpenLLM：开源的大语言模型"></a><a target="_blank" rel="noopener" href="https://github.com/bentoml/OpenLLM">OpenLLM：开源的大语言模型</a></h2><p>通过OpenLLM，可以使用任何开源的大型语言模型进行推断，将其部署到云端或本地，以及构建强大的人工智能应用程序。<br>需要服务器安装python3.8或以上以及pip。</p>
+<h4 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install openllm</span><br></pre></td></tr></table></figure>
+<h4 id="验证是否安装正确"><a href="#验证是否安装正确" class="headerlink" title="验证是否安装正确"></a>验证是否安装正确</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ openllm -h</span><br><span class="line"></span><br><span class="line">Usage: openllm [OPTIONS] COMMAND [ARGS]...</span><br><span class="line"></span><br><span class="line">   ██████╗ ██████╗ ███████╗███╗   ██╗██╗     ██╗     ███╗   ███╗</span><br><span class="line">  ██╔═══██╗██╔══██╗██╔════╝████╗  ██║██║     ██║     ████╗ ████║</span><br><span class="line">  ██║   ██║██████╔╝█████╗  ██╔██╗ ██║██║     ██║     ██╔████╔██║</span><br><span class="line">  ██║   ██║██╔═══╝ ██╔══╝  ██║╚██╗██║██║     ██║     ██║╚██╔╝██║</span><br><span class="line">  ╚██████╔╝██║     ███████╗██║ ╚████║███████╗███████╗██║ ╚═╝ ██║</span><br><span class="line">   ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═══╝╚══════╝╚══════╝╚═╝     ╚═╝</span><br><span class="line"></span><br><span class="line">  An open platform <span class="keyword">for</span> operating large language models <span class="keyword">in</span> production.</span><br><span class="line">  Fine-tune, serve, deploy, and monitor any LLMs with ease.</span><br></pre></td></tr></table></figure>
+
+<h4 id="启动LLM服务器"><a href="#启动LLM服务器" class="headerlink" title="启动LLM服务器"></a>启动LLM服务器</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openllm start dolly-v2</span><br></pre></td></tr></table></figure>
+<p>以上命令会在 <a target="_blank" rel="noopener" href="http://localhost:3000/">http://localhost:3000</a> 发布一个前端页面。</p>
+<h4 id="命令行中使用"><a href="#命令行中使用" class="headerlink" title="命令行中使用"></a>命令行中使用</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> OPENLLM_ENDPOINT=http://localhost:3000</span><br><span class="line">openllm query <span class="string">&#x27;Explain to me the difference between &quot;further&quot; and &quot;farther&quot;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>其中，语言模型是可以换的，包含<a target="_blank" rel="noopener" href="https://huggingface.co/docs/transformers/model_doc/flan-t5">flan-t5</a>，<a target="_blank" rel="noopener" href="https://github.com/databrickslabs/dolly">dolly-v2</a>等等。</p>
+<h2 id="Nix初体验"><a href="#Nix初体验" class="headerlink" title="Nix初体验"></a><a target="_blank" rel="noopener" href="https://mtlynch.io/notes/nix-first-impressions/">Nix初体验</a></h2><p><a target="_blank" rel="noopener" href="https://nix.dev/">Nix</a>是一种采用独特方法进行软件包管理和系统配置的工具。作者介绍了之前使用过的<a target="_blank" rel="noopener" href="https://github.com/saltstack/salt">Salt</a>和<a target="_blank" rel="noopener" href="https://github.com/ansible/ansible">Ansible</a>。关于这两者的对比，可以看这篇文章<a target="_blank" rel="noopener" href="https://www.redhat.com/en/topics/automation/ansible-vs-salt">Ansible vs Salt</a>。</p>
+<p>对于Salt和Ansible完全不了解的小伙伴可以看下chatGPT的介绍，足够简洁了。<br><img src="/2023/06/19/2023/06/weekly-tech-blog-collection-202306019/ansible_vs_salt.png"></p>
+<p>作者介绍了Nix的多个好处，包括快速搭建，可本地部署，原子级修改等等。同时也说到Nix目前文档不足，想要用好Nix需要具备非常丰富的经验。最后也写了几个成功和失败的部署经验。</p>
+<h2 id="PostgreSQL重新考虑其基于进程的模型"><a href="#PostgreSQL重新考虑其基于进程的模型" class="headerlink" title="PostgreSQL重新考虑其基于进程的模型"></a><a target="_blank" rel="noopener" href="https://lwn.net/SubscriberLink/934940/3abb2d4086680b78/">PostgreSQL重新考虑其基于进程的模型</a></h2><p>这条新闻需要了解的前提是，PostgreSQL是一个多进程的数据库，在一个运行的PostgreSQL实例中，会有多个进程同时运行来协同完成不同的任务和处理多个客户端连接。</p>
+<p>而今年六月初，PostgreSQL的重要贡献者之一Heikki Linnakangas提议将PostgreSQL改为基于线程的模型。他的理由如下：</p>
+<ul>
+<li>进程模型已经不适应时代的发展，尤其不适用于大型机器。</li>
+<li>进程的上下文切换开销过大，他认为这种开销以后还会继续增大，导致将花费大量时间在TLB缺失上。</li>
+<li>进程模型对开发造成了成本，迫使项目维护大量重复的代码，包括几个在单一地址空间中不需要的内存管理机制。</li>
+<li>他认为线程模型没有如上问题。</li>
+</ul>
+<p>这个提议在论坛上引发大量讨论，首先就是认为这种涉及底层的更改会带来灾难性的后果，导致大量bug，使得现存的很多项目都无法运行。另外，这种转变为线程的好处是否足够明显，在转变初期，必然是线程和进程模式并存的方式，在这种情况下，是否有足够的动力让开发人员转变为线程方式。</p>
+<p>这个问题的提出值得深思，一些古老的代码语言和框架，随着时代的发展，其底层架构很可能已经不适合现代了，但是整体大修的成本过高，带来的好处又不一定明显，对现有项目的运行却可能是灾难性的。这种事情曾在PHP6上发生过，PHP6尝试重构了字符串的底层实现，结果非常糟糕，使得PHP的发展几乎停滞了十年，最后重新发布了PHP7，字符串回归了PHP5的实现。</p>
+<h2 id="MVC不是MVC"><a href="#MVC不是MVC" class="headerlink" title="MVC不是MVC"></a><a target="_blank" rel="noopener" href="https://collindonnell.com/mvc-isnt-mvc">MVC不是MVC</a></h2><p>如今众所周知的MVC设计模式来源于1979年Xerox PARC的一名雇员Trygve Reenskaug在一篇论文中提出的，其原文仅500字，描述了每个部分的功能和作用，简单概括下就是：</p>
+<ul>
+<li>Models（模型）：应用程序中表示用于组织应用程序数据的抽象部分。模型的每个部分应该表示问题的一部分。当模型的数据发生变化时，模型会通知视图。</li>
+<li>Views（视图）：模型的可视化表示。视图通过直接查询模型进行更新，并且会收到模型的更新通知。视图可以直接更新其模型。视图不应直接了解键盘和鼠标事件等事物。</li>
+<li>Controllers（控制器）：用户和系统之间的连接。在屏幕上安排视图，接收用户输入，将消息传递给视图，并更新模型。</li>
+</ul>
+<p>另外他还定义了一个特殊的控制器叫Editor：</p>
+<ul>
+<li>Editors（编辑器）：一种控制器，它临时插入在控制器和视图之间用于编辑。如果你想象一个联系人应用程序，当用户点击编辑时，可能会创建一个编辑器，然后在保存或取消时被丢弃，并根据需要更新模型。编辑器允许用户对数据进行修改，提供临时的编辑环境，并在编辑完成后将更改传递给模型。</li>
+</ul>
+<p>在Reenskaug的设想里，MVC的每个部分都发挥着重要作用，其运作方式如下图：<br><img src="/2023/06/19/2023/06/weekly-tech-blog-collection-202306019/mvc1.png"></p>
+<h4 id="MVC概念转变"><a href="#MVC概念转变" class="headerlink" title="MVC概念转变"></a>MVC概念转变</h4><p>如今概念里的MVC和他的最初定义已经大相径庭，苹果风格的MVC如下：<br><img src="/2023/06/19/2023/06/weekly-tech-blog-collection-202306019/mvc2.png"><br>可以看出，View和Model的作用被大幅削弱，只是被动的给controller提供用户行为和数据，一切更新操作都由Controller来控制。</p>
+<p>在1990年代，java的开发者提出一种新的MVC模型，叫Model-2，在这个模型里多了http的请求，请求经过controller，然后通过controller来返回view。<br><img src="/2023/06/19/2023/06/weekly-tech-blog-collection-202306019/mvc3.jpeg"></p>
+<p>可以看出，如今耳熟能详的MVC跟一开始的MVC已经完全不同，只是保留了模型中的三个概念，每个概念发挥的作用却已经完全不同。</p>
+<h2 id="AI带来了60年以来的第一种新的用户交互方式"><a href="#AI带来了60年以来的第一种新的用户交互方式" class="headerlink" title="AI带来了60年以来的第一种新的用户交互方式"></a><a target="_blank" rel="noopener" href="https://www.nngroup.com/articles/ai-paradigm/">AI带来了60年以来的第一种新的用户交互方式</a></h2><p>ChatGPT和其他AI系统带来了在计算机历史上的第三种用户交互方式。<br><img src="/2023/06/19/2023/06/weekly-tech-blog-collection-202306019/UI-paradigm.jpeg"></p>
+<h4 id="第一种交互方式：批处理进程"><a href="#第一种交互方式：批处理进程" class="headerlink" title="第一种交互方式：批处理进程"></a>第一种交互方式：批处理进程</h4><p>在1945年计算机诞生之初，用户需要通过在打孔卡片上输入一系列需要计算机完成的完整工作流程，来让计算机一次性完成。用户体验当然是非常糟糕的，在计算机执行完任务之前，用户和计算机之间无法有任何其他交互。而每次结果出来往往需要隔天才能拿到，用户根据结果对打孔卡片进行调整，继续执行用户，最终要数天才能执行完成一个任务。</p>
+<h4 id="第二种交互方式：基于命令的交互设计"><a href="#第二种交互方式：基于命令的交互设计" class="headerlink" title="第二种交互方式：基于命令的交互设计"></a>第二种交互方式：基于命令的交互设计</h4><p>大约在1964年，时分共享的出现（通过连接的终端使多个用户共享一台大型机）引导了第二种用户界面范式：基于命令的交互。这个时候，用户的输入可以得到计算机的反馈，从而调整自己的命令输入，而且可以精细到每次只用输入一行命令。包括dos的命令行界面，全屏文本终端（IBM），图形化界面都是属于这种交互方式。</p>
+<h3 id="第三种交互方式：意图导向的交互方式"><a href="#第三种交互方式：意图导向的交互方式" class="headerlink" title="第三种交互方式：意图导向的交互方式"></a>第三种交互方式：意图导向的交互方式</h3><p>在AI模型下，你不用像过去那样告诉计算机<strong>做什么</strong>，而是直接告诉计算机<strong>你想要什么</strong>。作者举了个例子，比如你想要如下一幅画，</p>
+<blockquote>
+<p>为一本低俗科幻杂志的封面绘制一幅合适的插图，画面中展示了一个穿着太空服的牛仔在一个无氧行星上，天空中有两颗红色的月亮。</p>
+</blockquote>
+<p>在AI出现之前，你需要在photoshop上进行大量的操作来达到你的意图，而如今你直接告诉AI就可以。<br><img src="/2023/06/19/2023/06/weekly-tech-blog-collection-202306019/redmoon.jpeg"></p>
+<p>作者认为，未来的人工智能系统很可能会采用混合用户界面，结合意图导向和基于命令的界面元素，同时保留许多图形用户界面的元素。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1211,94 +1334,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/06/22/tech/MySQL%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/06/20/blog/Java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/20/blog/Java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Java新特性总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-06-20 14:09:18" itemprop="dateCreated datePublished" datetime="2022-06-20T14:09:18+08:00">2022-06-20</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Java8"><a href="#Java8" class="headerlink" title="Java8"></a>Java8</h2><h3 id="Lambda-表达式"><a href="#Lambda-表达式" class="headerlink" title="Lambda 表达式"></a>Lambda 表达式</h3><p>让 java 也能支持简单的函数式编程</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Runnable 接口 **/</span></span><br><span class="line"><span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;The runable now is using!&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">&#125;).start();</span><br><span class="line"><span class="comment">//用lambda</span></span><br><span class="line"><span class="keyword">new</span> Thread(() -&gt; System.out.println(<span class="string">&quot;It&#x27;s a lambda function!&quot;</span>)).start();</span><br><span class="line"></span><br><span class="line"><span class="comment">/**Comparator 接口**/</span></span><br><span class="line">List&lt;Integer&gt; strings = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">Collections.sort(strings, <span class="keyword">new</span> Comparator&lt;Integer&gt;() &#123;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Integer o1, Integer o2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> o1 - o2;&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Lambda</span></span><br><span class="line">Collections.sort(strings, (Integer o1, Integer o2) -&gt; o1 - o2);</span><br><span class="line"><span class="comment">//分解开</span></span><br><span class="line">Comparator&lt;Integer&gt; comperator = (Integer o1, Integer o2) -&gt; o1 - o2;</span><br><span class="line">Collections.sort(strings, comperator);</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/20/blog/Java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

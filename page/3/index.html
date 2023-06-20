@@ -84,7 +84,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">15</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">48</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">49</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -210,6 +210,120 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/03/21/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/21/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3/" class="post-title-link" itemprop="url">读书笔记-数据结构和算法图解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-21 13:45:25" itemprop="dateCreated datePublished" datetime="2022-03-21T13:45:25+08:00">2022-03-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img src="/2022/03/21/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3/1.jpg"></p>
+<h2 id="第一章-数据结构为何重要"><a href="#第一章-数据结构为何重要" class="headerlink" title="第一章 数据结构为何重要"></a>第一章 数据结构为何重要</h2><ul>
+<li><strong>操作的速度，并不按时间计算，而是按步数计算。理解这个观点</strong>，因为不同机器其实运行速度都会有差异，真正决定效率的是一个操作的步数。</li>
+<li>读取是一步到位，意味着是读取数组的索引<ul>
+<li>计算机的内存可以看成一堆格子，内存的格子是地址连续的</li>
+<li>声明数组时，是在内存中划分出一些连续的格子</li>
+<li>查找任意索引，最多都是只需要1步</li>
+</ul>
+</li>
+<li>查找意味着从数组中寻找是否存在某个值<ul>
+<li>计算机需要从索引0开始寻找，即线性查找</li>
+<li>查找任意内容，最多步骤为数组的索引长度N</li>
+</ul>
+</li>
+<li>计算机知道数组的索引开始位置和结束位置<ul>
+<li>插入末尾只需要一步，直接在末尾插入即可</li>
+<li>开头或中间的位置，需要先移动其他元素的位置，再进行插入</li>
+<li>最复杂的插入，是在数组开头插入，意味着需要将N个元素都右移，再将元素插入，即N+1步</li>
+</ul>
+</li>
+<li>删除任意元素都需要将右边的元素左移，以保持数组的连续性和完整性</li>
+<li>最复杂的删除是删除开头元素，删除为1步，之后将N-1个元素左移，最终为N步</li>
+<li>集合是一种不允许元素重复的数据结构<ul>
+<li>读取，查找，删除和数组的效率是一致的</li>
+<li>插入的效率和数组不同<ul>
+<li>需要先确定这个元素在不在集合内，因此需要先查找一遍，如前文所诉，最多需要N步</li>
+<li>确定要插入的元素不在集合内后，进行插入，和数组一样，最多需要N+1步</li>
+<li>因此集合的插入最终的复杂度为2N+1步
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/21/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1103,135 +1217,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2021/12/06/tech/%E7%94%A8ssh%E5%8A%A0%E5%AF%86%E6%96%87%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/06/tech/%E7%94%A8ssh%E5%8A%A0%E5%AF%86%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">用ssh加密文件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-12-06 15:40:05" itemprop="dateCreated datePublished" datetime="2021-12-06T15:40:05+08:00">2021-12-06</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong>声明</strong></p>
-<p>翻译自<a target="_blank" rel="noopener" href="https://www.agwa.name/blog/post/ssh_signatures">Andrew Ayer博客</a><br>翻译水平不佳，自己学习使用</p>
-<hr>
-<h2 id="现在可以使用SSH密钥给任意数据加密"><a href="#现在可以使用SSH密钥给任意数据加密" class="headerlink" title="现在可以使用SSH密钥给任意数据加密"></a>现在可以使用SSH密钥给任意数据加密</h2><p>你知道吗，你可以使用ssh-keygen命令加密和验证任意数据，比如文件和发行软件？尽管这个特性并不是特别新（在2019年随着OpenSSH 8.0发布），依然很少有人知道。<br>这就有点尴尬，因为这个功能非常有用而且可以作为PGP的有效替换用以加密数据。如果你现在在用PGP加密数据，你可以考虑转到SSH签名上。</p>
-<p>以下是我喜欢用SSH签名的原因：</p>
-<ul>
-<li><strong>不是PGP。</strong> 多年来，安全专家已经<a target="_blank" rel="noopener" href="https://latacora.micro.blog/2019/07/16/the-pgp-problem.html">对PGP做出了警告</a>，包括其最重要的组件GnuPG/GPG。<br>PGP太复杂了，用户体验非常糟糕，而且充斥着门槛很高的粗糙老旧的密码学原理，</li>
-<li><strong>SSH无处不在，而且用户早就有SSH密钥了。</strong> 如果你用的是 Debian Bullseye 或者 Ubuntu 20.04以及更新的版本，你已经有了足够的SSH安装版本。如果你有用Github，<br>或者任何其他的借助SSH命令来验证的服务，你也早就有了一个SSH密钥用于创建签名了。这就是为什么我对SSH签名更热衷，而不是其他PGP的替代品，比如<a target="_blank" rel="noopener" href="https://github.com/aperezdc/signify">signify</a> 或者<br><a target="_blank" rel="noopener" href="https://jedisct1.github.io/minisign/">minisign</a>。后两者很优秀，但是需要你安装新的软件和创建一个新的密钥，这就会阻碍更大范围的兼容性。</li>
-<li><strong>SSH密钥很容易分配。</strong> SSH公钥只用一行代码就可以轻松到处复制。你不需要网络白名单或者费心去配置密钥的”信任等级”。Github作为一个密钥分配服务早就演示过，比起原先的<br>PGP密钥服务器更加简易也更加安全。你可以通过访问网页<a target="_blank" rel="noopener" href="https://github.com/USERNAME.keys%E5%8E%BB%E6%A3%80%E7%B4%A2%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%9A%84SSH%E5%85%AC%E9%92%A5%E3%80%82%EF%BC%88%E6%AF%94%E5%A6%82%EF%BC%8C%E6%88%91%E7%9A%84%E5%85%AC%E9%92%A5%E5%9C%A8[https://github.com/AGWA.keys](https://github.com/AGWA.keys)%EF%BC%89">https://github.com/USERNAME.keys去检索任意用户的SSH公钥。（比如，我的公钥在[https://github.com/AGWA.keys](https://github.com/AGWA.keys)）</a><br>（这个例子可能不适用于所有的情况，毕竟Github在这里作为一个可信任的第三方，而且你也必须相信他们不会对大众的公钥作假。但是依赖于Github这样的专业安全团队作为可信赖的第三方，应该比几乎不可能用到的PGP的网络白名单更好。<br>在实践中，如果你曾经想搞清楚如何审核透明度日志，那第三方的公钥的透明度需要考虑进去。）</li>
-<li><strong>SSH有可选的轻量级证书。</strong> SSH证书不是必需的（而且大部分人也用不到），但是证书可以让你的操作更轻松，SSH有一套比X.509简单很多的轻量级证书系统。这使得SSH签名和S/MIME一样是一个好的选项。</li>
-</ul>
-<h2 id="你现在可以使用SSH给Git提交和标签加签名"><a href="#你现在可以使用SSH给Git提交和标签加签名" class="headerlink" title="你现在可以使用SSH给Git提交和标签加签名"></a>你现在可以使用SSH给Git提交和标签加签名</h2><p>给Git的提交和标签加签名可以帮助你确认你的的仓库在被别人使用的时候，代码未曾被篡改。但是，你必须用PGP或者S/MIME来做到这件事，而我个人从2018年PGP密钥过期后就没在这件事上被困扰过。<br>马上在Git 2.34这些都会改变了，这个版本支持了SSH签名。（TODO 咋翻译都不对。。）</p>
-<h2 id="文件签名"><a href="#文件签名" class="headerlink" title="文件签名"></a>文件签名</h2><p>像这样直接对一个文件进行签名：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -Y sign -f ~/.ssh/id_ed25519 -n file file_to_sign</span><br></pre></td></tr></table></figure>
-<p>需要更改的参数如下：</p>
-<ul>
-<li><p><code>~/.ssh/id_ed25519</code>是你私钥的路径。例子里的是你的SSH Ed25519私钥的标准路径。如果你有一个RSA密钥，改为使用id_rsa。</p>
-</li>
-<li><p><code>file</code> 参数是”命名空间”，用来描述签名的目的，对于一般文件的签名，SSH将其定义为<code>file</code>，邮件的签名定义为<code>email</code>，Git则使用<code>git</code>作为签名。<br>如果你的签名用于其他目的，比如一个一般协议，你必须指明你自己的命名空间。这样，你可以避免来自一个单一协议信息的合法签名被移除后，或者附属在不同的协议信息，发起的跨协议攻击。<br>如果对于协议签名不使用特定的命名空间，那第一个协议的签名就有可能被视作第二个签名的协议，从而被认为是合法的。<br>命名空间可以是随机字符。为了保证全局的命名空间的唯一性，SSH推荐对于你自己的签名使用email作为命名空间的一部分。比如，我会使用类似于<code>protocolname-v1@agwa.name</code>的名字作为命名空间。</p>
-</li>
-<li><p><code>file_to_sign</code> 是要被签名的文件的路径。</p>
-</li>
-</ul>
-<p>签名会写入一个叫做<code>file_to_sign.sig</code>的新文件中，格式如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN SSH SIGNATURE-----</span><br><span class="line">U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg2rirQQddpzEzOZwbtM0LUMmlLG</span><br><span class="line">krl2EkDq4CVn/Hw7sAAAAEZmlsZQAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gtZWQyNTUx</span><br><span class="line">OQAAAEDyjWPjmOdG8HJ8gh1CbM8WDDWoGfm+TTd8Qa8eua9Bt5Cc+43S24i/JqVWmk98qV</span><br><span class="line">YXoQmOYL4bY8t/q7cSNeMH</span><br><span class="line">-----END SSH SIGNATURE----- </span><br></pre></td></tr></table></figure>
-<p>如果你指明了文件名，那文件签名会从该标准输入并从该标准写出。</p>
-<h2 id="签名验证"><a href="#签名验证" class="headerlink" title="签名验证"></a>签名验证</h2><p>签名验证稍微更复杂点。首先你需要创建一个被允许的签名者文件，该文件将邮件地址映射到公钥，类似于这样：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alice@example.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINq4q0EHXacxMzmcG7TNC1DJpSxpK5dhJA6uAlZ/x8O7</span><br><span class="line">alice@example.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCfHGCK5jjI/Oib4vRBLB9rG30A8y/Br9U75rfAYsitwFPFfl/CaTAvfRlW1lIBqOCshLWxGsN+PFiJCiCWzpW4iILkD5X5KcBBYHTq1ojYXb70BrQXQ+QBDcGxqQjcOp/uTq1D9Z82mYq/usI5wdz6f1KNyqM0J6ZwRXMu6u7NZaAwmY7j1fV4DRiYdmIfUDIyEdqX4a1Gan+EMSanVUYDcNmeBURqmTkkOPYSg8g5xYgcXBMOZ+V0ZUjreV9paKraUD/mVDlZbb/VyWhJGT4FLMNXHU6UHC2FFgqANMUKIlL4vhqc23MoygKbfF3HgNB6BNfv3s+GYlaQ3+66jc5j</span><br><span class="line">bob@example.net ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBgQuuEvhUXerOTIZ2zoOx60M/HHJ/tcHnD84ZvTiX5b</span><br></pre></td></tr></table></figure>
-<p>一旦你拥有了你的被允许的签名文件，验证的步骤如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -Y verify -f allowed_signers -I alice@example.com -n file -s file_to_verify.sig &lt; file_to_verify</span><br></pre></td></tr></table></figure>
-<p>你需要修改如下参数：</p>
-<ul>
-<li><code>allowed_signers</code> 是被允许的签名者文件的路径。</li>
-<li><code>alice@example.com</code> 是对文件加签名的用户邮件地址。该邮件地址会在允许的签名者文件里进行查找到对应的公钥。</li>
-<li><code>file</code> 是”命名空间”，该参数必须匹配前文描述的签名中的命名空间。</li>
-<li><code>file_to_verify.sig</code> 是签名文件的路径。</li>
-<li><code>file_to_verify</code> 是被验证的文件的路径。注意该文件是从标准读入的。在前面的命令中，<code>&lt;</code>这个shell操作符用于重定向标准到该文件。</li>
-</ul>
-<p>如果签名是有效的，命令行会返回状态0并打印如下信息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Good <span class="string">&quot;file&quot;</span> signature <span class="keyword">for</span> alice@example.com with ED25519 key SHA256:ZGa8RztddW4kE2XKPPsP9ZYC7JnMObs6yZzyxg8xZSk</span><br></pre></td></tr></table></figure>
-<p>否则，命令行会返回非0状态并打印错误信息。</p>
-<h2 id="SSH密钥的复用安全吗？"><a href="#SSH密钥的复用安全吗？" class="headerlink" title="SSH密钥的复用安全吗？"></a>SSH密钥的复用安全吗？</h2><p>简单来说：安全。</p>
-<p>对一个不同协议总是要小心的对密钥进行复用。如果不注意的话，有可能导致跨协议攻击的风险。比如，当一个Git签名信息的结构和SSH协议信息的结构相似，攻击者就可以通过SSH副本挪用签名，并伪造一个Git的人工提交。</p>
-<p>幸运的是，SSH协议信息的结构和ssh-keygen签名信息的结构并不相似，因此并没有这方面风险的担忧。</p>
-<p>为了证明这点，我们可以参考这篇<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc4252#section-7">RFC 4252 section 7</a>，阐明了SSH密钥是如何在传统用途上通过SSH验证用户登录服务器。<br>RFC指出输入的签名语法拥有如下结构：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">string    session identifier</span><br><span class="line">byte      SSH_MSG_USERAUTH_REQUEST</span><br><span class="line">string    user name</span><br><span class="line">string    service name</span><br><span class="line">string    <span class="string">&quot;publickey&quot;</span></span><br><span class="line">boolean   TRUE</span><br><span class="line">string    public key algorithm name</span><br><span class="line">string    public key to be used <span class="keyword">for</span> authentication</span><br></pre></td></tr></table></figure>
-<p>第一个字段是会话标识，是个字符串。在SSH协议中，字符串的前缀由一个<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc4251#section-5">32位字符</a>构成。会话标识是一个<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc4253#section-7.2">hash</a>值。除非hash值很短，否则一般的上述签名的前三位字符都会是0。</p>
-<p>同时，<a target="_blank" rel="noopener" href="https://github.com/openssh/openssh-portable/blob/d575cf44895104e0fcb0629920fb645207218129/PROTOCOL.sshsig">PROTOCOL.sshsig</a>分发OpenSSH仓库，表明了如何通过<code>ssh-keygen-generated</code>签名使用SSH密钥。以下是输入的签名语法的结构：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define MAGIC_PREAMBLE &quot;SSHSIG&quot;</span></span><br><span class="line"></span><br><span class="line">byte[6]   MAGIC_PREAMBLE</span><br><span class="line">string    namespace</span><br><span class="line">string    reserved</span><br><span class="line">string    hash_algorithm</span><br><span class="line">string    H(message)</span><br></pre></td></tr></table></figure>
-<p>在这里，头三个字节是SSH，来自magic preamble（直译是魔法序言？）。SSH协议签名输入的头三个字节之后就开始和ssh-keygen签名输入不一样，SSH客户端和ssh-keygen不会生成同样的签名。因此，在这里不会有跨协议攻击的风险，我也有绝对的信心使用现存的SSH密钥，通过ssh-keygen来对信息加密。</p>
-
       
     </div>
 
