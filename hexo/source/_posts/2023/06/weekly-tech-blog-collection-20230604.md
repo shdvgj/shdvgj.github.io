@@ -38,3 +38,9 @@ categories:
 
 ## [Arroyo：一个用Rust编写的分布式流处理引擎](https://github.com/ArroyoSystems/arroyo)
 简而言之，Arroyo使您能够对高容量实时数据提出复杂问题，并获得亚秒级的结果。相比起世面已存在的流引擎（Apache Flink、Spark Streaming和Kafka Streams），Arroyo有如下特点，是无服务的，高性能SQL，以及为非专家设计。
+
+## [黑镜导演利用chatGPT进行剧本创作](https://www.empireonline.com/tv/news/charlie-brooker-chatgpt-black-mirror-episode-exclusive-image/)
+英剧《黑镜》系列是关于在未来，科技的发展对于人类造成危害。因此，当黑镜的导演用chatGPT创作故事时，整个事情听上去就颇为黑色幽默。不过最后导演说chatGPT的故事只是初看起来合理，仔细琢磨之后狗屁不通。
+
+## [fastgen：一个低代码工具，以进行快速开发](https://fastgen.com/)
+Fastgen是一个低代码软件平台，允许用户快速轻松地构建API端点和工作流程。Fastgen提供直观友好的界面，无需深入的编程知识即可创建API和工作流程。
