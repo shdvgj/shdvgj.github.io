@@ -4810,4 +4810,89 @@
 <h3 id="OpenResume-开源的简历生成器"><a href="#OpenResume-开源的简历生成器" class="headerlink" title="OpenResume: 开源的简历生成器"></a><a href="https://www.open-resume.com/">OpenResume: 开源的简历生成器</a></h3><p>先看看具体效果，个人认为还是比较简洁美观的，可以持续关注。比起市面上一堆花里胡哨的简历，这种简历我认为更能看得下去，关键是<strong>免费</strong>。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/openresume1.png"><br>支持pdf导入已有简历，或者根据他的模版一步步建立。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/openresume2.png"></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>每日文章收集-20230626</title>
+    <url>/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/</url>
+    <content><![CDATA[<h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h2 id="vrite-开源无界面内容管理系统（CMS），适用于编程博客、文档等"><a href="#vrite-开源无界面内容管理系统（CMS），适用于编程博客、文档等" class="headerlink" title="vrite: 开源无界面内容管理系统（CMS），适用于编程博客、文档等"></a><a href="https://vrite.io/">vrite: 开源无界面内容管理系统（CMS），适用于编程博客、文档等</a></h2><p>vrite开源的专用于写作技术内容的CMS系统。根据官网介绍，具有几个特点：</p>
+<ul>
+<li>简洁的UI</li>
+<li>内置看板界面，可以轻松管理任意规模的产品流程</li>
+<li>所见即所得，支持markdown和快捷键，协同写作等</li>
+<li>对技术写作量身定做，支持高亮，自动补全等</li>
+<li>提供API和webhook，与各种前端界面轻松集成</li>
+<li>完备的权限管理系统</li>
+</ul>
+<h3 id="基本概念介绍"><a href="#基本概念介绍" class="headerlink" title="基本概念介绍"></a>基本概念介绍</h3><p>Vrite使用三个概念来组织管理内容。</p>
+<ul>
+<li>工作空间（Workspaces）：独立的单元，用于存储许多内容组（Content groups）、配置API访问或编辑体验的设置，以及关于整个团队及其角色的详细信息；可以创建或被加入到任意数量的工作区。</li>
+<li>内容组（Content groups）：如果熟悉看板界面的话，这就相当于看板仪表中的列，用于组织内容碎片（Content pieces）。</li>
+<li>内容碎片（Content pieces）：相当于看板界面中的卡片，用于编辑具体的内容，包含实际的内容和相关元数据。</li>
+</ul>
+<h3 id="使用工作空间"><a href="#使用工作空间" class="headerlink" title="使用工作空间"></a>使用工作空间</h3><p>点击侧边栏切换工作空间。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite2.png"><br>在该界面选择或新增工作空间。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite3.png"></p>
+<h3 id="编辑内容"><a href="#编辑内容" class="headerlink" title="编辑内容"></a>编辑内容</h3><p>进入工作空间后，左边一栏是内容碎片的属性。右边是内容组和内容碎片。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite4.png"><br>点击内容碎片进入编辑界面后，将看到vrite所见即所得的特性。</p>
+<ul>
+<li>弹起菜单：选择任意内容，会弹出浮动菜单用于选择样式，包括加粗，斜体，代码，链接等<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite5.png"></li>
+<li>段落菜单：在段落前或者空白区域键入“/”键就会弹出段落菜单。可以选择将段落定义为选定的格式。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite6.png"></li>
+<li>链接菜单：将鼠标移动到一个包含超链接的内容上时，会出现该链接网页的预览内容。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite7.png"></li>
+<li>支持任意markdown语法，同时还可使用快捷键快速定义格式。</li>
+<li>特殊格式的内容会弹出一个编辑预览的内容块，例如图片，代码等。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite8.png"></li>
+<li>顶部栏包含三个功能<ul>
+<li>内容统计：统计段落，单词数，字符数，代码行数。</li>
+<li>导出：支持导出json，html，github适用的markdown格式。</li>
+<li>禅模式：仅保留内容，剔除所有的菜单和干扰，专注于内容编辑。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite9.png"></li>
+</ul>
+</li>
+<li>支持协同编辑，团队成员编辑过的内容会显示高亮并展示成员的名字。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite10.png"></li>
+</ul>
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>vrite的插件中心目前并不支持第三方的插件，只包含了四个和功能相关的插件。</p>
+<ul>
+<li>Hashnode：自动发布到<a href="https://hashnode.com/">Hashnode</a>。</li>
+<li>Dev.to：自动发布到<a href="https://dev.to/">Dev.to</a>。</li>
+<li>Medium：自动发布到<a href="https://medium.com/">Medium</a>。</li>
+<li>GPT-3.5: 编辑内容时可以直接让chatGpt生成。</li>
+</ul>
+<h3 id="JavaScript-SDK"><a href="#JavaScript-SDK" class="headerlink" title="JavaScript SDK"></a>JavaScript SDK</h3><p>通过npm安装。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm i @vrite/sdk</span><br></pre></td></tr></table></figure>
+<p>安装完成后可以通过sdk提供的工具方法获取内容组和内容碎片等。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite11.png"></p>
+<h3 id="自托管"><a href="#自托管" class="headerlink" title="自托管"></a>自托管</h3><p>网站说明文档暂不建议现在进行自托管，因为vrite的稳定版本到2023年的第三季度才会发布。如果要进行自托管，网站也进行了一些说明。<br>项目结构基于<a href="https://turbo.build/repo">Turborepo</a></p>
+<ul>
+<li>最重要的依赖是：<ul>
+<li>Typescript</li>
+<li>Solid.js</li>
+<li>Fastify</li>
+<li>tRpc</li>
+<li>Tiptap &amp; ProseMirror </li>
+<li>Y.js &amp; HocusPocus </li>
+<li>Monaco Editor </li>
+<li>Astro </li>
+</ul>
+</li>
+<li>目录结构<ul>
+<li>/package<ul>
+<li>/backend</li>
+<li>/components</li>
+<li>/editor</li>
+<li>/extensions</li>
+<li>/scripts</li>
+<li>/sdk/javascript</li>
+</ul>
+</li>
+<li>/apps<ul>
+<li>/backend/api</li>
+</ul>
+</li>
+<li>…….</li>
+</ul>
+</li>
+<li>环境变量<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Database</span></span><br><span class="line">MONGO_URL=</span><br><span class="line">REDIS_URL=</span><br><span class="line">DATABASE=</span><br><span class="line"><span class="comment"># Security</span></span><br><span class="line">SECRET=</span><br><span class="line"><span class="comment"># Domains</span></span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+目前vrite的数据库基于MongoDB，Redis，S3。</li>
+</ul>
+<h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="try命令：试一下你的命令并看下效果"><a href="#try命令：试一下你的命令并看下效果" class="headerlink" title="try命令：试一下你的命令并看下效果"></a><a href="https://github.com/binpash/try">try命令：试一下你的命令并看下效果</a></h3><p>安装这个try命令</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/binpash/try.git</span><br></pre></td></tr></table></figure>
+<p>使用try并执行别的命令，可以看到命令的预期效果。并会在结尾询问是否要真实执行该命令。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">try pip3 install libdash</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">Defaulting to user installation because normal site-packages is not writeable</span><br><span class="line">Collecting libdash</span><br><span class="line">  Downloading libdash-0.3.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (254 kB)</span><br><span class="line">     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 254.6/254.6 KB 2.1 MB/s eta 0:00:00</span><br><span class="line">Installing collected packages: libdash</span><br><span class="line">Successfully installed libdash-0.3.1</span><br><span class="line">WARNING: Running pip as the <span class="string">&#x27;root&#x27;</span> user can result <span class="keyword">in</span> broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv</span><br><span class="line"></span><br><span class="line">Changes detected <span class="keyword">in</span> the following files:</span><br><span class="line"></span><br><span class="line">/tmp/tmp.zHCkY9jtIT/upperdir/home/gliargovas/.<span class="built_in">local</span>/lib/python3.10/site-packages/libdash/ast.py (modified/added)</span><br><span class="line">/tmp/tmp.zHCkY9jtIT/upperdir/home/gliargovas/.<span class="built_in">local</span>/lib/python3.10/site-packages/libdash/_dash.py (modified/added)</span><br><span class="line">/tmp/tmp.zHCkY9jtIT/upperdir/home/gliargovas/.<span class="built_in">local</span>/lib/python3.10/site-packages/libdash/__init__.py (modified/added)</span><br><span class="line">/tmp/tmp.zHCkY9jtIT/upperdir/home/gliargovas/.<span class="built_in">local</span>/lib/python3.10/site-packages/libdash/__pycache__/printer.cpython-310.pyc (modified/added)</span><br><span class="line">/tmp/tmp.zHCkY9jtIT/upperdir/home/gliargovas/.<span class="built_in">local</span>/lib/python3.10/site-packages/libdash/__pycache__/ast.cpython-310.pyc (modified/added)</span><br><span class="line">&lt;snip&gt;</span><br><span class="line"></span><br><span class="line">Commit these changes? [y/N] y</span><br></pre></td></tr></table></figure>
+
+<p>需要注意，这个命令并不是生成一个沙盒，它只是利用了linux系统的命名空间和overlayfs。因此不应该使用try去执行无法信任的命令。</p>
+]]></content>
+  </entry>
 </search>
