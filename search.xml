@@ -4765,9 +4765,9 @@
 <p>这些玩法因素可能不是导致游戏销量失败的主要原因，但确实让玩家的游玩感受不太友好。</p>
 <h3 id="主题，标题和预告片分析"><a href="#主题，标题和预告片分析" class="headerlink" title="主题，标题和预告片分析"></a>主题，标题和预告片分析</h3><p>主题，标题和预告片这三个因素决定了玩家是不是会对你的游戏感兴趣。作者认为自己在这方面没有做好。</p>
 <ul>
-<li><strong>主题过时。</strong>游戏主题是玛雅神庙寻宝，作者后悔没有在初次讨论后重新决定主题，因为这个主题显然无法引起太多玩家的兴趣，玩家在进入游戏前就大概知道玛雅，神庙，寻宝这样的主题会是什么样的，因此会丧失探索的欲望，直接影响玩家的购买欲。</li>
-<li><strong>标题混淆。</strong>在初次讨论标题的时候，作者的团队认为标题一定要足够吸引人，因此采用了连续的T开头的单词。而这个标题也确实不太差，很快的在google上有了一定的搜索量。然而随着时间推移，作者意识到，这个标题完全没有展现出玩法，尤其是加上“deluxe（豪华版）”之后，让很多的玩家怀疑这是一个小品级的解谜游戏。这导致了很多潜在玩家的流失。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/deluxe_puzzle.png"></li>
-<li><strong>预告片差强人意。</strong>作者分析了自己的两段预告片，指出由于游戏玩法的复杂性，让他非常渴望在预告片中告诉玩家游戏机制和所有的内容，使得预告片画面切换太快，也太过混乱。作者甚至还介绍了另一篇<a href="http://www.kertgartner.com/making-entertaining-and-engaging-video-game-trailers/">文章</a>，用于说明如何制作一个吸引人的预告片。</li>
+<li><strong>主题过时</strong>。游戏主题是玛雅神庙寻宝，作者后悔没有在初次讨论后重新决定主题，因为这个主题显然无法引起太多玩家的兴趣，玩家在进入游戏前就大概知道玛雅，神庙，寻宝这样的主题会是什么样的，因此会丧失探索的欲望，直接影响玩家的购买欲。</li>
+<li><strong>标题混淆</strong>。在初次讨论标题的时候，作者的团队认为标题一定要足够吸引人，因此采用了连续的T开头的单词。而这个标题也确实不太差，很快的在google上有了一定的搜索量。然而随着时间推移，作者意识到，这个标题完全没有展现出玩法，尤其是加上“deluxe（豪华版）”之后，让很多的玩家怀疑这是一个小品级的解谜游戏。这导致了很多潜在玩家的流失。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/deluxe_puzzle.png"></li>
+<li><strong>预告片差强人意</strong>。作者分析了自己的两段预告片，指出由于游戏玩法的复杂性，让他非常渴望在预告片中告诉玩家游戏机制和所有的内容，使得预告片画面切换太快，也太过混乱。作者甚至还介绍了另一篇<a href="http://www.kertgartner.com/making-entertaining-and-engaging-video-game-trailers/">文章</a>，用于说明如何制作一个吸引人的预告片。</li>
 </ul>
 <h3 id="市场营销"><a href="#市场营销" class="headerlink" title="市场营销"></a>市场营销</h3><p>作者说自己并没有太多市场营销的经验，但是也为这款游戏努力做了很多自己以前不曾做过的事。包括参展，公关，真山羊活动，在twitch上组织抽奖活动等。</p>
 <ul>
@@ -4785,16 +4785,16 @@
 </ul>
 <h3 id="所以为什么游戏卖的不好呢？"><a href="#所以为什么游戏卖的不好呢？" class="headerlink" title="所以为什么游戏卖的不好呢？"></a>所以为什么游戏卖的不好呢？</h3><p>可以看到，作者认为游戏还挺好玩的，玩家也充分的参与到了他们组织的各种市场营销活动中，也通过公关公司接触了一些媒体。所以到底是为什么这个游戏卖的不好呢？作者简单说了几点：</p>
 <ul>
-<li>不够吸引人。像前文所述，不管是主题还是玩法，都使得玩家难以第一时间了解游戏的魅力。</li>
-<li><strong>没有线上模式。</strong>作者团队认为这是最大的原因，游戏需要现实中的朋友来一起玩，这是一个很大的限制。在论坛上也充斥着这样的讨论。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/no-online.png"></li>
-<li>开发周期过长。在2014年的时候，本地的多人游戏还是比较时兴的，但是这种游戏没多久就过时了，已经没人玩这种类型的游戏了。</li>
-<li>同时在三大平台发行。移植到各个平台花费了他们大量的时间和精力，在这个过程中基本就是不断的修复bug，产生bug，修复bug。。。</li>
+<li><strong>不够吸引人</strong>。像前文所述，不管是主题还是玩法，都使得玩家难以第一时间了解游戏的魅力。</li>
+<li><strong>没有线上模式</strong>。作者团队认为这是最大的原因，游戏需要现实中的朋友来一起玩，这是一个很大的限制。在论坛上也充斥着这样的讨论。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/no-online.png"></li>
+<li><strong>开发周期过长</strong>。在2014年的时候，本地的多人游戏还是比较时兴的，但是这种游戏没多久就过时了，已经没人玩这种类型的游戏了。</li>
+<li><strong>同时在三大平台发行</strong>。移植到各个平台花费了他们大量的时间和精力，在这个过程中基本就是不断的修复bug，产生bug，修复bug。。。</li>
 </ul>
 <h3 id="如果有下次"><a href="#如果有下次" class="headerlink" title="如果有下次"></a>如果有下次</h3><ul>
-<li>不要搞本地多人游戏。本地多人游戏规划起来是很简单，但是太难市场推广了。</li>
-<li>先签协议。要跟游戏平台签下独占协议，这样会让后续简单很多。</li>
-<li>只发行一个平台。和上一条呼应，一次性在多个平台发行游戏成本太高，回报太少。</li>
-<li>从市场角度进行设计。分析市场需求非常重要，不要埋头苦想。作者推荐看Ryan Clark的的文章<a href="https://www.gamedeveloper.com/business/what-makes-an-indie-hit-how-to-choose-the-right-design">《What Makes an Indie Hit》</a>进行学习。</li>
+<li><strong>不要搞本地多人游戏</strong>。本地多人游戏规划起来是很简单，但是太难市场推广了。</li>
+<li><strong>先签协议</strong>。要跟游戏平台签下独占协议，这样会让后续简单很多。</li>
+<li><strong>只发行一个平台</strong>。和上一条呼应，一次性在多个平台发行游戏成本太高，回报太少。</li>
+<li><strong>从市场角度进行设计</strong>。分析市场需求非常重要，不要埋头苦想。作者推荐看Ryan Clark的的文章<a href="https://www.gamedeveloper.com/business/what-makes-an-indie-hit-how-to-choose-the-right-design">《What Makes an Indie Hit》</a>进行学习。</li>
 </ul>
 <h3 id="结尾的话"><a href="#结尾的话" class="headerlink" title="结尾的话"></a>结尾的话</h3><p>这篇文章写的情真意切，看得出来作者对这个付出了两年心血的游戏感情复杂，有懊悔一些决定，有欣慰一些活动的成功，有感激团队成员的辛勤付出。而最终，不管是偏见还是事实，他认为游戏并不是不好玩，但确实是个失败的作品。作者写下这篇文章也是为了总结过去的失败教训，为下部作品积累经验。</p>
 <p><strong>而我们做程序员的也应该学习到，开发水平的高低往往并不是决定你的项目成功的关键，最主要还是得搞清楚市场需要什么，这点是程序员的弱项，但是也是必须要解决的，否则只能是像作者这样浪费无数个两年。</strong></p>
@@ -4802,7 +4802,23 @@
 <li><a href="https://cryptopals.com/">cryptopals 加密挑战</a></li>
 </ul>
 <p>帮助你了解现实世界中用到的加密算法的底层原理以及可能被攻击的方式。目前包含了总共66个挑战题目，从简单到难，对于计算机的加密算法感兴趣的同学可以看看。<br>以下是一些挑战的截图：<br><img src="/crpto1.png"><br><img src="/crpto2.png"></p>
-<p>- </p>
+<ul>
+<li><a href="https://devpod.sh/">DevPod：开源，无需服务端，可复现的开发环境的codespaces</a></li>
+</ul>
+<p>DevPod是一个用于创建可复现的开发者环境的工具。基本流程是通过git下载代码，根据devcontainer.json文件指定代码运行环境。对比docker，codespaces等，优点是开源，无需服务端，轻量级。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/devpod.png"></p>
+<ul>
+<li><p><a href="https://utcc.utoronto.ca/~cks/space/blog/sysadmin/ReportConfigFileLocations?showcomments#comments">所有配置文件都应该报告其所在位置</a></p>
+</li>
+<li><p>这篇文章指出大部分程序拥有不同的配置文件位置，有些在系统配置文件目录，有些在用户目录，这些程序都自认为将配置文件放在了大部分人知道的位置。这导致了系统中的程序一多，就会让管理员要搜索所有可能的位置去查找配置文件所在。（对于我来说，找配置文件就是google一下，局限就是必须得有网络。）<br>作者认为应该有一个统一直观的方式查到程序的配置文件位置，例如”program –help”。<br>这篇博文引起了一些讨论，大部分都认同，也有人提出不仅如此，同时配置文件也应该统一读取优先级的问题，有些配置以首次读取为准，有些配置又是最后一次配置为准，这就非常混乱。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/config1.png"></p>
+</li>
+<li><p><a href="https://www.independent.co.uk/tech/harvard-chatbot-teacher-computer-science-b2363114.html">哈佛的新计算机科学老师是一个聊天机器人</a></p>
+</li>
+</ul>
+<p>哈佛计划采用基于chatgpt的聊天机器人用于教授计算机科学课程。哈佛教授David Malan认为机器人教学的好处至少有几点：<br>    - 一对一教学<br>    - 7天24小时不间断<br>    - 针对学生进行个性化教学</p>
+<ul>
+<li><a href="https://www.open-resume.com/">OpenResume: 开源的简历生成器</a></li>
+</ul>
+<p>先看看具体效果，个人认为还是比较简洁美观的，可以持续关注。比起市面上一堆花里胡哨的简历，这种简历我认为更能看得下去，关键是<strong>免费</strong>。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/openresume1.png"><br>支持pdf导入已有简历，或者根据他的模版一步步建立。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/openresume2.png"></p>
 ]]></content>
   </entry>
 </search>
