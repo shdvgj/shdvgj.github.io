@@ -242,10 +242,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-06-26 11:43:15 / 修改时间：16:11:25" itemprop="dateCreated datePublished" datetime="2023-06-26T11:43:15+08:00">2023-06-26</time>
+      <time title="创建时间：2023-06-26 11:43:15" itemprop="dateCreated datePublished" datetime="2023-06-26T11:43:15+08:00">2023-06-26</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2023-06-27 13:46:40" itemprop="dateModified" datetime="2023-06-27T13:46:40+08:00">2023-06-27</time>
+      </span>
 
   
 </div>
@@ -337,6 +343,68 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">try pip3 install libdash</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">Defaulting to user installation because normal site-packages is not writeable</span><br><span class="line">Collecting libdash</span><br><span class="line">  Downloading libdash-0.3.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (254 kB)</span><br><span class="line">     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 254.6/254.6 KB 2.1 MB/s eta 0:00:00</span><br><span class="line">Installing collected packages: libdash</span><br><span class="line">Successfully installed libdash-0.3.1</span><br><span class="line">WARNING: Running pip as the <span class="string">&#x27;root&#x27;</span> user can result <span class="keyword">in</span> broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv</span><br><span class="line"></span><br><span class="line">Changes detected <span class="keyword">in</span> the following files:</span><br><span class="line"></span><br><span class="line">/tmp/tmp.zHCkY9jtIT/upperdir/home/gliargovas/.<span class="built_in">local</span>/lib/python3.10/site-packages/libdash/ast.py (modified/added)</span><br><span class="line">/tmp/tmp.zHCkY9jtIT/upperdir/home/gliargovas/.<span class="built_in">local</span>/lib/python3.10/site-packages/libdash/_dash.py (modified/added)</span><br><span class="line">/tmp/tmp.zHCkY9jtIT/upperdir/home/gliargovas/.<span class="built_in">local</span>/lib/python3.10/site-packages/libdash/__init__.py (modified/added)</span><br><span class="line">/tmp/tmp.zHCkY9jtIT/upperdir/home/gliargovas/.<span class="built_in">local</span>/lib/python3.10/site-packages/libdash/__pycache__/printer.cpython-310.pyc (modified/added)</span><br><span class="line">/tmp/tmp.zHCkY9jtIT/upperdir/home/gliargovas/.<span class="built_in">local</span>/lib/python3.10/site-packages/libdash/__pycache__/ast.cpython-310.pyc (modified/added)</span><br><span class="line">&lt;snip&gt;</span><br><span class="line"></span><br><span class="line">Commit these changes? [y/N] y</span><br></pre></td></tr></table></figure>
 
 <p>需要注意，这个命令并不是生成一个沙盒，它只是利用了linux系统的命名空间和overlayfs。因此不应该使用try去执行无法信任的命令。</p>
+<h3 id="Google在设置里隐藏了一个秘密的浏览器"><a href="#Google在设置里隐藏了一个秘密的浏览器" class="headerlink" title="Google在设置里隐藏了一个秘密的浏览器"></a><a target="_blank" rel="noopener" href="https://matan-h.com/google-has-a-secret-browser-hidden-inside-the-settings/">Google在设置里隐藏了一个秘密的浏览器</a></h3><p>作者在安卓系统里发现一个惊人的bug，存在于安卓的各种app中，以及系统设置和谷歌适配的app里，这个浏览器甚至可以绕过家长控制！具体复现步骤如下：<br>（由于手头并没有安卓机，暂时无法复现，而且考虑到这篇文章是国外博主发布的，大概率也是原生安卓系统的bug，国内的安卓机应该无法复现。）</p>
+<ul>
+<li>进入“设置”→“Google”（或任何允许选择账户的应用程序），点击“管理我的账户”。</li>
+<li>然后进入“安全”选项卡。在其中，向下滚动直到找到“密码管理器”并点击。</li>
+<li>点击右上角的“设置”图标。</li>
+<li>向下滚动，直到出现“设置设备加密”。点击它，然后点击“了解有关设备加密的更多信息”。</li>
+<li>现在你进入了浏览器。然后点击汉堡菜单（就是类似于“三”这样的按钮），然后点击“隐私政策”。</li>
+<li>在顶部点击九个点，等待5秒钟（加载需要一些时间），然后点击“搜索”（如果你找不到搜索图标，你也可以向下滚动直到找到“Google”，然后点击它）。</li>
+<li>从你的Google账户注销。</li>
+<li>然后就得到了秘密浏览器，可以随意浏览任何网站。</li>
+</ul>
+<p>这个bug作者已经反馈给谷歌，并得到了回复，估计不久就会被修复。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/googlebug1.png"></p>
+<h3 id="WinGPT：windows3-1上的AI助理"><a href="#WinGPT：windows3-1上的AI助理" class="headerlink" title="WinGPT：windows3.1上的AI助理"></a><a target="_blank" rel="noopener" href="https://www.dialup.net/wingpt/">WinGPT：windows3.1上的AI助理</a></h3><p><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/wingpt1.png"><br>作者在古早的windows3.1上开发了一个程序，实现了类似chatgpt的问答功能。在开发过程中克服了相当多的困难：</p>
+<ul>
+<li>通过一系列努力在windows3.1上实现了tls1.3协议来调用chatgpt的接口，关于这部分的工作，看作者的另一篇<a target="_blank" rel="noopener" href="https://www.dialup.net/wingpt/tls.html">文章</a>。</li>
+<li>windows3.1上原生的UI界面非常难画，需要通过C语言代码一点点调试，而且也缺少一些如今通用的UI组件。</li>
+<li>windows3.1没有状态栏，作者甚至询问了chatgpt如何解决，但是chatgpt并没有给出正确的答案。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/wingpt2.png"></li>
+<li>用windows上的画图工具画了一个logo。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/wingpt3.png"></li>
+<li>为了解决内存限制问题，作者将问答的文本数量进行了控制，同时也不去发送上下文内容，这意味着wingpt无法根据前文进行问答。</li>
+</ul>
+<p>作者放出了wingpt的<a target="_blank" rel="noopener" href="https://www.dialup.net/wingpt/download/wingpt10.zip">下载地址</a>和<a target="_blank" rel="noopener" href="https://www.dialup.net/wingpt/tls.html">源码</a>。（国外的hacker真是厚道）当然也有限制，必须运行在16位或者32位的windows3.1上，而且需要你有一个openai的api key。</p>
+<h3 id="XML是未来"><a href="#XML是未来" class="headerlink" title="XML是未来"></a><a target="_blank" rel="noopener" href="https://www.bitecode.dev/p/hype-cycles">XML是未来</a></h3><p>好吧，这是一个标题党。文章很棒，作者的主要目的是吐槽前端技术的爆炸、微服务过度等许多愚蠢的潮流。</p>
+<p>作者初次接触xml的时候，便被告知xml将取代一切：html变为xhtml，验证用dtd，用xslt进行转换和展示，用soap进行通信。当然最后的结果大家都知道，xml并没有取代一切。</p>
+<p>作者从中学到的教训是：没有银弹，所有工具都有其优缺点。而技术人员自认为自己是理性的，其实受到了炒作，营销和情绪的影响，甚至受其影响比起普通人更甚。</p>
+<p>而xml只是许许多多潮流中的普通一员而已，作者吐槽了好几个技术潮流的起伏：</p>
+<ul>
+<li>MangoDB出现时，突然所有东西都要使用NoSQL。新手们不管三七二十一，就把数据一股脑放在了NoSQL中，然而NoSQL没有没有模式、没有一致性，没有完整性验证，这导致大量项目的失败。</li>
+<li>Node出现使得Javascript风靡一时，你必须前后端使用同一种语言，让一切都是异步的。但是javascript本身并不完善，没有命名空间，混乱的作用域，弱类型等等。导致需要用各种额外框架，CoffeeScript，然后是Babel、Webpack、TypeScript、React + JSX等等。</li>
+<li>单页面应用（Single Page Application）变得流行，但是你需要在flux、redux、alt、reflux、flummox、fluxible、fluxxor、marty.js、fynx、MacFly、DeLorean.js、fluxify、fluxury、exim、fluxtore、Redx、fluxx等之间做出选择。</li>
+<li>客户端突然需要所有数据了，于是GraphQL诞生了。这导致了服务端渲染的兴起，也就是所谓的带有额外步骤的CGI。结果证明，这增加了巨大的复杂性，导致了大量失败的项目和金钱的浪费。</li>
+<li>“一切都应该是微服务”的观点变得主流，每个小网站都应该有一个restful API的Docker容器，一个用于前端，一个用于数据库。然后不断增加层级。接着为了更好通信，显然需要一个消息队列，ZeroMQ、RabbitMQ……服务间要更好的交换格式，又有了Protobuf的gRPC。但是这只是让工作变得更加复杂，结果导致了云服务的诞生，你只需要托管然后购买这些服务就可以了，费用变成原来的10倍，但至少比你自己维护多10000倍的维护成本要好。</li>
+<li>接着大数据开始流行，你要存储用户的所有行为，你的数据变得很庞大，即使不够大，你也得相信数据足够大。然后你需要某种形式的Dynamo数据湖，又或者是一个时间序列数据库等等。</li>
+<li>程序运行变慢了？不是因为糟糕的程序设计，不是因为高并发的请求，而是因为语言！所以我们用GO和RUST来重写程序吧！</li>
+</ul>
+<p>作者最后总结，你需要新技术，云, 容器, nosql, go, rust 以及 js 构建的系统等。<strong>但是不需要每一项新技术</strong>，没有什么东西适用于所有情况（Nothing is ever needed for everything）。</p>
+<p>这篇博文的评论区一位老哥也说的很棒，现在人们评价一个人技术好坏并不是看他解决的问题有多复杂，而是看他设计的系统有多复杂，这显然不是一个好趋势。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/hypecycle1.png"></p>
+<h3 id="mycelite：一个SQLite扩展，它允许你将一个SQLite实例中的更改同步到另一个实例。"><a href="#mycelite：一个SQLite扩展，它允许你将一个SQLite实例中的更改同步到另一个实例。" class="headerlink" title="mycelite：一个SQLite扩展，它允许你将一个SQLite实例中的更改同步到另一个实例。"></a><a target="_blank" rel="noopener" href="https://mycelial.com/docs/get-started/quick-start/">mycelite：一个SQLite扩展，它允许你将一个SQLite实例中的更改同步到另一个实例。</a></h3><ul>
+<li>下载mycelite拓展<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://github.com/mycelial/mycelite/releases/latest/download/aarch64-apple-darwin.tgz --output aarch64-apple-darwin.tgz</span><br><span class="line">tar -xvzf aarch64-apple-darwin.tgz</span><br></pre></td></tr></table></figure></li>
+<li>配置SQLite写实例<ul>
+<li>启动<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlite3</span><br></pre></td></tr></table></figure></li>
+<li>加载插件<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.load ./libmycelite mycelite_writer</span><br></pre></td></tr></table></figure></li>
+<li>打开一个数据库作为写实例<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.open writer.db</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>配置Mycelite：第一次使用Mycelite，需要进行加载和配置<ul>
+<li>加载配置文件 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.load ./libmycelite mycelite_config</span><br></pre></td></tr></table></figure></li>
+<li>注册账号获取user name和secret <a target="_blank" rel="noopener" href="https://hub.mycelial.com/signup">https://hub.mycelial.com/signup</a></li>
+<li>执行插入语句，填入user name和secret<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> mycelite_config <span class="keyword">values</span> </span><br><span class="line">  (<span class="string">&#x27;domain&#x27;</span>, <span class="string">&#x27;&lt;domain&gt;/&lt;db-name&gt;&#x27;</span>),</span><br><span class="line">  (<span class="string">&#x27;client_id&#x27;</span>, <span class="string">&#x27;&lt;your-hub-username&gt;&#x27;</span>),</span><br><span class="line">  (<span class="string">&#x27;secret&#x27;</span>, <span class="string">&#x27;&lt;secret-from-hub&gt;&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>配置SQLite读实例<ul>
+<li>启动<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlite3</span><br></pre></td></tr></table></figure></li>
+<li>加载插件<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.load ./libmycelite mycelite_reader</span><br></pre></td></tr></table></figure></li>
+<li>打开一个数据库作为读实例<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.open reader.db</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>验证同步<ul>
+<li>在写实例执行插入语句<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> test(number <span class="type">integer</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> test(number) <span class="keyword">values</span> (<span class="number">42</span>);</span><br></pre></td></tr></table></figure></li>
+<li>在读实例就能看到数据<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.tables</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> test;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
 
       
     </div>
