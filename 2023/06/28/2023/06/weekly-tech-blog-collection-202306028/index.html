@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="【今日关注】更快的机器，更慢的机器这篇文章的作者在推特上发布了两段视频，他用了一台装了windowsNT 3.51的旧电脑和一台装了windows11的新电脑，分别打开并关闭了windows的原生应用：命令行工具，资源管理器，记事本和画图。结果是，旧电脑没有任何延迟，新电脑却出现明显的加载延迟。这俩视频在推特上引起大量的关注和转发，大部分人都表示认同视频里的展示结果并发出了抱怨：为什么机器硬件越来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日文章收集-20230628">
+<meta property="og:url" content="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/index.html">
+<meta property="og:site_name" content="Ricky的个人博客">
+<meta property="og:description" content="【今日关注】更快的机器，更慢的机器这篇文章的作者在推特上发布了两段视频，他用了一台装了windowsNT 3.51的旧电脑和一台装了windows11的新电脑，分别打开并关闭了windows的原生应用：命令行工具，资源管理器，记事本和画图。结果是，旧电脑没有任何延迟，新电脑却出现明显的加载延迟。这俩视频在推特上引起大量的关注和转发，大部分人都表示认同视频里的展示结果并发出了抱怨：为什么机器硬件越来">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/fastslow1.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/fastslow2.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/fastslow3.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/fastslow4.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/fastslow5.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/fastslow6.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/passwordgame1.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/passwordgame2.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/passwordgame3.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/passwordgame4.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/passwordgame5.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/opnsense1.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/mofi1.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/mofi2.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/mofi3.png">
+<meta property="article:published_time" content="2023-06-28T01:55:34.000Z">
+<meta property="article:modified_time" content="2023-06-29T04:01:13.432Z">
+<meta property="article:author" content="Ricky">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/fastslow1.png">
+
+
+<link rel="canonical" href="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/","path":"2023/06/28/2023/06/weekly-tech-blog-collection-202306028/","title":"每日文章收集-20230628"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>每日文章收集-20230628 | Ricky的个人博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Ricky的个人博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">15</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">52</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%80%90%E4%BB%8A%E6%97%A5%E5%85%B3%E6%B3%A8%E3%80%91"><span class="nav-text">【今日关注】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E5%BF%AB%E7%9A%84%E6%9C%BA%E5%99%A8%EF%BC%8C%E6%9B%B4%E6%85%A2%E7%9A%84%E6%9C%BA%E5%99%A8"><span class="nav-text">更快的机器，更慢的机器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%89%88%E5%AF%B9%E6%AF%94%E8%A7%86%E9%A2%91"><span class="nav-text">第一版对比视频</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%89%88%E5%AF%B9%E6%AF%94%E8%A7%86%E9%A2%91"><span class="nav-text">第二版对比视频</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E8%BF%9B%E6%AD%A5"><span class="nav-text">计算机的进步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BD%9C%E5%9C%A8%E7%9A%84%E9%9A%90%E6%82%A3"><span class="nav-text">潜在的隐患</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%88%AB%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="nav-text">一些别的实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-text">可能的原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%90%E6%B8%90%E6%B6%88%E5%A4%B1%E7%9A%84%E4%B8%80%E6%AC%A1%E6%80%A7%E6%94%B9%E8%BF%9B"><span class="nav-text">逐渐消失的一次性改进</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%80%90%E5%8D%9A%E6%96%87%E4%B8%80%E8%A7%88%E3%80%91"><span class="nav-text">【博文一览】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%86%E7%A0%81%E6%B8%B8%E6%88%8F"><span class="nav-text">密码游戏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6MacOS%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7"><span class="nav-text">进阶MacOS命令行工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8Linux%E7%9A%84Namespaces%EF%BC%8Ccgroups%E5%92%8Cchroot%E6%90%AD%E5%BB%BA%E4%BD%A0%E8%87%AA%E5%B7%B1docker"><span class="nav-text">用Linux的Namespaces，cgroups和chroot搭建你自己docker</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OPNsense%EF%BC%9A%E5%BC%80%E6%BA%90%E7%9A%84%E5%AE%89%E5%85%A8%E5%B9%B3%E5%8F%B0"><span class="nav-text">OPNsense：开源的安全平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mofi%EF%BC%9A%E5%85%8D%E8%B4%B9%E4%B8%94%E6%97%A0%E9%9C%80%E4%B8%8B%E8%BD%BD%E7%9A%84%E9%9F%B3%E4%B9%90%E7%BC%96%E8%BE%91%E7%BD%91%E7%AB%99"><span class="nav-text">Mofi：免费且无需下载的音乐编辑网站</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ricky"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ricky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shdvgj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shdvgj" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:linqianghuang@gmail.com" title="E-Mail → mailto:linqianghuang@gmail.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/RickyLoveCindy" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;RickyLoveCindy" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoqianglalala" rel="noopener" target="_blank"><i class="instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          每日文章收集-20230628
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-06-28 09:55:34" itemprop="dateCreated datePublished" datetime="2023-06-28T09:55:34+08:00">2023-06-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2023-06-29 12:01:13" itemprop="dateModified" datetime="2023-06-29T12:01:13+08:00">2023-06-29</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%AF%8F%E6%97%A5%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">每日文章收集</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h3 id="更快的机器，更慢的机器"><a href="#更快的机器，更慢的机器" class="headerlink" title="更快的机器，更慢的机器"></a><a target="_blank" rel="noopener" href="https://jmmv.dev/2023/06/fast-machines-slow-machines.html">更快的机器，更慢的机器</a></h3><p>这篇文章的作者在推特上发布了两段<a target="_blank" rel="noopener" href="https://twitter.com/jmmv/status/1671670996921896960">视频</a>，他用了一台装了windowsNT 3.51的旧电脑和一台装了windows11的新电脑，分别打开并关闭了windows的原生应用：命令行工具，资源管理器，记事本和画图。结果是，旧电脑没有任何延迟，新电脑却出现明显的加载延迟。这俩视频在推特上引起大量的关注和转发，大部分人都表示认同视频里的展示结果并发出了抱怨：为什么机器硬件越来越好，响应速度却越来越慢？</p>
+<h4 id="第一版对比视频"><a href="#第一版对比视频" class="headerlink" title="第一版对比视频"></a>第一版对比视频</h4><p>作者的第一版视频对于两部机器的介绍是：</p>
+<ul>
+<li>一台搭载AMD K7-600处理器、128MB内存和5400转/分钟的硬盘的计算机，运行着Windows NT 3.51操作系统。这是一台1999-2000年的机器，而其操作系统比它还要旧约5年左右。<br><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/fastslow1.png"></li>
+<li>一台配备英特尔Core m3处理器、8GB内存和运行Windows 11的SSD的Surface Go 2。这是一台三年前发布的机器，原装搭载Windows 10，但官方支持升级至Windows 11。<br><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/fastslow2.png"></li>
+</ul>
+<p>后来被人指出surface go的配置是错误的，因为作者错误的引用了Surface Laptop Go 2的配置。同时由于app已经预先打开过，所以都在内存中已经存在，这次的对比显然不够公平。</p>
+<h4 id="第二版对比视频"><a href="#第二版对比视频" class="headerlink" title="第二版对比视频"></a>第二版对比视频</h4><p>作者重新发布了一版对比视频，这次的两台机器是：</p>
+<ul>
+<li>在K7-600机器上安装Windows 2000。这是一个来自1999年的操作系统，在同一年的硬件上运行。<br><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/fastslow3.png"></li>
+<li>在Mac Pro 2013上安装Windows 11，配备一颗3.5GHz的6核Xeon E5-1650v2处理器，32GB内存，双GPU以及一块最高可持续读取速度达到1GB/s的SSD。<br><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/fastslow4.png"></li>
+</ul>
+<p>注意到第二台电脑是一台十年前的机器运行近几年的系统，但是作者认为这么一台十年前顶配的电脑在打开最简单的桌面应用时有延迟也是不可接受的。</p>
+<p>两版视频揭示了同样的结果，更旧的电脑更旧的系统确实反应极快，打开这些桌面应用都是秒开，而更新的电脑和更新的系统却都同样有极其明显的延迟。</p>
+<h4 id="计算机的进步"><a href="#计算机的进步" class="headerlink" title="计算机的进步"></a>计算机的进步</h4><p>从计算机产业角度来看，在21世纪的计算机发生了巨大的技术进步：</p>
+<ul>
+<li>更佳的图形和高性能显示器，更快的网络，实时视频剪辑等。</li>
+<li>从难以忍受的缓慢I/O读取速度的HDD硬盘，CD和DVD进化到超高速的SSD，使得计算机速度，大型游戏运行，一次性打开超大图片的文件夹都变得顺畅无比。</li>
+<li>硬件更易安装，无线设备普及，文本的国际化（unicode的进步）。</li>
+</ul>
+<h4 id="潜在的隐患"><a href="#潜在的隐患" class="headerlink" title="潜在的隐患"></a>潜在的隐患</h4><p>经历了以上巨大进步的计算机产业，为啥还会出现作者一开始展示的视频的情况呢？有人提出可能是更新的系统需要加载更多的像素，为了展示更好的图形。这显然不是一个很好的理由，作者也马上发了一个打脸视频，将新机器的像素调到最低，关闭4k，关闭特效等等图形效果，结果打开应用的延迟并没有任何改善。<br><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/fastslow5.png"></p>
+<p>GPU的出现减轻了CPU的负担，而出现在图形上的延迟通常是由于动画的有意暂停导致，为了兼容4k显示器在老旧机器上运行。但是作者发现的延迟并不属于这种情况。</p>
+<p>作者提出可能的原因，首先看几个例子。</p>
+<h4 id="一些别的实例"><a href="#一些别的实例" class="headerlink" title="一些别的实例"></a>一些别的实例</h4><ul>
+<li>windows上的记事本经历了无数代都还能响应快速，直到UWP的出现，情况开始急转直下。</li>
+<li>windows的命令行工具随着越来越多的可视化特性，变得越来越慢，PowerShell的新窗口打开甚至要花上几秒钟。</li>
+<li>macos也没有表现的更好，甚至M1芯片的电脑也在打开系统设置时明显慢于以前的机器。<br><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/fastslow6.png"></li>
+<li>linux看起来受到影响较小，原生的应用即使在10多年前的电脑上也能运行出色。然而一旦你开始安装第三方的程序，就会开始感受到变慢。</li>
+<li>谷歌的程序也是，最早的原生谷歌应用非常快速，现在也开始表现不佳。</li>
+</ul>
+<h4 id="可能的原因"><a href="#可能的原因" class="headerlink" title="可能的原因"></a>可能的原因</h4><ul>
+<li>会是软件臃肿的原因吗？根据帕累托法则，80%的用户只用到了20%的软件功能，但是根据剩下20%的用户行为却又各自不同。</li>
+<li>为了解决软件臃肿的问题，我们引入了框架和抽象。但是看看RUST就知道，这并不是问题。</li>
+<li>大型程序和软件的开发需要优先考虑的是节省开发者的时间，这意味着更高的优先级是花大量的时间调试程序而非优化响应时间。</li>
+<li>多平台的开发导致开发者想要节省时间，于是考虑跨平台框架，例如Electron。</li>
+<li>这种跨平台的框架显然导致了很多程序的延迟，比如1password和spotify。</li>
+<li>另一个可能的原因是解释性语言的盛行，例如java和.NET，这些语言在优化长期运行的进程时表现优秀，但是并不会怎么去优先考虑快速启动。</li>
+</ul>
+<h4 id="逐渐消失的一次性改进"><a href="#逐渐消失的一次性改进" class="headerlink" title="逐渐消失的一次性改进"></a>逐渐消失的一次性改进</h4><p>这里说的是从HDD到SSD的巨大改进，这个改进直接将电脑的表现提升到了另一个层次。但是随着时间发展和软件开发的日渐臃肿，这个一次性的改进优势逐渐被蚕食。现在你已经无法感受到SSD刚刚出现那会儿的极速体验了。而另一方面，现在操作系统几乎已经没有办法运行在HDD硬盘上了，当代的操作系统已经默认了你使用SSD，以此为基础，软件程序才能获得基本的体验。</p>
+<p>同样的事情可能也会发生在苹果芯片上，缺乏节制的软件设计，完全不去节约系统资源的开发模式，也会逐渐蚕食掉苹果芯片的硬件改进，多年以后，软件速度也会渐渐慢下来。</p>
+<blockquote>
+<p>计算机架构师能否通过其他革命性的技术转变来拯救我们呢？我不希望依赖这一点。不是因为这些转变可能不存在，而是因为我们不应该需要它们。</p>
+</blockquote>
+<h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="密码游戏"><a href="#密码游戏" class="headerlink" title="密码游戏"></a><a target="_blank" rel="noopener" href="https://neal.fun/password-game/">密码游戏</a></h3><p>颇为有意思的一个网页游戏，游戏界面很简单，只要输入符合规则的密码就行，一开始的规则非常正常，到后面的脑洞就越来越大。</p>
+<ul>
+<li>一开始还是很正常的，至少5个字符，包含特殊符号和大写字母等常用的密码验证规则。<br><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/passwordgame1.png"></li>
+<li>渐渐画风开始变得奇怪，要包含赞助商的名字。<br><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/passwordgame2.png"></li>
+<li>渐渐离谱，要包含谷歌街景里这个国家的名字。<br><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/passwordgame3.png"></li>
+<li>开始脑筋急转弯，把这个蛋安全的放到你的密码里。<br><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/passwordgame4.png"></li>
+</ul>
+<p>这个游戏更适合不懂得前端技术的人来玩，因为这些验证规则完全在前端实现，技术人员通过浏览器的开发者工具就可以轻松实现作弊。例如上面的谷歌街景国家问题，直接可以从js里面找到答案是norway。<br><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/passwordgame5.png"></p>
+<p>当然，对于前端人员来说，这个网页也颇有学习的价值，这些五花八门的验证规则细想起来也不是那么简单就能通过js来实现的，看这个网站的js源码非常具有借鉴价值。</p>
+<h3 id="进阶MacOS命令行工具"><a href="#进阶MacOS命令行工具" class="headerlink" title="进阶MacOS命令行工具"></a><a target="_blank" rel="noopener" href="https://saurabhs.org/advanced-macos-commands">进阶MacOS命令行工具</a></h3><p>我们知道在linux上的命令绝大部分都能在macos上使用，这里介绍几个在macos上的专属命令，不用去找复杂的第三方工具，可以实现很多常用的功能。</p>
+<ul>
+<li><code>caffeinate</code> 设定mac睡眠行为</li>
+<li><code>pbcopy, pbpaste</code> 与系统剪贴板互动</li>
+<li><code>networkQuality</code> 测算网速</li>
+<li><code>sips</code> 图片操作</li>
+<li><code>open</code> 打开文件或者应用</li>
+<li><code>textutil</code> 文档转换器（主要用于html和doc文档的互转）</li>
+<li><code>mdfind, mdls</code> 聚光灯搜索</li>
+<li><code>screencapture</code> 屏幕截图</li>
+<li><code>taskpolicy</code> 控制进程调度</li>
+<li><code>say</code> 文本阅读</li>
+<li><code>pmset</code> 配置电源管理</li>
+<li><code>networksetup</code> 配置网络设定</li>
+<li><code>qlmanage</code> 管理快速查看</li>
+<li><code>softwareupdate</code> 管理系统升级</li>
+<li><code>system_profiler</code> 查看系统信息</li>
+</ul>
+<h3 id="用Linux的Namespaces，cgroups和chroot搭建你自己docker"><a href="#用Linux的Namespaces，cgroups和chroot搭建你自己docker" class="headerlink" title="用Linux的Namespaces，cgroups和chroot搭建你自己docker"></a><a target="_blank" rel="noopener" href="https://akashrajpurohit.com/blog/build-your-own-docker-with-linux-namespaces-cgroups-and-chroot-handson-guide/">用Linux的Namespaces，cgroups和chroot搭建你自己docker</a></h3><p>docker是总所周知的容器平台，这篇文章不是旨在取代docker，而是通过这么一篇介绍让读者明白Docker中容器的核心机制。</p>
+<p>首先介绍linux的这几个概念：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://akashrajpurohit.com/blog/linux-namespaces-isolating-your-system-for-enhanced-security-and-performance/">Namespaces</a>：命名空间（namespaces）是一种内核特性，用于将系统资源隔离和虚拟化，使得每个进程拥有独立的视图，以便在不同的命名空间中运行。</li>
+<li><a target="_blank" rel="noopener" href="https://akashrajpurohit.com/blog/linux-control-groups-finetuning-resource-allocation-for-optimal-system-performance/">cgroups</a>：控制组（cgroups）是一种资源管理机制，用于对进程和进程组进行资源限制和分配。</li>
+<li><a target="_blank" rel="noopener" href="https://akashrajpurohit.com/blog/how-to-create-a-restricted-environment-with-the-linux-chroot-command/">chroot</a>：chroot是一种操作系统级别的功能，用于将进程的根目录更改为指定的目录，创建一个被隔离的运行环境。</li>
+</ul>
+<p>搭建“docker”</p>
+<ul>
+<li>使用<code>unshare</code>命令指定不同的命名空间。<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unshare --uts --pid --net --mount --ipc --fork</span><br></pre></td></tr></table></figure></li>
+<li>执行如下命令创建一个新的cgroup，并分配cpu的配额限制。<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 创建新的cgroup</span></span><br><span class="line">mkdir /sys/fs/cgroup/cpu/container1</span><br><span class="line"><span class="comment">## 分配cpu限额</span></span><br><span class="line"><span class="built_in">echo</span> 100000 &gt; /sys/fs/cgroup/cpu/container1/cpu.cfs_quota_us</span><br><span class="line"><span class="comment">## 写入0用于移除之前曾分配过的进程</span></span><br><span class="line"><span class="built_in">echo</span> 0 &gt; /sys/fs/cgroup/cpu/container1/tasks</span><br><span class="line"><span class="comment">## 写入$$ 确保当前进程的shell后续进程会成为croup中的子进程，并收到cpu限额的限制</span></span><br><span class="line"><span class="built_in">echo</span> $$ &gt; /sys/fs/cgroup/cpu/container1/tasks</span><br></pre></td></tr></table></figure></li>
+<li>使用<code>debootstrap</code>命令创建容器的根文件目录。<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">debootstrap focal ./ubuntu-rootfs http://archive.ubuntu.com/ubuntu/</span><br></pre></td></tr></table></figure></li>
+<li>挂载系统目录和chroot容器<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 挂载proc文件目录，proc文件提供关于进程和系统资源的信息。</span></span><br><span class="line">mount -t proc none ./ubuntu-rootfs/proc</span><br><span class="line"><span class="comment">## 挂载sysfs文件目录，sysfs文件系统以分层格式提供有关设备、驱动程序和其他与内核相关的信息。</span></span><br><span class="line">mount -t sysfs none ./ubuntu-rootfs/sys</span><br><span class="line"><span class="comment">## 绑定dev目录，dev目录目录包含表示系统上物理和虚拟设备的设备文件。</span></span><br><span class="line">mount -o <span class="built_in">bind</span> /dev ./ubuntu-rootfs/dev</span><br><span class="line"><span class="comment">## </span></span><br><span class="line">chroot ./ubuntu-rootfs /bin/bash</span><br></pre></td></tr></table></figure></li>
+<li>完成上面几步后，就搭建了自己的容器环境，现在可以在容器内运行程序<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(container) $ apt update</span><br><span class="line">(container) $ apt install nginx</span><br><span class="line">(container) $ service nginx start</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="OPNsense：开源的安全平台"><a href="#OPNsense：开源的安全平台" class="headerlink" title="OPNsense：开源的安全平台"></a><a target="_blank" rel="noopener" href="https://opnsense.org/">OPNsense：开源的安全平台</a></h2><p><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/opnsense1.png"><br>根据官网介绍，涉及安全方面的内容，从虚拟私人网络到入侵检测，这是一款一流的免费开源项目。有下列功能（翻译自chatgpt）：</p>
+<ul>
+<li>状态防火墙：具有对IPv4和IPv6的支持以及对被阻止或通过的流量的实时查看。</li>
+<li>多WAN：具备多WAN功能，包括负载均衡和故障转移支持。</li>
+<li>虚拟私人网络：集成支持IPsec（包括基于路由的IPsec）、OpenVPN，以及可插拔的支持Tinc（全网VPN）和WireGuard。</li>
+<li>硬件故障转移：当您不能承受停机时间时，请使用我们的自动无缝硬件故障转移功能，利用常见地址冗余协议（CARP）进行状态同步，以实现最高可能的可用性。</li>
+<li>软件定义广域网（SD-WAN）：为了轻松进行设置、配置和监控，可以使用ZeroTier插件在几分钟内设置您的软件定义广域网（SD-WAN）。</li>
+<li>入侵检测和防御：利用Suricata和Proofpoint的新兴威胁开放规则，采用最先进的内联入侵预防技术，摆脱木马和CNC机器人的困扰。可选择集成ET PRO（商业订阅）或ET PRO Telemetry（免费注册）。</li>
+<li>两步验证（2FA）：系统中始终支持两步验证（2FA），包括用户界面和VPN等服务。</li>
+<li>路由协议：使用Free Range Router项目，提供可插拔的OSPF和BGP支持。</li>
+<li>网络过滤：完全集成的Web代理，具有访问控制和支持外部黑名单，以过滤不需要的流量。其他选项包括防火墙别名和DNS黑名单。轻松屏蔽广告！</li>
+<li>直观的用户界面：在任何开源防火墙中都可以找到的最直观、完全响应的用户界面，具有集成搜索选项。</li>
+<li>多语言：用户可选择的语言支持，包括英语、捷克语、中文、法语、德语、意大利语、日语、葡萄牙语、俄语和西班牙语。</li>
+<li>在线文档：完全免费并支持搜索的在线文档。</li>
+</ul>
+<h2 id="Mofi：免费且无需下载的音乐编辑网站"><a href="#Mofi：免费且无需下载的音乐编辑网站" class="headerlink" title="Mofi：免费且无需下载的音乐编辑网站"></a><a target="_blank" rel="noopener" href="https://mofi.loud.red/">Mofi：免费且无需下载的音乐编辑网站</a></h2><ul>
+<li>将音乐文件拖拽到该网站，或者直接粘贴音乐的网址，就可以开始进行编辑。<br><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/mofi1.png"></li>
+<li>进入到编辑界面，上面部分是整首歌的音轨，下面部分是根据你的编辑生成的cut，可以进行导出。<br><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/mofi2.png"></li>
+<li>选择需要编辑的部分，并选择Avoid this，Prefer this，Repeat this进行编辑。网站会根据你的选择生成匹配的cut。<br><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/mofi3.png"></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/" rel="prev" title="每日文章收集-20230626">
+                  <i class="fa fa-chevron-left"></i> 每日文章收集-20230626
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ricky</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"shdvgj","repo":"shdvgj.github.io","client_id":"e1ed5420cf72d3747b1b","client_secret":"6c71276732dc19402ae304d000c471a4df889cd5","admin_user":"shdvgj","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"95dadc62627d0d64cbbf51fd2cff18ae"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
