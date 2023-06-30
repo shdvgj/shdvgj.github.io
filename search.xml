@@ -5075,7 +5075,7 @@
   <entry>
     <title>每日文章收集-20230629</title>
     <url>/2023/06/29/2023/06/daily-tech-blog-collection-202306029/</url>
-    <content><![CDATA[<h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h3 id="制作游戏"><a href="#制作游戏" class="headerlink" title="制作游戏"></a><a href="https://etodd.io/2023/06/27/making-games/">制作游戏</a></h3><h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="background-removal-js：免费开源的背景移除脚本"><a href="#background-removal-js：免费开源的背景移除脚本" class="headerlink" title="background-removal-js：免费开源的背景移除脚本"></a><a href="https://github.com/imgly/background-removal-js">background-removal-js：免费开源的背景移除脚本</a></h3><p>通过该脚本可以在浏览器环境中直接移除图片的背景，无需担心多余的性能开销或者隐私顾虑。</p>
+    <content><![CDATA[<h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="background-removal-js：免费开源的背景移除脚本"><a href="#background-removal-js：免费开源的背景移除脚本" class="headerlink" title="background-removal-js：免费开源的背景移除脚本"></a><a href="https://github.com/imgly/background-removal-js">background-removal-js：免费开源的背景移除脚本</a></h3><p>通过该脚本可以在浏览器环境中直接移除图片的背景，无需担心多余的性能开销或者隐私顾虑。</p>
 <p>其主要的功能特点有：</p>
 <ul>
 <li>浏览器上的背景移除：消除了额外的服务器成本。通过利用本地设备的计算能力，用户可以享受快速高效的背景去除过程。</li>
