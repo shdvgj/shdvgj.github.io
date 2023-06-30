@@ -84,7 +84,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">15</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">52</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">53</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -219,6 +219,139 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/" class="post-title-link" itemprop="url">每日文章收集-20230629</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-06-29 13:06:53 / 修改时间：17:00:26" itemprop="dateCreated datePublished" datetime="2023-06-29T13:06:53+08:00">2023-06-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%AF%8F%E6%97%A5%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">每日文章收集</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h3 id="制作游戏"><a href="#制作游戏" class="headerlink" title="制作游戏"></a><a target="_blank" rel="noopener" href="https://etodd.io/2023/06/27/making-games/">制作游戏</a></h3><h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="background-removal-js：免费开源的背景移除脚本"><a href="#background-removal-js：免费开源的背景移除脚本" class="headerlink" title="background-removal-js：免费开源的背景移除脚本"></a><a target="_blank" rel="noopener" href="https://github.com/imgly/background-removal-js">background-removal-js：免费开源的背景移除脚本</a></h3><p>通过该脚本可以在浏览器环境中直接移除图片的背景，无需担心多余的性能开销或者隐私顾虑。</p>
+<p>其主要的功能特点有：</p>
+<ul>
+<li>浏览器上的背景移除：消除了额外的服务器成本。通过利用本地设备的计算能力，用户可以享受快速高效的背景去除过程。</li>
+<li>数据保护：完全运行于浏览器端。无需任何数据传输到别的服务器，因此数据是绝对安全的。</li>
+<li>与<a target="_blank" rel="noopener" href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=bg-removal">IMG.LY的CE.SDK</a>（作者的另一个项目） 实现了无缝集成，使开发人员能够轻松地将强大的浏览器内图像抠图和背景去除功能整合到他们的项目中。<br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/backgroundremove1.png"></li>
+</ul>
+<p>本地使用安装步骤如下</p>
+<ul>
+<li>NPM安装<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @imgly/background-removal</span><br></pre></td></tr></table></figure></li>
+<li>代码引用：注意首次调用需要下载额外模块，因此会花费比较多时间。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> imglyRemoveBackground <span class="keyword">from</span> <span class="string">&quot;@imgly/background-removal&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> image_src: ImageData | <span class="built_in">ArrayBuffer</span> | <span class="built_in">Uint8Array</span> | Blob | URL | string = ...;</span><br><span class="line"></span><br><span class="line">imglyRemoveBackground(image_src).then(<span class="function">(<span class="params">blob: Blob</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// The result is a blob encoded as PNG. It can be converted to an URL to be used as HTMLImage.src</span></span><br><span class="line">  <span class="keyword">const</span> url = URL.createObjectURL(blob);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>进阶设置<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type Config = &#123;</span><br><span class="line">  <span class="attr">publicPath</span>: string; <span class="comment">// The public path used for model and wasm files</span></span><br><span class="line">  debug: bool; <span class="comment">// enable or disable useful console.log outputs</span></span><br><span class="line">  proxyToWorker: bool; <span class="comment">// Wether or wether not to proxy the calculations to a webworker. (Default true)</span></span><br><span class="line">  model: <span class="string">&#x27;small&#x27;</span> | <span class="string">&#x27;medium&#x27;</span>; <span class="comment">// The model to use. (Default &quot;medium&quot;)</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="fly-io：靠近用户运行的全栈应用程序和数据库"><a href="#fly-io：靠近用户运行的全栈应用程序和数据库" class="headerlink" title="fly.io：靠近用户运行的全栈应用程序和数据库"></a><a target="_blank" rel="noopener" href="https://fly.io/">fly.io：靠近用户运行的全栈应用程序和数据库</a></h3><p>fly.io是一个目前流行的云平台，专为运行全栈应用程序和数据库而设计。它的主要目标是使应用程序更靠近用户，以提供更快的响应时间和更好的用户体验，同时简化了开发人员的工作流程。</p>
+<ul>
+<li>安装flyctl<ul>
+<li>macos：运行<code>brew install flyctl</code>或者<code>curl -L https://fly.io/install.sh | sh</code></li>
+<li>linux：运行<code>curl -L https://fly.io/install.sh | sh</code></li>
+<li>windows：powershell运行<code>pwsh -Command &quot;iwr https://fly.io/install.ps1 -useb | iex&quot;</code></li>
+</ul>
+</li>
+<li>注册，输入以下命令跳转到注册页面，或者直接到注册页面进行注册。<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fly auth signup</span><br></pre></td></tr></table></figure></li>
+<li>使用 <code>fly auth login</code> 登陆fly.io的账户</li>
+<li>部署hellofly项目<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 直接拉取docker项目并完成部署</span></span><br><span class="line">fly launch --image flyio/hellofly:latest</span><br></pre></td></tr></table></figure></li>
+<li>部署过程中要求选择地区，就近选择<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Choose a region <span class="keyword">for</span> deployment: Chicago, Illinois (US) (ord)</span><br></pre></td></tr></table></figure></li>
+<li>询问是否需要Postgres或者Redis，按需选择</li>
+<li>最后询问是否需要部署，部署完成后会在本地生成一个fly.toml的配置文件<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app = <span class="string">&quot;hellofly&quot;</span></span><br><span class="line">primary_region = <span class="string">&quot;ord&quot;</span></span><br><span class="line"></span><br><span class="line">[build]</span><br><span class="line">  image = <span class="string">&quot;flyio/hellofly:latest&quot;</span></span><br><span class="line"></span><br><span class="line">[http_service]</span><br><span class="line">  internal_port = 8080</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure></li>
+<li>使用<code>fly deploy</code>部署完成后，可通过<code>fly status</code>命令检查项目状态</li>
+<li>使用<code>fly open /&lt;your-name&gt;</code>命令可以在fly.io的网站访问到刚刚部署的项目<br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/flyio1.webp"></li>
+</ul>
+<h3 id="TypeID：一个受到Stripe-ID启发的类型安全、可排序的全局唯一标识符（ID）"><a href="#TypeID：一个受到Stripe-ID启发的类型安全、可排序的全局唯一标识符（ID）" class="headerlink" title="TypeID：一个受到Stripe ID启发的类型安全、可排序的全局唯一标识符（ID）"></a><a target="_blank" rel="noopener" href="https://github.com/jetpack-io/typeid">TypeID：一个受到Stripe ID启发的类型安全、可排序的全局唯一标识符（ID）</a></h3><p>TypeIDs是UUIDv7的一种现代、类型安全的扩展。它在设计上受到Stripe API中前缀类似用法的启发。包含三个部分：</p>
+<ul>
+<li>类型前缀（由小写字母组成的最多63位的字符串）</li>
+<li>一个下划线</li>
+<li>一个128位的UUIDv7，以26个字符的base32字符串编码（根据Crockford的小写字母表）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user_2x4y6z8a0b1c2d3e4f5g6h7j8k</span><br><span class="line">└──┘ └────────────────────────┘</span><br><span class="line">type    uuid suffix (base32)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>TypeID有以下特性：</p>
+<ul>
+<li>类型安全：您不会意外地在期望使用帖子ID的地方使用用户ID。在调试过程中，通过类型前缀，您可以立即了解TypeID引用的实体类型。</li>
+<li>与UUID兼容：TypeID是UUID的超集。它们基于即将发布的UUIDv7标准。如果您解码TypeID并移除类型信息，您将得到一个有效的UUIDv7。</li>
+<li>可K排序：TypeID是可K排序的，可以用作数据库中的主键，同时确保良好的局部性。与完全随机的全局ID（例如UUIDv4）相比，后者通常在数据库局部性方面表现不佳。</li>
+<li>精心编码：基于base32的编码是URL安全的、不区分大小写的、避免了歧义字符，可以通过双击选择复制粘贴，并且与传统的十六进制编码（UUID使用的编码方式）相比，它是一种更紧凑的编码（26个字符对比36个字符）</li>
+</ul>
+<p>命令列表</p>
+<ul>
+<li>安装命令<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://get.jetpack.io/typeid | bash</span><br></pre></td></tr></table></figure></li>
+<li>创建新的TypeID<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ typeid new prefix</span><br><span class="line">prefix_01h2xcejqtf2nbrexx3vqjhp41</span><br></pre></td></tr></table></figure></li>
+<li>将TypeID解码位UUID<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ typeid decode prefix_01h2xcejqtf2nbrexx3vqjhp41</span><br><span class="line"><span class="built_in">type</span>: prefix</span><br><span class="line">uuid: 0188bac7-4afa-78aa-bc3b-bd1eef28d881</span><br></pre></td></tr></table></figure></li>
+<li>将UUID编码为TypeID<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ typeid encode prefix 0188bac7-4afa-78aa-bc3b-bd1eef28d881</span><br><span class="line">prefix_01h2xcejqtf2nbrexx3vqjhp41</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="梵高艺术展"><a href="#梵高艺术展" class="headerlink" title="梵高艺术展"></a><a target="_blank" rel="noopener" href="https://www.vangoghmuseum.nl/en">梵高艺术展</a></h3><p><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh1.png"><br>这个网站介绍了关于梵高的生平和艺术作品，并还有出售梵高艺术展的门票。</p>
+<p>正在举办的艺术展<br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh2.png"><br>门票也不算贵，成人20欧元，未成年人免费，相比起国内，算是相当厚道。<br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh3.png"></p>
+<p>网站上展示梵高的1515副画作，并提供下载。<br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh4.png"><br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh5.png"></p>
+<p>以及梵高的故事。<br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh6.png"></p>
+<h3 id="未来的CSS：状态容器查询"><a href="#未来的CSS：状态容器查询" class="headerlink" title="未来的CSS：状态容器查询"></a><a target="_blank" rel="noopener" href="https://ishadeed.com/article/css-state-queries/">未来的CSS：状态容器查询</a></h3><p>状态容器查询。它是一种可以根据元素的状态和属性来应用样式的能力。通过状态容器查询，开发者可以根据元素在不同状态下的宽度、高度、可见性等属性，动态地调整其样式。这项功能将提供更强大的响应式设计和样式控制的能力，使网页设计更加灵活和适应不同设备和交互情境。</p>
+<p>例如这样子进行设置：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.card-wrapper</span> &#123;</span><br><span class="line">  container-type: inline-size;</span><br><span class="line">  container-name: card;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@container</span> card (<span class="attribute">min-width</span>: <span class="number">400px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.card</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上述语法，当容器宽度到达400px时，就会触发<code>.card &#123;display: flex;align-items: center;&#125;</code>的样式。</p>
+<p>下面的图片可以更好的说明该语法的功能。<br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/css1.png"></p>
+<p>更多的语法说明详见作者的另一篇文章(<a target="_blank" rel="noopener" href="https://ishadeed.com/article/css-container-style-queries/)%E3%80%82">https://ishadeed.com/article/css-container-style-queries/)。</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -250,7 +383,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-06-29 12:01:13" itemprop="dateModified" datetime="2023-06-29T12:01:13+08:00">2023-06-29</time>
+        <time title="修改时间：2023-06-29 12:03:04" itemprop="dateModified" datetime="2023-06-29T12:03:04+08:00">2023-06-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -294,7 +427,6 @@
 </ul>
 <h4 id="潜在的隐患"><a href="#潜在的隐患" class="headerlink" title="潜在的隐患"></a>潜在的隐患</h4><p>经历了以上巨大进步的计算机产业，为啥还会出现作者一开始展示的视频的情况呢？有人提出可能是更新的系统需要加载更多的像素，为了展示更好的图形。这显然不是一个很好的理由，作者也马上发了一个打脸视频，将新机器的像素调到最低，关闭4k，关闭特效等等图形效果，结果打开应用的延迟并没有任何改善。<br><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/fastslow5.png"></p>
 <p>GPU的出现减轻了CPU的负担，而出现在图形上的延迟通常是由于动画的有意暂停导致，为了兼容4k显示器在老旧机器上运行。但是作者发现的延迟并不属于这种情况。</p>
-<p>作者提出可能的原因，首先看几个例子。</p>
 <h4 id="一些别的实例"><a href="#一些别的实例" class="headerlink" title="一些别的实例"></a>一些别的实例</h4><ul>
 <li>windows上的记事本经历了无数代都还能响应快速，直到UWP的出现，情况开始急转直下。</li>
 <li>windows的命令行工具随着越来越多的可视化特性，变得越来越慢，PowerShell的新窗口打开甚至要花上几秒钟。</li>
@@ -1406,172 +1538,6 @@
 <li>当一个客户端从普通客户端变为监视器时，该客户端的REDIS_MONITOR标识会被打开。</li>
 <li>服务器将所有监视器都记录在monitors链表中。</li>
 <li>每次处理命令请求时，服务器都会遍历monitors链表，将相关信息发送给监视器。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/07/07/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartIII/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/07/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartIII/" class="post-title-link" itemprop="url">读书笔记-Redis设计与实现-PartIII</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-07 09:21:11" itemprop="dateCreated datePublished" datetime="2022-07-07T09:21:11+08:00">2022-07-07</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="1-复制"><a href="#1-复制" class="headerlink" title="1.复制"></a>1.复制</h2><ul>
-<li>通过SLAVEOF命令让一个服务器复制另一个服务器，我们称呼被复制的服务器为主服务器（master），而对主服务器进行复制的服务器则被称为从服务器（slave）</li>
-</ul>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 服务器127.0.0.1:12345将成为127.0.0.1:6379的从服务器</span></span><br><span class="line">127.0.0.1:123456&gt; SLAVEOF 127.0.0.1 6379</span><br></pre></td></tr></table></figure>
-<ul>
-<li>进行复制中的主从服务器双方的数据库将保存相同的数据，概念上将这种现象称作“数据库状态一致”，或者简称“一致”</li>
-<li>旧版复制（2.8版本之前）<ul>
-<li>同步操作用于将从服务器的数据库状态更新至主服务器当前所处的数据库状态<ul>
-<li>从服务器向主服务器发送SYNC命令。</li>
-<li>收到SYNC命令的主服务器执行BGSAVE命令，在后台生成一个RDB文件，并使用一个缓冲区记录从现在开始执行的所有写命令。</li>
-<li>当主服务器的BGSAVE命令执行完毕时，主服务器会将BGSAVE命令生成的RDB文件发送给从服务器，从服务器接收并载入这个RDB文件，将自己的数据库状态更新至主服务器执行BGSAVE命令时的数据库状态。</li>
-<li>主服务器将记录在缓冲区里面的所有写命令发送给从服务器，从服务器执行这些写命令，将自己的数据库状态更新至主服务器数据库当前所处的状态<br><img src="/2022/07/07/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartIII/redis-replicate1.png"></li>
-</ul>
-</li>
-<li>命令传播操作则用于在主服务器的数据库状态被修改，导致主从服务器的数据库状态出现不一致时，让主从服务器的数据库重新回到一致状态<ul>
-<li>主服务器会将自己执行的写命令，也即是造成主从服务器不一致的那条写命令，发送给从服务器执行，当从服务器执行了相同的写命令之后，主从服务器将再次回到一致状态</li>
-</ul>
-</li>
-<li>缺点<ul>
-<li>断线后复制会重新执行sync命令，但是传输的rdb文件有可能大部分都是曾经同步过的，这会造成效率低下</li>
-<li>本身sync命令就是非常耗费资源<ul>
-<li>主服务器需要执行BGSAVE命令会耗费主服务器大量的CPU、内存和磁盘I/O资源。</li>
-<li>主服务器需要将自己生成的RDB文件发送给从服务器会耗费主从服务器大量的网络资源（带宽和流量）</li>
-<li>接收到RDB文件的从服务器需要载入主服务器发来的RDB文件，并且在载入期间，从服务器会因为阻塞而没办法处理命令请求。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>新版复制（2.8版本开始）<ul>
-<li>PSYNC命令代替SYNC命令来执行复制时的同步操作<ul>
-<li>PSYNC命令具有完整重同步（full resynchronization）和部分重同步（partial resynchronization）</li>
-<li>完整重同步用于处理初次复制情况，和sync命令一样</li>
-<li>部分重同步则用于处理断线后重复制情况：当从服务器在断线后重新连接主服务器时，如果条件允许，主服务器可以将主从服务器连接断开期间执行的写命令发送给从服务器，从服务器只要接收并执行这些写命令，就可以将数据库更新至主服务器当前所处的状态</li>
-</ul>
-</li>
-<li>部分重同步的实现<ul>
-<li>主服务器的复制偏移量（replication offset）和从服务器的复制偏移量。<ul>
-<li>主服务器每次向从服务器传播N个字节的数据时，就将自己的复制偏移量的值加上N</li>
-<li>从服务器每次收到主服务器传播来的N个字节的数据时，就将自己的复制偏移量的值加上N</li>
-<li>如果主从服务器处于一致状态，那么主从服务器两者的偏移量总是相同的</li>
-</ul>
-</li>
-<li>主服务器的复制积压缓冲区（replication backlog）。<ul>
-<li>主服务器的复制积压缓冲区里面会保存着一部分最近传播的写命令，并且复制积压缓冲区会为队列中的每个字节记录相应的复制偏移量</li>
-<li>为了安全起见，可以将复制积压缓冲区的大小设为2<em>second</em>write_size_per_second，这样可以保证绝大部分断线情况都能用部分重同步来处理</li>
-</ul>
-</li>
-<li>服务器的运行ID（run ID）<ul>
-<li>每个Redis服务器，不论主服务器还是从服务，都会有自己的运行ID</li>
-<li>根据运行ID是否相同，从服务器决定进行部分还是完整重同步操作</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>PSYNC命令的执行逻辑<br>  <img src="/2022/07/07/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartIII/redis-sync1.png"></li>
-<li>主服务器通过向从服务器传播命令来更新从服务器的状态，保持主从服务器一致，而从服务器则通过向主服务器发送命令来进行心跳检测，以及命令丢失检测</li>
-</ul>
-<h2 id="2-哨兵（Sentinel）"><a href="#2-哨兵（Sentinel）" class="headerlink" title="2.哨兵（Sentinel）"></a>2.哨兵（Sentinel）</h2><ul>
-<li>哨兵（Sentinel）实例监视主从服务器状态，如果主服务器下线，哨兵会选择一个从服务器升级为主服务器<ul>
-<li>Sentinel系统会挑选其中一个从服务器升级为新的主服务器。</li>
-<li>Sentinel系统会向所有从服务器发送新的复制指令，当所有从服务器都开始复制新的主服务器时，故障转移操作执行完毕</li>
-<li>监视已下线的server1，重新上线时，设置为从服务器</li>
-</ul>
-</li>
-<li>启动命令<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 执行以下两条命令之一</span></span><br><span class="line">$ redis-sentinel sentinel.conf</span><br><span class="line">$ redis-server sentinel.conf --sentinel</span><br></pre></td></tr></table></figure></li>
-<li>Sentinel通过向主服务器发送INFO命令来获得主服务器属下所有从服务器的地址信息，并为这些从服务器创建相应的实例结构，以及连向这些从服务器的命令连接和订阅连接。</li>
-<li>在一般情况下，Sentinel以每十秒一次的频率向被监视的主服务器和从服务器发送INFO命令，当主服务器处于下线状态，或者Sentinel正在对主服务器进行故障转移操作时，Sentinel向从服务器发送INFO命令的频率会改为每秒一次。</li>
-<li>对于监视同一个主服务器和从服务器的多个Sentinel来说，它们会以每两秒一次的频率，通过向被监视服务器的__sentinel__:hello频道发送消息来向其他Sentinel宣告自己的存在。</li>
-<li>每个Sentinel也会从__sentinel__:hello频道中接收其他Sentinel发来的信息，并根据这些信息为其他Sentinel创建相应的实例结构，以及命令连接。</li>
-<li>Sentinel只会与主服务器和从服务器创建命令连接和订阅连接，Sentinel与Sentinel之间则只创建命令连接。</li>
-<li>Sentinel以每秒一次的频率向实例（包括主服务器、从服务器、其他Sentinel）发送PING命令，并根据实例对PING命令的回复来判断实例是否在线，当一个实例在指定的时长中连续向Sentinel发送无效回复时，Sentinel会将这个实例判断为主观下线。</li>
-<li>当Sentinel将一个主服务器判断为主观下线时，它会向同样监视这个主服务器的其他Sentinel进行询问，看它们是否同意这个主服务器已经进入主观下线状态。</li>
-<li>当Sentinel收集到足够多的主观下线投票之后，它会将主服务器判断为客观下线，并发起一次针对主服务器的故障转移操作。</li>
-</ul>
-<h2 id="3-集群"><a href="#3-集群" class="headerlink" title="3.集群"></a>3.集群</h2><ul>
-<li>节点通过握手来将其他节点添加到自己所处的集群当中。</li>
-<li>集群中的16384个槽可以分别指派给集群中的各个节点，每个节点都会记录哪些槽指派给了自己，而哪些槽又被指派给了其他节点。</li>
-<li>节点在接到一个命令请求时，会先检查这个命令请求要处理的键所在的槽是否由自己负责，如果不是的话，节点将向客户端返回一个MOVED错误，MOVED错误携带的信息可以指引客户端转向至正在负责相关槽的节点。</li>
-<li>对Redis集群的重新分片工作是由redis-trib负责执行的，重新分片的关键是将属于某个槽的所有键值对从一个节点转移至另一个节点。</li>
-<li>如果节点A正在迁移槽i至节点B，那么当节点A没能在自己的数据库中找到命令指定的数据库键时，节点A会向客户端返回一个ASK错误，指引客户端到节点B继续查找指定的数据库键。</li>
-<li>MOVED错误表示槽的负责权已经从一个节点转移到了另一个节点，而ASK错误只是两个节点在迁移槽的过程中使用的一种临时措施。❑集群里的从节点用于复制主节点，并在主节点下线时，代替主节点继续处理命令请求。</li>
-<li>集群中的节点通过发送和接收消息来进行通信，常见的消息包括MEET、PING、PONG、PUBLISH、FAIL五种。</li>
 </ul>
 
       
