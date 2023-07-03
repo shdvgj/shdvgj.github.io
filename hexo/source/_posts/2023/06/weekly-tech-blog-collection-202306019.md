@@ -31,7 +31,7 @@ openllm start dolly-v2
 export OPENLLM_ENDPOINT=http://localhost:3000
 openllm query 'Explain to me the difference between "further" and "farther"'
 ```
-
+<!-- more -->
 其中，语言模型是可以换的，包含[flan-t5](https://huggingface.co/docs/transformers/model_doc/flan-t5)，[dolly-v2](https://github.com/databrickslabs/dolly)等等。
 
 ## [Nix初体验](https://mtlynch.io/notes/nix-first-impressions/)
