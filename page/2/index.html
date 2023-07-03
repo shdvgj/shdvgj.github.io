@@ -84,7 +84,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">15</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">54</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">55</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -210,6 +210,147 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/04/12/2023/04/how_to_create_new_site/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/12/2023/04/how_to_create_new_site/" class="post-title-link" itemprop="url">Namcheap+CloudFlare简单建站</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-04-12 22:01:51" itemprop="dateCreated datePublished" datetime="2023-04-12T22:01:51+08:00">2023-04-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2023-04-17 12:36:27" itemprop="dateModified" datetime="2023-04-17T12:36:27+08:00">2023-04-17</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="购买服务器"><a href="#购买服务器" class="headerlink" title="购买服务器"></a>购买服务器</h3><ul>
+<li>需要基于流量和内容进行选择，如果打算服务于国内，选择国内的服务器提供商，比如阿里云或者腾讯云等，如果需要某些国内服务器做不到的功能，比如调用openai的接口，则最好是买个国外的服务器。</li>
+<li>需要注意的是，如果打算基于微信小程序或者公众号开发，必须要满足域名通过国家备案，而备案的必要条件是所在的服务器是国内供应商。因此如果是为了开发小程序而买了个国外服务器，最终很可能因为无法备案而无法满足你的需求。</li>
+<li>无论国内外，最便宜的套餐普遍都是1核1G，20GB硬盘空间，1Mbps带宽。国外有Vultr，Linode，DigitalOcean，AWS Lightsail等，价格普遍在5美刀/月左右。国内可选择阿里云，百度云，腾讯云，华为云等，价格20-100元人民币/月不等。</li>
+<li>如果是开发小程序和公众号，有另一种选择，跳过购买域名和服务器，直接使用腾讯的<a target="_blank" rel="noopener" href="https://cloud.weixin.qq.com/">云托管平台</a></li>
+</ul>
+<h3 id="购买域名和ssl证书"><a href="#购买域名和ssl证书" class="headerlink" title="购买域名和ssl证书"></a>购买域名和ssl证书</h3><p>需要注意，目前情况而言，购买域名的同时也几乎必须得购买ssl证书，因为现在http的网站已经不再被各大浏览器所推荐，流量优先级会被调低，甚至小程序直接不支持指向http网站，如果建站的目的是希望获得收入，那拥有ssl证书的https网站是必须的。</p>
+<ul>
+<li><p>国内</p>
+<ul>
+<li>易名中国：域名价格约为50元人民币/年起，SSL证书价格约为100元人民币/年起。</li>
+<li>西部数码：域名价格约为60元人民币/年起，SSL证书价格约为100元人民币/年起。</li>
+<li>新网：域名价格约为50元人民币/年起，SSL证书价格约为200元人民币/年起。</li>
+<li>阿里云：域名价格约为60元人民币/年起，SSL证书价格约为300元人民币/年起。</li>
+<li>巨牛网：域名价格约为50元人民币/年起，SSL证书价格约为150元人民币/年起。</li>
+</ul>
+</li>
+<li><p>国外</p>
+<ul>
+<li>GoDaddy：域名价格约为$12/年起，SSL证书价格约为$70/年起。</li>
+<li>Namecheap：域名价格约为$8/年起，SSL证书价格约为$9/年起。</li>
+<li>Google Domains：域名价格约为$12/年起，SSL证书价格约为$20/年起。</li>
+<li>Network Solutions：域名价格约为$35/年起，SSL证书价格约为$60/年起。</li>
+<li>Name.com：域名价格约为$10/年起，SSL证书价格约为$9/年起。</li>
+</ul>
+</li>
+</ul>
+<h3 id="生成CSR"><a href="#生成CSR" class="headerlink" title="生成CSR"></a>生成CSR</h3><ul>
+<li><p>什么是CSR</p>
+<blockquote>
+<p>CSR code (Certificate Signing Request) is a specific code and an essential part for the SSL activation. It contains information about website name and the company contact details. For many reasons, the code should be created on the hosting server end. On some servers, it is the obligatory condition.</p>
+</blockquote>
+<p>总之CSR是一段关于你网站的身份信息的加密文件，对于激活ssl证书是必须的，在服务器端生成。</p>
+</li>
+<li><p>通过openssl命令生成<br>有很多种方式生成csr文件，甚至有在线网站可以直接生成，通常不建议在线生成，因为csr是ssl的必要依赖，关联到网站的安全性，最好是不要冒泄露的风险。</p>
+<ul>
+<li>新建.key文件夹，执行如下命令<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install openssl</span><br><span class="line">cd .key</span><br><span class="line">openssl req -nodes -newkey rsa:2048 -keyout $serverName.key -out $serverName.csr</span><br></pre></td></tr></table></figure>
+注意，$serverName用你的网站名替换，会生成两个文件，以你网站名为命名的key文件和csr文件。<br>生成时会要求你填入国家，公司，email等，根据提示填入。</li>
+</ul>
+<p><em><strong>国内域名商的流程会不太一样，因为是要备案实名制，所以还会要求身份证信息等，而且是界面操作，无需通过以上命令行</strong></em></p>
+</li>
+<li><p>复制csr文件中的内容，通常如下：<br><img src="/2023/04/12/2023/04/how_to_create_new_site/csr-content.png"><br>复制时要包含全部内容，不要略去BEGIN和END那一行。</p>
+</li>
+<li><p>将csr粘贴到域名供应商配置界面，以namecheap为例，在你已购买的ssl证书界面点击active。<br><img src="/2023/04/12/2023/04/how_to_create_new_site/activate_ssl.png"><br>将刚才csr文件中的内容粘贴到该界面中。<br><img src="/2023/04/12/2023/04/how_to_create_new_site/copy_csr.png"><br>下一步中选择Add CNAME record<br><img src="/2023/04/12/2023/04/how_to_create_new_site/act_dcv_choice.png"><br>下一步中输入你的电子邮箱</p>
+</li>
+<li><p>完成后进入证书管理界面，按照如下操作<br><img src="/2023/04/12/2023/04/how_to_create_new_site/act_done_1.png"><br>此时会获取到下一步会用到的cname的host和target<br><img src="/2023/04/12/2023/04/how_to_create_new_site/cname_content.png"></p>
+</li>
+</ul>
+<h3 id="注册DNS"><a href="#注册DNS" class="headerlink" title="注册DNS"></a>注册DNS</h3><p>  一般的域名供应商都会提供有dns服务，namecheap也有，但是功能都比较基础，通常建议使用第三方DNS供应商。国外的有google，cloud flare，国内也有阿里，百度等。<br>  以cloudflare为例</p>
+<ul>
+<li>点击add site，输入你的域名，选择free计划</li>
+<li>输入你的域名和服务器的公网ip</li>
+<li>在namecheap中的namerserver界面选择Custom DNS，输入cloudflare提供的两个dns服务器地址<br><img src="/2023/04/12/2023/04/how_to_create_new_site/namecheap_dns.png"></li>
+<li>进入cloudflare的dns管理界面，添加一条cname记录，输入之前步骤中得到的cname的host和target，注意Proxy status这一栏要改成DNS only<br><img src="/2023/04/12/2023/04/how_to_create_new_site/cloudflare_dns.png"></li>
+<li><em><strong>到这一步之后，ssl证书发放商就会把ssl证书发到你的邮箱</strong></em>，按照官网的说法，这个时间可能24到48小时，一般用不了那么久，一小时内就可以收到，如果没收到，去namecheap的<a target="_blank" rel="noopener" href="https://decoder.link/">ssl校验网站</a>看下，如果有出错，那重新捋一遍上面的步骤。</li>
+</ul>
+<h3 id="安装SSL证书"><a href="#安装SSL证书" class="headerlink" title="安装SSL证书"></a>安装SSL证书</h3><ul>
+<li>收到ssl证书后，通常发放邮件长下面这样，将邮件中的附件解压，包含三个文件，ca-bundle文件，crt文件和p7b文件<br><img src="/2023/04/12/2023/04/how_to_create_new_site/ssl_email.png"></li>
+<li>将ca-bundle文件和crt文件上传到服务器，并执行如下命令<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat your_domain.crt &gt; your_domain_chain.crt ; <span class="built_in">echo</span> &gt;&gt; your_domain_chain.crt ; cat your_domain.ca-bundle &gt;&gt; your_domain_chain.crt</span></span><br></pre></td></tr></table></figure></li>
+<li>服务器安装ssl证书的方式有很多种，最常用的方式是nginx，以nginx为例，安装完nginx之后，进入/etc/nginx/conf.d/目录，新增一个your_domain.conf配置文件，配置文件内容如下<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  www.example.com;</span><br><span class="line">    return 301 https:<span class="comment">//$server_name$request_uri;</span></span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen       443 ssl;</span><br><span class="line">    # 域名，多个以空格分开</span><br><span class="line">    server_name  www.example.com;</span><br><span class="line">    </span><br><span class="line">    # ssl证书地址</span><br><span class="line">    ssl_certificate     /home/.ssl/example.crt;  # crt文件的路径</span><br><span class="line">    ssl_certificate_key  /home/.key/example.key; # key文件的路径，即生成csr文件步骤中的key文件</span><br><span class="line">    </span><br><span class="line">    # ssl验证相关配置</span><br><span class="line">    ssl_session_timeout  5m;    #缓存有效期</span><br><span class="line">    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;    #加密算法</span><br><span class="line">    ssl_protocols TLSv1 TLSv1<span class="number">.1</span> TLSv1<span class="number">.2</span>;    #安全链接可选的加密协议</span><br><span class="line">    ssl_prefer_server_ciphers on;   #使用服务器端的首选算法</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_pass http:<span class="comment">//localhost:8080/; # 服务器地址</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>启动nginx，即可在公网中访问到你的服务器了</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1187,211 +1328,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/" class="post-title-link" itemprop="url">读书笔记-算法-第五章</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-04-11 14:46:45" itemprop="dateCreated datePublished" datetime="2022-04-11T14:46:45+08:00">2022-04-11</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="第五章-字符串"><a href="#第五章-字符串" class="headerlink" title="第五章 字符串"></a>第五章 字符串</h2><ul>
-<li>Java字符串<ul>
-<li>String是由一系列字符组成的。字符的类型是char，可能有个值。</li>
-<li>不可变性。String对象是不可变的，因此可以将它们用于赋值语句、作为函数的参数或是返回值，而不用担心它们的值会发生变化</li>
-<li>索引。我们最常完成的操作就是从某个字符串中提取一个特定的字符，即Java的String类的charAt()方法。我们希望charAt()方法能够在常数时间内完成，就好像字符串是保存在一个char[]数组中一样</li>
-<li>长度。在Java中，String类型的length()方法实现了获取字符串的长度的操作。同样，我们也希望length()方法能够在常数时间内完成</li>
-<li>子字符串。Java的substring()方法实现了提取特定的子字符串的操作。同样，我们也希望这个方法能够在常数时间内完成，Java的标准实现也做到了这一点</li>
-<li>字符串的连接。在Java中通过将一个字符串追加到另一个字符串的末尾创建一个新字符串的操作是一个内置的操作（使用“+”运算符），所需的时间与结果字符串的长度成正比<ul>
-<li>我们会避免将字符一个一个地追加到字符串中，因为在Java里这个过程所需的时间将会是<strong>平方级别</strong>的</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>字母表<ul>
-<li>字母表的API<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string1.png"></li>
-<li>标准字母表<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string2.png"></li>
-</ul>
-</li>
-<li>字符串排序<ul>
-<li>键索引计数法<ul>
-<li>频率统计<ul>
-<li>使用int数组count[]计算每个键出现的频率。<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string3.png"></li>
-</ul>
-</li>
-<li>将频率转换为索引<ul>
-<li>使用count[]来计算每个键在排序结果中的<strong>起始索引位置</strong><br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string4.png"></li>
-</ul>
-</li>
-<li>数据分类<ul>
-<li>将count[]数组转换为一张索引表之后，将所有元素（学生）移动到一个辅助数组aux[]中以进行排序</li>
-<li>每个键都有起始位置，就是第二步获得的起始位置<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string5.png"></li>
-</ul>
-</li>
-<li>回写<ul>
-<li>最后一步就是将排序的结果复制回原数组中</li>
-</ul>
-</li>
-<li>对于小整数键排序非常有效<ul>
-<li>键索引计数法排序N个键为0到R-1之间的整数的元素需要访问数组11N+4R+1次 </li>
-<li>突破了NlogN的排序算法时间下限<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string6.png"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>低位优先（LeastSignificantDigitFirst，LSD）的字符串排序<ul>
-<li>适用于定长字符串，如车牌号，银行卡，身份证等</li>
-<li>如果将一个字符串看作一个256进制的数字，那么从右向左检查字符串就等价于先检查数字的最低位</li>
-<li><strong>如果字符串的长度均为W，那就从右向左以每个位置的字符作为键，用键索引计数法将字符串排序W遍</strong><ul>
-<li>从右向左排相当于最左边的位数最后排<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string7.png"></li>
-<li>charAt(d) + 1 的作用是将任意字符转换为ASCII数字<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string8.png"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>高位优先（MSD）的字符串排序，首先查看的是最高位的字符<ul>
-<li>针对非定长字符串的处理</li>
-<li>具体实现<ul>
-<li>首先用键索引计数法将所有字符串按照首字母排序</li>
-<li>然后（递归地）再将每个首字母所对应的子数组排序（忽略首字母，因为每一类中的所有字符串的首字母都是相同的）</li>
-<li><strong>增加了一个条件语句以在子数组较小时切换插入排序</strong><ul>
-<li>小型子数组对于高位优先的字符串排序的性能至关重要</li>
-<li>考虑不周的程序在从ASCII切换到Unicode后运行时间从几分钟暴涨到几个小时<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string9.png"><br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string10.png"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>对于含有大量等值键的子数组的排序会较慢<ul>
-<li>如果相同的子字符串出现得过多，切换排序方法条件将不会出现，那么递归方法就会检查所有相同键中的每一个字符</li>
-<li>键索引计数法无法有效判断字符串中的字符是否全部相同<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string11.png"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>三向字符串快速排序<ul>
-<li>以根据高位优先的字符串排序算法改进快速排序，根据键的首字母进行三向切分，仅在中间子数组中的下一个字符（因为键的首字母都与切分字符相等）继续递归排序<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string12.png"></li>
-<li>三向字符串快速排序能够很好处理等值键、有较长公共前缀的键、取值范围较小的键和小数组——所有高位优先的字符串排序算法不擅长的各种情况<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string13.png"></li>
-<li>在所有的递归算法中，我们都可以通过对小型子数组进行特殊处理（一般来说就是切换为插入排序）来提高效率<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string14.png"></li>
-<li>性能<ul>
-<li>标准快速排序的性能与字符串的长度乘以2N*lnN成正比</li>
-<li>三向字符串排序的运行时间则与N乘以字符串的长度（需要发现所有的相同开头字母）再加上2N*lnN次比较（对剩下的较短部分进行排序）的和成正比</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>字符串排序算法的选择<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string15.png"></li>
-</ul>
-</li>
-<li>单词查找树<ul>
-<li>定义<ul>
-<li>由字符串键中的所有字符构造而成，允许使用被查找键中的字符进行查找</li>
-<li>和各种查找树一样，单词查找树也是由链接的结点所组成的数据结构，这些链接可能为<strong>空</strong>，也可能指向其他结点</li>
-<li>每个结点都只可能有一个指向它的结点，称为它的<strong>父结点</strong>（只有一个结点除外，即根结点，没有任何结点指向根结点）</li>
-<li>每个结点都含有条链接，其中为字母表的大小</li>
-<li><strong>值为空的结点在符号表中没有对应的键，它们的存在是为了简化单词查找树中的查找操作</strong><br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string16.png"></li>
-</ul>
-</li>
-<li>查找操作<ul>
-<li>单词查找树中的每个结点都包含了下一个可能出现的所有字符的链接，直到到达键的最后一个字母所指向的结点或是遇到了一条空链接。这时可能：</li>
-<li>键的尾字符所对应的结点中的值非空（如图shells和she的示例）。这是一次命中的查找——键所对应的值就是键的尾字符所对应的结点中保存的值</li>
-<li>键的尾字符所对应的结点中的值为空（如图shell的示例）。这是一次未命中的查找——符号表中不存在被查找的键</li>
-<li>查找结束于一条空链接（如图shore的示例）。这也是一次未命中的查找<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string17.png"></li>
-</ul>
-</li>
-<li>插入操作<ul>
-<li>在插入之前进行一次查找，如前文所述，可能遇到以字母结点为结尾或者空链接为结尾<ul>
-<li>在到达键的尾字符之前就遇到了一个空链接<ul>
-<li>在这种情况下，单词查找树中不存在与键的尾字符对应的结点</li>
-<li>因此需要为键中还未被检查的每个字符创建一个对应的结点并将键的值保存到最后一个字符的结点中</li>
-</ul>
-</li>
-<li>在遇到空链接之前就到达了键的尾字符<ul>
-<li>在这种情况下，和关联数组一样，将该结点的值设为键所对应的值（无论该值是否为空）<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string18.png"></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>结点的表示<ul>
-<li>每个结点都含有R个链接，对应着每个可能出现的字符</li>
-<li>字符和键均隐式地保存在数据结构中<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string19.png"> </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
       
     </div>
 

@@ -84,7 +84,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">15</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">54</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">55</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -210,6 +210,130 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/07/03/2023/06/daily-tech-blog-collection-20230703/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/07/03/2023/06/daily-tech-blog-collection-20230703/" class="post-title-link" itemprop="url">每日文章收集-20230703</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-07-03 12:39:25 / 修改时间：15:48:40" itemprop="dateCreated datePublished" datetime="2023-07-03T12:39:25+08:00">2023-07-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%AF%8F%E6%97%A5%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">每日文章收集</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h3 id="如何完成伟大的工作"><a href="#如何完成伟大的工作" class="headerlink" title="如何完成伟大的工作"></a><a target="_blank" rel="noopener" href="http://paulgraham.com/greatwork.html">如何完成伟大的工作</a></h3><h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="推特在DDOS攻击自己"><a href="#推特在DDOS攻击自己" class="headerlink" title="推特在DDOS攻击自己"></a><a target="_blank" rel="noopener" href="https://sfba.social/@sysop408/110639435788921057">推特在DDOS攻击自己</a></h3><p>博主通过后台发现推特在ddos攻击推特自己，这件事本身就很有趣，而细究此事的前因后果就更具有戏剧性。</p>
+<ul>
+<li>6月30号，推特老总埃隆马斯克新出了一项<a target="_blank" rel="noopener" href="https://techcrunch.com/2023/06/30/twitter-now-requires-an-account-to-view-tweets/">浏览规则</a>，即推特内容不再像以前那样可以不登录就能浏览，现在要求用户必须注册并登录。<br><img src="/2023/07/03/2023/06/daily-tech-blog-collection-20230703/twitter1.png"></li>
+<li>这件事当然引起轩然大波，这意味着推特将自己的内容封闭了，不再有公共内容。</li>
+<li>7月1号开始有用户发现推特的内容无法加载，整个服务似乎已经挂了。<br><img src="/2023/07/03/2023/06/daily-tech-blog-collection-20230703/twitter2.png"></li>
+<li>7月2号也就是这篇文章的作者发现推特以每秒10次的频率在请求推特的服务器拉取内容，而这个bug的原因竟然就是必须登录才能浏览推特的这个规定：即不登录的情况下浏览器拉取不到内容，于是脚本不断的请求服务器。可想而知，全球大量的不登录请求直接干趴了推特服务器。</li>
+<li>而马斯克还在继续作妖，于7月2号又发布了一篇惊世骇俗的推文，规定了推特的浏览限制：认证用户可以一天浏览6000条推文，非认证用户600条，新注册的非认证用户只能浏览300条。<br><img src="/2023/07/03/2023/06/daily-tech-blog-collection-20230703/twitter3.png"></li>
+</ul>
+<p>难以想象在如今这个流量为王的互联网时代，马斯克居然推出了这么一系列反其道而行之的规定，无论乍看还是细想，都觉得这是把推特推上死路。但是考虑到马斯克这个人有多爱整活，又让人非常想要知道他这么做的背后逻辑。至于后续如何，只能继续拭目以待了。<br><img src="/2023/07/03/2023/06/daily-tech-blog-collection-20230703/twitter4.jpeg"></p>
+<h3 id="Far-Cry-源码公布"><a href="#Far-Cry-源码公布" class="headerlink" title="Far Cry 源码公布"></a><a target="_blank" rel="noopener" href="https://archive.org/details/far-cry-1.34-complete">Far Cry 源码公布</a></h3><p><img src="/2023/07/03/2023/06/daily-tech-blog-collection-20230703/farcry1.png"><br>Far Cry是著名的游戏系列，是标准的3A大作，最近有网友发现在知名免费资源网站(archive.org)上居然看到了Far Cry的完整源码上传，虽然这段源码只是2004年的第一部Far Cry，由古早引擎开发的，但是对于网友来说，这依然是非常宝贵的游戏开发学习资料。厂商的这个慈善行为（没有明确是厂商上传，但我想应该也没别人敢干这事儿）得到了大量网友的点赞。<br><img src="/2023/07/03/2023/06/daily-tech-blog-collection-20230703/farcry2.png"></p>
+<h3 id="美国FTC：虚假的评论内容将会违法并承受重罚"><a href="#美国FTC：虚假的评论内容将会违法并承受重罚" class="headerlink" title="美国FTC：虚假的评论内容将会违法并承受重罚"></a><a target="_blank" rel="noopener" href="https://www.washingtonpost.com/technology/2023/06/30/fake-reviews-online-ftc/">美国FTC：虚假的评论内容将会违法并承受重罚</a></h3><p>联邦贸易委员会（The Federal Trade Commission）将对网络评论的贸易行为进行控制，如果新的规定通过，对于虚假评论的处罚将非常严重，每次虚假评论被消费者看到都将遭到最多50000美元的处罚，注意，<strong>是每次被看到都遭到50000美元处罚</strong>。</p>
+<p>据统计30%到40%的评论都是捏造的（这个应该是美国的比例），尤其在chatgpt这样的人工智能出现后，虚假的但是随机而富有逻辑的正面评论将会弥漫于网络，让消费者难以发现客观正确的产品评价，FTC正是对于这样的情况做出这样顶格处罚的规定。</p>
+<p>具体违反规定的评论包括：</p>
+<ul>
+<li>一些歪曲实际产品体验的评论</li>
+<li>由不存在的用户提供的评论</li>
+<li>由内部人员提供的评论</li>
+<li>由中间人生成的评论</li>
+<li>劫持别的用户账号进行评论</li>
+</ul>
+<p>另外一些情况不违反规定：厂商要求真实用户提供评论或者厂商提供有偿奖励真实用户评论。</p>
+<p>另外新规也不会要求网站去负责这些虚假评论，除非他们直接参与了这些虚假评论的产生。</p>
+<p>一些大厂对于新规的回应颇为积极：亚马逊声称在2022年屏蔽了超过20亿条虚假评论，yelp声称2022年讲19%的评论标记为“不推荐”。</p>
+<h3 id="Gping：图形化ping"><a href="#Gping：图形化ping" class="headerlink" title="Gping：图形化ping"></a><a target="_blank" rel="noopener" href="https://github.com/orf/gping">Gping：图形化ping</a></h3><p>这个开源项目非常好理解，就是将ping命令进行图形化，具体效果如下：<br><img src="/2023/07/03/2023/06/daily-tech-blog-collection-20230703/gping1.png"></p>
+<h4 id="安装方式："><a href="#安装方式：" class="headerlink" title="安装方式："></a>安装方式：</h4><ul>
+<li>macOS<ul>
+<li>Homebrew: <code>brew install gping</code></li>
+<li>MacPorts: <code>sudo port install gping</code></li>
+</ul>
+</li>
+<li>Linux (Homebrew): <code>brew install gping</code></li>
+<li>CentOS (或者任何搭载老版本glibc的发行版): 下载MUSL并编译最新版本</li>
+<li>Windows/ARM:<ul>
+<li>Scoop: <code>scoop install gping</code></li>
+<li>Chocolatey: <code>choco install gping</code></li>
+<li>从github发行页面下载最新版本</li>
+</ul>
+</li>
+<li>Fedora (COPR): <code>sudo dnf copr enable atim/gping -y &amp;&amp; sudo dnf install gping</code></li>
+<li>Cargo (需要rustc版本1.44.0以上): <code>cargo install gping</code></li>
+<li>Arch Linux: <code>pacman -S gping</code></li>
+<li>Ubuntu/Debian (Azlux’s repo):<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://packages.azlux.fr/debian/ buster main&quot;</span> | sudo tee /etc/apt/sources.list.d/azlux.list</span><br><span class="line">wget -qO - https://azlux.fr/repo.gpg.key | sudo apt-key add -</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install gping</span><br></pre></td></tr></table></figure></li>
+<li>Gentoo (dm9pZCAq overlay):<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo eselect repository <span class="built_in">enable</span> dm9pZCAq</span><br><span class="line">sudo emerge --sync dm9pZCAq</span><br><span class="line">sudo emerge net-misc/gping::dm9pZCAq</span><br></pre></td></tr></table></figure></li>
+<li>FreeBSD:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pkg: pkg install gping</span><br><span class="line">ports <span class="built_in">cd</span> /usr/ports/net-mgmt/gping; make install clean</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><p>没啥特别的，ping怎么用，gping就怎么用，最简单的用法<code>gping [host]</code>。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">$ gping --<span class="built_in">help</span></span><br><span class="line">Ping, but with a graph.</span><br><span class="line"></span><br><span class="line">Usage: gping [OPTIONS] [HOSTS_OR_COMMANDS]...</span><br><span class="line"></span><br><span class="line">Arguments:</span><br><span class="line">  [HOSTS_OR_COMMANDS]...  Hosts or IPs to ping, or commands to run <span class="keyword">if</span> --cmd is provided. Can use cloud shorthands like aws:eu-west-1.</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">      --cmd</span><br><span class="line">          Graph the execution time <span class="keyword">for</span> a list of commands rather than pinging hosts</span><br><span class="line">  -n, --watch-interval &lt;WATCH_INTERVAL&gt;</span><br><span class="line">          Watch interval seconds (provide partial seconds like <span class="string">&#x27;0.5&#x27;</span>). Default <span class="keyword">for</span> ping is 0.2, default <span class="keyword">for</span> cmd is 0.5.</span><br><span class="line">  -b, --buffer &lt;BUFFER&gt;</span><br><span class="line">          Determines the number of seconds to display <span class="keyword">in</span> the graph. [default: 30]</span><br><span class="line">  -4</span><br><span class="line">          Resolve ping targets to IPv4 address</span><br><span class="line">  -6</span><br><span class="line">          Resolve ping targets to IPv6 address</span><br><span class="line">  -i, --interface &lt;INTERFACE&gt;</span><br><span class="line">          Interface to use when pinging</span><br><span class="line">  -s, --simple-graphics</span><br><span class="line">          Uses dot characters instead of braille</span><br><span class="line">      --vertical-margin &lt;VERTICAL_MARGIN&gt;</span><br><span class="line">          Vertical margin around the graph (top and bottom) [default: 1]</span><br><span class="line">      --horizontal-margin &lt;HORIZONTAL_MARGIN&gt;</span><br><span class="line">          Horizontal margin around the graph (left and right) [default: 0]</span><br><span class="line">  -c, --color &lt;color&gt;</span><br><span class="line">          Assign color to a graph entry. This option can be defined more than once as a comma separated string, and the order <span class="built_in">which</span> the colors are provided will be matched against the hosts or commands passed to gping. Hexadecimal RGB color codes are accepted <span class="keyword">in</span> the form of <span class="string">&#x27;#RRGGBB&#x27;</span> or the following color names: <span class="string">&#x27;black&#x27;</span>, <span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;magenta&#x27;</span>,<span class="string">&#x27;cyan&#x27;</span>, <span class="string">&#x27;gray&#x27;</span>, <span class="string">&#x27;dark-gray&#x27;</span>, <span class="string">&#x27;light-red&#x27;</span>, <span class="string">&#x27;light-green&#x27;</span>, <span class="string">&#x27;light-yellow&#x27;</span>, <span class="string">&#x27;light-blue&#x27;</span>, <span class="string">&#x27;light-magenta&#x27;</span>, <span class="string">&#x27;light-cyan&#x27;</span>, and <span class="string">&#x27;white&#x27;</span></span><br><span class="line">  -h, --<span class="built_in">help</span></span><br><span class="line">          Print <span class="built_in">help</span> information</span><br><span class="line">  -V, --version</span><br><span class="line">          Print version information</span><br><span class="line">      --clear</span><br><span class="line">          Clear the graph from the terminal after closing the program</span><br></pre></td></tr></table></figure>
+
+<h3 id="油管开始对广告屏蔽插件采取更加激进的手段"><a href="#油管开始对广告屏蔽插件采取更加激进的手段" class="headerlink" title="油管开始对广告屏蔽插件采取更加激进的手段"></a><a target="_blank" rel="noopener" href="https://www.androidpolice.com/youtube-ad-blockers-three-strikes/">油管开始对广告屏蔽插件采取更加激进的手段</a></h3><p>有Reddit用户发现，youtube给他弹出了一个界面，告知要么将youtube加到广告屏蔽插件的白名单里，或者购买他们的YouTube Premium会员。<br><img src="/2023/07/03/2023/06/daily-tech-blog-collection-20230703/youtube1.jpeg"></p>
+<p>youtube似乎开响了和广告屏蔽插件的第一枪，逼迫用户在他们的产品和广告屏蔽插件之间二选一。当然，市面上大部分网站和产品应该是没有这样的底气的，也就是youtube做到了这样的体量，用户粘性高，才敢这么激进的要求用户必须二选一。</p>
+<p>目前这种弹窗还是在少部分用户中试行，而且知名广告屏蔽插件uBlock Origin也没出现这种情况，现在应该还只是youtube的一个小范围实验功能。一旦这个功能推广，那么你就只能要么永远忍受30s的视频前广告，或者订阅12美元一个月的会员服务。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1031,147 +1155,6 @@
 <p>这样获取到的数据格式如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data: some text</span><br><span class="line">data: another message</span><br><span class="line">data: with two lines</span><br></pre></td></tr></table></figure>
 <p>需要进行进一步的分析处理</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/04/12/2023/04/how_to_create_new_site/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/12/2023/04/how_to_create_new_site/" class="post-title-link" itemprop="url">Namcheap+CloudFlare简单建站</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-04-12 22:01:51" itemprop="dateCreated datePublished" datetime="2023-04-12T22:01:51+08:00">2023-04-12</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-04-17 12:36:27" itemprop="dateModified" datetime="2023-04-17T12:36:27+08:00">2023-04-17</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="购买服务器"><a href="#购买服务器" class="headerlink" title="购买服务器"></a>购买服务器</h3><ul>
-<li>需要基于流量和内容进行选择，如果打算服务于国内，选择国内的服务器提供商，比如阿里云或者腾讯云等，如果需要某些国内服务器做不到的功能，比如调用openai的接口，则最好是买个国外的服务器。</li>
-<li>需要注意的是，如果打算基于微信小程序或者公众号开发，必须要满足域名通过国家备案，而备案的必要条件是所在的服务器是国内供应商。因此如果是为了开发小程序而买了个国外服务器，最终很可能因为无法备案而无法满足你的需求。</li>
-<li>无论国内外，最便宜的套餐普遍都是1核1G，20GB硬盘空间，1Mbps带宽。国外有Vultr，Linode，DigitalOcean，AWS Lightsail等，价格普遍在5美刀/月左右。国内可选择阿里云，百度云，腾讯云，华为云等，价格20-100元人民币/月不等。</li>
-<li>如果是开发小程序和公众号，有另一种选择，跳过购买域名和服务器，直接使用腾讯的<a target="_blank" rel="noopener" href="https://cloud.weixin.qq.com/">云托管平台</a></li>
-</ul>
-<h3 id="购买域名和ssl证书"><a href="#购买域名和ssl证书" class="headerlink" title="购买域名和ssl证书"></a>购买域名和ssl证书</h3><p>需要注意，目前情况而言，购买域名的同时也几乎必须得购买ssl证书，因为现在http的网站已经不再被各大浏览器所推荐，流量优先级会被调低，甚至小程序直接不支持指向http网站，如果建站的目的是希望获得收入，那拥有ssl证书的https网站是必须的。</p>
-<ul>
-<li><p>国内</p>
-<ul>
-<li>易名中国：域名价格约为50元人民币/年起，SSL证书价格约为100元人民币/年起。</li>
-<li>西部数码：域名价格约为60元人民币/年起，SSL证书价格约为100元人民币/年起。</li>
-<li>新网：域名价格约为50元人民币/年起，SSL证书价格约为200元人民币/年起。</li>
-<li>阿里云：域名价格约为60元人民币/年起，SSL证书价格约为300元人民币/年起。</li>
-<li>巨牛网：域名价格约为50元人民币/年起，SSL证书价格约为150元人民币/年起。</li>
-</ul>
-</li>
-<li><p>国外</p>
-<ul>
-<li>GoDaddy：域名价格约为$12/年起，SSL证书价格约为$70/年起。</li>
-<li>Namecheap：域名价格约为$8/年起，SSL证书价格约为$9/年起。</li>
-<li>Google Domains：域名价格约为$12/年起，SSL证书价格约为$20/年起。</li>
-<li>Network Solutions：域名价格约为$35/年起，SSL证书价格约为$60/年起。</li>
-<li>Name.com：域名价格约为$10/年起，SSL证书价格约为$9/年起。</li>
-</ul>
-</li>
-</ul>
-<h3 id="生成CSR"><a href="#生成CSR" class="headerlink" title="生成CSR"></a>生成CSR</h3><ul>
-<li><p>什么是CSR</p>
-<blockquote>
-<p>CSR code (Certificate Signing Request) is a specific code and an essential part for the SSL activation. It contains information about website name and the company contact details. For many reasons, the code should be created on the hosting server end. On some servers, it is the obligatory condition.</p>
-</blockquote>
-<p>总之CSR是一段关于你网站的身份信息的加密文件，对于激活ssl证书是必须的，在服务器端生成。</p>
-</li>
-<li><p>通过openssl命令生成<br>有很多种方式生成csr文件，甚至有在线网站可以直接生成，通常不建议在线生成，因为csr是ssl的必要依赖，关联到网站的安全性，最好是不要冒泄露的风险。</p>
-<ul>
-<li>新建.key文件夹，执行如下命令<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install openssl</span><br><span class="line">cd .key</span><br><span class="line">openssl req -nodes -newkey rsa:2048 -keyout $serverName.key -out $serverName.csr</span><br></pre></td></tr></table></figure>
-注意，$serverName用你的网站名替换，会生成两个文件，以你网站名为命名的key文件和csr文件。<br>生成时会要求你填入国家，公司，email等，根据提示填入。</li>
-</ul>
-<p><em><strong>国内域名商的流程会不太一样，因为是要备案实名制，所以还会要求身份证信息等，而且是界面操作，无需通过以上命令行</strong></em></p>
-</li>
-<li><p>复制csr文件中的内容，通常如下：<br><img src="/2023/04/12/2023/04/how_to_create_new_site/csr-content.png"><br>复制时要包含全部内容，不要略去BEGIN和END那一行。</p>
-</li>
-<li><p>将csr粘贴到域名供应商配置界面，以namecheap为例，在你已购买的ssl证书界面点击active。<br><img src="/2023/04/12/2023/04/how_to_create_new_site/activate_ssl.png"><br>将刚才csr文件中的内容粘贴到该界面中。<br><img src="/2023/04/12/2023/04/how_to_create_new_site/copy_csr.png"><br>下一步中选择Add CNAME record<br><img src="/2023/04/12/2023/04/how_to_create_new_site/act_dcv_choice.png"><br>下一步中输入你的电子邮箱</p>
-</li>
-<li><p>完成后进入证书管理界面，按照如下操作<br><img src="/2023/04/12/2023/04/how_to_create_new_site/act_done_1.png"><br>此时会获取到下一步会用到的cname的host和target<br><img src="/2023/04/12/2023/04/how_to_create_new_site/cname_content.png"></p>
-</li>
-</ul>
-<h3 id="注册DNS"><a href="#注册DNS" class="headerlink" title="注册DNS"></a>注册DNS</h3><p>  一般的域名供应商都会提供有dns服务，namecheap也有，但是功能都比较基础，通常建议使用第三方DNS供应商。国外的有google，cloud flare，国内也有阿里，百度等。<br>  以cloudflare为例</p>
-<ul>
-<li>点击add site，输入你的域名，选择free计划</li>
-<li>输入你的域名和服务器的公网ip</li>
-<li>在namecheap中的namerserver界面选择Custom DNS，输入cloudflare提供的两个dns服务器地址<br><img src="/2023/04/12/2023/04/how_to_create_new_site/namecheap_dns.png"></li>
-<li>进入cloudflare的dns管理界面，添加一条cname记录，输入之前步骤中得到的cname的host和target，注意Proxy status这一栏要改成DNS only<br><img src="/2023/04/12/2023/04/how_to_create_new_site/cloudflare_dns.png"></li>
-<li><em><strong>到这一步之后，ssl证书发放商就会把ssl证书发到你的邮箱</strong></em>，按照官网的说法，这个时间可能24到48小时，一般用不了那么久，一小时内就可以收到，如果没收到，去namecheap的<a target="_blank" rel="noopener" href="https://decoder.link/">ssl校验网站</a>看下，如果有出错，那重新捋一遍上面的步骤。</li>
-</ul>
-<h3 id="安装SSL证书"><a href="#安装SSL证书" class="headerlink" title="安装SSL证书"></a>安装SSL证书</h3><ul>
-<li>收到ssl证书后，通常发放邮件长下面这样，将邮件中的附件解压，包含三个文件，ca-bundle文件，crt文件和p7b文件<br><img src="/2023/04/12/2023/04/how_to_create_new_site/ssl_email.png"></li>
-<li>将ca-bundle文件和crt文件上传到服务器，并执行如下命令<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat your_domain.crt &gt; your_domain_chain.crt ; <span class="built_in">echo</span> &gt;&gt; your_domain_chain.crt ; cat your_domain.ca-bundle &gt;&gt; your_domain_chain.crt</span></span><br></pre></td></tr></table></figure></li>
-<li>服务器安装ssl证书的方式有很多种，最常用的方式是nginx，以nginx为例，安装完nginx之后，进入/etc/nginx/conf.d/目录，新增一个your_domain.conf配置文件，配置文件内容如下<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  www.example.com;</span><br><span class="line">    return 301 https:<span class="comment">//$server_name$request_uri;</span></span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen       443 ssl;</span><br><span class="line">    # 域名，多个以空格分开</span><br><span class="line">    server_name  www.example.com;</span><br><span class="line">    </span><br><span class="line">    # ssl证书地址</span><br><span class="line">    ssl_certificate     /home/.ssl/example.crt;  # crt文件的路径</span><br><span class="line">    ssl_certificate_key  /home/.key/example.key; # key文件的路径，即生成csr文件步骤中的key文件</span><br><span class="line">    </span><br><span class="line">    # ssl验证相关配置</span><br><span class="line">    ssl_session_timeout  5m;    #缓存有效期</span><br><span class="line">    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;    #加密算法</span><br><span class="line">    ssl_protocols TLSv1 TLSv1<span class="number">.1</span> TLSv1<span class="number">.2</span>;    #安全链接可选的加密协议</span><br><span class="line">    ssl_prefer_server_ciphers on;   #使用服务器端的首选算法</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_pass http:<span class="comment">//localhost:8080/; # 服务器地址</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>启动nginx，即可在公网中访问到你的服务器了</li>
-</ul>
 
       
     </div>
