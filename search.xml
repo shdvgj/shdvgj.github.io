@@ -5140,4 +5140,116 @@
         <category>每日文章收集</category>
       </categories>
   </entry>
+  <entry>
+    <title>每日文章收集-20230630</title>
+    <url>/2023/06/30/2023/06/daily-tech-blog-collection-202306030/</url>
+    <content><![CDATA[<h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h3 id="什么样的社交媒体让你着迷？"><a href="#什么样的社交媒体让你着迷？" class="headerlink" title="什么样的社交媒体让你着迷？"></a><a href="https://lostgarden.home.blog/2023/02/26/the-letter-circle/">什么样的社交媒体让你着迷？</a></h3><h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="computerraria：在游戏《Terraria》中制作的全面符合-RISC-V-架构的计算机"><a href="#computerraria：在游戏《Terraria》中制作的全面符合-RISC-V-架构的计算机" class="headerlink" title="computerraria：在游戏《Terraria》中制作的全面符合 RISC-V 架构的计算机"></a><a href="https://github.com/misprit7/computerraria">computerraria：在游戏《Terraria》中制作的全面符合 RISC-V 架构的计算机</a></h3><p><img src="/2023/06/30/2023/06/daily-tech-blog-collection-202306030/computerraria1.png"></p>
+<p>这个项目在著名游戏《Terraria》中构建了一个计算机。</p>
+<p>尽管这个项目的介绍可能会让人误以为其目标是最大化游戏中CPU的兼容性和处理能力，但实际上这是通过使用加速器修改版实现的。该修改版在保持与原版布线系统的完全兼容性的同时，以更高效的方式重新实现了该系统。</p>
+<p>通过一个叫做<a href="https://github.com/misprit7/WireHead">WireHead</a>的加速器mod来实现，其计算机性能如下：</p>
+<ul>
+<li>频率：5kHz</li>
+<li>内存：96kb</li>
+<li>指令集：rv32i</li>
+</ul>
+<p>在这个游戏内计算机的基础上，构建了弹球的游戏。<br><img src="/2023/06/30/2023/06/daily-tech-blog-collection-202306030/computerraria2.png"></p>
+<p>安装</p>
+<ul>
+<li>下载项目到《Terraria》的mod目录<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">Windows: Documents\My Games\Terraria\ModLoader\Worlds</span><br><span class="line">Linux: ~/.<span class="built_in">local</span>/share/Terraria/tModLoader/Worlds</span><br></pre></td></tr></table></figure></li>
+<li>下载WireHead到mod目录<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Windows</span></span><br><span class="line"><span class="built_in">cd</span> <span class="string">&quot;%userprofile%\Documents\My Games\Terraria\ModLoader\ModSources&quot;</span> &amp;&amp; git <span class="built_in">clone</span> https://github.com/misprit7/WireHead.git</span><br><span class="line"></span><br><span class="line"><span class="comment">#Linux</span></span><br><span class="line"><span class="built_in">cd</span> <span class="string">&quot;~/.local/share/Terraria/tModLoader/ModSources&quot;</span> &amp;&amp; git <span class="built_in">clone</span> https://github.com/misprit7/WireHead.git</span><br></pre></td></tr></table></figure></li>
+<li>进入弹球游戏目录并使用rust命令编译运行<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;path to computerraria&gt;/app/pong</span><br><span class="line">cargo rb</span><br><span class="line">./copy-bin.sh /tmp/pong.txt</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>目录结构</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── app/</span><br><span class="line">│   ├── tdriver/</span><br><span class="line">│   └── template/</span><br><span class="line">├── computer.wld</span><br><span class="line">├── doc/</span><br><span class="line">├── docker/</span><br><span class="line">├── <span class="built_in">test</span>/</span><br><span class="line">└── tinterface/</span><br><span class="line">    ├── bin/</span><br><span class="line">    └── tinterface/</span><br></pre></td></tr></table></figure>
+
+<h3 id="mdbook：通过markdown来创建一本书"><a href="#mdbook：通过markdown来创建一本书" class="headerlink" title="mdbook：通过markdown来创建一本书"></a><a href="https://rust-lang.github.io/mdBook/">mdbook：通过markdown来创建一本书</a></h3><p>mdBook是一个用Markdown创建书籍的命令行工具。它非常适合创建产品或API文档、教程、课程材料或任何需要清晰、易于导航和可自定义呈现的内容。</p>
+<ul>
+<li>轻量级的Markdown语法帮助您更专注于内容。</li>
+<li>集成搜索支持。</li>
+<li>为多种不同的编程语言提供代码块的语法高亮显示。</li>
+<li>主题文件允许自定义输出的格式。</li>
+<li>预处理器可以提供自定义语法扩展和修改内容。</li>
+<li>后端可以将输出呈现为多种格式。</li>
+<li>使用Rust编写，以实现速度、安全性和简洁性。</li>
+<li>对Rust代码示例进行自动化测试。</li>
+</ul>
+<p>安装mdbook</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">## 可以直接从[github地址](https://github.com/rust-lang/mdBook/releases)获取最新包</span></span><br><span class="line">wget https://github.com/rust-lang/mdBook/releases/download/v0.4.31/mdbook-v0.4.31-aarch64-unknown-linux-musl.tar.gz</span><br><span class="line"><span class="comment">## 用RUST构建，需要安装至少1.65版本以上的RUST</span></span><br><span class="line">cargo install mdbook</span><br><span class="line"><span class="comment">## 安装最新的master分支</span></span><br><span class="line">cargo install --git https://github.com/rust-lang/mdBook.git mdbook</span><br></pre></td></tr></table></figure>
+
+<p>命令行工具</p>
+<ul>
+<li>初始化书本<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mdbook init my-first-book</span><br></pre></td></tr></table></figure></li>
+<li>回答完几个问题后就可以执行<code>server</code>命令运行服务器并打开本地浏览器。<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mdbook serve --open</span><br></pre></td></tr></table></figure></li>
+<li>服务器运行期间，对于书本的更改都会自动编译到浏览器上。</li>
+<li>书本设置<ul>
+<li>可以在<code>book.toml</code>中配置书本的配置，默认的配置一般够用，在配置单元可以看到具体的配置项。</li>
+<li>在<code>src/SUMMARY.md</code>包含书本的所有章节设置。</li>
+<li>资源文件在<code>src</code>目录下，每个章节都是独立的markdown文件。</li>
+</ul>
+</li>
+<li>使用<code>mdbook build</code>编译书本。</li>
+</ul>
+<h3 id="开源语言模型在上下文长度方面能真正保证多长？"><a href="#开源语言模型在上下文长度方面能真正保证多长？" class="headerlink" title="开源语言模型在上下文长度方面能真正保证多长？"></a><a href="https://lmsys.org/blog/2023-06-29-longchat/">开源语言模型在上下文长度方面能真正保证多长？</a></h3><p><a href="https://lmsys.org/">LMSYS Org</a>是一个由加州大学伯克利分校的学生和教师组成的开放研究组织，它旨在通过共同开发的方式，使大型模型更加易于使用和可访问。最近该组织推出的<a href="https://huggingface.co/lmsys/longchat-7b-16k">LongChat-7B</a>和<a href="https://huggingface.co/lmsys/longchat-13b-16k">LongChat-13B</a>将文本拓展到了16000个token的长度。</p>
+<p>评估结果显示，LongChat-13B的长距离检索准确率比其他长上下文开放模型（如MPT-7B-storywriter（65K）、MPT-30B-chat（8K）和ChatGLM2-6B（32K））高出多达2倍。</p>
+<p><img src="/2023/06/30/2023/06/daily-tech-blog-collection-202306030/longchat1.png"></p>
+<p>可通过以下命令启用这两个大语言模型：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">python3 -m fastchat.serve.cli --model-path lmsys/longchat-7b-16k</span><br></pre></td></tr></table></figure>
+
+<p>这个项目在开源社区得到了关注，并有一些项目宣称自己支持比LLaMA更长的上下文，值得关注的有：</p>
+<ul>
+<li><a href="https://huggingface.co/mosaicml/mpt-7b-storywriter">MPT-7B-storywriter</a></li>
+<li><a href="https://huggingface.co/spaces/mosaicml/mpt-30b-chat">MPT-30B-chat</a></li>
+<li><a href="https://huggingface.co/THUDM/chatglm2-6b">ChatGLM2-6B</a></li>
+</ul>
+<p>LongChat训练方式，主要包含两步：</p>
+<ul>
+<li>压缩旋转嵌入：旋转嵌入是一种在自然语言处理中广泛使用的技术，它可以将词汇或短语映射到一个连续的向量空间中。然而，由于嵌入空间的维度往往很大，这可能会导致计算和存储成本的增加。（原文没太看懂，这段解释来自chatgpt）</li>
+<li>在筛选过的对话数据上进行微调：在压缩嵌入之后，我们对我们的筛选过的对话数据集执行微调过程。我们重新使用之前用于训练Vicuna的收集到的用户共享对话。</li>
+</ul>
+<p>这篇文章后面还有详细的调试和结果说明，太专业了😮‍💨，有兴趣的同学去原文看看吧。</p>
+<h3 id="Tesla-Fleet-Telemetry：特斯拉的的数据中转框架"><a href="#Tesla-Fleet-Telemetry：特斯拉的的数据中转框架" class="headerlink" title="Tesla Fleet Telemetry：特斯拉的的数据中转框架"></a><a href="https://github.com/teslamotors/fleet-telemetry">Tesla Fleet Telemetry：特斯拉的的数据中转框架</a></h3><p>特斯拉推出的官方数据中转框架，允许客户从他们的特斯拉设备直接建立安全的桥接，并与任何授权的提供商通信。Fleet Telemetry是一个简单、可扩展和安全的车辆和其他设备的数据交换服务。</p>
+<p>配置和运行服务：</p>
+<ul>
+<li>使用Helm Chart在Kubernetes上安装（推荐）</li>
+<li>手动安装<ul>
+<li>分配和指定完全限定域名（FQDN）。这将在服务器和客户端（车辆）配置中使用。</li>
+<li>设计一个简单的托管架构。我们推荐的架构是：防火墙/负载均衡器 -&gt; Fleet Telemetry -&gt; Kafka。</li>
+<li>确保mTLS连接在Fleet Telemetry服务上终止。</li>
+<li>配置服务器。</li>
+<li>部署和运行服务器。从我们的Docker Hub获取最新的Docker镜像信息。</li>
+<li>创建并与特斯拉分享车辆配置。</li>
+</ul>
+</li>
+</ul>
+<p>支持的中间件</p>
+<ul>
+<li>Kafka（首选）：使用config.json文件进行配置。在这里查看实现：config/config.go</li>
+<li>Kinesis：使用标准的AWS环境变量和配置文件进行配置。默认的AWS凭证和配置文件路径为：~/.aws/credentials 和 ~/.aws/config。<ul>
+<li>默认情况下，流名称将为 配置的命名空间主题名称，例如：tesla_V、tesla_errors、tesla_alerts 等。</li>
+<li>通过设置流配置中的 “kinesis”: { “streams”: { topic_name: stream_name } }，可以直接配置流名称。</li>
+<li>使用环境变量覆盖流名称：KINESIS_STREAM大写的主题名称，例如：KINESIS_STREAM_V。</li>
+</ul>
+</li>
+<li>Google Pub/Sub：除了必要的Pub/Sub配置（参见./test/integration/config.json的示例），还需要设置环境变量 <code>GOOGLE_APPLICATION_CREDENTIALS</code>。</li>
+<li>Logger：这是一个简单的标准输出（STDOUT）日志记录器，将协议缓冲区序列化为JSON格式。</li>
+</ul>
+<h3 id="Hurl-4-0-0："><a href="#Hurl-4-0-0：" class="headerlink" title="Hurl 4.0.0："></a><a href="https://hurl.dev/blog/2023/06/30/announcing-hurl-4.0.0.html">Hurl 4.0.0：</a></h3><p><a href="https://hurl.dev/">Hurl</a>是一个由curl驱动的命令行工具，它可以运行在简单纯文本格式中定义的HTTP请求。</p>
+<p>这个版本有哪些更新：</p>
+<ul>
+<li>改进的HTML报告，包含请求瀑布图。<br><img src="/hurl1.png"></li>
+<li>CI/CD（持续集成/持续部署）过程中详尽的错误报告。<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hurl --error-format long --<span class="built_in">test</span> test.hurl</span><br><span class="line">test.hurl: Running [1/1]</span><br><span class="line">HTTP/2 200</span><br><span class="line">date: Thu, 29 Jun 2023 16:06:58 GMT</span><br><span class="line">content-type: text/html</span><br><span class="line">content-length: 58941</span><br><span class="line">last-modified: Thu, 29 Jun 2023 14:37:22 GMT</span><br><span class="line">etag: <span class="string">&quot;649d9722-e63d&quot;</span></span><br><span class="line">strict-transport-security: max-age=31536000; includeSubDomains</span><br><span class="line">content-security-policy: default-src <span class="string">&#x27;self&#x27;</span>; script-src <span class="string">&#x27;self&#x27;</span> <span class="string">&#x27;unsafe-eval&#x27;</span> <span class="string">&#x27;wasm-unsafe-eval&#x27;</span></span><br><span class="line">x-frame-options: SAMEORIGIN</span><br><span class="line">x-content-type-options: nosniff</span><br><span class="line">accept-ranges: bytes</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">&quot;en&quot;</span>&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=<span class="string">&quot;utf-8&quot;</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;width=device-width, initial-scale=1&quot;</span> /&gt;</span><br><span class="line">&lt;link rel=<span class="string">&quot;apple-touch-icon&quot;</span> href=<span class="string">&quot;/assets/img/hurl-icon-120.png&quot;</span> /&gt;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br><span class="line">error: Assert failure</span><br><span class="line">  --&gt; test.hurl:4:0</span><br><span class="line">   |</span><br><span class="line"> 4 | header <span class="string">&quot;Control-Security-Policy&quot;</span> contains <span class="string">&quot;default-src &#x27;self&#x27;&quot;</span> </span><br><span class="line">   |   actual:   none</span><br><span class="line">   |   expected: contains string &lt;default-src <span class="string">&#x27;self&#x27;</span>&gt;</span><br><span class="line">   |</span><br><span class="line"></span><br><span class="line">test.hurl: Failure (1 request(s) <span class="keyword">in</span> 146 ms)</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">Executed files:  1</span><br><span class="line">Succeeded files: 0 (0.0%)</span><br><span class="line">Failed files:    1 (100.0%)</span><br><span class="line">Duration:        148 ms</span><br></pre></td></tr></table></figure></li>
+<li>新增的过滤器：decode和xpath。</li>
+<li>JSONPath变化。基本上，在Hurl 4.0.0中，唯一返回值的选择器是：<ul>
+<li>数组索引选择器（$.store.book[2]）</li>
+<li>对象键选择器（$.store.bicycle.color/$.store.bicycle[‘color’]）</li>
+<li>其他使用过滤器的选择器（例如?(@.price &gt;= 10)或$[*].id）将返回一个集合。然后，您可以使用nth过滤器从该集合中提取一个值。<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">GET https://example.com/books</span><br><span class="line">HTTP 200</span><br><span class="line">[Asserts]</span><br><span class="line">jsonpath <span class="string">&quot;$.store.book[0].title&quot;</span> == <span class="string">&quot;Dune&quot;</span></span><br><span class="line">jsonpath <span class="string">&quot;$.store.book[*].title&quot;</span> nth 0 == <span class="string">&quot;Dune&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>可定制的HTTP方法。可以写任何方法名，唯一的要求是大写。<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">QUERY https://example.org/contacts</span><br><span class="line">Content-Type: example/query</span><br><span class="line">Accept: text/csv</span><br><span class="line">HTTP 200</span><br><span class="line">Content-Type: text/csv</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>每日文章收集</category>
+      </categories>
+  </entry>
 </search>
