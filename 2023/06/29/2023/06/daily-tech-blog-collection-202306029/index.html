@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh6.png">
 <meta property="og:image" content="http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/css1.png">
 <meta property="article:published_time" content="2023-06-29T05:06:53.000Z">
-<meta property="article:modified_time" content="2023-06-30T02:22:03.839Z">
+<meta property="article:modified_time" content="2023-07-03T01:13:40.241Z">
 <meta property="article:author" content="Ricky">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/backgroundremove1.png">
@@ -266,7 +266,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-06-30 10:22:03" itemprop="dateModified" datetime="2023-06-30T10:22:03+08:00">2023-06-30</time>
+        <time title="修改时间：2023-07-03 09:13:40" itemprop="dateModified" datetime="2023-07-03T09:13:40+08:00">2023-07-03</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -303,6 +303,7 @@
 <li>与<a target="_blank" rel="noopener" href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=bg-removal">IMG.LY的CE.SDK</a>（作者的另一个项目） 实现了无缝集成，使开发人员能够轻松地将强大的浏览器内图像抠图和背景去除功能整合到他们的项目中。<br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/backgroundremove1.png"></li>
 </ul>
 <p>本地使用安装步骤如下</p>
+<span id="more"></span>
 <ul>
 <li>NPM安装<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @imgly/background-removal</span><br></pre></td></tr></table></figure></li>
 <li>代码引用：注意首次调用需要下载额外模块，因此会花费比较多时间。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> imglyRemoveBackground <span class="keyword">from</span> <span class="string">&quot;@imgly/background-removal&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> image_src: ImageData | <span class="built_in">ArrayBuffer</span> | <span class="built_in">Uint8Array</span> | Blob | URL | string = ...;</span><br><span class="line"></span><br><span class="line">imglyRemoveBackground(image_src).then(<span class="function">(<span class="params">blob: Blob</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// The result is a blob encoded as PNG. It can be converted to an URL to be used as HTMLImage.src</span></span><br><span class="line">  <span class="keyword">const</span> url = URL.createObjectURL(blob);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>

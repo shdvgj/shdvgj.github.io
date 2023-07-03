@@ -4699,7 +4699,7 @@
 
 <p>以上命令会在 <a href="http://localhost:3000/">http://localhost:3000</a> 发布一个前端页面。</p>
 <h4 id="命令行中使用"><a href="#命令行中使用" class="headerlink" title="命令行中使用"></a>命令行中使用</h4><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> OPENLLM_ENDPOINT=http://localhost:3000</span><br><span class="line">openllm query <span class="string">&#x27;Explain to me the difference between &quot;further&quot; and &quot;farther&quot;&#x27;</span></span><br></pre></td></tr></table></figure>
-
+<span id="more"></span>
 <p>其中，语言模型是可以换的，包含<a href="https://huggingface.co/docs/transformers/model_doc/flan-t5">flan-t5</a>，<a href="https://github.com/databrickslabs/dolly">dolly-v2</a>等等。</p>
 <h2 id="Nix初体验"><a href="#Nix初体验" class="headerlink" title="Nix初体验"></a><a href="https://mtlynch.io/notes/nix-first-impressions/">Nix初体验</a></h2><p><a href="https://nix.dev/">Nix</a>是一种采用独特方法进行软件包管理和系统配置的工具。作者介绍了之前使用过的<a href="https://github.com/saltstack/salt">Salt</a>和<a href="https://github.com/ansible/ansible">Ansible</a>。关于这两者的对比，可以看这篇文章<a href="https://www.redhat.com/en/topics/automation/ansible-vs-salt">Ansible vs Salt</a>。</p>
 <p>对于Salt和Ansible完全不了解的小伙伴可以看下chatGPT的介绍，足够简洁了。<br><img src="/2023/06/19/2023/06/weekly-tech-blog-collection-202306019/ansible_vs_salt.png"></p>
@@ -4753,9 +4753,10 @@
 <p>第二年作者和三大平台的游戏巨头进行了接触，并且获得了认可。然而由于游戏已在ouya发行，因此无法获得另一份的独占协议。这种情况下，他的开发团队决定在三大平台发行游戏，基于两点考虑：</p>
 <ul>
 <li>三个平台可以获得三倍销售额。</li>
-<li>同时在三大平台发行可以获得一定的关注，并能够和三大平台的老总进行对话。</li>
+<li>同时在三大平台发行可以获得一定的关注，并能够和三大平台的老总进行对话。<span id="more"></span>
+<h3 id="这个游戏真的好玩吗？"><a href="#这个游戏真的好玩吗？" class="headerlink" title="这个游戏真的好玩吗？"></a>这个游戏真的好玩吗？</h3></li>
 </ul>
-<h3 id="这个游戏真的好玩吗？"><a href="#这个游戏真的好玩吗？" class="headerlink" title="这个游戏真的好玩吗？"></a>这个游戏真的好玩吗？</h3><p>游戏的玩法基于多人合作对抗的形式，可以和小伙伴一起在家里玩。作者认为游戏是好玩的，他也放出来一段在游戏展会上玩家玩的很开心的视频。</p>
+<p>游戏的玩法基于多人合作对抗的形式，可以和小伙伴一起在家里玩。作者认为游戏是好玩的，他也放出来一段在游戏展会上玩家玩的很开心的视频。</p>
 <h3 id="游戏玩法分析"><a href="#游戏玩法分析" class="headerlink" title="游戏玩法分析"></a>游戏玩法分析</h3><p>作者不认为游戏销量不佳是因为游戏不好玩。不过他也说到这款游戏在玩法上和别的多人游戏的不同。</p>
 <ul>
 <li>对于新手不友好。游戏上手难度颇高，需要一定的时间适应它的移动方式，除此之外，获胜方式也不那么直观，不是一键击杀或者到达某个点，而是要不断将山羊带到正确的点获取得分。</li>
@@ -4829,6 +4830,7 @@
 <li>内容碎片（Content pieces）：相当于看板界面中的卡片，用于编辑具体的内容，包含实际的内容和相关元数据。</li>
 </ul>
 <h3 id="使用工作空间"><a href="#使用工作空间" class="headerlink" title="使用工作空间"></a>使用工作空间</h3><p>点击侧边栏切换工作空间。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite2.png"><br>在该界面选择或新增工作空间。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite3.png"></p>
+<span id="more"></span>
 <h3 id="编辑内容"><a href="#编辑内容" class="headerlink" title="编辑内容"></a>编辑内容</h3><p>进入工作空间后，左边一栏是内容碎片的属性。右边是内容组和内容碎片。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite4.png"><br>点击内容碎片进入编辑界面后，将看到vrite所见即所得的特性。</p>
 <ul>
 <li>弹起菜单：选择任意内容，会弹出浮动菜单用于选择样式，包括加粗，斜体，代码，链接等<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite5.png"></li>
@@ -4970,6 +4972,7 @@
 <li>一台配备英特尔Core m3处理器、8GB内存和运行Windows 11的SSD的Surface Go 2。这是一台三年前发布的机器，原装搭载Windows 10，但官方支持升级至Windows 11。<br><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/fastslow2.png"></li>
 </ul>
 <p>后来被人指出surface go的配置是错误的，因为作者错误的引用了Surface Laptop Go 2的配置。同时由于app已经预先打开过，所以都在内存中已经存在，这次的对比显然不够公平。</p>
+<span id="more"></span>
 <h4 id="第二版对比视频"><a href="#第二版对比视频" class="headerlink" title="第二版对比视频"></a>第二版对比视频</h4><p>作者重新发布了一版对比视频，这次的两台机器是：</p>
 <ul>
 <li>在K7-600机器上安装Windows 2000。这是一个来自1999年的操作系统，在同一年的硬件上运行。<br><img src="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/fastslow3.png"></li>
@@ -5083,6 +5086,7 @@
 <li>与<a href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=bg-removal">IMG.LY的CE.SDK</a>（作者的另一个项目） 实现了无缝集成，使开发人员能够轻松地将强大的浏览器内图像抠图和背景去除功能整合到他们的项目中。<br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/backgroundremove1.png"></li>
 </ul>
 <p>本地使用安装步骤如下</p>
+<span id="more"></span>
 <ul>
 <li>NPM安装<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install @imgly/background-removal</span><br></pre></td></tr></table></figure></li>
 <li>代码引用：注意首次调用需要下载额外模块，因此会花费比较多时间。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> imglyRemoveBackground <span class="keyword">from</span> <span class="string">&quot;@imgly/background-removal&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> image_src: ImageData | <span class="built_in">ArrayBuffer</span> | <span class="built_in">Uint8Array</span> | Blob | URL | string = ...;</span><br><span class="line"></span><br><span class="line">imglyRemoveBackground(image_src).then(<span class="function">(<span class="params">blob: Blob</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// The result is a blob encoded as PNG. It can be converted to an URL to be used as HTMLImage.src</span></span><br><span class="line">  <span class="keyword">const</span> url = URL.createObjectURL(blob);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
@@ -5143,7 +5147,132 @@
   <entry>
     <title>每日文章收集-20230630</title>
     <url>/2023/06/30/2023/06/daily-tech-blog-collection-202306030/</url>
-    <content><![CDATA[<h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h3 id="什么样的社交媒体让你着迷？"><a href="#什么样的社交媒体让你着迷？" class="headerlink" title="什么样的社交媒体让你着迷？"></a><a href="https://lostgarden.home.blog/2023/02/26/the-letter-circle/">什么样的社交媒体让你着迷？</a></h3><h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="computerraria：在游戏《Terraria》中制作的全面符合-RISC-V-架构的计算机"><a href="#computerraria：在游戏《Terraria》中制作的全面符合-RISC-V-架构的计算机" class="headerlink" title="computerraria：在游戏《Terraria》中制作的全面符合 RISC-V 架构的计算机"></a><a href="https://github.com/misprit7/computerraria">computerraria：在游戏《Terraria》中制作的全面符合 RISC-V 架构的计算机</a></h3><p><img src="/2023/06/30/2023/06/daily-tech-blog-collection-202306030/computerraria1.png"></p>
+    <content><![CDATA[<h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h3 id="书信圈-letter-circle-：什么样的社交媒体让你着迷？"><a href="#书信圈-letter-circle-：什么样的社交媒体让你着迷？" class="headerlink" title="书信圈(letter circle)：什么样的社交媒体让你着迷？"></a><a href="https://lostgarden.home.blog/2023/02/26/the-letter-circle/">书信圈(letter circle)：什么样的社交媒体让你着迷？</a></h3><p><strong>这是一篇关于专业社交圈的产品设计文章。</strong></p>
+<p>很长一段时间以来，在地理分散的世界中，人与人交流的方式都是书信往来。直至博客出现时，依然会以长篇形式表达自己的独特观点，同行们用关心和理解进行回应，就会得到治愈和启发。</p>
+<p>如今取而代之的是社交媒体的腐蚀性洪水，以牺牲思考为代价，换取广告友好的垃圾信息。甚至在历史上重要的学术期刊界也演变成了一个闭塞噪音的内耗官僚机构。当前的系统存在着严重不协调的激励机制，无法鼓励有趣的写作。</p>
+<p>作者希望利用他在游戏中探索的社交系统设计的一些经验，创建计划性的社交架构，促进长期存在的社区。</p>
+<h4 id="书信圈-letter-circle-的基本结构"><a href="#书信圈-letter-circle-的基本结构" class="headerlink" title="书信圈(letter circle)的基本结构"></a>书信圈(letter circle)的基本结构</h4><ul>
+<li>有人在感兴趣的主题领域创建一个群组。</li>
+<li>他们邀请最多50位拥有相关专业知识的人加入该群组。</li>
+<li>每个成员每年必须发布至少一封关于该主题的长篇信函，并通过电子邮件发送给所有群组成员。也可能存在一个网络界面。</li>
+<li>他们还必须至少回复其他人的两封信函。</li>
+<li>如果成员未满足要求，他们将在年底自动被踢出群组。</li>
+<li>招募阶段，任何成员都可以推荐新成员，然后新成员将通过自动邀请过程加入。<span id="more"></span>
+<h4 id="什么是书信"><a href="#什么是书信" class="headerlink" title="什么是书信"></a>什么是书信</h4></li>
+</ul>
+<h5 id="书信的可能构成"><a href="#书信的可能构成" class="headerlink" title="书信的可能构成"></a>书信的可能构成</h5><ul>
+<li>引发对话的观察点。</li>
+<li>你正在尝试解决的问题，可能对其他人也感兴趣。</li>
+<li>你偶然发现的在特定情境中有帮助的认知工具、模型或视角。</li>
+<li>对你今年生活事件的描述。可以是与群组主题相关的，也可以是你个人生活的。分享可以建立亲密感和信任。</li>
+<li>对先前一封信的深思熟虑的回应。</li>
+</ul>
+<p>总之，写信的整个目的在于它包含着深思熟虑的文字。每个写信人都应该努力创造出对圈子中其他成员有意义并引发有用和有趣回应的内容。</p>
+<p>相应的，书信不应该是：</p>
+<ul>
+<li>这不是一篇完整的研究或白皮书。大多数人没有时间写或阅读费力排版的文章。在页面限制内写作将有助于作者更清晰地传达信息，也确保读者不会在第23页就放弃阅读。</li>
+<li>这也不是一条简短的推文。复杂的思想需要空间来发展和展示它们的细微之处。</li>
+<li>这也不是发给地球上每个人的大篇幅信息。你知道受众是谁！它是你在信函圈中的同行们。信函是关于合作交流，而不是为了追求声望。</li>
+</ul>
+<h5 id="书信写作的动机"><a href="#书信写作的动机" class="headerlink" title="书信写作的动机"></a>书信写作的动机</h5><p>很多人认为除非有报酬，否则没有任何事情值得去做。我认为人们会写信给他们的圈子，是因为以下内在动机。</p>
+<ul>
+<li>通过写作，拉伸思维并组织思想的感觉很好。</li>
+<li>与尊重并回应你的思想的同行们建立联系是美妙的。</li>
+<li>当我们分享内心最深处的思想时，我们与彼此建立了联系。</li>
+</ul>
+<h5 id="什么是回应"><a href="#什么是回应" class="headerlink" title="什么是回应"></a>什么是回应</h5><p>回应是对信函中细节进行较短的讨论。理想情况下，它是尊重和合作性质的。它尽力保持与主题的相关性。</p>
+<ul>
+<li>对信函主题的另一种观点。</li>
+<li>支持或提供细微差别的例子。</li>
+<li>延伸信函主题的变奏。</li>
+</ul>
+<p>相对的，回应不应该是：</p>
+<ul>
+<li>不是简短而干脆的评论。“太棒了！”“喜欢！”“错了！”这些都不是有用的回应，因为它们对对话没有任何贡献。</li>
+<li>不能离题。如果你想写一些关于不同话题的内容，请将它们分开成一封新的信函。</li>
+</ul>
+<h4 id="新成员的引导"><a href="#新成员的引导" class="headerlink" title="新成员的引导"></a>新成员的引导</h4><h5 id="邀请"><a href="#邀请" class="headerlink" title="邀请"></a>邀请</h5><p>需要一个网络界面，只要活跃成员数量不超过50人，你就可以邀请别人加入该群组。</p>
+<ul>
+<li>输入新成员的电子邮件地址。</li>
+<li>发送一个模板化的邀请。每个群组可以根据自己的需要自定义邀请文本。</li>
+<li>点击发送。受邀者将收到一封包含邀请文本和标准指示的电子邮件，说明他们接下来需要做什么。</li>
+</ul>
+<h5 id="引导"><a href="#引导" class="headerlink" title="引导"></a>引导</h5><p>新成员需在三个月窗口期内在群组的主题下发表一篇书信。如果没能完成该任务，邀请就会被撤销。</p>
+<p>为了帮助他们完成这一步骤，在邀请的邮件里面应该包含如下的引导内容：</p>
+<ul>
+<li>对群组的焦点和更高价值的描述。这有助于为群组创建一个共同的更高目标。</li>
+<li>关于格式、长度和话题的建议。</li>
+<li>群组认为高质量工作的过去信函的示例。</li>
+<li>参与和被移出群组的规则。这是前期的社交契约，需要以明确清晰的方式早期建立起来。</li>
+</ul>
+<p>发表第一篇书信非常重要，即使在之后不再发表，这第一篇书信也是他们为群组所增加的价值。</p>
+<h5 id="谁可以邀请成员？"><a href="#谁可以邀请成员？" class="headerlink" title="谁可以邀请成员？"></a>谁可以邀请成员？</h5><p>这里有几个规则，可以根据群组的需要进行设置。</p>
+<ul>
+<li>任何人都可以邀请。</li>
+<li>群组负责人可以邀请。</li>
+<li>群组管理员可以邀请。</li>
+<li>投票：任何人都可以提交被邀请者的提名，但群组整体必须对最终被邀请的人进行投票。</li>
+</ul>
+<p>小规模的群组可以使用第一条规则，稍大点的群组应该要更严格点，使用第二或者第三条规则，对于想要长期发展的群组来说，投票可能是最好的选择。</p>
+<h5 id="为什么限制50个人？"><a href="#为什么限制50个人？" class="headerlink" title="为什么限制50个人？"></a>为什么限制50个人？</h5><p>超大规模的社交网络是另一个谎言。在功能性的、自我管理的群组中，50人似乎是一个界限，能够建立有意义的关系并进行有益的交流。</p>
+<p>超过这个数量，人们往往会保持沉默。他们不知道群组中有哪些人，因此会变得谨慎起来，停止分享。或者群组中的喧嚣声太多，人们开始将其当作纯粹的噪音而忽视。</p>
+<p>较小的群组也可以运作，但它们面临着互动不足以避免停滞状态的风险。也许没有人及时回应。也许你会忘记群组的存在。</p>
+<h4 id="成员要求"><a href="#成员要求" class="headerlink" title="成员要求"></a>成员要求</h4><p>基本要求：</p>
+<ul>
+<li>一年发布一篇高质量的书信。对于一个30-50人的群组，就可以基本保证在一周左右读到一篇高质量的书信，这是对于某个特定主题可以接受的阅读量。同时也不会对成员造成太大的写作压力。</li>
+<li>一年至少发表两次对于书信的高质量回应。保证了书信有获得回应，可以获得良性的循环。</li>
+</ul>
+<h5 id="什么是活跃成员？"><a href="#什么是活跃成员？" class="headerlink" title="什么是活跃成员？"></a>什么是活跃成员？</h5><p>如果一个成员满足两个要求，就被确定为活跃成员。</p>
+<p>这个概念背后有一个重要的设计目标。事实证明，对于一个社交系统来说，维持所需的活跃用户密度是最重要的事情之一。你需要一定数量的人进行社交行为并相互交流。</p>
+<p>不幸的是，大多数社交媒体面向用户的指标都是虚荣指标，而不是反映社交引擎实际运行的功能指标。如果你的粉丝没有活跃的话，你有多少个关注者并不重要。如果你的好友列表上的朋友们很久没登陆了，你有多少个好友也不重要。</p>
+<h5 id="什么是高质量？"><a href="#什么是高质量？" class="headerlink" title="什么是高质量？"></a>什么是高质量？</h5><p>质量由群组决定。这可能是一个持续的讨论，并且不太可能有一个正确的答案。质量管理的两个隐含工具是：</p>
+<ul>
+<li>在发布指南页面中定义群组对质量的期望。随着群组逐渐了解什么是质量对他们来说，他们可以更新这段文字。</li>
+<li>手动将人踢出群组。群组可能希望剔除那些违反了某些群体规范或者表现不符合期望的成员。有一个管理员选项可以将某人从群组中移除。</li>
+</ul>
+<h4 id="自动化的群组管理"><a href="#自动化的群组管理" class="headerlink" title="自动化的群组管理"></a>自动化的群组管理</h4><p>大多数自然形成的群组，如邮件列表或群博客，都是由领导者投入的精力和关注来维持活力的。但是领导力是稀缺且不可靠的。一个解决方案是自动化群组运行的基本方面。</p>
+<h5 id="自动化的邮件提醒"><a href="#自动化的邮件提醒" class="headerlink" title="自动化的邮件提醒"></a>自动化的邮件提醒</h5><p>一年若干次邮件提醒：</p>
+<ul>
+<li>鼓励尚未发布过书信的人进行发布，并提醒他们如果不这样做，将被移出群组。</li>
+<li>鼓励尚未对现有书信做出回应的人进行回复。</li>
+<li>已经发布过书信的人会得到一份庆祝性的现有书信列表。通常人们可能会错过一两封邮件，因此展示可用的内容是很好的做法。</li>
+</ul>
+<h5 id="自动化的踢人"><a href="#自动化的踢人" class="headerlink" title="自动化的踢人"></a>自动化的踢人</h5><p>通过自动化的进程减少踢人后引发的不良情绪：</p>
+<ul>
+<li>一个会员在被移出团体之前，会收到一封最后的提醒邮件，鼓励他们履行他们的要求。</li>
+<li>如果他们仍然不提交一封书信，将会发送一封非常温和的邮件，说明他们被移出团体是为了给更积极的成员腾出位置。</li>
+<li>被移出的成员仍然可以在以后被重新邀请。当然，他们需要提交一封书信来获得接受。</li>
+</ul>
+<h5 id="手动招募"><a href="#手动招募" class="headerlink" title="手动招募"></a>手动招募</h5><p>如果年底依然没有达到50人的规模，那一封自动话的提醒将会发送给所有成员，启用手动招募流程，包含如下内容：</p>
+<ul>
+<li>很遗憾，我们无法自动化这一步骤（招募到新成员这一步骤）。</li>
+<li>然而，我们可以在我们的入职材料中确立这一点，将其作为一项神圣的职责。每个新成员都应该反复被告知，如果不邀请人员，团体将会消亡。他们负责提供电子邮件。</li>
+<li>如果没有发送足够的邀请，系统将会向所有成员发送一系列逐渐升级的自动提醒。</li>
+</ul>
+<h4 id="杂项记录"><a href="#杂项记录" class="headerlink" title="杂项记录"></a>杂项记录</h4><h5 id="公开发布"><a href="#公开发布" class="headerlink" title="公开发布"></a>公开发布</h5><p>书信圈的设计目的是50人左右的圈子里的内部分享，如果某些群组希望能够公开发表书信并获取更多的评论和关注，以下是推荐做法：</p>
+<ul>
+<li>发布到现有的博客。有很多优秀的博客存在，所以没有必要重新发明轮子。这为人们提供了很大的灵活性，如果他们想为他们的团体拥有一个特殊的域名。这需要维护与第三方的接口或插件。</li>
+<li>该服务也可以是一个博客：该服务可以具有类似博客的功能，将书信转化为网页。这样做的好处是自包含性。但还需要编写博客软件。</li>
+</ul>
+<h5 id="费用"><a href="#费用" class="headerlink" title="费用"></a>费用</h5><p>书信圈的运维显然需要一个服务器和一些费用，可以采取下面的办法：</p>
+<ul>
+<li>志愿者：如果该服务规模较小，一个志愿者可以资助大部分全球服务的托管成本。我猜测，即使每年花费大约1000美元左右，你也可以为许多团体提供服务。但是，要让某人投入编程时间始终更具问题。</li>
+<li>众筹：成功团体的成员可以捐赠年费来维持团体或服务的活动。</li>
+<li>自托管的开源：该服务可以以开源形式发布。</li>
+</ul>
+<h4 id="可预见的情况"><a href="#可预见的情况" class="headerlink" title="可预见的情况"></a>可预见的情况</h4><ul>
+<li>最初的邀请会有一阵子的爆发，然而，这只会导致寥寥几封书信。如今，要让人们承诺参与任何事情都很困难。一个新的圈子需要发送许多几十甚至几百封邀请才能一开始就获得足够的参与者。</li>
+<li>坚定的加入者来自高度信任的联系：高度信任、高度尊重的朋友之间的邀请最有可能得到回应。但人们只能利用有限的这些关系来开始一个圈子。</li>
+<li>缓慢的起步：大多数圈子一开始会有2到5个活跃成员。如果他们没有邀请更多人，活动最终会逐渐消退，圈子也会消亡。</li>
+<li>2到5年后的社区：如果一个圈子能持续几年，就有机会建立成员之间的纽带。此时，圈子更有可能生存下来。在这个阶段，你可能想要开始面对面的聚会，将这些纽带转化为终身的友谊。</li>
+</ul>
+<p>观察圈子随时间的变化，并在关键阶段创建支持机制。</p>
+<ul>
+<li>也许在早期阶段需要更灵活的要求，并增加更多的邀请提醒。</li>
+<li>也许需要额外的工作来鼓励成员的回应，确保友谊开始发展。</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>这篇产品设计的文章也可归为文章定义的“书信”，这是一个作者设计的社交媒体的概念，类似于推特里的“推文”，聚焦于专业圈子领域的交流，我认为里面提出的各种想法都非常有价值，值得一看。</p>
+<h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="computerraria：在游戏《Terraria》中制作的全面符合-RISC-V-架构的计算机"><a href="#computerraria：在游戏《Terraria》中制作的全面符合-RISC-V-架构的计算机" class="headerlink" title="computerraria：在游戏《Terraria》中制作的全面符合 RISC-V 架构的计算机"></a><a href="https://github.com/misprit7/computerraria">computerraria：在游戏《Terraria》中制作的全面符合 RISC-V 架构的计算机</a></h3><p><img src="/2023/06/30/2023/06/daily-tech-blog-collection-202306030/computerraria1.png"></p>
 <p>这个项目在著名游戏《Terraria》中构建了一个计算机。</p>
 <p>尽管这个项目的介绍可能会让人误以为其目标是最大化游戏中CPU的兼容性和处理能力，但实际上这是通过使用加速器修改版实现的。该修改版在保持与原版布线系统的完全兼容性的同时，以更高效的方式重新实现了该系统。</p>
 <p>通过一个叫做<a href="https://github.com/misprit7/WireHead">WireHead</a>的加速器mod来实现，其计算机性能如下：</p>
@@ -5236,7 +5365,7 @@
 <h3 id="Hurl-4-0-0："><a href="#Hurl-4-0-0：" class="headerlink" title="Hurl 4.0.0："></a><a href="https://hurl.dev/blog/2023/06/30/announcing-hurl-4.0.0.html">Hurl 4.0.0：</a></h3><p><a href="https://hurl.dev/">Hurl</a>是一个由curl驱动的命令行工具，它可以运行在简单纯文本格式中定义的HTTP请求。</p>
 <p>这个版本有哪些更新：</p>
 <ul>
-<li>改进的HTML报告，包含请求瀑布图。<br><img src="/hurl1.png"></li>
+<li>改进的HTML报告，包含请求瀑布图。<br><img src="/2023/06/30/2023/06/daily-tech-blog-collection-202306030/hurl1.jpeg"></li>
 <li>CI/CD（持续集成/持续部署）过程中详尽的错误报告。<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hurl --error-format long --<span class="built_in">test</span> test.hurl</span><br><span class="line">test.hurl: Running [1/1]</span><br><span class="line">HTTP/2 200</span><br><span class="line">date: Thu, 29 Jun 2023 16:06:58 GMT</span><br><span class="line">content-type: text/html</span><br><span class="line">content-length: 58941</span><br><span class="line">last-modified: Thu, 29 Jun 2023 14:37:22 GMT</span><br><span class="line">etag: <span class="string">&quot;649d9722-e63d&quot;</span></span><br><span class="line">strict-transport-security: max-age=31536000; includeSubDomains</span><br><span class="line">content-security-policy: default-src <span class="string">&#x27;self&#x27;</span>; script-src <span class="string">&#x27;self&#x27;</span> <span class="string">&#x27;unsafe-eval&#x27;</span> <span class="string">&#x27;wasm-unsafe-eval&#x27;</span></span><br><span class="line">x-frame-options: SAMEORIGIN</span><br><span class="line">x-content-type-options: nosniff</span><br><span class="line">accept-ranges: bytes</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">&quot;en&quot;</span>&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=<span class="string">&quot;utf-8&quot;</span> /&gt;</span><br><span class="line">&lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;width=device-width, initial-scale=1&quot;</span> /&gt;</span><br><span class="line">&lt;link rel=<span class="string">&quot;apple-touch-icon&quot;</span> href=<span class="string">&quot;/assets/img/hurl-icon-120.png&quot;</span> /&gt;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br><span class="line">error: Assert failure</span><br><span class="line">  --&gt; test.hurl:4:0</span><br><span class="line">   |</span><br><span class="line"> 4 | header <span class="string">&quot;Control-Security-Policy&quot;</span> contains <span class="string">&quot;default-src &#x27;self&#x27;&quot;</span> </span><br><span class="line">   |   actual:   none</span><br><span class="line">   |   expected: contains string &lt;default-src <span class="string">&#x27;self&#x27;</span>&gt;</span><br><span class="line">   |</span><br><span class="line"></span><br><span class="line">test.hurl: Failure (1 request(s) <span class="keyword">in</span> 146 ms)</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">Executed files:  1</span><br><span class="line">Succeeded files: 0 (0.0%)</span><br><span class="line">Failed files:    1 (100.0%)</span><br><span class="line">Duration:        148 ms</span><br></pre></td></tr></table></figure></li>
 <li>新增的过滤器：decode和xpath。</li>
 <li>JSONPath变化。基本上，在Hurl 4.0.0中，唯一返回值的选择器是：<ul>
