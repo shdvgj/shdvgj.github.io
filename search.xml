@@ -5387,7 +5387,7 @@
     <content><![CDATA[<h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h3 id="用iPad编程是一个错误"><a href="#用iPad编程是一个错误" class="headerlink" title="用iPad编程是一个错误"></a><a href="https://technicallychallenged.substack.com/p/buying-an-ipad-pro-for-coding-was">用iPad编程是一个错误</a></h3><p>作者买了个M1芯片的iPad，寄希望于可以实现轻量级的编程。</p>
 <h4 id="为什么要选择iPad？"><a href="#为什么要选择iPad？" class="headerlink" title="为什么要选择iPad？"></a>为什么要选择iPad？</h4><ul>
 <li>首先是为了能够阅读编码类的书籍，这方面，kindle几乎没法阅读代码书籍，用电脑看太大，体验不佳，只有iPad是完美的选择。</li>
-<li>另一方面，苹果在2021年的WWDC上发布了在iPad上可用的Swift编码程序。<br><img src="/ipad1.png"></li>
+<li>另一方面，苹果在2021年的WWDC上发布了在iPad上可用的Swift编码程序。<br><img src="/2023/07/03/2023/07/daily-tech-blog-collection-20230703/ipad1.png"></li>
 </ul>
 <h4 id="iPad在哪方面表现优秀？"><a href="#iPad在哪方面表现优秀？" class="headerlink" title="iPad在哪方面表现优秀？"></a>iPad在哪方面表现优秀？</h4><ul>
 <li>很多很多。写作，制表，音乐制作，视频剪辑。</li>
@@ -5398,19 +5398,21 @@
 <li>搭配了鼠标，iPad上新增的鼠标指针功能在使用了一段时间后，发现它也非常好用。</li>
 <li>第二代ipad pencil非常棒，可靠而精确。</li>
 </ul>
+<span id="more"></span>
+
 <h4 id="性能和电池"><a href="#性能和电池" class="headerlink" title="性能和电池"></a>性能和电池</h4><ul>
 <li>新的M1芯片表现卓越，性能和电池续航都很出色。</li>
-<li>电池续航尤其值得一提，据作者说，甚至可以</li>
+<li>电池续航尤其值得一提，据作者说，可以数天不充电依然电量充足。</li>
 </ul>
 <h4 id="重量"><a href="#重量" class="headerlink" title="重量"></a>重量</h4><p>iPad本身非常轻巧，但是一旦增加了上述配件，iPad就会增加到几乎两倍重量。权衡利弊，作者认为这是值得的。</p>
 <h4 id="你能够在iPad上编程吗？"><a href="#你能够在iPad上编程吗？" class="headerlink" title="你能够在iPad上编程吗？"></a>你能够在iPad上编程吗？</h4><p>简短回答：可以。</p>
 <p>详细回答：这实际上取决于你想要进行什么类型的编码以及你将使用何种开发环境。如果你只是在Swift Playgrounds中学习Swift，那么当然可以用它来编码，但是你也可以使用基本款的iPad以节省成本。</p>
 <p>如果你是一名主要在SSH终端中工作的系统管理员，或者如果你可以访问基于浏览器的云开发环境，那么iPad适合你的工作流程，尤其是如果你想将它与外接显示器或USB-C转HDMI一起使用。</p>
-<p>但是，如果你需要运行Xcode、VSCode、WebStorm或Intellij，据我所知，iPad则不适用。</p>
+<p>但是，如果你需要运行Xcode、VSCode、WebStorm或Intellij，iPad则不适用。</p>
 <h4 id="为什么不应该在2023年买一个iPad"><a href="#为什么不应该在2023年买一个iPad" class="headerlink" title="为什么不应该在2023年买一个iPad"></a>为什么不应该在2023年买一个iPad</h4><ul>
-<li>它很昂贵。购买了一款功能强大的专业版iPad、一款不错的键盘和一支笔后，价格比我本可以购买的用于更多编码活动的笔记本电脑还要高。</li>
-<li>键盘快捷键和操作系统不太适合高级用户的需求。某些应用程序中我的一些快捷键无法工作，这取决于开发者编码应用程序的方式和其支持的功能。而且其他类型的自定义选项也不够丰富，无法满足我的需求。</li>
-<li>屏幕较小 - 为了节省一些成本，我选择了11英寸而不是12.9英寸的版本。即使我选择了12.9英寸，对我来说仍然太小了。我最舒适的是15或16英寸的笔记本电脑，所以11英寸对我来说只是微不足道的。但要承认的是，你可以连接外接显示器来扩大屏幕。</li>
+<li>它很昂贵。购买了一款功能强大的专业版iPad、一款不错的键盘和一支笔后，价格比本可以购买的用于更多编码活动的笔记本电脑还要高。</li>
+<li>键盘快捷键和操作系统不太适合高级用户的需求。某些应用程序中的一些快捷键无法工作，这取决于开发者编码应用程序的方式和其支持的功能。而且其他类型的自定义选项也不够丰富，无法满足需求。</li>
+<li>屏幕较小 - 为了节省一些成本，作者选择了11英寸而不是12.9英寸的版本。即使选择了12.9英寸，仍然太小了。我最舒适的是15或16英寸的笔记本电脑，所以11英寸对我来说只是微不足道的。但要承认的是，你可以连接外接显示器来扩大屏幕。</li>
 </ul>
 <p><strong>总之，目前看来，用iPad编程不如买一个相对便宜的MacBook。</strong></p>
 <h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="推特在DDOS攻击自己"><a href="#推特在DDOS攻击自己" class="headerlink" title="推特在DDOS攻击自己"></a><a href="https://sfba.social/@sysop408/110639435788921057">推特在DDOS攻击自己</a></h3><p>博主通过后台发现推特在ddos攻击推特自己，这件事本身就很有趣，而细究此事的前因后果就更具有戏剧性。</p>
@@ -5474,7 +5476,7 @@
   <entry>
     <title>每日文章收集-20230704</title>
     <url>/2023/07/04/2023/07/daily-tech-blog-collection-20230704/</url>
-    <content><![CDATA[<h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="Anna’s-Archive：世界上最大的开源资料网站"><a href="#Anna’s-Archive：世界上最大的开源资料网站" class="headerlink" title="Anna’s Archive：世界上最大的开源资料网站"></a><a href="https://annas-archive.org/">Anna’s Archive：世界上最大的开源资料网站</a></h3><h3 id="糟糕的房地产广告照片"><a href="#糟糕的房地产广告照片" class="headerlink" title="糟糕的房地产广告照片"></a><a href="https://terriblerealestateagentphotos.com/">糟糕的房地产广告照片</a></h3><h3 id="Karabiner-Elements：macOS环境下的强大键盘工具"><a href="#Karabiner-Elements：macOS环境下的强大键盘工具" class="headerlink" title="Karabiner-Elements：macOS环境下的强大键盘工具"></a><a href="https://karabiner-elements.pqrs.org/">Karabiner-Elements：macOS环境下的强大键盘工具</a></h3>]]></content>
+    <content><![CDATA[<h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="Anna’s-Archive：世界上最大的开源资料网站"><a href="#Anna’s-Archive：世界上最大的开源资料网站" class="headerlink" title="Anna’s Archive：世界上最大的开源资料网站"></a><a href="https://annas-archive.org/">Anna’s Archive：世界上最大的开源资料网站</a></h3><h3 id="糟糕的房地产广告照片"><a href="#糟糕的房地产广告照片" class="headerlink" title="糟糕的房地产广告照片"></a><a href="https://terriblerealestateagentphotos.com/">糟糕的房地产广告照片</a></h3><h3 id="Karabiner-Elements：macOS环境下的强大键盘工具"><a href="#Karabiner-Elements：macOS环境下的强大键盘工具" class="headerlink" title="Karabiner-Elements：macOS环境下的强大键盘工具"></a><a href="https://karabiner-elements.pqrs.org/">Karabiner-Elements：macOS环境下的强大键盘工具</a></h3><h3 id="看下游戏手柄在CT扫描下的结构"><a href="#看下游戏手柄在CT扫描下的结构" class="headerlink" title="看下游戏手柄在CT扫描下的结构"></a><a href="https://www.scanofthemonth.com/scans/gamepads">看下游戏手柄在CT扫描下的结构</a></h3><h3 id="当一个app的服务器只部署在US-EAST-1"><a href="#当一个app的服务器只部署在US-EAST-1" class="headerlink" title="当一个app的服务器只部署在US-EAST-1"></a><a href="https://blog.jonlu.ca/posts/us-east-1-latency">当一个app的服务器只部署在US-EAST-1</a></h3>]]></content>
       <categories>
         <category>每日文章收集</category>
       </categories>
