@@ -5476,7 +5476,93 @@
   <entry>
     <title>每日文章收集-20230704</title>
     <url>/2023/07/04/2023/07/daily-tech-blog-collection-20230704/</url>
-    <content><![CDATA[<h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="Anna’s-Archive：世界上最大的开源资料网站"><a href="#Anna’s-Archive：世界上最大的开源资料网站" class="headerlink" title="Anna’s Archive：世界上最大的开源资料网站"></a><a href="https://annas-archive.org/">Anna’s Archive：世界上最大的开源资料网站</a></h3><h3 id="糟糕的房地产广告照片"><a href="#糟糕的房地产广告照片" class="headerlink" title="糟糕的房地产广告照片"></a><a href="https://terriblerealestateagentphotos.com/">糟糕的房地产广告照片</a></h3><h3 id="Karabiner-Elements：macOS环境下的强大键盘工具"><a href="#Karabiner-Elements：macOS环境下的强大键盘工具" class="headerlink" title="Karabiner-Elements：macOS环境下的强大键盘工具"></a><a href="https://karabiner-elements.pqrs.org/">Karabiner-Elements：macOS环境下的强大键盘工具</a></h3><h3 id="看下游戏手柄在CT扫描下的结构"><a href="#看下游戏手柄在CT扫描下的结构" class="headerlink" title="看下游戏手柄在CT扫描下的结构"></a><a href="https://www.scanofthemonth.com/scans/gamepads">看下游戏手柄在CT扫描下的结构</a></h3><h3 id="当一个app的服务器只部署在US-EAST-1"><a href="#当一个app的服务器只部署在US-EAST-1" class="headerlink" title="当一个app的服务器只部署在US-EAST-1"></a><a href="https://blog.jonlu.ca/posts/us-east-1-latency">当一个app的服务器只部署在US-EAST-1</a></h3>]]></content>
+    <content><![CDATA[<h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="Anna’s-Archive：世界上最大的开源图书馆"><a href="#Anna’s-Archive：世界上最大的开源图书馆" class="headerlink" title="Anna’s Archive：世界上最大的开源图书馆"></a><a href="https://annas-archive.org/">Anna’s Archive：世界上最大的开源图书馆</a></h3><p><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/archive1.png"><br>根据网站介绍，这是世界上最大的开源图书馆，目前包含14704605本书, 86614159份报纸, 2379209本漫画, 407040本杂志。</p>
+<p>（Anna’s Archive）是一个非营利项目，有两个目标：<br>保存：备份人类的所有知识和文化。<br>获取：使这些知识和文化对全世界任何人都可获得。</p>
+<p>目前网站估计它们囊括了全世界5%的书籍资料。（1400万本书就敢说包含了全世界5%，这未免吹大牛了。。。）<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/archive2.png"></p>
+<p>稍微查了下，书籍确实还是挺全的，用中文或者英文都能查。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/archive3.png"><br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/archive4.png"></p>
+<h3 id="糟糕的房地产广告照片"><a href="#糟糕的房地产广告照片" class="headerlink" title="糟糕的房地产广告照片"></a><a href="https://terriblerealestateagentphotos.com/">糟糕的房地产广告照片</a></h3><p>这个网站列举了一些拍摄的非常糟糕的房地产照片，各有特点，展示了各种奇葩的房产。</p>
+<p>贴满炫目墙纸的厕所。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/terriblephoto1.jpeg"></p>
+<blockquote>
+<p>有时候，明显缺乏品味反而能帮助房间看起来比实际更大。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/terriblephoto2.jpeg"></p>
+</blockquote>
+<blockquote>
+<p>我始终觉得邻居对于我的万圣节聚会反应过度<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/terriblephoto3.jpeg"></p>
+</blockquote>
+<h3 id="Karabiner-Elements：macOS环境下的强大键盘工具"><a href="#Karabiner-Elements：macOS环境下的强大键盘工具" class="headerlink" title="Karabiner-Elements：macOS环境下的强大键盘工具"></a><a href="https://karabiner-elements.pqrs.org/">Karabiner-Elements：macOS环境下的强大键盘工具</a></h3><p>Karabiner-Elements是一个在macOS Sierra或更高版本上进行键盘自定义的强大实用工具。</p>
+<ul>
+<li><p>下载</p>
+<ul>
+<li>可以从<a href="https://karabiner-elements.pqrs.org/">官网</a>下载。</li>
+<li>如果是<code>homebrew</code>用户，可以用<code>brew install --cask karabiner-elements</code>命令进行安装下载。</li>
+</ul>
+</li>
+<li><p>支持的系统</p>
+<ul>
+<li>macOS 11 Big Sur</li>
+<li>macOS 12 Monterey</li>
+<li>macOS 13 Ventura</li>
+<li>macOS 14 Sonoma</li>
+</ul>
+</li>
+<li><p>核心功能</p>
+<ul>
+<li>简单修改：将普通键更改为其他键。</li>
+<li>复杂修改：通过复杂规则更改键。<ul>
+<li>将一个键更改为多个修饰键的组合。（例如，将大写锁定键更改为Control+Command）</li>
+<li>将修饰键+键更改为键。（例如，将Control+M更改为Return）</li>
+<li>如果单独按下一个键，则发送键事件。</li>
+<li>如果同时按下多个键，则发送键事件。</li>
+<li>鼠标键。</li>
+<li>等等。</li>
+</ul>
+</li>
+<li>功能键：将F1-F12键更改为媒体控制键。</li>
+<li>设备：仅对指定的键盘应用修改。</li>
+<li>配置文件：支持多个配置文件。</li>
+<li>修饰键标志同步：在所有连接的键盘上同步修饰键标志。</li>
+<li>支持安全键盘输入：在安全键盘输入环境（如密码提示、带有安全键盘输入的终端等）上正常工作。</li>
+<li>额外按键支持：启用PC键盘上默认未识别的额外按键。<ul>
+<li>iPad键盘上的Home键，例如Logitech K480</li>
+<li>国际按键</li>
+<li>语言按键（例如，JIS PC键盘上的无变换、变换、片假名键）</li>
+<li>应用程序启动键</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>当前限制：</p>
+<ul>
+<li>由于macOS API的限制，Karabiner-Elements无法修改某些键盘（例如，Apple有线键盘）上的弹出键。</li>
+<li>Karabiner-Elements无法修改非Apple键盘（例如Logitech键盘）上的fn键。</li>
+<li>Karabiner-Elements忽略了系统设置 &gt; 键盘 &gt; 键盘快捷键… &gt; 修饰键配置。</li>
+<li>通过使用简单修改来更改修饰键。（输入事件修改链的详细信息）</li>
+</ul>
+</li>
+</ul>
+<h3 id="看下游戏手柄在CT扫描下的结构"><a href="#看下游戏手柄在CT扫描下的结构" class="headerlink" title="看下游戏手柄在CT扫描下的结构"></a><a href="https://www.scanofthemonth.com/scans/gamepads">看下游戏手柄在CT扫描下的结构</a></h3><p>这个网页对于史上最著名的几个手柄：任天堂SNES，索尼PS5手柄，XBOX手柄进行了透视扫描，看到这些手柄精密的内部结构，让人不得不感叹工业之美，机械之美。这里简单看下NES手柄的介绍。</p>
+<ul>
+<li><p>1985年，任天堂通过标志性的矩形任天堂娱乐系统（NES）手柄，确立了游戏手柄的蓝本。该手柄配备了一个方向键（d-pad）和用于启动、选择、A和B的按钮。30年后，任天堂在switch上又推出了一款复刻版的NES手柄。让我们看下这两者的不同。</p>
+</li>
+<li><p>上面的1985年版的，下面的switch版，外形几乎没有两样。<br><img src="/controller1.png"></p>
+</li>
+<li><p>Switch手柄的电路板具有更细的线路，密集的元件布局以及更复杂的布线，以适应手柄增加的功能和高级特性，例如与Switch主机之间的电池供电的无线连接。<br><img src="/controller2.png"></p>
+</li>
+<li><p>Switch手柄具有更先进的连接接口。在左侧，我们看到了一种球栅阵列（BGA），这是一种用于集成电路的表面贴装封装。BGA提供了一种更紧凑和高效的方式来连接微控制器和电路板，使得连接密度更高。在BGA的右侧是一种用于一些集成电路的四边平封装（QFP）。<br><img src="/controller3.png"></p>
+</li>
+<li><p>手柄电缆通过焊接的5针接头连接到原始SNES游戏手柄电路板的背面。这个焊接接头确保了导线和电路板之间的安全可靠的电气连接。新的手柄采用了与Switch Joy-Con内部相同的锂离子电池。电池在Switch上可以持续使用长达20小时。<br><img src="/controller4.png"></p>
+</li>
+</ul>
+<h3 id="当一个app的服务器只部署在美国东部"><a href="#当一个app的服务器只部署在美国东部" class="headerlink" title="当一个app的服务器只部署在美国东部"></a><a href="https://blog.jonlu.ca/posts/us-east-1-latency">当一个app的服务器只部署在美国东部</a></h3><p>us-east-1（位于弗吉尼亚州的“Centreville”附近）是由AWS运营的主要数据中心之一。</p>
+<p>如果是一家初创公司（甚至是一些成熟的公司），很可能会在这里部署应用程序。如果是一个有状态的服务，或者架构不支持分布式计算，很可能只会在此处部署。这种时候如果用户在澳大利亚的悉尼，那么发起的任何网络请求都需要经过15,677公里直线距离上的传输。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/latency1.webp"></p>
+<p>而这个距离即使在光速下也需要104ms才能达到。而在现实中，需要考虑其他干扰，其他流量和处理请求所花费的时间，基本上需要215ms左右。</p>
+<p>对于许多网站来说，可能会有几十个请求到不同的域，并且每个请求都需要建立和终止连接。这意味着更多的时间处理。</p>
+<p>完整的TLS 1.2握手需要完成2次往返，当与TCP的SYN和SYN-ACK协商结合在一起时，它将扩展到3个完整的往返。虽然TLS 1.3在TCP下将其减少为两个往返，但仍会给每个连接增加相当大的延迟。</p>
+<p>当你意识到许多请求是链接在一起的，或者彼此依赖时，问题就变得更加复杂。例如，在CSS文件中的图像只能在CSS文件被下载后才能请求，而CSS文件本身只能在浏览器解析HTML后才能下载。HTTP/2及其多路复用可以改善这个问题，但并不能完全解决——每个请求可能托管在不同的域上，或者占用浏览器的最大并发连接数。</p>
+<p>协议的改进也不能解决网站架构的根本问题——如果你的SPA（单页应用程序）没有得到适当的优化，浏览器需要先下载所有内容，然后执行JavaScript代码，只有在JavaScript执行完毕后，才开始进行API请求和获取用于填充页面内容的资源。</p>
+<p>这就是级联的延迟地狱。综合起来，这可能会给一个简单的网站增加数千毫秒的加载时间。</p>
+<p>在尝试为性能优化网页和API响应花费了很多时间后，我对延迟有了一个相当准确的内部模型。当我在纽约和旧金山之间时，我无法完全察觉到us-east-1服务器之间的区别，但当我在意大利时，我绝对可以感觉到是否部署了eu-central-1的实例，或者当我在悉尼时，是否部署了ap-east-1的实例。在原生应用程序中更容易察觉，因为界面反应更加迅速，唯一的变量就是API请求的持续时间。当你在列表上进行下拉刷新时，它会比你习惯的时间稍微停顿一下。</p>
+<p>使用全球CDN可以帮助更快地将资源提供给用户，大多数公司现在都使用类似Cloudflare或Vercel的服务，但仍然只通过静态或缓存内容提供服务。很多时候，源服务器仍然是部署在单个位置的集中式巨型服务器，或者只有一个数据库集群。</p>
+]]></content>
       <categories>
         <category>每日文章收集</category>
       </categories>
