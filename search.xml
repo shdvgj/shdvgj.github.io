@@ -5708,4 +5708,52 @@
         <category>每日文章收集</category>
       </categories>
   </entry>
+  <entry>
+    <title>旁路由入门-iStoreOS实现局域网科学上网</title>
+    <url>/2023/07/06/2023/07/bridge-mode-starter-istoreos/</url>
+    <content><![CDATA[<h2 id="什么是旁路由？"><a href="#什么是旁路由？" class="headerlink" title="什么是旁路由？"></a>什么是旁路由？</h2><p>主要参考自一篇文章<a href="https://cloud.tencent.com/developer/article/2036952">《关于旁路由设置后，主路由WIFI无法上网的问题「建议收藏」》</a></p>
+<blockquote>
+<p>旁路由： 旁路由其实并不是路由，路由是用来连接不同网络的，最常用的就是用来连接互联网和局域网。旁路由起到的主要是网关的作用，是用来分流数据和扩展插件的。因此，严谨一点的叫法应该是<strong>旁路网关</strong>，只是大家好像约定俗成了都叫做旁路由，所以我们这里也跟着叫旁路由，但是要明白它的核心是网关而不是路由。</p>
+</blockquote>
+<p><img src="/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge1.png"></p>
+<blockquote>
+<p>如图所示，对于普通流量，由于旁路由不修改任何内容，我们期望旁路由只转发上行数据，而下行数据由主路由直接发送给主机。对于需要代理的流量，则下行数据也得交给旁路由处理，然后才能转发给主机。</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="为什么用旁路由？"><a href="#为什么用旁路由？" class="headerlink" title="为什么用旁路由？"></a>为什么用旁路由？</h2><p>其实正常来讲，旁路由并不是成本最低最简单的局域网设备科学上网的方法。</p>
+<p>成本最低的方法，简单一句话就讲完了：在局域网内的一台电脑上装一个clash，并打开[允许局域网连接]，然后配置一下需要科学上网设备的代理，就可以轻松实现局域网设备的科学上网。</p>
+<p>但是，有些坑爹的设备没有代理设置，比如Apple TV，就不能通过我说的简单方式来解决（严格来说，也不是不能解决，youtube上有教程，但是得通过一台常开机的苹果电脑，这个门槛略高）。</p>
+<h2 id="旁路由科学上网的前提准备"><a href="#旁路由科学上网的前提准备" class="headerlink" title="旁路由科学上网的前提准备"></a>旁路由科学上网的前提准备</h2><ul>
+<li>一台可以刷istoreos的设备用来当作旁路由，这里是<a href="https://doc.linkease.com/zh/guide/istoreos/storeos_hardware.html#%E6%94%AF%E6%8C%81%E7%A1%AC%E4%BB%B6">硬件列表</a>，其中x86设备就是指一般的电脑，我用的就是一台不用的笔记本。别的树莓派什么的都大同小异。</li>
+<li>一个至少2g的u盘用来刷进istoreos固件。</li>
+<li>一个能用来科学上网的机场，这个就不展开说了。</li>
+</ul>
+<h2 id="iStoreOS安装到笔记本"><a href="#iStoreOS安装到笔记本" class="headerlink" title="iStoreOS安装到笔记本"></a>iStoreOS安装到笔记本</h2><h3 id="iStoreOS说明"><a href="#iStoreOS说明" class="headerlink" title="iStoreOS说明"></a><a href="https://www.istoreos.com/">iStoreOS说明</a></h3><p>这是一个国产的开源项目，基于openwrt开发，主打一个简单易用。我体验过来也确实如此，openwrt的教程看了十几个都是云里雾里，而istoreos的教程只看了一个就搞定了，非常适合初学者来使用。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>由于我用的是笔记本，所以下面就是以x86设备来说明。</p>
+<ul>
+<li>下载固件：<a href="https://fw.koolcenter.com/iStoreOS/">下载地址</a>。</li>
+<li>这里有两种x86的固件，x86_64_efi和x86_64，这里主要是分别针对uefi和bios启动方式的电脑，可以看下<a href="https://www.zhihu.com/question/21672895">知乎的这篇问答</a>，介绍了两者的区别。<strong>注意，uefi引导方式的电脑要下载x86_64_efi版本，bios引导方式的电脑要下载x86_64版本</strong>，如何判断：<ul>
+<li>Win + R 快捷键调出“运行”对话框，输入“msinfo32”，确定</li>
+<li>在“系统摘要”的右侧窗口中即可看到“BIOS模式”信息，如果显示的是“传统”，即为BIOS启动方式；如果显示的是“UEFI”，则为UEFI启动方式。<br><img src="/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge2.png"></li>
+</ul>
+</li>
+<li>电脑上用rufus 做 USB 启动盘，<a href="https://rufus.ie/zh/">Rufus下载</a>，将刚刚下载的固件刷到U盘。<br><img src="/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge3.png"></li>
+<li>把U盘接入X86机器，从bios选择启动盘为U盘。</li>
+<li>等待一系列刷屏后，出现欢迎界面，回车，然后键入quickstart。</li>
+<li>选择Install X86。<br><img src="/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge4.png"></li>
+<li>系统写入完成后，拔掉外接设备(U盘/键盘等)，通电启动。</li>
+<li>将笔记本电脑的网口用网线连接到你局域网内主路由设备的lan口。</li>
+</ul>
+<h3 id="可能的坑"><a href="#可能的坑" class="headerlink" title="可能的坑"></a>可能的坑</h3><ul>
+<li>从u盘安装到目标电脑之后重启，如果出现下面这样的报错，说明你安装错了固件，换成x86_64_efi或者x86_64<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">XZ-compressed data is corrupt</span><br><span class="line"></span><br><span class="line">– System halted</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="后台管理配置"><a href="#后台管理配置" class="headerlink" title="后台管理配置"></a>后台管理配置</h2>]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>旁路由</tag>
+        <tag>科学上网</tag>
+      </tags>
+  </entry>
 </search>
