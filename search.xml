@@ -5482,6 +5482,8 @@
 <p>学习是一种将信息转换为长久知识的过程。信息是短暂的，知识是基础。把知识看作是人的话，信息就是这个人的一张照片而已。</p>
 <p>理论上如果堆积足够多的信息，它最终会转化为知识。但是作者读了那么多的商业类新闻，却最终没有得到足够多的商业知识。</p>
 <p>作者花了八个月时间去研究元学习是怎么回事：人类究竟是怎么学习的？</p>
+<span id="more"></span>
+
 <h4 id="高效学习"><a href="#高效学习" class="headerlink" title="高效学习"></a>高效学习</h4><p>作者发现，人类的记忆并不像存储设备，而且学习并不是通过“被动积累”来实现的。</p>
 <p>事实上，我们只有在学习过程中付出真正的努力时才能保留信息。学习的困难程度不仅仅是核心活动的副产品，就像跑步时的气喘一样。相反，这正是使学习成为可能的原因。这种关系是因果关系。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/learn1.png"></p>
 <p><strong>简单的学习是不存在的：学习必须是努力的，才能实现。数字产品让你很容易自欺欺人，让你认为自己在学习，而实际上只是在被娱乐。</strong></p>
@@ -5513,11 +5515,13 @@
 <h3 id="糟糕的房地产广告照片"><a href="#糟糕的房地产广告照片" class="headerlink" title="糟糕的房地产广告照片"></a><a href="https://terriblerealestateagentphotos.com/">糟糕的房地产广告照片</a></h3><p>这个网站列举了一些拍摄的非常糟糕的房地产照片，各有特点，展示了各种奇葩的房产。</p>
 <p>贴满炫目墙纸的厕所。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/terriblephoto1.jpeg"></p>
 <blockquote>
-<p>有时候，明显缺乏品味反而能帮助房间看起来比实际更大。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/terriblephoto2.jpeg"></p>
+<p>有时候，明显缺乏品味反而能帮助房间看起来比实际更大。</p>
 </blockquote>
+<p><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/terriblephoto2.jpeg"></p>
 <blockquote>
-<p>我始终觉得邻居对于我的万圣节聚会反应过度<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/terriblephoto3.jpeg"></p>
+<p>我始终觉得邻居对于我的万圣节聚会反应过度</p>
 </blockquote>
+<p><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/terriblephoto3.jpeg"></p>
 <h3 id="Karabiner-Elements：macOS环境下的强大键盘工具"><a href="#Karabiner-Elements：macOS环境下的强大键盘工具" class="headerlink" title="Karabiner-Elements：macOS环境下的强大键盘工具"></a><a href="https://karabiner-elements.pqrs.org/">Karabiner-Elements：macOS环境下的强大键盘工具</a></h3><p>Karabiner-Elements是一个在macOS Sierra或更高版本上进行键盘自定义的强大实用工具。</p>
 <ul>
 <li><p>下载</p>
@@ -5573,13 +5577,13 @@
 <ul>
 <li><p>1985年，任天堂通过标志性的矩形任天堂娱乐系统（NES）手柄，确立了游戏手柄的蓝本。该手柄配备了一个方向键（d-pad）和用于启动、选择、A和B的按钮。30年后，任天堂在switch上又推出了一款复刻版的NES手柄。让我们看下这两者的不同。</p>
 </li>
-<li><p>上面的1985年版的，下面的switch版，外形几乎没有两样。<br><img src="/controller1.png"></p>
+<li><p>上面的1985年版的，下面的switch版，外形几乎没有两样。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/controller1.png"></p>
 </li>
-<li><p>Switch手柄的电路板具有更细的线路，密集的元件布局以及更复杂的布线，以适应手柄增加的功能和高级特性，例如与Switch主机之间的电池供电的无线连接。<br><img src="/controller2.png"></p>
+<li><p>Switch手柄的电路板具有更细的线路，密集的元件布局以及更复杂的布线，以适应手柄增加的功能和高级特性，例如与Switch主机之间的电池供电的无线连接。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/controller2.png"></p>
 </li>
-<li><p>Switch手柄具有更先进的连接接口。在左侧，我们看到了一种球栅阵列（BGA），这是一种用于集成电路的表面贴装封装。BGA提供了一种更紧凑和高效的方式来连接微控制器和电路板，使得连接密度更高。在BGA的右侧是一种用于一些集成电路的四边平封装（QFP）。<br><img src="/controller3.png"></p>
+<li><p>Switch手柄具有更先进的连接接口。在左侧，我们看到了一种球栅阵列（BGA），这是一种用于集成电路的表面贴装封装。BGA提供了一种更紧凑和高效的方式来连接微控制器和电路板，使得连接密度更高。在BGA的右侧是一种用于一些集成电路的四边平封装（QFP）。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/controller3.png"></p>
 </li>
-<li><p>手柄电缆通过焊接的5针接头连接到原始SNES游戏手柄电路板的背面。这个焊接接头确保了导线和电路板之间的安全可靠的电气连接。新的手柄采用了与Switch Joy-Con内部相同的锂离子电池。电池在Switch上可以持续使用长达20小时。<br><img src="/controller4.png"></p>
+<li><p>手柄电缆通过焊接的5针接头连接到原始SNES游戏手柄电路板的背面。这个焊接接头确保了导线和电路板之间的安全可靠的电气连接。新的手柄采用了与Switch Joy-Con内部相同的锂离子电池。电池在Switch上可以持续使用长达20小时。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/controller4.png"></p>
 </li>
 </ul>
 <h3 id="当一个app的服务器只部署在美国东部"><a href="#当一个app的服务器只部署在美国东部" class="headerlink" title="当一个app的服务器只部署在美国东部"></a><a href="https://blog.jonlu.ca/posts/us-east-1-latency">当一个app的服务器只部署在美国东部</a></h3><p>us-east-1（位于弗吉尼亚州的“Centreville”附近）是由AWS运营的主要数据中心之一。</p>
@@ -5592,6 +5596,81 @@
 <p>这就是级联的延迟地狱。综合起来，这可能会给一个简单的网站增加数千毫秒的加载时间。</p>
 <p>在尝试为性能优化网页和API响应花费了很多时间后，我对延迟有了一个相当准确的内部模型。当我在纽约和旧金山之间时，我无法完全察觉到us-east-1服务器之间的区别，但当我在意大利时，我绝对可以感觉到是否部署了eu-central-1的实例，或者当我在悉尼时，是否部署了ap-east-1的实例。在原生应用程序中更容易察觉，因为界面反应更加迅速，唯一的变量就是API请求的持续时间。当你在列表上进行下拉刷新时，它会比你习惯的时间稍微停顿一下。</p>
 <p>使用全球CDN可以帮助更快地将资源提供给用户，大多数公司现在都使用类似Cloudflare或Vercel的服务，但仍然只通过静态或缓存内容提供服务。很多时候，源服务器仍然是部署在单个位置的集中式巨型服务器，或者只有一个数据库集群。</p>
+]]></content>
+      <categories>
+        <category>每日文章收集</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>每日文章收集-20230706</title>
+    <url>/2023/07/06/2023/07/daily-tech-blog-collection-20230706/</url>
+    <content><![CDATA[<h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h3 id="程序员如何在chatGPT的世界中存活下来"><a href="#程序员如何在chatGPT的世界中存活下来" class="headerlink" title="程序员如何在chatGPT的世界中存活下来"></a><a href="https://spectrum.ieee.org/ai-programming">程序员如何在chatGPT的世界中存活下来</a></h3><h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="圣保罗：一座没有户外广告的城市"><a href="#圣保罗：一座没有户外广告的城市" class="headerlink" title="圣保罗：一座没有户外广告的城市"></a><a href="https://www.amusingplanet.com/2013/07/sao-paulo-city-with-no-outdoor.html">圣保罗：一座没有户外广告的城市</a></h3><p><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/adremove1.jpeg"><br>在2006年，圣保罗市长宣布了一项“城市清洁法令“，要求移除所有的户外广告，包括广告牌、交通工具上的广告以及商店门前的广告。一年之内，有15000个广告牌被拆除，商店标识也必须缩小，以避免违反新法。</p>
+<p>这在当时引起反对，主要理由是：</p>
+<ul>
+<li>这将直接导致大约1.3亿美元的损失，2万人将会失业。</li>
+<li>广告也是某种艺术形式，去除广告使得城市景色非常单调。</li>
+</ul>
+<p>尽管人们预感到不祥的情绪，但圣保罗的经济并未因此崩溃。</p>
+<p>在2011年对该市1100万居民进行的一项调查中，有70%的人认为这项禁令是有益的。意外的是，标志和口号的去除使得之前被忽视的建筑暴露出来，展示了长期以来被隐藏的丰富城市美景。</p>
+<p><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/adremove2.jpeg"><br><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/adremove3.jpeg"></p>
+<h3 id="IMY禁止四家公司使用Google-Analytics"><a href="#IMY禁止四家公司使用Google-Analytics" class="headerlink" title="IMY禁止四家公司使用Google Analytics"></a><a href="https://www.imy.se/en/news/four-companies-must-stop-using-google-analytics/">IMY禁止四家公司使用Google Analytics</a></h3><p>瑞典隐私保护机构（IMY）对四家公司通过Google Analytics向美国转移个人数据的做法进行了审计。接受审计的公司是CDON、Coop、Dagens Industri和Tele2。</p>
+<p>根据数据保护条例GDPR，如果欧洲委员会决定某个第三国（即欧盟/欧洲经济区之外的国家）具有与欧盟/欧洲经济区内相应的个人数据保护水平，个人数据可以转移至该第三国。然而，CJEU在Schrems II判决中裁定，<strong>美国在判决时并不具备这样的适当保护水平。</strong></p>
+<p>在其审计中，IMY认为通过Google的统计工具转移至美国的数据属于个人数据，因为这些数据可以与其他传输的唯一数据相关联。该机构还得出结论，这些公司采取的技术安全措施不足以确保与欧盟/欧洲经济区内的保护水平基本相当。</p>
+<p>根据IMY的审计结果，似乎这些公司的额外技术安全措施都不足够。</p>
+<p>Tele2最近自愿停止使用该统计工具。IMY要求其他三家公司停止使用该工具。</p>
+<h3 id="Bottles：在linux上运行windows软件"><a href="#Bottles：在linux上运行windows软件" class="headerlink" title="Bottles：在linux上运行windows软件"></a><a href="https://usebottles.com/">Bottles：在linux上运行windows软件</a></h3><p>Bottles是一个应用程序，它可以在Linux发行版上轻松管理Windows前缀（windows prefix：一种bottles中的概念，可以看成容器）。<br><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/bottles1.png"></p>
+<ul>
+<li>安装：目前仅支持<a href="https://flatpak.org/setup/">flatpak</a>（大致介绍下，这是一种包管理工具，可以解决包依赖的问题，以及沙盒环境下的运行）的安装。有几种安装方式。<ul>
+<li>从<a href="https://flathub.org/apps/com.usebottles.bottles">flathub</a>安装。</li>
+<li>安装beta版本，安装命令：<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">flatpak remote-add --user flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo</span><br><span class="line">flatpak update --appstream</span><br><span class="line">flatpak install --user flathub-beta com.usebottles.bottles</span><br></pre></td></tr></table></figure></li>
+<li>手动安装<ul>
+<li>依赖<ul>
+<li>org.gnome.Sdk</li>
+<li>org.gnome.Sdk.Compat.i386</li>
+<li>org.freedesktop.Sdk.Extension.toolchain-i386</li>
+</ul>
+</li>
+<li>安装命令<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">### 下载压缩包并解压</span></span><br><span class="line">wget -O bottles-source.zip https://github.com/bottlesdevs/Bottles/archive/main.zip</span><br><span class="line">unzip bottles-source.zip</span><br><span class="line"><span class="built_in">cd</span> Bottles-main</span><br><span class="line"><span class="comment">### flatpak-builder需要先从apt等命令中安装完成</span></span><br><span class="line">flatpak-builder --repo=bottles --force-clean --user build-dir com.usebottles.bottles.yml</span><br><span class="line">flatpak remote-add --user bottles bottles --no-gpg-verify</span><br><span class="line">flatpak install --user bottles com.usebottles.bottles</span><br><span class="line">flatpak run com.usebottles.bottles</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>运行<ul>
+<li>初次运行会出现一个界面介绍bottles的几个概念。</li>
+<li>随后会下载一个大约70mb大小的内容用于构建bottles，一些<a href="https://github.com/bottlesdevs/components">必要组件</a>会下载到库中。</li>
+<li>每个文件都会通过仓库的校验和进行检查，如果检查失败，文件将被删除，安装也将失败。</li>
+<li>安装完成需要一定的时间，完成后就可以根据提示创建bottles和安装windows软件。<br><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/bottles2.png"><br><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/bottles3.png"><br><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/bottles4.png"></li>
+</ul>
+</li>
+</ul>
+<h3 id="Makie：用于Julia的现代绘图库"><a href="#Makie：用于Julia的现代绘图库" class="headerlink" title="Makie：用于Julia的现代绘图库"></a><a href="https://makie.org/">Makie：用于Julia的现代绘图库</a></h3><p>Makie是基于<a href="https://julialang.org/">Julia</a>开发的绘图工具，等等，Julia又是啥？我找了freecodecamp上的一篇<a href="https://www.freecodecamp.org/news/applications-of-julia/">Julia的简短介绍</a>。</p>
+<blockquote>
+<p>Julia是一种高级、高性能的动态编程语言。它结合了像Python这样的脚本语言的易用性和C/C++等编译语言的速度和效率。比较多的用于机器学习，数据分析，图形化等专业领域。</p>
+</blockquote>
+<p>说回Makie，它可以在多个专业领域构建炫酷的数据图形。<br><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/makie1.png"></p>
+<p>主要功能特点：</p>
+<ul>
+<li>手术级的更新和高性能：Makie使用<a href="https://github.com/JuliaGizmos/Observables.jl">Observables.jl</a>（Julia的一个开源库）在给定时间点上只更新必要的内容。通过调整颜色映射来为数十万个点创建动画，每帧只在GPU上直接修改少量字节。</li>
+<li>强大的布局系统：与其他绘图库相比，Makie拥有最强大的布局系统之一，允许您微调任何可能的属性并自由地放置您的图表和子图。</li>
+<li>2D、3D、体数据、网格、滑动条、按钮等各种样式的图形：Makie支持各种基本元素，用于交互式数据探索。这使得快速构建适用于各种数据的仪表板变得简单。</li>
+<li>强大的事件系统和渲染引擎：Makie虽然并非游戏引擎，但其丰富的渲染和交互功能使得创建简单的交互式游戏（如Minecraft）成为可能。</li>
+</ul>
+<h3 id="地球上有多少人曾经存在过？"><a href="#地球上有多少人曾经存在过？" class="headerlink" title="地球上有多少人曾经存在过？"></a><a href="https://prb.org/articles/how-many-people-have-ever-lived-on-earth/">地球上有多少人曾经存在过？</a></h3><blockquote>
+<p>全球人口达到80亿这一里程碑，相当于地球上曾经存在过的总人口数量的近7%。</p>
+</blockquote>
+<p>对曾经存在过的总人口数量的任何估计基本上取决于三个因素：</p>
+<ul>
+<li>人类被认为在地球上存在的时间长度。</li>
+<li>不同时期的人口平均规模。</li>
+<li>每个时期每1000人口的出生人数。</li>
+</ul>
+<p>根据这些指标得出的人类在各个时期的总人口表如下，其中还包括到2050年的预测：<br><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/people1.png"></p>
+<p>人类历史上，出生时的平均预期寿命可能只有约10岁左右。这种较短的预期寿命意味着人类的人口增长困难重重。</p>
+<p>公元14年时，罗马帝国的人口估计达到4500万，涵盖了西班牙到小亚细亚。</p>
+<p>到1650年，世界人口增长到约5亿，与公元1年的3亿估计相比，并没有大幅增长。</p>
+<p>到1800年，世界人口超过了10亿，此后持续增长到目前的80亿人（截至2022年的最新估计）。这种增长在很大程度上是由公共卫生、医学和营养的进步推动的，降低了死亡率，使更多的人能够活得更久，并进入繁殖年龄。</p>
+<p>对曾经出生的人口数量进行估算需要确定人类史前和历史不同时期的人口规模，并将假设的出生率应用于每个时期。</p>
+<p>这种半科学的方法得出的估计结果是，<strong>自现代人类出现以来大约有1170亿次出生。</strong><br><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/people2.png"></p>
 ]]></content>
       <categories>
         <category>每日文章收集</category>
