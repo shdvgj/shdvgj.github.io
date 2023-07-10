@@ -5746,7 +5746,32 @@
 <h3 id="可能的坑"><a href="#可能的坑" class="headerlink" title="可能的坑"></a>可能的坑</h3><ul>
 <li>从u盘安装到目标电脑之后重启，如果出现下面这样的报错，说明你安装错了固件，换成x86_64_efi或者x86_64<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">XZ-compressed data is corrupt</span><br><span class="line"></span><br><span class="line">– System halted</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="后台管理配置"><a href="#后台管理配置" class="headerlink" title="后台管理配置"></a>后台管理配置</h2><p>//TODO</p>
+<h2 id="后台管理配置"><a href="#后台管理配置" class="headerlink" title="后台管理配置"></a>后台管理配置</h2><p>直接访问电脑安装的ip地址，就可以看到如下画面。<br><img src="/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge5.png"></p>
+<h3 id="配置istoreos联网"><a href="#配置istoreos联网" class="headerlink" title="配置istoreos联网"></a>配置istoreos联网</h3><p>此时，istoreos还未联网，需要进行配置。点击网络向导，选择旁路由设置。<br><img src="/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge6.png"></p>
+<p>按照提示填入静态IP，主路由IP，<strong>DNS服务器也要填写为主路由IP。</strong><br><img src="/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge7.png"></p>
+<h3 id="安装passwall"><a href="#安装passwall" class="headerlink" title="安装passwall"></a>安装passwall</h3><ul>
+<li>istoreos自带的istore没有自带passwall，去往<a href="https://github.com/AUK9527/Are-u-ok">github下载的Are-u-ok</a>下载。</li>
+<li>选择x86_64平台</li>
+<li>下载passwall</li>
+<li>这是一个run后缀的包，打开istore，选择手动安装<br><img src="/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge8.png"></li>
+<li>选择run包，就会自动跳出命令行界面进行安装</li>
+<li>等待右上角原点变绿之后就安装完成</li>
+</ul>
+<h3 id="配置passwalll"><a href="#配置passwalll" class="headerlink" title="配置passwalll"></a>配置passwalll</h3><ul>
+<li>在istoreos后台的服务或者VPN界面可以找到刚刚安装的passwall<br><img src="/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge9.png"></li>
+<li>选择节点订阅，选择添加<br><img src="/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge10.png"></li>
+<li>在该页面中粘贴机场网址后点击保存并应用</li>
+</ul>
+<h3 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h3><ul>
+<li>istoreos的后台点击网络-防火墙</li>
+<li>在常规设置里，入站数据，出站数据，转发这三个选项都选择<strong>接受</strong><br><img src="/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge11.png"></li>
+<li>在自定义规则里，添加一行<code>iptables -t nat -I POSTROUTING -o eth0 -j MASQUERADE</code></li>
+</ul>
+<h2 id="上网设备配置走旁路由"><a href="#上网设备配置走旁路由" class="headerlink" title="上网设备配置走旁路由"></a>上网设备配置走旁路由</h2><ul>
+<li>修改ipv4为手动，ip地址填入和旁路由同一网段的ip，子网掩码填255.255.255.0</li>
+<li>修改路由器为旁路由IP</li>
+<li>添加DNS为旁路由IP</li>
+</ul>
 ]]></content>
       <categories>
         <category>学习</category>
