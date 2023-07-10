@@ -20,19 +20,19 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="什么是旁路由？主要参考自一篇文章《关于旁路由设置后，主路由WIFI无法上网的问题「建议收藏」》  旁路由： 旁路由其实并不是路由，路由是用来连接不同网络的，最常用的就是用来连接互联网和局域网。旁路由起到的主要是网关的作用，是用来分流数据和扩展插件的。因此，严谨一点的叫法应该是旁路网关，只是大家好像约定俗成了都叫做旁路由，所以我们这里也跟着叫旁路由，但是要明白它的核心是网关而不是路由。    如图所">
+<meta name="description" content="什么是旁路由？ 旁路由： 旁路由其实并不是路由，路由是用来连接不同网络的，最常用的就是用来连接互联网和局域网。旁路由起到的主要是网关的作用，是用来分流数据和扩展插件的。因此，严谨一点的叫法应该是旁路网关，只是大家好像约定俗成了都叫做旁路由，所以我们这里也跟着叫旁路由，但是要明白它的核心是网关而不是路由。    如图所示，对于普通流量，由于旁路由不修改任何内容，我们期望旁路由只转发上行数据，而下行数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="旁路由入门-iStoreOS实现局域网科学上网">
 <meta property="og:url" content="http://shdvgj.github.io/2023/07/06/2023/07/bridge-mode-starter-istoreos/index.html">
 <meta property="og:site_name" content="Ricky的个人博客">
-<meta property="og:description" content="什么是旁路由？主要参考自一篇文章《关于旁路由设置后，主路由WIFI无法上网的问题「建议收藏」》  旁路由： 旁路由其实并不是路由，路由是用来连接不同网络的，最常用的就是用来连接互联网和局域网。旁路由起到的主要是网关的作用，是用来分流数据和扩展插件的。因此，严谨一点的叫法应该是旁路网关，只是大家好像约定俗成了都叫做旁路由，所以我们这里也跟着叫旁路由，但是要明白它的核心是网关而不是路由。    如图所">
+<meta property="og:description" content="什么是旁路由？ 旁路由： 旁路由其实并不是路由，路由是用来连接不同网络的，最常用的就是用来连接互联网和局域网。旁路由起到的主要是网关的作用，是用来分流数据和扩展插件的。因此，严谨一点的叫法应该是旁路网关，只是大家好像约定俗成了都叫做旁路由，所以我们这里也跟着叫旁路由，但是要明白它的核心是网关而不是路由。    如图所示，对于普通流量，由于旁路由不修改任何内容，我们期望旁路由只转发上行数据，而下行数">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://shdvgj.github.io/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge1.png">
 <meta property="og:image" content="http://shdvgj.github.io/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge2.png">
 <meta property="og:image" content="http://shdvgj.github.io/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge3.png">
 <meta property="og:image" content="http://shdvgj.github.io/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge4.png">
 <meta property="article:published_time" content="2023-07-06T07:55:49.000Z">
-<meta property="article:modified_time" content="2023-07-06T09:07:47.026Z">
+<meta property="article:modified_time" content="2023-07-07T08:10:37.893Z">
 <meta property="article:author" content="Ricky">
 <meta property="article:tag" content="旁路由">
 <meta property="article:tag" content="科学上网">
@@ -95,7 +95,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">58</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">60</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -152,7 +152,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%97%81%E8%B7%AF%E7%94%B1%EF%BC%9F"><span class="nav-text">什么是旁路由？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E6%97%81%E8%B7%AF%E7%94%B1%EF%BC%9F"><span class="nav-text">为什么用旁路由？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%81%E8%B7%AF%E7%94%B1%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E7%9A%84%E5%89%8D%E6%8F%90%E5%87%86%E5%A4%87"><span class="nav-text">旁路由科学上网的前提准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iStoreOS%E5%AE%89%E8%A3%85%E5%88%B0%E7%AC%94%E8%AE%B0%E6%9C%AC"><span class="nav-text">iStoreOS安装到笔记本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iStoreOS%E8%AF%B4%E6%98%8E"><span class="nav-text">iStoreOS说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E7%9A%84%E5%9D%91"><span class="nav-text">可能的坑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE"><span class="nav-text">后台管理配置</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%97%81%E8%B7%AF%E7%94%B1%EF%BC%9F"><span class="nav-text">什么是旁路由？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E6%97%81%E8%B7%AF%E7%94%B1%EF%BC%9F"><span class="nav-text">为什么用旁路由？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%81%E8%B7%AF%E7%94%B1%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E7%9A%84%E5%89%8D%E6%8F%90%E5%87%86%E5%A4%87"><span class="nav-text">旁路由科学上网的前提准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iStoreOS%E5%AE%89%E8%A3%85%E5%88%B0%E7%AC%94%E8%AE%B0%E6%9C%AC"><span class="nav-text">iStoreOS安装到笔记本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iStoreOS%E8%AF%B4%E6%98%8E"><span class="nav-text">iStoreOS说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E7%9A%84%E5%9D%91"><span class="nav-text">可能的坑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE"><span class="nav-text">后台管理配置</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -167,7 +167,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">60</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -255,10 +255,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-07-06 15:55:49 / 修改时间：17:07:47" itemprop="dateCreated datePublished" datetime="2023-07-06T15:55:49+08:00">2023-07-06</time>
+      <time title="创建时间：2023-07-06 15:55:49" itemprop="dateCreated datePublished" datetime="2023-07-06T15:55:49+08:00">2023-07-06</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2023-07-07 16:10:37" itemprop="dateModified" datetime="2023-07-07T16:10:37+08:00">2023-07-07</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -286,8 +292,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="什么是旁路由？"><a href="#什么是旁路由？" class="headerlink" title="什么是旁路由？"></a>什么是旁路由？</h2><p>主要参考自一篇文章<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2036952">《关于旁路由设置后，主路由WIFI无法上网的问题「建议收藏」》</a></p>
-<blockquote>
+        <h2 id="什么是旁路由？"><a href="#什么是旁路由？" class="headerlink" title="什么是旁路由？"></a>什么是旁路由？</h2><blockquote>
 <p>旁路由： 旁路由其实并不是路由，路由是用来连接不同网络的，最常用的就是用来连接互联网和局域网。旁路由起到的主要是网关的作用，是用来分流数据和扩展插件的。因此，严谨一点的叫法应该是<strong>旁路网关</strong>，只是大家好像约定俗成了都叫做旁路由，所以我们这里也跟着叫旁路由，但是要明白它的核心是网关而不是路由。</p>
 </blockquote>
 <p><img src="/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge1.png"></p>
@@ -304,7 +309,7 @@
 <li>一个能用来科学上网的机场，这个就不展开说了。</li>
 </ul>
 <h2 id="iStoreOS安装到笔记本"><a href="#iStoreOS安装到笔记本" class="headerlink" title="iStoreOS安装到笔记本"></a>iStoreOS安装到笔记本</h2><h3 id="iStoreOS说明"><a href="#iStoreOS说明" class="headerlink" title="iStoreOS说明"></a><a target="_blank" rel="noopener" href="https://www.istoreos.com/">iStoreOS说明</a></h3><p>这是一个国产的开源项目，基于openwrt开发，主打一个简单易用。我体验过来也确实如此，openwrt的教程看了十几个都是云里雾里，而istoreos的教程只看了一个就搞定了，非常适合初学者来使用。</p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>由于我用的是笔记本，所以下面就是以x86设备来说明。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>由于我用的是笔记本，所以下面就是以x86设备来说明。</p>
 <ul>
 <li>下载固件：<a target="_blank" rel="noopener" href="https://fw.koolcenter.com/iStoreOS/">下载地址</a>。</li>
 <li>这里有两种x86的固件，x86_64_efi和x86_64，这里主要是分别针对uefi和bios启动方式的电脑，可以看下<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/21672895">知乎的这篇问答</a>，介绍了两者的区别。<strong>注意，uefi引导方式的电脑要下载x86_64_efi版本，bios引导方式的电脑要下载x86_64版本</strong>，如何判断：<ul>
@@ -322,7 +327,8 @@
 <h3 id="可能的坑"><a href="#可能的坑" class="headerlink" title="可能的坑"></a>可能的坑</h3><ul>
 <li>从u盘安装到目标电脑之后重启，如果出现下面这样的报错，说明你安装错了固件，换成x86_64_efi或者x86_64<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">XZ-compressed data is corrupt</span><br><span class="line"></span><br><span class="line">– System halted</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="后台管理配置"><a href="#后台管理配置" class="headerlink" title="后台管理配置"></a>后台管理配置</h2>
+<h2 id="后台管理配置"><a href="#后台管理配置" class="headerlink" title="后台管理配置"></a>后台管理配置</h2><p>//TODO</p>
+
     </div>
 
     
@@ -344,6 +350,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2023/07/07/2023/07/daily-tech-blog-collection-20230707/" rel="next" title="每日文章收集-20230707">
+                  每日文章收集-20230707 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>

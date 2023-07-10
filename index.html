@@ -84,7 +84,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">58</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">60</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">60</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -219,6 +219,314 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/07/07/2023/07/how-to-build-project-by-cloudflare/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/07/07/2023/07/how-to-build-project-by-cloudflare/" class="post-title-link" itemprop="url">如何通过cloudflare的router处理复杂后台逻辑</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-07 14:08:10" itemprop="dateCreated datePublished" datetime="2023-07-07T14:08:10+08:00">2023-07-07</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2023-07-10 11:51:48" itemprop="dateModified" datetime="2023-07-10T11:51:48+08:00">2023-07-10</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="前提准备"><a href="#前提准备" class="headerlink" title="前提准备"></a>前提准备</h2><ul>
+<li>建站：一系列准备工作可看另一篇我的<a target="_blank" rel="noopener" href="https://blog.cindyforever.com/2023/04/12/2023/04/how_to_create_new_site/">建站指南</a>。</li>
+<li>需要本地安装node</li>
+</ul>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><h3 id="获取API-KEY"><a href="#获取API-KEY" class="headerlink" title="获取API KEY"></a>获取API KEY</h3><ul>
+<li>登录cloudflare后台，点击用户头像 -〉点击My Profile</li>
+<li>选择API Tokens -〉Create Token</li>
+<li>选择Edit Cloudflare Workers这一栏，点击Use template<br><img src="/2023/07/07/2023/07/how-to-build-project-by-cloudflare/APIKey.png"></li>
+<li>正常情况下API权限已经按照模版配置好了，不用修改，如需微调，参考<a target="_blank" rel="noopener" href="https://developers.cloudflare.com/fundamentals/api/">API文档</a></li>
+<li>编辑Account Resources和Zone Resources指向你的账号和域名</li>
+<li>点击Continue to summary，下一步点击Create Token</li>
+<li>此时出现API token和用法示例，<strong>注意，立刻保存这个token，后续你将无法再找到</strong><br><img src="/2023/07/07/2023/07/how-to-build-project-by-cloudflare/APIToken.png"></li>
+</ul>
+<h3 id="安装wrangler"><a href="#安装wrangler" class="headerlink" title="安装wrangler"></a>安装wrangler</h3><p><code>wrangler</code> 是cloudflare官方的一个部署包，可以方便的将你的较复杂的后台node代码部署到指定的router上。</p>
+<ul>
+<li>安装命令<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g wrangler</span><br></pre></td></tr></table></figure></li>
+<li>检查版本<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wrangler --version</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="初始化代码"><a href="#初始化代码" class="headerlink" title="初始化代码"></a>初始化代码</h3><p><code>wrangler</code> 有一系列的模版代码，通过命令<code>npx wrangler generate [your-app-name] [modle-name]</code>可以轻松构建一个可部署的<code>wrangler</code>项目</p>
+<ul>
+<li>构建router<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx wrangler generate my-app worker-router</span><br></pre></td></tr></table></figure></li>
+<li>构建测速项目<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx wrangler generate my-app worker-speedtest</span><br></pre></td></tr></table></figure></li>
+<li>sentry错误跟踪<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx wrangler generate my-app mhart/cf-sentry</span><br></pre></td></tr></table></figure>
+还有很多，不一一列举了，可以去<a target="_blank" rel="noopener" href="https://github.com/cloudflare/workers-sdk/tree/main/templates">cloudflare的模版代码库</a>找。<br><img src="/2023/07/07/2023/07/how-to-build-project-by-cloudflare/template1.png"></li>
+</ul>
+<p>在初始化的项目里就可以构建你的后台逻辑了。</p>
+<h3 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h3><ul>
+<li>在生成的<code>wrangler.toml</code>文件中，进行如下配置<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 部署的router名</span></span><br><span class="line">name = <span class="string">&quot;example&quot;</span></span><br><span class="line"><span class="comment">## 项目主页</span></span><br><span class="line">main = <span class="string">&quot;index.js&quot;</span></span><br><span class="line"><span class="comment">## 兼容性日期，可以不动</span></span><br><span class="line"><span class="comment">## 根据[说明](https://developers.cloudflare.com/workers/platform/compatibility-dates/)，最好实时更新到最新日期，以支持最新的cloudflare功能</span></span><br><span class="line">compatibility_date = <span class="string">&quot;2023-07-10&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从cloudflare后台，进入你的网站，右下角可以看到Account ID</span></span><br><span class="line">account_id=<span class="string">&quot;your_acount_id&quot;</span></span><br><span class="line"><span class="comment"># 是否部署到cloudflare的dev域名</span></span><br><span class="line">workers_dev = <span class="literal">false</span></span><br></pre></td></tr></table></figure></li>
+<li>在项目中创建<code>.env</code>文件</li>
+<li>创建环境变量<code>CLOUDFLARE_API_TOKEN=&lt;YOUR_API_TOKEN_VALUE&gt;</code>，将之前获取到的API_TOKEN写入</li>
+</ul>
+<h3 id="部署-1"><a href="#部署-1" class="headerlink" title="部署"></a>部署</h3><ul>
+<li>配置好上述环境变量后，就可以直接运行<code>wrangler deploy</code>进行部署</li>
+<li>也可以运行<code>CLOUDFLARE_API_TOKEN=XXX wrangler deploy</code>手动指定环境变量</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/07/07/2023/07/daily-tech-blog-collection-20230707/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/07/07/2023/07/daily-tech-blog-collection-20230707/" class="post-title-link" itemprop="url">每日文章收集-20230707</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-07-07 09:59:25 / 修改时间：16:51:46" itemprop="dateCreated datePublished" datetime="2023-07-07T09:59:25+08:00">2023-07-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%AF%8F%E6%97%A5%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">每日文章收集</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h2 id="node-crawler：NodeJS端的网络爬虫框架"><a href="#node-crawler：NodeJS端的网络爬虫框架" class="headerlink" title="node-crawler：NodeJS端的网络爬虫框架"></a><a target="_blank" rel="noopener" href="https://github.com/bda-research/node-crawler">node-crawler：NodeJS端的网络爬虫框架</a></h2><p>NodeJS端最强大，最受欢迎的爬虫包。主要Feature：</p>
+<ul>
+<li>服务器端DOM和自动插入jQuery使用Cheerio（默认）或JSDOM，</li>
+<li>可配置的连接池大小和重试次数，</li>
+<li>控制请求速率限制，</li>
+<li>请求的优先级队列，</li>
+<li>forceUTF8模式可让网络爬虫处理字符集的检测和转换，</li>
+<li>与4.x或更新版本兼容。</li>
+</ul>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install crawler</span><br></pre></td></tr></table></figure>
+
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Crawler = <span class="built_in">require</span>(<span class="string">&#x27;crawler&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新建一个爬虫</span></span><br><span class="line"><span class="keyword">const</span> c = <span class="keyword">new</span> Crawler(&#123;</span><br><span class="line">    <span class="attr">maxConnections</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="comment">// 每个页面都会调下列回调方法</span></span><br><span class="line">    <span class="attr">callback</span>: <span class="function">(<span class="params">error, res, done</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (error) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(error);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> $ = res.$;</span><br><span class="line">            <span class="comment">// 获取页面元素</span></span><br><span class="line">            <span class="built_in">console</span>.log($(<span class="string">&#x27;title&#x27;</span>).text());</span><br><span class="line">        &#125;</span><br><span class="line">        done();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设定目标网址，单个网址</span></span><br><span class="line">c.queue(<span class="string">&#x27;http://www.amazon.com&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设定目标网址，多个网址</span></span><br><span class="line">c.queue([<span class="string">&#x27;http://www.google.com/&#x27;</span>,<span class="string">&#x27;http://www.yahoo.com&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设定网址并调用自定义回调方法</span></span><br><span class="line">c.queue([&#123;</span><br><span class="line">    <span class="attr">uri</span>: <span class="string">&#x27;http://parishackers.org/&#x27;</span>,</span><br><span class="line">    <span class="attr">jQuery</span>: <span class="literal">false</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将不会调用全局回调方法</span></span><br><span class="line">    <span class="attr">callback</span>: <span class="function">(<span class="params">error, res, done</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (error) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(error);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;Grabbed&#x27;</span>, res.body.length, <span class="string">&#x27;bytes&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        done();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接解析html源代码（多用于测试）</span></span><br><span class="line">c.queue([&#123;</span><br><span class="line">    <span class="attr">html</span>: <span class="string">&#x27;&lt;p&gt;This is a &lt;strong&gt;test&lt;/strong&gt;&lt;/p&gt;&#x27;</span></span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="限速"><a href="#限速" class="headerlink" title="限速"></a>限速</h3><p>使用<code>rateLimit</code>限制爬取速度。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Crawler = <span class="built_in">require</span>(<span class="string">&#x27;crawler&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> c = <span class="keyword">new</span> Crawler(&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设定两次爬取的间隔，毫秒为单位</span></span><br><span class="line"><span class="comment">     * 这个参数一旦设定，`maxConnections`会被强制设定为1</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    <span class="attr">rateLimit</span>: <span class="number">1000</span>, </span><br><span class="line">    <span class="attr">callback</span>: <span class="function">(<span class="params">err, res, done</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res.$(<span class="string">&#x27;title&#x27;</span>).text());</span><br><span class="line">        done();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">c.queue(tasks);</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义参数"><a href="#自定义参数" class="headerlink" title="自定义参数"></a>自定义参数</h3><p>当需要从前一个请求或响应中获取参数时，可以通过options来传递。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">c.queue(&#123;</span><br><span class="line">    <span class="attr">uri</span>: <span class="string">&#x27;http://www.google.com&#x27;</span>,</span><br><span class="line">    <span class="attr">parameter1</span>: <span class="string">&#x27;value1&#x27;</span>,</span><br><span class="line">    <span class="attr">parameter2</span>: <span class="string">&#x27;value2&#x27;</span>,</span><br><span class="line">    <span class="attr">parameter3</span>: <span class="string">&#x27;value3&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>随后在回调函数中通过<code>res.options</code>来获取该参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(res.options.parameter1);</span><br></pre></td></tr></table></figure>
+
+<p>crawler只会将必要的参数通过options传递，所以不用担心冗余。</p>
+<h3 id="响应数据"><a href="#响应数据" class="headerlink" title="响应数据"></a>响应数据</h3><p>如果是下载文件的请求，比如图片，文档，pdf等，你需要让crawler不要将响应数据转换为string类型，这时将<code>encoding</code>参数设置为null。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Crawler = <span class="built_in">require</span>(<span class="string">&#x27;crawler&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> c = <span class="keyword">new</span> Crawler(&#123;</span><br><span class="line">    <span class="attr">encoding</span>: <span class="literal">null</span>,</span><br><span class="line">    <span class="attr">jQuery</span>: <span class="literal">false</span>,<span class="comment">// set false to suppress warning message.</span></span><br><span class="line">    <span class="attr">callback</span>: <span class="function">(<span class="params">err, res, done</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">            <span class="built_in">console</span>.error(err.stack);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            fs.createWriteStream(res.options.filename).write(res.body);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        done();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">c.queue(&#123;</span><br><span class="line">    <span class="attr">uri</span>: <span class="string">&#x27;https://nodejs.org/static/images/logos/nodejs-1920x1200.png&#x27;</span>,</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;nodejs-1920x1200.png&#x27;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="预请求-preRequest"><a href="#预请求-preRequest" class="headerlink" title="预请求(preRequest)"></a>预请求(preRequest)</h3><p>如果您希望在每个请求之前以同步或异步方式执行某些操作，可以尝试下面的代码。请注意，直接的请求不会触发 preRequest。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> c = <span class="keyword">new</span> Crawler(&#123;</span><br><span class="line">    <span class="attr">preRequest</span>: <span class="function">(<span class="params">options, done</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 这里的“options”不是你传递给“c.queue”的“options”，而是将要传递给“request”模块的</span></span><br><span class="line">        <span class="built_in">console</span>.log(options);</span><br><span class="line">    	<span class="comment">// done方法后，request请求就会开始</span></span><br><span class="line">    	done();</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">callback</span>: <span class="function">(<span class="params">err, res, done</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    	    <span class="built_in">console</span>.log(err);</span><br><span class="line">    	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    	    <span class="built_in">console</span>.log(res.statusCode);</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">c.queue(&#123;</span><br><span class="line">    <span class="attr">uri</span>: <span class="string">&#x27;http://www.google.com&#x27;</span>,</span><br><span class="line">    <span class="comment">// 在这里定义的preRequest会覆盖掉在Crawler里定义的preRequst</span></span><br><span class="line">    <span class="attr">preRequest</span>: <span class="function">(<span class="params">options, done</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    	    <span class="built_in">console</span>.log(options);</span><br><span class="line">    	    done();</span><br><span class="line">    	&#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="InternLM：70亿参数的新开源大语言模型"><a href="#InternLM：70亿参数的新开源大语言模型" class="headerlink" title="InternLM：70亿参数的新开源大语言模型"></a><a target="_blank" rel="noopener" href="https://github.com/InternLM/InternLM">InternLM：70亿参数的新开源大语言模型</a></h3><p>这是一个国产的大语言模型，中文名叫书生·浦语。以下均来自github的介绍。</p>
+<p>InternLM ，即书生·浦语大模型，包含面向实用场景的70亿参数基础模型与对话模型 （InternLM-7B）。模型具有以下特点：</p>
+<ul>
+<li>使用上万亿高质量预料，建立模型超强知识体系；</li>
+<li>支持8k语境窗口长度，实现更长输入与更强推理体验；</li>
+<li>通用工具调用能力，支持用户灵活自助搭建流程；<br>提供了支持模型预训练的轻量级训练框架，无需安装大量依赖包，一套代码支持千卡预训练和单卡人类偏好对齐训练，同时实现了极致的性能优化，实现千卡训练下近90%加速效率。</li>
+</ul>
+<p>开源评测工具 OpenCompass 从学科综合能力、语言能力、知识能力、推理能力、理解能力五大能力维度对InternLM开展全面评测，部分评测结果如下表所示。<br><img src="/2023/07/07/2023/07/daily-tech-blog-collection-20230707/internalLM1.png"></p>
+<h3 id="Evernote已经几乎解雇了所有的员工"><a href="#Evernote已经几乎解雇了所有的员工" class="headerlink" title="Evernote已经几乎解雇了所有的员工"></a><a target="_blank" rel="noopener" href="https://news.ycombinator.com/item?id=36609641">Evernote已经几乎解雇了所有的员工</a></h3><p>Evernote在中国的名字是大名鼎鼎的“印象笔记”，大部分人可能都用过，太久没打开过印象笔记，我都快忘了这个软件，如今却听到了它的这么一个不好的消息。</p>
+<p>如今其收购者（Bending Spoons）已接管了运营。他们还提高了订阅价格，并告知客户他们打算利用新的收入来支付新功能。</p>
+<p>在Hacker News上许多人对这条新闻发出感慨，摘录一些。</p>
+<blockquote>
+<p>我觉得Evernote是试图将免费用户转变为付费用户，但却面临了痛苦的典型例子，这是我们在许多风险投资支持的软件中看到的情况。一旦你免费提供了某项服务，即使你像Evernote那样诚实地解释情况，也几乎不可能收回它。</p>
+<p>Evernote曾经很棒。说实话，它是值得付费的。但他们过早地放弃了一切，导致用户感觉他们所拥有的东西被夺走，从而破坏了信任。Obsidian采取了最明智的策略，提供了编辑器，将文件保存在数据库之外，使其具有可移植性（这样，如果需要转移到其他平台，用户会感到安全），并告诉用户，如果他们想拥有同步功能，可以选择付费，在每个设备上获得一致的体验。 ———— <a target="_blank" rel="noopener" href="https://news.ycombinator.com/user?id=belthesar">belthesar</a></p>
+</blockquote>
+<blockquote>
+<p>我认为这是一个尝试对低价值和低成本的东西收费的例子。<br>在云端存储文本文件非常便宜。而且拥有一个方便编辑这些文件的应用程序也非常便宜。</p>
+<p>一开始它是免费的，因为这是一个“经典”的软件问题，开发成本低，并且对用户来说成本接近于零。</p>
+<p>当Evernote开始为无用的功能收费并锁定我的笔记时，我转而使用了众多免费、开源或非常便宜的替代品之一。</p>
+<p>我认为Evernote的问题在于它应该只是一家由1-2人组成的公司。他们增加了成本，然后提高了价格，而顾客们对此并不满意。</p>
+<p>这里的教训是要么做有价值的事情，要么做便宜的事情。但不要做没有价值但昂贵的事情。</p>
+<p>同步是好的，但可以通过在Dropbox、iCloud或其他平台之上进行层叠来轻松实现笔记的同步。我不想要定制的Evernote同步功能，特别是不愿意为此付与Dropbox一样多的费用。我宁愿只付费使用Dropbox，然后将一堆文件放在其中。 ———— <a target="_blank" rel="noopener" href="https://news.ycombinator.com/user?id=prepend">prepend</a></p>
+</blockquote>
+<blockquote>
+<p>这就是大多数风险投资支持的创业公司的问题。你投入数百万美元用于一个实际上只是一个经过美化的CRUD服务的应用程序，却最终需要一个由500名工程师和另外3000名员工组成的团队。当真正需要盈利时，这些公司很难做到，因为他们所提供的价值主张实际上并不足够吸引人。</p>
+<p>以GrubHub和DoorDash为例。一个基本的订餐系统经过美化之后，是否真的值得支付交易金额的30%作为送餐费？不值得。但必须有人来偿还数十亿美元的无用企业臃肿和数千名员工的开支。 ———— <a target="_blank" rel="noopener" href="https://news.ycombinator.com/user?id=TheKarateKid">TheKarateKid</a></p>
+</blockquote>
+<h3 id="Godot：免费的跨平台游戏开发引擎"><a href="#Godot：免费的跨平台游戏开发引擎" class="headerlink" title="Godot：免费的跨平台游戏开发引擎"></a><a target="_blank" rel="noopener" href="https://godotengine.org/">Godot：免费的跨平台游戏开发引擎</a></h3><p>Godot引擎是一个免费的、全能的跨平台游戏引擎，它使你轻松创建2D和3D游戏变得简单。<br><img src="/2023/07/07/2023/07/daily-tech-blog-collection-20230707/godot1.png"></p>
+<p>主要的feature如下：</p>
+<ul>
+<li>Godot的节点和场景系统为您提供了强大和灵活的能力，使您能够创造任何内容。</li>
+<li>简单而强大的3D：Godot的3D节点为您提供了构建、动画和渲染3D世界和角色所需的一切。</li>
+<li>选择适合工作的语言：使用Godot自己的GDScript、C#、C++或使用GDExtension，使用面向对象的API使您的代码模块化。</li>
+<li>在所有平台上发布：在几秒钟内将游戏部署到桌面、移动设备和Web上。Godot甚至通过第三方支持主机游戏机。</li>
+<li>专注于2D引擎：使用Godot专用的2D渲染引擎和真实的2D像素坐标和2D节点，制作清晰、高性能的2D游戏。</li>
+<li>开源真正开放的开发：任何为Godot做出贡献的人都能平等地受益于其他人的贡献。</li>
+</ul>
+<p>如果觉得虚幻引擎太过笨重的话，这个引擎看起来还挺不错的，个人感觉画面风格和游戏成品好于<a target="_blank" rel="noopener" href="https://gamemaker.io/en">gamemaker</a>或者<a target="_blank" rel="noopener" href="https://store.steampowered.com/app/1096900/RPG_Maker_MZ/?snr=1_5_9__300_2">RPGMaker</a>。</p>
+<h3 id="关于4步文档模型的问题"><a href="#关于4步文档模型的问题" class="headerlink" title="关于4步文档模型的问题"></a><a target="_blank" rel="noopener" href="https://www.hillelwayne.com/post/problems-with-the-4doc-model/">关于4步文档模型的问题</a></h3><p>什么是<a target="_blank" rel="noopener" href="https://documentation.divio.com/">4步文档模型(four document model)</a>？</p>
+<ul>
+<li>教程：描述了如何尽快开始并运行。</li>
+<li>操作说明：描述了如何完成具体任务。</li>
+<li>解释：教授您已经深入了解的主题。</li>
+<li>参考：描述了事物的确切含义和功能。<br><img src="/2023/07/07/2023/07/daily-tech-blog-collection-20230707/4doc1.png"></li>
+</ul>
+<p>这有点像在学校里教授的三段式文章：</p>
+<ul>
+<li>一个起始段落用于介绍背景和主要论点，</li>
+<li>三个正文段落分别独立支持该论点，</li>
+<li>一个结论段落用于总结论据和主要论点。</li>
+</ul>
+<p>而就像学生学习了三段式文章后的问题一样，4步模型会让文档编写者陷入一个“我只能用这个模型写文档”的想法。</p>
+<p>实际上，这个模型至少有两个问题：</p>
+<h4 id="不够通用"><a href="#不够通用" class="headerlink" title="不够通用"></a>不够通用</h4><p>在4步文档模型的官网上，给了三个典型例子用于说明其模型：</p>
+<ul>
+<li>the Divio Developer Handbook</li>
+<li>Django’s documentation</li>
+<li>django CMS’s documentation</li>
+</ul>
+<p>Divio和Django CMS是工具。工具和库与框架和语言不同。工具具有简单的概念模型。只需要知道它们的功能和如何使用它们。4步文档模型最适合反映工具的文档需求。</p>
+<p>而Django是框架，框架比工具更高级，它们主要关注的仍然是“什么和如何”，但它们也有许多相互关联的概念需要理解。虽然它在表面上仍遵循4步文档模型，但“解释”部分的长度是教程和操作说明部分长度的三倍。同时，“解释”部分也在教授用户，这本不应该发生。</p>
+<p>而如果将4步文档模型应用于编程语言，情况会更加糟糕。看一下Python文档，教程部分需要同时解释和引用，而参考资料既包含解释又包含操作说明。语言概念图太过密集，无法进行分离。</p>
+<p>简而言之，4步文档模型并非普适。它是为了记录工具而设计的，无法完全满足框架和编程语言的需求。</p>
+<h3 id="不够全面"><a href="#不够全面" class="headerlink" title="不够全面"></a>不够全面</h3><p>如果所有有用的文档形式都可以归为这四种类型，那么4步文档模型将是全面的。但由于与4步文档模型不普适的原因相同，这并不成立：它只涵盖了工具所需的文档形式。</p>
+<p>如果你要记录一个像编程语言这样复杂的主题，至少还有两种（至少两种）其他类型的文档是你需要的：</p>
+<ul>
+<li>概念概述</li>
+<li>代码片段和示例</li>
+</ul>
+<h3 id="raylib：一个简单易用的库，让您享受视频游戏编程的乐趣。"><a href="#raylib：一个简单易用的库，让您享受视频游戏编程的乐趣。" class="headerlink" title="raylib：一个简单易用的库，让您享受视频游戏编程的乐趣。"></a><a target="_blank" rel="noopener" href="https://github.com/raysan5/raylib">raylib：一个简单易用的库，让您享受视频游戏编程的乐趣。</a></h3><p>raylib受到Borland BGI图形库和XNA框架的启发，特别适用于原型设计、工具开发、图形应用、嵌入式系统和教育领域。</p>
+<p>主要feature：</p>
+<ul>
+<li>无外部依赖，所有必需的库都捆绑在raylib中</li>
+<li>支持多个平台：Windows、Linux、MacOS、RPI、Android、HTML5…</li>
+<li>使用普通C代码（C99）编写，使用PascalCase/camelCase表示法</li>
+<li>通过OpenGL进行硬件加速（支持OpenGL 1.1、2.1、3.3、4.3或ES 2.0）</li>
+<li>独特的OpenGL抽象层（可作为独立模块使用）：rlgl</li>
+<li>支持多种字体格式（TTF、图像字体、AngelCode字体）</li>
+<li>支持多种纹理格式，包括压缩格式（DXT、ETC、ASTC）</li>
+<li>完全支持3D，包括3D形状、模型、广告牌、高度图等等</li>
+<li>灵活的材质系统，支持经典贴图和PBR贴图</li>
+<li>支持动画的3D模型（骨骼动画）（IQM）</li>
+<li>支持着色器，包括模型和后处理着色器。</li>
+<li>强大的数学模块，用于向量、矩阵和四元数操作：raymath</li>
+<li>加载和播放音频，支持流媒体（WAV、OGG、MP3、FLAC、XM、MOD）</li>
+<li>支持配置的VR立体渲染，包括可配置的HMD设备参数</li>
+<li>庞大的示例集合，包含120多个代码示例</li>
+<li>对60多种编程语言进行绑定</li>
+<li>免费且开源</li>
+</ul>
+<p>raylib的设计是通过<a target="_blank" rel="noopener" href="https://github.com/raysan5/raylib/tree/master/examples">示例</a>作为主要参考来学习。没有标准的API文档，但有一个<a target="_blank" rel="noopener" href="https://www.raylib.com/cheatsheet/cheatsheet.html">速查表</a>，其中包含库中所有可用函数的简短描述，输入参数和结果值的名称应该足够直观，以便理解每个函数的工作原理。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/07/06/2023/07/bridge-mode-starter-istoreos/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -242,10 +550,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-07-06 15:55:49 / 修改时间：17:07:47" itemprop="dateCreated datePublished" datetime="2023-07-06T15:55:49+08:00">2023-07-06</time>
+      <time title="创建时间：2023-07-06 15:55:49" itemprop="dateCreated datePublished" datetime="2023-07-06T15:55:49+08:00">2023-07-06</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2023-07-07 16:10:37" itemprop="dateModified" datetime="2023-07-07T16:10:37+08:00">2023-07-07</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -266,8 +580,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="什么是旁路由？"><a href="#什么是旁路由？" class="headerlink" title="什么是旁路由？"></a>什么是旁路由？</h2><p>主要参考自一篇文章<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2036952">《关于旁路由设置后，主路由WIFI无法上网的问题「建议收藏」》</a></p>
-<blockquote>
+          <h2 id="什么是旁路由？"><a href="#什么是旁路由？" class="headerlink" title="什么是旁路由？"></a>什么是旁路由？</h2><blockquote>
 <p>旁路由： 旁路由其实并不是路由，路由是用来连接不同网络的，最常用的就是用来连接互联网和局域网。旁路由起到的主要是网关的作用，是用来分流数据和扩展插件的。因此，严谨一点的叫法应该是<strong>旁路网关</strong>，只是大家好像约定俗成了都叫做旁路由，所以我们这里也跟着叫旁路由，但是要明白它的核心是网关而不是路由。</p>
 </blockquote>
 <p><img src="/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge1.png"></p>
@@ -943,186 +1256,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/" class="post-title-link" itemprop="url">每日文章收集-20230621</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-06-20 16:19:48" itemprop="dateCreated datePublished" datetime="2023-06-20T16:19:48+08:00">2023-06-20</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-07-03 09:14:09" itemprop="dateModified" datetime="2023-07-03T09:14:09+08:00">2023-07-03</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>今天尝试下详细介绍一篇有意思的博文，和若干篇值得一看的技术资讯。</p>
-<h1 id="今日关注"><a href="#今日关注" class="headerlink" title="今日关注"></a>今日关注</h1><h2 id="同时在三个平台上发布我的独立游戏，在财务上却失败了"><a href="#同时在三个平台上发布我的独立游戏，在财务上却失败了" class="headerlink" title="同时在三个平台上发布我的独立游戏，在财务上却失败了"></a><a target="_blank" rel="noopener" href="https://juicybeast.com/2016/01/11/releasing-an-indie-game-on-3-consoles-at-once-and-failing-financially/#2-years">同时在三个平台上发布我的独立游戏，在财务上却失败了</a></h2><p>作者讲述了自己在2013到2015年开发了一款独立游戏，叫做<a target="_blank" rel="noopener" href="https://store.steampowered.com/app/342920/Toto_Temple_Deluxe/">Toto Temple</a>，并在2015年9月在PS4, Xbox One, Wii U 和 Steam上发布，最终销售额却不佳，作者回顾这一段经历，并分析可能的原因。</p>
-<h3 id="销售额"><a href="#销售额" class="headerlink" title="销售额"></a>销售额</h3><p>下图是销售额和开发成本的对比。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/revenues.png"><br>左边是各个平台的销售占比，右边是成本，包括了市场营销，代码开发，移植，图形开发等。到作者发文时，游戏总共卖出了6000份，远远达不到他的开发成本。</p>
-<h3 id="为什么这个游戏开发了两年？"><a href="#为什么这个游戏开发了两年？" class="headerlink" title="为什么这个游戏开发了两年？"></a>为什么这个游戏开发了两年？</h3><p>作者说到开发过程中并没有什么具体的规划，只是抓住了各种机遇。</p>
-<p>他回顾了第一年获得了<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Ouya">Ouya</a>公司(Ouya是2013年成立的一个游戏机公司，已在2019年倒闭)的投资，几乎没花任何自己的钱上线了Toto Temple Deluxe版本。并且初期反馈也相当不错，这让他觉得很有成就感。</p>
-<p>第二年作者和三大平台的游戏巨头进行了接触，并且获得了认可。然而由于游戏已在ouya发行，因此无法获得另一份的独占协议。这种情况下，他的开发团队决定在三大平台发行游戏，基于两点考虑：</p>
-<ul>
-<li>三个平台可以获得三倍销售额。</li>
-<li>同时在三大平台发行可以获得一定的关注，并能够和三大平台的老总进行对话。
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/06/19/2023/06/weekly-tech-blog-collection-202306019/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/06/19/2023/06/weekly-tech-blog-collection-202306019/" class="post-title-link" itemprop="url">一周文章收集-20230619</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-06-19 16:28:13" itemprop="dateCreated datePublished" datetime="2023-06-19T16:28:13+08:00">2023-06-19</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-07-03 09:14:02" itemprop="dateModified" datetime="2023-07-03T09:14:02+08:00">2023-07-03</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E4%B8%80%E5%91%A8%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">一周文章收集</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="OpenLLM：开源的大语言模型"><a href="#OpenLLM：开源的大语言模型" class="headerlink" title="OpenLLM：开源的大语言模型"></a><a target="_blank" rel="noopener" href="https://github.com/bentoml/OpenLLM">OpenLLM：开源的大语言模型</a></h2><p>通过OpenLLM，可以使用任何开源的大型语言模型进行推断，将其部署到云端或本地，以及构建强大的人工智能应用程序。<br>需要服务器安装python3.8或以上以及pip。</p>
-<h4 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install openllm</span><br></pre></td></tr></table></figure>
-<h4 id="验证是否安装正确"><a href="#验证是否安装正确" class="headerlink" title="验证是否安装正确"></a>验证是否安装正确</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ openllm -h</span><br></pre></td></tr></table></figure>
-
-<h4 id="启动LLM服务器"><a href="#启动LLM服务器" class="headerlink" title="启动LLM服务器"></a>启动LLM服务器</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openllm start dolly-v2</span><br></pre></td></tr></table></figure>
-
-<p>以上命令会在 <a target="_blank" rel="noopener" href="http://localhost:3000/">http://localhost:3000</a> 发布一个前端页面。</p>
-<h4 id="命令行中使用"><a href="#命令行中使用" class="headerlink" title="命令行中使用"></a>命令行中使用</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> OPENLLM_ENDPOINT=http://localhost:3000</span><br><span class="line">openllm query <span class="string">&#x27;Explain to me the difference between &quot;further&quot; and &quot;farther&quot;&#x27;</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/06/19/2023/06/weekly-tech-blog-collection-202306019/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

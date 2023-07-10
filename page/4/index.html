@@ -84,7 +84,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">58</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">60</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">60</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -210,6 +210,284 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">读书笔记-算法-第一章</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-24 09:07:11" itemprop="dateCreated datePublished" datetime="2022-03-24T09:07:11+08:00">2022-03-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/algrithm.jpg"></p>
+<p><strong>配套网站：<a target="_blank" rel="noopener" href="https://algs4.cs.princeton.edu/home/">https://algs4.cs.princeton.edu/home/</a></strong></p>
+<h2 id="第一章-基础"><a href="#第一章-基础" class="headerlink" title="第一章 基础"></a>第一章 基础</h2><ul>
+<li>无论在任何应用领域，精心设计的算法都是解决大型问题最有效的方法</li>
+<li>我们把描述和实现算法所用到的语言特性、软件库和操作系统特性总称为<strong>基础编程模型</strong></li>
+<li>java程序的基本语法，同时也是多数程序语言的通用语法<ul>
+<li>原始数据类型：它们在计算机程序中精确地定义整数、浮点数和布尔值等。它们的定义包括取值范围和能够对相应的值进行的操作，它们能够被组合为类似于数学公式定义的表达式。<ul>
+<li>int    32位整数(2^31=2147483648)<ul>
+<li>在java中int可表示的范围为（-2147483648——2147483647），2147483648会溢出变为-2147483648，因此Math.abs(-2147483648)=-214783648</li>
+</ul>
+</li>
+<li>double 64位双精度实数</li>
+<li>布尔型  true or false</li>
+<li>string 字符串</li>
+<li>long   64位整数</li>
+<li>short  16位整数(2^15=32768)</li>
+<li>char   16位字符</li>
+<li>byte   8位整数(2^7=128)</li>
+<li>float  32位单精度实数</li>
+</ul>
+</li>
+<li>语句：语句通过创建变量并对其赋值、控制运行流程或者引发副作用来进行计算。我们会使用六种语句：<strong>声明、赋值、条件、循环、调用和返回</strong><ul>
+<li>java是一种强类型语言，编译器会检查类型一致性</li>
+</ul>
+</li>
+<li>数组：数组是多个同种数据类型的值的集合</li>
+<li>静态方法：静态方法可以封装并重用代码，使我们可以用独立的模块开发程序</li>
+<li>字符串：字符串是一连串的字符，Java内置了对它们的一些操作</li>
+<li>标准输入/输出：标准输入输出是程序与外界联系的桥梁</li>
+<li>数据抽象：数据抽象封装和重用代码，使我们可以定义非原始数据类型，进而支持面向对象编程</li>
+</ul>
+</li>
+<li>不同程序语言的运算符计算优先级会有不同，因此通常情况下用括号来进行优先级的改变</li>
+<li>方法的性质<ul>
+<li>方法的参数按值传递<ul>
+<li>调用方法时传递对象名也是值传递，意味着传递的是对象的别名，也就是对象的引用地址，所以在方法内修改其内容也会影响原始值</li>
+</ul>
+</li>
+<li>方法名可以重载</li>
+<li>方法只能返回一个值，但是可以包含多个返回语句</li>
+<li>方法可以产生副作用：在本书中，返回值是void的方法就是副作用</li>
+</ul>
+</li>
+<li><strong>递归原则</strong><ul>
+<li>递归总是在第一行就要包含一个包含return的条件语句</li>
+<li>递归总是尝试先解决一个更小的问题</li>
+<li>递归的父问题和子问题之间不应该有交集</li>
+</ul>
+</li>
+<li><strong>API的目的是将调用和实现分离</strong></li>
+<li>重定向和管道输入<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/redirect.png"></li>
+<li>Java表达式1/0和1.0/0.0的值是什么<ul>
+<li>第一个表达式会产生一个运行时除以零异常（它会终止程序，因为这个值是未定义的）；第二个表达式的值是Infinity（无穷大）。</li>
+</ul>
+</li>
+<li>为什么数组的起始索引是0而不是1<ul>
+<li>这个习惯来源于机器语言，那时要计算一个数组元素的地址需要将数组的起始地址加上该元素的索引。将起始索引设为1要么会浪费数组的第一个元素的空间，要么会花费额外的时间来将索引减1</li>
+</ul>
+</li>
+<li>每次使用new来创建一个对象时，系统都会<ul>
+<li>为新的对象分配内存空间</li>
+<li>调用构造函数初始化对象中的值</li>
+<li>返回该对象的一个引用 </li>
+</ul>
+</li>
+<li>为什么要区别原始数据类型和引用类型？为什么不只用引用类型<ul>
+<li>因为性能。Java提供了Integer、Double等和原始数据类型对应的引用类型，以供希望忽略这些类型的区别的程序员使用。原始数据类型更接近计算机硬件所支持的数据类型，因此使用它们的程序比使用引用类型的程序运行得更快</li>
+</ul>
+</li>
+<li>指针是什么？<ul>
+<li>和Java的引用一样，可以把指针看做机器地址。在许多编程语言中，指针是一种原始数据类型，程序员可以用各种方法操作它。</li>
+<li>但众所周知，指针的编程非常容易出错，因此需要精心设计指针类的操作以帮助程序员避免错误。Java将这种观点发挥到了极致（许多主流编程语言的设计者也赞同这种做法）。</li>
+<li>在Java中，创建引用的方法只有一种（new），且改变引用的方法也只有一种（赋值语句）。也就是说，程序员能对引用进行的操作只有创建和复制。</li>
+<li>在编程语言的行话里，Java的引用被称为安全指针，因为Java能够保证每个引用都会指向某种类型的对象（而且它能找出无用的对象并将其回收）。</li>
+</ul>
+</li>
+<li>栈用于带括号的运算符计算<br><img src="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/dijkstra.png" alt="dijkstra双栈算术表达式求值"></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/24/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/03/21/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/21/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3/" class="post-title-link" itemprop="url">读书笔记-数据结构和算法图解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-21 13:45:25" itemprop="dateCreated datePublished" datetime="2022-03-21T13:45:25+08:00">2022-03-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img src="/2022/03/21/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3/1.jpg"></p>
+<h2 id="第一章-数据结构为何重要"><a href="#第一章-数据结构为何重要" class="headerlink" title="第一章 数据结构为何重要"></a>第一章 数据结构为何重要</h2><ul>
+<li><strong>操作的速度，并不按时间计算，而是按步数计算。理解这个观点</strong>，因为不同机器其实运行速度都会有差异，真正决定效率的是一个操作的步数。</li>
+<li>读取是一步到位，意味着是读取数组的索引<ul>
+<li>计算机的内存可以看成一堆格子，内存的格子是地址连续的</li>
+<li>声明数组时，是在内存中划分出一些连续的格子</li>
+<li>查找任意索引，最多都是只需要1步</li>
+</ul>
+</li>
+<li>查找意味着从数组中寻找是否存在某个值<ul>
+<li>计算机需要从索引0开始寻找，即线性查找</li>
+<li>查找任意内容，最多步骤为数组的索引长度N</li>
+</ul>
+</li>
+<li>计算机知道数组的索引开始位置和结束位置<ul>
+<li>插入末尾只需要一步，直接在末尾插入即可</li>
+<li>开头或中间的位置，需要先移动其他元素的位置，再进行插入</li>
+<li>最复杂的插入，是在数组开头插入，意味着需要将N个元素都右移，再将元素插入，即N+1步</li>
+</ul>
+</li>
+<li>删除任意元素都需要将右边的元素左移，以保持数组的连续性和完整性</li>
+<li>最复杂的删除是删除开头元素，删除为1步，之后将N-1个元素左移，最终为N步</li>
+<li>集合是一种不允许元素重复的数据结构<ul>
+<li>读取，查找，删除和数组的效率是一致的</li>
+<li>插入的效率和数组不同<ul>
+<li>需要先确定这个元素在不在集合内，因此需要先查找一遍，如前文所诉，最多需要N步</li>
+<li>确定要插入的元素不在集合内后，进行插入，和数组一样，最多需要N+1步</li>
+<li>因此集合的插入最终的复杂度为2N+1步
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/21/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1008,230 +1286,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2021/12/09/news/%E6%96%B0%E9%97%BB%E7%BF%BB%E8%AF%91-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/09/news/%E6%96%B0%E9%97%BB%E7%BF%BB%E8%AF%91-2/" class="post-title-link" itemprop="url">新闻翻译-2</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-12-09 11:12:43" itemprop="dateCreated datePublished" datetime="2021-12-09T11:12:43+08:00">2021-12-09</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%8B%B1%E8%AF%AD/" itemprop="url" rel="index"><span itemprop="name">英语</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://www.smithsonianmag.com/smart-news/chinese-rover-spots-weird-cube-on-the-moon-180979174/">原文链接</a> </p>
-<h2 id="Chinese-Rover-Spots-Weird-Large-‘Cube’-on-the-Moon"><a href="#Chinese-Rover-Spots-Weird-Large-‘Cube’-on-the-Moon" class="headerlink" title="Chinese Rover Spots Weird, Large ‘Cube’ on the Moon"></a>Chinese Rover Spots Weird, Large ‘Cube’ on the Moon</h2><h2 id="中国航天器在月球发现了诡异巨大的”方块”"><a href="#中国航天器在月球发现了诡异巨大的”方块”" class="headerlink" title="中国航天器在月球发现了诡异巨大的”方块”"></a>中国航天器在月球发现了诡异巨大的”方块”</h2><h3 id="The-geometric-lunar-feature-dubbed-a-‘mystery-hut’-has-stumped-scientists-who-say-they-plan-to-take-a-closer-look"><a href="#The-geometric-lunar-feature-dubbed-a-‘mystery-hut’-has-stumped-scientists-who-say-they-plan-to-take-a-closer-look" class="headerlink" title="The geometric lunar feature dubbed a ‘mystery hut’ has stumped scientists, who say they plan to take a closer look"></a>The geometric lunar feature dubbed a ‘mystery hut’ has stumped scientists, who say they plan to take a closer look</h3><h3 id="这个呈几何状的月球物体被戏称为”神秘小屋”，让科学家们感到困惑，他们计划靠近点看看"><a href="#这个呈几何状的月球物体被戏称为”神秘小屋”，让科学家们感到困惑，他们计划靠近点看看" class="headerlink" title="这个呈几何状的月球物体被戏称为”神秘小屋”，让科学家们感到困惑，他们计划靠近点看看"></a>这个呈几何状的月球物体被戏称为”神秘小屋”，让科学家们感到困惑，他们计划靠近点看看</h3><p><img src="/2021/12/09/news/%E6%96%B0%E9%97%BB%E7%BF%BB%E8%AF%91-2/1.png"><br><em>The rover will spend two to three lunar days, which is about two to three months time on Earth, traversing the lunar landscape to take a closer look at the object. CNSA/Our Space/Gizmodo</em><br><em>航天器将花费两到三个月球日，相当于地球上两到三个月的时间，通过月球表面来更近的观察这个物体。<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/dpKkjWHk9tay3JERnrfuUw">CNSA/Our Space/Gizmodo</a></em></p>
-<p>An intriguing cube-shaped object spotted on the far side of the moon has attracted the attention of scientists.<br>一个有趣的方块形状物体，在月球的另一端被发现，这引起了科学家的注意。</p>
-<p>China’s Yutu 2 rover captured images of the mystery structure from around 260 feet away while navigating across the Von Kármán crater in the South Pole-Aitken Basin on the moon, reports Popular Science’s Margo Milanowski. Chinese scientists have already rerouted the rover to take a closer look, but it will take a few months for Yutu 2 to reach the bizarre lunar feature.<br>据<a target="_blank" rel="noopener" href="https://www.popsci.com/science/chinas-rover-mysterious-hut-on-moon/">《流行科学》</a>的Margo Milanowski报道，中国的月兔2号航天器在月球的北部<code>Pole-Aitken</code>盆地，正在穿越<code>Von Kármán</code>坑时，拍摄到一张260英尺外的神秘结构的物体。中国的科学家已经调整航天器的方向以更近的观察，但是这将花费月兔2号几个月的时间去靠近这个奇特的月球物体。</p>
-<p>The shape was spotted on the horizon in November during the mission’s 36th lunar day, according to a Yutu 2 diary published by Our Space, a Chinese language science outreach channel affiliated with the China National Space Administration. Our Space first described the object in a post last week, temporarily dubbing it a “mystery hut” (神秘小屋/shenmi xiaowu).<br>根据<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/dpKkjWHk9tay3JERnrfuUw">《我们的太空》</a>的月兔2号每日报告（这是一家隶属于中国国家航天局的对外中文平台），这个几何体在地平线处发现，正值12月份，执行任务的第36个月球日。《我们的太空》在上周首次描述这个物体，将其戏称为是一个”神秘小屋”。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/12/09/news/%E6%96%B0%E9%97%BB%E7%BF%BB%E8%AF%91-2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2021/12/06/tech/%E7%94%A8ssh%E5%8A%A0%E5%AF%86%E6%96%87%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/06/tech/%E7%94%A8ssh%E5%8A%A0%E5%AF%86%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">用ssh加密文件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-12-06 15:40:05" itemprop="dateCreated datePublished" datetime="2021-12-06T15:40:05+08:00">2021-12-06</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong>声明</strong></p>
-<p>翻译自<a target="_blank" rel="noopener" href="https://www.agwa.name/blog/post/ssh_signatures">Andrew Ayer博客</a><br>翻译水平不佳，自己学习使用</p>
-<hr>
-<h2 id="现在可以使用SSH密钥给任意数据加密"><a href="#现在可以使用SSH密钥给任意数据加密" class="headerlink" title="现在可以使用SSH密钥给任意数据加密"></a>现在可以使用SSH密钥给任意数据加密</h2><p>你知道吗，你可以使用ssh-keygen命令加密和验证任意数据，比如文件和发行软件？尽管这个特性并不是特别新（在2019年随着OpenSSH 8.0发布），依然很少有人知道。<br>这就有点尴尬，因为这个功能非常有用而且可以作为PGP的有效替换用以加密数据。如果你现在在用PGP加密数据，你可以考虑转到SSH签名上。</p>
-<p>以下是我喜欢用SSH签名的原因：</p>
-<ul>
-<li><strong>不是PGP。</strong> 多年来，安全专家已经<a target="_blank" rel="noopener" href="https://latacora.micro.blog/2019/07/16/the-pgp-problem.html">对PGP做出了警告</a>，包括其最重要的组件GnuPG/GPG。<br>PGP太复杂了，用户体验非常糟糕，而且充斥着门槛很高的粗糙老旧的密码学原理，</li>
-<li><strong>SSH无处不在，而且用户早就有SSH密钥了。</strong> 如果你用的是 Debian Bullseye 或者 Ubuntu 20.04以及更新的版本，你已经有了足够的SSH安装版本。如果你有用Github，<br>或者任何其他的借助SSH命令来验证的服务，你也早就有了一个SSH密钥用于创建签名了。这就是为什么我对SSH签名更热衷，而不是其他PGP的替代品，比如<a target="_blank" rel="noopener" href="https://github.com/aperezdc/signify">signify</a> 或者<br><a target="_blank" rel="noopener" href="https://jedisct1.github.io/minisign/">minisign</a>。后两者很优秀，但是需要你安装新的软件和创建一个新的密钥，这就会阻碍更大范围的兼容性。</li>
-<li><strong>SSH密钥很容易分配。</strong> SSH公钥只用一行代码就可以轻松到处复制。你不需要网络白名单或者费心去配置密钥的”信任等级”。Github作为一个密钥分配服务早就演示过，比起原先的<br>PGP密钥服务器更加简易也更加安全。你可以通过访问网页<a target="_blank" rel="noopener" href="https://github.com/USERNAME.keys%E5%8E%BB%E6%A3%80%E7%B4%A2%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%9A%84SSH%E5%85%AC%E9%92%A5%E3%80%82%EF%BC%88%E6%AF%94%E5%A6%82%EF%BC%8C%E6%88%91%E7%9A%84%E5%85%AC%E9%92%A5%E5%9C%A8[https://github.com/AGWA.keys](https://github.com/AGWA.keys)%EF%BC%89">https://github.com/USERNAME.keys去检索任意用户的SSH公钥。（比如，我的公钥在[https://github.com/AGWA.keys](https://github.com/AGWA.keys)）</a><br>（这个例子可能不适用于所有的情况，毕竟Github在这里作为一个可信任的第三方，而且你也必须相信他们不会对大众的公钥作假。但是依赖于Github这样的专业安全团队作为可信赖的第三方，应该比几乎不可能用到的PGP的网络白名单更好。<br>在实践中，如果你曾经想搞清楚如何审核透明度日志，那第三方的公钥的透明度需要考虑进去。）</li>
-<li><strong>SSH有可选的轻量级证书。</strong> SSH证书不是必需的（而且大部分人也用不到），但是证书可以让你的操作更轻松，SSH有一套比X.509简单很多的轻量级证书系统。这使得SSH签名和S/MIME一样是一个好的选项。</li>
-</ul>
-<h2 id="你现在可以使用SSH给Git提交和标签加签名"><a href="#你现在可以使用SSH给Git提交和标签加签名" class="headerlink" title="你现在可以使用SSH给Git提交和标签加签名"></a>你现在可以使用SSH给Git提交和标签加签名</h2><p>给Git的提交和标签加签名可以帮助你确认你的的仓库在被别人使用的时候，代码未曾被篡改。但是，你必须用PGP或者S/MIME来做到这件事，而我个人从2018年PGP密钥过期后就没在这件事上被困扰过。<br>马上在Git 2.34这些都会改变了，这个版本支持了SSH签名。（TODO 咋翻译都不对。。）</p>
-<h2 id="文件签名"><a href="#文件签名" class="headerlink" title="文件签名"></a>文件签名</h2><p>像这样直接对一个文件进行签名：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -Y sign -f ~/.ssh/id_ed25519 -n file file_to_sign</span><br></pre></td></tr></table></figure>
-<p>需要更改的参数如下：</p>
-<ul>
-<li><p><code>~/.ssh/id_ed25519</code>是你私钥的路径。例子里的是你的SSH Ed25519私钥的标准路径。如果你有一个RSA密钥，改为使用id_rsa。</p>
-</li>
-<li><p><code>file</code> 参数是”命名空间”，用来描述签名的目的，对于一般文件的签名，SSH将其定义为<code>file</code>，邮件的签名定义为<code>email</code>，Git则使用<code>git</code>作为签名。<br>如果你的签名用于其他目的，比如一个一般协议，你必须指明你自己的命名空间。这样，你可以避免来自一个单一协议信息的合法签名被移除后，或者附属在不同的协议信息，发起的跨协议攻击。<br>如果对于协议签名不使用特定的命名空间，那第一个协议的签名就有可能被视作第二个签名的协议，从而被认为是合法的。<br>命名空间可以是随机字符。为了保证全局的命名空间的唯一性，SSH推荐对于你自己的签名使用email作为命名空间的一部分。比如，我会使用类似于<code>protocolname-v1@agwa.name</code>的名字作为命名空间。</p>
-</li>
-<li><p><code>file_to_sign</code> 是要被签名的文件的路径。</p>
-</li>
-</ul>
-<p>签名会写入一个叫做<code>file_to_sign.sig</code>的新文件中，格式如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN SSH SIGNATURE-----</span><br><span class="line">U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg2rirQQddpzEzOZwbtM0LUMmlLG</span><br><span class="line">krl2EkDq4CVn/Hw7sAAAAEZmlsZQAAAAAAAAAGc2hhNTEyAAAAUwAAAAtzc2gtZWQyNTUx</span><br><span class="line">OQAAAEDyjWPjmOdG8HJ8gh1CbM8WDDWoGfm+TTd8Qa8eua9Bt5Cc+43S24i/JqVWmk98qV</span><br><span class="line">YXoQmOYL4bY8t/q7cSNeMH</span><br><span class="line">-----END SSH SIGNATURE----- </span><br></pre></td></tr></table></figure>
-<p>如果你指明了文件名，那文件签名会从该标准输入并从该标准写出。</p>
-<h2 id="签名验证"><a href="#签名验证" class="headerlink" title="签名验证"></a>签名验证</h2><p>签名验证稍微更复杂点。首先你需要创建一个被允许的签名者文件，该文件将邮件地址映射到公钥，类似于这样：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alice@example.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINq4q0EHXacxMzmcG7TNC1DJpSxpK5dhJA6uAlZ/x8O7</span><br><span class="line">alice@example.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCfHGCK5jjI/Oib4vRBLB9rG30A8y/Br9U75rfAYsitwFPFfl/CaTAvfRlW1lIBqOCshLWxGsN+PFiJCiCWzpW4iILkD5X5KcBBYHTq1ojYXb70BrQXQ+QBDcGxqQjcOp/uTq1D9Z82mYq/usI5wdz6f1KNyqM0J6ZwRXMu6u7NZaAwmY7j1fV4DRiYdmIfUDIyEdqX4a1Gan+EMSanVUYDcNmeBURqmTkkOPYSg8g5xYgcXBMOZ+V0ZUjreV9paKraUD/mVDlZbb/VyWhJGT4FLMNXHU6UHC2FFgqANMUKIlL4vhqc23MoygKbfF3HgNB6BNfv3s+GYlaQ3+66jc5j</span><br><span class="line">bob@example.net ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBgQuuEvhUXerOTIZ2zoOx60M/HHJ/tcHnD84ZvTiX5b</span><br></pre></td></tr></table></figure>
-<p>一旦你拥有了你的被允许的签名文件，验证的步骤如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -Y verify -f allowed_signers -I alice@example.com -n file -s file_to_verify.sig &lt; file_to_verify</span><br></pre></td></tr></table></figure>
-<p>你需要修改如下参数：</p>
-<ul>
-<li><code>allowed_signers</code> 是被允许的签名者文件的路径。</li>
-<li><code>alice@example.com</code> 是对文件加签名的用户邮件地址。该邮件地址会在允许的签名者文件里进行查找到对应的公钥。</li>
-<li><code>file</code> 是”命名空间”，该参数必须匹配前文描述的签名中的命名空间。</li>
-<li><code>file_to_verify.sig</code> 是签名文件的路径。</li>
-<li><code>file_to_verify</code> 是被验证的文件的路径。注意该文件是从标准读入的。在前面的命令中，<code>&lt;</code>这个shell操作符用于重定向标准到该文件。</li>
-</ul>
-<p>如果签名是有效的，命令行会返回状态0并打印如下信息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Good <span class="string">&quot;file&quot;</span> signature <span class="keyword">for</span> alice@example.com with ED25519 key SHA256:ZGa8RztddW4kE2XKPPsP9ZYC7JnMObs6yZzyxg8xZSk</span><br></pre></td></tr></table></figure>
-<p>否则，命令行会返回非0状态并打印错误信息。</p>
-<h2 id="SSH密钥的复用安全吗？"><a href="#SSH密钥的复用安全吗？" class="headerlink" title="SSH密钥的复用安全吗？"></a>SSH密钥的复用安全吗？</h2><p>简单来说：安全。</p>
-<p>对一个不同协议总是要小心的对密钥进行复用。如果不注意的话，有可能导致跨协议攻击的风险。比如，当一个Git签名信息的结构和SSH协议信息的结构相似，攻击者就可以通过SSH副本挪用签名，并伪造一个Git的人工提交。</p>
-<p>幸运的是，SSH协议信息的结构和ssh-keygen签名信息的结构并不相似，因此并没有这方面风险的担忧。</p>
-<p>为了证明这点，我们可以参考这篇<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc4252#section-7">RFC 4252 section 7</a>，阐明了SSH密钥是如何在传统用途上通过SSH验证用户登录服务器。<br>RFC指出输入的签名语法拥有如下结构：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">string    session identifier</span><br><span class="line">byte      SSH_MSG_USERAUTH_REQUEST</span><br><span class="line">string    user name</span><br><span class="line">string    service name</span><br><span class="line">string    <span class="string">&quot;publickey&quot;</span></span><br><span class="line">boolean   TRUE</span><br><span class="line">string    public key algorithm name</span><br><span class="line">string    public key to be used <span class="keyword">for</span> authentication</span><br></pre></td></tr></table></figure>
-<p>第一个字段是会话标识，是个字符串。在SSH协议中，字符串的前缀由一个<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc4251#section-5">32位字符</a>构成。会话标识是一个<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc4253#section-7.2">hash</a>值。除非hash值很短，否则一般的上述签名的前三位字符都会是0。</p>
-<p>同时，<a target="_blank" rel="noopener" href="https://github.com/openssh/openssh-portable/blob/d575cf44895104e0fcb0629920fb645207218129/PROTOCOL.sshsig">PROTOCOL.sshsig</a>分发OpenSSH仓库，表明了如何通过<code>ssh-keygen-generated</code>签名使用SSH密钥。以下是输入的签名语法的结构：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define MAGIC_PREAMBLE &quot;SSHSIG&quot;</span></span><br><span class="line"></span><br><span class="line">byte[6]   MAGIC_PREAMBLE</span><br><span class="line">string    namespace</span><br><span class="line">string    reserved</span><br><span class="line">string    hash_algorithm</span><br><span class="line">string    H(message)</span><br></pre></td></tr></table></figure>
-<p>在这里，头三个字节是SSH，来自magic preamble（直译是魔法序言？）。SSH协议签名输入的头三个字节之后就开始和ssh-keygen签名输入不一样，SSH客户端和ssh-keygen不会生成同样的签名。因此，在这里不会有跨协议攻击的风险，我也有绝对的信心使用现存的SSH密钥，通过ssh-keygen来对信息加密。</p>
-
       
     </div>
 
