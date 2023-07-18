@@ -5923,6 +5923,8 @@
 <li>点击[create worker]</li>
 <li>输入Name，点击Deploy</li>
 </ul>
+<span id="more"></span>
+
 <h2 id="部署代码到worker"><a href="#部署代码到worker" class="headerlink" title="部署代码到worker"></a>部署代码到worker</h2><h3 id="获取API-KEY"><a href="#获取API-KEY" class="headerlink" title="获取API KEY"></a>获取API KEY</h3><ul>
 <li>登录cloudflare后台，点击用户头像 -〉点击My Profile</li>
 <li>选择API Tokens -〉Create Token</li>
@@ -5972,6 +5974,8 @@
 <li>小程序已开通云托管功能</li>
 </ul>
 <h2 id="微信云托管开发流程"><a href="#微信云托管开发流程" class="headerlink" title="微信云托管开发流程"></a>微信云托管开发流程</h2><h3 id="什么是微信云托管？"><a href="#什么是微信云托管？" class="headerlink" title="什么是微信云托管？"></a>什么是微信云托管？</h3><p>简单说就是微信的微型服务器，非常方便部署一些只需要简单后台的应用。相比于单独买服务器，我这些天体验微信云托管下来得出的优缺点如下：</p>
+<span id="more"></span>
+
 <h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
 <li>按量计费：独立开发或者小网站最大的问题可能是服务器性能过剩，完全没有用户访问的情况下还得交那么多的服务器费用。而云托管可以按量计费，没有用户访问的情况下几乎没什么费用。</li>
 <li>微信天然鉴权：这个实际用起来非常的爽，小程序调用云托管会在请求头里面自带openid和unionid，大大节省了来回调微信接口来进行用户认证的麻烦。</li>
@@ -6046,5 +6050,8 @@
 <li>云托管没有缓存功能问题</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
   </entry>
 </search>

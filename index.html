@@ -244,7 +244,16 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-07-18 14:44:30 / 修改时间：17:08:09" itemprop="dateCreated datePublished" datetime="2023-07-18T14:44:30+08:00">2023-07-18</time>
+      <time title="创建时间：2023-07-18 14:44:30 / 修改时间：17:09:41" itemprop="dateCreated datePublished" datetime="2023-07-18T14:44:30+08:00">2023-07-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
     </span>
 
   
@@ -267,80 +276,14 @@
 <li>小程序已开通云托管功能</li>
 </ul>
 <h2 id="微信云托管开发流程"><a href="#微信云托管开发流程" class="headerlink" title="微信云托管开发流程"></a>微信云托管开发流程</h2><h3 id="什么是微信云托管？"><a href="#什么是微信云托管？" class="headerlink" title="什么是微信云托管？"></a>什么是微信云托管？</h3><p>简单说就是微信的微型服务器，非常方便部署一些只需要简单后台的应用。相比于单独买服务器，我这些天体验微信云托管下来得出的优缺点如下：</p>
-<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
-<li>按量计费：独立开发或者小网站最大的问题可能是服务器性能过剩，完全没有用户访问的情况下还得交那么多的服务器费用。而云托管可以按量计费，没有用户访问的情况下几乎没什么费用。</li>
-<li>微信天然鉴权：这个实际用起来非常的爽，小程序调用云托管会在请求头里面自带openid和unionid，大大节省了来回调微信接口来进行用户认证的麻烦。</li>
-<li>节省https证书费用：如果单独买服务器，你还需要注册<strong>国内的https证书</strong>，小程序才能够调用，如果你不幸买了国外的服务器和证书，那是没办法和小程序接通的。<strong>而用云托管的话不用买证书小程序就能调用。</strong></li>
-<li>安全：自带防ddos攻击，防爬取，这也能比买服务器省心不少。</li>
-<li>自带数据库：可以存入其自带的mysql数据库，小型项目用起来确实非常方便。大型项目就算了，如果你真的有很多的数据要存入数据库，<strong>这个云托管的数据库费用可能会让你怀疑人生。</strong></li>
-</ul>
-<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
-<li>没有缓存功能：不仅仅是没有redis服务，<strong>而且本地缓存也不能用</strong>。这点配合着上面所说的按量计费，就会非常蛋疼，这意味着如果你不额外购买缓存服务，那每次服务调用都要耗费服务器和数据库资源，费用会非常惊人。</li>
-<li>代码质量要求高：由于是按量计费，所以你代码最好没什么恶性bug，否则可能会大量耗费服务器资源，导致费用激增。</li>
-<li>访问受限：这是国内服务器的普遍问题，也就是GFW导致的服务器访问外网受限。这点通过后续介绍的cloudflare来进行解决。</li>
-</ul>
-<h3 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h3><ul>
-<li>进入公众号后台-云服务-云托管，点击开通。<br><img src="/2023/07/18/2023/07/how-to-create-a-miniprogram-with-low-fee/wxcloud1.png"></li>
-<li>进入云托管后台，点击模版部署，这里有各种语言的模版，选择你习惯用的语言。<br><img src="/2023/07/18/2023/07/how-to-create-a-miniprogram-with-low-fee/wxcloud2.png"></li>
-<li>接下来让你输入数据库密码，然后点击部署就完成了。<br><img src="/2023/07/18/2023/07/how-to-create-a-miniprogram-with-low-fee/wxcloud3.png"></li>
-</ul>
-<p>这上面几步就生成了一个服务，可以在服务列表里查看服务名称。</p>
-<p>在服务页面，可以看到部署发布的几个选项，你可以将本地代码上传到github，然后将github和服务绑定，这样你每次提交到github的时候就会自动部署。<br><img src="/2023/07/18/2023/07/how-to-create-a-miniprogram-with-low-fee/wxcloud4.png"></p>
-<p>我个人认为相比上面的部署方式，有个更好用的工具，就是微信官方的<a target="_blank" rel="noopener" href="https://cloud.weixin.qq.com/cli/guide.html">云托管CLI</a>。使用方式：</p>
-<ul>
-<li>安装：<code>npm i -g @wxcloud/cli</code> 。</li>
-<li>登录：<code>wxcloud login --appId &lt;微信 AppId&gt; --privateKey &lt;秘钥&gt;</code>，密钥在<a target="_blank" rel="noopener" href="https://cloud.weixin.qq.com/cloudrun/settings/other">微信云托管控制台-设置-全局设置-CLI密钥</a>生成。</li>
-<li>项目初始化：<code>wxcloud migrate</code>，这条命令会根据你的项目自动生成容器文件。</li>
-<li>部署：<code>wxcloud deploy</code>，做完上述几步后，每次发布只需要敲这个命令就可以自动完成部署。<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ wxcloud deploy</span><br><span class="line"></span><br><span class="line">Wxcloud CLI 2.0.1-beta.15</span><br><span class="line">? 请选择环境 <span class="built_in">test</span> (test-environment)</span><br><span class="line">? 请选择服务 test-service</span><br><span class="line"></span><br><span class="line">&lt;构建日志&gt;</span><br><span class="line"></span><br><span class="line">✔ 云托管产物上传</span><br><span class="line">✔ 云托管版本创建</span><br><span class="line">public       | ████████████████████████████████████████ | 2/2 Files</span><br><span class="line">.next/static | ████████████████████████████████████████ | 12/12 Files</span><br><span class="line">✔ 静态资源上传文件成功</span><br><span class="line"></span><br><span class="line">部署开始于 2022-05-19 15:40:33</span><br><span class="line"></span><br><span class="line">&lt;部署日志&gt;</span><br><span class="line"></span><br><span class="line">✔ 部署完成</span><br><span class="line">  服务 cloudkit 访问地址:</span><br><span class="line">  &gt; demo.ap-shanghai.run.tcloudbase.com</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="开发要点"><a href="#开发要点" class="headerlink" title="开发要点"></a>开发要点</h3><ul>
-<li>环境变量：一些敏感信息或者会进行线上修改的变量在[服务列表-服务设置-环境变量]里面指定。</li>
-<li>实例数量：默认的实例最小数量是0，这导致云托管在没有用户访问的情况下，隔一段时间就会完全停掉所有服务，此时访问小程序时，是无法调用任何后端服务的。为了更良好的用户体验，建议最小实例数量设置为1。设置地址[服务列表-服务设置-实例副本数]</li>
-<li>节省资源：这点非常重要，按量计费的情况下，能省则省。<ul>
-<li>爬虫类服务，尽量不要一次性爬取所有数据，可以惰性爬取，等待用户点击到那个页面再进行爬取。</li>
-<li>前端和后端最好都实现缓存，前文说过，云托管没有缓存功能，因此后端的缓存需要别的方式实现，<strong>后面会讲一个可行的方案。</strong></li>
-<li>尽量使用前端进行数据处理，因为后端处理需要费用，前端不需要。</li>
-<li>不要用sql进行复杂的查询和数据处理，因为在云托管的费用列表里，数据库算力是最贵的一项，高出别的所有资源一档。<br><img src="/2023/07/18/2023/07/how-to-create-a-miniprogram-with-low-fee/wxcloud5.png"></li>
-</ul>
-</li>
-</ul>
-<h3 id="小程序调用云托管"><a href="#小程序调用云托管" class="headerlink" title="小程序调用云托管"></a>小程序调用云托管</h3><ul>
-<li>在小程序的app.js中增加一个通用的call方法<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 封装的微信云托管调用方法</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>obj 业务请求信息，可按照需要扩展</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>number 请求等待，默认不用传，用于初始化等待</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">async</span> <span class="function"><span class="title">call</span>(<span class="params">obj, number=<span class="number">0</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> that = <span class="built_in">this</span></span><br><span class="line">    <span class="keyword">if</span>(that.cloud == <span class="literal">null</span>)&#123;</span><br><span class="line">      that.cloud = <span class="keyword">new</span> wx.cloud.Cloud(&#123;</span><br><span class="line">        <span class="attr">resourceAppid</span>: <span class="string">&#x27;WXAAA&#x27;</span>, <span class="comment">// 微信云托管环境所属账号，服务商appid、公众号或小程序appid</span></span><br><span class="line">        <span class="attr">resourceEnv</span>: <span class="string">&#x27;prod-001&#x27;</span>, <span class="comment">// 微信云托管的环境ID</span></span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="keyword">await</span> that.cloud.init() <span class="comment">// init过程是异步的，需要等待init完成才可以发起调用</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">      <span class="keyword">const</span> result = <span class="keyword">await</span> that.cloud.callContainer(&#123;</span><br><span class="line">        <span class="attr">path</span>: obj.path, <span class="comment">// 填入业务自定义路径和参数，根目录，就是 / </span></span><br><span class="line">        <span class="attr">method</span>: obj.method||<span class="string">&#x27;GET&#x27;</span>, <span class="comment">// 按照自己的业务开发，选择对应的方法</span></span><br><span class="line">        <span class="comment">// dataType:&#x27;text&#x27;, // 如果返回的不是json格式，需要添加此项</span></span><br><span class="line">        <span class="attr">header</span>: &#123;</span><br><span class="line">          <span class="string">&#x27;X-WX-SERVICE&#x27;</span>: <span class="string">&#x27;xxx&#x27;</span>, <span class="comment">// xxx中填入服务名称（微信云托管 - 服务管理 - 服务列表 - 服务名称）</span></span><br><span class="line">          <span class="comment">// 其他header参数</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 其余参数同 wx.request</span></span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`微信云托管调用结果<span class="subst">$&#123;result.errMsg&#125;</span> | callid:<span class="subst">$&#123;result.callID&#125;</span>`</span>)</span><br><span class="line">      <span class="keyword">return</span> result.data <span class="comment">// 业务数据在data中</span></span><br><span class="line">    &#125; <span class="keyword">catch</span>(e)&#123;</span><br><span class="line">      <span class="keyword">const</span> error = e.toString()</span><br><span class="line">       <span class="comment">// 如果错误信息为未初始化，则等待300ms再次尝试，因为init过程是异步的</span></span><br><span class="line">      <span class="keyword">if</span>(error.indexOf(<span class="string">&quot;Cloud API isn&#x27;t enabled&quot;</span>)!=-<span class="number">1</span> &amp;&amp; number&lt;<span class="number">3</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>)=&gt;</span>&#123;</span><br><span class="line">          <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            resolve(that.call(obj,number+<span class="number">1</span>))</span><br><span class="line">          &#125;,<span class="number">300</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">`微信云托管调用失败<span class="subst">$&#123;error&#125;</span>`</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
-<li>方法中调用<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = getApp()</span><br><span class="line">Page(&#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="function"><span class="title">onLoad</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> app.call(&#123;</span><br><span class="line">      <span class="attr">path</span>:<span class="string">&#x27;/&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;业务返回结果&#x27;</span>,res)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li>别的详细说明参考<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/wxcloudrun/src/development/call/mini.html">官方文档</a>。</li>
-</ul>
-<h2 id="cloudflare开发流程"><a href="#cloudflare开发流程" class="headerlink" title="cloudflare开发流程"></a>cloudflare开发流程</h2><h3 id="为什么用cloudflare？"><a href="#为什么用cloudflare？" class="headerlink" title="为什么用cloudflare？"></a>为什么用cloudflare？</h3><p>从前面介绍来说，讲到云托管的几个缺点，其中对于业务开发来说最有影响的，一个是没有缓存功能，另一个是访问外网受限。第一个可能导致云托管费用激增，第二个则限制了你的小程序功能，比如我想做一个外网的爬虫项目，单纯用云托管就没办法做到。</p>
-<p>而这两点都可以通过cloudflare的功能来解决。</p>
-<h3 id="worker解决外网受限"><a href="#worker解决外网受限" class="headerlink" title="worker解决外网受限"></a>worker解决外网受限</h3><p>worker是cloudflare的一个功能，简单说可以看成是一个路由，也可以认为是一个微型服务，总之，通过将你的域名绑定到worker，然后再通过小程序访问这个域名，就可以对小程序的请求进行转发处理，这么一个流程：【小程序 -》 你的域名worker -》 外网】。<strong>这当中唯一需要保证的就是小程序可以访问到你的域名</strong>，一般情况下，你的域名只要没做什么黄赌毒之类的事儿，应该是没问题的。</p>
-<p>worker部署：详情看我的另一篇博文<a target="_blank" rel="noopener" href="https://blog.cindyforever.com/2023/07/07/2023/07/how-to-build-project-by-cloudflare/">《如何通过cloudflare的worker处理复杂后台逻辑》</a></p>
-<h3 id="kv实现缓存功能"><a href="#kv实现缓存功能" class="headerlink" title="kv实现缓存功能"></a>kv实现缓存功能</h3><p>kv是cloudflare另一个功能，就是其自带的键值对存储功能，用来当缓存简直再合适不过。以下配置和内容需要先看过上面的worker博文才好理解。</p>
-<ul>
-<li>在cloudflare的首页，点击[Workers &amp; Pages]</li>
-<li>点击[KV]</li>
-<li>选择[create a namespace]</li>
-<li>输入name后，点击ADD完成新增</li>
-<li>复制你的[KV]的[name]和[ID]</li>
-<li>在你的本地worker项目中，在<code>wrangler.toml</code>中增加配置：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kv_namespaces = [</span><br><span class="line">    &#123; binding = <span class="string">&quot;YOUR_KV_NAME&quot;</span>, id = <span class="string">&quot;YOUR_KV_ID&quot;</span> &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
-<li>使用<code>wrangler deploy</code>命令完成部署，<code>KV</code>会自动绑定到你的<code>worker</code>上</li>
-<li><code>worker</code>项目中<code>KV</code>的使用（尽管官方文档写了直接在项目中使用KV的<code>NAME.get</code>和<code>NAME.put</code>就行，但是我怎么试都报错，所以还是直接用<a target="_blank" rel="noopener" href="https://developers.cloudflare.com/api/operations/workers-kv-namespace-list-namespaces">API文档</a>的方式调用）：<ul>
-<li>写入值：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">let</span> detailResponse = <span class="keyword">await</span> fetch(<span class="string">`https://api.cloudflare.com/client/v4/accounts/<span class="subst">$&#123;ACOUNT_ID&#125;</span>/storage/kv/namespaces/<span class="subst">$&#123;NAME_SPACE&#125;</span>/bulk`</span>, </span><br><span class="line">&#123; <span class="attr">method</span>: <span class="string">&quot;PUT&quot;</span>, <span class="attr">body</span>: <span class="built_in">JSON</span>.stringify([</span><br><span class="line">		&#123;</span><br><span class="line">		  <span class="string">&quot;base64&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">		  <span class="string">&quot;expiration_ttl&quot;</span>: <span class="number">86400</span>,</span><br><span class="line">		  <span class="string">&quot;key&quot;</span>: reqData.key,</span><br><span class="line">		  <span class="string">&quot;value&quot;</span>: reqData.value</span><br><span class="line">		&#125;</span><br><span class="line">	  ]),</span><br><span class="line">	  <span class="attr">headers</span>: &#123;</span><br><span class="line">		<span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;X-Auth-Key&#x27;</span>: X_AUTH_KEY,</span><br><span class="line">		<span class="string">&#x27;X-Auth-Email&#x27;</span>: X_Auth_Email</span><br><span class="line">	  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-<li>读取值：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">let</span> detailResponse = <span class="keyword">await</span> fetch(<span class="string">`https://api.cloudflare.com/client/v4/accounts/<span class="subst">$&#123;ACOUNT_ID&#125;</span>/storage/kv/namespaces/<span class="subst">$&#123;NAME_SPACE&#125;</span>/values/<span class="subst">$&#123;key&#125;</span>`</span>, </span><br><span class="line">&#123; <span class="attr">method</span>: <span class="string">&quot;GET&quot;</span>,<span class="attr">headers</span>: &#123;</span><br><span class="line">	<span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>,</span><br><span class="line">	<span class="string">&#x27;X-Auth-Key&#x27;</span>: X_AUTH_KEY,</span><br><span class="line">	<span class="string">&#x27;X-Auth-Email&#x27;</span>: X_Auth_Email</span><br><span class="line">  &#125;&#125;);</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<p>接下来通过前面所说的worker转发路由功能，就可以远程调用kv来进行缓存。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>如上所述，云托管主要解决了：</p>
-<ul>
-<li>国内域名备案问题，证书问题</li>
-<li>服务器费用过高问题</li>
-<li>小程序鉴权问题</li>
-</ul>
-<p>而cloudflare主要解决了：</p>
-<ul>
-<li>云托管外网受限问题</li>
-<li>云托管没有缓存功能问题</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/07/18/2023/07/how-to-create-a-miniprogram-with-low-fee/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -397,7 +340,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-07-18 16:40:26" itemprop="dateModified" datetime="2023-07-18T16:40:26+08:00">2023-07-18</time>
+        <time title="修改时间：2023-07-18 17:09:22" itemprop="dateModified" datetime="2023-07-18T17:09:22+08:00">2023-07-18</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -429,38 +372,14 @@
 <li>点击[create worker]</li>
 <li>输入Name，点击Deploy</li>
 </ul>
-<h2 id="部署代码到worker"><a href="#部署代码到worker" class="headerlink" title="部署代码到worker"></a>部署代码到worker</h2><h3 id="获取API-KEY"><a href="#获取API-KEY" class="headerlink" title="获取API KEY"></a>获取API KEY</h3><ul>
-<li>登录cloudflare后台，点击用户头像 -〉点击My Profile</li>
-<li>选择API Tokens -〉Create Token</li>
-<li>选择Edit Cloudflare Workers这一栏，点击Use template<br><img src="/2023/07/07/2023/07/how-to-build-project-by-cloudflare/APIKey.png"></li>
-<li>正常情况下API权限已经按照模版配置好了，不用修改，如需微调，参考<a target="_blank" rel="noopener" href="https://developers.cloudflare.com/fundamentals/api/">API文档</a></li>
-<li>编辑Account Resources和Zone Resources指向你的账号和域名</li>
-<li>点击Continue to summary，下一步点击Create Token</li>
-<li>此时出现API token和用法示例，<strong>注意，立刻保存这个token，后续你将无法再找到</strong><br><img src="/2023/07/07/2023/07/how-to-build-project-by-cloudflare/APIToken.png"></li>
-</ul>
-<h3 id="安装wrangler"><a href="#安装wrangler" class="headerlink" title="安装wrangler"></a>安装wrangler</h3><p><code>wrangler</code> 是cloudflare官方的一个部署包，可以方便的将你的较复杂的后台node代码部署到指定的router上。</p>
-<ul>
-<li>安装命令<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g wrangler</span><br></pre></td></tr></table></figure></li>
-<li>检查版本<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wrangler --version</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="初始化代码"><a href="#初始化代码" class="headerlink" title="初始化代码"></a>初始化代码</h3><p><code>wrangler</code> 有一系列的模版代码，通过命令<code>npx wrangler generate [your-app-name] [modle-name]</code>可以轻松构建一个可部署的<code>wrangler</code>项目</p>
-<ul>
-<li>构建router<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx wrangler generate my-app worker-router</span><br></pre></td></tr></table></figure></li>
-<li>构建测速项目<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx wrangler generate my-app worker-speedtest</span><br></pre></td></tr></table></figure></li>
-<li>sentry错误跟踪<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx wrangler generate my-app mhart/cf-sentry</span><br></pre></td></tr></table></figure>
-还有很多，不一一列举了，可以去<a target="_blank" rel="noopener" href="https://github.com/cloudflare/workers-sdk/tree/main/templates">cloudflare的模版代码库</a>找。<br><img src="/2023/07/07/2023/07/how-to-build-project-by-cloudflare/template1.png"></li>
-</ul>
-<p>在初始化的项目里就可以构建你的后台逻辑了。</p>
-<h3 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h3><ul>
-<li>在生成的<code>wrangler.toml</code>文件中，进行如下配置<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 部署的worker名称</span></span><br><span class="line">name = <span class="string">&quot;example&quot;</span></span><br><span class="line"><span class="comment">## 项目主页</span></span><br><span class="line">main = <span class="string">&quot;index.js&quot;</span></span><br><span class="line"><span class="comment">## 兼容性日期，可以不动</span></span><br><span class="line"><span class="comment">## 根据[说明](https://developers.cloudflare.com/workers/platform/compatibility-dates/)，最好实时更新到最新日期，以支持最新的cloudflare功能</span></span><br><span class="line">compatibility_date = <span class="string">&quot;2023-07-10&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从cloudflare后台，进入你的网站，右下角可以看到Account ID</span></span><br><span class="line">account_id=<span class="string">&quot;your_acount_id&quot;</span></span><br><span class="line"><span class="comment"># 是否部署到cloudflare的dev域名</span></span><br><span class="line">workers_dev = <span class="literal">false</span></span><br></pre></td></tr></table></figure></li>
-<li>在项目中创建<code>.env</code>文件</li>
-<li>创建环境变量<code>CLOUDFLARE_API_TOKEN=&lt;YOUR_API_TOKEN_VALUE&gt;</code>，将之前获取到的API_TOKEN写入</li>
-</ul>
-<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><ul>
-<li>配置好上述环境变量后，就可以直接运行<code>wrangler deploy</code>进行部署</li>
-<li>也可以运行<code>CLOUDFLARE_API_TOKEN=XXX wrangler deploy</code>手动指定环境变量</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/07/07/2023/07/how-to-build-project-by-cloudflare/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
