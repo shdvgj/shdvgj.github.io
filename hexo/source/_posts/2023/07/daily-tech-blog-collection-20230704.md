@@ -5,7 +5,7 @@ categories:
 - 每日文章收集
 ---
 
-# 【今日关注】
+## 【今日关注】
 
 ### [如何在数字时代高效学习](https://giansegato.com/essays/edutainment-is-not-learning)
 
@@ -20,6 +20,8 @@ categories:
 理论上如果堆积足够多的信息，它最终会转化为知识。但是作者读了那么多的商业类新闻，却最终没有得到足够多的商业知识。
 
 作者花了八个月时间去研究元学习是怎么回事：人类究竟是怎么学习的？
+
+<!-- more -->
 
 #### 高效学习
 
@@ -78,7 +80,7 @@ categories:
 > 幸运的是，另一方面，随着内容和刺激的丰富，寻找新的主题和学习的理由变得非常容易。
 > 我们只需要积极主动地参与我们可以获得的所有内容流。去建立、写作、交流、教授、解释、创造 - 这些都是付出努力的行动，会带来有意义的成长。
 
-# 【博文一览】
+## 【博文一览】
 
 ### [Anna’s Archive：世界上最大的开源图书馆](https://annas-archive.org/)
 
@@ -104,9 +106,11 @@ categories:
 ![](terriblephoto1.jpeg)
 
 > 有时候，明显缺乏品味反而能帮助房间看起来比实际更大。
+
 ![](terriblephoto2.jpeg)
 
 > 我始终觉得邻居对于我的万圣节聚会反应过度
+
 ![](terriblephoto3.jpeg)
 
 ### [Karabiner-Elements：macOS环境下的强大键盘工具](https://karabiner-elements.pqrs.org/)

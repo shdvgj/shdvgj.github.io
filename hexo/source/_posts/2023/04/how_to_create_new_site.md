@@ -89,7 +89,7 @@ categories:
 $ cat your_domain.crt > your_domain_chain.crt ; echo >> your_domain_chain.crt ; cat your_domain.ca-bundle >> your_domain_chain.crt
 ```
 - 服务器安装ssl证书的方式有很多种，最常用的方式是nginx，以nginx为例，安装完nginx之后，进入/etc/nginx/conf.d/目录，新增一个your_domain.conf配置文件，配置文件内容如下
-```json
+```js
 server {
     listen       80;
     server_name  www.example.com;
