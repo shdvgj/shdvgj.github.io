@@ -11,6 +11,8 @@ categories:
 我好不容易研究出的[低成本开发小程序](https://blog.cindyforever.com/2023/07/18/2023/07/how-to-create-a-miniprogram-with-low-fee/)，充满希望的点下发布，结果被毫不留情的打回，打回原因：
 ![](nowechat1.png)
 
+<!-- more -->
+
 我也是太久没申请小程序了，忘记了要填类目的，结果我上去一看个人开发可填的类目：
 ![](nowechat2.png)
 ![](nowechat3.png)
@@ -77,7 +79,7 @@ categories:
     - 单看服务器费用可能还能接受，但是购买国内服务器你还必须买国内的ssl证书，而这个在[namecheap](https://www.namecheap.com/)只要6美元的泛域名证书，在国内要2000多。
 ![](nowechat5.png)
     - 至于为什么非要ssl证书，不买不行吗？不行，微信小程序和公众号所有的API调用都必须是https的请求。
-    - 国外呢？看下账单吧，域名加证书15.75刀，一百出头。
+    - 国外呢？看下账单吧，域名加证书15.75刀，100RMB出头。
 ![](nowechat6.png)
     - 账单为啥没有国外服务器的费用，因为我发现cloudflare的免费套餐比国内最便宜的服务器还良心。
   - 云托管方案

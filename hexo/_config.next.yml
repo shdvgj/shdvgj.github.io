@@ -581,8 +581,8 @@ comments:
 # Disqus
 # For more information: https://disqus.com
 disqus:
-  enable: false
-  shortname:
+  enable: true
+  shortname: cindyforever
   count: true
 
 # DisqusJS
@@ -594,8 +594,8 @@ disqusjs:
   # For example:
   # api: https://disqus.skk.moe/disqus/
   api:
-  apikey: # Register new application from https://disqus.com/api/applications/
-  shortname: # See: https://disqus.com/admin/settings/general/
+  apikey: jrHBBhgpfuEcDZ7l3pQEknW4yW4JeqjBaWGPH1C0emNre6iZu5zoM1O992hRhapr # Register new application from https://disqus.com/api/applications/
+  shortname: cindyforever # See: https://disqus.com/admin/settings/general/
 
 # Changyan
 # For more information: https://changyan.kuaizhan.com
@@ -611,7 +611,7 @@ livere_uid: # <your_uid>
 # Gitalk
 # For more information: https://gitalk.github.io
 gitalk:
-  enable: true
+  enable: false
   github_id: shdvgj # GitHub repo owner
   repo: shdvgj.github.io # Repository name to store issues
   client_id: e1ed5420cf72d3747b1b # GitHub Application Client ID

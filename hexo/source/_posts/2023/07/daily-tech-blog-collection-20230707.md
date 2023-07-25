@@ -22,6 +22,8 @@ NodeJS端最强大，最受欢迎的爬虫包。主要Feature：
 $ npm install crawler
 ```
 
+<!-- more -->
+
 ### 基本用法
 
 ```js
