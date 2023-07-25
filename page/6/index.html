@@ -83,7 +83,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">63</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -190,6 +190,121 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2020/04/29/tech/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/04/29/tech/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">azkaban简单搭建</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-04-29 09:15:11" itemprop="dateCreated datePublished" datetime="2020-04-29T09:15:11+08:00">2020-04-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/%E6%90%AD%E5%BB%BA%E7%9B%B8%E5%85%B3/" itemprop="url" rel="index"><span itemprop="name">搭建相关</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/04/29/tech/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/29/tech/azkaban简单搭建/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>前言：<br>azkaban的用处和好处不再赘述，这里只讲怎么将azkaban在项目中使用起来。<br>另外非常推荐直接看<a target="_blank" rel="noopener" href="https://azkaban.readthedocs.io/en/latest/">官方的英文文档</a>进行学习，那将是最新最可靠的教程。</p>
+<h2 id="下载和安装azkaban"><a href="#下载和安装azkaban" class="headerlink" title="下载和安装azkaban"></a>下载和安装azkaban</h2><h3 id="下载azkaban"><a href="#下载azkaban" class="headerlink" title="下载azkaban"></a>下载azkaban</h3><p>方法1：直接到azkaban的github网页下载tar.gz包。截止2020.4.29日最新版本的包地址为(<a target="_blank" rel="noopener" href="https://github.com/azkaban/azkaban/archive/3.84.10.tar.gz">https://github.com/azkaban/azkaban/archive/3.84.10.tar.gz</a>)<br>方法2：在linux执行   </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/azkaban/azkaban/archive/3.84.10.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="安装azkaban"><a href="#安装azkaban" class="headerlink" title="安装azkaban"></a>安装azkaban</h3><p>将包进行解压，执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf azkaban-3.81.10.tar.gz</span><br></pre></td></tr></table></figure>
+<p>解压完成后目录结构如下图  </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/29/tech/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1415,107 +1530,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/10/14/tech/ELK%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E7%9B%B8%E5%85%B3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2019/10/10/news/%E6%96%B0%E9%97%BB%E7%BF%BB%E8%AF%91-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/10/10/news/%E6%96%B0%E9%97%BB%E7%BF%BB%E8%AF%91-1/" class="post-title-link" itemprop="url">新闻翻译.1</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-10-10 09:09:54" itemprop="dateCreated datePublished" datetime="2019-10-10T09:09:54+08:00">2019-10-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%8B%B1%E8%AF%AD/" itemprop="url" rel="index"><span itemprop="name">英语</span></a>
-        </span>
-    </span>
-
-  
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://www.latimes.com/politics/story/2019-10-09/trumps-legal-strategy-against-impeachment-shaky-constitutional-grounds-scholars-say">原文链接</a>  </p>
-<h2 id="Trump’s-legal-strategy-against-impeachment-is-on-shaky-constitutional-grounds-scholars-say"><a href="#Trump’s-legal-strategy-against-impeachment-is-on-shaky-constitutional-grounds-scholars-say" class="headerlink" title="Trump’s legal strategy against impeachment is on shaky constitutional grounds, scholars say"></a>Trump’s legal strategy against impeachment is on shaky constitutional grounds, scholars say</h2><h3 id="学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据"><a href="#学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据" class="headerlink" title="学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据"></a>学者认为川普反对弹劾的律法政策是基于站不住脚的宪法依据</h3><p>1.Washington —  Constitutional lawyers said Wednesday that President Trump’s<br>vow not to cooperate with the impeachment inquiry is both unprecedented and<br>unlikely to spare him from being formally charged by the House.<br>In fact, they say, it may only increase the chances that he will be impeached.<br>华盛顿报道 - 宪法律师周三声明, 川普总统发誓不会与弹劾调查进行合作的言论是<br>前所未有的, 而且也很可能使他面临众议院的正式指控. 并且, 他们还说到, 这有可能<br>增加川普被弹劾的可能.</p>
-<p>2.The Constitution says the “House of Representatives shall have the sole<br>power of impeachment,” and it does not give the president a specific role<br>in the process. A president is in some sense like an ordinary defendant<br>who may be subject to a criminal investigation and an indictment,<br>all without his participation or involvement, scholars say.<br>美国宪法里写到, “众议院拥有弹劾的唯一权力”, 而且没有赋予总统在此过程中的任何<br>特殊角色. 学者认为, 总统在整个过程中都不会参与到弹劾中, 某种意义上和普通被告一样,<br>可能面临刑事调查和指控.  </p>
-<p>3.“The president’s cooperation is not required or needed,” said University of<br>North Carolina law professor Michael J. Gerhardt, an expert on impeachment.<br>And “the House may make that defiance grounds for impeachment,” he added,<br>noting that in 1974, a House committee approved articles of impeachment against<br>President Nixon based in part on his refusal to comply with congressional subpoenas.<br>北卡罗莱纳大学的法律学教授, 同时也是研究弹劾的专家, Michael J.Gerhardt认为,<br>“总统的配合并不是必需的, 众议院可以把这作为违抗理由去弹劾”. 他还补充到, 1974年,<br>众议院委员会通过了一项弹劾决议, 其部分原因就是尼克松总统拒绝了来自国会的传票. </p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/10/news/%E6%96%B0%E9%97%BB%E7%BF%BB%E8%AF%91-1/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

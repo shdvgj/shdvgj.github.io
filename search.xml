@@ -5795,8 +5795,9 @@
 </ul>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ npm install crawler</span><br></pre></td></tr></table></figure>
 
-<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> Crawler = <span class="built_in">require</span>(<span class="string">&#x27;crawler&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新建一个爬虫</span></span><br><span class="line"><span class="keyword">const</span> c = <span class="keyword">new</span> Crawler(&#123;</span><br><span class="line">    <span class="attr">maxConnections</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="comment">// 每个页面都会调下列回调方法</span></span><br><span class="line">    <span class="attr">callback</span>: <span class="function">(<span class="params">error, res, done</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (error) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(error);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> $ = res.$;</span><br><span class="line">            <span class="comment">// 获取页面元素</span></span><br><span class="line">            <span class="built_in">console</span>.log($(<span class="string">&#x27;title&#x27;</span>).text());</span><br><span class="line">        &#125;</span><br><span class="line">        done();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设定目标网址，单个网址</span></span><br><span class="line">c.queue(<span class="string">&#x27;http://www.amazon.com&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设定目标网址，多个网址</span></span><br><span class="line">c.queue([<span class="string">&#x27;http://www.google.com/&#x27;</span>,<span class="string">&#x27;http://www.yahoo.com&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设定网址并调用自定义回调方法</span></span><br><span class="line">c.queue([&#123;</span><br><span class="line">    <span class="attr">uri</span>: <span class="string">&#x27;http://parishackers.org/&#x27;</span>,</span><br><span class="line">    <span class="attr">jQuery</span>: <span class="literal">false</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将不会调用全局回调方法</span></span><br><span class="line">    <span class="attr">callback</span>: <span class="function">(<span class="params">error, res, done</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (error) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(error);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;Grabbed&#x27;</span>, res.body.length, <span class="string">&#x27;bytes&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        done();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接解析html源代码（多用于测试）</span></span><br><span class="line">c.queue([&#123;</span><br><span class="line">    <span class="attr">html</span>: <span class="string">&#x27;&lt;p&gt;This is a &lt;strong&gt;test&lt;/strong&gt;&lt;/p&gt;&#x27;</span></span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
 
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> Crawler = <span class="built_in">require</span>(<span class="string">&#x27;crawler&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新建一个爬虫</span></span><br><span class="line"><span class="keyword">const</span> c = <span class="keyword">new</span> Crawler(&#123;</span><br><span class="line">    <span class="attr">maxConnections</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="comment">// 每个页面都会调下列回调方法</span></span><br><span class="line">    <span class="attr">callback</span>: <span class="function">(<span class="params">error, res, done</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (error) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(error);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> $ = res.$;</span><br><span class="line">            <span class="comment">// 获取页面元素</span></span><br><span class="line">            <span class="built_in">console</span>.log($(<span class="string">&#x27;title&#x27;</span>).text());</span><br><span class="line">        &#125;</span><br><span class="line">        done();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设定目标网址，单个网址</span></span><br><span class="line">c.queue(<span class="string">&#x27;http://www.amazon.com&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设定目标网址，多个网址</span></span><br><span class="line">c.queue([<span class="string">&#x27;http://www.google.com/&#x27;</span>,<span class="string">&#x27;http://www.yahoo.com&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设定网址并调用自定义回调方法</span></span><br><span class="line">c.queue([&#123;</span><br><span class="line">    <span class="attr">uri</span>: <span class="string">&#x27;http://parishackers.org/&#x27;</span>,</span><br><span class="line">    <span class="attr">jQuery</span>: <span class="literal">false</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将不会调用全局回调方法</span></span><br><span class="line">    <span class="attr">callback</span>: <span class="function">(<span class="params">error, res, done</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (error) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(error);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;Grabbed&#x27;</span>, res.body.length, <span class="string">&#x27;bytes&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        done();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接解析html源代码（多用于测试）</span></span><br><span class="line">c.queue([&#123;</span><br><span class="line">    <span class="attr">html</span>: <span class="string">&#x27;&lt;p&gt;This is a &lt;strong&gt;test&lt;/strong&gt;&lt;/p&gt;&#x27;</span></span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
 
 <h3 id="限速"><a href="#限速" class="headerlink" title="限速"></a>限速</h3><p>使用<code>rateLimit</code>限制爬取速度。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> Crawler = <span class="built_in">require</span>(<span class="string">&#x27;crawler&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> c = <span class="keyword">new</span> Crawler(&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设定两次爬取的间隔，毫秒为单位</span></span><br><span class="line"><span class="comment">     * 这个参数一旦设定，`maxConnections`会被强制设定为1</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    <span class="attr">rateLimit</span>: <span class="number">1000</span>, </span><br><span class="line">    <span class="attr">callback</span>: <span class="function">(<span class="params">err, res, done</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res.$(<span class="string">&#x27;title&#x27;</span>).text());</span><br><span class="line">        done();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">c.queue(tasks);</span><br></pre></td></tr></table></figure>
@@ -6238,6 +6239,67 @@
 ]]></content>
       <categories>
         <category>学习</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>每日文章收集-20230724</title>
+    <url>/2023/07/24/2023/07/daily-tech-blog-collection-20230724/</url>
+    <content><![CDATA[<h3 id="earth：可视化全球天气状况"><a href="#earth：可视化全球天气状况" class="headerlink" title="earth：可视化全球天气状况"></a><a href="https://github.com/cambecc/earth">earth：可视化全球天气状况</a></h3><p>一个酷炫的开源项目，有一个在线的<a href="http://earth.nullschool.net/">demo</a>可以参观。确实非常可视化，可以看到在当前时间（2023年7月24日）在中国南部有一个台风。<br><img src="/2023/07/24/2023/07/daily-tech-blog-collection-20230724/earth1.png"></p>
+<p>安装和使用：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/cambecc/earth</span><br><span class="line"><span class="built_in">cd</span> earth</span><br><span class="line">npm install</span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">node dev-server.js 8080</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以通过访问<code>http://localhost:8080</code>看到项目的展示效果。这是个完全基于静态资源的项目，因此不需要任何额外的服务端。</p>
+<p>地图数据来自<a href="https://www.naturalearthdata.com/">naturalearthdata</a>，天气数据来自<a href="http://en.wikipedia.org/wiki/Global_Forecast_System">Global Forecast System</a>。</p>
+<h3 id="weather-icons：天气图标"><a href="#weather-icons：天气图标" class="headerlink" title="weather-icons：天气图标"></a><a href="https://erikflowers.github.io/weather-icons/">weather-icons：天气图标</a></h3><p>200多种天气图标，简洁美观。<br><img src="/2023/07/24/2023/07/daily-tech-blog-collection-20230724/weathericon1.png"></p>
+<ul>
+<li>基本用法：将5个字体文件和主要的weather-icons.min.css文件放入你的项目中，假设这些字体文件位于你的CSS目录的上一级目录。</li>
+</ul>
+<p>使用i元素来显示图标，并且首先添加基本类wi，然后再添加你想要的图标类，比如day-sunny。这看起来像是：<code>&lt;i class=&quot;wi wi-day-sunny&quot;&gt;&lt;/i&gt;</code>。</p>
+<ul>
+<li>API用法：这套图标字体包含了流行的天气服务API的配套CSS文件。目前已经提供了Forecast.io、Open Weather Map、World Meteorological Organization、Weather Underground和Yahoo的映射。请查看API列表以查看类名。</li>
+</ul>
+<h3 id="Iconbuddy：超过10万个的开源图标库"><a href="#Iconbuddy：超过10万个的开源图标库" class="headerlink" title="Iconbuddy：超过10万个的开源图标库"></a><a href="https://iconbuddy.app/">Iconbuddy：超过10万个的开源图标库</a></h3><p><img src="/2023/07/24/2023/07/daily-tech-blog-collection-20230724/iconbuddy1.png"><br>几乎应有尽有，重要的还是开源，在项目中可以免费使用。</p>
+<ul>
+<li>可以在线编辑图标的样式<br><img src="/2023/07/24/2023/07/daily-tech-blog-collection-20230724/iconbuddy2.png"></li>
+<li>编辑完成后可以导出为svg，png，webp格式<br><img src="/2023/07/24/2023/07/daily-tech-blog-collection-20230724/iconbuddy3.png"></li>
+<li>图标库支持直接搜索你要的图标<br><img src="/2023/07/24/2023/07/daily-tech-blog-collection-20230724/iconbuddy4.png"></li>
+</ul>
+<h3 id="提问的智慧"><a href="#提问的智慧" class="headerlink" title="提问的智慧"></a><a href="https://github.com/tvvocold/How-To-Ask-Questions-The-Smart-Way">提问的智慧</a></h3><p>这是名著<a href="http://www.catb.org/~esr/faqs/smart-questions.html">《How To Ask Questions The Smart Way》</a>的中文译本。特别需要每一个上网的网民去阅读，尤其是对于技术人员来说。简单罗列下目录，也差不多就是基本的原则：</p>
+<ul>
+<li>仔细挑选论坛</li>
+<li>面向新手的论坛和互联网中继聊天（IRC）通常响应最快</li>
+<li>第二步，使用项目的邮件列表</li>
+<li>使用有意义且明确的主题</li>
+<li>使问题容易回复</li>
+<li>用清晰、语法、拼写正确的语句书写</li>
+<li>使用易于读取且标准的文件格式发送问题</li>
+<li>描述问题应准确且有内容</li>
+<li>量不在多，精炼则灵</li>
+<li>别急于宣称找到Bug</li>
+<li>低声下气代替不了做自己的家庭作业</li>
+<li>描述问题症状而不是猜测</li>
+<li>按时间先后罗列问题症状</li>
+<li>描述目标而不是过程</li>
+<li>别要求私下回复电邮</li>
+<li>提问应明确</li>
+<li>关于代码的问题</li>
+<li>别张贴家庭作业式问题</li>
+<li>删除无意义的要求</li>
+<li>不要把问题标记为“紧急”，即使对你而言的确如此</li>
+<li>礼貌总是有益的</li>
+<li>问题解决后追加一条简要说明</li>
+</ul>
+<p>以及两条能解决百分之99问题的原则：“读读该死的手册”（RTFM）和“搜搜该死的网络”（STFW）。不要总想着不劳而获。</p>
+<h3 id="健康的编程原则"><a href="#健康的编程原则" class="headerlink" title="健康的编程原则"></a><a href="https://puppycoding.com/2023/07/22/healthy-coding-habits/">健康的编程原则</a></h3><p>这篇文章不是告诉你如何让代码更有健壮性，一致性之类的，而是告诉你如何让你能够继续在热爱的编码行业中享受多几年乃至几十年。</p>
+<ul>
+<li>日常拉伸</li>
+<li>定时休息</li>
+<li>不要在深夜编码</li>
+<li>提升你的编码环境</li>
+</ul>
+]]></content>
+      <categories>
+        <category>每日文章收集</category>
       </categories>
   </entry>
 </search>
