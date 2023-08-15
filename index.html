@@ -83,7 +83,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">66</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -190,6 +190,128 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/08/15/2023/08/daily-blog-20230815/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/08/15/2023/08/daily-blog-20230815/" class="post-title-link" itemprop="url">outlines - 快速可靠的神经文本生成。</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-08-15 14:43:37 / 修改时间：15:09:55" itemprop="dateCreated datePublished" datetime="2023-08-15T14:43:37+08:00">2023-08-15</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/08/15/2023/08/daily-blog-20230815/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/08/15/2023/08/daily-blog-20230815/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Outlines 〰 是一个用于神经文本生成的库。您可以将其视为 transformers 库中 generate 方法的更灵活替代品。</p>
+<p>Outlines 〰 帮助开发人员引导文本生成，以构建与外部系统具有强大接口的稳健界面。它提供了生成方法，确保输出与正则表达式匹配，或者遵循 JSON 模式。</p>
+<p>Outlines 〰 提供了强大的提示原语，将提示与执行逻辑分离，从而实现了少样本生成、ReAct、元提示、代理等简单实现。</p>
+<p>Outlines 〰 被设计为一个与更广泛生态系统兼容的库，而非替代品。我们尽可能少地使用抽象，生成可以与控制流、条件语句、自定义 Python 函数以及调用其他库交错进行。</p>
+<p>Outlines 〰 与所有模型兼容。它仅通过下一个标记的对数与模型进行交互。它也可以与基于 API 的模型一起使用。</p>
+<h2 id="主要Features"><a href="#主要Features" class="headerlink" title="主要Features"></a>主要Features</h2><ul>
+<li>🖍️基于Jinja模板引擎的简单而强大的提示基元</li>
+<li>🚄引导式生成，包括多项选择、类型约束和动态停止</li>
+<li>⚡快速的正则引导生成</li>
+<li>🔥根据JSON模式或Pydantic模型快速生成JSON</li>
+<li>🐍将完成与循环、条件语句和自定义Python函数交错进行</li>
+<li>💾生成结果缓存</li>
+<li>🤗与HuggingFace的transformers模型集成</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>通过python安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install outlines</span><br></pre></td></tr></table></figure>
+
+<h2 id="引导式生成"><a href="#引导式生成" class="headerlink" title="引导式生成"></a>引导式生成</h2><p>确保包含大型语言模型的系统可靠性的第一步是确保它们的输出与用户定义的代码之间存在明确定义的接口。Outlines 提供了控制语言模型生成的方法，以使其输出更加可预测。</p>
+<h3 id="提早终止"><a href="#提早终止" class="headerlink" title="提早终止"></a>提早终止</h3><p>您可以在找到给定字符后停止生成。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> outlines.text.generate <span class="keyword">as</span> generate</span><br><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line">answer = generate.continuation(model, stop=[<span class="string">&quot;.&quot;</span>])(<span class="string">&quot;Tell me a one-sentence joke.&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="多种选择"><a href="#多种选择" class="headerlink" title="多种选择"></a>多种选择</h3><p>您可以将完成结果缩减为多个可能性之间的选择。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> outlines.text.generate <span class="keyword">as</span> generate</span><br><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line"></span><br><span class="line">prompt = labelling(<span class="string">&quot;Just awesome&quot;</span>, examples)</span><br><span class="line">answer = generate.choice(model, [<span class="string">&quot;Positive&quot;</span>, <span class="string">&quot;Negative&quot;</span>])(prompt)</span><br></pre></td></tr></table></figure>
+
+<h3 id="类型约束"><a href="#类型约束" class="headerlink" title="类型约束"></a>类型约束</h3><p>可以指定返回的结果类型：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> outlines.text.generate <span class="keyword">as</span> generate</span><br><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line"></span><br><span class="line">prompt = <span class="string">&quot;1+1=&quot;</span></span><br><span class="line">answer = generate.integer(model)(prompt)</span><br><span class="line"></span><br><span class="line">prompt = <span class="string">&quot;sqrt(2)=&quot;</span></span><br><span class="line">answer = generate.<span class="built_in">float</span>(model)(prompt)</span><br></pre></td></tr></table></figure>
+
+<h3 id="高效的正则引导式生成"><a href="#高效的正则引导式生成" class="headerlink" title="高效的正则引导式生成"></a>高效的正则引导式生成</h3><p>Outlines 还提供了快速的正则引导生成。实际上，上面的 choice、integer 和 float 函数都在底层使用了正则引导生成：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"><span class="keyword">import</span> outlines.text.generate <span class="keyword">as</span> generate</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2-medium&quot;</span>)</span><br><span class="line"></span><br><span class="line">prompt = <span class="string">&quot;Is 1+1=2? &quot;</span></span><br><span class="line">unguided = generate.continuation(model, max_tokens=<span class="number">30</span>)(prompt)</span><br><span class="line">guided = generate.regex(model, <span class="string">r&quot;\s*([Yy]es|[Nn]o|[Nn]ever|[Aa]lways)&quot;</span>, max_tokens=<span class="number">30</span>)(</span><br><span class="line">    prompt</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(unguided)</span><br><span class="line"><span class="comment"># Is 1+1=2?</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># This is probably the most perplexing question.</span></span><br><span class="line"><span class="comment"># As I said in one of my articles describing how</span></span><br><span class="line"><span class="comment"># I call 2 and 1, there isn&#x27;t</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(guided)</span><br><span class="line"><span class="comment"># Is 1+1=2? Always</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="高效遵循-Pydantic-模型的-JSON-生成"><a href="#高效遵循-Pydantic-模型的-JSON-生成" class="headerlink" title="高效遵循 Pydantic 模型的 JSON 生成"></a>高效遵循 Pydantic 模型的 JSON 生成</h3><p>Outlines 〰 允许引导生成过程，以确保输出符合 JSON 模式或 Pydantic 模型。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span></span><br><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel, constr</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"><span class="keyword">import</span> outlines.text.generate <span class="keyword">as</span> generate</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Weapon</span>(<span class="params"><span class="built_in">str</span>, Enum</span>):</span></span><br><span class="line">    sword = <span class="string">&quot;sword&quot;</span></span><br><span class="line">    axe = <span class="string">&quot;axe&quot;</span></span><br><span class="line">    mace = <span class="string">&quot;mace&quot;</span></span><br><span class="line">    spear = <span class="string">&quot;spear&quot;</span></span><br><span class="line">    bow = <span class="string">&quot;bow&quot;</span></span><br><span class="line">    crossbow = <span class="string">&quot;crossbow&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Armor</span>(<span class="params"><span class="built_in">str</span>, Enum</span>):</span></span><br><span class="line">    leather = <span class="string">&quot;leather&quot;</span></span><br><span class="line">    chainmail = <span class="string">&quot;chainmail&quot;</span></span><br><span class="line">    plate = <span class="string">&quot;plate&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Character</span>(<span class="params">BaseModel</span>):</span></span><br><span class="line">    name: constr(max_length=<span class="number">10</span>)</span><br><span class="line">    age: <span class="built_in">int</span></span><br><span class="line">    armor: Armor</span><br><span class="line">    weapon: Weapon</span><br><span class="line">    strength: <span class="built_in">int</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line">sequence = generate.json(model, Character)(<span class="string">&quot;Give me a character description&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(sequence)</span><br><span class="line"><span class="comment"># &#123;</span></span><br><span class="line"><span class="comment">#   &quot;name&quot;: &quot;ranbelt&quot;,</span></span><br><span class="line"><span class="comment">#   &quot;age&quot;: 26,</span></span><br><span class="line"><span class="comment">#   &quot;armor&quot;: &quot;chainmail&quot;,</span></span><br><span class="line"><span class="comment">#   &quot;weapon&quot;: &quot;bow&quot;,</span></span><br><span class="line"><span class="comment">#   &quot;strength&quot;: 5</span></span><br><span class="line"><span class="comment"># &#125;</span></span><br><span class="line"></span><br><span class="line">parsed = Character.model_validate_json(sequence)</span><br><span class="line"><span class="built_in">print</span>(parsed)</span><br><span class="line"><span class="comment"># name=&#x27;ranbelt&#x27; age=26 armor=&lt;Armor.chainmail: &#x27;chainmail&#x27;&gt; weapon=&lt;Weapon.bow: &#x27;bow&#x27;&gt; strength=5</span></span><br></pre></td></tr></table></figure>
+
+<p>该方法适用于联合类型、可选类型、数组、嵌套模式等。某些字段约束尚不受支持，但其他所有功能都应该可以正常工作。</p>
+<h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><p>在纯Python中通过连接字符串编写提示很快变得繁琐：提示构建逻辑与程序的其他部分纠缠在一起，呈现的提示结构也变得模糊不清。Outlines 通过将模板封装在“模板函数”内部，使编写和管理提示变得更加容易。</p>
+<p>这些函数可以将提示逻辑与一般程序逻辑清晰地分离开来；它们可以从其他模块和库中导入。</p>
+<p>模板函数不需要多余的抽象，它们使用 Jinja2 模板引擎以简洁的方式帮助构建复杂的提示。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> outlines.text <span class="keyword">as</span> text</span><br><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">examples = [</span><br><span class="line">    (<span class="string">&quot;The food was digusting&quot;</span>, <span class="string">&quot;Negative&quot;</span>),</span><br><span class="line">    (<span class="string">&quot;We had a fantastic night&quot;</span>, <span class="string">&quot;Positive&quot;</span>),</span><br><span class="line">    (<span class="string">&quot;Recommended&quot;</span>, <span class="string">&quot;Positive&quot;</span>),</span><br><span class="line">    (<span class="string">&quot;The waiter was rude&quot;</span>, <span class="string">&quot;Negative&quot;</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="meta">@text.prompt</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">labelling</span>(<span class="params">to_label, examples</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;You are a sentiment-labelling assistant.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &#123;% for example in examples %&#125;</span></span><br><span class="line"><span class="string">    &#123;&#123; example[0] &#125;&#125; // &#123;&#123; example[1] &#125;&#125;</span></span><br><span class="line"><span class="string">    &#123;% endfor %&#125;</span></span><br><span class="line"><span class="string">    &#123;&#123; to_label &#125;&#125; //</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line">prompt = labelling(<span class="string">&quot;Just awesome&quot;</span>, examples)</span><br><span class="line">answer = text.generate.continuation(model, max_tokens=<span class="number">100</span>)(prompt)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1242,117 +1364,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/07/04/2023/07/daily-tech-blog-collection-20230704/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/" class="post-title-link" itemprop="url">每日文章收集-20230704</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-07-04 09:59:25" itemprop="dateCreated datePublished" datetime="2023-07-04T09:59:25+08:00">2023-07-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-06 11:48:03" itemprop="dateModified" datetime="2023-07-06T11:48:03+08:00">2023-07-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%AF%8F%E6%97%A5%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">每日文章收集</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/07/04/2023/07/daily-tech-blog-collection-20230704/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h2><h3 id="如何在数字时代高效学习"><a href="#如何在数字时代高效学习" class="headerlink" title="如何在数字时代高效学习"></a><a target="_blank" rel="noopener" href="https://giansegato.com/essays/edutainment-is-not-learning">如何在数字时代高效学习</a></h3><p>作者曾经沉浸于获取各种数字信息，包括TED，博客，hacker news，电子书等等，这给了他一种在学习的感觉，让他觉得自己是个“聪明人”。</p>
-<p>直到几个月前，作者开始怀疑这种习惯的学习效率。虽然他在消费大量的电子信息，但是到了真正需要的时候，他只是大概知道知识的轮廓，而不清楚具体的知识内容，这种情况对于他当下的场景毫无用处。</p>
-<p>摄入的信息跑到哪里去了呢？</p>
-<p>学习是一种将信息转换为长久知识的过程。信息是短暂的，知识是基础。把知识看作是人的话，信息就是这个人的一张照片而已。</p>
-<p>理论上如果堆积足够多的信息，它最终会转化为知识。但是作者读了那么多的商业类新闻，却最终没有得到足够多的商业知识。</p>
-<p>作者花了八个月时间去研究元学习是怎么回事：人类究竟是怎么学习的？</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

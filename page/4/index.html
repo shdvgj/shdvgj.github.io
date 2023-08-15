@@ -83,7 +83,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">66</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -190,6 +190,113 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/05/09/blog/leetcode%E7%AE%97%E6%B3%95%E9%A2%98%E6%80%BB%E7%BB%932022-3-2022-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/05/09/blog/leetcode%E7%AE%97%E6%B3%95%E9%A2%98%E6%80%BB%E7%BB%932022-3-2022-5/" class="post-title-link" itemprop="url">leetcode算法题总结2022.3-2022.5</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-09 16:01:53" itemprop="dateCreated datePublished" datetime="2022-05-09T16:01:53+08:00">2022-05-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/05/09/blog/leetcode%E7%AE%97%E6%B3%95%E9%A2%98%E6%80%BB%E7%BB%932022-3-2022-5/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/05/09/blog/leetcode算法题总结2022-3-2022-5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="最小路径和"><a href="#最小路径和" class="headerlink" title="最小路径和"></a>最小路径和</h2><p>基本思路：动态规划，每个格子依次计算，计算当前格子的最小路径和，因为每次移动必定是往下或者往右，因此每个格子的路径和必定来自于上边格子或者左边格子的数字加上当前格子的数字<br>时间复杂度分析：O(m<em>n)，会遍历所有格子，因此复杂度是n</em>m</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 给定一个包含非负整数的 m x n 网格 grid ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 说明：每次只能向下或者向右移动一步。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 输入：grid = [[1,3,1],[1,5,1],[4,2,1]]</span></span><br><span class="line"><span class="comment"> * 输出：7</span></span><br><span class="line"><span class="comment"> * 解释：因为路径 1→3→1→1→1 的总和最小。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 提示：</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *     m == grid.length</span></span><br><span class="line"><span class="comment"> *     n == grid[i].length</span></span><br><span class="line"><span class="comment"> *     1 &lt;= m, n &lt;= 200</span></span><br><span class="line"><span class="comment"> *     0 &lt;= grid[i][j] &lt;= 100</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 来源：力扣（LeetCode）</span></span><br><span class="line"><span class="comment"> * 链接：https://leetcode-cn.com/problems/minimum-path-sum</span></span><br><span class="line"><span class="comment"> * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MinPathSum</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (grid == <span class="keyword">null</span> || grid.length == <span class="number">0</span> || grid[<span class="number">0</span>].length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> n = grid.length ;</span><br><span class="line">        <span class="keyword">int</span> m = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="comment">// 动态规划</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">0</span> &amp;&amp; j== <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">0</span>) &#123;</span><br><span class="line">                    grid[<span class="number">0</span>][j] += grid[<span class="number">0</span>][j-<span class="number">1</span>];</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (j == <span class="number">0</span>) &#123;</span><br><span class="line">                    grid[i][<span class="number">0</span>] += grid[i-<span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (grid[i-<span class="number">1</span>][j] &gt; grid[i][j-<span class="number">1</span>]) &#123;</span><br><span class="line">                    grid[i][j] += grid[i][j-<span class="number">1</span>];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    grid[i][j] += grid[i-<span class="number">1</span>][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> grid[n-<span class="number">1</span>][m-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(minPathSum(<span class="keyword">new</span> <span class="keyword">int</span>[][]&#123;&#125;));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/05/09/blog/leetcode%E7%AE%97%E6%B3%95%E9%A2%98%E6%80%BB%E7%BB%932022-3-2022-5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1661,111 +1768,6 @@
           <h2 id="为什么网络游戏Wordle病毒式的传播，来听听心理学家的解释"><a href="#为什么网络游戏Wordle病毒式的传播，来听听心理学家的解释" class="headerlink" title="为什么网络游戏Wordle病毒式的传播，来听听心理学家的解释"></a><a target="_blank" rel="noopener" href="https://www.smithsonianmag.com/smart-news/heres-why-the-word-game-wordle-went-viral-180979439/">为什么网络游戏<code>Wordle</code>病毒式的传播，来听听心理学家的解释</a></h2><p>近期有个网络游戏<code>Wordle</code>在推特上及其流行，这是字谜类的游戏。规则比较简单，玩家需要猜一个5个字母组成的单词。其特别之处在于拥有社交属性，即一盘游戏是需要好几个人参与的，通过不同色块提示字母和位置的正确与否，这样每个人都能看到别人猜的进度，形成一种竞争体验。<br><img src="/2022/01/25/blog/%E4%B8%80%E5%91%A8%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%94%B6%E9%9B%86-20220124/wordle.png"></p>
 <h2 id="开源工具Arthas在线诊断java程序"><a href="#开源工具Arthas在线诊断java程序" class="headerlink" title="开源工具Arthas在线诊断java程序"></a><a target="_blank" rel="noopener" href="https://arthas.aliyun.com/doc/">开源工具Arthas在线诊断java程序</a></h2><p><code>Arthas</code>是Alibaba开源的Java诊断工具，可以实现在线监控执行方法，观测返回值等，在很多特殊的场景下，比如在家里无法部署开发环境却需要检查线上程序具体问题，或者需要查问题的程序只有线上包没有源代码，可以使用Arthas进行在线诊断并处理，以后将会专门写一篇关于如何使用Arthas的文章。</p>
 <h2 id="如何在Debian-11安装CSF"><a href="#如何在Debian-11安装CSF" class="headerlink" title="如何在Debian 11安装CSF"></a><a target="_blank" rel="noopener" href="https://vitux.com/how-to-install-config-server-firewall-csf-on-debian/">如何在Debian 11安装CSF</a></h2><p>CSF全称是Config Server Firewall，是一套可以轻松对防火墙策略和规则进行配置的防火墙软件，适合不熟悉linux防火墙的新手使用，本文介绍了如何安装和使用CSF，以增强linux的安全性。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/01/19/blog/%E4%B8%80%E5%91%A8%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%94%B6%E9%9B%86-20210117/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/01/19/blog/%E4%B8%80%E5%91%A8%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%94%B6%E9%9B%86-20210117/" class="post-title-link" itemprop="url">一周文章收集-20220117</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-01-19 10:25:05" itemprop="dateCreated datePublished" datetime="2022-01-19T10:25:05+08:00">2022-01-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E4%B8%80%E5%91%A8%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">一周文章收集</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2022/01/19/blog/%E4%B8%80%E5%91%A8%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%94%B6%E9%9B%86-20210117/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/01/19/blog/一周技术博客收集-20210117/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我发现逐篇翻译看到的技术博文并不是那么高效，还是像阮老师那样把一周看到的有价值的文章收集起来，作为一个归档会更加有用。</p>
-<hr>
-<h2 id="微软发布了自己的linux版本：CBL-Mariner"><a href="#微软发布了自己的linux版本：CBL-Mariner" class="headerlink" title="微软发布了自己的linux版本：CBL-Mariner"></a><a target="_blank" rel="noopener" href="https://github.com/microsoft/CBL-Mariner">微软发布了自己的linux版本：CBL-Mariner</a></h2><p>根据github上的介绍，CBL-Mariner 是微软为了云架构，edge的产品和服务开发的内部linux发行版。CBL-Mariner的设计是为了云设备和服务提供持久化的平台，并使得微软可以跟上linux的更新脚本。这是微软对于linux技术投入的一部分，还包括<a target="_blank" rel="noopener" href="https://azure.microsoft.com/en-us/blog/sonic-the-networking-switch-software-that-powers-the-microsoft-global-cloud/">SONiC</a>， <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure-sphere/product-overview/what-is-azure-sphere">Azure Sphere OS</a> 和 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/wsl/about">Windows Subsystem for Linux (WSL)</a>。</p>
-<h2 id="程序员才懂的幽默"><a href="#程序员才懂的幽默" class="headerlink" title="程序员才懂的幽默"></a><a target="_blank" rel="noopener" href="https://programmerhumor.io/">程序员才懂的幽默</a></h2><p>一个摸鱼网站，着实不错，里面包含了大量得具有一定开发知识才能懂的段子，是纯英文的，摸鱼的同时也能顺便提升下英文水平（并不）。<br><img src="/2022/01/19/blog/%E4%B8%80%E5%91%A8%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%94%B6%E9%9B%86-20210117/programmerhumor.png"></p>
-<h2 id="权力的游戏和指环王等奇幻故事里的地图"><a href="#权力的游戏和指环王等奇幻故事里的地图" class="headerlink" title="权力的游戏和指环王等奇幻故事里的地图"></a><a target="_blank" rel="noopener" href="https://www.smithsonianmag.com/smart-news/explore-literary-maps-of-famous-authors-180979409/"><code>权力的游戏</code>和<code>指环王</code>等奇幻故事里的地图</a></h2><p>这篇文章介绍了奇幻小说中的地图，这些地图的创作倾注了作者的心血和巧思，可以给读者带来沉浸的阅读感受。原文中有更多的地图介绍。<br><img src="/2022/01/19/blog/%E4%B8%80%E5%91%A8%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%94%B6%E9%9B%86-20210117/map1.png" alt="`奥德赛`的扉页地图"></p>
-<h2 id="13个程序员必看的博客网站"><a href="#13个程序员必看的博客网站" class="headerlink" title="13个程序员必看的博客网站"></a><a target="_blank" rel="noopener" href="https://blog.bit.ai/programming-blogs-and-websites/">13个程序员必看的博客网站</a></h2><p>技术博客是程序员保持技术新鲜度非常重要的一个渠道，不仅仅是看其他的技术博客，自己维护一个博客也是很有必要。文章介绍了13个可以提升技术水平的博客网站，可以作为参考。<br>P.S.后面发现里面大部分网站的质量不高，要么得收费，要么更新频率低，要么没啥有价值的文章。。。<br><img src="/2022/01/19/blog/%E4%B8%80%E5%91%A8%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%94%B6%E9%9B%86-20210117/blog.jpg"></p>
-<h2 id="深入详解Node-js线程池"><a href="#深入详解Node-js线程池" class="headerlink" title="深入详解Node.js线程池"></a><a target="_blank" rel="noopener" href="https://betterprogramming.pub/a-deep-dive-into-the-node-js-thread-pool-a1f32a4f8628">深入详解Node.js线程池</a></h2><p>这篇文章介绍了使用BigQuery这个Node插件后出现的错误，应该有点深度，以我有限的Node.js知识和英文水平，并没有怎么看懂。<br>P.S.这个网站居然是收费的，一个月一篇免费博客。。。</p>
 
       
     </div>

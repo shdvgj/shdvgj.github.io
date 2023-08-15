@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Outlines 〰 是一个用于神经文本生成的库。您可以将其视为 transformers 库中 generate 方法的更灵活替代品。 Outlines 〰 帮助开发人员引导文本生成，以构建与外部系统具有强大接口的稳健界面。它提供了生成方法，确保输出与正则表达式匹配，或者遵循 JSON 模式。 Outlines 〰 提供了强大的提示原语，将提示与执行逻辑分离，从而实现了少样本生成、ReAct、元">
+<meta property="og:type" content="article">
+<meta property="og:title" content="outlines - 快速可靠的神经文本生成。">
+<meta property="og:url" content="http://shdvgj.github.io/2023/08/15/2023/08/daily-blog-20230815/index.html">
+<meta property="og:site_name" content="Ricky的个人博客">
+<meta property="og:description" content="Outlines 〰 是一个用于神经文本生成的库。您可以将其视为 transformers 库中 generate 方法的更灵活替代品。 Outlines 〰 帮助开发人员引导文本生成，以构建与外部系统具有强大接口的稳健界面。它提供了生成方法，确保输出与正则表达式匹配，或者遵循 JSON 模式。 Outlines 〰 提供了强大的提示原语，将提示与执行逻辑分离，从而实现了少样本生成、ReAct、元">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-15T06:43:37.000Z">
+<meta property="article:modified_time" content="2023-08-15T07:09:55.927Z">
+<meta property="article:author" content="Ricky">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://shdvgj.github.io/2023/08/15/2023/08/daily-blog-20230815/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://shdvgj.github.io/2023/08/15/2023/08/daily-blog-20230815/","path":"2023/08/15/2023/08/daily-blog-20230815/","title":"outlines - 快速可靠的神经文本生成。"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>outlines - 快速可靠的神经文本生成。 | Ricky的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ricky的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">66</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81Features"><span class="nav-text">主要Features</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%AF%BC%E5%BC%8F%E7%94%9F%E6%88%90"><span class="nav-text">引导式生成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E6%97%A9%E7%BB%88%E6%AD%A2"><span class="nav-text">提早终止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%A7%8D%E9%80%89%E6%8B%A9"><span class="nav-text">多种选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E7%BA%A6%E6%9D%9F"><span class="nav-text">类型约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E6%95%88%E7%9A%84%E6%AD%A3%E5%88%99%E5%BC%95%E5%AF%BC%E5%BC%8F%E7%94%9F%E6%88%90"><span class="nav-text">高效的正则引导式生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E6%95%88%E9%81%B5%E5%BE%AA-Pydantic-%E6%A8%A1%E5%9E%8B%E7%9A%84-JSON-%E7%94%9F%E6%88%90"><span class="nav-text">高效遵循 Pydantic 模型的 JSON 生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E7%A4%BA"><span class="nav-text">提示</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ricky"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ricky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">66</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shdvgj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shdvgj" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:linqianghuang@gmail.com" title="E-Mail → mailto:linqianghuang@gmail.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/RickyLoveCindy" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;RickyLoveCindy" rel="noopener me" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoqianglalala" rel="noopener me" target="_blank"><i class="instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/08/15/2023/08/daily-blog-20230815/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="outlines - 快速可靠的神经文本生成。 | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          outlines - 快速可靠的神经文本生成。
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-08-15 14:43:37 / 修改时间：15:09:55" itemprop="dateCreated datePublished" datetime="2023-08-15T14:43:37+08:00">2023-08-15</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/08/15/2023/08/daily-blog-20230815/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/08/15/2023/08/daily-blog-20230815/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Outlines 〰 是一个用于神经文本生成的库。您可以将其视为 transformers 库中 generate 方法的更灵活替代品。</p>
+<p>Outlines 〰 帮助开发人员引导文本生成，以构建与外部系统具有强大接口的稳健界面。它提供了生成方法，确保输出与正则表达式匹配，或者遵循 JSON 模式。</p>
+<p>Outlines 〰 提供了强大的提示原语，将提示与执行逻辑分离，从而实现了少样本生成、ReAct、元提示、代理等简单实现。</p>
+<p>Outlines 〰 被设计为一个与更广泛生态系统兼容的库，而非替代品。我们尽可能少地使用抽象，生成可以与控制流、条件语句、自定义 Python 函数以及调用其他库交错进行。</p>
+<p>Outlines 〰 与所有模型兼容。它仅通过下一个标记的对数与模型进行交互。它也可以与基于 API 的模型一起使用。</p>
+<h2 id="主要Features"><a href="#主要Features" class="headerlink" title="主要Features"></a>主要Features</h2><ul>
+<li>🖍️基于Jinja模板引擎的简单而强大的提示基元</li>
+<li>🚄引导式生成，包括多项选择、类型约束和动态停止</li>
+<li>⚡快速的正则引导生成</li>
+<li>🔥根据JSON模式或Pydantic模型快速生成JSON</li>
+<li>🐍将完成与循环、条件语句和自定义Python函数交错进行</li>
+<li>💾生成结果缓存</li>
+<li>🤗与HuggingFace的transformers模型集成</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>通过python安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install outlines</span><br></pre></td></tr></table></figure>
+
+<h2 id="引导式生成"><a href="#引导式生成" class="headerlink" title="引导式生成"></a>引导式生成</h2><p>确保包含大型语言模型的系统可靠性的第一步是确保它们的输出与用户定义的代码之间存在明确定义的接口。Outlines 提供了控制语言模型生成的方法，以使其输出更加可预测。</p>
+<h3 id="提早终止"><a href="#提早终止" class="headerlink" title="提早终止"></a>提早终止</h3><p>您可以在找到给定字符后停止生成。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> outlines.text.generate <span class="keyword">as</span> generate</span><br><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line">answer = generate.continuation(model, stop=[<span class="string">&quot;.&quot;</span>])(<span class="string">&quot;Tell me a one-sentence joke.&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="多种选择"><a href="#多种选择" class="headerlink" title="多种选择"></a>多种选择</h3><p>您可以将完成结果缩减为多个可能性之间的选择。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> outlines.text.generate <span class="keyword">as</span> generate</span><br><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line"></span><br><span class="line">prompt = labelling(<span class="string">&quot;Just awesome&quot;</span>, examples)</span><br><span class="line">answer = generate.choice(model, [<span class="string">&quot;Positive&quot;</span>, <span class="string">&quot;Negative&quot;</span>])(prompt)</span><br></pre></td></tr></table></figure>
+
+<h3 id="类型约束"><a href="#类型约束" class="headerlink" title="类型约束"></a>类型约束</h3><p>可以指定返回的结果类型：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> outlines.text.generate <span class="keyword">as</span> generate</span><br><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line"></span><br><span class="line">prompt = <span class="string">&quot;1+1=&quot;</span></span><br><span class="line">answer = generate.integer(model)(prompt)</span><br><span class="line"></span><br><span class="line">prompt = <span class="string">&quot;sqrt(2)=&quot;</span></span><br><span class="line">answer = generate.<span class="built_in">float</span>(model)(prompt)</span><br></pre></td></tr></table></figure>
+
+<h3 id="高效的正则引导式生成"><a href="#高效的正则引导式生成" class="headerlink" title="高效的正则引导式生成"></a>高效的正则引导式生成</h3><p>Outlines 还提供了快速的正则引导生成。实际上，上面的 choice、integer 和 float 函数都在底层使用了正则引导生成：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"><span class="keyword">import</span> outlines.text.generate <span class="keyword">as</span> generate</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2-medium&quot;</span>)</span><br><span class="line"></span><br><span class="line">prompt = <span class="string">&quot;Is 1+1=2? &quot;</span></span><br><span class="line">unguided = generate.continuation(model, max_tokens=<span class="number">30</span>)(prompt)</span><br><span class="line">guided = generate.regex(model, <span class="string">r&quot;\s*([Yy]es|[Nn]o|[Nn]ever|[Aa]lways)&quot;</span>, max_tokens=<span class="number">30</span>)(</span><br><span class="line">    prompt</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(unguided)</span><br><span class="line"><span class="comment"># Is 1+1=2?</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># This is probably the most perplexing question.</span></span><br><span class="line"><span class="comment"># As I said in one of my articles describing how</span></span><br><span class="line"><span class="comment"># I call 2 and 1, there isn&#x27;t</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(guided)</span><br><span class="line"><span class="comment"># Is 1+1=2? Always</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="高效遵循-Pydantic-模型的-JSON-生成"><a href="#高效遵循-Pydantic-模型的-JSON-生成" class="headerlink" title="高效遵循 Pydantic 模型的 JSON 生成"></a>高效遵循 Pydantic 模型的 JSON 生成</h3><p>Outlines 〰 允许引导生成过程，以确保输出符合 JSON 模式或 Pydantic 模型。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span></span><br><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel, constr</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"><span class="keyword">import</span> outlines.text.generate <span class="keyword">as</span> generate</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Weapon</span>(<span class="params"><span class="built_in">str</span>, Enum</span>):</span></span><br><span class="line">    sword = <span class="string">&quot;sword&quot;</span></span><br><span class="line">    axe = <span class="string">&quot;axe&quot;</span></span><br><span class="line">    mace = <span class="string">&quot;mace&quot;</span></span><br><span class="line">    spear = <span class="string">&quot;spear&quot;</span></span><br><span class="line">    bow = <span class="string">&quot;bow&quot;</span></span><br><span class="line">    crossbow = <span class="string">&quot;crossbow&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Armor</span>(<span class="params"><span class="built_in">str</span>, Enum</span>):</span></span><br><span class="line">    leather = <span class="string">&quot;leather&quot;</span></span><br><span class="line">    chainmail = <span class="string">&quot;chainmail&quot;</span></span><br><span class="line">    plate = <span class="string">&quot;plate&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Character</span>(<span class="params">BaseModel</span>):</span></span><br><span class="line">    name: constr(max_length=<span class="number">10</span>)</span><br><span class="line">    age: <span class="built_in">int</span></span><br><span class="line">    armor: Armor</span><br><span class="line">    weapon: Weapon</span><br><span class="line">    strength: <span class="built_in">int</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line">sequence = generate.json(model, Character)(<span class="string">&quot;Give me a character description&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(sequence)</span><br><span class="line"><span class="comment"># &#123;</span></span><br><span class="line"><span class="comment">#   &quot;name&quot;: &quot;ranbelt&quot;,</span></span><br><span class="line"><span class="comment">#   &quot;age&quot;: 26,</span></span><br><span class="line"><span class="comment">#   &quot;armor&quot;: &quot;chainmail&quot;,</span></span><br><span class="line"><span class="comment">#   &quot;weapon&quot;: &quot;bow&quot;,</span></span><br><span class="line"><span class="comment">#   &quot;strength&quot;: 5</span></span><br><span class="line"><span class="comment"># &#125;</span></span><br><span class="line"></span><br><span class="line">parsed = Character.model_validate_json(sequence)</span><br><span class="line"><span class="built_in">print</span>(parsed)</span><br><span class="line"><span class="comment"># name=&#x27;ranbelt&#x27; age=26 armor=&lt;Armor.chainmail: &#x27;chainmail&#x27;&gt; weapon=&lt;Weapon.bow: &#x27;bow&#x27;&gt; strength=5</span></span><br></pre></td></tr></table></figure>
+
+<p>该方法适用于联合类型、可选类型、数组、嵌套模式等。某些字段约束尚不受支持，但其他所有功能都应该可以正常工作。</p>
+<h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><p>在纯Python中通过连接字符串编写提示很快变得繁琐：提示构建逻辑与程序的其他部分纠缠在一起，呈现的提示结构也变得模糊不清。Outlines 通过将模板封装在“模板函数”内部，使编写和管理提示变得更加容易。</p>
+<p>这些函数可以将提示逻辑与一般程序逻辑清晰地分离开来；它们可以从其他模块和库中导入。</p>
+<p>模板函数不需要多余的抽象，它们使用 Jinja2 模板引擎以简洁的方式帮助构建复杂的提示。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> outlines.text <span class="keyword">as</span> text</span><br><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">examples = [</span><br><span class="line">    (<span class="string">&quot;The food was digusting&quot;</span>, <span class="string">&quot;Negative&quot;</span>),</span><br><span class="line">    (<span class="string">&quot;We had a fantastic night&quot;</span>, <span class="string">&quot;Positive&quot;</span>),</span><br><span class="line">    (<span class="string">&quot;Recommended&quot;</span>, <span class="string">&quot;Positive&quot;</span>),</span><br><span class="line">    (<span class="string">&quot;The waiter was rude&quot;</span>, <span class="string">&quot;Negative&quot;</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="meta">@text.prompt</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">labelling</span>(<span class="params">to_label, examples</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;You are a sentiment-labelling assistant.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &#123;% for example in examples %&#125;</span></span><br><span class="line"><span class="string">    &#123;&#123; example[0] &#125;&#125; // &#123;&#123; example[1] &#125;&#125;</span></span><br><span class="line"><span class="string">    &#123;% endfor %&#125;</span></span><br><span class="line"><span class="string">    &#123;&#123; to_label &#125;&#125; //</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line">prompt = labelling(<span class="string">&quot;Just awesome&quot;</span>, examples)</span><br><span class="line">answer = text.generate.continuation(model, max_tokens=<span class="number">100</span>)(prompt)</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/08/07/2023/08/the-possibility-of-create-miniprogram-with-baidu-api/" rel="prev" title="使用百度API来开发小程序的可能性">
+                  <i class="fa fa-chevron-left"></i> 使用百度API来开发小程序的可能性
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ricky</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"cindyforever","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
