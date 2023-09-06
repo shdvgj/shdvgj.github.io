@@ -83,7 +83,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">67</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -190,6 +190,159 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/09/06/2023/09/daily-blog-20230906/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/09/06/2023/09/daily-blog-20230906/" class="post-title-link" itemprop="url">HTTP协议各版本对比：1.0，1.1，2.0和3.0</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-09-06 09:50:49 / 修改时间：10:23:28" itemprop="dateCreated datePublished" datetime="2023-09-06T09:50:49+08:00">2023-09-06</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/09/06/2023/09/daily-blog-20230906/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/06/2023/09/daily-blog-20230906/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>从工程角度来看，网络通常考虑使用OSI模型或TCP/IP模型来定义和组织它们的操作。这些模型反过来又包括不同的层次，如网络层、传输层和应用层。</p>
+<p>每个网络层都有特定的协议来实现各种功能。例如，网络层有IP协议，传输层有<a target="_blank" rel="noopener" href="https://www.baeldung.com/cs/udp-vs-tcp">TCP和UDP</a>协议，应用层有HTTP协议。</p>
+<p>这些协议在不断演化，随着时间的推移被更新和扩展。因此，网络协议自然而然地有多个版本。</p>
+<p>在这个背景下，本教程全面探讨了HTTP应用协议。首先，我们将简要回顾应用协议。然后，我们将研究HTTP的一般目的。最后，我们将查看HTTP各个版本的主要区别，并以系统性摘要进行比较。</p>
+<h2 id="应用层协议"><a href="#应用层协议" class="headerlink" title="应用层协议"></a>应用层协议</h2><p>应用层协议指的是在不同计算应用程序之间提供端到端通信的抽象网络层。它是OSI模型的第7层和TCP/IP模型的第4层。</p>
+<p>在实际应用中，应用层是最接近用户的一层。因此，例如电子邮件客户端、流媒体和浏览器等客户端操作都在应用层进行。</p>
+<p>此外，有三种主要的体系结构用于构建应用层系统：</p>
+<ul>
+<li>客户端-服务器：<a target="_blank" rel="noopener" href="https://www.baeldung.com/cs/client-vs-server-terminology">客户端-服务器架构</a>的主要特点是有多个客户端从一个集中的服务器请求和接收服务。</li>
+<li>点对点（Peer-to-Peer）：<a target="_blank" rel="noopener" href="https://www.baeldung.com/cs/centralized-vs-distributed-computing#distributed-computing">点对点架构</a>考虑了一个连接在网络中的独立计算机集合，它们合作执行操作。</li>
+<li>混合架构：混合架构同时使用服务器和对等节点来执行操作。</li>
+</ul>
+<p>自然地，应用层利用了较低层的功能。例如，应用层协议假定其他层会处理与网络中正确目标计算机的通信。</p>
+<p>最后，一些常见的应用层协议示例包括HTTP、FTP、TELNET、POP、DNS和SMTP。</p>
+<h2 id="超文本传输协议"><a href="#超文本传输协议" class="headerlink" title="超文本传输协议"></a>超文本传输协议</h2><p>HTTP是一种应用层协议（OSI第7层和TCP/IP第4层），用于创建分布式超媒体系统。由于它在应用层运行，因此它对于一些网络方面，如寻址和传输，是不可知的。</p>
+<p>从历史上看，HTTP起初是一个简单的协议，用于在互联网上实现客户端和服务器之间的通信。自发布以来，HTTP已成为在万维网上交换信息的最重要的协议之一。</p>
+<p>因此，HTTP自上世纪90年代以来一直被用于互联网。最初的HTTP版本（0.9）非常有限。这个版本只允许客户端使用一个操作（GET）从服务器请求信息。</p>
+<p>第一个HTTP版本只支持传输ASCII数据。然而，在随后的版本中，这种支持扩展到其他数据类型。</p>
+<p>HTTP依赖于TCP/IP来工作。这意味着HTTP是一种基于连接的协议。因此，我们可以将HTTP会话理解为服务器与客户端之间的一系列消息交换。</p>
+<p>在接下来的子章节中，我们将探讨每个发布的HTTP版本，从1.0到3.0，重点关注它们相对于先前版本的特点和创新。</p>
+<h3 id="HTTP-1-0"><a href="#HTTP-1-0" class="headerlink" title="HTTP 1.0"></a>HTTP 1.0</h3><p>正如之前介绍的，HTTP的第一个版本只允许从服务器获取信息。然而，随着互联网的发展和新功能的出现，这已经不足以满足需求。</p>
+<p>在这个背景下，HTTP的第1.0版本于1996年发布，比第0.9版本发布大约五年。</p>
+<p>HTTP 1.0引入了一些新的实用功能，让我们看看其中一些：</p>
+<p>头部（Header）：HTTP 0.9请求仅由方法和资源名称组成。而HTTP 1.0引入了HTTP头部，从而允许传输元数据，使协议更加灵活和可扩展。</p>
+<p>版本信息（Versioning）：HTTP请求明确指出了所使用的版本，并将其附加在请求行中。</p>
+<p>状态码（Status Code）：HTTP响应现在包含了一个状态码，使接收方能够检查请求的处理状态（成功或失败）。</p>
+<p>内容类型（Content-Type）：借助HTTP头部，特别是Content-Type字段，HTTP可以传输除了纯HTML文件以外的其他文档类型。</p>
+<p>新方法（New Methods）：除了GET之外，HTTP 1.0提供了两种新方法（POST和HEAD）。</p>
+<p>总之，HTTP 1.0比0.9版本更加强大。协议改进的最大贡献者是HTTP头部和新的HTTP方法。</p>
+<p>因此，HTTP头部使客户端能够发送和接收不同类型的文件，并交换相关的元数据。而新的方法则使客户端既能够仅检索有关文档的元数据（HEAD），又能够将数据从客户端传输到服务器（POST）。</p>
+<h3 id="HTTP-1-1"><a href="#HTTP-1-1" class="headerlink" title="HTTP 1.1"></a>HTTP 1.1</h3><p>HTTP的1.1版本于1997年发布，距离上一个版本1.0仅一年。HTTP 1.1是HTTP 1.0的增强版本，提供了许多扩展功能。</p>
+<p>在最重要的增强功能中，我们可以列举以下几点：</p>
+<ul>
+<li><p>主机头部（Host Header）：HTTP 1.0在规范中并没有正式要求主机头部，而HTTP 1.1则要求它。主机头部对于通过代理服务器路由消息特别重要，允许区分指向相同IP的域名。</p>
+</li>
+<li><p>持久连接（Persistent Connections）：在HTTP 1.0中，每个请求/响应对都需要打开一个新连接。而在HTTP 1.1中，可以使用单个连接执行多个请求。</p>
+</li>
+<li><p>继续状态（Continue Status）：为了避免服务器拒绝不可处理的请求，现在客户端可以首先只发送请求头，并检查是否收到继续状态码（100）。</p>
+</li>
+<li><p>新方法（New Methods）：除了HTTP 1.0中已有的方法，1.1版本添加了六种额外的方法：PUT、PATCH、DELETE、CONNECT、TRACE和OPTIONS。</p>
+</li>
+</ul>
+<p>除了上述突出的增强功能外，HTTP 1.1版本还引入了许多其他功能，如压缩和解压缩、多语言支持和字节范围传输。</p>
+<p>具体来说，新方法在使用HTTP方面带来了真正的改进。PUT方法负责替换已经存在的资源。PATCH方法更新已经存在资源的特定数据。另一方面，DELETE方法删除已经存在的资源。</p>
+<p>HTTP CONNECT方法可以通过代理服务器创建一个隧道。TRACE方法执行从客户端到目标服务器的路径回环测试。最后，OPTIONS方法返回有关与服务器可用通信选项的信息。</p>
+<h3 id="HTTP-2-0"><a href="#HTTP-2-0" class="headerlink" title="HTTP 2.0"></a>HTTP 2.0</h3><p>HTTP 2.0正式发布于2015年，距离HTTP 1.1大约有18年的时间。特别是，HTTP 2.0的重点是改进协议的性能。</p>
+<p>为了实现这一目标，HTTP 2.0实施了多项功能来改进连接和数据交换。让我们看看其中一些：</p>
+<ul>
+<li><p>请求多路复用（Request Multiplexing）：HTTP 1.1是一个顺序协议，因此一次只能发送一个请求。而HTTP 2.0允许异步发送请求和接收响应。这样，我们可以使用单个连接同时进行多个请求。</p>
+</li>
+<li><p>请求优先级（Request Prioritization）：使用HTTP 2.0，我们可以在一批请求中设置数值优先级。因此，我们可以明确指定期望的响应顺序，例如在获取网页的CSS文件之前获取其JS文件。</p>
+</li>
+<li><p>自动压缩（Automatic Compression）：在之前的HTTP版本（1.1）中，我们必须明确要求请求和响应的压缩。然而，HTTP 2.0会自动执行GZip压缩。</p>
+</li>
+<li><p>连接重置（Connection Reset）：这是一种功能，允许出于某种原因关闭服务器和客户端之间的连接，然后立即打开一个新连接。</p>
+</li>
+</ul>
+<p>服务器推送（Server Push）：为了避免服务器接收大量请求，HTTP 2.0引入了服务器推送功能。通过这个功能，服务器尝试预测哪些资源将很快被请求。因此，服务器会主动将这些资源推送到客户端缓存中。</p>
+<p>此外，HTTP 2.0成为了一种二进制协议，取代了以前的HTTP纯文本版本。总之，我们可以将HTTP 2.0视为一系列增强功能的修补程序，以解决最后HTTP版本的问题和限制。</p>
+<h3 id="HTTP-3-0"><a href="#HTTP-3-0" class="headerlink" title="HTTP 3.0"></a>HTTP 3.0</h3><p>HTTP 3.0与以前的HTTP版本不同，以前的HTTP版本是Internet工程任务组（IETF）的“请求评论”（RFC）文档。</p>
+<p>HTTP 2.0和HTTP 3.0的主要区别在于所使用的传输层协议。在HTTP 2.0中，我们使用TCP连接，可以选择是否使用TLS（HTTPS和HTTP）。而HTTP 3.0则基于QUIC（Quick UDP Internet Connections）设计。</p>
+<p>简言之，QUIC是一种传输层协议，具有本地多路复用和内置加密。QUIC提供了快速的握手过程，可以缓解在丢包率高和网络连接较慢的情况下出现的延迟问题。</p>
+<p>除了继承自QUIC的潜在优势外，HTTP 3.0的另一个重要特点是它始终创建加密连接。因此，它类似于在当前HTTP 2.0中始终使用HTTPS。这种对安全和加密的强调与现代网络通信的最佳实践一致，有助于保护通过互联网传输的数据的隐私和完整性。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>目前，HTTP是一个非常重要的协议，支持在互联网上运行的多个系统。首次发布于1991年，这个协议经历了多个更新，经历了多个版本。</p>
+<p>从第一个发布版本（版本0.9）到HTTP 2.0的发布，我们对HTTP的功能进行了多次增强，还在协议中进行了扩展，以添加新的方法和功能。</p>
+<p>这些增强和新特性的示例包括协议头部（1.0）、状态码（1.0）、持久连接（1.1）、请求多路复用（2.0）和服务器推送（2.0）。</p>
+<p>除了先前提到的新功能之外，我们还引入了新的方法，除了标准的GET方法：POST（1.0）、HEAD（1.0）、PUT（1.1）、PATCH（1.1）、DELETE（1.1）、CONNECT（1.1）、TRACE（1.1）和OPTIONS（1.1）。</p>
+<p>然而，在HTTP 3.0中，这里的主要新特性不是特定的新功能。实际上，HTTP 3.0用一个新的传输层协议QUIC替代了HTTP从其第一个版本开始使用的TCP协议。</p>
+<p>通过用QUIC替代TCP，HTTP的开发者希望在其他改进方面实现本机和标准的加密（不再有HTTP和HTTPS，每个HTTP通信都被加密）以及快速建立连接。</p>
+<p>下面的图片总结了HTTP从其第一个发布版本（版本0.9）到最后一个提议版本（版本3.0）的演变：<br><img src="/2023/09/06/2023/09/daily-blog-20230906/http-versions.webp"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1267,118 +1420,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/07/07/2023/07/daily-tech-blog-collection-20230707/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/07/06/2023/07/bridge-mode-starter-istoreos/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/07/06/2023/07/bridge-mode-starter-istoreos/" class="post-title-link" itemprop="url">旁路由入门-iStoreOS实现局域网科学上网</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-07-06 15:55:49" itemprop="dateCreated datePublished" datetime="2023-07-06T15:55:49+08:00">2023-07-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-10 22:34:15" itemprop="dateModified" datetime="2023-07-10T22:34:15+08:00">2023-07-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2023/07/06/2023/07/bridge-mode-starter-istoreos/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/07/06/2023/07/bridge-mode-starter-istoreos/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="什么是旁路由？"><a href="#什么是旁路由？" class="headerlink" title="什么是旁路由？"></a>什么是旁路由？</h2><blockquote>
-<p>旁路由： 旁路由其实并不是路由，路由是用来连接不同网络的，最常用的就是用来连接互联网和局域网。旁路由起到的主要是网关的作用，是用来分流数据和扩展插件的。因此，严谨一点的叫法应该是<strong>旁路网关</strong>，只是大家好像约定俗成了都叫做旁路由，所以我们这里也跟着叫旁路由，但是要明白它的核心是网关而不是路由。</p>
-</blockquote>
-<p><img src="/2023/07/06/2023/07/bridge-mode-starter-istoreos/bridge1.png"></p>
-<blockquote>
-<p>如图所示，对于普通流量，由于旁路由不修改任何内容，我们期望旁路由只转发上行数据，而下行数据由主路由直接发送给主机。对于需要代理的流量，则下行数据也得交给旁路由处理，然后才能转发给主机。</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/07/06/2023/07/bridge-mode-starter-istoreos/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
