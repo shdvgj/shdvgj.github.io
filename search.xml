@@ -6251,6 +6251,8 @@
 <p>这样就可以通过访问<code>http://localhost:8080</code>看到项目的展示效果。这是个完全基于静态资源的项目，因此不需要任何额外的服务端。</p>
 <p>地图数据来自<a href="https://www.naturalearthdata.com/">naturalearthdata</a>，天气数据来自<a href="http://en.wikipedia.org/wiki/Global_Forecast_System">Global Forecast System</a>。</p>
 <h3 id="weather-icons：天气图标"><a href="#weather-icons：天气图标" class="headerlink" title="weather-icons：天气图标"></a><a href="https://erikflowers.github.io/weather-icons/">weather-icons：天气图标</a></h3><p>200多种天气图标，简洁美观。<br><img src="/2023/07/24/2023/07/daily-tech-blog-collection-20230724/weathericon1.png"></p>
+<span id="more"></span>
+
 <ul>
 <li>基本用法：将5个字体文件和主要的weather-icons.min.css文件放入你的项目中，假设这些字体文件位于你的CSS目录的上一级目录。</li>
 </ul>
@@ -6365,6 +6367,8 @@
 <p>Outlines 〰 提供了强大的提示原语，将提示与执行逻辑分离，从而实现了少样本生成、ReAct、元提示、代理等简单实现。</p>
 <p>Outlines 〰 被设计为一个与更广泛生态系统兼容的库，而非替代品。我们尽可能少地使用抽象，生成可以与控制流、条件语句、自定义 Python 函数以及调用其他库交错进行。</p>
 <p>Outlines 〰 与所有模型兼容。它仅通过下一个标记的对数与模型进行交互。它也可以与基于 API 的模型一起使用。</p>
+<span id="more"></span>
+
 <h2 id="主要Features"><a href="#主要Features" class="headerlink" title="主要Features"></a>主要Features</h2><ul>
 <li>🖍️基于Jinja模板引擎的简单而强大的提示基元</li>
 <li>🚄引导式生成，包括多项选择、类型约束和动态停止</li>
@@ -6407,6 +6411,8 @@
     <content><![CDATA[<p>翻译自(<a href="https://if50.substack.com/p/the-antagonists">https://if50.substack.com/p/the-antagonists</a>)</p>
 <p>在20世纪80年代，没有人确切知道电脑游戏可能会发展成什么样子。它们是通向交互式电影的第一步吗？<a href="https://if50.substack.com/p/1975-dnd">桌面角色扮演游戏的数字版本？</a>有一段时间，<a href="https://if50.substack.com/p/1984-the-hitchhikers-guide-to-the-galaxy">出版业非常热衷于将它们变成交互式书籍</a>，”书籍软件”（bookware）繁荣时期出现了像安·麦卡弗瑞（Anne McCaffrey）和斯蒂芬·金（Stephen King）等知名作家的小说的文字冒险游戏改编。</p>
 <p>然而，将一本书变成电脑游戏只是其中一种方法。带有一定叛逆性质的做法是，反而考虑销售一款以书的形式呈现的电脑游戏。</p>
+<span id="more"></span>
+
 <p>游戏曾经与书籍和印刷故事一起发售过。<a href="https://if50.substack.com/p/1982-the-hobbit">《霍比特人》</a>的书籍软件版本就曾与托尔金的原著小说一起打包销售，而Infocom则在他们的文字冒险游戏中包含了详细的“feelies”，其中包括了背景知识、提示和世界构建。但是，这些附加物通常更多地用来支持伴随的游戏，而不是作为平等的合作伙伴。在1985年，Addison-Wesley（曾负责《霍比特人》游戏在美国的发行）出版了一对书籍，希望改变这一情况。他承诺：</p>
 <blockquote>
 <p>一种令人兴奋的全新冒险游戏方式：你并不孤单！与其被置身于黑暗中，不知道是向左还是向右会通向财宝还是麻烦，你的身边有一系列文件和详细信息、图片和实用指南。</p>
@@ -6452,6 +6458,8 @@
 <p>每个网络层都有特定的协议来实现各种功能。例如，网络层有IP协议，传输层有<a href="https://www.baeldung.com/cs/udp-vs-tcp">TCP和UDP</a>协议，应用层有HTTP协议。</p>
 <p>这些协议在不断演化，随着时间的推移被更新和扩展。因此，网络协议自然而然地有多个版本。</p>
 <p>在这个背景下，本教程全面探讨了HTTP应用协议。首先，我们将简要回顾应用协议。然后，我们将研究HTTP的一般目的。最后，我们将查看HTTP各个版本的主要区别，并以系统性摘要进行比较。</p>
+<span id="more"></span>
+
 <h2 id="应用层协议"><a href="#应用层协议" class="headerlink" title="应用层协议"></a>应用层协议</h2><p>应用层协议指的是在不同计算应用程序之间提供端到端通信的抽象网络层。它是OSI模型的第7层和TCP/IP模型的第4层。</p>
 <p>在实际应用中，应用层是最接近用户的一层。因此，例如电子邮件客户端、流媒体和浏览器等客户端操作都在应用层进行。</p>
 <p>此外，有三种主要的体系结构用于构建应用层系统：</p>
@@ -6518,6 +6526,40 @@
 <p>然而，在HTTP 3.0中，这里的主要新特性不是特定的新功能。实际上，HTTP 3.0用一个新的传输层协议QUIC替代了HTTP从其第一个版本开始使用的TCP协议。</p>
 <p>通过用QUIC替代TCP，HTTP的开发者希望在其他改进方面实现本机和标准的加密（不再有HTTP和HTTPS，每个HTTP通信都被加密）以及快速建立连接。</p>
 <p>下面的图片总结了HTTP从其第一个发布版本（版本0.9）到最后一个提议版本（版本3.0）的演变：<br><img src="/2023/09/06/2023/09/daily-blog-20230906/http-versions.webp"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>CAP原理简介</title>
+    <url>/2023/09/12/2023/09/CAP-Theorem-simplified/</url>
+    <content><![CDATA[<p>翻译自<a href="https://ravindraelicherla.medium.com/cap-theorem-simplified-28499a67eab4">CAP Theorem simplified</a></p>
+<p>如果你曾经使用过任何NoSQL数据库，你一定听说过CAP定理。布鲁尔先生在2000年的<a href="http://awoc.wolski.fi/dlib/big-data/Brewer_podc_keynote_2000.pdf">分布式计算原理研讨会</a>上谈到了这个定理。</p>
+<p>类似于<a href="https://medium.com/@ravindraprasad/microservices-in-action-9be2bc846b7f">微服务</a>博客，我再次以餐厅为例。在班加罗尔的交通拥堵中，一个IT专业人士（嗯…有没有不开车的？）很有可能会有一天想，我辞掉这份工作，开一家餐厅。</p>
+<p>故事开始。Srinivas对IT工作感到厌倦（这通常发生在绩效评估后的85%的人身上），最终辞去了工作，开了一家餐厅。经过仔细考虑，他开始通过电话进行外卖服务。他雇佣了一些送餐员，这些送餐员是在许多外卖创业公司消失后以非常便宜的价格得到的。</p>
+<span id="more"></span>
+<p>第五天：Srinivas选择亲自接听电话，坐在收银台旁边。早上是一个平静的时段。但从晚上7点开始，他开始接到很多电话。无论他接到什么订单，他都会把它写在纸上，交给厨房，然后……嘭……食物就做好了（嗯，并不是每次都是这样），然后送到顾客手中。大约在晚上8:30，他看到一个顾客走向他。他喘着气，显然很生气（也许是因为饥饿）。”我已经打了30分钟的电话了。你的电话一直占线。我不得不走了20分钟才来这里下订单。我不高兴。”</p>
+<p>创意时间：Srinivas显然感到非常不满和动摇。在IT服务领域工作时，他每天都被上司告诉”顾客就是上帝，你不能让上帝生气”。作为一个敬畏上帝的人，他在生活中牺牲了许多事情，包括去寺庙。经过一段不安宁的睡眠和思考时间，他得到了一个绝妙的想法。”让我再雇一个操作员来接电话。如果一条线路被占线，另一个人会接听。”他花了一个星期的时间来招聘新的人，同时他也应对了一个星期愤怒的顾客。这是提高”可用性”(<code>Availability</code>)的改进。</p>
+<p><img src="/2023/09/12/2023/09/CAP-Theorem-simplified/cap1.webp"></p>
+<p>第15天：现在新员工Raj已经入职，Srinivas感到非常高兴。顾客在电话中的等待时间大大缩短。如果一条线路被占线，呼叫会自动转接到第二条线路。Srinivas和Raj之间的合作非常顺利。他们能够接受订单并处理它们。</p>
+<p>第27天：晚上8点，Srinivas接到一个顾客的电话。”我在45分钟前下了订单。现在的状态是什么？”Srinivas记录下了顾客的电话号码和姓名，然后试图查看他的订单列表。但他找不到。他看了一眼旁边的Raj，但Raj正忙于接受其他订单，他不能打扰他。Srinivas向顾客道歉，并要求他等待2分钟。顾客已经不满意了，让他等待更加愤怒。他说”取消我的订单”，然后挂断了电话。敬畏上帝的Srinivas再次感到烦恼。</p>
+<p>创意时间：Srinivas对此进行了更深入的思考。他也意识到这种情况也会发生在Raj身上。经过一段思考时间后… 哎呀！他找到了一个解决办法。第二天，他与Raj达成协议，在他们接受订单后立即交换订单详情。例如，订单编号223由Srinivas接受。他将拥有原始订单，并将订单详情的副本传递给Raj。同样，订单编号224由Raj接受，他将把副本传递给Srinivas。现在他们两个人都拥有了所有的订单详情。以后，如果顾客询问订单状态，他们可以在不让顾客等待的情况下回答。这就是”一致性”(<code>Consistency</code>)的体现。</p>
+<p><img src="/2023/09/12/2023/09/CAP-Theorem-simplified/cap2.webp"></p>
+<p>第283天：到目前为止，一切都进展顺利。业务增长了好几倍。现在他有3个人负责接受订单，并且他建立了一个厨房。Srinivas和Raj不再从事这项工作。新的团队成员是Suma、Ramesh和Supriya。他们年轻、充满活力，毫不在乎。至于之前的流程，他们每个人都会向其他两个人更新订单信息。</p>
+<p><img src="/2023/09/12/2023/09/CAP-Theorem-simplified/cap3.webp"></p>
+<p>第289天：一切都好好的，直到某一天。就像宝莱坞电影一样，Supriya爱上了Ramesh，而Ramesh爱上了Suma。事情开始变得复杂，Supriya开始感觉自己像个失败者。随着时间的推移，情况变得更糟。Ramesh和Suma都停止向Supriya传达订单详情，而Supriya也做同样的事情。这导致了沟通中断。现在基本上回到了第一天的状态。没有”分区容错性”(<code>Partition tolerance</code>)。唯一能够提供可用和一致服务的方法是要么摆脱Ramesh和Suma，要么摆脱Supriya，要么让他们一起工作。否则，你可以使系统”可用”，但数据不一致。</p>
+<p><img src="/2023/09/12/2023/09/CAP-Theorem-simplified/cap4.webp"></p>
+<p>让我们回到我们的IT世界的现实。</p>
+<p>CAP代表一致性（Consistency）、可用性（Availability）和分区容错性（Partition Tolerance）。</p>
+<p>一致性（C）：所有节点同时看到相同的数据。你写入的内容就是你读取的内容。</p>
+<p>可用性（A）：确保每个请求都能接收到成功或失败的响应。无论是读取还是写入，你都会收到一些响应。</p>
+<p>分区容错性（P）：即使在系统的一部分发生任意消息丢失或故障的情况下，系统仍然可以继续运行。即使节点之间的通信中断，系统仍然可以正常工作。</p>
+<p><strong>CAP定理经常被误解。它不是选择其中任意两个。关键在于分区容错性（P）对于客户来说是不可见的。它是一种技术解决方案，用于实现一致性（C）和可用性（A）。客户只能体验到一致性和可用性。</strong></p>
+<p>分区容错性是由电线、电力、软件和硬件驱动的，我们都无法控制，而且通常无法满足分区容错性。如果分区容错性存在，A和C就没有问题（除了延迟问题）。问题出现在分区容错性无法满足的情况下。现在我们有两个选择。</p>
+<p>AP：当没有分区容错性时，系统可用，但数据不一致。</p>
+<p><img src="/2023/09/12/2023/09/CAP-Theorem-simplified/cap5.webp"></p>
+<p>CP：当没有分区容错性时，系统不完全可用。但数据是一致的。</p>
+<p><img src="/2023/09/12/2023/09/CAP-Theorem-simplified/cap6.webp"></p>
+<p>如果我在解释CAP定理时不提及著名的CAP三角形和一些流行的数据库，那将是一种遗憾。</p>
+<p><img src="/2023/09/12/2023/09/CAP-Theorem-simplified/cap7.webp"></p>
 ]]></content>
   </entry>
 </search>
