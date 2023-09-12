@@ -29,6 +29,8 @@ node dev-server.js 8080
 200多种天气图标，简洁美观。
 ![](weathericon1.png)
 
+<!-- more -->
+
 - 基本用法：将5个字体文件和主要的weather-icons.min.css文件放入你的项目中，假设这些字体文件位于你的CSS目录的上一级目录。
 
 使用i元素来显示图标，并且首先添加基本类wi，然后再添加你想要的图标类，比如day-sunny。这看起来像是：`<i class="wi wi-day-sunny"></i>`。
