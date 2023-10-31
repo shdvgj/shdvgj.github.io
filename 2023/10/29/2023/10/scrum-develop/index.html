@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="敏捷开发基本思想和传统项目对比传统项目管理：瞄准，瞄准，瞄准，射击，命中敏捷项目管理：瞄准，射击，调整弹道，命中  not command and control, but learn as we go not plan in details, but change happens not enforce the plan, but embrace change not “control” cha">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scrum敏捷开发基本思想">
+<meta property="og:url" content="http://shdvgj.github.io/2023/10/29/2023/10/scrum-develop/index.html">
+<meta property="og:site_name" content="Ricky的个人博客">
+<meta property="og:description" content="敏捷开发基本思想和传统项目对比传统项目管理：瞄准，瞄准，瞄准，射击，命中敏捷项目管理：瞄准，射击，调整弹道，命中  not command and control, but learn as we go not plan in details, but change happens not enforce the plan, but embrace change not “control” cha">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://shdvgj.github.io/2023/10/29/2023/10/scrum-develop/agile1.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/10/29/2023/10/scrum-develop/agile2.png">
+<meta property="article:published_time" content="2023-10-29T01:21:04.000Z">
+<meta property="article:modified_time" content="2023-10-30T02:30:01.568Z">
+<meta property="article:author" content="Ricky">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://shdvgj.github.io/2023/10/29/2023/10/scrum-develop/agile1.png">
+
+
+<link rel="canonical" href="http://shdvgj.github.io/2023/10/29/2023/10/scrum-develop/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://shdvgj.github.io/2023/10/29/2023/10/scrum-develop/","path":"2023/10/29/2023/10/scrum-develop/","title":"Scrum敏捷开发基本思想"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Scrum敏捷开发基本思想 | Ricky的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ricky的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">73</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="nav-text">敏捷开发基本思想</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%92%8C%E4%BC%A0%E7%BB%9F%E9%A1%B9%E7%9B%AE%E5%AF%B9%E6%AF%94"><span class="nav-text">和传统项目对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%8F%E6%8D%B7%E5%AE%A3%E8%A8%80"><span class="nav-text">敏捷宣言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12%E6%9D%A1%E5%8E%9F%E5%88%99"><span class="nav-text">12条原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%8F%E6%8D%B7%E6%98%AF%E4%B8%80%E7%A7%8D%E7%8A%B6%E6%80%81"><span class="nav-text">敏捷是一种状态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Agile%E6%95%8F%E6%8D%B7%E6%B5%81%E6%B4%BE"><span class="nav-text">Agile敏捷流派</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scrum%E6%95%8F%E6%8D%B7%E6%B5%81%E6%B4%BE"><span class="nav-text">Scrum敏捷流派</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%92%E8%89%B2"><span class="nav-text">角色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%84%E4%BA%A7"><span class="nav-text">资产</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6"><span class="nav-text">事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%B7%E5%80%BC%E8%A7%82"><span class="nav-text">价值观</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E5%9B%A2%E9%98%9F%E7%89%B9%E5%BE%81"><span class="nav-text">开发团队特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%A7%E5%93%81%E8%B4%9F%E8%B4%A3%E4%BA%BA%EF%BC%88Product-Owner%EF%BC%89%E7%89%B9%E5%BE%81"><span class="nav-text">产品负责人（Product Owner）特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Scrum%E4%B8%BB%E7%AE%A1%EF%BC%88Scrum-Master%EF%BC%89"><span class="nav-text">Scrum主管（Scrum Master）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%A7%E5%93%81Backlog"><span class="nav-text">产品Backlog</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%95%85%E4%BA%8B%EF%BC%88user-stories%EF%BC%89"><span class="nav-text">用户故事（user stories）</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ricky"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ricky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shdvgj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shdvgj" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:linqianghuang@gmail.com" title="E-Mail → mailto:linqianghuang@gmail.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/RickyLoveCindy" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;RickyLoveCindy" rel="noopener me" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoqianglalala" rel="noopener me" target="_blank"><i class="instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/10/29/2023/10/scrum-develop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Scrum敏捷开发基本思想 | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Scrum敏捷开发基本思想
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-10-29 09:21:04" itemprop="dateCreated datePublished" datetime="2023-10-29T09:21:04+08:00">2023-10-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-10-30 10:30:01" itemprop="dateModified" datetime="2023-10-30T10:30:01+08:00">2023-10-30</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/10/29/2023/10/scrum-develop/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/10/29/2023/10/scrum-develop/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="敏捷开发基本思想"><a href="#敏捷开发基本思想" class="headerlink" title="敏捷开发基本思想"></a>敏捷开发基本思想</h3><h4 id="和传统项目对比"><a href="#和传统项目对比" class="headerlink" title="和传统项目对比"></a>和传统项目对比</h4><p>传统项目管理：瞄准，瞄准，瞄准，射击，命中<br>敏捷项目管理：瞄准，射击，调整弹道，命中</p>
+<ul>
+<li>not command and control, but learn as we go</li>
+<li>not plan in details, but change happens</li>
+<li>not enforce the plan, but embrace change</li>
+<li>not “control” change, but inspect and adapt<br><img src="/2023/10/29/2023/10/scrum-develop/agile1.png"></li>
+</ul>
+<h4 id="敏捷宣言"><a href="#敏捷宣言" class="headerlink" title="敏捷宣言"></a>敏捷宣言</h4><ul>
+<li><strong>Individuals and interactions</strong> over processes and tools. 个体和互动 高于 流程和工具</li>
+<li><strong>Working software</strong> over comprehensive documentation. 工作的软件 高于 详尽的文档</li>
+<li><strong>Customer collaboration</strong> over contract negotiation. 客户合作 高于 合同谈判</li>
+<li><strong>Responding to change</strong> over following a project plan. 响应变化 高于 遵循计划</li>
+</ul>
+<h4 id="12条原则"><a href="#12条原则" class="headerlink" title="12条原则"></a>12条原则</h4><ul>
+<li>我们最重要的目标，是通过持续不断地及早交付有价值的软件使客户满意。</li>
+<li>欣然面对需求变化，即使在开发后期也一样。为了客户的竞争优势，敏捷过程掌控变化。</li>
+<li>经常地交付可工作的软件，相隔几星期或一两个月，倾向于采取较短的周期。</li>
+<li>业务人员和开发人员必须相互合作，项目中的每一天都不例外。</li>
+<li>激发个体的斗志，以他们为核心搭建项目。提供所需的环境和支援，辅以信任，从而达成目标。</li>
+<li>不论团队内外，传递信息效果最好效率也最高的方式是面对面的交谈。</li>
+<li>可工作的软件是进度的首要度量标准。</li>
+<li>敏捷过程倡导可持续开发。责任人、开发人员和用户要能够共同维持其步调稳定延续。</li>
+<li>坚持不懈地追求技术卓越和良好设计，敏捷能力由此增强。</li>
+<li>以简洁为本，它是极力减少不必要工作量的艺术。</li>
+<li>最好的架构、需求和设计出自自组织团队。</li>
+<li>团队定期地反思如何能提高成效，并依此调整自身的举止表现。</li>
+</ul>
+<h4 id="敏捷是一种状态"><a href="#敏捷是一种状态" class="headerlink" title="敏捷是一种状态"></a>敏捷是一种状态</h4><p>从产出来看：频繁地交付可见的、可用的成果<br>从团队来看：主动、持续地学习和改进</p>
+<h3 id="Agile敏捷流派"><a href="#Agile敏捷流派" class="headerlink" title="Agile敏捷流派"></a>Agile敏捷流派</h3><ul>
+<li>Scrum：3355</li>
+<li>Xp：结对，重构，CI</li>
+<li>TDD：测试驱动开发</li>
+<li>FDD</li>
+<li>kanban</li>
+<li>水晶方法</li>
+<li>DSDM</li>
+</ul>
+<h3 id="Scrum敏捷流派"><a href="#Scrum敏捷流派" class="headerlink" title="Scrum敏捷流派"></a>Scrum敏捷流派</h3><h4 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h4><ul>
+<li>Product Owner<ul>
+<li>产品负责人（Product Owner）：代表利益相关者，负责定义产品的需求、优先级和发布计划。产品负责人与开发团队紧密合作，确保产品的需求得到满足。</li>
+</ul>
+</li>
+<li>Development Team<ul>
+<li>Scrum团队（Scrum Team）：由开发人员组成的自组织团队，负责实现产品的需求。团队通常包括开发人员、测试人员和其他相关角色。团队通过迭代式的开发来交付软件，并在每个迭代中进行持续改进。</li>
+</ul>
+</li>
+<li>ScrumMaster<ul>
+<li>Scrum主管（Scrum Master）：负责促进和支持Scrum团队的实践和过程。Scrum主管帮助团队遵循Scrum框架，解决障碍和问题，并促进团队的自我组织和持续改进。</li>
+</ul>
+</li>
+</ul>
+<h4 id="资产"><a href="#资产" class="headerlink" title="资产"></a>资产</h4><ul>
+<li>Product Backlog</li>
+<li>Scprint Backlog</li>
+<li>Increment</li>
+</ul>
+<h4 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h4><ul>
+<li>Sprint Planning<ul>
+<li>冲刺计划会议（Sprint Planning Meeting）：团队和产品负责人共同决定下一个冲刺中要完成的工作，并制定一个可执行的计划。</li>
+</ul>
+</li>
+<li>Daily Scrum<ul>
+<li>每日站会（Daily Scrum）：每天团队成员在15分钟内汇报工作进展、讨论遇到的问题和计划当天的工作。</li>
+</ul>
+</li>
+<li>Sprint Review<ul>
+<li>冲刺评审会议（Sprint Review）：在每个冲刺结束时，团队向利益相关者展示已完成的工作，并接受反馈和建议。</li>
+</ul>
+</li>
+<li>Sprint Retrospective<ul>
+<li>冲刺回顾会议（Sprint Retrospective）：团队在每个冲刺结束时进行回顾，评估团队的工作方式，识别改进点，并制定下一个冲刺的改进计划。</li>
+</ul>
+</li>
+</ul>
+<h4 id="价值观"><a href="#价值观" class="headerlink" title="价值观"></a>价值观</h4><ul>
+<li>Courage</li>
+<li>Openness</li>
+<li>Focus</li>
+<li>Commitment</li>
+<li>Respect</li>
+</ul>
+<h4 id="开发团队特征"><a href="#开发团队特征" class="headerlink" title="开发团队特征"></a>开发团队特征</h4><ul>
+<li>5-9人</li>
+<li>跨职能<ul>
+<li>具备不同领域的必备技能</li>
+<li>不同层面的成熟度</li>
+<li>T模型人才</li>
+</ul>
+</li>
+<li>全职：Sprints（迭代）之间方可换人</li>
+<li>自组织<ul>
+<li>没有管理者的头衔</li>
+<li><strong>团队决定如何去工作</strong></li>
+<li>全员责任制</li>
+<li>团队承担大部分围观管理工作</li>
+</ul>
+</li>
+</ul>
+<h4 id="产品负责人（Product-Owner）特征"><a href="#产品负责人（Product-Owner）特征" class="headerlink" title="产品负责人（Product Owner）特征"></a>产品负责人（Product Owner）特征</h4><ul>
+<li>“一”个人</li>
+<li>被授予产品（“做什么”）决策权</li>
+<li>驱动产品走向成功</li>
+<li>提供产品领导力</li>
+<li>面向干系人代表团队</li>
+<li>面向团队代表干系人</li>
+<li>和所有合作</li>
+</ul>
+<h4 id="Scrum主管（Scrum-Master）"><a href="#Scrum主管（Scrum-Master）" class="headerlink" title="Scrum主管（Scrum Master）"></a>Scrum主管（Scrum Master）</h4><ul>
+<li>面向管理层代表团队</li>
+<li>面向团队代表管理层</li>
+<li>不是一个项目经理或团队经理</li>
+<li>没有管理头衔，不代表团队做出决定</li>
+<li>是一个仆人式的领导者</li>
+<li>。。。</li>
+</ul>
+<h4 id="产品Backlog"><a href="#产品Backlog" class="headerlink" title="产品Backlog"></a>产品Backlog</h4><ul>
+<li>一份动态的列表，包含了产品可能具备的功能（最好能做开关）</li>
+<li>以及其他为用户带来价值的工作</li>
+<li>一个健康的product backlog应当具备DEEP原则：<ul>
+<li>Detailed appropriately，恰当的详细程度</li>
+<li>Estimated，已估算</li>
+<li>Emergent，涌现式</li>
+<li>Prioritized，优先级排序</li>
+</ul>
+</li>
+<li>对所有人开放但最终由PO（Product Owner）维护</li>
+<li>关注于“什么”带给用户最大的价值</li>
+<li>最优秀的PO从“为什么”开始</li>
+</ul>
+<h4 id="用户故事（user-stories）"><a href="#用户故事（user-stories）" class="headerlink" title="用户故事（user stories）"></a>用户故事（user stories）</h4><p>As a [a user role], I want to [accomplish a result], So that [Business value].<br>作为[用户角色]，我想[实现一个结果]，因为[商业价值]。<br><img src="/2023/10/29/2023/10/scrum-develop/agile2.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/10/26/2023/10/java-advanced-class-01/" rel="prev" title="Java架构学习笔记——20231026">
+                  <i class="fa fa-chevron-left"></i> Java架构学习笔记——20231026
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/10/30/2023/10/SpringBoot%E7%AC%94%E8%AE%B0/" rel="next" title="SpringBoot笔记">
+                  SpringBoot笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ricky</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"cindyforever","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

@@ -6679,7 +6679,227 @@
 </ul>
 </li>
 </ul>
-<p><a href="001.pdf">附件：高级架构师课程1.pdf</a></p>
+<p><a href="001.pdf">附件：系统架构思维掌握.pdf</a><br><a href="002.pdf">附件：系统架构演进&amp;架构师成长规划.pdf</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>SpringBoot笔记</title>
+    <url>/2023/10/30/2023/10/SpringBoot%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h3 id="application-properties-常用配置"><a href="#application-properties-常用配置" class="headerlink" title="application.properties 常用配置"></a>application.properties 常用配置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">服务器端口配置：</span></span><br><span class="line"></span><br><span class="line">server.port=8080</span><br><span class="line"><span class="meta">#</span><span class="bash">用于指定应用程序监听的端口号。</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">数据库连接配置：</span></span><br><span class="line"></span><br><span class="line">spring.datasource.url=jdbc:mysql://localhost:3306/mydatabase</span><br><span class="line">spring.datasource.username=root</span><br><span class="line">spring.datasource.password=secret</span><br><span class="line"><span class="meta">#</span><span class="bash">用于配置数据库连接的URL、用户名和密码。</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">日志配置：</span></span><br><span class="line"></span><br><span class="line">logging.level.root=INFO</span><br><span class="line">logging.file=/path/to/application.log</span><br><span class="line"><span class="meta">#</span><span class="bash">用于配置日志级别和日志文件的路径。</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">Spring MVC配置：</span></span><br><span class="line"></span><br><span class="line">spring.mvc.view.prefix=/WEB-INF/views/</span><br><span class="line">spring.mvc.view.suffix=.jsp</span><br><span class="line"><span class="meta">#</span><span class="bash">用于配置视图解析器的前缀和后缀，以便正确解析和渲染视图。</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">静态资源配置：</span></span><br><span class="line"></span><br><span class="line">spring.resources.static-locations=classpath:/static/</span><br><span class="line"><span class="meta">#</span><span class="bash">用于配置静态资源文件的位置，比如CSS、JavaScript和图片等。</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">国际化配置：</span></span><br><span class="line"></span><br><span class="line">spring.messages.basename=messages</span><br><span class="line">spring.messages.encoding=UTF-8</span><br><span class="line"><span class="meta">#</span><span class="bash">用于配置国际化资源文件的基名和编码方式。</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">缓存配置：</span></span><br><span class="line"></span><br><span class="line">spring.cache.type=redis</span><br><span class="line">spring.redis.host=localhost</span><br><span class="line">spring.redis.port=6379</span><br><span class="line"><span class="meta">#</span><span class="bash">用于配置缓存的类型和相关的参数，比如Redis缓存的主机和端口。</span></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h3 id="通过ConfigurationProperties注入值"><a href="#通过ConfigurationProperties注入值" class="headerlink" title="通过ConfigurationProperties注入值"></a>通过ConfigurationProperties注入值</h3><p>配置文件yaml中写入值</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">student:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">Alice</span></span><br><span class="line">  <span class="attr">age:</span> <span class="number">18</span></span><br></pre></td></tr></table></figure>
+<p>在java中写入注解</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;student&quot;)</span> <span class="comment">// 注入yaml中的配置内容</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Student&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="JSR303校验"><a href="#JSR303校验" class="headerlink" title="JSR303校验"></a>JSR303校验</h3><ul>
+<li><p>支持的<a href="https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-builtin-constraints">JSR303注解</a></p>
+</li>
+<li><p>对象类中增加校验注解，比如<code>@Email</code>，<code>NotNull</code>，<code>Size(min=2, max=30)</code></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.validation.Valid;</span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArticleDTO</span> </span>&#123;</span><br><span class="line">    <span class="meta">@NotNull(message = &quot;文章id不能为空&quot;)</span></span><br><span class="line">    <span class="meta">@Min(value = 1,message = &quot;文章ID不能为负数&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="meta">@NotBlank(message = &quot;文章内容不能为空&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String content;</span><br><span class="line">    <span class="meta">@NotBlank(message = &quot;作者Id不能为空&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String authorId;</span><br><span class="line">    <span class="meta">@Future(message = &quot;提交时间不能为过去时间&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Date submitTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Controller类中在传入的参数前增加注解<code>@Valid</code>，以及增加一个<code>BindingResult</code>的参数接收错误校验的结果。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/personName&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">person</span><span class="params">(<span class="meta">@Valid</span> <span class="meta">@RequestBody</span> Student student, BindingResult bindingResult)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (bindingResult.hasErrors()) &#123;</span><br><span class="line">        List&lt;ObjectError&gt; errors = bindingResult.getAllErrors();</span><br><span class="line">        <span class="keyword">for</span> (ObjectError error : errors) &#123;</span><br><span class="line">            System.out.println(error.getDefaultMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hello World&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><ul>
+<li>推荐使用yaml配置方式</li>
+<li><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.files">配置文件寻找路径</a><ul>
+<li>classpath下<ul>
+<li>classpath根目录</li>
+<li>classpath目录下/config目录</li>
+</ul>
+</li>
+<li>当前目录</li>
+<li>当前目录下的/config子目录</li>
+</ul>
+</li>
+<li>多个环境的配置文件<ul>
+<li>properties方式<ul>
+<li>application-prod.properties</li>
+<li>application-dev.properties</li>
+<li>application-test.properties</li>
+<li>通过制定主配置文件application.properties中的配置项<code>spring.profiles.active=test</code></li>
+</ul>
+</li>
+<li>yaml方式<ul>
+<li>在一个文件中配置多个配置环境<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">    <span class="attr">profiles:</span></span><br><span class="line">        <span class="attr">active:</span> <span class="string">prod</span></span><br><span class="line"></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">8081</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">    <span class="attr">config:</span></span><br><span class="line">        <span class="attr">activate:</span></span><br><span class="line">            <span class="attr">on-profile:</span> <span class="string">dev</span></span><br><span class="line"></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">8082</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">    <span class="attr">config:</span></span><br><span class="line">        <span class="attr">activate:</span></span><br><span class="line">            <span class="attr">on-profile:</span> <span class="string">prod</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="webjars"><a href="#webjars" class="headerlink" title="webjars"></a>webjars</h3><ul>
+<li>webjars将前端资源打包成jar包，就类似于后端jar包的形式，这样就能更方便的集中管理和版本管理</li>
+<li>如在gradle中加入<code>implementation &#39;org.webjars.bower:jquery:3.7.1&#39;</code></li>
+<li>就可在web应用打开时直接访问到jquery资源包</li>
+<li><strong>用的极少，可以忽略</strong></li>
+</ul>
+<h3 id="静态资源导入"><a href="#静态资源导入" class="headerlink" title="静态资源导入"></a>静态资源导入</h3><ul>
+<li>sprintboot默认读取<code>&#123;&quot;classpath:/META-INF/resources/&quot;,&quot;classpath:/resources/&quot;,&quot;classpath:/static/&quot;,&quot;classpath:/public/&quot;&#125;</code>下的资源文件</li>
+<li>优先级：resources，static，public<ul>
+<li>public：放公共的js、css等</li>
+<li>static：放静态资源</li>
+<li>resources：上传的资源⽂文件</li>
+</ul>
+</li>
+<li>首页默认读取资源路径下的index.html</li>
+</ul>
+<h3 id="Thymeleaf模版引擎"><a href="#Thymeleaf模版引擎" class="headerlink" title="Thymeleaf模版引擎"></a>Thymeleaf模版引擎</h3><ul>
+<li>/templates目录下放thymeleaf模版文件</li>
+<li>SpringBoot增加Thymeleaf支持<ul>
+<li>gradle增加<code>implementation &#39;org.springframework.boot:spring-boot-starter-thymeleaf&#39;</code></li>
+<li>增加Controller类<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.ui.Model;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestParam;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThymeleafController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/thymeHello&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">thymeHello</span><span class="params">(<span class="meta">@RequestParam(name=&quot;name&quot;, required=false,</span></span></span></span><br><span class="line"><span class="meta"><span class="params"><span class="function">            defaultValue=&quot;World&quot;)</span> String name, Model model)</span> </span>&#123;</span><br><span class="line">        model.addAttribute(<span class="string">&quot;name&quot;</span>, name);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;ThymeHello&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>增加html文件，放到templates目录下<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns:th</span>=<span class="string">&quot;http://www.thymeleaf.org&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Getting Started: Serving Web Content<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html; charset=UTF-8&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">&quot;|Hello, $&#123;name&#125;!|&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>可用的<a href="https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html#setting-value-to-specific-attributes">thymeleaf前端语法</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="SpringBoot中的MVC配置"><a href="#SpringBoot中的MVC配置" class="headerlink" title="SpringBoot中的MVC配置"></a>SpringBoot中的MVC配置</h3><ul>
+<li>新增类继承<code>WebMvcConfigure</code></li>
+<li>重写接口方法来实现新的配置功能<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyMvcConfig</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ViewResolver <span class="title">myViewResolver</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MyViewResolver();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//⾃自⼰己定义了了⼀一个视图解析器器</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyViewResolver</span> <span class="keyword">implements</span> <span class="title">ViewResolver</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> View <span class="title">resolveViewName</span><span class="params">(String s, Locale locale)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>在spring启动时就会自动装载这个自定义配置</li>
+</ul>
+<p><a href="SpringBoot%E7%AC%94%E8%AE%B01.pdf">SpringBoot笔记1.pdf</a><br><a href="SpringBoot%E7%AC%94%E8%AE%B02.pdf">SpringBoot笔记2.pdf</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Scrum敏捷开发基本思想</title>
+    <url>/2023/10/29/2023/10/scrum-develop/</url>
+    <content><![CDATA[<h3 id="敏捷开发基本思想"><a href="#敏捷开发基本思想" class="headerlink" title="敏捷开发基本思想"></a>敏捷开发基本思想</h3><h4 id="和传统项目对比"><a href="#和传统项目对比" class="headerlink" title="和传统项目对比"></a>和传统项目对比</h4><p>传统项目管理：瞄准，瞄准，瞄准，射击，命中<br>敏捷项目管理：瞄准，射击，调整弹道，命中</p>
+<ul>
+<li>not command and control, but learn as we go</li>
+<li>not plan in details, but change happens</li>
+<li>not enforce the plan, but embrace change</li>
+<li>not “control” change, but inspect and adapt<br><img src="/2023/10/29/2023/10/scrum-develop/agile1.png"></li>
+</ul>
+<h4 id="敏捷宣言"><a href="#敏捷宣言" class="headerlink" title="敏捷宣言"></a>敏捷宣言</h4><ul>
+<li><strong>Individuals and interactions</strong> over processes and tools. 个体和互动 高于 流程和工具</li>
+<li><strong>Working software</strong> over comprehensive documentation. 工作的软件 高于 详尽的文档</li>
+<li><strong>Customer collaboration</strong> over contract negotiation. 客户合作 高于 合同谈判</li>
+<li><strong>Responding to change</strong> over following a project plan. 响应变化 高于 遵循计划</li>
+</ul>
+<h4 id="12条原则"><a href="#12条原则" class="headerlink" title="12条原则"></a>12条原则</h4><ul>
+<li>我们最重要的目标，是通过持续不断地及早交付有价值的软件使客户满意。</li>
+<li>欣然面对需求变化，即使在开发后期也一样。为了客户的竞争优势，敏捷过程掌控变化。</li>
+<li>经常地交付可工作的软件，相隔几星期或一两个月，倾向于采取较短的周期。</li>
+<li>业务人员和开发人员必须相互合作，项目中的每一天都不例外。</li>
+<li>激发个体的斗志，以他们为核心搭建项目。提供所需的环境和支援，辅以信任，从而达成目标。</li>
+<li>不论团队内外，传递信息效果最好效率也最高的方式是面对面的交谈。</li>
+<li>可工作的软件是进度的首要度量标准。</li>
+<li>敏捷过程倡导可持续开发。责任人、开发人员和用户要能够共同维持其步调稳定延续。</li>
+<li>坚持不懈地追求技术卓越和良好设计，敏捷能力由此增强。</li>
+<li>以简洁为本，它是极力减少不必要工作量的艺术。</li>
+<li>最好的架构、需求和设计出自自组织团队。</li>
+<li>团队定期地反思如何能提高成效，并依此调整自身的举止表现。</li>
+</ul>
+<h4 id="敏捷是一种状态"><a href="#敏捷是一种状态" class="headerlink" title="敏捷是一种状态"></a>敏捷是一种状态</h4><p>从产出来看：频繁地交付可见的、可用的成果<br>从团队来看：主动、持续地学习和改进</p>
+<h3 id="Agile敏捷流派"><a href="#Agile敏捷流派" class="headerlink" title="Agile敏捷流派"></a>Agile敏捷流派</h3><ul>
+<li>Scrum：3355</li>
+<li>Xp：结对，重构，CI</li>
+<li>TDD：测试驱动开发</li>
+<li>FDD</li>
+<li>kanban</li>
+<li>水晶方法</li>
+<li>DSDM</li>
+</ul>
+<h3 id="Scrum敏捷流派"><a href="#Scrum敏捷流派" class="headerlink" title="Scrum敏捷流派"></a>Scrum敏捷流派</h3><h4 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h4><ul>
+<li>Product Owner<ul>
+<li>产品负责人（Product Owner）：代表利益相关者，负责定义产品的需求、优先级和发布计划。产品负责人与开发团队紧密合作，确保产品的需求得到满足。</li>
+</ul>
+</li>
+<li>Development Team<ul>
+<li>Scrum团队（Scrum Team）：由开发人员组成的自组织团队，负责实现产品的需求。团队通常包括开发人员、测试人员和其他相关角色。团队通过迭代式的开发来交付软件，并在每个迭代中进行持续改进。</li>
+</ul>
+</li>
+<li>ScrumMaster<ul>
+<li>Scrum主管（Scrum Master）：负责促进和支持Scrum团队的实践和过程。Scrum主管帮助团队遵循Scrum框架，解决障碍和问题，并促进团队的自我组织和持续改进。</li>
+</ul>
+</li>
+</ul>
+<h4 id="资产"><a href="#资产" class="headerlink" title="资产"></a>资产</h4><ul>
+<li>Product Backlog</li>
+<li>Scprint Backlog</li>
+<li>Increment</li>
+</ul>
+<h4 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h4><ul>
+<li>Sprint Planning<ul>
+<li>冲刺计划会议（Sprint Planning Meeting）：团队和产品负责人共同决定下一个冲刺中要完成的工作，并制定一个可执行的计划。</li>
+</ul>
+</li>
+<li>Daily Scrum<ul>
+<li>每日站会（Daily Scrum）：每天团队成员在15分钟内汇报工作进展、讨论遇到的问题和计划当天的工作。</li>
+</ul>
+</li>
+<li>Sprint Review<ul>
+<li>冲刺评审会议（Sprint Review）：在每个冲刺结束时，团队向利益相关者展示已完成的工作，并接受反馈和建议。</li>
+</ul>
+</li>
+<li>Sprint Retrospective<ul>
+<li>冲刺回顾会议（Sprint Retrospective）：团队在每个冲刺结束时进行回顾，评估团队的工作方式，识别改进点，并制定下一个冲刺的改进计划。</li>
+</ul>
+</li>
+</ul>
+<h4 id="价值观"><a href="#价值观" class="headerlink" title="价值观"></a>价值观</h4><ul>
+<li>Courage</li>
+<li>Openness</li>
+<li>Focus</li>
+<li>Commitment</li>
+<li>Respect</li>
+</ul>
+<h4 id="开发团队特征"><a href="#开发团队特征" class="headerlink" title="开发团队特征"></a>开发团队特征</h4><ul>
+<li>5-9人</li>
+<li>跨职能<ul>
+<li>具备不同领域的必备技能</li>
+<li>不同层面的成熟度</li>
+<li>T模型人才</li>
+</ul>
+</li>
+<li>全职：Sprints（迭代）之间方可换人</li>
+<li>自组织<ul>
+<li>没有管理者的头衔</li>
+<li><strong>团队决定如何去工作</strong></li>
+<li>全员责任制</li>
+<li>团队承担大部分围观管理工作</li>
+</ul>
+</li>
+</ul>
+<h4 id="产品负责人（Product-Owner）特征"><a href="#产品负责人（Product-Owner）特征" class="headerlink" title="产品负责人（Product Owner）特征"></a>产品负责人（Product Owner）特征</h4><ul>
+<li>“一”个人</li>
+<li>被授予产品（“做什么”）决策权</li>
+<li>驱动产品走向成功</li>
+<li>提供产品领导力</li>
+<li>面向干系人代表团队</li>
+<li>面向团队代表干系人</li>
+<li>和所有合作</li>
+</ul>
+<h4 id="Scrum主管（Scrum-Master）"><a href="#Scrum主管（Scrum-Master）" class="headerlink" title="Scrum主管（Scrum Master）"></a>Scrum主管（Scrum Master）</h4><ul>
+<li>面向管理层代表团队</li>
+<li>面向团队代表管理层</li>
+<li>不是一个项目经理或团队经理</li>
+<li>没有管理头衔，不代表团队做出决定</li>
+<li>是一个仆人式的领导者</li>
+<li>。。。</li>
+</ul>
+<h4 id="产品Backlog"><a href="#产品Backlog" class="headerlink" title="产品Backlog"></a>产品Backlog</h4><ul>
+<li>一份动态的列表，包含了产品可能具备的功能（最好能做开关）</li>
+<li>以及其他为用户带来价值的工作</li>
+<li>一个健康的product backlog应当具备DEEP原则：<ul>
+<li>Detailed appropriately，恰当的详细程度</li>
+<li>Estimated，已估算</li>
+<li>Emergent，涌现式</li>
+<li>Prioritized，优先级排序</li>
+</ul>
+</li>
+<li>对所有人开放但最终由PO（Product Owner）维护</li>
+<li>关注于“什么”带给用户最大的价值</li>
+<li>最优秀的PO从“为什么”开始</li>
+</ul>
+<h4 id="用户故事（user-stories）"><a href="#用户故事（user-stories）" class="headerlink" title="用户故事（user stories）"></a>用户故事（user stories）</h4><p>As a [a user role], I want to [accomplish a result], So that [Business value].<br>作为[用户角色]，我想[实现一个结果]，因为[商业价值]。<br><img src="/2023/10/29/2023/10/scrum-develop/agile2.png"></p>
 ]]></content>
   </entry>
 </search>
