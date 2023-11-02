@@ -26,10 +26,13 @@
 <meta property="og:site_name" content="Ricky的个人博客">
 <meta property="og:description" content="application.properties 常用配置123456789101112131415161718192021222324252627282930313233343536373839404142#服务器端口配置：server.port&#x3D;8080#用于指定应用程序监听的端口号。#数据库连接配置：spring.datasource.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:330">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://shdvgj.github.io/2023/10/30/2023/10/SpringBoot%E7%AC%94%E8%AE%B0/i18n_1.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/10/30/2023/10/SpringBoot%E7%AC%94%E8%AE%B0/oauth1.png">
 <meta property="article:published_time" content="2023-10-30T03:35:13.000Z">
-<meta property="article:modified_time" content="2023-10-31T07:32:15.403Z">
+<meta property="article:modified_time" content="2023-11-02T06:06:14.437Z">
 <meta property="article:author" content="Ricky">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://shdvgj.github.io/2023/10/30/2023/10/SpringBoot%E7%AC%94%E8%AE%B0/i18n_1.png">
 
 
 <link rel="canonical" href="http://shdvgj.github.io/2023/10/30/2023/10/SpringBoot%E7%AC%94%E8%AE%B0/">
@@ -138,7 +141,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#application-properties-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="nav-text">application.properties 常用配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87ConfigurationProperties%E6%B3%A8%E5%85%A5%E5%80%BC"><span class="nav-text">通过ConfigurationProperties注入值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSR303%E6%A0%A1%E9%AA%8C"><span class="nav-text">JSR303校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webjars"><span class="nav-text">webjars</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%AF%BC%E5%85%A5"><span class="nav-text">静态资源导入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thymeleaf%E6%A8%A1%E7%89%88%E5%BC%95%E6%93%8E"><span class="nav-text">Thymeleaf模版引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringBoot%E4%B8%AD%E7%9A%84MVC%E9%85%8D%E7%BD%AE"><span class="nav-text">SpringBoot中的MVC配置</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#application-properties-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="nav-text">application.properties 常用配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81SpringBoot%E6%B3%A8%E8%A7%A3"><span class="nav-text">常见SpringBoot注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Restful%E9%A3%8E%E6%A0%BC%E5%86%99%E6%B3%95"><span class="nav-text">Restful风格写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87ConfigurationProperties%E6%B3%A8%E5%85%A5%E5%80%BC"><span class="nav-text">通过ConfigurationProperties注入值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSR303%E6%A0%A1%E9%AA%8C"><span class="nav-text">JSR303校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webjars"><span class="nav-text">webjars</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%AF%BC%E5%85%A5"><span class="nav-text">静态资源导入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thymeleaf%E6%A8%A1%E7%89%88%E5%BC%95%E6%93%8E"><span class="nav-text">Thymeleaf模版引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringBoot%E4%B8%AD%E7%9A%84MVC%E9%85%8D%E7%BD%AE"><span class="nav-text">SpringBoot中的MVC配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BD%E9%99%85%E5%8C%96"><span class="nav-text">国际化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-text">登录拦截器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringSecurity%E7%AE%80%E5%8D%95%E6%8E%A5%E5%85%A5"><span class="nav-text">SpringSecurity简单接入</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -241,7 +244,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-10-31 15:32:15" itemprop="dateModified" datetime="2023-10-31T15:32:15+08:00">2023-10-31</time>
+      <time title="修改时间：2023-11-02 14:06:14" itemprop="dateModified" datetime="2023-11-02T14:06:14+08:00">2023-11-02</time>
     </span>
 
   
@@ -278,6 +281,30 @@
 
 <span id="more"></span>
 
+<h3 id="常见SpringBoot注解"><a href="#常见SpringBoot注解" class="headerlink" title="常见SpringBoot注解"></a><a target="_blank" rel="noopener" href="https://www.upgrad.com/blog/spring-boot-annotations/">常见SpringBoot注解</a></h3><ul>
+<li><code>@Bean</code> : The @Bean annotations are used at the method level and indicate that a method produces a bean that is to be managed by the Spring container. It is an alternative to the XML<bean> tag. </li>
+<li><code>@Service</code> : It is used at the class level. It shows that the annotated class is a service class, such as business basic logic, and call external APIs.</li>
+<li><code>@Repository</code> : It is a Data Access Object (DAO) that accesses the database directly. It indicates that the annotated class is a repository. </li>
+<li><code>@Configuration</code> : It is used as a source of bean definitions. It is a class-level annotation.</li>
+<li><code>@Controller</code> : The annotation is used to indicate that the class is a web request handler. It is often used to present web pages. It is most commonly used with <code>@RequestMapping</code> annotation. </li>
+<li><code>@RequestMapping</code> : RequestMapping is used to map the HTTP request. It is used with the class as well as the method. It has many other optional elements like consumes, name, method, request, path, etc.</li>
+<li><code>@Autowired</code> : This annotation is used to auto-wire spring bean on setter methods, constructor and instance variable. It injects object dependency implicitly. When we use this annotation, the spring container auto-wires the bean by its matching data type.</li>
+<li><code>@Component</code> : It is a class-level annotation that turns the class into Spring bean at the auto-scan time.</li>
+<li><code>@SpringBootApplication</code> : It consists of @Configuration, @ComponentScan, and <code>@EnabeAutoConfiguration</code>. The class annotated with @SpringBootApplication is kept in the base package. This annotation does the component scan. However, only the sub-packages are scanned. </li>
+<li><code>@EnableAutoConfiguration</code> : It is placed on the main application class. Based on classpath settings, other beans, and various property settings, this annotation instructs SpringBoot to start adding beans.</li>
+<li><code>@ComponetScan</code> : It is used to scan a package of beans. It is used with the annotation <code>@Configuration</code> to allow Spring to know the packages to be scanned for annotated components. This annotation is also used to specify base packages.</li>
+<li><code>@Required</code> : This annotation is applied to bean setter methods. It indicates that the required property must be filled at the configuration time in the affected bean, or else it throws an exception: BeanInitializationException.</li>
+<li><code>@Qualifier</code> : It is used along with <code>@Autowired</code> annotation. It is used when more control is required over the dependency injection process. Individual constructor arguments or method parameters can be specified by using this annotation. </li>
+<li><code>@CookieValue</code> : It is used at the method parameter level as an argument of the request mapping method. For a given cookie name, the HTTP cookie is bound to a @CookieValue parameter.</li>
+<li><code>@Lazy</code> : It is used in the component class. At startup, all auto-wired dependencies are created and configured. But a <code>@Lazy</code> annotation can be created if a bean is to be initialized lazily.</li>
+</ul>
+<h3 id="Restful风格写法"><a href="#Restful风格写法" class="headerlink" title="Restful风格写法"></a><a target="_blank" rel="noopener" href="https://spring.io/guides/tutorials/rest/">Restful风格写法</a></h3><ul>
+<li>Restful是一种Web编程风格，以资源为中心，进行GET/POST/PUT/DELETE/PATCH</li>
+<li>使用超文本链接（HATEOAS），来表示资源之间的关系，以便客户端可以通过动态导航发现和访问相关资源</li>
+<li>在SpringBoot中增加包<code>spring-boot-starter-hateoas</code></li>
+<li>代码中增加<code>linkTo</code>关系<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/employees/&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="function">EntityModel&lt;Employee&gt; <span class="title">one</span><span class="params">(<span class="meta">@PathVariable</span> Long id)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Employee employee = employeeRepository.findById(id) <span class="comment">//</span></span><br><span class="line">            .orElseThrow(() -&gt; <span class="keyword">new</span> EmployeeNotFoundException(id));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> EntityModel.of(employee, <span class="comment">//</span></span><br><span class="line">            linkTo(methodOn(EmployeeController.class).one(id)).withSelfRel(),</span><br><span class="line">            linkTo(methodOn(EmployeeController.class).all()).withRel(<span class="string">&quot;employees&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>返回的结果中会自带关联的资源uri<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Bilbo Baggins&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;role&quot;</span>: <span class="string">&quot;burglar&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;_links&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;self&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;href&quot;</span>: <span class="string">&quot;http://localhost:8080/employees/1&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;employees&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;href&quot;</span>: <span class="string">&quot;http://localhost:8080/employees&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
 <h3 id="通过ConfigurationProperties注入值"><a href="#通过ConfigurationProperties注入值" class="headerlink" title="通过ConfigurationProperties注入值"></a>通过ConfigurationProperties注入值</h3><p>配置文件yaml中写入值</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">student:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">Alice</span></span><br><span class="line">  <span class="attr">age:</span> <span class="number">18</span></span><br></pre></td></tr></table></figure>
 <p>在java中写入注解</p>
@@ -352,6 +379,45 @@
 <li>新增类继承<code>WebMvcConfigure</code></li>
 <li>重写接口方法来实现新的配置功能<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyMvcConfig</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ViewResolver <span class="title">myViewResolver</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MyViewResolver();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//⾃自⼰己定义了了⼀一个视图解析器器</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyViewResolver</span> <span class="keyword">implements</span> <span class="title">ViewResolver</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> View <span class="title">resolveViewName</span><span class="params">(String s, Locale locale)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>在spring启动时就会自动装载这个自定义配置</li>
+</ul>
+<h3 id="国际化"><a href="#国际化" class="headerlink" title="国际化"></a>国际化</h3><ul>
+<li>i18n，根据请求头中的content-language中的zh_CN、en_US来判断<ul>
+<li>在resources目录下增加国际化语言的配置文件，根据标准化的<a target="_blank" rel="noopener" href="https://www.ibm.com/docs/zh/spectrum-protect/8.1.10?topic=options-language">国家标识</a>来做后缀，如下图<br><img src="/2023/10/30/2023/10/SpringBoot%E7%AC%94%E8%AE%B0/i18n_1.png"></li>
+<li>在各个配置文件中写入各国语言的翻译信息，如<code>message_zh_CN.properties</code>中写入<code>message1=你好世界</code>，<code>message_en_US</code>中写入<code>message1=helloworld</code></li>
+<li>前端的thymeleaf页面中写入<code>&lt;p th:text=&quot;|#&#123;message1&#125;!|&quot; /&gt;</code>即可引用properties中的变量</li>
+<li>在<code>application.yaml</code>中新增配置<code>spring.messages.basename: i18n.message</code></li>
+<li><a target="_blank" rel="noopener" href="https://lokalise.com/blog/spring-boot-internationalization/">Springboot实现i18n</a></li>
+</ul>
+</li>
+<li>DNS的方式，在DNS服务器上进行翻译<blockquote>
+<p>要通过DNS服务器实现国际化，可以使用国际化域名（Internationalized Domain Name，简称IDN）。IDN允许在域名中使用非ASCII字符，包括特定语言的字符和符号。<br>以下是实现国际化的一般步骤：</p>
+<ul>
+<li>选择一个支持IDN的DNS注册商：确保你选择的DNS注册商支持IDN，并且能够提供针对特定语言和字符集的域名注册服务。</li>
+<li>注册国际化域名：使用支持IDN的DNS注册商注册你想要的国际化域名。这些域名可以包含特定语言的字符和符号，例如中文、俄文、阿拉伯文等。</li>
+<li>配置DNS解析：一旦你注册了国际化域名，你需要配置DNS解析，将域名指向你的服务器或网站。这通常涉及到在DNS服务器上创建相应的记录，如A记录、CNAME记录或MX记录等。</li>
+<li>测试和验证：完成DNS解析配置后，你可以进行测试和验证，确保国际化域名能够正确解析到相应的服务器或网站。<br>需要注意的是，不是所有的DNS服务器和应用程序都完全支持IDN。因此，在实施国际化时，确保你的目标受众和使用环境支持IDN，并进行相应的测试和验证。<br>此外，还需要注意国际化域名的兼容性和安全性。一些恶意攻击可能会利用国际化域名的特殊字符来进行钓鱼或欺诈行为。因此，确保你选择的DNS注册商和DNS服务器有适当的安全措施来保护你的域名和用户的安全。<br>总结起来，要通过DNS服务器实现国际化，你需要选择支持IDN的DNS注册商，注册国际化域名，并配置DNS解析将域名指向你的服务器或网站。记得测试和验证确保一切正常，并注意兼容性和安全性的问题。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="登录拦截器"><a href="#登录拦截器" class="headerlink" title="登录拦截器"></a>登录拦截器</h3><ul>
+<li>自定义拦截器</li>
+<li>在自定义的MyMvcConfig去重写并写入</li>
+</ul>
+<h3 id="SpringSecurity简单接入"><a href="#SpringSecurity简单接入" class="headerlink" title="SpringSecurity简单接入"></a>SpringSecurity简单接入</h3><ul>
+<li>利用github来做认证<ul>
+<li>注册一个github app，具体步骤如下<ul>
+<li>进入<a target="_blank" rel="noopener" href="https://github.com/settings/developers">github app注册页面</a>，点击<code>New OAuth App</code></li>
+<li>输入项目名，和项目首页地址，本地测试可以输入<code>http://localhost:8080</code></li>
+<li><code>Authorization callback URL</code> 这一栏输入 <code>http://localhost:8080/login/oauth2/code/github</code></li>
+<li>点击<code>Register Application</code></li>
+<li>在<code>application.yaml</code>文件中增加security配置，clientId和clientSecret替换为自己的GitHub上对应的值<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">    <span class="attr">security:</span></span><br><span class="line">        <span class="attr">oauth2:</span></span><br><span class="line">            <span class="attr">client:</span></span><br><span class="line">                <span class="attr">registration:</span></span><br><span class="line">                    <span class="attr">github:</span></span><br><span class="line">                        <span class="attr">clientId:</span> <span class="string">github-client-id</span></span><br><span class="line">                        <span class="attr">clientSecret:</span> <span class="string">github-client-secret</span></span><br></pre></td></tr></table></figure></li>
+<li>此时启动项目，并访问首页，将会看到页面指向github的授权页面<br><img src="/2023/10/30/2023/10/SpringBoot%E7%AC%94%E8%AE%B0/oauth1.png"></li>
+<li>SpringSecurity将github返回的token存入到cookie中，<code>JSESSIONID=XXXXXXXXXXXX</code></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p><a href="SpringBoot%E7%AC%94%E8%AE%B01.pdf">SpringBoot笔记1.pdf</a><br><a href="SpringBoot%E7%AC%94%E8%AE%B02.pdf">SpringBoot笔记2.pdf</a></p>
 
