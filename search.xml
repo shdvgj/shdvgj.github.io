@@ -6782,6 +6782,11 @@
 <li>可用的<a href="https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html#setting-value-to-specific-attributes">thymeleaf前端语法</a></li>
 </ul>
 </li>
+<li>统一错误页面<ul>
+<li>在templates目录下增加一个error目录</li>
+<li>目录中写入对应错误代码为标题的页面，如404.html，403.html</li>
+</ul>
+</li>
 </ul>
 <h3 id="SpringBoot中的MVC配置"><a href="#SpringBoot中的MVC配置" class="headerlink" title="SpringBoot中的MVC配置"></a>SpringBoot中的MVC配置</h3><ul>
 <li>新增类继承<code>WebMvcConfigure</code></li>
@@ -6812,7 +6817,13 @@
 <li>自定义拦截器</li>
 <li>在自定义的MyMvcConfig去重写并写入</li>
 </ul>
-<h3 id="SpringSecurity简单接入"><a href="#SpringSecurity简单接入" class="headerlink" title="SpringSecurity简单接入"></a>SpringSecurity简单接入</h3><ul>
+<h3 id="SpringSecurity简单接入"><a href="#SpringSecurity简单接入" class="headerlink" title="SpringSecurity简单接入"></a><a href="https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/index.html">SpringSecurity简单接入</a></h3><ul>
+<li>SpringSecurity可以进行少量配置就实现强大的安全管理，涉及几个类，完成认证和授权<ul>
+<li>WebSecurityConfigureAdapter：自定义安全策略</li>
+<li>AuthenticationManagerBuilder：自定义认证策略</li>
+<li>@EnableWebSecurity：开启security模式</li>
+</ul>
+</li>
 <li>利用github来做认证<ul>
 <li>注册一个github app，具体步骤如下<ul>
 <li>进入<a href="https://github.com/settings/developers">github app注册页面</a>，点击<code>New OAuth App</code></li>
@@ -6824,6 +6835,118 @@
 <li>SpringSecurity将github返回的token存入到cookie中，<code>JSESSIONID=XXXXXXXXXXXX</code></li>
 </ul>
 </li>
+</ul>
+</li>
+<li>内存用户名密码登录<ul>
+<li>配置WebSecurity类<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebSecurityConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SecurityFilterChain <span class="title">securityFilterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        http</span><br><span class="line">                .authorizeHttpRequests((requests) -&gt; requests</span><br><span class="line">                        .requestMatchers(<span class="string">&quot;/&quot;</span>, <span class="string">&quot;/home&quot;</span>).permitAll()</span><br><span class="line">                        <span class="comment">// 设置页面角色权限</span></span><br><span class="line">                        .requestMatchers(<span class="string">&quot;/hello&quot;</span>).hasRole(<span class="string">&quot;ADMIN&quot;</span>)</span><br><span class="line">                        .requestMatchers(<span class="string">&quot;/user&quot;</span>).hasRole(<span class="string">&quot;USER&quot;</span>)</span><br><span class="line">                        .anyRequest().authenticated()</span><br><span class="line">                )</span><br><span class="line">                .formLogin((form) -&gt; form</span><br><span class="line">                        <span class="comment">// 定制登录页面</span></span><br><span class="line">                        .loginPage(<span class="string">&quot;/login&quot;</span>)</span><br><span class="line">                        <span class="comment">// 声明页面username参数名</span></span><br><span class="line">                        .usernameParameter(<span class="string">&quot;uname&quot;</span>)</span><br><span class="line">                        <span class="comment">// 声明页面password参数名</span></span><br><span class="line">                        .passwordParameter(<span class="string">&quot;pwd&quot;</span>)</span><br><span class="line">                )</span><br><span class="line">                .logout((logout) -&gt; logout.permitAll());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> http.build();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置用户名密码和角色</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserDetailsService <span class="title">userDetailsService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        UserDetails user =</span><br><span class="line">                User.withDefaultPasswordEncoder()</span><br><span class="line">                        .username(<span class="string">&quot;user&quot;</span>)</span><br><span class="line">                        .password(<span class="string">&quot;password&quot;</span>)</span><br><span class="line">                        .roles(<span class="string">&quot;USER&quot;</span>)</span><br><span class="line">                        .build();</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> InMemoryUserDetailsManager(user);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>绑定Thymeleaf<ul>
+<li>用法<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right menu&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">sec:authorize</span>=<span class="string">&quot;!isAuthenticated()&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span> <span class="attr">th:href</span>=<span class="string">&quot;@&#123;/toLogin&#125;&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;address card icon&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span> 登录</span><br><span class="line">        <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span> <span class="attr">th:href</span>=<span class="string">&quot;@&#123;/logout&#125;&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;address cara icon&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span> 注销</span><br><span class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>可用属性<ul>
+<li><code>sec:authorize=&quot;isAuthenticated()&quot;</code> 进行登录状态的判断</li>
+<li><code>sec;authentication=&quot;name&quot;</code> 获取当前用户名</li>
+<li><code>sec:authorize=&quot;hasRole(vip1)&quot;</code> 判读用户是否拥有该权限</li>
+<li><code>sec:authentication=&quot;principal.authorities&quot;</code> 获得当前用户角色</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>SpringSecurity连接数据库登录<ul>
+<li>写好登录用户类和Repository类，其中用户的username和password是必须的</li>
+<li>继承UserDetailService类<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmployeeService</span> <span class="keyword">implements</span> <span class="title">UserDetailsService</span> </span>&#123;</span><br><span class="line">    <span class="comment">// repository类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> EmployeeRepository employeeRepository;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">EmployeeService</span><span class="params">(EmployeeRepository employeeRepository)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.employeeRepository = employeeRepository;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserDetails <span class="title">loadUserByUsername</span><span class="params">(String username)</span> <span class="keyword">throws</span> UsernameNotFoundException </span>&#123;</span><br><span class="line">        Employee employee = Optional.of(employeeRepository.findTopByFirstName(username))</span><br><span class="line">                .orElseThrow(() -&gt; <span class="keyword">new</span> UsernameNotFoundException(<span class="string">&quot;User not found&quot;</span>));</span><br><span class="line">        <span class="keyword">return</span> org.springframework.security.core.userdetails.User</span><br><span class="line">                .withUsername(employee.getFirstName())</span><br><span class="line">                .password(employee.getPassword())</span><br><span class="line">                .roles(employee.getRole())</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>SecurityConfig类中无需额外设置，新版的SpringSecurity会自动找到UserService，<a href="https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter">旧版配置需要继承WebSecurityConfigurerAdapter</a><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebSecurityConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> PasswordEncoder <span class="title">passwordEncoder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BCryptPasswordEncoder();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SecurityFilterChain <span class="title">securityFilterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        http</span><br><span class="line">                .authorizeHttpRequests((requests) -&gt; requests</span><br><span class="line">                        .requestMatchers(<span class="string">&quot;/&quot;</span>, <span class="string">&quot;/home&quot;</span>).permitAll()</span><br><span class="line">                        <span class="comment">// 设置页面角色权限</span></span><br><span class="line">                        .requestMatchers(<span class="string">&quot;/hello&quot;</span>).hasRole(<span class="string">&quot;ADMIN&quot;</span>)</span><br><span class="line">                        .requestMatchers(<span class="string">&quot;/user&quot;</span>).hasRole(<span class="string">&quot;USER&quot;</span>)</span><br><span class="line">                        .anyRequest().authenticated()</span><br><span class="line">                )</span><br><span class="line">                .formLogin((form) -&gt; form</span><br><span class="line">                        <span class="comment">// 定制登录页面</span></span><br><span class="line">                        .loginPage(<span class="string">&quot;/login&quot;</span>)</span><br><span class="line">                        <span class="comment">// 声明页面username参数名</span></span><br><span class="line">                        .usernameParameter(<span class="string">&quot;uname&quot;</span>)</span><br><span class="line">                        <span class="comment">// 声明页面password参数名</span></span><br><span class="line">                        .passwordParameter(<span class="string">&quot;pwd&quot;</span>)</span><br><span class="line">                        .permitAll()</span><br><span class="line">                )</span><br><span class="line">                .logout((logout) -&gt; logout.permitAll())</span><br><span class="line">                .csrf().disable();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> http.build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>注意，存入数据库的密码需要用<a href="https://www.bejson.com/encrypt/bcrpyt_encode/">Bcrpt加密</a>，否则会报错<code>Encoded password does not look like BCrypt</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="连接mysql数据库"><a href="#连接mysql数据库" class="headerlink" title="连接mysql数据库"></a>连接mysql数据库</h3><ul>
+<li>导入mysql包：<code>implementation &#39;com.mysql:mysql-connector-j:8.2.0&#39;</code></li>
+<li><code>application.yaml</code>中增加配置<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">jpa:</span></span><br><span class="line">    <span class="attr">hibernate:</span></span><br><span class="line">      <span class="comment"># 设置为create的话会自动创建表</span></span><br><span class="line">      <span class="attr">ddl-auto:</span> <span class="string">update</span></span><br><span class="line">    <span class="attr">show-sql:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">properties:</span></span><br><span class="line">      <span class="attr">hibernate:</span></span><br><span class="line">        <span class="attr">dialect:</span> <span class="string">org.hibernate.dialect.MySQLDialect</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/db_example?userUnicode=true&amp;characterEncoding=UTF-8</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">springuser</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">ThePassword</span></span><br></pre></td></tr></table></figure></li>
+<li>其中spring.jpa.hibernate.ddl-auto的说明如下<ul>
+<li>none: The default for MySQL. No change is made to the database structure.</li>
+<li>update: Hibernate changes the database according to the given entity structures.</li>
+<li>create: Creates the database every time but does not drop it on close.</li>
+<li>create-drop: Creates the database and drops it when SessionFactory closes.</li>
+</ul>
+</li>
+<li>创建entity<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="meta">@Id</span> <span class="meta">@GeneratedValue</span> Long id;</span><br><span class="line">    <span class="keyword">private</span> String firstName;</span><br><span class="line">    <span class="keyword">private</span> String lastName;</span><br><span class="line">    <span class="keyword">private</span> String role;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">&quot; &quot;</span> + <span class="keyword">this</span>.lastName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        String[] parts = name.split(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        <span class="keyword">this</span>.firstName = parts[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">this</span>.lastName = parts[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Long <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Long id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getFirstName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> firstName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFirstName</span><span class="params">(String firstName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.firstName = firstName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getLastName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> lastName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLastName</span><span class="params">(String lastName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.lastName = lastName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getRole</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> role;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRole</span><span class="params">(String role)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.role = role;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>增加一个repository，自动包含了employee所需的crud方法<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EmployeeRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">Employee</span>, <span class="title">Long</span>&gt; </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="集成Druid连接池"><a href="#集成Druid连接池" class="headerlink" title="集成Druid连接池"></a>集成<a href="https://github.com/alibaba/druid">Druid连接池</a></h3><h4 id="SpringBoot项目直接集成druid"><a href="#SpringBoot项目直接集成druid" class="headerlink" title="SpringBoot项目直接集成druid"></a>SpringBoot项目直接集成druid</h4><ul>
+<li>连接池初始化的时候按照initialSize创建这么多个连接</li>
+<li>有DB操作访问的时候，就从里面取一个</li>
+<li>如果当前正在使用的连接=maxActve（默认8）,就会进入等待，没有到maxActive拿一个空闲连接，没有空闲就创建个新连接，等待超过maxWait则会报错<br>使用完毕还回去等待其它人用</li>
+<li>每一个connection在连接池里都是有空闲时长的，允许最大空闲时长: minEvictableidleTimeMillis（默认30分钟），多久检测一次:timeBetweenEvictionRunsMillis（默认10秒）</li>
+<li><a href="https://github.com/alibaba/druid/wiki/DruidDataSource%E9%85%8D%E7%BD%AE%E5%B1%9E%E6%80%A7%E5%88%97%E8%A1%A8">配置参数列表</a></li>
+<li>maxActive如何配置：设置成理论上的最大并发数<ul>
+<li>最大并发如何评估：假设每分钟活跃用户1000，每个用户访问5个页面，按照1000*5/10=500个并发数</li>
+</ul>
+</li>
+<li>前端拿到连接后，设置连接池在达到一定时长后也会自动回收连接，<strong>建议关闭</strong><ul>
+<li>removeAbandoned: true （默认false）</li>
+<li>removeAbandonedTimeoutMillis: 60 （单位分钟）</li>
+<li>logAbandoned: true</li>
+</ul>
+</li>
+<li><a href="https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter">SpringBoot引入</a><ul>
+<li>SpringBoot2导入包<code>druid-spring-boot-starter</code>，SpringBoot3导入包<code>druid-spring-boot-3-starter</code></li>
+<li>增加配置 <code>spring.datasrouce.type: com.alibaba.druid.pool.DruidDataSource</code></li>
+<li>增加druid配置<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">      <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">      <span class="attr">url:</span> <span class="string">jdbc:mysql://192.168.2.200:3306/db_example?userUnicode=true&amp;characterEncoding=UTF-8</span></span><br><span class="line">      <span class="attr">username:</span> <span class="string">springuser</span></span><br><span class="line">      <span class="attr">password:</span> <span class="string">ThePassword</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">com.alibaba.druid.pool.DruidDataSource</span></span><br><span class="line">      <span class="attr">druid:</span></span><br><span class="line">          <span class="attr">initial-size:</span> <span class="number">10</span> <span class="comment"># 初始化连接数</span></span><br><span class="line">          <span class="attr">max-active:</span> <span class="number">20</span> <span class="comment"># 最大活跃连接数</span></span><br><span class="line">          <span class="attr">min-idle:</span> <span class="number">5</span> <span class="comment"># 最小连接数</span></span><br><span class="line">          <span class="attr">max-wait:</span> <span class="number">60000</span> <span class="comment"># 最大等待时间</span></span><br><span class="line">          <span class="attr">test-on-borrow:</span> <span class="literal">false</span> <span class="comment"># 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。</span></span><br><span class="line">          <span class="attr">test-on-return:</span> <span class="literal">false</span> <span class="comment"># 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。</span></span><br><span class="line">          <span class="attr">pool-prepared-statements:</span> <span class="literal">false</span></span><br><span class="line">          <span class="attr">use-global-data-source-stat:</span> <span class="literal">true</span></span><br><span class="line">          <span class="comment"># 有两个含义：</span></span><br><span class="line">          <span class="comment"># 1) Destroy线程会检测连接的间隔时间，如果连接空闲时间大于等于minEvictableIdleTimeMillis则关闭物理连接。</span></span><br><span class="line">          <span class="comment"># 2) testWhileIdle的判断依据，详细看testWhileIdle属性的说明</span></span><br><span class="line">          <span class="attr">time-between-eviction-runs-millis:</span> <span class="number">60000</span></span><br><span class="line">          <span class="attr">min-evictable-idle-time-millis:</span> <span class="number">300000</span> <span class="comment"># 连接保持空闲而不被驱逐的最小时间</span></span><br><span class="line">          <span class="attr">validation-query:</span> <span class="string">SELECT</span> <span class="number">1</span> <span class="string">FROM</span> <span class="string">DUAL</span> <span class="comment"># 用来检测连接是否有效的sql，要求是一个查询语句</span></span><br><span class="line">          <span class="comment"># 建议配置为true，不影响性能，并且保证安全性。</span></span><br><span class="line">          <span class="comment"># 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，</span></span><br><span class="line">          <span class="comment"># 执行validationQuery检测连接是否有效。</span></span><br><span class="line">          <span class="attr">test-while-idle:</span> <span class="literal">true</span></span><br><span class="line">          <span class="comment"># 每个连接PScache的最大数量</span></span><br><span class="line">          <span class="comment"># 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。</span></span><br><span class="line">          <span class="comment"># 在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100</span></span><br><span class="line">          <span class="attr">max-pool-prepared-statement-per-connection-size:</span> <span class="number">20</span></span><br><span class="line">          <span class="comment">## 属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有：</span></span><br><span class="line">          <span class="comment"># 监控统计用的filter:stat</span></span><br><span class="line">          <span class="comment"># 日志用的filter:log4j</span></span><br><span class="line">          <span class="comment"># 防御sql注入的filter:wall</span></span><br><span class="line">          <span class="attr">filters:</span> <span class="string">stat,wall,log4j</span></span><br><span class="line">          <span class="comment">## 打开mergesql功能，慢查询时间5s</span></span><br><span class="line">          <span class="attr">connection-properties:</span> <span class="string">druid.stat.mergesql=true;druid.stat.slowSqlMills=5000</span></span><br><span class="line">          <span class="comment">##### 监控相关配置 StatViewServlet配置，说明请参考Druid Wiki，配置_StatViewServlet配置</span></span><br><span class="line">          <span class="attr">stat-view-servlet:</span></span><br><span class="line">              <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment">#是否启用StatViewServlet（监控页面）默认值为false（考虑到安全问题默认并未启动，如需启用建议设置密码或白名单以保障安全）</span></span><br><span class="line">              <span class="attr">login-username:</span> <span class="string">druidWatcher</span></span><br><span class="line">              <span class="attr">login-password:</span> <span class="string">druidPassword</span></span><br><span class="line">              <span class="attr">reset-enable:</span> <span class="literal">false</span> <span class="comment"># 是否启用reset功能</span></span><br></pre></td></tr></table></figure>
+<h4 id="docker部署druid进行全局监控"><a href="#docker部署druid进行全局监控" class="headerlink" title="docker部署druid进行全局监控"></a>docker部署druid进行全局监控</h4></li>
+</ul>
+</li>
+</ul>
+<p>TODO</p>
+<h3 id="接入Shiro"><a href="#接入Shiro" class="headerlink" title="接入Shiro"></a>接入Shiro</h3><ul>
+<li>增加shiro-springboot-start包<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.shiro<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>shiro-spring-boot-web-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.13.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>创建Shiro的配置类：创建一个类，用于配置Shiro的相关设置，如Realm、Session管理器等。<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShiroConfig</span> <span class="keyword">implements</span> <span class="title">ShiroWebMvcConfigurationAware</span>, <span class="title">ShiroWebSecurityManagerConfigurationAware</span>,</span></span><br><span class="line"><span class="class">        <span class="title">ShiroWebFilterConfigurationAware</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setShiroWebMvcConfiguration</span><span class="params">(ShiroWebMvcConfiguration configuration)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setShiroWebSecurityManagerConfiguration</span><span class="params">(ShiroWebSecurityManagerConfiguration configuration)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setShiroWebFilterConfiguration</span><span class="params">(ShiroWebFilterConfiguration configuration)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Realm <span class="title">realm</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建自定义的Realm实现类</span></span><br><span class="line">        <span class="comment">// 可根据需要进行配置，如设置身份验证器、授权器等</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MyRealm();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SessionManager <span class="title">sessionManager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        DefaultWebSessionManager sessionManager = <span class="keyword">new</span> DefaultWebSessionManager();</span><br><span class="line">        <span class="comment">// 配置SessionManager，如设置超时时间、Cookie等</span></span><br><span class="line">        <span class="keyword">return</span> sessionManager;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SecurityManager <span class="title">securityManager</span><span class="params">(Realm realm, SessionManager sessionManager)</span> </span>&#123;</span><br><span class="line">        DefaultWebSecurityManager securityManager = <span class="keyword">new</span> DefaultWebSecurityManager();</span><br><span class="line">        securityManager.setRealm(realm);</span><br><span class="line">        securityManager.setSessionManager(sessionManager);</span><br><span class="line">        <span class="comment">// 配置SecurityManager，如设置RememberMe管理器、Cache管理器等</span></span><br><span class="line">        <span class="keyword">return</span> securityManager;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ShiroFilterChainDefinition <span class="title">shiroFilterChainDefinition</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        DefaultShiroFilterChainDefinition chainDefinition = <span class="keyword">new</span> DefaultShiroFilterChainDefinition();</span><br><span class="line">        <span class="comment">// 配置URL的访问权限，如设置登录URL、注销URL等</span></span><br><span class="line">        <span class="keyword">return</span> chainDefinition;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建自定义的Realm实现类：创建一个类，继承自org.apache.shiro.realm.AuthorizingRealm，并实现相关的认证和授权逻辑。<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRealm</span> <span class="keyword">extends</span> <span class="title">AuthorizingRealm</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> AuthenticationInfo <span class="title">doGetAuthenticationInfo</span><span class="params">(AuthenticationToken token)</span> <span class="keyword">throws</span> AuthenticationException </span>&#123;</span><br><span class="line">        <span class="comment">// 处理身份验证逻辑，如从数据库中获取用户信息进行验证</span></span><br><span class="line">        UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;</span><br><span class="line">        String username = usernamePasswordToken.getUsername();</span><br><span class="line">        String password = <span class="keyword">new</span> String(usernamePasswordToken.getPassword());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 根据用户名查询用户信息</span></span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 返回身份验证信息</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SimpleAuthenticationInfo(username, password, getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> AuthorizationInfo <span class="title">doGetAuthorizationInfo</span><span class="params">(PrincipalCollection principals)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 处理授权逻辑，如从数据库中获取用户的角色和权限信息</span></span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 返回授权信息</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>配置Shiro的过滤器：在Spring Boot应用程序的配置类中添加ShiroFilterFactoryBean，用于配置Shiro的过滤器链。<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShiroFilterConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ShiroFilterFactoryBean <span class="title">shiroFilterFactoryBean</span><span class="params">(SecurityManager securityManager,</span></span></span><br><span class="line"><span class="params"><span class="function">                                                         ShiroFilterChainDefinition shiroFilterChainDefinition)</span> </span>&#123;</span><br><span class="line">        ShiroFilterFactoryBean filterFactoryBean = <span class="keyword">new</span> ShiroFilterFactoryBean();</span><br><span class="line">        filterFactoryBean.setSecurityManager(securityManager);</span><br><span class="line">        filterFactoryBean.setFilterChainDefinitionMap(shiroFilterChainDefinition.getFilterChainMap());</span><br><span class="line">        <span class="comment">// 配置登录URL和未授权URL等</span></span><br><span class="line">        filterFactoryBean.setLoginUrl(<span class="string">&quot;/login&quot;</span>);</span><br><span class="line">        filterFactoryBean.setUnauthorizedUrl(<span class="string">&quot;/unauthorized&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> filterFactoryBean;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建登录和注销的Controller：创建一个Controller类，用于处理登录和注销请求。<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AuthController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/login&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">login</span><span class="params">(String username, String password)</span> </span>&#123;</span><br><span class="line">        Subject subject = SecurityUtils.getSubject();</span><br><span class="line">        UsernamePasswordToken token = <span class="keyword">new</span> UsernamePasswordToken(username, password);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            subject.login(token);</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;redirect:/home&quot;</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (AuthenticationException e) &#123;</span><br><span class="line">            <span class="comment">// 处理登录失败的逻辑</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;redirect:/login?error&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/logout&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">logout</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        SecurityUtils.getSubject().logout();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;redirect:/login&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="异步任务"><a href="#异步任务" class="headerlink" title="异步任务"></a>异步任务</h3><ul>
+<li>在Spring Boot应用程序的配置类上添加@EnableAsync注解<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableAsync</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AsyncConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建一个包含异步方法的service类<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Async</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">asyncMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 异步执行的任务逻辑</span></span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>即可在其他组件中注入<code>MyService</code>调用异步方法</li>
+</ul>
+<h3 id="Spring-WebFlux流式返回"><a href="#Spring-WebFlux流式返回" class="headerlink" title="Spring WebFlux流式返回"></a>Spring WebFlux流式返回</h3><ul>
+<li>添加包依赖<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-webflux<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>Controller中通过<code>Mono</code>类返回<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;String&gt; <span class="title">hello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Mono.just(<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Swagger接入"><a href="#Swagger接入" class="headerlink" title="Swagger接入"></a>Swagger接入</h3><ul>
+<li>介绍<ul>
+<li>Swagger是一个用于设计、构建、文档化和使用RESTful风格的Web服务的开源工具集。它提供了一组工具和约定，可以帮助开发人员和团队更轻松地构建和维护API。</li>
+<li>架构：<ul>
+<li>Swagger规范（Swagger Specification）：它是一种用于描述和定义RESTful API的规范，通常使用JSON或YAML格式表示。Swagger规范定义了API的端点、参数、响应、错误处理等信息，以及与API相关的元数据。</li>
+<li>Swagger UI：它是一个交互式的API文档工具，可以根据Swagger规范自动生成漂亮且易于浏览的API文档界面。Swagger UI提供了一个可视化的界面，展示API的端点、参数、示例请求和响应等信息，同时还支持在界面中进行API的调试和测试。</li>
+<li>Swagger Codegen：它是一个用于根据Swagger规范生成API客户端代码的工具。Swagger Codegen可以根据Swagger规范自动生成多种编程语言的客户端代码模板，开发人员可以直接使用生成的代码来调用API，减少了手动编写API调用代码的工作量。</li>
+</ul>
+</li>
+<li>功能：<ul>
+<li>API文档自动生成：Swagger可以根据API的定义自动生成详细的API文档，包括请求和响应的参数、示例、错误处理等信息，使得API的使用和理解更加方便。</li>
+<li>可视化API调试：Swagger UI提供了一个交互式的界面，开发人员可以在界面中直接测试和调试API，减少了使用其他工具或编写测试代码的需要。</li>
+<li>代码生成：Swagger Codegen可以根据Swagger规范自动生成API客户端代码，减少了手动编写API调用代码的工作量，提高了开发效率。</li>
+<li>接口约定：Swagger规范定义了API的结构和约定，可以帮助团队统一接口设计和开发规范，提高了团队协作的效率。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>通过Springfox在SpringBoot中接入Swagger <strong>【已过时，和SpringBoot3有兼容问题】</strong></p>
+<ul>
+<li>pom.xml中增加swagger包<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>增加swagger配置类<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableSwagger2</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SwaggerConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Docket <span class="title">api</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">                .select()</span><br><span class="line">                .apis(RequestHandlerSelectors.basePackage(<span class="string">&quot;com.rickydemo.payroll&quot;</span>)) <span class="comment">// 指定扫描的包路径</span></span><br><span class="line">                .paths(PathSelectors.any())</span><br><span class="line">                .build()</span><br><span class="line">                .apiInfo(apiInfo());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ApiInfo <span class="title">apiInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ApiInfoBuilder()</span><br><span class="line">                .title(<span class="string">&quot;API文档&quot;</span>) <span class="comment">// 设置文档标题</span></span><br><span class="line">                .description(<span class="string">&quot;这是一个示例API文档&quot;</span>) <span class="comment">// 设置文档描述</span></span><br><span class="line">                .version(<span class="string">&quot;1.0.0&quot;</span>) <span class="comment">// 设置文档版本</span></span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>通过SpringDoc在SpringBoot中接入Swagger【推荐】</p>
+<ul>
+<li><a href="https://springdoc.org/#Introduction">SpringDoc文档</a></li>
+<li>增加包依赖<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- springdoc来整合swagger --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springdoc<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springdoc-openapi-starter-webmvc-ui<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>yaml增加配置<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment">#swagger配置</span></span><br><span class="line"><span class="attr">springdoc:</span></span><br><span class="line">  <span class="attr">swagger-ui:</span></span><br><span class="line">    <span class="comment">### 指定路径</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">/swagger-ui.html</span></span><br></pre></td></tr></table></figure></li>
+<li>增加这两个配置即可通过<code>http://localhost:8080/swagger-ui.html</code>访问swagger页面<br><img src="/2023/10/30/2023/10/SpringBoot%E7%AC%94%E8%AE%B0/swagger1.png"></li>
+<li>Controller注解说明<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Tag</span> 表示总目录</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Operation</span> 方法的说明</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ApiResponses</span> 返回类型</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Tag(name = &quot;员工管理&quot;)</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmployeeController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Operation(summary = &quot;查找单个员工&quot;)</span></span><br><span class="line">    <span class="meta">@ApiResponses(value = &#123; @ApiResponse(responseCode = &quot;400&quot;, description = &quot;Invalid ID supplied&quot;),</span></span><br><span class="line"><span class="meta">            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Order not found&quot;) &#125;)</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/employees/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> EntityModel&lt;Employee&gt; <span class="title">one</span><span class="params">(<span class="meta">@PathVariable</span> Long id)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Employee employee = employeeRepository.findById(id) <span class="comment">//</span></span><br><span class="line">                .orElseThrow(() -&gt; <span class="keyword">new</span> EmployeeNotFoundException(id));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> employeeModelAssembler.toModel(employee);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
@@ -6965,6 +7088,320 @@
 <li>最优秀的PO从“为什么”开始</li>
 </ul>
 <h4 id="用户故事（user-stories）"><a href="#用户故事（user-stories）" class="headerlink" title="用户故事（user stories）"></a>用户故事（user stories）</h4><p>As a [a user role], I want to [accomplish a result], So that [Business value].<br>作为[用户角色]，我想[实现一个结果]，因为[商业价值]。<br><img src="/2023/10/29/2023/10/scrum-develop/agile2.png"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>缩写短语概念简单介绍</title>
+    <url>/2023/11/07/2023/11/develep-english-shortcut/</url>
+    <content><![CDATA[<h4 id="RBAC-Role-based-access-control"><a href="#RBAC-Role-based-access-control" class="headerlink" title="RBAC(Role-based access control)"></a>RBAC(Role-based access control)</h4><span id="more"></span>
+<h4 id="ACID-Atomicity-Consistency-Isolation-Durability"><a href="#ACID-Atomicity-Consistency-Isolation-Durability" class="headerlink" title="ACID(Atomicity, Consistency, Isolation, Durability)"></a>ACID(Atomicity, Consistency, Isolation, Durability)</h4><h4 id="CAP-Consistency-Availability-Partition-tolerance"><a href="#CAP-Consistency-Availability-Partition-tolerance" class="headerlink" title="CAP(Consistency, Availability, Partition tolerance)"></a>CAP(Consistency, Availability, Partition tolerance)</h4><h4 id="DSL-Domain-Specific-Language"><a href="#DSL-Domain-Specific-Language" class="headerlink" title="DSL(Domain Specific Language)"></a>DSL(Domain Specific Language)</h4><h4 id="CSFR-Cross-site-request-forgery"><a href="#CSFR-Cross-site-request-forgery" class="headerlink" title="CSFR(Cross-site request forgery)"></a>CSFR(Cross-site request forgery)</h4><h4 id="LDAP-Lightweight-Directory-Access-Protocol"><a href="#LDAP-Lightweight-Directory-Access-Protocol" class="headerlink" title="LDAP(Lightweight Directory Access Protocol)"></a>LDAP(Lightweight Directory Access Protocol)</h4><h4 id="JDBC-Java-Database-Connectivity"><a href="#JDBC-Java-Database-Connectivity" class="headerlink" title="JDBC(Java Database Connectivity)"></a>JDBC(Java Database Connectivity)</h4><h4 id="EJB-Enterprise-Java-Beans"><a href="#EJB-Enterprise-Java-Beans" class="headerlink" title="EJB(Enterprise Java Beans)"></a>EJB(Enterprise Java Beans)</h4><h4 id="SLA-Service-Level-Agreement"><a href="#SLA-Service-Level-Agreement" class="headerlink" title="SLA(Service-Level Agreement)"></a>SLA(Service-Level Agreement)</h4><h4 id="CDN-Content-Delivery-Network"><a href="#CDN-Content-Delivery-Network" class="headerlink" title="CDN(Content Delivery Network)"></a>CDN(Content Delivery Network)</h4><p>CDN（Content Delivery Network）是一种分布式网络架构，旨在提供高效的内容传输和交付服务。它通过将内容存储在分布在全球各地的服务器节点上，并根据用户的地理位置和网络条件选择最近的节点来提供内容，从而加快内容的传输速度和用户访问体验。</p>
+<ul>
+<li>工作原理<ul>
+<li>内容缓存：CDN将内容缓存到分布在全球各地的边缘服务器节点上。这些节点位于网络的边缘，靠近用户，以减少内容传输的延迟和网络拥塞。</li>
+<li>就近访问：当用户请求访问某个内容时，CDN会根据用户的地理位置和网络状况，选择最近的服务器节点提供内容。这样可以减少内容传输的距离，提高访问速度。</li>
+<li>负载均衡：CDN使用负载均衡算法来分配用户请求到合适的服务器节点。通过合理分配请求负载，CDN可以提高系统的吞吐量和可扩展性。</li>
+<li>动态内容加速：除了静态内容，CDN还可以加速动态内容的传输。它可以缓存动态内容的一部分或整个页面，减轻源服务器的负载，并提供更快的响应时间。</li>
+</ul>
+</li>
+</ul>
+<h4 id="DNS-Domain-Name-System"><a href="#DNS-Domain-Name-System" class="headerlink" title="DNS(Domain Name System)"></a>DNS(Domain Name System)</h4><p>DNS（Domain Name System）是互联网中用于将域名转换为对应 IP 地址的系统。它充当了互联网的“电话簿”，将易记的域名映射到计算机理解的 IP 地址，方便用户通过域名访问网站、发送电子邮件等。</p>
+<ul>
+<li>域名解析请求：当用户在浏览器中输入一个域名时，浏览器会向本地 DNS 解析器发起域名解析请求。</li>
+<li>本地 DNS 解析器：本地 DNS 解析器是用户设备或网络中的一部分，它负责处理域名解析请求。如果本地解析器已经缓存了该域名的 IP 地址，则直接返回缓存的结果。否则，它会向根域名服务器发起请求。</li>
+<li>根域名服务器：根域名服务器是 DNS 解析的起点，它存储了顶级域名服务器的信息。当本地解析器向根域名服务器发起请求时，根域名服务器会返回对应顶级域名服务器的 IP 地址。</li>
+<li>顶级域名服务器：顶级域名服务器负责管理顶级域名（如.com、.org、.net等）的域名解析。当本地解析器向顶级域名服务器发起请求时，顶级域名服务器会返回对应权威域名服务器的 IP 地址。</li>
+<li>权威域名服务器：权威域名服务器是负责管理特定域名的服务器。当本地解析器向权威域名服务器发起请求时，权威域名服务器会返回该域名对应的 IP 地址。</li>
+<li>返回 IP 地址：本地解析器收到权威域名服务器返回的 IP 地址后，将其缓存，并将解析结果返回给浏览器。</li>
+<li>建立连接：浏览器收到 IP 地址后，将使用该地址与目标服务器建立连接，并发送相应的请求。</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>分布式文件系统</title>
+    <url>/2023/11/10/2023/11/distribute-system-book/</url>
+    <content><![CDATA[<h3 id="为什么用分布式文件系统"><a href="#为什么用分布式文件系统" class="headerlink" title="为什么用分布式文件系统"></a>为什么用分布式文件系统</h3><ul>
+<li>和业务系统独立</li>
+<li>数据中心化实现服务无状态化</li>
+<li>实现集群的前提</li>
+<li>优点<ul>
+<li>拓展能力: 毫无疑问，扩展能力是一个分布式文件系统最重要的特点</li>
+<li>高可用性: 在分布式文件系统中，高可用性包含两层，一是整个文件系统的可用性，二是数据的完整和一致性</li>
+<li>弹性存储: 可以根据业务需要灵活地增加或缩减数据存储以及增删存储池中的资源，而不需要中断系统运行</li>
+</ul>
+</li>
+<li>实现功能<ul>
+<li>读写分离</li>
+<li>备份容错</li>
+<li>负载均衡</li>
+<li>动态扩容</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="自有搭建系统"><a href="#自有搭建系统" class="headerlink" title="自有搭建系统"></a>自有搭建系统</h3><ul>
+<li>NFS（网络文件系统）FreeBSD支持的一种</li>
+<li>HDFS 大数据</li>
+<li>GFS（Google FS）</li>
+</ul>
+<h4 id="FastDFS"><a href="#FastDFS" class="headerlink" title="FastDFS"></a><a href="https://github.com/happyfish100/fastdfs">FastDFS</a></h4><ul>
+<li>特点<ul>
+<li>分组存储，简单灵活</li>
+<li>对等结构，不存在单点</li>
+<li>文件ID由FastDFS生成，作为文件访问凭证。FastDFS不需要传统的name server或meta server</li>
+<li>大、中、小文件均可以很好支持，可以存储海量小文件</li>
+<li>一台storage支持多块磁盘，支持单盘数据恢复</li>
+<li>提供了nginx扩展模块，可以和nginx无缝衔接</li>
+<li>支持多线程方式上传和下载文件，支持断点续传</li>
+<li>存储服务器上可以保存文件附加属性</li>
+</ul>
+</li>
+<li>架构<ul>
+<li>跟踪服务器（tracker server）：客户端和存储服务器的中间层<ul>
+<li>接收客户端请求，选择存储服务器</li>
+<li>检查存储服务器的状态</li>
+</ul>
+</li>
+<li>存储服务器（storage server）：存储文件的服务器<ul>
+<li>以组（卷，group或volume）为单位组织，一个group内包含多台storage机器，数据互为备份，存储空间以group内容量最小的storage为准，所以建议group内的多个storage尽量配置相同，以免造成存储空间的浪费。</li>
+<li>以group为单位组织存储能方便的进行应用隔离、负载均衡、副本数定制（group内storage server数量即为该group的副本数）</li>
+<li>在storage第一次启动时，会在每个数据存储目录里创建2级子目录，每级256个，总共65536个文件，新写的文件会以hash的方式被路由到其中某个子目录下，然后将文件数据直接作为一个本地文件存储到该目录中</li>
+</ul>
+</li>
+<li>客户端（client）：上传下载的服务器<br><img src="/2023/11/10/2023/11/distribute-system-book/fastdfs1.png"></li>
+</ul>
+</li>
+</ul>
+<h3 id="云存储"><a href="#云存储" class="headerlink" title="云存储"></a>云存储</h3><ul>
+<li>阿里云</li>
+<li>七牛云</li>
+<li>百度云</li>
+<li>AWS</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>Nginx学习笔记</title>
+    <url>/2023/11/04/2023/11/nginx-learn-note/</url>
+    <content><![CDATA[<h3 id="docker启动nginx"><a href="#docker启动nginx" class="headerlink" title="docker启动nginx"></a>docker启动nginx</h3><ul>
+<li>拉取nginx最新版本： <code>docker pull nginx</code> <ul>
+<li>启动nginx：<code>docker run --name nginx-test --mount type=bind,source=/docker/nginx/html,target=/usr/share/nginx/html --mount type=bind,source=/docker/nginx/nginx,target=/etc/nginx --mount type=bind,source=/docker/nginx/logs,target=/var/log/nginx -p 8081:80 -d nginx</code><ul>
+<li>其中<code>/usr/share/nginx/html</code>是默认的nginx容器页面路径</li>
+<li><code>-p 8081:80</code>是端口映射配置</li>
+<li><code>/etc/nginx</code>是默认的nginx容器配置目录</li>
+<li><code>d</code> 表示后台运行</li>
+<li>最后的<code>nginx</code>表示使用nginx镜像启动</li>
+</ul>
+</li>
+<li>复制nginx容器配置文件目录到本地目录：<code>docker container cp nginx-test:/etc/nginx/nginx.conf .</code></li>
+<li>重新启动nginx</li>
+<li>docker容器内执行nginx指令<ul>
+<li>reload：<code>docker exec -it nginx-test nginx -s reload</code></li>
+<li>test：<code>docker exec -it nginx-test nginx -t</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<h3 id="负载均衡的策略"><a href="#负载均衡的策略" class="headerlink" title="负载均衡的策略"></a>负载均衡的策略</h3><ul>
+<li>轮询<ul>
+<li>配置<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">upstream big_server_com &#123;</span><br><span class="line">  server 127.0.0.1:8081 weight=5; #weight 权重</span><br><span class="line">  server 127.0.0.1:8001 weight=5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>权重<ul>
+<li>配置：如上</li>
+<li>weight的值没有指定的总量，是相对值</li>
+</ul>
+</li>
+<li>ip_hash<ul>
+<li>用于多服务器之间session共享</li>
+<li>iphash，同一个ip固定访问同一个服务器</li>
+<li>如果该服务器挂掉，会访问轮询列表中的下一个服务器，并且不会丢失session</li>
+<li>访问用户不多的情况下，会导致负载不均衡</li>
+<li>配置<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">upstream big_server_com &#123;</span><br><span class="line">  ip_hash;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>url_hash<ul>
+<li>页面hash，同一个页面固定访问同一个服务器</li>
+<li><a href="https://github.com/replay/ngx_http_consistent_hash">第三方插件</a></li>
+<li>插件安装<ul>
+<li><a href="https://github.com/replay/ngx_http_consistent_hash">下载</a></li>
+<li>在nginx的configure目录下执行<code>./configure --prefix=/usr/local/nginx --add-module=/pluginLocation/ngx_http_consistent_hash</code></li>
+</ul>
+</li>
+<li><a href="https://www.nginx.com/resources/wiki/modules/consistent_hash/">配置方式</a><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">upstream somestream &#123;</span><br><span class="line">  consistent_hash $request_uri;</span><br><span class="line">  server 10.50.1.3:11211;</span><br><span class="line">  server 10.50.1.4:11211;</span><br><span class="line">  server 10.50.1.5:11211;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>图片资源的共享<ul>
+<li>FastDFS</li>
+<li>NFS</li>
+<li>HDFS</li>
+<li>OSS</li>
+</ul>
+</li>
+</ul>
+<h3 id="如何保持session一致性"><a href="#如何保持session一致性" class="headerlink" title="如何保持session一致性"></a>如何保持session一致性</h3><ul>
+<li>cookie保存</li>
+<li>tomcat分发</li>
+<li>session值放进数据库</li>
+<li>token</li>
+<li><a href="https://www.cnblogs.com/CF1314/p/14699780.html">redis共享session</a></li>
+<li>ip_hash</li>
+</ul>
+<h3 id="修改设备状态"><a href="#修改设备状态" class="headerlink" title="修改设备状态"></a>修改设备状态</h3><ul>
+<li>down<ul>
+<li>增加这一个配置后，该服务器将会被忽略</li>
+<li>配置：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">upstream big_server_com &#123;</span><br><span class="line">  server 127.0.0.1:8081 weight=5 down; #down 忽略该服务器</span><br><span class="line">  server 127.0.0.1:8001 weight=5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>backup<ul>
+<li>加上这一个配置后，该服务器成为备机</li>
+<li>配置<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">upstream big_server_com &#123;</span><br><span class="line">  server 127.0.0.1:8081 weight=5 backup; #backup 备机</span><br><span class="line">  server 127.0.0.1:8001 weight=5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>max_fails和fail_timeout<ul>
+<li>max_fails表示最大失败请求次数，默认是1；fail_timeout（默认10s）表示在指定时间内达到max_fails次数后就放弃尝试，判断该服务器节点为宕机状态</li>
+<li>在服务器宕机后的fail_timeout时间后，重新尝试</li>
+<li>配置<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">upstream big_server_com &#123;</span><br><span class="line">  server 127.0.0.1:8081 weight=5 max_fails=2 fail_timeout=10s; </span><br><span class="line">  server 127.0.0.1:8001 weight=5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="gzip压缩"><a href="#gzip压缩" class="headerlink" title="gzip压缩"></a>gzip压缩</h3><ul>
+<li><p>写在server块内</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gzip on;                     #开启gzip压缩功能</span><br><span class="line">gzip_min_length 10k;         #设置允许压缩的页面最小字节数; 这里表示如果文件小于10个字节，就不用压缩，因为没有意义，本来就很小.</span><br><span class="line">gzip_buffers 4 16k;          #设置压缩缓冲区大小，此处设置为4个16K内存作为压缩结果流缓存</span><br><span class="line">gzip_http_version 1.1;       #压缩版本</span><br><span class="line">gzip_comp_level 2;           #设置压缩比率，最小为1，处理速度快，传输速度慢；9为最大压缩比，处理速度慢，传输速度快; 这里表示压缩级别，可以是0到9中的任一个，级别越高，压缩就越小，节省了带宽资源，但同时也消耗CPU资源，所以一般折中为6</span><br><span class="line">gzip_types text/css text/xml application/javascript;      #制定压缩的类型,线上配置时尽可能配置多的压缩类型!</span><br><span class="line">gzip_disable &quot;MSIE [1-6]\.&quot;;       #配置禁用gzip条件，支持正则。此处表示ie6及以下不启用gzip（因为ie低版本不支持）</span><br><span class="line">gzip_vary on;    #选择支持vary header；改选项可以让前端的缓存服务器缓存经过gzip压缩的页面; 这个可以不写，表示在传送数据时，给客户端说明我使用了gzip压缩</span><br></pre></td></tr></table></figure></li>
+<li><p>如果成功，会在浏览器的请求头里出现两个字段</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Content-Encoding: gzip</span><br><span class="line">Transfer-Encoding: chunked</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="worker-processes配置"><a href="#worker-processes配置" class="headerlink" title="worker_processes配置"></a>worker_processes配置</h3><ul>
+<li>默认为1</li>
+<li>结合cpu数量设置，一般要设置为cpu的核心数量或核心数量x2<ul>
+<li>linux 通过 <code>lscpu</code>来查看cpu核心数</li>
+</ul>
+</li>
+<li><code>worker_rlimit_nofile</code>：Nginx worker进程最大打开文件数，不可超过linux最大文件打开数，最大一般为65535<ul>
+<li>linux最大打开数设置<code>ulimit -n 65535</code></li>
+</ul>
+</li>
+<li>连接数<code>worker_connections</code><ul>
+<li>配置<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">events &#123;</span><br><span class="line">  worker_connections 1000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>不可超过linux的最大socket连接数<ul>
+<li>设置地址<code>/proc/sys/net/core/somaxconn</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>MySQL不定时笔记</title>
+    <url>/2023/11/12/2023/11/MySQL-summary/</url>
+    <content><![CDATA[<h3 id="WHERE解析顺序"><a href="#WHERE解析顺序" class="headerlink" title="WHERE解析顺序"></a>WHERE解析顺序</h3><ul>
+<li>MySQL从左向右解析</li>
+<li>Oracle从右往左解析</li>
+<li>根据解析顺序把最优筛选用于最先解析</li>
+<li><a href="https://blog.cindyforever.com/2019/10/15/tech/%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E8%A7%A3%E9%87%8AMySQL%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D(%E6%9C%80%E5%B7%A6%E5%89%8D%E7%BC%80)%E5%8E%9F%E5%88%99/?highlight=mysql">最左原则</a></li>
+</ul>
+<h3 id="SQL执行顺序"><a href="#SQL执行顺序" class="headerlink" title="SQL执行顺序"></a>SQL执行顺序</h3><ul>
+<li>缓存（MySQL8.0移除）<ul>
+<li>MySQL的缓存机制主要包括查询缓存和InnoDB缓冲池（Buffer Pool）。</li>
+<li>查询缓存是MySQL中的一个全局缓存，用于缓存查询语句的结果集。当一个查询语句被执行时，MySQL首先检查查询缓存，如果相同的查询已经被缓存过并且缓存有效，则直接返回缓存的结果，而不需要执行实际的查询操作。（需要查询语句完全相同才能命中缓存）</li>
+<li>InnoDB缓冲池是InnoDB存储引擎中的一个重要组件，用于缓存数据和索引页。它将磁盘上的数据和索引页加载到内存中，以提高数据的访问速度。</li>
+</ul>
+</li>
+<li>分析器<ul>
+<li>词法分析（Lexical Analysis）：将SQL语句分解为一个个的标记（tokens），如关键字、标识符、运算符等。</li>
+<li>语法分析（Syntax Analysis）：根据SQL语句的语法规则，将标记组合成语法树（parse tree）或语法分析树（syntax tree）。</li>
+<li>语义分析（Semantic Analysis）：对语法树进行语义检查，包括检查表名、列名的存在性和合法性，检查语句的权限等。</li>
+</ul>
+</li>
+<li>优化器<ul>
+<li>查询优化（Query Optimization）：对查询语句进行优化，选择最优的执行计划。这涉及到索引选择、连接顺序、连接类型等优化策略。</li>
+</ul>
+</li>
+<li>执行器<ul>
+<li>执行计划生成（Execution Plan Generation）：根据优化后的查询计划，生成实际的执行计划，包括确定表的访问顺序、使用哪些索引等。</li>
+<li>执行计划执行（Execution）：按照生成的执行计划执行查询，包括从磁盘读取数据、进行排序、聚合等操作。</li>
+</ul>
+</li>
+<li>结果返回（Result Retrieval）：将执行结果返回给客户端</li>
+<li>PreparedStatement：节省分析和优化的消耗</li>
+</ul>
+<h3 id="SQL关键字解析顺序（从上往下顺序解析）"><a href="#SQL关键字解析顺序（从上往下顺序解析）" class="headerlink" title="SQL关键字解析顺序（从上往下顺序解析）"></a>SQL关键字解析顺序（从上往下顺序解析）</h3><ul>
+<li>FROM</li>
+<li>ON</li>
+<li>JOIN</li>
+<li>WHRER</li>
+<li>GROUP BY</li>
+<li>HAVING</li>
+<li>SELECT columns</li>
+<li>DISTINCT</li>
+<li>ORDER BY</li>
+<li>LIMIT</li>
+</ul>
+<h3 id="MySQL全文索引"><a href="#MySQL全文索引" class="headerlink" title="MySQL全文索引"></a>MySQL全文索引</h3><p>MySQL中的全文索引是一种用于支持全文搜索的索引类型。它能够提供更高效的文本搜索功能，使得在大量文本数据中进行关键字搜索变得更加快速和准确。</p>
+<ul>
+<li>特点<ul>
+<li>支持全文搜索：全文索引可以对文本数据进行索引，使得可以通过关键字搜索来查找包含指定关键字的文本。</li>
+<li>分词处理：在创建全文索引时，MySQL会对文本进行分词处理，将文本拆分成一个个词语（或称为词项），并将这些词语存储在全文索引中。</li>
+<li>忽略常见词和停用词：全文索引会忽略一些常见词和停用词（如”and”、”the”、”is”等），这些词通常对搜索结果没有实质性的帮助。</li>
+<li>支持关键字匹配：全文索引支持多种关键字匹配模式，如全文匹配、布尔搜索、短语搜索等。</li>
+<li>支持排序和评分：全文索引可以根据搜索结果的相关性进行排序，并为每个搜索结果分配一个评分，以便更好地反映搜索结果的相关性。</li>
+</ul>
+</li>
+<li>要使用全文索引，需要满足以下条件：<ul>
+<li>数据表的存储引擎必须是支持全文索引的引擎，如InnoDB、MyISAM等。注意，InnoDB引擎在MySQL 5.6版本之前不支持全文索引。</li>
+<li>要创建全文索引的列必须是字符类型的列，如VARCHAR、TEXT等。</li>
+</ul>
+</li>
+<li>使用示例：<ul>
+<li>创建全文索引：<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> FULLTEXT 索引名 (列名<span class="number">1</span>, 列名<span class="number">2</span>, ...);</span><br></pre></td></tr></table></figure></li>
+<li>执行全文搜索：<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> 表名 <span class="keyword">WHERE</span> <span class="keyword">MATCH</span>(列名) AGAINST(<span class="string">&#x27;关键字&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h3><ul>
+<li>查看存储引擎<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> engines;</span><br></pre></td></tr></table></figure></li>
+<li>指定存储引擎<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">  column1 datatype,</span><br><span class="line">  column2 datatype,</span><br><span class="line">  ...</span><br><span class="line">) ENGINE <span class="operator">=</span> engine_name;</span><br></pre></td></tr></table></figure></li>
+<li>存储引擎分类<ul>
+<li>InnoDB：InnoDB是MySQL的默认存储引擎，它支持事务和行级锁定。它提供了高度的并发性和可靠性，并具有较好的崩溃恢复能力。InnoDB还支持外键约束和支持ACID（原子性、一致性、隔离性和持久性）事务。</li>
+<li>MyISAM：MyISAM是MySQL的另一个常用存储引擎。它不支持事务和行级锁定，但具有较高的性能和较小的存储开销。MyISAM适用于读密集型的应用场景，如日志记录、数据仓库等。</li>
+<li>Memory（或者称为Heap）：Memory存储引擎将数据存储在内存中，提供了非常快速的读写操作。但是，由于数据存储在内存中，重启MySQL服务或服务器故障会导致数据丢失。Memory存储引擎适用于需要快速读写操作和临时数据存储的场景，如缓存表、临时表等。</li>
+<li>NDB Cluster：NDB Cluster存储引擎是MySQL集群（MySQL Cluster）的一部分，它提供了高可用性和可扩展性。NDB Cluster存储引擎将数据分布在多个节点上，并提供了分布式事务和高度并发的访问。它适用于大规模的分布式应用，如互联网应用、实时数据处理等。</li>
+<li>Archive引擎：Archive存储引擎是一种用于存储归档数据的引擎。它的设计目标是提供高度的数据压缩和快速的插入操作，适用于需要长期存储大量历史数据的场景。Archive引擎使用了行级别的压缩算法，可以将数据压缩到很小的存储空间。但是，它不支持索引和更新操作，只支持追加插入和查询操作。</li>
+<li>CSV引擎：CSV存储引擎将数据以逗号分隔值（CSV）的格式存储在文本文件中。它适用于需要与其他应用程序或工具进行数据交换的场景，如导入和导出数据。CSV引擎的数据存储在文本文件中，不支持索引和事务，因此在查询和更新操作方面性能较低。它更适合于只需要简单读取数据的场景。</li>
+<li>Blackhole引擎：Blackhole存储引擎是一个特殊的引擎，它不会实际存储数据，而是将所有写入操作都丢弃，只保留了表结构。它适用于数据复制和数据同步的场景，可以用作数据的中转站。通过将数据写入Blackhole引擎，可以快速将数据复制到其他MySQL实例或进行其他处理，而无需实际存储数据。Blackhole引擎对读取操作返回空结果。</li>
+</ul>
+</li>
+</ul>
+<h3 id="InnoDB中MySQL中一条记录是怎么存储的？"><a href="#InnoDB中MySQL中一条记录是怎么存储的？" class="headerlink" title="InnoDB中MySQL中一条记录是怎么存储的？"></a><a href="https://www.xiaolincoding.com/mysql/base/row_format.html">InnoDB中MySQL中一条记录是怎么存储的？</a></h3><p>在MySQL中，一行记录是按照表的定义和存储引擎的规则进行存储的。具体的存储方式会根据使用的存储引擎而有所不同。下面是一般情况下的存储方式：</p>
+<ul>
+<li>行格式（Row Format）：MySQL支持不同的行格式，如Compact、Redundant和Dynamic等。每种行格式都有不同的存储方式和特性。下面是一般情况下的行记录存储方式：<ul>
+<li>行头信息（Header）：包含了一些元数据，如是否为NULL、是否为变长字段等信息。</li>
+<li>列数据（Column Data）：按照表的定义，将每个列的数据存储在相应的位置上。对于变长字段，可能会有额外的指针来指示实际存储位置。</li>
+<li>记录头信息（Record Header）：包含了一些记录级别的元数据，如版本号、删除标记等。</li>
+<li>记录尾信息（Record Footer）：包含了一些校验和和其他控制信息。</li>
+</ul>
+</li>
+<li>存储引擎的差异：不同的存储引擎可能会有不同的存储方式和优化策略。例如，InnoDB存储引擎使用了聚簇索引的概念，将数据按照主键的顺序进行存储，这样可以提高查询性能。而MyISAM存储引擎则将数据存储在不同的文件中，分别存储数据和索引，以提供更高的并发性能。</li>
+</ul>
+<h3 id="日志分类"><a href="#日志分类" class="headerlink" title="日志分类"></a>日志分类</h3><h4 id="二进制日志（Binary-Log）"><a href="#二进制日志（Binary-Log）" class="headerlink" title="二进制日志（Binary Log）"></a>二进制日志（Binary Log）</h4><p>二进制日志是MySQL中最重要的日志类型之一。它记录了所有对数据库的修改操作，包括插入、更新和删除等，以二进制的形式保存在磁盘上。二进制日志可以用于数据恢复、主从复制和数据库的增量备份等。</p>
+<ul>
+<li>启用：要启用二进制日志，需要在MySQL的配置文件中进行相应的设置。通常，可以在配置文件（如my.cnf或my.ini）中添加以下配置项<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">log_bin = /path/to/binlog</span><br></pre></td></tr></table></figure></li>
+<li>查看和管理二进制日志<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="type">BINARY</span> LOGS; #查看当前正在使用的二进制日志文件列表。</span><br><span class="line"><span class="keyword">SHOW</span> BINLOG EVENTS <span class="keyword">IN</span> <span class="string">&#x27;binlog.000001&#x27;</span>; # 查看binlog内容</span><br><span class="line"><span class="keyword">SHOW</span> MASTER STATUS; #查看当前正在写入的二进制日志文件和位置。</span><br><span class="line">PURGE <span class="type">BINARY</span> LOGS; #清理旧的二进制日志文件，释放磁盘空间。</span><br></pre></td></tr></table></figure></li>
+<li>二进制日志格式：MySQL提供了多种二进制日志格式，包括Statement、Row和Mixed。不同的格式有不同的特点和适用场景。例如，Statement格式记录SQL语句本身，Row格式记录每一行数据的修改，Mixed格式根据具体情况选择使用Statement或Row格式。可以根据需求和性能要求选择合适的二进制日志格式。</li>
+</ul>
+<h4 id="事务日志（Transaction-Log）"><a href="#事务日志（Transaction-Log）" class="headerlink" title="事务日志（Transaction Log）"></a>事务日志（Transaction Log）</h4><p>事务日志也称为重做日志（Redo Log），用于记录已提交的事务对数据库的修改操作。事务日志是InnoDB存储引擎特有的日志类型，用于保证数据库的事务持久性和崩溃恢复。它记录了事务对数据的修改操作，以便在数据库崩溃时进行数据恢复。</p>
+<h4 id="错误日志（Error-Log）"><a href="#错误日志（Error-Log）" class="headerlink" title="错误日志（Error Log）"></a>错误日志（Error Log）</h4><p>错误日志记录了MySQL服务器在运行过程中发生的错误和异常信息。它包含了警告、错误、连接问题等相关的日志信息。错误日志对于排查和解决数据库运行中的问题非常有用。</p>
+<h4 id="查询日志（Query-Log）"><a href="#查询日志（Query-Log）" class="headerlink" title="查询日志（Query Log）"></a>查询日志（Query Log）</h4><p>查询日志记录了MySQL服务器接收到的所有查询语句，包括SELECT、INSERT、UPDATE和DELETE等操作。查询日志可以用于分析和优化查询性能，但是在高负载环境下开启查询日志会对性能产生一定的影响。</p>
+<h4 id="慢查询日志（Slow-Query-Log）"><a href="#慢查询日志（Slow-Query-Log）" class="headerlink" title="慢查询日志（Slow Query Log）"></a>慢查询日志（Slow Query Log）</h4><p>慢查询日志记录了执行时间超过指定阈值的查询语句。它可以帮助开发人员和数据库管理员发现慢查询语句，并进行性能优化。慢查询日志对于定位和解决数据库性能问题非常有用。</p>
+<ul>
+<li>启用慢查询<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">slow_query_log = 1</span><br><span class="line">slow_query_log_file = /path/to/slow-query.log</span><br><span class="line">long_query_time = 1</span><br></pre></td></tr></table></figure></li>
+<li>慢查询分析工具<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysqldumpslow <span class="operator">-</span>s t slow<span class="operator">-</span>query.log</span><br></pre></td></tr></table></figure></li>
+<li><a href="https://percona.com/software/database-tools/percona-toolkit">percona-toolkit：开源分析数据库工具</a></li>
+</ul>
+<h4 id="撤销日志（Undo-Log）："><a href="#撤销日志（Undo-Log）：" class="headerlink" title="撤销日志（Undo Log）："></a>撤销日志（Undo Log）：</h4><p>撤销日志也是InnoDB存储引擎特有的日志类型，用于支持事务的回滚操作。当事务执行过程中需要回滚时，撤销日志记录了对数据的逆操作，以实现事务的原子性</p>
 ]]></content>
   </entry>
 </search>

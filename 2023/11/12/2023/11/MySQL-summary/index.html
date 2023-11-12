@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="WHERE解析顺序 MySQL从左向右解析 Oracle从右往左解析 根据解析顺序把最优筛选用于最先解析 最左原则  SQL执行顺序 缓存（MySQL8.0移除） MySQL的缓存机制主要包括查询缓存和InnoDB缓冲池（Buffer Pool）。 查询缓存是MySQL中的一个全局缓存，用于缓存查询语句的结果集。当一个查询语句被执行时，MySQL首先检查查询缓存，如果相同的查询已经被缓存过并且缓存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL不定时笔记">
+<meta property="og:url" content="http://shdvgj.github.io/2023/11/12/2023/11/MySQL-summary/index.html">
+<meta property="og:site_name" content="Ricky的个人博客">
+<meta property="og:description" content="WHERE解析顺序 MySQL从左向右解析 Oracle从右往左解析 根据解析顺序把最优筛选用于最先解析 最左原则  SQL执行顺序 缓存（MySQL8.0移除） MySQL的缓存机制主要包括查询缓存和InnoDB缓冲池（Buffer Pool）。 查询缓存是MySQL中的一个全局缓存，用于缓存查询语句的结果集。当一个查询语句被执行时，MySQL首先检查查询缓存，如果相同的查询已经被缓存过并且缓存">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-12T05:07:51.000Z">
+<meta property="article:modified_time" content="2023-11-12T10:21:39.498Z">
+<meta property="article:author" content="Ricky">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://shdvgj.github.io/2023/11/12/2023/11/MySQL-summary/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://shdvgj.github.io/2023/11/12/2023/11/MySQL-summary/","path":"2023/11/12/2023/11/MySQL-summary/","title":"MySQL不定时笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MySQL不定时笔记 | Ricky的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ricky的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">77</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#WHERE%E8%A7%A3%E6%9E%90%E9%A1%BA%E5%BA%8F"><span class="nav-text">WHERE解析顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="nav-text">SQL执行顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL%E5%85%B3%E9%94%AE%E5%AD%97%E8%A7%A3%E6%9E%90%E9%A1%BA%E5%BA%8F%EF%BC%88%E4%BB%8E%E4%B8%8A%E5%BE%80%E4%B8%8B%E9%A1%BA%E5%BA%8F%E8%A7%A3%E6%9E%90%EF%BC%89"><span class="nav-text">SQL关键字解析顺序（从上往下顺序解析）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL%E5%85%A8%E6%96%87%E7%B4%A2%E5%BC%95"><span class="nav-text">MySQL全文索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="nav-text">存储引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InnoDB%E4%B8%ADMySQL%E4%B8%AD%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%E6%98%AF%E6%80%8E%E4%B9%88%E5%AD%98%E5%82%A8%E7%9A%84%EF%BC%9F"><span class="nav-text">InnoDB中MySQL中一条记录是怎么存储的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E5%88%86%E7%B1%BB"><span class="nav-text">日志分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%97%A5%E5%BF%97%EF%BC%88Binary-Log%EF%BC%89"><span class="nav-text">二进制日志（Binary Log）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E6%97%A5%E5%BF%97%EF%BC%88Transaction-Log%EF%BC%89"><span class="nav-text">事务日志（Transaction Log）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%EF%BC%88Error-Log%EF%BC%89"><span class="nav-text">错误日志（Error Log）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%97%A5%E5%BF%97%EF%BC%88Query-Log%EF%BC%89"><span class="nav-text">查询日志（Query Log）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%85%A2%E6%9F%A5%E8%AF%A2%E6%97%A5%E5%BF%97%EF%BC%88Slow-Query-Log%EF%BC%89"><span class="nav-text">慢查询日志（Slow Query Log）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%92%A4%E9%94%80%E6%97%A5%E5%BF%97%EF%BC%88Undo-Log%EF%BC%89%EF%BC%9A"><span class="nav-text">撤销日志（Undo Log）：</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ricky"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ricky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shdvgj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shdvgj" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:linqianghuang@gmail.com" title="E-Mail → mailto:linqianghuang@gmail.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/RickyLoveCindy" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;RickyLoveCindy" rel="noopener me" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoqianglalala" rel="noopener me" target="_blank"><i class="instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/11/12/2023/11/MySQL-summary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MySQL不定时笔记 | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL不定时笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-11-12 13:07:51 / 修改时间：18:21:39" itemprop="dateCreated datePublished" datetime="2023-11-12T13:07:51+08:00">2023-11-12</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/11/12/2023/11/MySQL-summary/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/11/12/2023/11/MySQL-summary/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="WHERE解析顺序"><a href="#WHERE解析顺序" class="headerlink" title="WHERE解析顺序"></a>WHERE解析顺序</h3><ul>
+<li>MySQL从左向右解析</li>
+<li>Oracle从右往左解析</li>
+<li>根据解析顺序把最优筛选用于最先解析</li>
+<li><a target="_blank" rel="noopener" href="https://blog.cindyforever.com/2019/10/15/tech/%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E8%A7%A3%E9%87%8AMySQL%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D(%E6%9C%80%E5%B7%A6%E5%89%8D%E7%BC%80)%E5%8E%9F%E5%88%99/?highlight=mysql">最左原则</a></li>
+</ul>
+<h3 id="SQL执行顺序"><a href="#SQL执行顺序" class="headerlink" title="SQL执行顺序"></a>SQL执行顺序</h3><ul>
+<li>缓存（MySQL8.0移除）<ul>
+<li>MySQL的缓存机制主要包括查询缓存和InnoDB缓冲池（Buffer Pool）。</li>
+<li>查询缓存是MySQL中的一个全局缓存，用于缓存查询语句的结果集。当一个查询语句被执行时，MySQL首先检查查询缓存，如果相同的查询已经被缓存过并且缓存有效，则直接返回缓存的结果，而不需要执行实际的查询操作。（需要查询语句完全相同才能命中缓存）</li>
+<li>InnoDB缓冲池是InnoDB存储引擎中的一个重要组件，用于缓存数据和索引页。它将磁盘上的数据和索引页加载到内存中，以提高数据的访问速度。</li>
+</ul>
+</li>
+<li>分析器<ul>
+<li>词法分析（Lexical Analysis）：将SQL语句分解为一个个的标记（tokens），如关键字、标识符、运算符等。</li>
+<li>语法分析（Syntax Analysis）：根据SQL语句的语法规则，将标记组合成语法树（parse tree）或语法分析树（syntax tree）。</li>
+<li>语义分析（Semantic Analysis）：对语法树进行语义检查，包括检查表名、列名的存在性和合法性，检查语句的权限等。</li>
+</ul>
+</li>
+<li>优化器<ul>
+<li>查询优化（Query Optimization）：对查询语句进行优化，选择最优的执行计划。这涉及到索引选择、连接顺序、连接类型等优化策略。</li>
+</ul>
+</li>
+<li>执行器<ul>
+<li>执行计划生成（Execution Plan Generation）：根据优化后的查询计划，生成实际的执行计划，包括确定表的访问顺序、使用哪些索引等。</li>
+<li>执行计划执行（Execution）：按照生成的执行计划执行查询，包括从磁盘读取数据、进行排序、聚合等操作。</li>
+</ul>
+</li>
+<li>结果返回（Result Retrieval）：将执行结果返回给客户端</li>
+<li>PreparedStatement：节省分析和优化的消耗</li>
+</ul>
+<h3 id="SQL关键字解析顺序（从上往下顺序解析）"><a href="#SQL关键字解析顺序（从上往下顺序解析）" class="headerlink" title="SQL关键字解析顺序（从上往下顺序解析）"></a>SQL关键字解析顺序（从上往下顺序解析）</h3><ul>
+<li>FROM</li>
+<li>ON</li>
+<li>JOIN</li>
+<li>WHRER</li>
+<li>GROUP BY</li>
+<li>HAVING</li>
+<li>SELECT columns</li>
+<li>DISTINCT</li>
+<li>ORDER BY</li>
+<li>LIMIT</li>
+</ul>
+<h3 id="MySQL全文索引"><a href="#MySQL全文索引" class="headerlink" title="MySQL全文索引"></a>MySQL全文索引</h3><p>MySQL中的全文索引是一种用于支持全文搜索的索引类型。它能够提供更高效的文本搜索功能，使得在大量文本数据中进行关键字搜索变得更加快速和准确。</p>
+<ul>
+<li>特点<ul>
+<li>支持全文搜索：全文索引可以对文本数据进行索引，使得可以通过关键字搜索来查找包含指定关键字的文本。</li>
+<li>分词处理：在创建全文索引时，MySQL会对文本进行分词处理，将文本拆分成一个个词语（或称为词项），并将这些词语存储在全文索引中。</li>
+<li>忽略常见词和停用词：全文索引会忽略一些常见词和停用词（如”and”、”the”、”is”等），这些词通常对搜索结果没有实质性的帮助。</li>
+<li>支持关键字匹配：全文索引支持多种关键字匹配模式，如全文匹配、布尔搜索、短语搜索等。</li>
+<li>支持排序和评分：全文索引可以根据搜索结果的相关性进行排序，并为每个搜索结果分配一个评分，以便更好地反映搜索结果的相关性。</li>
+</ul>
+</li>
+<li>要使用全文索引，需要满足以下条件：<ul>
+<li>数据表的存储引擎必须是支持全文索引的引擎，如InnoDB、MyISAM等。注意，InnoDB引擎在MySQL 5.6版本之前不支持全文索引。</li>
+<li>要创建全文索引的列必须是字符类型的列，如VARCHAR、TEXT等。</li>
+</ul>
+</li>
+<li>使用示例：<ul>
+<li>创建全文索引：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> FULLTEXT 索引名 (列名<span class="number">1</span>, 列名<span class="number">2</span>, ...);</span><br></pre></td></tr></table></figure></li>
+<li>执行全文搜索：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> 表名 <span class="keyword">WHERE</span> <span class="keyword">MATCH</span>(列名) AGAINST(<span class="string">&#x27;关键字&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h3><ul>
+<li>查看存储引擎<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> engines;</span><br></pre></td></tr></table></figure></li>
+<li>指定存储引擎<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">  column1 datatype,</span><br><span class="line">  column2 datatype,</span><br><span class="line">  ...</span><br><span class="line">) ENGINE <span class="operator">=</span> engine_name;</span><br></pre></td></tr></table></figure></li>
+<li>存储引擎分类<ul>
+<li>InnoDB：InnoDB是MySQL的默认存储引擎，它支持事务和行级锁定。它提供了高度的并发性和可靠性，并具有较好的崩溃恢复能力。InnoDB还支持外键约束和支持ACID（原子性、一致性、隔离性和持久性）事务。</li>
+<li>MyISAM：MyISAM是MySQL的另一个常用存储引擎。它不支持事务和行级锁定，但具有较高的性能和较小的存储开销。MyISAM适用于读密集型的应用场景，如日志记录、数据仓库等。</li>
+<li>Memory（或者称为Heap）：Memory存储引擎将数据存储在内存中，提供了非常快速的读写操作。但是，由于数据存储在内存中，重启MySQL服务或服务器故障会导致数据丢失。Memory存储引擎适用于需要快速读写操作和临时数据存储的场景，如缓存表、临时表等。</li>
+<li>NDB Cluster：NDB Cluster存储引擎是MySQL集群（MySQL Cluster）的一部分，它提供了高可用性和可扩展性。NDB Cluster存储引擎将数据分布在多个节点上，并提供了分布式事务和高度并发的访问。它适用于大规模的分布式应用，如互联网应用、实时数据处理等。</li>
+<li>Archive引擎：Archive存储引擎是一种用于存储归档数据的引擎。它的设计目标是提供高度的数据压缩和快速的插入操作，适用于需要长期存储大量历史数据的场景。Archive引擎使用了行级别的压缩算法，可以将数据压缩到很小的存储空间。但是，它不支持索引和更新操作，只支持追加插入和查询操作。</li>
+<li>CSV引擎：CSV存储引擎将数据以逗号分隔值（CSV）的格式存储在文本文件中。它适用于需要与其他应用程序或工具进行数据交换的场景，如导入和导出数据。CSV引擎的数据存储在文本文件中，不支持索引和事务，因此在查询和更新操作方面性能较低。它更适合于只需要简单读取数据的场景。</li>
+<li>Blackhole引擎：Blackhole存储引擎是一个特殊的引擎，它不会实际存储数据，而是将所有写入操作都丢弃，只保留了表结构。它适用于数据复制和数据同步的场景，可以用作数据的中转站。通过将数据写入Blackhole引擎，可以快速将数据复制到其他MySQL实例或进行其他处理，而无需实际存储数据。Blackhole引擎对读取操作返回空结果。</li>
+</ul>
+</li>
+</ul>
+<h3 id="InnoDB中MySQL中一条记录是怎么存储的？"><a href="#InnoDB中MySQL中一条记录是怎么存储的？" class="headerlink" title="InnoDB中MySQL中一条记录是怎么存储的？"></a><a target="_blank" rel="noopener" href="https://www.xiaolincoding.com/mysql/base/row_format.html">InnoDB中MySQL中一条记录是怎么存储的？</a></h3><p>在MySQL中，一行记录是按照表的定义和存储引擎的规则进行存储的。具体的存储方式会根据使用的存储引擎而有所不同。下面是一般情况下的存储方式：</p>
+<ul>
+<li>行格式（Row Format）：MySQL支持不同的行格式，如Compact、Redundant和Dynamic等。每种行格式都有不同的存储方式和特性。下面是一般情况下的行记录存储方式：<ul>
+<li>行头信息（Header）：包含了一些元数据，如是否为NULL、是否为变长字段等信息。</li>
+<li>列数据（Column Data）：按照表的定义，将每个列的数据存储在相应的位置上。对于变长字段，可能会有额外的指针来指示实际存储位置。</li>
+<li>记录头信息（Record Header）：包含了一些记录级别的元数据，如版本号、删除标记等。</li>
+<li>记录尾信息（Record Footer）：包含了一些校验和和其他控制信息。</li>
+</ul>
+</li>
+<li>存储引擎的差异：不同的存储引擎可能会有不同的存储方式和优化策略。例如，InnoDB存储引擎使用了聚簇索引的概念，将数据按照主键的顺序进行存储，这样可以提高查询性能。而MyISAM存储引擎则将数据存储在不同的文件中，分别存储数据和索引，以提供更高的并发性能。</li>
+</ul>
+<h3 id="日志分类"><a href="#日志分类" class="headerlink" title="日志分类"></a>日志分类</h3><h4 id="二进制日志（Binary-Log）"><a href="#二进制日志（Binary-Log）" class="headerlink" title="二进制日志（Binary Log）"></a>二进制日志（Binary Log）</h4><p>二进制日志是MySQL中最重要的日志类型之一。它记录了所有对数据库的修改操作，包括插入、更新和删除等，以二进制的形式保存在磁盘上。二进制日志可以用于数据恢复、主从复制和数据库的增量备份等。</p>
+<ul>
+<li>启用：要启用二进制日志，需要在MySQL的配置文件中进行相应的设置。通常，可以在配置文件（如my.cnf或my.ini）中添加以下配置项<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log_bin = /path/to/binlog</span><br></pre></td></tr></table></figure></li>
+<li>查看和管理二进制日志<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="type">BINARY</span> LOGS; #查看当前正在使用的二进制日志文件列表。</span><br><span class="line"><span class="keyword">SHOW</span> BINLOG EVENTS <span class="keyword">IN</span> <span class="string">&#x27;binlog.000001&#x27;</span>; # 查看binlog内容</span><br><span class="line"><span class="keyword">SHOW</span> MASTER STATUS; #查看当前正在写入的二进制日志文件和位置。</span><br><span class="line">PURGE <span class="type">BINARY</span> LOGS; #清理旧的二进制日志文件，释放磁盘空间。</span><br></pre></td></tr></table></figure></li>
+<li>二进制日志格式：MySQL提供了多种二进制日志格式，包括Statement、Row和Mixed。不同的格式有不同的特点和适用场景。例如，Statement格式记录SQL语句本身，Row格式记录每一行数据的修改，Mixed格式根据具体情况选择使用Statement或Row格式。可以根据需求和性能要求选择合适的二进制日志格式。</li>
+</ul>
+<h4 id="事务日志（Transaction-Log）"><a href="#事务日志（Transaction-Log）" class="headerlink" title="事务日志（Transaction Log）"></a>事务日志（Transaction Log）</h4><p>事务日志也称为重做日志（Redo Log），用于记录已提交的事务对数据库的修改操作。事务日志是InnoDB存储引擎特有的日志类型，用于保证数据库的事务持久性和崩溃恢复。它记录了事务对数据的修改操作，以便在数据库崩溃时进行数据恢复。</p>
+<h4 id="错误日志（Error-Log）"><a href="#错误日志（Error-Log）" class="headerlink" title="错误日志（Error Log）"></a>错误日志（Error Log）</h4><p>错误日志记录了MySQL服务器在运行过程中发生的错误和异常信息。它包含了警告、错误、连接问题等相关的日志信息。错误日志对于排查和解决数据库运行中的问题非常有用。</p>
+<h4 id="查询日志（Query-Log）"><a href="#查询日志（Query-Log）" class="headerlink" title="查询日志（Query Log）"></a>查询日志（Query Log）</h4><p>查询日志记录了MySQL服务器接收到的所有查询语句，包括SELECT、INSERT、UPDATE和DELETE等操作。查询日志可以用于分析和优化查询性能，但是在高负载环境下开启查询日志会对性能产生一定的影响。</p>
+<h4 id="慢查询日志（Slow-Query-Log）"><a href="#慢查询日志（Slow-Query-Log）" class="headerlink" title="慢查询日志（Slow Query Log）"></a>慢查询日志（Slow Query Log）</h4><p>慢查询日志记录了执行时间超过指定阈值的查询语句。它可以帮助开发人员和数据库管理员发现慢查询语句，并进行性能优化。慢查询日志对于定位和解决数据库性能问题非常有用。</p>
+<ul>
+<li>启用慢查询<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">slow_query_log = 1</span><br><span class="line">slow_query_log_file = /path/to/slow-query.log</span><br><span class="line">long_query_time = 1</span><br></pre></td></tr></table></figure></li>
+<li>慢查询分析工具<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldumpslow <span class="operator">-</span>s t slow<span class="operator">-</span>query.log</span><br></pre></td></tr></table></figure></li>
+<li><a target="_blank" rel="noopener" href="https://percona.com/software/database-tools/percona-toolkit">percona-toolkit：开源分析数据库工具</a></li>
+</ul>
+<h4 id="撤销日志（Undo-Log）："><a href="#撤销日志（Undo-Log）：" class="headerlink" title="撤销日志（Undo Log）："></a>撤销日志（Undo Log）：</h4><p>撤销日志也是InnoDB存储引擎特有的日志类型，用于支持事务的回滚操作。当事务执行过程中需要回滚时，撤销日志记录了对数据的逆操作，以实现事务的原子性</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/11/10/2023/11/distribute-system-book/" rel="prev" title="分布式文件系统">
+                  <i class="fa fa-chevron-left"></i> 分布式文件系统
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ricky</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"cindyforever","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
