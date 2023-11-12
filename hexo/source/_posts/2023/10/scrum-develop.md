@@ -24,6 +24,8 @@ tags:
 - **Customer collaboration** over contract negotiation. 客户合作 高于 合同谈判
 - **Responding to change** over following a project plan. 响应变化 高于 遵循计划
 
+<!-- more -->
+
 #### 12条原则
 
 - 我们最重要的目标，是通过持续不断地及早交付有价值的软件使客户满意。
