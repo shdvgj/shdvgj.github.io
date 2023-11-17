@@ -4,10 +4,41 @@ date: 2023-11-07 15:53:20
 tags:
 ---
 
-#### RBAC(Role-based access control)
+### 数据库相关
 
+#### RBAC(Role-based access control)
 <!-- more -->
+#### JDBC(Java Database Connectivity)
+
+#### DDL（Data Definition Language）
+
+#### DML（Data Manipulation Language）
+
 #### ACID(Atomicity, Consistency, Isolation, Durability)
+
+#### GTID(Global Transaction IDentifier) 
+
+在MySQL中，GTID（Global Transaction ID）是一种用于标识数据库事务的全局唯一标识符。它由MySQL服务器生成，并用于在分布式系统中跟踪和管理事务的执行。
+
+GTID的主要作用包括：
+
+- 事务标识符：每个事务在MySQL中都有一个唯一的GTID，它标识了事务的唯一性。通过使用GTID，可以明确地识别和跟踪特定的事务。
+- 事务持久性：GTID与事务的执行相关联，确保事务在提交时被持久化到数据库中。当使用GTID执行事务时，MySQL会记录事务的执行顺序和状态，从而确保数据的一致性。
+- 分布式系统中的事务管理：在分布式系统中，GTID可以帮助协调不同节点之间的事务执行。通过将GTID广播到其他节点，可以确保所有节点都在同一事务中执行操作，从而实现数据的一致性和同步。
+- 日志回放：在MySQL的二进制日志中，每个事务都以GTID的形式记录下来。这使得在数据库发生故障或崩溃后可以轻松地恢复数据。通过使用GTID，可以准确地找到特定事务的位置，并重新执行那些未提交的事务。
+
+#### 3NF
+
+第一范式（1NF）：确保每个数据表中的每个列都是原子的，即每个列都包含不可再分的数据项。这意味着每个列中的数据不应该是重复的或包含多个值。
+
+第二范式（2NF）：在满足第一范式的基础上，通过将数据表中的非主键列与主键相关联，消除部分依赖。换句话说，每个非主键列都应该完全依赖于主键，而不是依赖于主键的一部分。
+
+第三范式（3NF）：在满足第二范式的基础上，通过消除传递依赖来达到第三范式。传递依赖指的是非主键列之间的依赖关系。如果存在一个非主键列依赖于另一个非主键列，而后者又依赖于主键，那么就需要将这些非主键列分离成单独的表。
+
+#### DBMS(Database management system)
+
+
+### 分布式相关
 
 #### CAP(Consistency, Availability, Partition tolerance)
 
@@ -17,11 +48,11 @@ tags:
 
 #### LDAP(Lightweight Directory Access Protocol)
 
-#### JDBC(Java Database Connectivity)
-
 #### EJB(Enterprise Java Beans)
 
 #### SLA(Service-Level Agreement)
+
+#### MTBF、MTTR、MTTA 和 MTTF
 
 #### CDN(Content Delivery Network)
 
