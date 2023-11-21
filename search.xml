@@ -6527,6 +6527,12 @@
 <p>通过用QUIC替代TCP，HTTP的开发者希望在其他改进方面实现本机和标准的加密（不再有HTTP和HTTPS，每个HTTP通信都被加密）以及快速建立连接。</p>
 <p>下面的图片总结了HTTP从其第一个发布版本（版本0.9）到最后一个提议版本（版本3.0）的演变：<br><img src="/2023/09/06/2023/09/daily-blog-20230906/http-versions.webp"></p>
 ]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>http</tag>
+      </tags>
   </entry>
   <entry>
     <title>CAP原理简介</title>
@@ -6561,6 +6567,12 @@
 <p>如果我在解释CAP定理时不提及著名的CAP三角形和一些流行的数据库，那将是一种遗憾。</p>
 <p><img src="/2023/09/12/2023/09/CAP-Theorem-simplified/cap7.webp"></p>
 ]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>分布式</tag>
+      </tags>
   </entry>
   <entry>
     <title>RabbitMQ VS Kafka</title>
@@ -6603,6 +6615,13 @@
 <h2 id="其他文章"><a href="#其他文章" class="headerlink" title="其他文章"></a>其他文章</h2><p>如果您想深入了解RabbitMQ和Kafka的内部实现，我推荐以下资源：</p>
 <p><a href="https://www.rabbitmq.com/tutorials/amqp-concepts.html">AMQP 0.9.1 Model Explained – RabbitMQ</a><br><a href="https://kafka.apache.org/intro">Introduction to Apache Kafka</a></p>
 ]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>分布式</tag>
+        <tag>MQ</tag>
+      </tags>
   </entry>
   <entry>
     <title>Java架构学习笔记——20231026</title>
@@ -6681,6 +6700,12 @@
 </ul>
 <p><a href="001.pdf">附件：系统架构思维掌握.pdf</a><br><a href="002.pdf">附件：系统架构演进&amp;架构师成长规划.pdf</a></p>
 ]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>程序架构</tag>
+      </tags>
   </entry>
   <entry>
     <title>SpringBoot笔记</title>
@@ -6952,6 +6977,13 @@
 </ul>
 <p><a href="SpringBoot%E7%AC%94%E8%AE%B01.pdf">SpringBoot笔记1.pdf</a><br><a href="SpringBoot%E7%AC%94%E8%AE%B02.pdf">SpringBoot笔记2.pdf</a></p>
 ]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>程序架构</tag>
+        <tag>SpringBoot</tag>
+      </tags>
   </entry>
   <entry>
     <title>Scrum敏捷开发基本思想</title>
@@ -7089,12 +7121,53 @@
 </ul>
 <h4 id="用户故事（user-stories）"><a href="#用户故事（user-stories）" class="headerlink" title="用户故事（user stories）"></a>用户故事（user stories）</h4><p>As a [a user role], I want to [accomplish a result], So that [Business value].<br>作为[用户角色]，我想[实现一个结果]，因为[商业价值]。<br><img src="/2023/10/29/2023/10/scrum-develop/agile2.png"></p>
 ]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>程序架构</tag>
+      </tags>
   </entry>
   <entry>
     <title>缩写短语概念简单介绍</title>
     <url>/2023/11/07/2023/11/develep-english-shortcut/</url>
-    <content><![CDATA[<h3 id="数据库相关"><a href="#数据库相关" class="headerlink" title="数据库相关"></a>数据库相关</h3><h4 id="RBAC-Role-based-access-control"><a href="#RBAC-Role-based-access-control" class="headerlink" title="RBAC(Role-based access control)"></a>RBAC(Role-based access control)</h4><span id="more"></span>
-<h4 id="JDBC-Java-Database-Connectivity"><a href="#JDBC-Java-Database-Connectivity" class="headerlink" title="JDBC(Java Database Connectivity)"></a>JDBC(Java Database Connectivity)</h4><h4 id="DDL（Data-Definition-Language）"><a href="#DDL（Data-Definition-Language）" class="headerlink" title="DDL（Data Definition Language）"></a>DDL（Data Definition Language）</h4><h4 id="DML（Data-Manipulation-Language）"><a href="#DML（Data-Manipulation-Language）" class="headerlink" title="DML（Data Manipulation Language）"></a>DML（Data Manipulation Language）</h4><h4 id="ACID-Atomicity-Consistency-Isolation-Durability"><a href="#ACID-Atomicity-Consistency-Isolation-Durability" class="headerlink" title="ACID(Atomicity, Consistency, Isolation, Durability)"></a>ACID(Atomicity, Consistency, Isolation, Durability)</h4><h4 id="GTID-Global-Transaction-IDentifier"><a href="#GTID-Global-Transaction-IDentifier" class="headerlink" title="GTID(Global Transaction IDentifier)"></a>GTID(Global Transaction IDentifier)</h4><p>在MySQL中，GTID（Global Transaction ID）是一种用于标识数据库事务的全局唯一标识符。它由MySQL服务器生成，并用于在分布式系统中跟踪和管理事务的执行。</p>
+    <content><![CDATA[<h3 id="数据库相关"><a href="#数据库相关" class="headerlink" title="数据库相关"></a>数据库相关</h3><h4 id="RBAC-Role-based-access-control"><a href="#RBAC-Role-based-access-control" class="headerlink" title="RBAC(Role-based access control)"></a>RBAC(Role-based access control)</h4><p>RBAC（基于角色的访问控制）是一种针对产品去挖掘需求时所用到的Who（角色）、What（拥有什么资源）、How（有哪些操作）的方式。在RBAC模型中，who、what、how构成了访问权限三元组，也就是“Who对What进行How的操作”。RBAC主要包含四个子模型：RBAC0、RBAC1、RBAC2和RBAC3，整体又叫做RBAC96。用户与会话一对一，会话与角色一对多。在RBAC模型里面，有3个基础组成部分，分别是：用户、角色和权限。RBAC通过定义角色的权限，并对用户授予某个角色从而来控制用户的权限，实现了用户和权限的逻辑分离（区别于ACL模型），极大地方便了权限的管理。</p>
+<ul>
+<li>RBAC0：这是RBAC模型的基础，它定义了完全支持RBAC概念的任何系统的最低需求。在RBAC0模型中，用户和角色之间可以是多对多的关系，即一个用户在不同场景下可以有不同的角色。</li>
+<li>RBAC1：该模型在RBAC0的基础上引入了角色间的继承关系，即角色上有了上下级的区别。角色间的继承关系可分为一般继承关系和受限继承关系。一般继承关系仅要求角色继承关系是一个绝对偏序关系，允许角色间的多继承。而受限继承关系则进一步要求角色继承关系是一个树结构，实现角色间的单继承。这种模型适合于角色之间层次分明，可以给角色分组分层。</li>
+<li>RBAC2：该模型在RBAC0的基础上引入了角色间的约束关系，主要约束规则包括：角色间的互斥关系，在处理用户和这些角色之间的关系时，包括静态分离和动态分离。静态分离指互斥的角色不能同时赋予同一个用户；动态分离指用户不能同时操作两个互斥的角色进行登录。</li>
+<li>RBAC3：该模型同时包含了RBAC1和RBAC2的特性（继承关系和约束关系）。</li>
+</ul>
+<span id="more"></span>
+<h4 id="JDBC-Java-Database-Connectivity"><a href="#JDBC-Java-Database-Connectivity" class="headerlink" title="JDBC(Java Database Connectivity)"></a>JDBC(Java Database Connectivity)</h4><p>JDBC（Java Database Connectivity）是一种用于执行SQL语句的Java API，可以为多种关系数据库提供统一访问。它由一组用Java语言编写的类和接口组成。JDBC提供了一种基准，据此可以构建更高级的工具和接口，使数据库开发人员能够编写数据库应用程序。</p>
+<h4 id="DDL（Data-Definition-Language）和-DML（Data-Manipulation-Language）"><a href="#DDL（Data-Definition-Language）和-DML（Data-Manipulation-Language）" class="headerlink" title="DDL（Data Definition Language）和 DML（Data Manipulation Language）"></a>DDL（Data Definition Language）和 DML（Data Manipulation Language）</h4><p>DDL（Data Definition Language，数据定义语言）用于定义和管理数据库对象的结构，例如表、视图、索引、触发器等。DDL语句通常用于创建、修改和删除数据库对象。常见的DDL语句包括：</p>
+<ol>
+<li>CREATE（创建）：用于创建数据库对象，例如创建表、视图、索引等。</li>
+<li>ALTER（修改）：用于修改数据库对象的结构，例如修改表结构、添加列等。</li>
+<li>DROP（删除）：用于删除数据库对象，例如删除表、视图、索引等。</li>
+</ol>
+<p>例如，下面是一些DDL语句的示例：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Employees (</span><br><span class="line">    ID <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">    Name <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">    Age <span class="type">INT</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Employees</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">COLUMN</span> Salary <span class="type">DECIMAL</span>(<span class="number">10</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> Employees;</span><br></pre></td></tr></table></figure>
+
+<p>DML（Data Manipulation Language，数据操纵语言）用于对数据库中的数据进行操作，例如插入、更新和删除数据。DML语句允许用户检索、添加、修改和删除数据库中的记录。常见的DML语句包括：</p>
+<ol>
+<li>SELECT（查询）：用于从数据库中检索数据。</li>
+<li>INSERT（插入）：用于向数据库表中插入新的数据。</li>
+<li>UPDATE（更新）：用于修改数据库表中已有的数据。</li>
+<li>DELETE（删除）：用于从数据库表中删除数据。</li>
+</ol>
+<p>例如，下面是一些DML语句的示例：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Employees;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Employees (ID, Name, Age) <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">&#x27;John&#x27;</span>, <span class="number">25</span>);</span><br><span class="line"></span><br><span class="line">UPDATE Employees <span class="keyword">SET</span> Age <span class="operator">=</span> <span class="number">30</span> <span class="keyword">WHERE</span> ID <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> Employees <span class="keyword">WHERE</span> ID <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>总而言之，DDL语句用于创建、修改和删除数据库对象的结构，而DML语句用于对数据库中的数据进行操作。</strong></p>
+<h4 id="ACID-Atomicity-Consistency-Isolation-Durability"><a href="#ACID-Atomicity-Consistency-Isolation-Durability" class="headerlink" title="ACID(Atomicity, Consistency, Isolation, Durability)"></a>ACID(Atomicity, Consistency, Isolation, Durability)</h4><p>ACID是指数据库管理系统（DBMS）在写入或更新资料的过程中，为保证事务（transaction）是正确可靠的，所必须具备的四个特性：原子性（atomicity，或称不可分割性）、一致性（consistency）、隔离性（isolation，又称独立性）、持久性（durability）。</p>
+<ul>
+<li>原子性（Atomicity）：一个事务包含多个操作，这些操作要么全部执行，要么全都不执行。即不可再分，整个语句要么执行，要么不执行。如果一个事务执行失败，它对数据库中数据的改变是可以撤销的，即事务可以“回滚”，撤销其对数据库的所有改变。</li>
+<li>一致性（Consistency）：一致性指事务开始之前和事务结束以后，数据库的完整性约束没有被破坏。这是ACID的第二个特性，它确保了数据在处理过程中不会破坏数据的一致性。</li>
+<li>隔离性（Isolation）：并发事务之间互相影响的程度。在事务并发操作时，可能出现的问题有：脏读、不可重复读等。</li>
+<li>持久性（Durability）：持久性是指一个事务一旦被提交，它对数据库中数据的改变就应该是永久性的，接下来的其它操作或故障不应该对其有影响。</li>
+</ul>
+<h4 id="GTID-Global-Transaction-IDentifier"><a href="#GTID-Global-Transaction-IDentifier" class="headerlink" title="GTID(Global Transaction IDentifier)"></a>GTID(Global Transaction IDentifier)</h4><p>在MySQL中，GTID（Global Transaction ID）是一种用于标识数据库事务的全局唯一标识符。它由MySQL服务器生成，并用于在分布式系统中跟踪和管理事务的执行。</p>
 <p>GTID的主要作用包括：</p>
 <ul>
 <li>事务标识符：每个事务在MySQL中都有一个唯一的GTID，它标识了事务的唯一性。通过使用GTID，可以明确地识别和跟踪特定的事务。</li>
@@ -7105,7 +7178,19 @@
 <h4 id="3NF"><a href="#3NF" class="headerlink" title="3NF"></a>3NF</h4><p>第一范式（1NF）：确保每个数据表中的每个列都是原子的，即每个列都包含不可再分的数据项。这意味着每个列中的数据不应该是重复的或包含多个值。</p>
 <p>第二范式（2NF）：在满足第一范式的基础上，通过将数据表中的非主键列与主键相关联，消除部分依赖。换句话说，每个非主键列都应该完全依赖于主键，而不是依赖于主键的一部分。</p>
 <p>第三范式（3NF）：在满足第二范式的基础上，通过消除传递依赖来达到第三范式。传递依赖指的是非主键列之间的依赖关系。如果存在一个非主键列依赖于另一个非主键列，而后者又依赖于主键，那么就需要将这些非主键列分离成单独的表。</p>
-<h4 id="DBMS-Database-management-system"><a href="#DBMS-Database-management-system" class="headerlink" title="DBMS(Database management system)"></a>DBMS(Database management system)</h4><h3 id="分布式相关"><a href="#分布式相关" class="headerlink" title="分布式相关"></a>分布式相关</h3><h4 id="CAP-Consistency-Availability-Partition-tolerance"><a href="#CAP-Consistency-Availability-Partition-tolerance" class="headerlink" title="CAP(Consistency, Availability, Partition tolerance)"></a>CAP(Consistency, Availability, Partition tolerance)</h4><h4 id="DSL-Domain-Specific-Language"><a href="#DSL-Domain-Specific-Language" class="headerlink" title="DSL(Domain Specific Language)"></a>DSL(Domain Specific Language)</h4><h4 id="CSFR-Cross-site-request-forgery"><a href="#CSFR-Cross-site-request-forgery" class="headerlink" title="CSFR(Cross-site request forgery)"></a>CSFR(Cross-site request forgery)</h4><h4 id="LDAP-Lightweight-Directory-Access-Protocol"><a href="#LDAP-Lightweight-Directory-Access-Protocol" class="headerlink" title="LDAP(Lightweight Directory Access Protocol)"></a>LDAP(Lightweight Directory Access Protocol)</h4><h4 id="EJB-Enterprise-Java-Beans"><a href="#EJB-Enterprise-Java-Beans" class="headerlink" title="EJB(Enterprise Java Beans)"></a>EJB(Enterprise Java Beans)</h4><h4 id="SLA-Service-Level-Agreement"><a href="#SLA-Service-Level-Agreement" class="headerlink" title="SLA(Service-Level Agreement)"></a>SLA(Service-Level Agreement)</h4><h4 id="MTBF、MTTR、MTTA-和-MTTF"><a href="#MTBF、MTTR、MTTA-和-MTTF" class="headerlink" title="MTBF、MTTR、MTTA 和 MTTF"></a>MTBF、MTTR、MTTA 和 MTTF</h4><h4 id="CDN-Content-Delivery-Network"><a href="#CDN-Content-Delivery-Network" class="headerlink" title="CDN(Content Delivery Network)"></a>CDN(Content Delivery Network)</h4><p>CDN（Content Delivery Network）是一种分布式网络架构，旨在提供高效的内容传输和交付服务。它通过将内容存储在分布在全球各地的服务器节点上，并根据用户的地理位置和网络条件选择最近的节点来提供内容，从而加快内容的传输速度和用户访问体验。</p>
+<h4 id="DBMS-Database-management-system"><a href="#DBMS-Database-management-system" class="headerlink" title="DBMS(Database management system)"></a>DBMS(Database management system)</h4><p>数据库管理系统</p>
+<h4 id="MVCC-Multi-Version-Concurrency-Control"><a href="#MVCC-Multi-Version-Concurrency-Control" class="headerlink" title="MVCC(Multi-Version Concurrency Control)"></a>MVCC(Multi-Version Concurrency Control)</h4><p>MVCC，全称为多版本并发控制（Multi-Version Concurrency Control），是一种数据库管理系统中常用的并发控制技术。它的目的是解决并发访问数据库时可能出现的数据一致性问题。</p>
+<p>在传统的并发控制技术中，常用的方法是使用锁来保证数据的一致性。然而，锁机制可能引发诸如死锁、饥饿等问题，并且在高并发环境下性能可能不佳。</p>
+<p><strong>MVCC采用了一种不同的方法来实现并发控制。它基于时间戳（Timestamp）的概念，为每个事务分配一个唯一的时间戳，并且为每个数据库对象（如行或页面）保留多个版本。每个版本都有自己的时间戳，表示该版本在数据库中的生命周期。</strong></p>
+<p>当一个事务开始时，它会获得一个时间戳，并且只能看到在该时间戳之前已经提交的版本。这意味着事务只能读取到已提交的数据。当事务对数据进行修改时，它会创建一个新的版本，并将新版本的时间戳设置为当前时间戳。其他事务仍然可以读取旧版本的数据，以保证并发性。</p>
+<p>MVCC 的优点包括：</p>
+<ul>
+<li>高并发性：由于读操作不会阻塞其他读操作，多个事务可以并发地读取数据，提高了数据库的并发性能。</li>
+<li>无锁设计：相较于传统的锁机制，MVCC 不需要显式地使用锁，减少了锁竞争和死锁的可能性。</li>
+<li>高度可靠性：每个事务在执行之前都会获得一个唯一的时间戳，保证了事务的隔离性和一致性。<br>然而，MVCC 也存在一些限制和挑战。例如，它需要更多的存储空间来保存多个版本的数据，因此可能会增加存储成本。此外，对于长时间运行的事务或大量并发写操作的场景，MVCC 可能会导致版本链的增长，影响性能。</li>
+</ul>
+<p>总的来说，MVCC 是一种高效的并发控制技术，通过时间戳和多版本的机制，解决了传统锁机制的一些问题，并提供了更好的并发性能和数据一致性。</p>
+<h3 id="分布式相关"><a href="#分布式相关" class="headerlink" title="分布式相关"></a>分布式相关</h3><h4 id="CAP-Consistency-Availability-Partition-tolerance"><a href="#CAP-Consistency-Availability-Partition-tolerance" class="headerlink" title="CAP(Consistency, Availability, Partition tolerance)"></a>CAP(Consistency, Availability, Partition tolerance)</h4><h4 id="DSL-Domain-Specific-Language"><a href="#DSL-Domain-Specific-Language" class="headerlink" title="DSL(Domain Specific Language)"></a>DSL(Domain Specific Language)</h4><h4 id="CSFR-Cross-site-request-forgery"><a href="#CSFR-Cross-site-request-forgery" class="headerlink" title="CSFR(Cross-site request forgery)"></a>CSFR(Cross-site request forgery)</h4><h4 id="LDAP-Lightweight-Directory-Access-Protocol"><a href="#LDAP-Lightweight-Directory-Access-Protocol" class="headerlink" title="LDAP(Lightweight Directory Access Protocol)"></a>LDAP(Lightweight Directory Access Protocol)</h4><h4 id="EJB-Enterprise-Java-Beans"><a href="#EJB-Enterprise-Java-Beans" class="headerlink" title="EJB(Enterprise Java Beans)"></a>EJB(Enterprise Java Beans)</h4><h4 id="SLA-Service-Level-Agreement"><a href="#SLA-Service-Level-Agreement" class="headerlink" title="SLA(Service-Level Agreement)"></a>SLA(Service-Level Agreement)</h4><h4 id="MTBF、MTTR、MTTA-和-MTTF"><a href="#MTBF、MTTR、MTTA-和-MTTF" class="headerlink" title="MTBF、MTTR、MTTA 和 MTTF"></a>MTBF、MTTR、MTTA 和 MTTF</h4><h4 id="CDN-Content-Delivery-Network"><a href="#CDN-Content-Delivery-Network" class="headerlink" title="CDN(Content Delivery Network)"></a>CDN(Content Delivery Network)</h4><p>CDN（Content Delivery Network）是一种分布式网络架构，旨在提供高效的内容传输和交付服务。它通过将内容存储在分布在全球各地的服务器节点上，并根据用户的地理位置和网络条件选择最近的节点来提供内容，从而加快内容的传输速度和用户访问体验。</p>
 <ul>
 <li>工作原理<ul>
 <li>内容缓存：CDN将内容缓存到分布在全球各地的边缘服务器节点上。这些节点位于网络的边缘，靠近用户，以减少内容传输的延迟和网络拥塞。</li>
@@ -7126,6 +7211,12 @@
 <li>建立连接：浏览器收到 IP 地址后，将使用该地址与目标服务器建立连接，并发送相应的请求。</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>缩写</tag>
+      </tags>
   </entry>
   <entry>
     <title>分布式文件系统</title>
@@ -7190,6 +7281,12 @@
 <li>AWS</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>分布式</tag>
+      </tags>
   </entry>
   <entry>
     <title>Nginx学习笔记</title>
@@ -7304,6 +7401,13 @@
 </li>
 </ul>
 ]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>分布式</tag>
+        <tag>Nginx</tag>
+      </tags>
   </entry>
   <entry>
     <title>MySQL不定时笔记</title>
@@ -7725,5 +7829,84 @@
 </ul>
 <h3 id="双主同步方式"><a href="#双主同步方式" class="headerlink" title="双主同步方式"></a>双主同步方式</h3><p><a href="mysql4.pdf">MySQL高可用集群&amp;产品设计流程分析</a></p>
 ]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>dubbo以及zookeeper分布式锁</title>
+    <url>/2023/11/20/2023/11/springboot-add-dubbo-and-zk/</url>
+    <content><![CDATA[<h3 id="dubbo序列化"><a href="#dubbo序列化" class="headerlink" title="dubbo序列化"></a>dubbo序列化</h3><p>Dubbo支持多种序列化方式，用于在网络传输中将对象进行序列化和反序列化。下面介绍Dubbo中常用的几种序列化方式：</p>
+<ol>
+<li><p>Hessian：Hessian是一种基于二进制的序列化协议，它的优点是序列化后的数据体积相对较小，网络传输效率较高。Dubbo默认使用Hessian进行序列化。</p>
+</li>
+<li><p>Java原生序列化：Dubbo也支持使用Java原生的序列化方式（java.io.Serializable）。这种方式简单易用，但序列化后的数据体积较大，传输效率较低。</p>
+</li>
+<li><p>JSON：Dubbo可以使用JSON作为序列化方式。JSON是一种文本格式的序列化协议，可以在不同语言之间进行数据交换。它的优点是可读性好，方便调试和跨语言通信。但相比于二进制序列化方式，JSON的序列化和反序列化效率较低。</p>
+</li>
+<li><p>Protobuf：Protobuf（Protocol Buffers）是Google开发的一种二进制序列化协议，具有高效、紧凑和跨语言等特点。Dubbo支持使用Protobuf进行序列化，可以在数据传输中节省带宽和存储空间。</p>
+</li>
+<li><p>FST：FST（Fast Serialization）是一种快速的Java序列化/反序列化库，它提供了高性能和紧凑的序列化格式。FST在Dubbo中也被用作一种可选的序列化方式。</p>
+</li>
+<li><p>Kryo：Kryo是另一种高性能的二进制序列化库，它被广泛用于Java领域。Dubbo也支持使用Kryo进行序列化。</p>
+</li>
+</ol>
+<p>自定义序列化：除了Dubbo支持的默认序列化方式之外，你还可以通过实现Dubbo的Serialization接口来开发自定义的序列化方式。通过自定义序列化，你可以根据业务需求进行优化，例如选择特定的序列化库、自定义序列化算法等。</p>
+<p>性能比较：不同的序列化方式在性能上可能会有所差异。一般来说，基于二进制的序列化方式（如Hessian、Protobuf、FST、Kryo）在性能上往往优于基于文本的序列化方式（如JSON、Java原生序列化）。但具体的性能表现还会受到多个因素的影响，比如对象复杂度、序列化和反序列化的速度、数据体积等。</p>
+<p>在Dubbo中，可以通过配置来选择使用哪种序列化方式。例如，在服务提供者和消费者的Dubbo配置中，可以通过<code>serialization</code>属性来指定序列化方式，如：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dubbo:protocol</span> <span class="attr">name</span>=<span class="string">&quot;dubbo&quot;</span> <span class="attr">serialization</span>=<span class="string">&quot;hessian2&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上述配置将使用Hessian进行序列化。</p>
+<p>通过选择合适的序列化方式，可以根据具体的应用场景和需求来平衡传输效率、数据体积和跨语言交互的需求。</p>
+<h3 id="Springboot整合步骤"><a href="#Springboot整合步骤" class="headerlink" title="Springboot整合步骤"></a>Springboot整合步骤</h3><p>要在Spring Boot中整合Dubbo，可以按照以下步骤进行操作：</p>
+<ol>
+<li><p>创建Spring Boot项目：使用Spring Initializr或其他方式创建一个基于Spring Boot的项目。</p>
+</li>
+<li><p>引入Dubbo依赖：在项目的pom.xml文件中添加Dubbo依赖，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.dubbo&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;dubbo-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.7.12&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>创建Dubbo服务提供者：在项目中创建一个Dubbo服务提供者，即提供具体的服务实现。可以使用Dubbo的<code>@Service</code>注解标记服务实现类。</p>
+</li>
+<li><p>配置Dubbo服务提供者：在application.properties或application.yml中配置Dubbo服务提供者的相关信息，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Dubbo服务提供者配置</span><br><span class="line">dubbo.application.name=my-provider</span><br><span class="line">dubbo.registry.address=zookeeper://localhost:2181</span><br><span class="line">dubbo.protocol.name=dubbo</span><br><span class="line">dubbo.protocol.port=20880</span><br></pre></td></tr></table></figure></li>
+<li><p>创建Dubbo服务消费者：在项目中创建一个Dubbo服务消费者，即使用Dubbo调用远程服务。可以使用Dubbo的@Reference注解注入服务接口。</p>
+</li>
+<li><p>配置Dubbo服务消费者：在application.properties或application.yml中配置Dubbo服务消费者的相关信息，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Dubbo服务消费者配置</span><br><span class="line">dubbo.application.name=my-consumer</span><br><span class="line">dubbo.registry.address=zookeeper://localhost:2181</span><br></pre></td></tr></table></figure></li>
+<li><p>运行项目：启动Spring Boot应用程序，Dubbo将自动完成服务的注册与发现，并实现远程服务的调用。</p>
+</li>
+</ol>
+<p>需要注意的是，上述示例中使用ZooKeeper作为注册中心，你也可以选择其他的注册中心，如Nacos、Consul等。此外，还可以根据需要配置Dubbo的更多属性，如负载均衡策略、超时设置等。</p>
+<h3 id="dubbo服务降级配置"><a href="#dubbo服务降级配置" class="headerlink" title="dubbo服务降级配置"></a>dubbo服务降级配置</h3><p>在Dubbo中，可以通过实现服务降级来应对服务不可用或异常情况，以提高系统的可用性和稳定性。以下是在Dubbo上实现服务降级的一般步骤：</p>
+<ol>
+<li><p>定义服务降级逻辑：在服务提供者端实现服务降级逻辑。当服务出现异常或不可用时，可以返回一个默认的响应结果，或者执行备用逻辑来代替原始的服务实现。</p>
+</li>
+<li><p>服务降级配置：</p>
+<ul>
+<li><p>在服务提供者端，可以通过Dubbo的<code>@Service</code>注解中的<code>mock</code>属性来配置服务降级逻辑的实现类。例如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service(interfaceClass = UserService.class, mock = &quot;com.example.UserServiceMock&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 实际的服务实现</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上述示例中，<code>UserServiceMock</code>是实现了服务降级逻辑的类。</p>
+</li>
+<li><p>在服务消费者端，可以通过Dubbo的<code>@Reference</code>注解中的<code>mock</code>属性来配置服务降级的实现类。例如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Reference(interfaceClass = UserService.class, mock = &quot;com.example.UserServiceMock&quot;)</span></span><br><span class="line"><span class="keyword">private</span> UserService userService;</span><br></pre></td></tr></table></figure>
+<p>在上述示例中，<code>UserServiceMock</code>是实现了服务降级逻辑的类。</p>
+</li>
+</ul>
+</li>
+<li><p>实现服务降级逻辑：创建一个实现了服务接口的服务降级类，并实现相应的降级逻辑。该类需要实现服务接口并提供默认的响应或备用逻辑。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public class UserServiceMock implements UserService &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public User getUserById(String userId) &#123;</span><br><span class="line">        // 服务降级逻辑：返回默认的响应结果或执行备用逻辑</span><br><span class="line">        return new User();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>通过以上步骤，服务提供者和服务消费者都可以配置相应的服务降级逻辑。当服务不可用或异常时，Dubbo将自动调用降级逻辑，返回默认的响应结果或执行备用逻辑，以保证系统的可用性。</p>
+<p>需要注意的是，服务降级只是一种应对异常情况的手段，应该根据具体的业务需求和场景来选择合适的降级策略。在实际应用中，可以根据业务需求选择不同的降级方式，如返回默认值、返回缓存数据、调用备用接口等，以确保系统的可用性和用户体验。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>分布式</tag>
+        <tag>SpringBoot</tag>
+        <tag>dubbo</tag>
+      </tags>
   </entry>
 </search>
