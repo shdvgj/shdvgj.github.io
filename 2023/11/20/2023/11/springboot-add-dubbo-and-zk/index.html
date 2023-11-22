@@ -27,11 +27,12 @@
 <meta property="og:description" content="dubbo序列化Dubbo支持多种序列化方式，用于在网络传输中将对象进行序列化和反序列化。下面介绍Dubbo中常用的几种序列化方式：  Hessian：Hessian是一种基于二进制的序列化协议，它的优点是序列化后的数据体积相对较小，网络传输效率较高。Dubbo默认使用Hessian进行序列化。  Java原生序列化：Dubbo也支持使用Java原生的序列化方式（java.io.Serializa">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-20T03:16:13.000Z">
-<meta property="article:modified_time" content="2023-11-20T06:52:00.442Z">
+<meta property="article:modified_time" content="2023-11-21T07:00:15.519Z">
 <meta property="article:author" content="Ricky">
 <meta property="article:tag" content="分布式">
 <meta property="article:tag" content="SpringBoot">
 <meta property="article:tag" content="dubbo">
+<meta property="article:tag" content="zookeeper">
 <meta name="twitter:card" content="summary">
 
 
@@ -90,7 +91,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">26</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">78</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">28</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">79</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -141,7 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#dubbo%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-text">dubbo序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Springboot%E6%95%B4%E5%90%88%E6%AD%A5%E9%AA%A4"><span class="nav-text">Springboot整合步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dubbo%E6%9C%8D%E5%8A%A1%E9%99%8D%E7%BA%A7%E9%85%8D%E7%BD%AE"><span class="nav-text">dubbo服务降级配置</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#dubbo%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-text">dubbo序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Springboot%E6%95%B4%E5%90%88%E6%AD%A5%E9%AA%A4"><span class="nav-text">Springboot整合步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dubbo%E6%9C%8D%E5%8A%A1%E9%99%8D%E7%BA%A7%E9%85%8D%E7%BD%AE"><span class="nav-text">dubbo服务降级配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E9%9C%80%E8%A6%81%E6%BB%A1%E8%B6%B3%E7%9A%84%E6%9D%A1%E4%BB%B6"><span class="nav-text">分布式锁需要满足的条件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis%E8%AE%BE%E7%BD%AE%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="nav-text">Redis设置分布式锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Zookeeper%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="nav-text">Zookeeper实现分布式锁</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -156,7 +157,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -167,7 +168,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -236,9 +237,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-11-20 11:16:13 / 修改时间：14:52:00" itemprop="dateCreated datePublished" datetime="2023-11-20T11:16:13+08:00">2023-11-20</time>
+      <time title="创建时间：2023-11-20 11:16:13" itemprop="dateCreated datePublished" datetime="2023-11-20T11:16:13+08:00">2023-11-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-21 15:00:15" itemprop="dateModified" datetime="2023-11-21T15:00:15+08:00">2023-11-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -295,6 +302,7 @@
 <li><p>Kryo：Kryo是另一种高性能的二进制序列化库，它被广泛用于Java领域。Dubbo也支持使用Kryo进行序列化。</p>
 </li>
 </ol>
+<span id="more"></span>
 <p>自定义序列化：除了Dubbo支持的默认序列化方式之外，你还可以通过实现Dubbo的Serialization接口来开发自定义的序列化方式。通过自定义序列化，你可以根据业务需求进行优化，例如选择特定的序列化库、自定义序列化算法等。</p>
 <p>性能比较：不同的序列化方式在性能上可能会有所差异。一般来说，基于二进制的序列化方式（如Hessian、Protobuf、FST、Kryo）在性能上往往优于基于文本的序列化方式（如JSON、Java原生序列化）。但具体的性能表现还会受到多个因素的影响，比如对象复杂度、序列化和反序列化的速度、数据体积等。</p>
 <p>在Dubbo中，可以通过配置来选择使用哪种序列化方式。例如，在服务提供者和消费者的Dubbo配置中，可以通过<code>serialization</code>属性来指定序列化方式，如：</p>
@@ -340,7 +348,64 @@
 </ol>
 <p>通过以上步骤，服务提供者和服务消费者都可以配置相应的服务降级逻辑。当服务不可用或异常时，Dubbo将自动调用降级逻辑，返回默认的响应结果或执行备用逻辑，以保证系统的可用性。</p>
 <p>需要注意的是，服务降级只是一种应对异常情况的手段，应该根据具体的业务需求和场景来选择合适的降级策略。在实际应用中，可以根据业务需求选择不同的降级方式，如返回默认值、返回缓存数据、调用备用接口等，以确保系统的可用性和用户体验。</p>
+<h3 id="分布式锁需要满足的条件"><a href="#分布式锁需要满足的条件" class="headerlink" title="分布式锁需要满足的条件"></a>分布式锁需要满足的条件</h3><p>要实现分布式锁，需要满足以下条件：</p>
+<ol>
+<li><p>可靠的共享存储：分布式锁需要一个可靠的共享存储来存储锁的状态信息。这个共享存储可以是分布式缓存（如Redis、Memcached）、分布式文件系统或数据库等。所有参与分布式锁的节点都能够访问和共享这个存储。</p>
+</li>
+<li><p>原子性操作：获取锁和释放锁的操作必须是原子性的，即在一个节点成功获取锁之后，其他节点就不能再获取到该锁，直到锁被释放。原子性操作可以通过共享存储的原子性操作来实现。</p>
+</li>
+<li><p>互斥性：分布式锁需要保证在任何时候只有一个节点能够获取到锁。这意味着当一个节点成功获取到锁时，其他节点无法获取该锁。</p>
+</li>
+<li><p>高可用性：分布式锁应该是高可用的，即使在节点故障或网络分区的情况下，锁仍然能够正常工作。这可以通过使用分布式存储系统来实现数据的冗余和复制，以及使用选举算法来选择新的锁持有者。</p>
+</li>
+<li><p>死锁避免：分布式锁需要能够避免死锁情况的发生。死锁是指多个节点相互等待对方释放锁的情况，导致程序无法继续执行。为了避免死锁，可以使用超时机制、锁续租机制或者基于时间戳的锁等。</p>
+</li>
+<li><p>性能和效率：分布式锁需要具备良好的性能和效率，以便在高并发情况下能够快速地获取和释放锁，避免对系统性能造成过大的影响。</p>
+</li>
+</ol>
+<p>实现分布式锁并满足以上条件是一个复杂的任务，需要考虑分布式系统的各种情况和并发访问的竞争条件。因此，通常建议使用已有的分布式锁实现，如基于Redis的Redlock、ZooKeeper的分布式锁等，它们已经考虑了上述条件并提供了可靠的分布式锁解决方案。</p>
+<h4 id="Redis设置分布式锁"><a href="#Redis设置分布式锁" class="headerlink" title="Redis设置分布式锁"></a>Redis设置分布式锁</h4><ul>
+<li><p>使用SETNX命令：SETNX（SET if Not eXists）命令可以在键不存在的情况下设置键的值。分布式锁可以使用一个特定的键作为锁的标识，当一个客户端尝试使用SETNX命令设置该键时，如果返回值为1，则表示该客户端成功获取到了锁，可以执行后续操作；如果返回值为0，则表示锁已经被其他客户端持有，当前客户端需要等待或执行其他逻辑。在操作完成后，客户端可以使用DEL命令来释放锁。</p>
+</li>
+<li><p>使用SET命令结合EXPIRE命令：SET命令可以设置键的值，并且可以通过EXPIRE命令设置键的过期时间。分布式锁可以使用SET命令设置一个带有过期时间的键，当一个客户端成功设置该键时，表示获取到了锁，其他客户端可以通过GET命令检查该键是否存在以判断锁的状态。当锁不再需要时，客户端可以使用DEL命令来释放锁。</p>
+</li>
+<li><p>使用RedLock算法：RedLock是由Redis官方提出的一种分布式锁算法。它通过在多个Redis实例之间协调来实现分布式锁的可靠性和高可用性。RedLock算法要求至少需要多数（majority）的Redis节点达成一致才能获得锁。具体实现上，客户端会尝试在多个Redis实例上使用SET命令设置同一个键，并设置相同的过期时间。如果成功在大多数实例上设置了该键，则表示获取到了锁。释放锁时，客户端需要在所有实例上执行DEL命令来删除该键。</p>
+</li>
+<li><p>在业务执行的时候就增加一个守护进程监控锁的过期时间，如果锁即将过期，就将锁的时间延长，防止出现业务执行时间过长导致锁自动到期释放的问题。</p>
+</li>
+</ul>
+<h4 id="Zookeeper实现分布式锁"><a href="#Zookeeper实现分布式锁" class="headerlink" title="Zookeeper实现分布式锁"></a>Zookeeper实现分布式锁</h4><p>当在Spring Boot中使用ZooKeeper，你需要添加相应的依赖以及编写配置和代码来连接和使用ZooKeeper。以下是一个简单的Spring Boot中使用ZooKeeper的示例：</p>
+<ol>
+<li>添加依赖</li>
+</ol>
+<p>在你的Maven或Gradle配置文件中添加ZooKeeper依赖：</p>
+<p>Maven:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.zookeeper<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>zookeeper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.6.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+<p>Gradle:</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation <span class="string">&#x27;org.apache.zookeeper:zookeeper:3.6.3&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>配置ZooKeeper连接</li>
+</ol>
+<p>在<code>application.properties</code>或<code>application.yml</code>中添加ZooKeeper连接配置：</p>
+<p>application.properties:</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">zookeeper.connectString</span>=<span class="string">localhost:2181</span></span><br><span class="line"><span class="meta">zookeeper.sessionTimeout</span>=<span class="string">5000</span></span><br></pre></td></tr></table></figure>
+
+<p>application.yml:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">zookeeper:</span></span><br><span class="line">  <span class="attr">connectString:</span> <span class="string">localhost:2181</span></span><br><span class="line">  <span class="attr">sessionTimeout:</span> <span class="number">5000</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>编写ZooKeeper客户端</li>
+</ol>
+<p>创建一个ZooKeeper客户端类，用于连接ZooKeeper，并提供相应的方法来操作ZooKeeper：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.zookeeper.WatchedEvent;</span><br><span class="line"><span class="keyword">import</span> org.apache.zookeeper.Watcher;</span><br><span class="line"><span class="keyword">import</span> org.apache.zookeeper.ZooKeeper;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.annotation.PostConstruct;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CountDownLatch;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZooKeeperClient</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;zookeeper.connectString&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String connectString;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;zookeeper.sessionTimeout&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> sessionTimeout;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ZooKeeper zooKeeper;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 用于确保链接完成后进行后续操作</span></span><br><span class="line">    <span class="keyword">private</span> CountDownLatch connectedLatch;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostConstruct</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">()</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">        connectedLatch = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</span><br><span class="line">        zooKeeper = <span class="keyword">new</span> ZooKeeper(connectString, sessionTimeout, <span class="keyword">new</span> Watcher() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(WatchedEvent event)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (event.getState() == Event.KeeperState.SyncConnected) &#123;</span><br><span class="line">                    connectedLatch.countDown();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        connectedLatch.await();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">createNode</span><span class="params">(String path, <span class="keyword">byte</span>[] data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            zooKeeper.create(path, data, <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">deleteNode</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            zooKeeper.delete(path, -<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>使用ZooKeeper分布式锁</li>
+</ol>
+<p>在需要使用分布式锁的地方，可以注入<code>ZooKeeperClient</code>，并使用它的方法来创建和删除ZooKeeper节点来实现分布式锁的获取和释放：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DistributedLockService</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String LOCK_PATH = <span class="string">&quot;/my-lock&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ZooKeeperClient zooKeeperClient;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">acquireLock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> zooKeeperClient.createNode(LOCK_PATH, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">releaseLock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> zooKeeperClient.deleteNode(LOCK_PATH);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -352,6 +417,7 @@
               <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" rel="tag"># 分布式</a>
               <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
               <a href="/tags/dubbo/" rel="tag"># dubbo</a>
+              <a href="/tags/zookeeper/" rel="tag"># zookeeper</a>
           </div>
 
         
@@ -363,6 +429,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2023/11/22/2023/11/certification-summary/" rel="next" title="程序员资格证书总结">
+                  程序员资格证书总结 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
