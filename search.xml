@@ -1870,7 +1870,7 @@
       </tags>
   </entry>
   <entry>
-    <title>读书笔记-Redis设计与实现-发布订阅，事务，哨兵和其他</title>
+    <title>读书笔记-Redis设计与实现-发布订阅，事务，脚本和其他</title>
     <url>/2022/07/08/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartIV/</url>
     <content><![CDATA[<h2 id="1-发布与订阅"><a href="#1-发布与订阅" class="headerlink" title="1.发布与订阅"></a>1.发布与订阅</h2><ul>
 <li>服务器状态在pubsub_channels字典保存了所有频道的订阅关系：SUBSCRIBE命令负责将客户端和被订阅的频道关联到这个字典里面，而UNSUBSCRIBE命令则负责解除客户端和被退订频道之间的关联。</li>
