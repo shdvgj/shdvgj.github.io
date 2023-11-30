@@ -1,0 +1,566 @@
+<h1 id="分布式搜索引擎ElasticSearch实战-5"><a href="#分布式搜索引擎ElasticSearch实战-5" class="headerlink" title="分布式搜索引擎ElasticSearch实战-5"></a>分布式搜索引擎ElasticSearch实战-5</h1><h2 id="1-ES桶聚合后相关指标分析-amp-text字段聚合方式"><a href="#1-ES桶聚合后相关指标分析-amp-text字段聚合方式" class="headerlink" title="1. ES桶聚合后相关指标分析&amp;text字段聚合方式"></a>1. ES桶聚合后相关指标分析&amp;text字段聚合方式</h2><p>如果想要对text类型的字段进行分桶</p>
+<p>1、给field增加keyword的子字段</p>
+<pre><code class="json">POST /index_customer/_mapping
+{
+    &quot;properties&quot;: {
+        &quot;nickname&quot;: {
+            &quot;analyzer&quot;: &quot;ik_max_word&quot;,
+            &quot;type&quot;: &quot;text&quot;,
+            &quot;fields&quot;: {
+                &quot;pinyin&quot;: {
+                    &quot;analyzer&quot;: &quot;pinyin&quot;,
+                    &quot;type&quot;: &quot;text&quot;
+                },
+                &quot;keyword&quot;: {
+                    &quot;ignore_above&quot;: 256,
+                    &quot;type&quot;: &quot;keyword&quot;
+                }
+            }
+        }
+    }
+}
+# 在数据添加后增加子字段需要将index进行更新
+POST /index_customer/_update_by_query
+</code></pre>
+<p>2、给field增加fielddata</p>
+<pre><code class="json"># fielddata是对text文本进行分词后的桶聚合
+# 默认是false，打开会比较占内存，所以没有必要的情况
+POST /index_customer/_mapping
+{
+    &quot;properties&quot;: {
+        &quot;nickname&quot;: {
+            &quot;analyzer&quot;: &quot;ik_max_word&quot;,
+            &quot;type&quot;: &quot;text&quot;,
+            &quot;fielddata&quot;: true,
+            &quot;fields&quot;: {
+                &quot;pinyin&quot;: {
+                    &quot;analyzer&quot;: &quot;pinyin&quot;,
+                    &quot;type&quot;: &quot;text&quot;,
+                    &quot;fielddata&quot;: true
+                },
+                &quot;keyword&quot;: {
+                    &quot;ignore_above&quot;: 256,
+                    &quot;type&quot;: &quot;keyword&quot;
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<p>分桶返回的参数分析</p>
+<ul>
+<li><p>doc_count_error_upper_bound：可能存在潜在的结果是聚合后结果排行第二的值</p>
+</li>
+<li><p>sum_other_doc_count：表示本次聚合中还有多少没有统计展示出</p>
+<ul>
+<li>桶默认聚合展示10条</li>
+<li>可以使用size来调整条目数</li>
+<li>只能指定条目数，不能分页</li>
+</ul>
+</li>
+<li><p>buckets：会根据结果的统计降序排列</p>
+</li>
+</ul>
+<p>size进行桶查询的展示</p>
+<pre><code class="json">POST /index_customer/_search
+{
+    &quot;query&quot;: {
+        &quot;match_all&quot;: {}
+    },
+    &quot;size&quot;: 0,
+    &quot;aggs&quot;: {
+        &quot;nickname_term&quot;: {
+            &quot;terms&quot;: {
+                &quot;field&quot;: &quot;nickname&quot;,
+                &quot;size&quot;: 20
+            }
+        }
+    }
+}
+</code></pre>
+<p>当doc频繁有数据加入到文档中，并且这个field会频繁进行分桶，需要添加一个缓存配置</p>
+<pre><code class="json"># 频繁聚合查询，索引不断有新的doc加入
+# &quot;eager_global_ordinals&quot;: true
+POST /index_customer/_mapping
+{
+    &quot;properties&quot;: {
+        &quot;nickname&quot;: {
+            &quot;analyzer&quot;: &quot;ik_max_word&quot;,
+            &quot;type&quot;: &quot;text&quot;,
+            &quot;fielddata&quot;: true,
+              &quot;eager_global_ordinals&quot;: true,
+            &quot;fields&quot;: {
+                &quot;pinyin&quot;: {
+                    &quot;analyzer&quot;: &quot;pinyin&quot;,
+                    &quot;type&quot;: &quot;text&quot;,
+                    &quot;fielddata&quot;: true,
+                      &quot;eager_global_ordinals&quot;: true
+                },
+                &quot;keyword&quot;: {
+                    &quot;ignore_above&quot;: 256,
+                    &quot;type&quot;: &quot;keyword&quot;
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<p><strong>分组基数查询</strong></p>
+<pre><code class="json"># cardinality统计桶分词的基数
+POST /index_customer/_search
+{
+    &quot;query&quot;: {
+        &quot;match_all&quot;: {}
+    },
+    &quot;size&quot;: 0,
+    &quot;aggs&quot;: {
+        &quot;nickname_term&quot;: {
+            &quot;cardinality&quot;: {
+                &quot;field&quot;: &quot;nickname&quot;
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="2-桶range计算"><a href="#2-桶range计算" class="headerlink" title="2. 桶range计算"></a>2. 桶range计算</h2><p>就是一个区间值的查询</p>
+<pre><code class="json">POST POST /index_customer/_search
+{
+    &quot;query&quot;: {
+        &quot;match_all&quot;: {}
+    },
+    &quot;size&quot;: 0,
+    &quot;sort&quot;: [
+        {
+            &quot;consume&quot;: &quot;desc&quot;
+        }
+    ],
+    &quot;aggs&quot;: {
+        &quot;city_count&quot;: {
+            &quot;terms&quot;: {
+                &quot;field&quot;: &quot;city&quot;
+            }
+        },
+        &quot;consume_range&quot;: {
+            &quot;range&quot;: {
+                &quot;field&quot;: &quot;consume&quot;,
+                &quot;ranges&quot;: [
+                    {
+                        &quot;to&quot;: 3000
+                    },
+                    {
+                        &quot;from&quot;: 3000,
+                        &quot;to&quot;: 6000
+                    },
+                    {
+                        &quot;from&quot;: 6000,
+                        &quot;to&quot;: 9000
+                    },
+                    {
+                        &quot;from&quot;: 9000
+                    }
+                ]
+            }
+        }
+    }
+}
+</code></pre>
+<p>直方图的聚合</p>
+<pre><code class="json">POST /index_customer/_search
+{
+    &quot;query&quot;: {
+        &quot;match_all&quot;: {}
+    },
+    &quot;size&quot;: 0,
+    &quot;sort&quot;: [
+        {
+            &quot;consume&quot;: &quot;desc&quot;
+        }
+    ],
+    &quot;aggs&quot;: {
+        &quot;city_count&quot;: {
+            &quot;terms&quot;: {
+                &quot;field&quot;: &quot;city&quot;
+            }
+        },
+        &quot;consume_histogram&quot;: {
+            &quot;histogram&quot;: {
+                &quot;field&quot;: &quot;consume&quot;,
+                &quot;interval&quot;: 2000,
+                &quot;extended_bounds&quot;: {
+                    &quot;min&quot;: 0,
+                    &quot;max&quot;: 20000
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="3-Pipeline聚合计算"><a href="#3-Pipeline聚合计算" class="headerlink" title="3. Pipeline聚合计算"></a>3. Pipeline聚合计算</h2><p>pipeline就是对聚合分析再做一次聚合分析</p>
+<pre><code class="json"># 场景：从所有城市的平均消费中，拿出最低的那个城市
+GET /index_customer/_search
+{
+    &quot;query&quot;: {
+        &quot;match_all&quot;: {}
+    },
+    &quot;size&quot;: 0,
+    &quot;sort&quot;: [
+        {
+            &quot;consume&quot;: &quot;desc&quot;
+        }
+    ],
+    &quot;aggs&quot;: {
+        &quot;city_count&quot;: {
+            &quot;terms&quot;: {
+                &quot;field&quot;: &quot;city&quot;
+            },
+            &quot;aggs&quot;: {
+                &quot;avg_consume&quot;: {
+                    &quot;avg&quot;: {
+                        &quot;field&quot;: &quot;consume&quot;
+                    }
+                }
+            }
+        },
+        &quot;min_consume_by_city&quot;: {
+            &quot;min_bucket&quot;: {
+                &quot;buckets_path&quot;: &quot;city_count&gt;avg_consume&quot;
+            }
+        }
+    }
+}
+# min_bucket / buckets_path 是关键字
+# max_bucket / min_bucket / avg_bucket / sum_bucket / stats_bucket
+</code></pre>
+<h2 id="4-Springboot整合Elasticsearch进行索引操作"><a href="#4-Springboot整合Elasticsearch进行索引操作" class="headerlink" title="4. Springboot整合Elasticsearch进行索引操作"></a>4. Springboot整合Elasticsearch进行索引操作</h2><p>POM中增加依赖</p>
+<pre><code class="xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-data-elasticsearch&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>yaml配置</p>
+<pre><code class="yaml"># 端口一定要9300
+spring:
+  data:
+    elasticsearch:
+      cluster-name: icoding-es
+      cluster-nodes: 47.92.163.109:9300
+</code></pre>
+<p>创建映射的po</p>
+<pre><code class="java">package com.icodingedu.po;
+
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+
+//indexName相当于给索引明名
+//type相当于文档类型
+@Data
+@Document(indexName = &quot;index_user&quot;,type = &quot;_doc&quot;,shards = 3,replicas = 1)
+public class UserBo {
+    //index的doc的id和数据的id一致
+    @Id
+    private String id;
+
+    //默认不是存储节点，要声明
+    @Field(store = true,index = true,analyzer = &quot;ik_max_word&quot;,searchAnalyzer = &quot;ik_max_word&quot;)
+    private String nickname;
+
+    @Field(store = true)
+    private Integer sex;
+
+    @Field(store = true)
+    private Double consume;
+
+    @Field(store = true,index = true,analyzer = &quot;ik_max_word&quot;,searchAnalyzer = &quot;ik_max_word&quot;)
+    private String review;
+}
+</code></pre>
+<p><strong>创建索引的controller</strong></p>
+<pre><code class="java">package com.icodingedu.controller;
+
+import com.icodingedu.po.UserBo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.query.IndexQuery;
+import org.springframework.data.elasticsearch.core.query.IndexQueryBuilder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class ESUserController {
+
+    @Autowired
+    ElasticsearchTemplate elasticsearchTemplate;
+
+    @GetMapping(&quot;/create_index&quot;)
+    @ResponseBody
+    public String createIndex(){
+        UserBo userBo = new UserBo();
+        userBo.setId(&quot;1001&quot;);
+        userBo.setConsume(1899.66);
+        userBo.setNickname(&quot;空中雄鹰&quot;);
+        userBo.setReview(&quot;icoding edu 艾编程课程非常不错，学起来很给力&quot;);
+        userBo.setSex(1);
+
+        IndexQuery indexQuery = new IndexQueryBuilder()
+                .withObject(userBo)
+                .build();
+        elasticsearchTemplate.index(indexQuery);
+        return &quot;index/mapping/document 一起创建完成&quot;;
+    }
+}
+</code></pre>
+<p><strong>更新索引的mapping</strong></p>
+<pre><code class="java">// 只需要在po里加上字段既可以
+// 创建的时候给赋值
+// 更新的时候elasticsearchTemplate会根据po的变化判断是否更新
+// 在elasticsearchTemplate.index(indexQuery)操作时如果没有index则新建，如果有就创建数据
+</code></pre>
+<p><strong>删除index</strong></p>
+<pre><code class="java">@GetMapping(&quot;/delete-index&quot;)
+@ResponseBody
+public String deleteIndex(){
+  elasticsearchTemplate.deleteIndex(UserBo.class);
+  return &quot;删除成功&quot;;
+}
+</code></pre>
+<p><strong>ElasticsearchTemplate一般用于对文档数据进行检索应用</strong></p>
+<ul>
+<li>对于index的mapping还是使用json来创建</li>
+<li>ET的部分注解不一定生效</li>
+</ul>
+<h2 id="5-Springboot对ES文档进行操作"><a href="#5-Springboot对ES文档进行操作" class="headerlink" title="5. Springboot对ES文档进行操作"></a>5. Springboot对ES文档进行操作</h2><p>更新document</p>
+<pre><code class="java">    @GetMapping(&quot;/update&quot;)
+    @ResponseBody
+    public String updateIndex(){
+
+        Map&lt;String,Object&gt; data = new HashMap&lt;String,Object&gt;();
+        data.put(&quot;username&quot;,&quot;jackwang&quot;);
+        data.put(&quot;consume&quot;,7888.99);
+
+        IndexRequest indexRequest = new IndexRequest();
+        indexRequest.source(data);
+
+        UpdateQuery updateQuery = new UpdateQueryBuilder()
+                .withClass(UserBo.class)
+                .withId(&quot;1001&quot;)
+                .withIndexRequest(indexRequest)
+                .build();
+
+        elasticsearchTemplate.update(updateQuery);
+        return &quot;更新成功&quot;;
+    }
+</code></pre>
+<p>删除document</p>
+<pre><code class="java">    @GetMapping(&quot;/delete/{id}&quot;)
+    @ResponseBody
+    public String deleteDocument(@PathVariable(&quot;id&quot;) String uid){
+        elasticsearchTemplate.delete(UserBo.class,uid);
+        return &quot;删除id:&quot;+uid;
+    }
+</code></pre>
+<p>根据id获得doc数据</p>
+<pre><code class="java">    @GetMapping(&quot;/get/{id}&quot;)
+    @ResponseBody
+    public String getIndex(@PathVariable(&quot;id&quot;) String uid){
+
+        GetQuery query = new GetQuery();
+        query.setId(uid);
+
+        UserBo userBo = elasticsearchTemplate.queryForObject(query,UserBo.class);
+        return userBo.toString();
+    }
+</code></pre>
+<h2 id="6-Springboot对ES文档进行分页查询"><a href="#6-Springboot对ES文档进行分页查询" class="headerlink" title="6. Springboot对ES文档进行分页查询"></a>6. Springboot对ES文档进行分页查询</h2><pre><code class="java">// ES中已有的index映射对象
+package com.icodingedu.po;
+
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+
+@Data
+@Document(indexName = &quot;index_customer&quot;,type = &quot;_doc&quot;)
+public class CustomerPo {
+    @Id
+    private String id;
+
+    @Field(store=true)
+    private Integer age;
+
+    @Field(store=true)
+    private String username;
+
+    @Field(store=true)
+    private String nickname;
+    @Field(store=true)
+    private Float consume;
+
+    @Field(store=true)
+    private String desc;
+
+    @Field(store=true)
+    private Integer sex;
+
+    @Field(store=true)
+    private String birthday;
+
+    @Field(store=true)
+    private String city;
+
+    @Field(store=true)
+    private String faceimg;
+}
+</code></pre>
+<p>查询分页的controller</p>
+<pre><code class="java">    @GetMapping(&quot;/list&quot;)
+    @ResponseBody
+    public String getList(){
+        //3.定义分页
+        Pageable pageable = PageRequest.of(0,2);
+        //2.定义query对象
+        SearchQuery query = new NativeSearchQueryBuilder()
+                .withQuery(QueryBuilders.matchQuery(&quot;desc&quot;,&quot;艾编程 学习&quot;))
+                .withPageable(pageable)
+                .build();
+        //1.先写查询
+        AggregatedPage&lt;CustomerPo&gt; customerPos = elasticsearchTemplate.queryForPage(query,CustomerPo.class);
+        System.out.println(&quot;总页数：&quot;+customerPos.getTotalPages());
+        System.out.println(&quot;总记录数：&quot;+customerPos.getTotalElements());
+        List&lt;CustomerPo&gt; customerPoList = customerPos.getContent();
+        for (CustomerPo customerPo:customerPoList) {
+            System.out.println(customerPo.toString());
+
+        }
+        return &quot;查询完成&quot;;
+    }
+</code></pre>
+<h2 id="7-Springboot对ES文档实现高亮查询"><a href="#7-Springboot对ES文档实现高亮查询" class="headerlink" title="7. Springboot对ES文档实现高亮查询"></a>7. Springboot对ES文档实现高亮查询</h2><pre><code class="java">//目前已加入高亮的字符，但会报错，无法获得值
+    @GetMapping(&quot;/listhiglight&quot;)
+    @ResponseBody
+    public String getListHighLight(){
+        //4.定义高亮的字符
+        String preTag = &quot;&lt;font color=&#39;red&#39;&gt;&quot;;
+        String postTag = &quot;&lt;/font&gt;&quot;;
+        //3.定义分页
+        Pageable pageable = PageRequest.of(0,2);
+        //2.定义query对象
+        SearchQuery query = new NativeSearchQueryBuilder()
+                .withQuery(QueryBuilders.matchQuery(&quot;desc&quot;,&quot;艾编程 学习&quot;))
+                .withHighlightFields(new HighlightBuilder.Field(&quot;desc&quot;).preTags(preTag).postTags(postTag))
+                .withPageable(pageable)
+                .build();
+        //1.先写查询,参数里增加高亮的实现
+        AggregatedPage&lt;CustomerPo&gt; customerPos = elasticsearchTemplate.queryForPage(query, CustomerPo.class, new SearchResultMapper() {
+            @Override
+            public &lt;T&gt; AggregatedPage&lt;T&gt; mapResults(SearchResponse searchResponse, Class&lt;T&gt; aClass, Pageable pageable) {
+                return null;
+            }
+
+            @Override
+            public &lt;T&gt; T mapSearchHit(SearchHit searchHit, Class&lt;T&gt; aClass) {
+                return null;
+            }
+        });
+        System.out.println(&quot;总页数：&quot;+customerPos.getTotalPages());
+        System.out.println(&quot;总记录数：&quot;+customerPos.getTotalElements());
+        List&lt;CustomerPo&gt; customerPoList = customerPos.getContent();
+        for (CustomerPo customerPo:customerPoList) {
+            System.out.println(customerPo.toString());
+
+        }
+        return &quot;查询完成&quot;;
+    }
+</code></pre>
+<p>实现高亮完整代码</p>
+<pre><code class="java">    @GetMapping(&quot;/listhiglight&quot;)
+    @ResponseBody
+    public String getListHighLight(){
+        //4.定义高亮的字符
+        String preTag = &quot;&lt;font color=&#39;red&#39;&gt;&quot;;
+        String postTag = &quot;&lt;/font&gt;&quot;;
+        //3.定义分页
+        Pageable pageable = PageRequest.of(0,2);
+        //2.定义query对象
+        SearchQuery query = new NativeSearchQueryBuilder()
+                .withQuery(QueryBuilders.matchQuery(&quot;desc&quot;,&quot;艾编程 学习&quot;))
+                .withHighlightFields(new HighlightBuilder.Field(&quot;desc&quot;).preTags(preTag).postTags(postTag))
+                .withPageable(pageable)
+                .build();
+        //1.先写查询,参数里增加高亮的实现
+        AggregatedPage&lt;CustomerPo&gt; customerPos = elasticsearchTemplate.queryForPage(query, CustomerPo.class, new SearchResultMapper() {
+            @Override
+            public &lt;T&gt; AggregatedPage&lt;T&gt; mapResults(SearchResponse searchResponse, Class&lt;T&gt; aClass, Pageable pageable) {
+                List&lt;CustomerPo&gt; customerPoList = new ArrayList&lt;CustomerPo&gt;();
+                SearchHits searchHits = searchResponse.getHits();
+                for (SearchHit h: searchHits) {
+                    HighlightField highlightField = h.getHighlightFields().get(&quot;desc&quot;);
+                    String desc = highlightField.fragments()[0].toString();
+                    CustomerPo customerPoHighlight = new CustomerPo();
+                    customerPoHighlight.setAge((Integer)h.getSourceAsMap().get(&quot;age&quot;));
+                    customerPoHighlight.setBirthday(h.getSourceAsMap().get(&quot;birthday&quot;).toString());
+                    customerPoHighlight.setCity(h.getSourceAsMap().get(&quot;city&quot;).toString());
+                    customerPoHighlight.setConsume(Float.valueOf(h.getSourceAsMap().get(&quot;consume&quot;).toString()));
+                    customerPoHighlight.setDesc(desc);//这就是把高亮的字段替换给原字段
+                    customerPoHighlight.setFaceimg(h.getSourceAsMap().get(&quot;faceimg&quot;).toString());
+                    customerPoHighlight.setId(h.getSourceAsMap().get(&quot;id&quot;).toString());
+                    customerPoHighlight.setNickname(h.getSourceAsMap().get(&quot;nickname&quot;).toString());
+                    customerPoHighlight.setSex((Integer)h.getSourceAsMap().get(&quot;sex&quot;));
+                    customerPoHighlight.setUsername(h.getSourceAsMap().get(&quot;username&quot;).toString());
+                    customerPoList.add(customerPoHighlight);
+                }
+                if(customerPoList.size()&gt;0){
+                    return new AggregatedPageImpl&lt;&gt;((List&lt;T&gt;) customerPoList);
+                }
+                return null;
+            }
+
+            @Override
+            public &lt;T&gt; T mapSearchHit(SearchHit searchHit, Class&lt;T&gt; aClass) {
+                return null;
+            }
+        });
+        System.out.println(&quot;总页数：&quot;+customerPos.getTotalPages());
+        System.out.println(&quot;总记录数：&quot;+customerPos.getTotalElements());
+        List&lt;CustomerPo&gt; customerPoList = customerPos.getContent();
+        for (CustomerPo customerPo:customerPoList) {
+            System.out.println(customerPo.toString());
+
+        }
+        return &quot;查询完成&quot;;
+    }
+</code></pre>
+<h2 id="8-Springboot对ES文档进行数据排序"><a href="#8-Springboot对ES文档进行数据排序" class="headerlink" title="8. Springboot对ES文档进行数据排序"></a>8. Springboot对ES文档进行数据排序</h2><p>只需要加入排序的构建就ok了</p>
+<pre><code class="java">    @GetMapping(&quot;/list&quot;)
+    @ResponseBody
+    public String getList(){
+        //4.加入排序构建
+        SortBuilder sortBuilder1 = new FieldSortBuilder(&quot;consume&quot;)
+                .order(SortOrder.DESC);
+        SortBuilder sortBuilder2 = new FieldSortBuilder(&quot;age&quot;)
+                .order(SortOrder.ASC);
+
+        //3.定义分页
+        Pageable pageable = PageRequest.of(0,6);
+        //2.定义query对象
+        SearchQuery query = new NativeSearchQueryBuilder()
+                .withQuery(QueryBuilders.matchQuery(&quot;desc&quot;,&quot;学习&quot;))
+                .withPageable(pageable)
+                .withSort(sortBuilder1)
+                .withSort(sortBuilder2)
+                .build();
+        //1.先写查询
+        AggregatedPage&lt;CustomerPo&gt; customerPos = elasticsearchTemplate.queryForPage(query,CustomerPo.class);
+        System.out.println(&quot;总页数：&quot;+customerPos.getTotalPages());
+        System.out.println(&quot;总记录数：&quot;+customerPos.getTotalElements());
+        List&lt;CustomerPo&gt; customerPoList = customerPos.getContent();
+        for (CustomerPo customerPo:customerPoList) {
+            System.out.println(customerPo.toString());
+
+        }
+        return &quot;查询完成&quot;;
+    }
+</code></pre>
+<p><img src="/elasticsearch.md"></p>

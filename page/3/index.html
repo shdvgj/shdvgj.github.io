@@ -83,7 +83,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">28</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">79</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">29</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">81</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">81</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -159,7 +159,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -190,6 +190,236 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/07/18/2023/07/how-to-create-a-miniprogram-with-low-fee/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/07/18/2023/07/how-to-create-a-miniprogram-with-low-fee/" class="post-title-link" itemprop="url">如何低成本开发并发布小程序（微信云托管+Cloudflare worker）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-18 14:44:30" itemprop="dateCreated datePublished" datetime="2023-07-18T14:44:30+08:00">2023-07-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-19 08:52:39" itemprop="dateModified" datetime="2023-07-19T08:52:39+08:00">2023-07-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/07/18/2023/07/how-to-create-a-miniprogram-with-low-fee/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/07/18/2023/07/how-to-create-a-miniprogram-with-low-fee/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>先说结论，成本仅集中于微信云托管的费用，cloudflare全用的免费套餐。</p>
+<h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>下面的前三步可参考我的<a target="_blank" rel="noopener" href="https://blog.cindyforever.com/2023/04/12/2023/04/how_to_create_new_site/">建站指南</a>。</p>
+<ul>
+<li>一个Cloudflare的账户</li>
+<li>一个已经申请成功的https域名</li>
+<li>https证书已绑定到cloudflare</li>
+<li>一个微信小程序账号</li>
+<li>小程序已开通云托管功能</li>
+</ul>
+<h2 id="微信云托管开发流程"><a href="#微信云托管开发流程" class="headerlink" title="微信云托管开发流程"></a>微信云托管开发流程</h2><h3 id="什么是微信云托管？"><a href="#什么是微信云托管？" class="headerlink" title="什么是微信云托管？"></a>什么是微信云托管？</h3><p>简单说就是微信的微型服务器，非常方便部署一些只需要简单后台的应用。相比于单独买服务器，我这些天体验微信云托管下来得出的优缺点如下：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/07/18/2023/07/how-to-create-a-miniprogram-with-low-fee/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/07/07/2023/07/how-to-build-project-by-cloudflare/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/07/07/2023/07/how-to-build-project-by-cloudflare/" class="post-title-link" itemprop="url">如何通过cloudflare的worker处理复杂后台逻辑</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-07 14:08:10" itemprop="dateCreated datePublished" datetime="2023-07-07T14:08:10+08:00">2023-07-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-18 17:09:22" itemprop="dateModified" datetime="2023-07-18T17:09:22+08:00">2023-07-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/07/07/2023/07/how-to-build-project-by-cloudflare/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/07/07/2023/07/how-to-build-project-by-cloudflare/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="前提准备"><a href="#前提准备" class="headerlink" title="前提准备"></a>前提准备</h2><ul>
+<li>建站：一系列准备工作可看另一篇我的<a target="_blank" rel="noopener" href="https://blog.cindyforever.com/2023/04/12/2023/04/how_to_create_new_site/">建站指南</a>。</li>
+<li>需要本地安装node</li>
+</ul>
+<h2 id="新建worker"><a href="#新建worker" class="headerlink" title="新建worker"></a>新建worker</h2><ul>
+<li>在cloudflare的首页，点击[Workers &amp; Pages]</li>
+<li>选择[create application]</li>
+<li>点击[create worker]</li>
+<li>输入Name，点击Deploy</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/07/07/2023/07/how-to-build-project-by-cloudflare/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1096,234 +1326,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/" class="post-title-link" itemprop="url">每日文章收集-20230626</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-06-26 11:43:15" itemprop="dateCreated datePublished" datetime="2023-06-26T11:43:15+08:00">2023-06-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-03 09:14:16" itemprop="dateModified" datetime="2023-07-03T09:14:16+08:00">2023-07-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%AF%8F%E6%97%A5%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">每日文章收集</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/06/26/2023/06/weekly-tech-blog-collection-202306026/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h2 id="vrite-开源无界面内容管理系统（CMS），适用于编程博客、文档等"><a href="#vrite-开源无界面内容管理系统（CMS），适用于编程博客、文档等" class="headerlink" title="vrite: 开源无界面内容管理系统（CMS），适用于编程博客、文档等"></a><a target="_blank" rel="noopener" href="https://vrite.io/">vrite: 开源无界面内容管理系统（CMS），适用于编程博客、文档等</a></h2><p>vrite开源的专用于写作技术内容的CMS系统。根据官网介绍，具有几个特点：</p>
-<ul>
-<li>简洁的UI</li>
-<li>内置看板界面，可以轻松管理任意规模的产品流程</li>
-<li>所见即所得，支持markdown和快捷键，协同写作等</li>
-<li>对技术写作量身定做，支持高亮，自动补全等</li>
-<li>提供API和webhook，与各种前端界面轻松集成</li>
-<li>完备的权限管理系统</li>
-</ul>
-<h3 id="基本概念介绍"><a href="#基本概念介绍" class="headerlink" title="基本概念介绍"></a>基本概念介绍</h3><p>Vrite使用三个概念来组织管理内容。</p>
-<ul>
-<li>工作空间（Workspaces）：独立的单元，用于存储许多内容组（Content groups）、配置API访问或编辑体验的设置，以及关于整个团队及其角色的详细信息；可以创建或被加入到任意数量的工作区。</li>
-<li>内容组（Content groups）：如果熟悉看板界面的话，这就相当于看板仪表中的列，用于组织内容碎片（Content pieces）。</li>
-<li>内容碎片（Content pieces）：相当于看板界面中的卡片，用于编辑具体的内容，包含实际的内容和相关元数据。</li>
-</ul>
-<h3 id="使用工作空间"><a href="#使用工作空间" class="headerlink" title="使用工作空间"></a>使用工作空间</h3><p>点击侧边栏切换工作空间。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite2.png"><br>在该界面选择或新增工作空间。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite3.png"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/" class="post-title-link" itemprop="url">每日文章收集-20230621</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-06-20 16:19:48" itemprop="dateCreated datePublished" datetime="2023-06-20T16:19:48+08:00">2023-06-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-03 09:14:09" itemprop="dateModified" datetime="2023-07-03T09:14:09+08:00">2023-07-03</time>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/06/20/2023/06/weekly-tech-blog-collection-202306021/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>今天尝试下详细介绍一篇有意思的博文，和若干篇值得一看的技术资讯。</p>
-<h1 id="今日关注"><a href="#今日关注" class="headerlink" title="今日关注"></a>今日关注</h1><h2 id="同时在三个平台上发布我的独立游戏，在财务上却失败了"><a href="#同时在三个平台上发布我的独立游戏，在财务上却失败了" class="headerlink" title="同时在三个平台上发布我的独立游戏，在财务上却失败了"></a><a target="_blank" rel="noopener" href="https://juicybeast.com/2016/01/11/releasing-an-indie-game-on-3-consoles-at-once-and-failing-financially/#2-years">同时在三个平台上发布我的独立游戏，在财务上却失败了</a></h2><p>作者讲述了自己在2013到2015年开发了一款独立游戏，叫做<a target="_blank" rel="noopener" href="https://store.steampowered.com/app/342920/Toto_Temple_Deluxe/">Toto Temple</a>，并在2015年9月在PS4, Xbox One, Wii U 和 Steam上发布，最终销售额却不佳，作者回顾这一段经历，并分析可能的原因。</p>
-<h3 id="销售额"><a href="#销售额" class="headerlink" title="销售额"></a>销售额</h3><p>下图是销售额和开发成本的对比。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/revenues.png"><br>左边是各个平台的销售占比，右边是成本，包括了市场营销，代码开发，移植，图形开发等。到作者发文时，游戏总共卖出了6000份，远远达不到他的开发成本。</p>
-<h3 id="为什么这个游戏开发了两年？"><a href="#为什么这个游戏开发了两年？" class="headerlink" title="为什么这个游戏开发了两年？"></a>为什么这个游戏开发了两年？</h3><p>作者说到开发过程中并没有什么具体的规划，只是抓住了各种机遇。</p>
-<p>他回顾了第一年获得了<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Ouya">Ouya</a>公司(Ouya是2013年成立的一个游戏机公司，已在2019年倒闭)的投资，几乎没花任何自己的钱上线了Toto Temple Deluxe版本。并且初期反馈也相当不错，这让他觉得很有成就感。</p>
-<p>第二年作者和三大平台的游戏巨头进行了接触，并且获得了认可。然而由于游戏已在ouya发行，因此无法获得另一份的独占协议。这种情况下，他的开发团队决定在三大平台发行游戏，基于两点考虑：</p>
-<ul>
-<li>三个平台可以获得三倍销售额。</li>
-<li>同时在三大平台发行可以获得一定的关注，并能够和三大平台的老总进行对话。
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
