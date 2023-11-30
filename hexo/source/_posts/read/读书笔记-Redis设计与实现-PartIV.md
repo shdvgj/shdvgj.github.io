@@ -1,5 +1,5 @@
 ---
-title: 读书笔记-Redis设计与实现-PartIV
+title: 读书笔记-Redis设计与实现-发布订阅，事务，脚本和其他
 date: 2022-07-08 09:30:36
 tags:
 - REDIS

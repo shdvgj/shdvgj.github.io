@@ -1,7 +1,11 @@
 ---
 title: RabbitMQ VS Kafka
 date: 2023-09-20 20:55:28
+categories: 
+- 学习
 tags:
+- 分布式
+- MQ
 ---
 
 翻译自[RabbitMQ vs. Kafka – An Architect’s Dilemma (Part 1)](https://eranstiller.com/rabbitmq-vs-kafka-an-architects-dilemma-part-1)

@@ -1,7 +1,10 @@
 ---
 title: CAP原理简介
 date: 2023-09-12 14:39:49
+categories: 
+- 学习
 tags:
+- 分布式
 ---
 
 翻译自[CAP Theorem simplified](https://ravindraelicherla.medium.com/cap-theorem-simplified-28499a67eab4)

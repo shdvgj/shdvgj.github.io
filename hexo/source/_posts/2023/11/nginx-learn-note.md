@@ -1,7 +1,11 @@
 ---
 title: Nginx学习笔记
 date: 2023-11-04 11:25:09
+categories: 
+- 学习
 tags:
+- 分布式
+- Nginx
 ---
 
 ### docker启动nginx

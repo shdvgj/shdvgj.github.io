@@ -1,7 +1,10 @@
 ---
 title: MySQL不定时笔记
 date: 2023-11-12 13:07:51
+categories: 
+- 学习
 tags:
+- MySQL
 ---
 
 ### WHERE解析顺序

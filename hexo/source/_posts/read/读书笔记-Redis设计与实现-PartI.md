@@ -1,5 +1,5 @@
 ---
-title: 读书笔记-Redis设计与实现-PartI
+title: 读书笔记-Redis设计与实现-数据结构
 date: 2022-07-05 09:54:07
 tags:
 - REDIS

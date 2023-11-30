@@ -1,5 +1,5 @@
 ---
-title: 读书笔记-Redis设计与实现-PartII
+title: 读书笔记-Redis设计与实现-数据库，持久化和通信
 date: 2022-07-06 09:09:15
 tags:
 - REDIS

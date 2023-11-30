@@ -1,7 +1,11 @@
 ---
 title: SpringBoot笔记
 date: 2023-10-30 11:35:13
+categories: 
+- 学习
 tags:
+- 程序架构
+- SpringBoot
 ---
 
 ### application.properties 常用配置
@@ -915,6 +919,165 @@ public class HelloController {
   }
   ```
 
+### 接入Redisson
+
+- Redisson 是一个基于 Redis 的分布式 Java 对象和服务框架，它提供了丰富的功能和易于使用的 API，使得在 Java 应用中使用 Redis 变得更加便捷。
+- 添加 Redisson 依赖：
+在你的 Spring Boot 项目中的 `pom.xml` 文件中，添加 Redisson 的 Maven 依赖：
+```xml
+<dependency>
+    <groupId>org.redisson</groupId>
+    <artifactId>redisson-spring-boot-starter</artifactId>
+    <version>3.16.2</version>
+</dependency>
+```
+请确保使用适合你项目的 Redisson 版本。
+- 配置 Redisson：
+在 Spring Boot 项目的配置文件（如 `application.properties` 或 `application.yml`）中添加 Redisson 的配置。
+例如，如果你使用的是 `application.properties` 文件，可以添加以下配置：
+```conf
+# Redisson配置
+spring.redisson.config=classpath:/redisson.yaml
+```
+在上述配置中，我们指定了 Redisson 的配置文件为 `redisson.yaml`，该文件需要放在 `classpath` 下。
+  - `redisson.yaml`配置
+  ```yaml
+  singleServerConfig:
+    address: "redis://127.0.0.1:6379"
+    password: null
+    database: 0 # Redis 数据库的索引，这里使用的是索引为 0 的数据库。
+    connectionPoolSize: 64 # 连接池的最大连接数。
+    connectionMinimumIdleSize: 10 # 连接池的最小空闲连接数。
+    timeout: 10000 # 连接超时时间（以毫秒为单位）。
+    retryAttempts: 3 # 在发生连接错误时的重试次数。
+    retryInterval: 1500 # 重试的间隔时间（以毫秒为单位）。
+  ```
+- 创建 Redisson 客户端实例：
+通过创建一个 `RedissonClient` Bean，你可以在你的应用程序中获取 Redisson 客户端实例。可以在任何需要使用 Redisson 的地方注入该 Bean。
+以下是一个示例：
+```java
+import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class MyComponent {
+    
+    private final RedissonClient redissonClient;
+    
+    @Autowired
+    public MyComponent(RedissonClient redissonClient) {
+        this.redissonClient = redissonClient;
+    }
+    
+    // 使用 redissonClient 进行操作
+}
+```
+在上述示例中，我们通过构造函数注入 `RedissonClient`，然后可以在 `MyComponent` 组件中使用 Redisson 客户端进行相应的操作。
+- 编写代码使用 Redisson：
+现在你可以在你的应用程序中使用 Redisson 提供的功能和 API 了。根据你的需求，可以使用分布式锁、分布式集合、分布式映射等功能。
+以下是一个简单的示例，演示如何使用 Redisson 的分布式锁：
+```java
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MyService {
+    
+    private final RedissonClient redissonClient;
+    
+    @Autowired
+    public MyService(RedissonClient redissonClient) {
+        this.redissonClient = redissonClient;
+    }
+    
+    public void doSomething() {
+        RLock lock = redissonClient.getLock("myLock");
+        lock.lock();
+        try {
+            // 执行需要保护的代码块
+        } finally {
+            lock.unlock();
+        }
+    }
+}
+```
+在上述示例中，我们注入了 RedissonClient，并使用它创建了一个分布式锁。然后，我们在 `doSomething()` 方法中使用该锁来保护需要保护的代码块。
+这样，你就成功地将 Redisson 集成到了 Spring Boot 项目中，并可以使用 Redisson 提供的功能来简化和优化你的分布式应用程序。
+
+### 接入ElasticSearch
+
+在Spring Boot中接入Elasticsearch，可以通过Spring Data Elasticsearch模块来实现，它提供了与Elasticsearch的集成和操作支持。以下是接入步骤：
+
+1. 添加依赖：
+   在`pom.xml`文件中添加Spring Data Elasticsearch的依赖：
+   ````xml
+   <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+   </dependency>
+   ```
+
+2. 配置Elasticsearch连接：
+   在`application.properties`（或`application.yml`）文件中配置Elasticsearch连接信息，包括主机地址、端口号等：
+   ````properties
+   spring.data.elasticsearch.cluster-nodes=localhost:9200
+   ```
+
+3. 创建实体类：
+   创建Java实体类，用于映射Elasticsearch中的文档。可以使用注解来定义索引、类型、字段等信息。例如：
+   ````java
+   import org.springframework.data.annotation.Id;
+   import org.springframework.data.elasticsearch.annotations.Document;
+
+   @Document(indexName = "myindex", type = "mytype")
+   public class MyEntity {
+       @Id
+       private String id;
+       private String name;
+       // 其他字段和方法
+   }
+   ```
+
+4. 创建Repository接口：
+   创建一个继承自`ElasticsearchRepository`的接口，用于定义对实体类的操作。该接口提供了一系列的CRUD方法，可以直接使用或者自定义扩展方法。例如：
+   ````java
+   import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+
+   public interface MyEntityRepository extends ElasticsearchRepository<MyEntity, String> {
+       // 自定义方法
+   }
+   ```
+
+5. 使用Repository进行操作：
+   在需要使用Elasticsearch的地方，注入`MyEntityRepository`实例，即可通过该实例进行对文档的增删改查等操作。例如：
+   ````java
+   import org.springframework.beans.factory.annotation.Autowired;
+   import org.springframework.stereotype.Service;
+
+   @Service
+   public class MyService {
+       private final MyEntityRepository repository;
+
+       @Autowired
+       public MyService(MyEntityRepository repository) {
+           this.repository = repository;
+       }
+
+       public void saveEntity(MyEntity entity) {
+           repository.save(entity);
+       }
+
+       public Iterable<MyEntity> searchEntities(String keyword) {
+           // 使用自定义方法进行搜索
+           return repository.findByName(keyword);
+       }
+   }
+   ```
+
+通过以上步骤，你就可以在Spring Boot中接入Elasticsearch并进行数据操作。根据实际需求，可以自定义Repository接口的扩展方法，使用各种查询语法进行高级搜索，实现更复杂的功能。
 
 [SpringBoot笔记1.pdf](SpringBoot笔记1.pdf)
 [SpringBoot笔记2.pdf](SpringBoot笔记2.pdf)

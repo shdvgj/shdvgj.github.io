@@ -1,5 +1,5 @@
 ---
-title: 读书笔记-Redis设计与实现-PartIII
+title: 读书笔记-Redis设计与实现-主从复制，哨兵和集群
 date: 2022-07-07 09:21:11
 tags:
 - REDIS
@@ -7,7 +7,7 @@ categories:
 - 读书笔记
 ---
 
-## 1.复制
+## 1.主从复制
 
 - 通过SLAVEOF命令让一个服务器复制另一个服务器，我们称呼被复制的服务器为主服务器（master），而对主服务器进行复制的服务器则被称为从服务器（slave）
 
@@ -82,6 +82,43 @@ $ redis-server sentinel.conf --sentinel
 - 如果节点A正在迁移槽i至节点B，那么当节点A没能在自己的数据库中找到命令指定的数据库键时，节点A会向客户端返回一个ASK错误，指引客户端到节点B继续查找指定的数据库键。
 - MOVED错误表示槽的负责权已经从一个节点转移到了另一个节点，而ASK错误只是两个节点在迁移槽的过程中使用的一种临时措施。❑集群里的从节点用于复制主节点，并在主节点下线时，代替主节点继续处理命令请求。
 - 集群中的节点通过发送和接收消息来进行通信，常见的消息包括MEET、PING、PONG、PUBLISH、FAIL五种。
+
+### 实现方式
+要实现 Redis 集群，你可以使用 Redis 官方提供的 Redis Cluster 功能。Redis Cluster 是 Redis 的一种分布式模式，它将数据分散存储在多个节点上，提供了数据的高可用性和横向扩展能力。
+
+下面是实现 Redis 集群的一般步骤：
+
+1. 安装和配置多个 Redis 实例：在不同的服务器或主机上安装和配置多个 Redis 实例。每个 Redis 实例将成为 Redis 集群中的一个节点。确保每个节点的配置文件中设置了相同的 `cluster-enabled yes` 参数。
+
+2. 创建集群：选择一个节点作为集群的首领节点（bootstrap节点），使用 `redis-cli` 工具连接到该节点，并执行以下命令来创建集群：
+
+   ````
+   redis-cli --cluster create <node1>:<port1> <node2>:<port2> ... <nodeN>:<portN> --cluster-replicas <replicas>
+   ```
+
+   其中，`<node1>:<port1>` 到 `<nodeN>:<portN>` 是 Redis 节点的地址和端口，`<replicas>` 是每个主节点对应的从节点数量。
+
+   例如，如果有 3 个主节点，每个主节点有 1 个从节点，可以执行类似下面的命令：
+
+   ````
+   redis-cli --cluster create 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 --cluster-replicas 1
+   ```
+
+   在执行命令后，首领节点将自动与其他节点进行通信，组成一个完整的 Redis 集群。
+
+3. 验证集群：连接到任意一个节点，使用 `redis-cli` 工具执行一些命令来验证集群的状态和数据分布情况，例如 `CLUSTER INFO`、`CLUSTER NODES`、`GET <key>` 等。
+
+4. 扩展集群：如果需要扩展集群，可以添加新的 Redis 节点，并将它们加入到集群中。执行以下命令来添加新节点：
+
+   ````
+   redis-cli --cluster add-node <new-node>:<port> <existing-node>:<port>
+   ```
+
+   其中，`<new-node>:<port>` 是要添加的新节点的地址和端口，`<existing-node>:<port>` 是现有集群中的任意一个节点的地址和端口。
+
+   添加新节点后，Redis 集群会自动将数据进行重新分片和迁移，以扩展整个集群的容量和性能。
+
+这些是实现 Redis 集群的基本步骤。请注意，为了确保数据的高可用性，建议在每个主节点上设置至少一个从节点。此外，还可以通过 Redis Sentinel 或 Redis Cluster 自身的故障检测和故障转移机制来提供集群的高可用性。
 
 
 
