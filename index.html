@@ -235,7 +235,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-12-01 10:54:21" itemprop="dateModified" datetime="2023-12-01T10:54:21+08:00">2023-12-01</time>
+      <time title="修改时间：2023-12-01 10:56:26" itemprop="dateModified" datetime="2023-12-01T10:56:26+08:00">2023-12-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -279,114 +279,14 @@
 <li>水平扩展：通过添加更多的节点，可以实现搜索引擎的水平扩展，而无需进行大规模的硬件升级。</li>
 <li>分布式索引：索引数据可以分布在多个节点上，减轻了单个节点的负载压力，并提高了索引的性能和可用性。</li>
 </ul>
-<h3 id="常见搜索引擎"><a href="#常见搜索引擎" class="headerlink" title="常见搜索引擎"></a>常见搜索引擎</h3><ol>
-<li><a target="_blank" rel="noopener" href="https://www.elastic.co/cn/elasticsearch">Elasticsearch</a>：Elasticsearch 是一个开源的分布式搜索和分析引擎，基于 Apache Lucene 构建。它具有强大的全文搜索能力、实时数据分析和可视化等功能。Elasticsearch 使用分布式架构，数据被分片存储在多个节点上，支持水平扩展和高可用性。它还提供了丰富的 RESTful API，使得与其他应用程序的集成变得简单。</li>
-<li><a target="_blank" rel="noopener" href="https://solr.apache.org/">Apache Solr</a>：Apache Solr 是一个基于 Apache Lucene 的开源搜索平台。它提供了强大的全文搜索、分布式索引和分布式查询的功能。Solr 支持多种数据格式和数据源，可以处理结构化和非结构化数据。它具有灵活的配置选项和可扩展性，可以通过添加更多的节点来扩展搜索能力。</li>
-<li><a target="_blank" rel="noopener" href="https://lucene.apache.org/">Apache Lucene</a>：Apache Lucene 是一个开源的全文搜索引擎库，提供了用于索引和搜索的核心功能。虽然 Lucene 本身是一个单机引擎，但它为构建分布式搜索引擎提供了基础。许多分布式搜索引擎，如 Elasticsearch 和 Solr，都是基于 Lucene 构建的。</li>
-<li>Amazon CloudSearch：Amazon CloudSearch 是亚马逊提供的一项托管式分布式搜索服务。它使用分布式架构和自动化管理，提供了高度可扩展的搜索解决方案。CloudSearch 支持全文搜索、自定义搜索域、多语言支持和搜索结果排序等功能。它与其他 AWS 服务集成紧密，并提供简单的 API 和管理控制台。</li>
-</ol>
-<h3 id="Elasticsearch介绍"><a href="#Elasticsearch介绍" class="headerlink" title="Elasticsearch介绍"></a>Elasticsearch介绍</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul>
-<li>索引index（当成数据库中的一张表）</li>
-<li>类型type（V7.X之后没有类型）</li>
-<li>文档document（相当于每天数据）</li>
-<li>字段field</li>
-<li>映射mappings（相当于表结构的类型定义）</li>
-<li>NRT（near real time）</li>
-<li>shard（数据分片）</li>
-<li>replica（备份分片）</li>
-<li>倒排索引nverted Index：正排索引是通过key-value，倒排索引通过value-key来查找</li>
-<li>分词：分词（Tokenization）是指将待索引的文本按照一定规则进行切分，将其分解成一个个词项（Tokens）的过程。分词是全文搜索的基础，它将文本转化为可索引的最小单位，使搜索引擎能够理解和处理文本数据。<ul>
-<li>自带分词器</li>
-<li>第三方分词器插件</li>
-</ul>
-</li>
-</ul>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>Elasticsearch的全文搜索底层原理主要涉及两个关键组件：倒排索引（Inverted Index）和分词器（Tokenizer）。</p>
-<ol>
-<li><p>倒排索引（Inverted Index）：</p>
-<ul>
-<li>倒排索引是Elasticsearch的核心数据结构，用于快速定位文档中包含特定词项的位置。它是一个将词项映射到文档的数据结构，而不是将文档映射到词项。</li>
-<li>在建立索引过程中，Elasticsearch会对文档中的每个字段进行分词处理，将文本分割成一个个词项。然后，针对每个词项，将其映射到包含该词项的文档及其位置信息上。</li>
-<li>倒排索引的建立和维护使得Elasticsearch能够快速定位包含特定词项的文档，从而实现高效的全文搜索。</li>
-</ul>
-</li>
-<li><p>分词器（Tokenizer）：</p>
-<ul>
-<li>分词器是用于将文本拆分成词项的组件。Elasticsearch提供了多种内置的分词器，如标准分词器（Standard Tokenizer）、简单分词器（Simple Analyzer）、语言特定的分词器（如中文分词器、英文分词器等）。</li>
-<li>在索引和搜索过程中，文本会首先经过分词器的处理，将其拆分成独立的词项。分词器通常会去除停用词（如常见的无实际意义的词汇），进行大小写转换、词干提取等文本处理操作。</li>
-</ul>
-</li>
-</ol>
-<p>基于以上原理，当进行全文搜索时，Elasticsearch会执行以下步骤：</p>
-<ol>
-<li>输入查询语句。</li>
-<li>查询语句经过分词器处理，将其拆分成独立的词项。</li>
-<li>对每个词项，在倒排索引中查找包含该词项的文档和位置信息。</li>
-<li>根据查询语句的逻辑关系（如AND、OR）和权重（如词项的重要性），计算文档的相关性得分。</li>
-<li>根据得分对文档进行排序，返回搜索结果。</li>
-</ol>
-<p>通过倒排索引和分词器的结合，Elasticsearch实现了快速、灵活且高效的全文搜索功能。同时，Elasticsearch还提供了丰富的查询语法和高级搜索功能，可以进行模糊匹配、通配符匹配、正则表达式搜索等，以满足各种复杂的搜索需求。</p>
-<h4 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h4><ul>
-<li>创建索引：使用PUT请求创建一个索引，并定义其字段映射和设置。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">PUT /my_index</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;settings&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;number_of_shards&quot;</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="attr">&quot;number_of_replicas&quot;</span>: <span class="number">2</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;mappings&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;properties&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;title&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">&quot;description&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>索引文档：使用POST请求将文档索引到指定的索引中，可以指定文档ID或由ES自动生成。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">POST /my_index/_doc/<span class="number">1</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;Elasticsearch Introduction&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;This is a tutorial on Elasticsearch.&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>获取文档：使用GET请求获取指定索引和文档ID的文档内容。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /my_index/_doc/<span class="number">1</span></span><br></pre></td></tr></table></figure></li>
-<li>更新文档：使用POST或PUT请求更新指定索引和文档ID的文档内容。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST /my_index/_update/<span class="number">1</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;doc&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;This is an updated tutorial on Elasticsearch.&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>删除文档：使用DELETE请求删除指定索引和文档ID的文档。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE /my_index/_doc/<span class="number">1</span></span><br></pre></td></tr></table></figure></li>
-<li>搜索：使用POST请求执行搜索操作，可以使用各种查询语句和过滤条件来过滤和排序搜索结果。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST /my_index/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;match&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;Elasticsearch&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>聚合：使用聚合查询对搜索结果进行分组、汇总和计算统计信息。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">POST /my_index/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;aggs&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;avg_price&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;avg&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;field&quot;</span>: <span class="string">&quot;price&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>映射管理：管理索引的字段映射，包括定义字段类型、分词器、分析器等。</li>
-<li>设置管理：管理索引的各种设置，包括分片和副本配置、刷新间隔、索引别名等。</li>
-<li>批量操作：使用批量API一次性执行多个索引、更新或删除操作，提高效率。</li>
-<li>高级搜索：使用诸如布尔查询、范围查询、模糊查询、正则表达式查询等高级查询语句进行复杂的搜索操作。</li>
-<li>分词器和分析器：配置和使用不同类型的分词器和分析器来处理文本数据的分词和分析。</li>
-<li>节点管理：监控和管理ES集群中的节点，包括节点状态、健康状况、性能指标等。</li>
-<li>集群管理：管理ES集群的各种设置和配置，包括节点分配、集群状态、集群健康状况等。</li>
-<li>安全性设置：配置访问控制、用户认证和权限管理，保护ES集群的安全性。</li>
-</ul>
-<h4 id="查询语法"><a href="#查询语法" class="headerlink" title="查询语法"></a>查询语法</h4><ol>
-<li><p>简单查询：</p>
-<ul>
-<li>匹配查询（Match Query）：用于从指定字段中查找包含指定关键词的文档。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /my_index/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;match&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;Elasticsearch&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>词语查询（Term Query）：用于精确匹配一个词语，不进行分词。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /my_index/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;term&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;category&quot;</span>: <span class="string">&quot;books&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>复合查询：</p>
-<ul>
-<li>布尔查询（Bool Query）：用于组合多个查询条件，支持逻辑运算符（MUST、MUST_NOT、SHOULD）。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">GET /my_index/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;bool&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;must&quot;</span>: [</span><br><span class="line">        &#123; <span class="attr">&quot;match&quot;</span>: &#123; <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;Elasticsearch&quot;</span> &#125; &#125;,</span><br><span class="line">        &#123; <span class="attr">&quot;term&quot;</span>: &#123; <span class="attr">&quot;category&quot;</span>: <span class="string">&quot;books&quot;</span> &#125; &#125;</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">&quot;must_not&quot;</span>: [</span><br><span class="line">        &#123; <span class="attr">&quot;term&quot;</span>: &#123; <span class="attr">&quot;author&quot;</span>: <span class="string">&quot;Smith&quot;</span> &#125; &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>过滤查询：</p>
-<ul>
-<li>范围查询（Range Query）：用于匹配指定范围内的值。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">GET /my_index/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;range&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;price&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;gte&quot;</span>: <span class="number">10</span>,</span><br><span class="line">        <span class="attr">&quot;lte&quot;</span>: <span class="number">100</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>存在查询（Exists Query）：用于检查指定字段是否存在。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /my_index/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;exists&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;field&quot;</span>: <span class="string">&quot;description&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>全文查询：</p>
-<ul>
-<li>多字段查询（Multi-match Query）：在多个字段中搜索指定关键词。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">GET /my_index/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;multi_match&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;query&quot;</span>: <span class="string">&quot;Elasticsearch&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;fields&quot;</span>: [<span class="string">&quot;title&quot;</span>, <span class="string">&quot;description&quot;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>模糊查询（Fuzzy Query）：用于模糊匹配类似于指定关键词的文档。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">GET /my_index/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;fuzzy&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;title&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;value&quot;</span>: <span class="string">&quot;Elastiksearch&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;fuzziness&quot;</span>: <span class="string">&quot;AUTO&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>高级查询：</p>
-<ul>
-<li>正则表达式查询（Regexp Query）：使用正则表达式匹配文档字段的值。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /my_index/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;regexp&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;elasticsearch.*&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>前缀查询（Prefix Query）：用于匹配具有指定前缀的文档。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /my_index/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;ela&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ol>
-<p>这些示例只是Elasticsearch查询语法中的一小部分。ES还提供了许多其他类型的查询，如嵌套查询（Nested Query）、通配符查询（Wildcard Query）、模糊查询（Match Phrase Query）等，以及聚合、排序、分页等高级功能。要了解更多信息和更复杂的查询语法，请参阅Elasticsearch的官方文档。</p>
-<h4 id="同时使用多个分词器"><a href="#同时使用多个分词器" class="headerlink" title="同时使用多个分词器"></a>同时使用多个分词器</h4><p>在Elasticsearch中，一个字段只能使用一种分词器进行分词。但是，你可以通过使用多个字段和合并查询的方式来实现一个字段同时使用两种分词器的效果。下面是一种实现方法：</p>
-<ol>
-<li><p>创建两个字段：<br>在索引映射中，为该字段创建两个不同的子字段，每个子字段使用不同的分词器。例如，假设你有一个名为<code>content</code>的字段，你可以创建<code>content.standard</code>和<code>content.custom</code>两个子字段。</p>
-<p>示例索引映射：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;mappings&quot;: &#123;</span><br><span class="line">    &quot;properties&quot;: &#123;</span><br><span class="line">      &quot;content&quot;: &#123;</span><br><span class="line">        &quot;type&quot;: &quot;text&quot;,</span><br><span class="line">        &quot;fields&quot;: &#123;</span><br><span class="line">          &quot;standard&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;text&quot;,</span><br><span class="line">            &quot;analyzer&quot;: &quot;standard&quot;</span><br><span class="line">          &#125;,</span><br><span class="line">          &quot;custom&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;text&quot;,</span><br><span class="line">            &quot;analyzer&quot;: &quot;custom_analyzer&quot;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>进行查询：<br>在进行查询时，你可以使用合并查询（<code>bool</code>查询）来同时搜索两个子字段。使用<code>should</code>子句将两个子字段的查询条件组合起来。</p>
-<p>示例查询：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;bool&quot;: &#123;</span><br><span class="line">      &quot;should&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;match&quot;: &#123;</span><br><span class="line">            &quot;content.standard&quot;: &quot;search term&quot;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;match&quot;: &#123;</span><br><span class="line">            &quot;content.custom&quot;: &quot;search term&quot;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>通过以上步骤，你可以实现一个字段同时使用两种分词器的效果。这种方法可以让你在查询时同时考虑两种不同的分词方式，以增加搜索的灵活性和准确性。</p>
-<p><img src="/2023/11/28/2023/11/distribute-search-engine/elasticsearch.pdf"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/11/28/2023/11/distribute-search-engine/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
