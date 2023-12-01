@@ -8144,7 +8144,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;bool&quot;: &#123;</span><br><span class="line">      &quot;should&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;match&quot;: &#123;</span><br><span class="line">            &quot;content.standard&quot;: &quot;search term&quot;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;match&quot;: &#123;</span><br><span class="line">            &quot;content.custom&quot;: &quot;search term&quot;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <p>通过以上步骤，你可以实现一个字段同时使用两种分词器的效果。这种方法可以让你在查询时同时考虑两种不同的分词方式，以增加搜索的灵活性和准确性。</p>
-<p><a href="elasticsearch.pdf"></a></p>
+<p><a href="elasticsearch.pdf">ElasticSearch笔记</a></p>
 ]]></content>
       <categories>
         <category>学习</category>
