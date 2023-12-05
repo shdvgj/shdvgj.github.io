@@ -19,6 +19,7 @@ tags:
 - 水平扩展：通过添加更多的节点，可以实现搜索引擎的水平扩展，而无需进行大规模的硬件升级。
 - 分布式索引：索引数据可以分布在多个节点上，减轻了单个节点的负载压力，并提高了索引的性能和可用性。
 
+<!-- more -->
 ### 常见搜索引擎
 
 1. [Elasticsearch](https://www.elastic.co/cn/elasticsearch)：Elasticsearch 是一个开源的分布式搜索和分析引擎，基于 Apache Lucene 构建。它具有强大的全文搜索能力、实时数据分析和可视化等功能。Elasticsearch 使用分布式架构，数据被分片存储在多个节点上，支持水平扩展和高可用性。它还提供了丰富的 RESTful API，使得与其他应用程序的集成变得简单。
@@ -146,6 +147,8 @@ POST /my_index/_search
 - 安全性设置：配置访问控制、用户认证和权限管理，保护ES集群的安全性。
 
 #### 查询语法
+
+- **注意：最新ES支持[使用SQL来进行查询](https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-getting-started.html)**
 
 1. 简单查询：
    - 匹配查询（Match Query）：用于从指定字段中查找包含指定关键词的文档。
@@ -327,3 +330,5 @@ POST /my_index/_search
    ```
 
 通过以上步骤，你可以实现一个字段同时使用两种分词器的效果。这种方法可以让你在查询时同时考虑两种不同的分词方式，以增加搜索的灵活性和准确性。
+
+[ElasticSearch笔记](elasticsearch.pdf)
