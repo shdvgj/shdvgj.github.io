@@ -83,7 +83,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">30</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">81</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">30</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -190,6 +190,341 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/07/07/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartIII/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/07/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartIII/" class="post-title-link" itemprop="url">读书笔记-Redis设计与实现-主从复制，哨兵和集群</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-07 09:21:11" itemprop="dateCreated datePublished" datetime="2022-07-07T09:21:11+08:00">2022-07-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-27 10:25:58" itemprop="dateModified" datetime="2023-11-27T10:25:58+08:00">2023-11-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/07/07/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartIII/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/07/07/read/读书笔记-Redis设计与实现-PartIII/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="1-主从复制"><a href="#1-主从复制" class="headerlink" title="1.主从复制"></a>1.主从复制</h2><ul>
+<li>通过SLAVEOF命令让一个服务器复制另一个服务器，我们称呼被复制的服务器为主服务器（master），而对主服务器进行复制的服务器则被称为从服务器（slave）</li>
+</ul>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 服务器127.0.0.1:12345将成为127.0.0.1:6379的从服务器</span></span><br><span class="line">127.0.0.1:123456&gt; SLAVEOF 127.0.0.1 6379</span><br></pre></td></tr></table></figure>
+<ul>
+<li>进行复制中的主从服务器双方的数据库将保存相同的数据，概念上将这种现象称作“数据库状态一致”，或者简称“一致”</li>
+<li>旧版复制（2.8版本之前）<ul>
+<li>同步操作用于将从服务器的数据库状态更新至主服务器当前所处的数据库状态<ul>
+<li>从服务器向主服务器发送SYNC命令。</li>
+<li>收到SYNC命令的主服务器执行BGSAVE命令，在后台生成一个RDB文件，并使用一个缓冲区记录从现在开始执行的所有写命令。</li>
+<li>当主服务器的BGSAVE命令执行完毕时，主服务器会将BGSAVE命令生成的RDB文件发送给从服务器，从服务器接收并载入这个RDB文件，将自己的数据库状态更新至主服务器执行BGSAVE命令时的数据库状态。</li>
+<li>主服务器将记录在缓冲区里面的所有写命令发送给从服务器，从服务器执行这些写命令，将自己的数据库状态更新至主服务器数据库当前所处的状态<br><img src="/2022/07/07/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartIII/redis-replicate1.png"></li>
+</ul>
+</li>
+<li>命令传播操作则用于在主服务器的数据库状态被修改，导致主从服务器的数据库状态出现不一致时，让主从服务器的数据库重新回到一致状态<ul>
+<li>主服务器会将自己执行的写命令，也即是造成主从服务器不一致的那条写命令，发送给从服务器执行，当从服务器执行了相同的写命令之后，主从服务器将再次回到一致状态</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>断线后复制会重新执行sync命令，但是传输的rdb文件有可能大部分都是曾经同步过的，这会造成效率低下</li>
+<li>本身sync命令就是非常耗费资源<ul>
+<li>主服务器需要执行BGSAVE命令会耗费主服务器大量的CPU、内存和磁盘I/O资源。</li>
+<li>主服务器需要将自己生成的RDB文件发送给从服务器会耗费主从服务器大量的网络资源（带宽和流量）</li>
+<li>接收到RDB文件的从服务器需要载入主服务器发来的RDB文件，并且在载入期间，从服务器会因为阻塞而没办法处理命令请求。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>新版复制（2.8版本开始）<ul>
+<li>PSYNC命令代替SYNC命令来执行复制时的同步操作<ul>
+<li>PSYNC命令具有完整重同步（full resynchronization）和部分重同步（partial resynchronization）</li>
+<li>完整重同步用于处理初次复制情况，和sync命令一样</li>
+<li>部分重同步则用于处理断线后重复制情况：当从服务器在断线后重新连接主服务器时，如果条件允许，主服务器可以将主从服务器连接断开期间执行的写命令发送给从服务器，从服务器只要接收并执行这些写命令，就可以将数据库更新至主服务器当前所处的状态</li>
+</ul>
+</li>
+<li>部分重同步的实现<ul>
+<li>主服务器的复制偏移量（replication offset）和从服务器的复制偏移量。<ul>
+<li>主服务器每次向从服务器传播N个字节的数据时，就将自己的复制偏移量的值加上N</li>
+<li>从服务器每次收到主服务器传播来的N个字节的数据时，就将自己的复制偏移量的值加上N</li>
+<li>如果主从服务器处于一致状态，那么主从服务器两者的偏移量总是相同的</li>
+</ul>
+</li>
+<li>主服务器的复制积压缓冲区（replication backlog）。<ul>
+<li>主服务器的复制积压缓冲区里面会保存着一部分最近传播的写命令，并且复制积压缓冲区会为队列中的每个字节记录相应的复制偏移量</li>
+<li>为了安全起见，可以将复制积压缓冲区的大小设为2<em>second</em>write_size_per_second，这样可以保证绝大部分断线情况都能用部分重同步来处理</li>
+</ul>
+</li>
+<li>服务器的运行ID（run ID）<ul>
+<li>每个Redis服务器，不论主服务器还是从服务，都会有自己的运行ID</li>
+<li>根据运行ID是否相同，从服务器决定进行部分还是完整重同步操作</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>PSYNC命令的执行逻辑<br>  <img src="/2022/07/07/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartIII/redis-sync1.png"></li>
+<li>主服务器通过向从服务器传播命令来更新从服务器的状态，保持主从服务器一致，而从服务器则通过向主服务器发送命令来进行心跳检测，以及命令丢失检测</li>
+</ul>
+<h2 id="2-哨兵（Sentinel）"><a href="#2-哨兵（Sentinel）" class="headerlink" title="2.哨兵（Sentinel）"></a>2.哨兵（Sentinel）</h2><ul>
+<li>哨兵（Sentinel）实例监视主从服务器状态，如果主服务器下线，哨兵会选择一个从服务器升级为主服务器<ul>
+<li>Sentinel系统会挑选其中一个从服务器升级为新的主服务器。</li>
+<li>Sentinel系统会向所有从服务器发送新的复制指令，当所有从服务器都开始复制新的主服务器时，故障转移操作执行完毕</li>
+<li>监视已下线的server1，重新上线时，设置为从服务器</li>
+</ul>
+</li>
+<li>启动命令<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 执行以下两条命令之一</span></span><br><span class="line">$ redis-sentinel sentinel.conf</span><br><span class="line">$ redis-server sentinel.conf --sentinel</span><br></pre></td></tr></table></figure></li>
+<li>Sentinel通过向主服务器发送INFO命令来获得主服务器属下所有从服务器的地址信息，并为这些从服务器创建相应的实例结构，以及连向这些从服务器的命令连接和订阅连接。</li>
+<li>在一般情况下，Sentinel以每十秒一次的频率向被监视的主服务器和从服务器发送INFO命令，当主服务器处于下线状态，或者Sentinel正在对主服务器进行故障转移操作时，Sentinel向从服务器发送INFO命令的频率会改为每秒一次。</li>
+<li>对于监视同一个主服务器和从服务器的多个Sentinel来说，它们会以每两秒一次的频率，通过向被监视服务器的__sentinel__:hello频道发送消息来向其他Sentinel宣告自己的存在。</li>
+<li>每个Sentinel也会从__sentinel__:hello频道中接收其他Sentinel发来的信息，并根据这些信息为其他Sentinel创建相应的实例结构，以及命令连接。</li>
+<li>Sentinel只会与主服务器和从服务器创建命令连接和订阅连接，Sentinel与Sentinel之间则只创建命令连接。</li>
+<li>Sentinel以每秒一次的频率向实例（包括主服务器、从服务器、其他Sentinel）发送PING命令，并根据实例对PING命令的回复来判断实例是否在线，当一个实例在指定的时长中连续向Sentinel发送无效回复时，Sentinel会将这个实例判断为主观下线。</li>
+<li>当Sentinel将一个主服务器判断为主观下线时，它会向同样监视这个主服务器的其他Sentinel进行询问，看它们是否同意这个主服务器已经进入主观下线状态。</li>
+<li>当Sentinel收集到足够多的主观下线投票之后，它会将主服务器判断为客观下线，并发起一次针对主服务器的故障转移操作。</li>
+</ul>
+<h2 id="3-集群"><a href="#3-集群" class="headerlink" title="3.集群"></a>3.集群</h2><ul>
+<li>节点通过握手来将其他节点添加到自己所处的集群当中。</li>
+<li>集群中的16384个槽可以分别指派给集群中的各个节点，每个节点都会记录哪些槽指派给了自己，而哪些槽又被指派给了其他节点。</li>
+<li>节点在接到一个命令请求时，会先检查这个命令请求要处理的键所在的槽是否由自己负责，如果不是的话，节点将向客户端返回一个MOVED错误，MOVED错误携带的信息可以指引客户端转向至正在负责相关槽的节点。</li>
+<li>对Redis集群的重新分片工作是由redis-trib负责执行的，重新分片的关键是将属于某个槽的所有键值对从一个节点转移至另一个节点。</li>
+<li>如果节点A正在迁移槽i至节点B，那么当节点A没能在自己的数据库中找到命令指定的数据库键时，节点A会向客户端返回一个ASK错误，指引客户端到节点B继续查找指定的数据库键。</li>
+<li>MOVED错误表示槽的负责权已经从一个节点转移到了另一个节点，而ASK错误只是两个节点在迁移槽的过程中使用的一种临时措施。❑集群里的从节点用于复制主节点，并在主节点下线时，代替主节点继续处理命令请求。</li>
+<li>集群中的节点通过发送和接收消息来进行通信，常见的消息包括MEET、PING、PONG、PUBLISH、FAIL五种。</li>
+</ul>
+<h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><p>要实现 Redis 集群，你可以使用 Redis 官方提供的 Redis Cluster 功能。Redis Cluster 是 Redis 的一种分布式模式，它将数据分散存储在多个节点上，提供了数据的高可用性和横向扩展能力。</p>
+<p>下面是实现 Redis 集群的一般步骤：</p>
+<ol>
+<li><p>安装和配置多个 Redis 实例：在不同的服务器或主机上安装和配置多个 Redis 实例。每个 Redis 实例将成为 Redis 集群中的一个节点。确保每个节点的配置文件中设置了相同的 <code>cluster-enabled yes</code> 参数。</p>
+</li>
+<li><p>创建集群：选择一个节点作为集群的首领节点（bootstrap节点），使用 <code>redis-cli</code> 工具连接到该节点，并执行以下命令来创建集群：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">redis-cli --cluster create &lt;node1&gt;:&lt;port1&gt; &lt;node2&gt;:&lt;port2&gt; ... &lt;nodeN&gt;:&lt;portN&gt; --cluster-replicas &lt;replicas&gt;</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">其中，`&lt;node1&gt;:&lt;port1&gt;` 到 `&lt;nodeN&gt;:&lt;portN&gt;` 是 Redis 节点的地址和端口，`&lt;replicas&gt;` 是每个主节点对应的从节点数量。</span><br><span class="line"></span><br><span class="line">例如，如果有 3 个主节点，每个主节点有 1 个从节点，可以执行类似下面的命令：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>redis-cli –cluster create 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 –cluster-replicas 1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   在执行命令后，首领节点将自动与其他节点进行通信，组成一个完整的 Redis 集群。</span><br><span class="line"></span><br><span class="line">3. 验证集群：连接到任意一个节点，使用 `redis-cli` 工具执行一些命令来验证集群的状态和数据分布情况，例如 `CLUSTER INFO`、`CLUSTER NODES`、`GET &lt;key&gt;` 等。</span><br><span class="line"></span><br><span class="line">4. 扩展集群：如果需要扩展集群，可以添加新的 Redis 节点，并将它们加入到集群中。执行以下命令来添加新节点：</span><br><span class="line"></span><br><span class="line">   ````</span><br><span class="line">   redis-cli --cluster add-node &lt;new-node&gt;:&lt;port&gt; &lt;existing-node&gt;:&lt;port&gt;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>&lt;new-node&gt;:&lt;port&gt;</code> 是要添加的新节点的地址和端口，<code>&lt;existing-node&gt;:&lt;port&gt;</code> 是现有集群中的任意一个节点的地址和端口。</p>
+<p>添加新节点后，Redis 集群会自动将数据进行重新分片和迁移，以扩展整个集群的容量和性能。</p>
+</li>
+</ol>
+<p>这些是实现 Redis 集群的基本步骤。请注意，为了确保数据的高可用性，建议在每个主节点上设置至少一个从节点。此外，还可以通过 Redis Sentinel 或 Redis Cluster 自身的故障检测和故障转移机制来提供集群的高可用性。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/07/06/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartII/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/06/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartII/" class="post-title-link" itemprop="url">读书笔记-Redis设计与实现-数据库，持久化和通信</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-06 09:09:15" itemprop="dateCreated datePublished" datetime="2022-07-06T09:09:15+08:00">2022-07-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-22 15:22:36" itemprop="dateModified" datetime="2023-11-22T15:22:36+08:00">2023-11-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/07/06/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartII/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/07/06/read/读书笔记-Redis设计与实现-PartII/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="1-数据库"><a href="#1-数据库" class="headerlink" title="1.数据库"></a>1.数据库</h2><ul>
+<li>服务器默认创建16个数据库，该数量由服务器配置的database选项决定。</li>
+<li>通过select 0/1/2…命令进行切换数据库，redis没有返回当前目标数据库的命令，因此在进行整库操作时，最好先通过select命令切换到目标数据库</li>
+<li>通过expire或者pexpire来对某个键设置过期时间，ttl查询剩余过期时间<ul>
+<li>EXPIRE＜key＞＜ttl＞命令用于将键key的生存时间设置为ttl秒。</li>
+<li>PEXPIRE＜key＞＜ttl＞命令用于将键key的生存时间设置为ttl毫秒。</li>
+<li>EXPIREAT＜key＞＜timestamp＞命令用于将键key的过期时间设置为timestamp所指定的秒数时间戳。</li>
+<li>PEXPIREAT＜key＞＜timestamp＞命令用于将键key的过期时间设置为timestamp所指定的毫秒数时间戳。</li>
+<li>PERSIST命令可以移除一个键的过期时间</li>
+</ul>
+</li>
+<li>过期键删除策略<ul>
+<li>定时删除：在设置键的过期时间的同时，创建一个定时器（timer），让定时器在键的过期时间来临时，立即执行对键的删除操作。</li>
+<li>惰性删除：放任键过期不管，但是每次从键空间中获取键时，都检查取得的键是否过期，如果过期的话，就删除该键；如果没有过期，就返回该键。</li>
+<li>定期删除：每隔一段时间，程序就对数据库进行一次检查，删除里面的过期键。至于要删除多少过期键，以及要检查多少个数据库，则由算法决定。</li>
+</ul>
+</li>
+<li>数据库通知<ul>
+<li>数据库通知是Redis 2.8版本新增加的功能，这个功能可以让客户端通过订阅给定的频道或者模式，来获知数据库中键的变化，以及数据库中命令的执行情况。</li>
+<li>关注“某个键执行了什么命令”的通知称为键空间通知（key-space notification）</li>
+<li>键事件通知（key-event notification）的通知，它们关注的是“某个命令被什么键执行了”</li>
+<li>当Redis命令对数据库进行修改之后，服务器会根据配置向客户端发送数据库通知。</li>
+</ul>
+</li>
+<li>执行SAVE命令或者BGSAVE命令所产生的新RDB文件不会包含已经过期的键。</li>
+<li>执行BGREWRITEAOF命令所产生的重写AOF文件不会包含已经过期的键。</li>
+<li>当一个过期键被删除之后，服务器会追加一条DEL命令到现有AOF文件的末尾，显式地删除过期键。</li>
+<li>当主服务器删除一个过期键之后，它会向所有从服务器发送一条DEL命令，显式地删除过期键。</li>
+<li>从服务器即使发现过期键也不会自作主张地删除它，而是等待主节点发来DEL命令，这种统一、中心化的过期键删除策略可以保证主从服务器数据的一致性。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/06/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartII/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1292,326 +1627,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/04/01/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%B8%89%E7%AB%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/04/01/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%B8%89%E7%AB%A0/" class="post-title-link" itemprop="url">读书笔记-算法-第三章</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-04-01 09:15:26" itemprop="dateCreated datePublished" datetime="2022-04-01T09:15:26+08:00">2022-04-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2022/04/01/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%B8%89%E7%AB%A0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/04/01/read/读书笔记-算法-第三章/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="第三章-查找"><a href="#第三章-查找" class="headerlink" title="第三章 查找"></a>第三章 查找</h2><ul>
-<li><p>符号表</p>
-<ul>
-<li>符号表最主要的目的就是将一个键和一个值联系起来</li>
-<li>能够将一个键值对插入符号表并希望在之后能够从符号表的所有键值对中按照键直接找到相对应的值</li>
-<li>设计原则<ul>
-<li>每个键只对应着一个值（表中不允许存在重复的键）</li>
-<li>当用例代码向表中存入的键值对和表中已有的键（及关联的值）冲突时，新的值会替代旧的值</li>
-<li>键不能为空</li>
-<li>不允许有空值</li>
-<li>删除操作<ul>
-<li>延时删除<ul>
-<li>put(key,null)是delete(key)的一种简单的（延时型）实现</li>
-</ul>
-</li>
-<li>即时删除</li>
-</ul>
-</li>
-<li>基础API<br><img src="/2022/04/01/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%B8%89%E7%AB%A0/search1.png"></li>
-<li>有序的符号表API<ul>
-<li>通过实现comparabel接口带来接口的有序性<br><img src="/2022/04/01/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%B8%89%E7%AB%A0/search2.png"></li>
-</ul>
-</li>
-<li>最大键和最小键<ul>
-<li>区别在于优先队列中可以存在重复的键但符号表中不行，而且有序符号表支持的操作更多</li>
-</ul>
-</li>
-<li>向下取整和向上取整<ul>
-<li>向下取整（floor）操作（找出小于等于该键的最大键）</li>
-<li>向上取整（ceiling）操作（找出大于等于该键的最小键）</li>
-</ul>
-</li>
-<li>排名和选择</li>
-<li>范围查找</li>
-<li>例外情况<ul>
-<li>当一个方法需要返回一个键但表中却没有合适的键可以返回时，我们约定抛出一个异常（另一种合理的方法是在这种情况下返回空）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>成本模型<ul>
-<li>统计比较的次数（等价性测试或是键的相互比较）</li>
-<li>在内循环不进行比较（极少）的情况下，我们会统计数组的访问次数</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>无序链表的顺序查找</p>
-<ul>
-<li>符号表中使用的数据结构的一个简单选择是链表，每个结点存储一个键值对<ul>
-<li>每次查找遍历链表，使用equals方法进行比较</li>
-<li>插入也是遍历链表，如果匹配，则进行更新，没有匹配的就插入</li>
-</ul>
-</li>
-<li><strong>我们使用命中表示一次成功的查找，未命中表示一次失败的查找</strong><br><img src="/2022/04/01/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%B8%89%E7%AB%A0/noseqmap1.png"><br><img src="/2022/04/01/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%B8%89%E7%AB%A0/noseqmap2.png"></li>
-<li>注意其中的node构建方法，以及get和put方法</li>
-<li>性能分析<ul>
-<li>在含有N对键值的基于（无序）链表的符号表中，未命中的查找和插入操作都需要N次比较。命中的查找在最坏情况下需要N次比较。特别地，向一个空表中插入N个不同的键需要~(N^2)/2次比较<ul>
-<li>查找一个已经存在的键并不需要线性级别的时间。一种度量方法是查找表中的每个键，并将总时间除以N。</li>
-<li>在查找表中的每个键的可能性都相同的情况下时，这个结果就是一次查找平均所需的比较数。我们将它称为<strong>随机命中</strong>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/04/01/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%B8%89%E7%AB%A0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/03/29/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/03/29/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/" class="post-title-link" itemprop="url">读书笔记-算法-第二章</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-03-29 09:28:29" itemprop="dateCreated datePublished" datetime="2022-03-29T09:28:29+08:00">2022-03-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2022/03/29/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/03/29/read/读书笔记-算法-第二章/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="第二章-排序"><a href="#第二章-排序" class="headerlink" title="第二章 排序"></a>第二章 排序</h2><p><img src="/2022/03/29/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/basesort.png"></p>
-<ul>
-<li>初级排序算法<ul>
-<li>排序就是将数组的<strong>主键</strong>按照某种方式排序</li>
-<li>排序成本模型：我们需要计算<strong>比较</strong>和<strong>交换</strong>的数量。对于不交换元素的算法，我们会计算访问数组的次数</li>
-<li>java的compareTo方法必须实现一个全序关系：<ul>
-<li>自反性：对于所有的v，v=v</li>
-<li>反对称性：对于所有的v&lt;w都有w&gt;v，且v=w时w=v</li>
-<li>传递性：对于所有的v，w和x，如果v&lt;=w且w&lt;=x，则v&lt;=x</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>选择排序<ul>
-<li>基本步骤<ul>
-<li>找到数组中最小的那个元素</li>
-<li>将它和数组的第一个元素交换位置</li>
-<li>在剩下的元素中找到最小的元素，将它与数组的第二个元素交换位置，如此反复</li>
-</ul>
-</li>
-<li>分析效率<ul>
-<li>对于长度为N的数组，选择排序需要大约N^2/2次比较和N次交换</li>
-<li>为了找出最小的元素而扫描一遍数组并不能为下一遍扫描提供什么信息</li>
-<li>可以看到，对于长度为N的数组，交换次数固定为N次，是所有数组中，交换步数最少的</li>
-<li>简单，但效率颇低<br><img src="/2022/03/29/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/selectsort.png"> </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>插入排序<ul>
-<li>基本步骤<ul>
-<li>从索引1开始，对比索引1的数字和索引0的数字，如果索引0数字比索引1数字大，则两个数字交换位置</li>
-<li>索引移到2，对比索引2和索引1所在数字，同样的，如果索引1比索引2数字大，则交换位置</li>
-<li>接下来对比索引1和索引0，以此类推</li>
-</ul>
-</li>
-<li>分析效率<ul>
-<li>对于随机排列的长度为N且主键不重复的数组，平均情况下插入排序需要(N^2)/4次比较以及(N^2)/4次交换。最坏情况下需要(N^2)/2次比较和(N^2)/2次交换，最好情况下需要N-1次比较和0次交换。</li>
-<li>插入排序对于实际应用中常见的某些类型的非随机数组很有效<ul>
-<li>数组中每个元素距离它的最终位置都不远</li>
-<li>一个有序的大数组接一个小数组</li>
-<li>数组中只有几个元素的位置不正确</li>
-<li>当倒置的数量很少时，插入排序很可能比本章中的其他任何算法都要快<br><img src="/2022/03/29/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/insertsort.png"></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>排序算法可视化
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/29/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1624,7 +1639,7 @@
 
   <div class="copyright">
     &copy; 
-    <span itemprop="copyrightYear">2023</span>
+    <span itemprop="copyrightYear">2024</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Vue相比传统js的优点Vue.js相比传统的JavaScript有以下几个优点：  响应式数据绑定：Vue.js采用了响应式的数据绑定机制，可以将数据和DOM元素进行关联，当数据发生变化时，DOM会自动更新，减少了手动操作DOM的繁琐过程。 组件化开发：Vue.js鼓励组件化开发，将UI界面拆分成独立、可复用的组件，每个组件负责自己的逻辑和视图，更易于维护和复用。 虚拟DOM：Vue.js使用虚">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VUE_note_summary">
+<meta property="og:url" content="http://shdvgj.github.io/2023/12/02/2023/12/VUE-note-summary/index.html">
+<meta property="og:site_name" content="Ricky的个人博客">
+<meta property="og:description" content="Vue相比传统js的优点Vue.js相比传统的JavaScript有以下几个优点：  响应式数据绑定：Vue.js采用了响应式的数据绑定机制，可以将数据和DOM元素进行关联，当数据发生变化时，DOM会自动更新，减少了手动操作DOM的繁琐过程。 组件化开发：Vue.js鼓励组件化开发，将UI界面拆分成独立、可复用的组件，每个组件负责自己的逻辑和视图，更易于维护和复用。 虚拟DOM：Vue.js使用虚">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-02T00:36:12.000Z">
+<meta property="article:modified_time" content="2023-12-04T01:28:15.673Z">
+<meta property="article:author" content="Ricky">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://shdvgj.github.io/2023/12/02/2023/12/VUE-note-summary/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://shdvgj.github.io/2023/12/02/2023/12/VUE-note-summary/","path":"2023/12/02/2023/12/VUE-note-summary/","title":"VUE_note_summary"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>VUE_note_summary | Ricky的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ricky的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">30</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue%E7%9B%B8%E6%AF%94%E4%BC%A0%E7%BB%9Fjs%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-text">Vue相比传统js的优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFMVVM"><span class="nav-text">什么是MVVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue%E5%9F%BA%E6%9C%AC%E5%BC%80%E5%8F%91"><span class="nav-text">Vue基本开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%B8%AAdemo"><span class="nav-text">一个demo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-text">Vue生命周期</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-filter"><span class="nav-text">Vue filter</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ricky"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ricky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shdvgj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shdvgj" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:linqianghuang@gmail.com" title="E-Mail → mailto:linqianghuang@gmail.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/RickyLoveCindy" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;RickyLoveCindy" rel="noopener me" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoqianglalala" rel="noopener me" target="_blank"><i class="instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/12/02/2023/12/VUE-note-summary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="VUE_note_summary | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VUE_note_summary
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-12-02 08:36:12" itemprop="dateCreated datePublished" datetime="2023-12-02T08:36:12+08:00">2023-12-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-12-04 09:28:15" itemprop="dateModified" datetime="2023-12-04T09:28:15+08:00">2023-12-04</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/12/02/2023/12/VUE-note-summary/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/12/02/2023/12/VUE-note-summary/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="Vue相比传统js的优点"><a href="#Vue相比传统js的优点" class="headerlink" title="Vue相比传统js的优点"></a>Vue相比传统js的优点</h3><p>Vue.js相比传统的JavaScript有以下几个优点：</p>
+<ol>
+<li>响应式数据绑定：Vue.js采用了响应式的数据绑定机制，可以将数据和DOM元素进行关联，当数据发生变化时，DOM会自动更新，减少了手动操作DOM的繁琐过程。</li>
+<li>组件化开发：Vue.js鼓励组件化开发，将UI界面拆分成独立、可复用的组件，每个组件负责自己的逻辑和视图，更易于维护和复用。</li>
+<li>虚拟DOM：Vue.js使用虚拟DOM（Virtual DOM）来优化性能。当数据变化时，Vue.js会生成一个新的虚拟DOM树与旧的虚拟DOM树进行比较，然后只更新变化的部分，减少了直接操作实际DOM的开销。</li>
+<li>双向数据绑定：Vue.js支持双向数据绑定，即数据的变化会实时反映到视图中，同时用户对视图的操作也可以自动更新数据。</li>
+<li>生态系统丰富：Vue.js拥有庞大而活跃的社区，提供了许多第三方插件和库，例如Vue Router用于路由管理，Vuex用于状态管理，Vue CLI用于快速搭建项目等，这些工具和插件可以极大地提升开发效率。</li>
+<li>简单易学：Vue.js具有较低的学习曲线，文档清晰易懂，上手相对容易，适合初学者快速掌握。</li>
+</ol>
+<h3 id="什么是MVVM"><a href="#什么是MVVM" class="headerlink" title="什么是MVVM"></a>什么是MVVM</h3><p>MVVM是一种软件架构模式，它代表着Model-View-ViewModel（模型-视图-视图模型）。MVVM模式主要用于构建用户界面（UI）和业务逻辑的分离，使代码更加模块化、可维护和可测试。<br>下面是MVVM模式中各个组成部分的简要解释：</p>
+<ol>
+<li>Model（模型）：<br>模型代表应用程序的数据和业务逻辑。它包括从数据源获取数据、对数据进行操作和处理的方法，以及数据的验证和校验逻辑等。</li>
+<li>View（视图）：<br>视图是用户界面的可视化部分，负责展示数据和与用户进行交互。它通常是由HTML、CSS和其他前端技术来创建的，例如Web页面、移动应用程序的界面等。</li>
+<li>ViewModel（视图模型）：<br>视图模型是连接视图和模型之间的桥梁。它负责将模型中的数据转换为视图中可以展示的形式，并监听视图上的用户操作。视图模型包含了视图所需的数据、命令和方法，以及处理用户输入和对数据的操作等逻辑。<br>在MVVM模式中，视图和视图模型之间通过数据绑定建立了双向的关系。当模型的数据发生变化时，视图模型会通知视图进行更新，反之亦然。这种双向数据绑定使得当数据变化时，视图会自动更新，用户的操作也能够同步更新到数据模型中。<br>MVVM模式的一个重要特点是将界面逻辑和业务逻辑分离，使得开发人员可以专注于不同的任务。视图模板（View）主要关注界面的展示和用户交互，视图模型（ViewModel）主要负责处理数据和交互逻辑，而模型（Model）则专注于数据的获取和处理。这种分离使得代码更易于维护、测试和重用。<br>MVVM模式最初是由微软提出的，主要应用于WPF（Windows Presentation Foundation）和Silverlight等框架。后来，由于其优势和可扩展性，MVVM模式也在其他前端框架和技术中得到了广泛应用，例如Vue.js和Knockout.js等。</li>
+</ol>
+<h3 id="Vue基本开发"><a href="#Vue基本开发" class="headerlink" title="Vue基本开发"></a>Vue基本开发</h3><h4 id="一个demo"><a href="#一个demo" class="headerlink" title="一个demo"></a>一个demo</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Vue.js Demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">&quot;inputText&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>You entered: &#123;&#123; inputText &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">&quot;changeMessage&quot;</span>&gt;</span>Change Message<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="comment">// 创建一个Vue实例</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">      <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span><br><span class="line"><span class="javascript">      <span class="attr">data</span>: &#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">message</span>: <span class="string">&#x27;Hello, Vue!&#x27;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">inputText</span>: <span class="string">&#x27;&#x27;</span></span></span><br><span class="line"><span class="javascript">      &#125;,</span></span><br><span class="line"><span class="javascript">      <span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">changeMessage</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="built_in">this</span>.message = <span class="string">&#x27;New Message&#x27;</span>;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">      &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在这个示例中，我们使用<code>&lt;div&gt;</code>元素和<code>id=&quot;app&quot;</code>来定义Vue实例的挂载点。然后，我们在Vue实例的<code>data</code>选项中定义了两个属性：<code>message</code>和<code>inputText</code>。<code>message</code>属性用于展示消息，<code>inputText</code>属性与一个输入框进行双向数据绑定。<br>在模板中，我们使用双大括号（<code>&#123;&#123; &#125;&#125;</code>）来插入Vue实例中的数据，例如<code>&#123;&#123; message &#125;&#125;</code>和<code>&#123;&#123; inputText &#125;&#125;</code>。我们还使用了<code>v-model</code>指令将输入框和<code>inputText</code>属性进行绑定，实现了双向数据绑定。<br>在按钮上，我们使用了<code>v-on:click</code>指令监听点击事件，并在方法<code>changeMessage</code>中更新了<code>message</code>属性的值。<br>以上示例演示了Vue.js中常用的几个概念，包括数据绑定、事件监听和方法定义。你可以根据需要扩展和修改这个示例，进一步学习和探索Vue.js的功能和用法。</p>
+<h4 id="Vue生命周期"><a href="#Vue生命周期" class="headerlink" title="Vue生命周期"></a>Vue生命周期</h4><p>Vue.js生命周期指的是Vue实例在创建、更新和销毁过程中经历的一系列钩子函数，这些钩子函数允许开发者在特定阶段执行自定义的代码逻辑。Vue生命周期分为以下几个阶段：</p>
+<ol>
+<li>创建阶段（Creation）：<ul>
+<li>beforeCreate：在实例初始化之后，数据观测（data observation）和事件配置（event &amp; watcher setup）之前调用。此时，实例的属性和方法还未被初始化。</li>
+<li>created：在实例创建完成后被调用。此时，实例已完成数据观测、属性和方法的设置，但尚未开始DOM编译和挂载。</li>
+</ul>
+</li>
+<li>挂载阶段（Mounting）：<ul>
+<li>beforeMount：在挂载开始之前被调用。在此阶段，Vue实例的模板编译已完成，但尚未将模板渲染到真实的DOM中。</li>
+<li>mounted：在挂载完成后被调用。此时，Vue实例已经将模板渲染到了DOM中，并且可以进行DOM操作。</li>
+</ul>
+</li>
+<li>更新阶段（Updating）：<ul>
+<li>beforeUpdate：在数据更新导致重新渲染之前被调用。此时，虚拟DOM已经重新渲染并将更新前后的差异进行了计算，但尚未应用到真实的DOM中。</li>
+<li>updated：在数据更新并重新渲染DOM后被调用。此时，Vue实例的数据已经更新，DOM也已经更新完成，可以进行操作。</li>
+</ul>
+</li>
+<li>销毁阶段（Destroying）：<ul>
+<li>beforeDestroy：在实例销毁之前调用。此时，Vue实例仍然完全可用，可以执行一些清理工作，如解绑自定义事件、清除定时器等。</li>
+<li>destroyed：在实例销毁后调用。此时，Vue实例的所有指令和事件监听器都已被移除，不再可用。<br>此外，Vue还提供了一些其他的生命周期钩子函数，如activated和deactivated，用于处理Vue实例在组件切换时的特定行为。<br>通过这些生命周期钩子函数，开发者可以在不同的阶段执行自定义的代码逻辑，从而实现对应的操作和处理，例如初始化数据、发送网络请求、订阅事件、销毁资源等。生命周期钩子函数使得开发者可以更好地控制Vue实例的行为，并在需要时进行必要的操作和处理。</li>
+</ul>
+</li>
+</ol>
+<h3 id="Vue-filter"><a href="#Vue-filter" class="headerlink" title="Vue filter"></a>Vue filter</h3><p>Vue的filter用于在模板中对数据进行格式化显示。它可以将原始数据经过一系列的处理，返回处理后的结果。使用Vue的filter可以在模板中直接调用，使得数据的格式化操作更加方便和可维护。<br>下面是使用Vue的filter的步骤：</p>
+<ol>
+<li><p>定义过滤器：在Vue实例的<code>filters</code>选项中定义过滤器函数。过滤器函数接受一个输入值（原始数据）和一些可选的参数，并返回处理后的结果。可以通过全局Vue对象的<code>filter</code>方法来定义全局过滤器，或者在组件的选项中定义本地过滤器。<br>全局过滤器的定义示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Vue.filter(&#x27;capitalize&#x27;, function(value) &#123;</span><br><span class="line">  if (!value) return &#x27;&#x27;;</span><br><span class="line">  return value.charAt(0).toUpperCase() + value.slice(1);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>本地过滤器的定义示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">filters: &#123;</span><br><span class="line">  capitalize(value) &#123;</span><br><span class="line">    if (!value) return &#x27;&#x27;;</span><br><span class="line">    return value.charAt(0).toUpperCase() + value.slice(1);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>在模板中使用过滤器：在模板中使用管道符 <code>|</code> 将数据与过滤器连接起来。可以在模板中的插值表达式、指令和绑定等地方使用过滤器。<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&#123;&#123; message | capitalize &#125;&#125;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>上面的示例中，<code>message</code>是Vue实例中的一个数据属性，通过<code>capitalize</code>过滤器对它进行处理后显示。<br>过滤器还可以接受参数。例如，可以在模板中传递参数给过滤器函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&#123;&#123; message | capitalize(&#x27;first&#x27;) &#125;&#125;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>在上面的示例中，将字符串’first’作为参数传递给<code>capitalize</code>过滤器函数。<br>需要注意以下几点：</p>
+</li>
+</ol>
+<ul>
+<li>过滤器可以链式调用，多个过滤器会按顺序依次处理数据。</li>
+<li>过滤器可以在Vue实例和组件的计算属性中使用，以便在数据的处理过程中重用。</li>
+<li>过滤器是非变异的，即它们不会改变原始数据，而是返回新的处理结果。</li>
+<li>过滤器函数可以定义在其他文件中，然后通过模块导入的方式使用。<br>通过使用Vue的filter，你可以方便地在模板中对数据进行格式化，使得数据展示更加清晰和易读。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/11/28/2023/11/distribute-search-engine/" rel="prev" title="分布式搜索引擎笔记">
+                  <i class="fa fa-chevron-left"></i> 分布式搜索引擎笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/01/18/2024/01/how-to-talk-with-others/" rel="next" title="得到沟通课笔记">
+                  得到沟通课笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ricky</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"cindyforever","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
