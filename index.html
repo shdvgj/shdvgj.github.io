@@ -83,7 +83,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">30</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">30</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">84</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -190,6 +190,105 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2024/03/21/2024/03/java-22-new-feature/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/21/2024/03/java-22-new-feature/" class="post-title-link" itemprop="url">JAVA22新特性介绍和解说</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-21 10:56:49 / 修改时间：13:24:45" itemprop="dateCreated datePublished" datetime="2024-03-21T10:56:49+08:00">2024-03-21</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2024/03/21/2024/03/java-22-new-feature/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2024/03/21/2024/03/java-22-new-feature/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>翻译自<a target="_blank" rel="noopener" href="https://inside.java/2024/03/19/the-arrival-of-java-22/">inside.java</a></p>
+<p>JDK22 提供了12个新的增强特性。包括了7个预览特性和一个孵化器特性。这囊括了Java语法，API，性能和jdk工具相关的升级。</p>
+<h3 id="语法提升"><a href="#语法提升" class="headerlink" title="语法提升"></a>语法提升</h3><h4 id="Unnamed-Variables-amp-Patterns-JEP-456"><a href="#Unnamed-Variables-amp-Patterns-JEP-456" class="headerlink" title="Unnamed Variables &amp; Patterns - JEP 456"></a><a target="_blank" rel="noopener" href="https://openjdk.org/jeps/456">Unnamed Variables &amp; Patterns - JEP 456</a></h4><p>改善了当需要变量声明或嵌套模式但未使用时的可读性。这两种情况都用下划线字符表示。<br>作用：</p>
+<ul>
+<li>捕捉开发者意图，表明给定的绑定或lambda参数未使用，并强制执行该属性，以明确程序并减少错误的机会。</li>
+<li>通过识别必须声明但未使用的变量（例如，在catch子句中），提高了所有代码的可维护性。</li>
+<li>允许在单个case标签中出现多个模式，如果它们都不声明任何模式变量。</li>
+<li>通过省略不必要的嵌套类型模式，提高了记录模式的可读性。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/03/21/2024/03/java-22-new-feature/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1205,131 +1304,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/11/07/2023/11/develep-english-shortcut/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/11/04/2023/11/nginx-learn-note/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/11/04/2023/11/nginx-learn-note/" class="post-title-link" itemprop="url">Nginx学习笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-04 11:25:09" itemprop="dateCreated datePublished" datetime="2023-11-04T11:25:09+08:00">2023-11-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-20 14:29:34" itemprop="dateModified" datetime="2023-11-20T14:29:34+08:00">2023-11-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2023/11/04/2023/11/nginx-learn-note/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/11/04/2023/11/nginx-learn-note/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="docker启动nginx"><a href="#docker启动nginx" class="headerlink" title="docker启动nginx"></a>docker启动nginx</h3><ul>
-<li>拉取nginx最新版本： <code>docker pull nginx</code> <ul>
-<li>启动nginx：<code>docker run --name nginx-test --mount type=bind,source=/docker/nginx/html,target=/usr/share/nginx/html --mount type=bind,source=/docker/nginx/nginx,target=/etc/nginx --mount type=bind,source=/docker/nginx/logs,target=/var/log/nginx -p 8081:80 -d nginx</code><ul>
-<li>其中<code>/usr/share/nginx/html</code>是默认的nginx容器页面路径</li>
-<li><code>-p 8081:80</code>是端口映射配置</li>
-<li><code>/etc/nginx</code>是默认的nginx容器配置目录</li>
-<li><code>d</code> 表示后台运行</li>
-<li>最后的<code>nginx</code>表示使用nginx镜像启动</li>
-</ul>
-</li>
-<li>复制nginx容器配置文件目录到本地目录：<code>docker container cp nginx-test:/etc/nginx/nginx.conf .</code></li>
-<li>重新启动nginx</li>
-<li>docker容器内执行nginx指令<ul>
-<li>reload：<code>docker exec -it nginx-test nginx -s reload</code></li>
-<li>test：<code>docker exec -it nginx-test nginx -t</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/11/04/2023/11/nginx-learn-note/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

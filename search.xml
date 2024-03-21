@@ -8736,4 +8736,112 @@
 </ul>
 ]]></content>
   </entry>
+  <entry>
+    <title>JAVA22新特性介绍和解说</title>
+    <url>/2024/03/21/2024/03/java-22-new-feature/</url>
+    <content><![CDATA[<p>翻译自<a href="https://inside.java/2024/03/19/the-arrival-of-java-22/">inside.java</a></p>
+<p>JDK22 提供了12个新的增强特性。包括了7个预览特性和一个孵化器特性。这囊括了Java语法，API，性能和jdk工具相关的升级。</p>
+<h3 id="语法提升"><a href="#语法提升" class="headerlink" title="语法提升"></a>语法提升</h3><h4 id="Unnamed-Variables-amp-Patterns-JEP-456"><a href="#Unnamed-Variables-amp-Patterns-JEP-456" class="headerlink" title="Unnamed Variables &amp; Patterns - JEP 456"></a><a href="https://openjdk.org/jeps/456">Unnamed Variables &amp; Patterns - JEP 456</a></h4><p>改善了当需要变量声明或嵌套模式但未使用时的可读性。这两种情况都用下划线字符表示。<br>作用：</p>
+<ul>
+<li>捕捉开发者意图，表明给定的绑定或lambda参数未使用，并强制执行该属性，以明确程序并减少错误的机会。</li>
+<li>通过识别必须声明但未使用的变量（例如，在catch子句中），提高了所有代码的可维护性。</li>
+<li>允许在单个case标签中出现多个模式，如果它们都不声明任何模式变量。</li>
+<li>通过省略不必要的嵌套类型模式，提高了记录模式的可读性。</li>
+</ul>
+<span id="more"></span>
+
+<h4 id="Statements-before-super-…-Preview-JEP-447"><a href="#Statements-before-super-…-Preview-JEP-447" class="headerlink" title="Statements before super (…) [Preview] - JEP 447"></a><a href="https://openjdk.org/jeps/447">Statements before super (…) [Preview] - JEP 447</a></h4><p>在构造函数中，允许在显式构造函数调用之前出现不引用正在创建的实例的语句。<br>作用：</p>
+<ul>
+<li>使开发者更自由地表达构造函数的行为，能够更自然地放置目前必须分解为辅助静态方法、辅助中间构造函数或构造函数参数的逻辑。</li>
+<li>保留了构造函数按自顶向下的顺序在类实例化期间运行的现有保证，确保子类构造函数中的代码不能干扰超类的实例化。</li>
+<li>不需要对Java虚拟机进行任何更改。这个Java语言特性仅依赖于JVM当前在构造函数中的显式构造函数调用之前验证和执行代码的能力。</li>
+</ul>
+<h4 id="String-Templates-2nd-Preview-JEP-459"><a href="#String-Templates-2nd-Preview-JEP-459" class="headerlink" title="String Templates (2nd Preview) - JEP 459"></a><a href="https://openjdk.org/jeps/459">String Templates (2nd Preview) - JEP 459</a></h4><p>字符串模板通过将文字文本与嵌入的表达式和模板处理器相结合，生成特定的结果，从而补充了Java现有的字符串字面量和文本块。<br>作用：</p>
+<ul>
+<li>通过轻松表达包含在运行时计算的值的字符串，简化了编写Java程序的过程。</li>
+<li>无论文本是否适合于单个源行（如字符串字面量）或跨越多个源行（如文本块），都提高了混合文本和表达式的表达式的可读性。</li>
+<li>通过支持对模板及其嵌入表达式的验证和转换，提高了从用户提供的值组合字符串并将其传递给其他系统（例如构建数据库查询）的Java程序的安全性。</li>
+<li>通过允许Java库定义字符串模板中使用的格式化语法，保持了灵活性。</li>
+<li>简化了接受非Java语言编写的字符串的API的使用（例如SQL、XML和JSON）。</li>
+<li>使得能够从文字文本和嵌入的表达式计算出非字符串值，而无需通过中间字符串表示进行转换。</li>
+</ul>
+<h4 id="Implicitly-Declared-Classes-and-Instance-Main-Methods-2nd-Preview-JEP-463"><a href="#Implicitly-Declared-Classes-and-Instance-Main-Methods-2nd-Preview-JEP-463" class="headerlink" title="Implicitly Declared Classes and Instance Main Methods (2nd Preview) - JEP 463"></a><a href="https://openjdk.org/jeps/463">Implicitly Declared Classes and Instance Main Methods (2nd Preview) - JEP 463</a></h4><p>学生可以编写他们的第一个Java程序，而无需理解为大型程序设计的语言特性。学生可以编写简化的单类程序声明，然后随着技能的提高，无缝地扩展他们的程序以使用更高级的特性，而无需使用独立的语言方言。<br>作用：<br>为加速学习Java语言提供支持-</p>
+<ul>
+<li>以平稳的方式引入Java编程，使教师能够逐渐介绍概念。</li>
+<li>帮助学生以简洁的方式编写基本程序，并随着技能的提高而逐渐发展他们的代码。</li>
+<li>减少编写简单程序（如脚本和命令行工具）的繁文缛节。</li>
+<li>不引入独立的Java语言初学者方言。</li>
+<li>不引入独立的Java工具链；学生程序应使用与编译和运行任何Java程序相同的工具进行编译和运行。</li>
+</ul>
+<h3 id="类库"><a href="#类库" class="headerlink" title="类库"></a>类库</h3><h4 id="Foreign-Function-amp-Memory-API-JEP-454"><a href="#Foreign-Function-amp-Memory-API-JEP-454" class="headerlink" title="Foreign Function &amp; Memory API - JEP 454"></a><a href="https://openjdk.org/jeps/454">Foreign Function &amp; Memory API - JEP 454</a></h4><p>允许Java程序与Java运行时之外的代码和数据进行互操作。通过高效地调用外部函数（即JVM之外的代码），并安全地访问外部内存（即JVM不管理的内存），该API使Java程序能够调用本地库并处理本地数据，而无需使用脆弱和危险的JNI（Java Native Interface）。<br>作用：</p>
+<ul>
+<li>提高生产力 - 用简洁、可读性强且纯Java的API取代本地方法和Java Native Interface (JNI) 的脆弱机制。</li>
+<li>提高性能 - 提供访问外部函数和内存的开销，与JNI和sun.misc.Unsafe相当甚至更好。</li>
+<li>广泛的平台支持 - 在JVM运行的每个平台上实现本地库的发现和调用。</li>
+<li>统一性 - 提供操作结构化和非结构化数据的方法，无限大小，以及在多种类型的内存中进行操作（例如本地内存、持久内存和托管堆内存）。</li>
+<li>安全性 - 即使在多个线程之间分配和释放内存时，也能保证没有使用后释放的错误。</li>
+<li>完整性 - 允许程序执行与本地代码和数据相关的不安全操作，但默认情况下警告用户这些操作。</li>
+</ul>
+<h3 id="类库预览和孵化器"><a href="#类库预览和孵化器" class="headerlink" title="类库预览和孵化器"></a>类库预览和孵化器</h3><h4 id="Class-File-API-Preview-JEP-457"><a href="#Class-File-API-Preview-JEP-457" class="headerlink" title="Class-File API (Preview) - JEP 457"></a><a href="https://openjdk.org/jeps/457">Class-File API (Preview) - JEP 457</a></h4><p>提供了一个标准的API，用于解析、生成和转换Java类文件。<br>作用：</p>
+<ul>
+<li>该API使依赖于它的框架和程序能够自动支持最新的JDK中的最新类文件，因此可以快速、轻松地采用具有类文件表示的新语言和虚拟机特性。</li>
+</ul>
+<h4 id="Stream-Gatherers-Preview-JEP-461"><a href="#Stream-Gatherers-Preview-JEP-461" class="headerlink" title="Stream Gatherers (Preview) - JEP 461"></a><a href="https://openjdk.org/jeps/461">Stream Gatherers (Preview) - JEP 461</a></h4><p>增强了Stream API以支持自定义的中间操作。这将允许流水线以一种现有内置中间操作无法轻松实现的方式转换数据。<br>作用：</p>
+<ul>
+<li>通过使流中常见的自定义操作更加灵活和表达力，提高了开发人员的生产力和代码可读性。尽可能地，允许中间操作操作无限大小的流。</li>
+</ul>
+<h4 id="Structured-Concurrency-2nd-Preview-JEP-462"><a href="#Structured-Concurrency-2nd-Preview-JEP-462" class="headerlink" title="Structured Concurrency (2nd Preview) - JEP 462"></a><a href="https://openjdk.org/jeps/462">Structured Concurrency (2nd Preview) - JEP 462</a></h4><p>简化并发编程。结构化并发将在不同线程中运行的相关任务组视为一个工作单元，从而简化了错误处理和取消操作，提高了可靠性和可观察性。<br>作用：</p>
+<ul>
+<li>通过推广一种编程风格，可以消除由于取消和关闭而产生的常见风险，如线程泄漏和取消延迟，从而简化了并发代码的开发，并提高了并发代码的可观察性。</li>
+</ul>
+<h4 id="Scoped-Values-2nd-Preview-JEP-464"><a href="#Scoped-Values-2nd-Preview-JEP-464" class="headerlink" title="Scoped Values (2nd Preview) - JEP 464"></a><a href="https://openjdk.org/jeps/464">Scoped Values (2nd Preview) - JEP 464</a></h4><p>使得在线程内部和跨线程之间高效共享不可变数据成为可能。<br>作用：</p>
+<ul>
+<li>易用性 - 提供一种编程模型，使得在线程内部和与子线程之间共享数据更加简化，简化了对数据流的推理。</li>
+<li>可理解性 - 通过代码的语法结构使共享数据的生命周期可见。</li>
+<li>鲁棒性 - 确保只有合法的调用者才能获取调用方共享的数据。</li>
+<li>性能 - 将共享数据视为不可变的，使大量线程能够共享，并启用运行时优化。</li>
+</ul>
+<h4 id="Vector-API-7th-Incubator-JEP-460"><a href="#Vector-API-7th-Incubator-JEP-460" class="headerlink" title="Vector API (7th Incubator) - JEP 460"></a><a href="https://openjdk.org/jeps/460">Vector API (7th Incubator) - JEP 460</a></h4><p>提供了一个API，用于在支持的CPU架构上可靠地在运行时编译为最佳的矢量指令，从而实现比等效的标量计算更高的性能。此JEP提议在JDK 22中重新孵化该API，并相对于JDK 21对API进行小的增强。实现包括错误修复和性能提升。以下是一些显著的变化：</p>
+<ul>
+<li>支持使用由任何原始元素类型数组支持的堆内存段进行矢量访问。之前，访问仅限于由字节数组支持的堆内存段。<br>作用：</li>
+<li>提供了一个清晰简洁的API，能够清晰、简洁地表达由矢量操作序列组成的广泛的矢量计算，这些矢量操作组合在循环内，并可能包含控制流。</li>
+<li>该API的设计与CPU架构无关，可以在支持矢量指令的多种架构上实现。</li>
+<li>在x64和AArch64架构上提供可靠的运行时编译和性能。</li>
+<li>与Valhalla项目保持一致。</li>
+</ul>
+<h3 id="性能提升"><a href="#性能提升" class="headerlink" title="性能提升"></a>性能提升</h3><h4 id="Regional-Pinning-for-G1-JEP-423"><a href="#Regional-Pinning-for-G1-JEP-423" class="headerlink" title="Regional Pinning for G1 - JEP 423"></a><a href="https://openjdk.org/jeps/423">Regional Pinning for G1 - JEP 423</a></h4><p>降低延迟通过在G1中实现区域固定（regional pinning），从而在Java Native Interface（JNI）关键区域中无需禁用垃圾回收操作。<br>作用：</p>
+<ul>
+<li>通过消除在使用JNI时Java线程需要等待G1垃圾回收操作完成的需求，提高了开发人员的生产力。这意味着开发人员可以更高效地使用JNI，而无需为了等待垃圾回收操作而延迟执行其他任务。</li>
+</ul>
+<h3 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h3><h4 id="Launch-Multi-File-Source-Code-Programs-JEP-458"><a href="#Launch-Multi-File-Source-Code-Programs-JEP-458" class="headerlink" title="Launch Multi-File Source-Code Programs - JEP 458"></a><a href="https://openjdk.org/jeps/458">Launch Multi-File Source-Code Programs - JEP 458</a></h4><p>允许用户在不必先编译的情况下运行以多个Java源代码文件提供的程序。<br>作用：</p>
+<ul>
+<li>通过使从小型程序向大型程序的过渡更加渐进，提高了开发人员的生产力，使开发人员可以选择是否以及何时费力地配置构建工具。<br>需要注意的是，预览功能是Java SE平台的完全规范和完全实现的语言或虚拟机功能，但它们是临时的。它们在JDK特性发布中提供，以便开发人员可以在实际使用中提供反馈意见，然后在未来的发布中成为永久功能。这也为工具供应商提供了在Java SE标准中最终确定之前支持这些功能的机会。<br>孵化器模块中的API提供了非最终API和非最终工具，供开发人员和用户使用，以收集反馈意见，最终提高Java平台的质量。<br>除了JEP中描述的更改，发行说明中还列出了许多较小的更新，这些更新对许多应用程序开发人员和系统管理员都感兴趣。其中包括弃用过时的API和删除以前弃用的API。<br>Java 22版本说明中的一些关键更新：</li>
+<li>向keytool和jarsigner添加了额外的算法。</li>
+<li>垃圾收集器吞吐量的改进，特别是与“young”垃圾相关的改进。</li>
+<li>对系统模块描述符的更好版本报告。</li>
+<li>用于本机代码的改进“wait”处理选项。</li>
+<li>Unicode通用区域数据存储库已更新到44版本。</li>
+<li>支持从字节码加载的类型的类型注释。</li>
+<li>ForkJoinPool和ForJoinTasks现在可以更好地处理不可中断的任务。</li>
+<li>更灵活地配置客户端与服务器的TLS连接属性。</li>
+<li>改进的本机内存跟踪，包括报告峰值使用情况。</li>
+<li>最后，与所有特性发布一样，JDK 22包括数百个性能、稳定性和安全性更新，包括适应底层操作系统和固件更新和标准。用户和应用程序开发人员通常会从这些更改中获益，而不会注意到它们。</li>
+</ul>
+<h3 id="所有JDK版本都包含不变的特性：可预测"><a href="#所有JDK版本都包含不变的特性：可预测" class="headerlink" title="所有JDK版本都包含不变的特性：可预测"></a>所有JDK版本都包含不变的特性：可预测</h3><p>JDK 22是按照六个月发布周期准时发布的第13个特性版本。这种可预测性水平使得开发人员能够轻松管理对创新的采用，因为他们可以预期到一系列改进的稳定流动。这样的发布周期使得开发人员能够及时获取最新的功能和性能改进，并在其应用程序中进行适当的采用和迁移。<br><img src="/2024/03/21/2024/03/java-22-new-feature/FeaturesPerRelease.png"><br>Java的能力在提升性能、稳定性和安全性方面持续推动着它成为全球最受欢迎的编程语言。<br>Oracle将不会为JDK 22提供长期支持；我们将在2024年9月之前提供更新，届时将由Oracle JDK 23取而代之。这意味着开发人员可以在这段时间内获得对JDK 22的支持和更新，但在超过该日期之后，他们可能需要迁移到更高版本的JDK以继续获取支持。</p>
+<h3 id="JDK-22-的更新频率"><a href="#JDK-22-的更新频率" class="headerlink" title="JDK 22 的更新频率"></a>JDK 22 的更新频率</h3><p>多年来，JDK版本的变化速度一直基本保持不变，但在六个月的发布周期下，交付成熟的功能和改进的速度显著增加。<br>现在，我们不再像以往的主要版本发布那样，每隔几年进行成千上万个修复和近百个JEP（JDK增强提案），而是在更可控和可预测的六个月时间表上以更精简的特性版本交付改进。这些改变涵盖了从重要的新功能到小的增强、例行维护、错误修复和文档改进。每个变化都以JDK Bug系统中单个问题的单个提交表示。<br>在Java 11到Java 22期间，有26,447个JIRA问题在它们的GA（正式发布）时被标记为已修复。其中，18,842个问题由Oracle员工完成，而7,605个问题由个人开发人员和其他组织的开发人员贡献。通过分析问题并整理受托人的组织数据，可以得出以下图表，显示了在Java中赞助贡献开发的组织情况：<br><img src="/2024/03/21/2024/03/java-22-new-feature/JDK11-22-IssuesFixed.png"><br>在Java 22中，有2,251个JIRA问题被标记为已修复，其中1,554个由Oracle完成，而697个由Java社区的其他成员贡献。Oracle要感谢来自Amazon、ARM、Google、华为、IBM、Intel、ISCAS、Microsoft、Red Hat、Rivos、SAP和腾讯等组织的开发人员，他们做出了显著的贡献。我们也很感谢像Bellsoft Data Dog和Loongson这样的小型组织以及共同为Java 22的修复提供了7%贡献的独立开发人员。<br><img src="/2024/03/21/2024/03/java-22-new-feature/JDK22-IssuesFixedPerOrg.png"><br>此外，通过OpenJDK质量外展计划，我们还要感谢以下自由开源软件（FOSS）项目在测试Java 22早期访问版本时提供了出色的反馈，以帮助改进发布的质量：<br>Apache Syncope（Francesco Chicchiriccò）<br>Apache Tomcat（Mark Thomas）<br>ApprovalTests.Java（Lars Eckart）<br>AssertJ（Stefano Cordio）<br>Avaje（Josiah Noel）<br>Jetty（Simone Bordet）<br>MyBatis（Iwao Ave）<br>Parallel Collectors（Grzegorz Piwowarek）<br>RxJava（David Karnok）</p>
+<h3 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h3><p>Java仍然是当今技术趋势中的首选编程语言。正如Java 22准时交付改进所展示的那样，通过持续的周密计划和生态系统参与，Java平台在现代开发和云端增长方面处于良好的位置。<br>保持与新闻和更新同步，可以通过以下方式：</p>
+<ul>
+<li>访问Dev.java（Oracle致力于提升您的Java知识和社区参与的专门门户网站）。</li>
+<li>访问Inside.java（Oracle Java团队提供的新闻和观点）。</li>
+<li>听取Inside.java Podcasts（一档为Java开发人员提供的音频节目，直接由Oracle的Java团队提供。对话将涵盖语言、JVM、OpenJDK、平台安全性、像Loom和Panama这样的创新项目以及其他相关内容）。</li>
+<li>观看Inside.java Newscasts（将Inside.java Podcast扩展为视频格式的节目）。</li>
+<li>观看Java YouTube频道（Oracle的相关Java视频集合，帮助您提升Java技能）。</li>
+<li>观看JEP Café（Oracle对流行的JDK增强提案进行的技术探索）。</li>
+<li>观看Sip of Java（Oracle的1分钟简短视频，介绍一些不太为人知的Java增强功能，提供性能、稳定性和安全性改进）。</li>
+<li>加入OpenJDK邮件列表（了解您最喜欢的OpenJDK项目的进展情况的地方）。</li>
+<li>关注OpenJDK和Java在社交媒体上的更新（提供有关Java持续演进的更新和新闻）。</li>
+<li>订阅Inside Java Newsletter（每月出版物，总结了Oracle的许多关键Java技术和社区更新）。<br>通过以上方式，您可以及时了解Java的最新新闻和更新，同时扩展自己的Java知识和技能。</li>
+</ul>
+]]></content>
+  </entry>
 </search>
