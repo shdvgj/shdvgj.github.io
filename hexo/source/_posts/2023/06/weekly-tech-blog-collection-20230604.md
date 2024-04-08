@@ -23,6 +23,8 @@ categories:
 有些互动让人感到颇为惊讶。
 ![](social_AI_3.png)
 
+<!--more-->
+
 ## [google官方的免费创造性AI课程](https://www.cloudskillsboost.google/journeys/118)
 目前包含十节课，介绍了大语言模型，图像生成模型等等，学习门槛较高，需要英语能力和梯子。
 
