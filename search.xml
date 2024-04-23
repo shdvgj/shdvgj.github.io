@@ -8974,4 +8974,18 @@
 <p>最后总结这段让我永生难玩的一年，还是文章开头那八个字吧：<strong>生于忧患，死于安乐</strong>。与大家共勉。</p>
 ]]></content>
   </entry>
+  <entry>
+    <title>在mac端远程连接windows并使用mac快捷键</title>
+    <url>/2024/04/22/2024/04/how-to-use-mac-keyboard-in-win/</url>
+    <content><![CDATA[<h2 id="安装远程连接工具"><a href="#安装远程连接工具" class="headerlink" title="安装远程连接工具"></a>安装远程连接工具</h2><h3 id="内网连接推荐使用Microsoft-Remote-Desktop"><a href="#内网连接推荐使用Microsoft-Remote-Desktop" class="headerlink" title="内网连接推荐使用Microsoft Remote Desktop"></a>内网连接推荐使用Microsoft Remote Desktop</h3><h3 id="外网推荐使用TeamViewer"><a href="#外网推荐使用TeamViewer" class="headerlink" title="外网推荐使用TeamViewer"></a>外网推荐使用TeamViewer</h3><h2 id="安装改键工具"><a href="#安装改键工具" class="headerlink" title="安装改键工具"></a>安装改键工具</h2><h3 id="推荐使用微软官方工具PowerToys"><a href="#推荐使用微软官方工具PowerToys" class="headerlink" title="推荐使用微软官方工具PowerToys"></a>推荐使用微软官方工具PowerToys</h3><ul>
+<li>安装<a href="https://learn.microsoft.com/en-us/windows/powertoys/">https://learn.microsoft.com/en-us/windows/powertoys/</a></li>
+<li>点击Keyboard Manager - Enable Keyboard Manager 【On】</li>
+<li>点击Remap a key，实现单个键盘按键点击映射为另一个键，如command映射为ctrl</li>
+<li>点击Remap a shortcut，实现复合快捷键的映射，如Ctrl+A映射为Ctrl+B</li>
+</ul>
+<p>从实际体验来看，基本上把command映射为ctrl就够用了。</p>
+<p><strong>注意事项</strong> 每次改完键后可能会无效，此时重启一次软件就可以了。</p>
+<h3 id="另外推荐安装Vim"><a href="#另外推荐安装Vim" class="headerlink" title="另外推荐安装Vim"></a>另外推荐安装Vim</h3><p>真正实现一套short cut，四处使用。又有逼格又省心省力。</p>
+]]></content>
+  </entry>
 </search>
