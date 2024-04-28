@@ -16,6 +16,8 @@ tags:
 
 ![一图识别UML](一图识别UML.png)
 
+![UML连线关系](uml2.png)
+
 [UML图概览](http://www.uml.org.cn/oobject/OObject.asp)
 
 <!--more-->
