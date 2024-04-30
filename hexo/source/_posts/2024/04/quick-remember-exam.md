@@ -27,3 +27,13 @@ tags:
 ![一图设计模式](一图设计模式.png)
 
 [设计模式介绍](https://refactoringguru.cn/design-patterns/catalog)
+
+### 计算机基本原理
+
+![计算机组成](计算机组成.png)
+
+![存储结构](存储结构.png)
+
+### HTTPS验证过程
+
+![HTTPS验证过程.webp](HTTPS验证过程.webp)
