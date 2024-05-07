@@ -6385,52 +6385,6 @@
       </categories>
   </entry>
   <entry>
-    <title>outlines - 快速可靠的神经文本生成。</title>
-    <url>/2023/08/15/2023/08/daily-blog-20230815/</url>
-    <content><![CDATA[<p>Outlines 〰 是一个用于神经文本生成的库。您可以将其视为 transformers 库中 generate 方法的更灵活替代品。</p>
-<p>Outlines 〰 帮助开发人员引导文本生成，以构建与外部系统具有强大接口的稳健界面。它提供了生成方法，确保输出与正则表达式匹配，或者遵循 JSON 模式。</p>
-<p>Outlines 〰 提供了强大的提示原语，将提示与执行逻辑分离，从而实现了少样本生成、ReAct、元提示、代理等简单实现。</p>
-<p>Outlines 〰 被设计为一个与更广泛生态系统兼容的库，而非替代品。我们尽可能少地使用抽象，生成可以与控制流、条件语句、自定义 Python 函数以及调用其他库交错进行。</p>
-<p>Outlines 〰 与所有模型兼容。它仅通过下一个标记的对数与模型进行交互。它也可以与基于 API 的模型一起使用。</p>
-<span id="more"></span>
-
-<h2 id="主要Features"><a href="#主要Features" class="headerlink" title="主要Features"></a>主要Features</h2><ul>
-<li>🖍️基于Jinja模板引擎的简单而强大的提示基元</li>
-<li>🚄引导式生成，包括多项选择、类型约束和动态停止</li>
-<li>⚡快速的正则引导生成</li>
-<li>🔥根据JSON模式或Pydantic模型快速生成JSON</li>
-<li>🐍将完成与循环、条件语句和自定义Python函数交错进行</li>
-<li>💾生成结果缓存</li>
-<li>🤗与HuggingFace的transformers模型集成</li>
-</ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>通过python安装</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pip install outlines</span><br></pre></td></tr></table></figure>
-
-<h2 id="引导式生成"><a href="#引导式生成" class="headerlink" title="引导式生成"></a>引导式生成</h2><p>确保包含大型语言模型的系统可靠性的第一步是确保它们的输出与用户定义的代码之间存在明确定义的接口。Outlines 提供了控制语言模型生成的方法，以使其输出更加可预测。</p>
-<h3 id="提早终止"><a href="#提早终止" class="headerlink" title="提早终止"></a>提早终止</h3><p>您可以在找到给定字符后停止生成。</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> outlines.text.generate <span class="keyword">as</span> generate</span><br><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line">answer = generate.continuation(model, stop=[<span class="string">&quot;.&quot;</span>])(<span class="string">&quot;Tell me a one-sentence joke.&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="多种选择"><a href="#多种选择" class="headerlink" title="多种选择"></a>多种选择</h3><p>您可以将完成结果缩减为多个可能性之间的选择。</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> outlines.text.generate <span class="keyword">as</span> generate</span><br><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line"></span><br><span class="line">prompt = labelling(<span class="string">&quot;Just awesome&quot;</span>, examples)</span><br><span class="line">answer = generate.choice(model, [<span class="string">&quot;Positive&quot;</span>, <span class="string">&quot;Negative&quot;</span>])(prompt)</span><br></pre></td></tr></table></figure>
-
-<h3 id="类型约束"><a href="#类型约束" class="headerlink" title="类型约束"></a>类型约束</h3><p>可以指定返回的结果类型：</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> outlines.text.generate <span class="keyword">as</span> generate</span><br><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line"></span><br><span class="line">prompt = <span class="string">&quot;1+1=&quot;</span></span><br><span class="line">answer = generate.integer(model)(prompt)</span><br><span class="line"></span><br><span class="line">prompt = <span class="string">&quot;sqrt(2)=&quot;</span></span><br><span class="line">answer = generate.<span class="built_in">float</span>(model)(prompt)</span><br></pre></td></tr></table></figure>
-
-<h3 id="高效的正则引导式生成"><a href="#高效的正则引导式生成" class="headerlink" title="高效的正则引导式生成"></a>高效的正则引导式生成</h3><p>Outlines 还提供了快速的正则引导生成。实际上，上面的 choice、integer 和 float 函数都在底层使用了正则引导生成：</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"><span class="keyword">import</span> outlines.text.generate <span class="keyword">as</span> generate</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2-medium&quot;</span>)</span><br><span class="line"></span><br><span class="line">prompt = <span class="string">&quot;Is 1+1=2? &quot;</span></span><br><span class="line">unguided = generate.continuation(model, max_tokens=<span class="number">30</span>)(prompt)</span><br><span class="line">guided = generate.regex(model, <span class="string">r&quot;\s*([Yy]es|[Nn]o|[Nn]ever|[Aa]lways)&quot;</span>, max_tokens=<span class="number">30</span>)(</span><br><span class="line">    prompt</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(unguided)</span><br><span class="line"><span class="comment"># Is 1+1=2?</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># This is probably the most perplexing question.</span></span><br><span class="line"><span class="comment"># As I said in one of my articles describing how</span></span><br><span class="line"><span class="comment"># I call 2 and 1, there isn&#x27;t</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(guided)</span><br><span class="line"><span class="comment"># Is 1+1=2? Always</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="高效遵循-Pydantic-模型的-JSON-生成"><a href="#高效遵循-Pydantic-模型的-JSON-生成" class="headerlink" title="高效遵循 Pydantic 模型的 JSON 生成"></a>高效遵循 Pydantic 模型的 JSON 生成</h3><p>Outlines 〰 允许引导生成过程，以确保输出符合 JSON 模式或 Pydantic 模型。</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span></span><br><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel, constr</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"><span class="keyword">import</span> outlines.text.generate <span class="keyword">as</span> generate</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Weapon</span>(<span class="params"><span class="built_in">str</span>, Enum</span>):</span></span><br><span class="line">    sword = <span class="string">&quot;sword&quot;</span></span><br><span class="line">    axe = <span class="string">&quot;axe&quot;</span></span><br><span class="line">    mace = <span class="string">&quot;mace&quot;</span></span><br><span class="line">    spear = <span class="string">&quot;spear&quot;</span></span><br><span class="line">    bow = <span class="string">&quot;bow&quot;</span></span><br><span class="line">    crossbow = <span class="string">&quot;crossbow&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Armor</span>(<span class="params"><span class="built_in">str</span>, Enum</span>):</span></span><br><span class="line">    leather = <span class="string">&quot;leather&quot;</span></span><br><span class="line">    chainmail = <span class="string">&quot;chainmail&quot;</span></span><br><span class="line">    plate = <span class="string">&quot;plate&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Character</span>(<span class="params">BaseModel</span>):</span></span><br><span class="line">    name: constr(max_length=<span class="number">10</span>)</span><br><span class="line">    age: <span class="built_in">int</span></span><br><span class="line">    armor: Armor</span><br><span class="line">    weapon: Weapon</span><br><span class="line">    strength: <span class="built_in">int</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line">sequence = generate.json(model, Character)(<span class="string">&quot;Give me a character description&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(sequence)</span><br><span class="line"><span class="comment"># &#123;</span></span><br><span class="line"><span class="comment">#   &quot;name&quot;: &quot;ranbelt&quot;,</span></span><br><span class="line"><span class="comment">#   &quot;age&quot;: 26,</span></span><br><span class="line"><span class="comment">#   &quot;armor&quot;: &quot;chainmail&quot;,</span></span><br><span class="line"><span class="comment">#   &quot;weapon&quot;: &quot;bow&quot;,</span></span><br><span class="line"><span class="comment">#   &quot;strength&quot;: 5</span></span><br><span class="line"><span class="comment"># &#125;</span></span><br><span class="line"></span><br><span class="line">parsed = Character.model_validate_json(sequence)</span><br><span class="line"><span class="built_in">print</span>(parsed)</span><br><span class="line"><span class="comment"># name=&#x27;ranbelt&#x27; age=26 armor=&lt;Armor.chainmail: &#x27;chainmail&#x27;&gt; weapon=&lt;Weapon.bow: &#x27;bow&#x27;&gt; strength=5</span></span><br></pre></td></tr></table></figure>
-
-<p>该方法适用于联合类型、可选类型、数组、嵌套模式等。某些字段约束尚不受支持，但其他所有功能都应该可以正常工作。</p>
-<h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><p>在纯Python中通过连接字符串编写提示很快变得繁琐：提示构建逻辑与程序的其他部分纠缠在一起，呈现的提示结构也变得模糊不清。Outlines 通过将模板封装在“模板函数”内部，使编写和管理提示变得更加容易。</p>
-<p>这些函数可以将提示逻辑与一般程序逻辑清晰地分离开来；它们可以从其他模块和库中导入。</p>
-<p>模板函数不需要多余的抽象，它们使用 Jinja2 模板引擎以简洁的方式帮助构建复杂的提示。</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> outlines.text <span class="keyword">as</span> text</span><br><span class="line"><span class="keyword">import</span> outlines.models <span class="keyword">as</span> models</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">examples = [</span><br><span class="line">    (<span class="string">&quot;The food was digusting&quot;</span>, <span class="string">&quot;Negative&quot;</span>),</span><br><span class="line">    (<span class="string">&quot;We had a fantastic night&quot;</span>, <span class="string">&quot;Positive&quot;</span>),</span><br><span class="line">    (<span class="string">&quot;Recommended&quot;</span>, <span class="string">&quot;Positive&quot;</span>),</span><br><span class="line">    (<span class="string">&quot;The waiter was rude&quot;</span>, <span class="string">&quot;Negative&quot;</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="meta">@text.prompt</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">labelling</span>(<span class="params">to_label, examples</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;You are a sentiment-labelling assistant.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &#123;% for example in examples %&#125;</span></span><br><span class="line"><span class="string">    &#123;&#123; example[0] &#125;&#125; // &#123;&#123; example[1] &#125;&#125;</span></span><br><span class="line"><span class="string">    &#123;% endfor %&#125;</span></span><br><span class="line"><span class="string">    &#123;&#123; to_label &#125;&#125; //</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">model = models.transformers(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line">prompt = labelling(<span class="string">&quot;Just awesome&quot;</span>, examples)</span><br><span class="line">answer = text.generate.continuation(model, max_tokens=<span class="number">100</span>)(prompt)</span><br></pre></td></tr></table></figure>
-
-]]></content>
-  </entry>
-  <entry>
     <title>《敌人》- 键入式文本游戏的兴衰</title>
     <url>/2023/08/24/2023/08/daily-blog-20230824/</url>
     <content><![CDATA[<p>翻译自(<a href="https://if50.substack.com/p/the-antagonists">https://if50.substack.com/p/the-antagonists</a>)</p>
@@ -8678,71 +8632,6 @@
 <li>准备一个次优方案，甚至C方案</li>
 </ul>
 </li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>vue笔记</title>
-    <url>/2023/12/02/2023/12/VUE-note-summary/</url>
-    <content><![CDATA[<h3 id="Vue相比传统js的优点"><a href="#Vue相比传统js的优点" class="headerlink" title="Vue相比传统js的优点"></a>Vue相比传统js的优点</h3><p>Vue.js相比传统的JavaScript有以下几个优点：</p>
-<ol>
-<li>响应式数据绑定：Vue.js采用了响应式的数据绑定机制，可以将数据和DOM元素进行关联，当数据发生变化时，DOM会自动更新，减少了手动操作DOM的繁琐过程。</li>
-<li>组件化开发：Vue.js鼓励组件化开发，将UI界面拆分成独立、可复用的组件，每个组件负责自己的逻辑和视图，更易于维护和复用。</li>
-<li>虚拟DOM：Vue.js使用虚拟DOM（Virtual DOM）来优化性能。当数据变化时，Vue.js会生成一个新的虚拟DOM树与旧的虚拟DOM树进行比较，然后只更新变化的部分，减少了直接操作实际DOM的开销。</li>
-<li>双向数据绑定：Vue.js支持双向数据绑定，即数据的变化会实时反映到视图中，同时用户对视图的操作也可以自动更新数据。</li>
-<li>生态系统丰富：Vue.js拥有庞大而活跃的社区，提供了许多第三方插件和库，例如Vue Router用于路由管理，Vuex用于状态管理，Vue CLI用于快速搭建项目等，这些工具和插件可以极大地提升开发效率。</li>
-<li>简单易学：Vue.js具有较低的学习曲线，文档清晰易懂，上手相对容易，适合初学者快速掌握。</li>
-</ol>
-<span id="more"></span>
-<h3 id="什么是MVVM"><a href="#什么是MVVM" class="headerlink" title="什么是MVVM"></a>什么是MVVM</h3><p>MVVM是一种软件架构模式，它代表着Model-View-ViewModel（模型-视图-视图模型）。MVVM模式主要用于构建用户界面（UI）和业务逻辑的分离，使代码更加模块化、可维护和可测试。<br>下面是MVVM模式中各个组成部分的简要解释：</p>
-<ol>
-<li>Model（模型）：<br>模型代表应用程序的数据和业务逻辑。它包括从数据源获取数据、对数据进行操作和处理的方法，以及数据的验证和校验逻辑等。</li>
-<li>View（视图）：<br>视图是用户界面的可视化部分，负责展示数据和与用户进行交互。它通常是由HTML、CSS和其他前端技术来创建的，例如Web页面、移动应用程序的界面等。</li>
-<li>ViewModel（视图模型）：<br>视图模型是连接视图和模型之间的桥梁。它负责将模型中的数据转换为视图中可以展示的形式，并监听视图上的用户操作。视图模型包含了视图所需的数据、命令和方法，以及处理用户输入和对数据的操作等逻辑。<br>在MVVM模式中，视图和视图模型之间通过数据绑定建立了双向的关系。当模型的数据发生变化时，视图模型会通知视图进行更新，反之亦然。这种双向数据绑定使得当数据变化时，视图会自动更新，用户的操作也能够同步更新到数据模型中。<br>MVVM模式的一个重要特点是将界面逻辑和业务逻辑分离，使得开发人员可以专注于不同的任务。视图模板（View）主要关注界面的展示和用户交互，视图模型（ViewModel）主要负责处理数据和交互逻辑，而模型（Model）则专注于数据的获取和处理。这种分离使得代码更易于维护、测试和重用。<br>MVVM模式最初是由微软提出的，主要应用于WPF（Windows Presentation Foundation）和Silverlight等框架。后来，由于其优势和可扩展性，MVVM模式也在其他前端框架和技术中得到了广泛应用，例如Vue.js和Knockout.js等。</li>
-</ol>
-<h3 id="Vue基本开发"><a href="#Vue基本开发" class="headerlink" title="Vue基本开发"></a>Vue基本开发</h3><h4 id="一个demo"><a href="#一个demo" class="headerlink" title="一个demo"></a>一个demo</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Vue.js Demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">&quot;inputText&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>You entered: &#123;&#123; inputText &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">&quot;changeMessage&quot;</span>&gt;</span>Change Message<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="comment">// 创建一个Vue实例</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">      <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span><br><span class="line"><span class="javascript">      <span class="attr">data</span>: &#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">message</span>: <span class="string">&#x27;Hello, Vue!&#x27;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">inputText</span>: <span class="string">&#x27;&#x27;</span></span></span><br><span class="line"><span class="javascript">      &#125;,</span></span><br><span class="line"><span class="javascript">      <span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">changeMessage</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="built_in">this</span>.message = <span class="string">&#x27;New Message&#x27;</span>;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">      &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>在这个示例中，我们使用<code>&lt;div&gt;</code>元素和<code>id=&quot;app&quot;</code>来定义Vue实例的挂载点。然后，我们在Vue实例的<code>data</code>选项中定义了两个属性：<code>message</code>和<code>inputText</code>。<code>message</code>属性用于展示消息，<code>inputText</code>属性与一个输入框进行双向数据绑定。<br>在模板中，我们使用双大括号（<code>&#123;&#123; &#125;&#125;</code>）来插入Vue实例中的数据，例如<code>&#123;&#123; message &#125;&#125;</code>和<code>&#123;&#123; inputText &#125;&#125;</code>。我们还使用了<code>v-model</code>指令将输入框和<code>inputText</code>属性进行绑定，实现了双向数据绑定。<br>在按钮上，我们使用了<code>v-on:click</code>指令监听点击事件，并在方法<code>changeMessage</code>中更新了<code>message</code>属性的值。<br>以上示例演示了Vue.js中常用的几个概念，包括数据绑定、事件监听和方法定义。你可以根据需要扩展和修改这个示例，进一步学习和探索Vue.js的功能和用法。</p>
-<h4 id="Vue生命周期"><a href="#Vue生命周期" class="headerlink" title="Vue生命周期"></a>Vue生命周期</h4><p>Vue.js生命周期指的是Vue实例在创建、更新和销毁过程中经历的一系列钩子函数，这些钩子函数允许开发者在特定阶段执行自定义的代码逻辑。Vue生命周期分为以下几个阶段：</p>
-<ol>
-<li>创建阶段（Creation）：<ul>
-<li>beforeCreate：在实例初始化之后，数据观测（data observation）和事件配置（event &amp; watcher setup）之前调用。此时，实例的属性和方法还未被初始化。</li>
-<li>created：在实例创建完成后被调用。此时，实例已完成数据观测、属性和方法的设置，但尚未开始DOM编译和挂载。</li>
-</ul>
-</li>
-<li>挂载阶段（Mounting）：<ul>
-<li>beforeMount：在挂载开始之前被调用。在此阶段，Vue实例的模板编译已完成，但尚未将模板渲染到真实的DOM中。</li>
-<li>mounted：在挂载完成后被调用。此时，Vue实例已经将模板渲染到了DOM中，并且可以进行DOM操作。</li>
-</ul>
-</li>
-<li>更新阶段（Updating）：<ul>
-<li>beforeUpdate：在数据更新导致重新渲染之前被调用。此时，虚拟DOM已经重新渲染并将更新前后的差异进行了计算，但尚未应用到真实的DOM中。</li>
-<li>updated：在数据更新并重新渲染DOM后被调用。此时，Vue实例的数据已经更新，DOM也已经更新完成，可以进行操作。</li>
-</ul>
-</li>
-<li>销毁阶段（Destroying）：<ul>
-<li>beforeDestroy：在实例销毁之前调用。此时，Vue实例仍然完全可用，可以执行一些清理工作，如解绑自定义事件、清除定时器等。</li>
-<li>destroyed：在实例销毁后调用。此时，Vue实例的所有指令和事件监听器都已被移除，不再可用。<br>此外，Vue还提供了一些其他的生命周期钩子函数，如activated和deactivated，用于处理Vue实例在组件切换时的特定行为。<br>通过这些生命周期钩子函数，开发者可以在不同的阶段执行自定义的代码逻辑，从而实现对应的操作和处理，例如初始化数据、发送网络请求、订阅事件、销毁资源等。生命周期钩子函数使得开发者可以更好地控制Vue实例的行为，并在需要时进行必要的操作和处理。</li>
-</ul>
-</li>
-</ol>
-<h3 id="Vue-filter"><a href="#Vue-filter" class="headerlink" title="Vue filter"></a>Vue filter</h3><p>Vue的filter用于在模板中对数据进行格式化显示。它可以将原始数据经过一系列的处理，返回处理后的结果。使用Vue的filter可以在模板中直接调用，使得数据的格式化操作更加方便和可维护。<br>下面是使用Vue的filter的步骤：</p>
-<ol>
-<li><p>定义过滤器：在Vue实例的<code>filters</code>选项中定义过滤器函数。过滤器函数接受一个输入值（原始数据）和一些可选的参数，并返回处理后的结果。可以通过全局Vue对象的<code>filter</code>方法来定义全局过滤器，或者在组件的选项中定义本地过滤器。<br>全局过滤器的定义示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Vue.filter(&#x27;capitalize&#x27;, function(value) &#123;</span><br><span class="line">  if (!value) return &#x27;&#x27;;</span><br><span class="line">  return value.charAt(0).toUpperCase() + value.slice(1);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>本地过滤器的定义示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">filters: &#123;</span><br><span class="line">  capitalize(value) &#123;</span><br><span class="line">    if (!value) return &#x27;&#x27;;</span><br><span class="line">    return value.charAt(0).toUpperCase() + value.slice(1);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>在模板中使用过滤器：在模板中使用管道符 <code>|</code> 将数据与过滤器连接起来。可以在模板中的插值表达式、指令和绑定等地方使用过滤器。<br>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;&#123;&#123; message | capitalize &#125;&#125;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>上面的示例中，<code>message</code>是Vue实例中的一个数据属性，通过<code>capitalize</code>过滤器对它进行处理后显示。<br>过滤器还可以接受参数。例如，可以在模板中传递参数给过滤器函数：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;&#123;&#123; message | capitalize(&#x27;first&#x27;) &#125;&#125;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>在上面的示例中，将字符串’first’作为参数传递给<code>capitalize</code>过滤器函数。<br>需要注意以下几点：</p>
-</li>
-</ol>
-<ul>
-<li>过滤器可以链式调用，多个过滤器会按顺序依次处理数据。</li>
-<li>过滤器可以在Vue实例和组件的计算属性中使用，以便在数据的处理过程中重用。</li>
-<li>过滤器是非变异的，即它们不会改变原始数据，而是返回新的处理结果。</li>
-<li>过滤器函数可以定义在其他文件中，然后通过模块导入的方式使用。<br>通过使用Vue的filter，你可以方便地在模板中对数据进行格式化，使得数据展示更加清晰和易读。</li>
 </ul>
 ]]></content>
   </entry>
