@@ -5,7 +5,7 @@ categories:
 - 每日文章收集
 ---
 
-# 【今日关注】
+## 【今日关注】
 
 ### [程序员如何在chatGPT的世界中生存下来](https://spectrum.ieee.org/ai-programming)
 
@@ -76,14 +76,15 @@ categories:
 **为了在生成式人工智能的世界中生存，程序员需要将AI作为一种工具，将其纳入他们的工作流程，并认识到这些工具的机遇和局限性，同时仍然依靠他们的人类编码能力来取得成功。**
 
 
-# 【博文一览】
+## 【博文一览】
 
 ### [圣保罗：一座没有户外广告的城市](https://www.amusingplanet.com/2013/07/sao-paulo-city-with-no-outdoor.html)
 
-![](adremove1.jpeg)
+![adremove1](adremove1.jpeg)
 在2006年，圣保罗市长宣布了一项“城市清洁法令“，要求移除所有的户外广告，包括广告牌、交通工具上的广告以及商店门前的广告。一年之内，有15000个广告牌被拆除，商店标识也必须缩小，以避免违反新法。
 
 这在当时引起反对，主要理由是：
+
 - 这将直接导致大约1.3亿美元的损失，2万人将会失业。
 - 广告也是某种艺术形式，去除广告使得城市景色非常单调。
 
@@ -91,8 +92,8 @@ categories:
 
 在2011年对该市1100万居民进行的一项调查中，有70%的人认为这项禁令是有益的。意外的是，标志和口号的去除使得之前被忽视的建筑暴露出来，展示了长期以来被隐藏的丰富城市美景。
 
-![](adremove2.jpeg)
-![](adremove3.jpeg)
+![adremove2](adremove2.jpeg)
+![adremove3](adremove3.jpeg)
 
 ### [IMY禁止四家公司使用Google Analytics](https://www.imy.se/en/news/four-companies-must-stop-using-google-analytics/)
 
@@ -109,7 +110,7 @@ Tele2最近自愿停止使用该统计工具。IMY要求其他三家公司停止
 ### [Bottles：在linux上运行windows软件](https://usebottles.com/)
 
 Bottles是一个应用程序，它可以在Linux发行版上轻松管理Windows前缀（windows prefix：一种bottles中的概念，可以看成容器）。
-![](bottles1.png)
+![bottles1](bottles1.png)
 
 - 安装：目前仅支持[flatpak](https://flatpak.org/setup/)（大致介绍下，这是一种包管理工具，可以解决包依赖的问题，以及沙盒环境下的运行）的安装。有几种安装方式。
   - 从[flathub](https://flathub.org/apps/com.usebottles.bottles)安装。
@@ -165,12 +166,13 @@ Makie是基于[Julia](https://julialang.org/)开发的绘图工具，等等，Ju
 > 全球人口达到80亿这一里程碑，相当于地球上曾经存在过的总人口数量的近7%。
 
 对曾经存在过的总人口数量的任何估计基本上取决于三个因素：
+
 - 人类被认为在地球上存在的时间长度。
 - 不同时期的人口平均规模。
 - 每个时期每1000人口的出生人数。
 
 根据这些指标得出的人类在各个时期的总人口表如下，其中还包括到2050年的预测：
-![](people1.png)
+![people1](people1.png)
 
 人类历史上，出生时的平均预期寿命可能只有约10岁左右。这种较短的预期寿命意味着人类的人口增长困难重重。
 
@@ -183,4 +185,4 @@ Makie是基于[Julia](https://julialang.org/)开发的绘图工具，等等，Ju
 对曾经出生的人口数量进行估算需要确定人类史前和历史不同时期的人口规模，并将假设的出生率应用于每个时期。
 
 这种半科学的方法得出的估计结果是，**自现代人类出现以来大约有1170亿次出生。**
-![](people2.png)
+![]people2(people2.png)

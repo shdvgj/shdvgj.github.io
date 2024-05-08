@@ -37,3 +37,11 @@ tags:
 ### HTTPS验证过程
 
 ![HTTPS验证过程.webp](HTTPS验证过程.webp)
+
+### 版权期限
+
+保护期限不受限制的有：署名权，修改权，保护作品完整权。保护期限为作者终身及死后50年的，包括：发表权、使用权和获得报酬权。
+
+### 网络分层和协议
+
+![net-layer-protocol](net-layer-protocol.webp)

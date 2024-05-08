@@ -134,4 +134,4 @@ HTTP 2.0和HTTP 3.0的主要区别在于所使用的传输层协议。在HTTP 2.
 通过用QUIC替代TCP，HTTP的开发者希望在其他改进方面实现本机和标准的加密（不再有HTTP和HTTPS，每个HTTP通信都被加密）以及快速建立连接。
 
 下面的图片总结了HTTP从其第一个发布版本（版本0.9）到最后一个提议版本（版本3.0）的演变：
-![](http-versions.webp)
+![http-versions](http-versions.webp)
