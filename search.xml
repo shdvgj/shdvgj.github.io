@@ -4646,7 +4646,7 @@
   <entry>
     <title>使用fetchAPI获取post请求中的stream数据</title>
     <url>/2023/04/24/2023/04/how-to-receive-stream-data-in-fetch/</url>
-    <content><![CDATA[<h1 id="问题起源"><a href="#问题起源" class="headerlink" title="问题起源"></a>问题起源</h1><ul>
+    <content><![CDATA[<h2 id="问题起源"><a href="#问题起源" class="headerlink" title="问题起源"></a>问题起源</h2><ul>
 <li>希望用miniprogram实现调用chatGPT接口</li>
 <li>miniprogram国内直接调用api.openai.com接口不通，需要国外购买服务器建站中转，即miniprogram-国外服务器-openai接口来实现</li>
 <li>miniprogram线上环境无法调用任何没在国内备案的网站，因此无法通过上述中转方案实现</li>
@@ -4656,18 +4656,22 @@
 <li>通过设定接口参数 <code>stream:true</code> 来实现流式传输，即接口数据可以先部分返回，通过长连接持续传输</li>
 <li>流式传输有两种方案，<code>Server-Sent Events</code> 和 <code>fetch stream</code></li>
 </ul>
-<h1 id="SSE（Server-sent-Event）方案实现"><a href="#SSE（Server-sent-Event）方案实现" class="headerlink" title="SSE（Server-sent Event）方案实现"></a>SSE（Server-sent Event）方案实现</h1><p>参考<a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events">mdn文档</a>和<a href="https://www.ruanyifeng.com/blog/2017/05/server-sent_events.html">阮一峰sse教程</a></p>
+<h2 id="SSE（Server-sent-Event）方案实现"><a href="#SSE（Server-sent-Event）方案实现" class="headerlink" title="SSE（Server-sent Event）方案实现"></a>SSE（Server-sent Event）方案实现</h2><p>参考<a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events">mdn文档</a>和<a href="https://www.ruanyifeng.com/blog/2017/05/server-sent_events.html">阮一峰sse教程</a></p>
 <h3 id="创建一个EventSource实例"><a href="#创建一个EventSource实例" class="headerlink" title="创建一个EventSource实例"></a>创建一个EventSource实例</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> evtSource = <span class="keyword">new</span> EventSource(<span class="string">&quot;ssedemo.php&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> evtSource = <span class="keyword">new</span> EventSource(<span class="string">&quot;//api.example.com/ssedemo.php&quot;</span>, &#123;</span><br><span class="line">  <span class="attr">withCredentials</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <h3 id="监听返回数据"><a href="#监听返回数据" class="headerlink" title="监听返回数据"></a>监听返回数据</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">evtSource.onmessage = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> newElement = <span class="built_in">document</span>.createElement(<span class="string">&quot;li&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> eventList = <span class="built_in">document</span>.getElementById(<span class="string">&quot;list&quot;</span>);</span><br><span class="line"></span><br><span class="line">  newElement.textContent = <span class="string">`message: <span class="subst">$&#123;event.data&#125;</span>`</span>;</span><br><span class="line">  eventList.appendChild(newElement);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="定制监听事件"><a href="#定制监听事件" class="headerlink" title="定制监听事件"></a>定制监听事件</h3><p>在下述代码中，将会监听返回数据中事件字段中的<code>ping</code></p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">evtSource.addEventListener(<span class="string">&quot;ping&quot;</span>, <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> newElement = <span class="built_in">document</span>.createElement(<span class="string">&quot;li&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> eventList = <span class="built_in">document</span>.getElementById(<span class="string">&quot;list&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> time = <span class="built_in">JSON</span>.parse(event.data).time;</span><br><span class="line">  newElement.textContent = <span class="string">`ping at <span class="subst">$&#123;time&#125;</span>`</span>;</span><br><span class="line">  eventList.appendChild(newElement);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <h3 id="方法尝试结论"><a href="#方法尝试结论" class="headerlink" title="方法尝试结论"></a>方法尝试结论</h3><p>最终并不能实现需求，原因在于sse天生只支持get方式获取数据，对于post请求无法支持。<br><em><strong>另外发现miniprogram不支持server-sent events。</strong></em></p>
-<h1 id="Fetch获取数据流"><a href="#Fetch获取数据流" class="headerlink" title="Fetch获取数据流"></a>Fetch获取数据流</h1><p>参考<a href="https://www.ruanyifeng.com/blog/2020/12/fetch-tutorial.html">阮一峰fetch教程</a><br>核心处理方式就是利用fetch异步获取流的方式。</p>
+<h2 id="Fetch获取数据流"><a href="#Fetch获取数据流" class="headerlink" title="Fetch获取数据流"></a>Fetch获取数据流</h2><p>参考<a href="https://www.ruanyifeng.com/blog/2020/12/fetch-tutorial.html">阮一峰fetch教程</a><br>核心处理方式就是利用fetch异步获取流的方式。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> reqData = <span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">    <span class="string">&quot;user&quot;</span>: <span class="string">&quot;superman&quot;</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> response = <span class="keyword">await</span> fetch(<span class="string">&#x27;https://example.com/api&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">    <span class="attr">body</span>: reqData</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> reader = response.body.getReader();</span><br><span class="line"><span class="keyword">const</span> decoder = <span class="keyword">new</span> TextDecoder();</span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;value, done&#125; = <span class="keyword">await</span> reader.read();</span><br><span class="line">    <span class="keyword">if</span> (done) &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">let</span> str = decoder.decode(value);</span><br><span class="line">    <span class="built_in">console</span>.log(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这样获取到的数据格式如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">data: some text</span><br><span class="line">data: another message</span><br><span class="line">data: with two lines</span><br></pre></td></tr></table></figure>
-<p>需要进行进一步的分析处理</p>
+
+<p>目前这样子的形式已经算是获取到数据了，但是不是常见的json格式，因此需要进行进一步的分析处理。</p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -5510,16 +5514,19 @@
 <span id="more"></span>
 
 <h4 id="高效学习"><a href="#高效学习" class="headerlink" title="高效学习"></a>高效学习</h4><p>作者发现，人类的记忆并不像存储设备，而且学习并不是通过“被动积累”来实现的。</p>
-<p>事实上，我们只有在学习过程中付出真正的努力时才能保留信息。学习的困难程度不仅仅是核心活动的副产品，就像跑步时的气喘一样。相反，这正是使学习成为可能的原因。这种关系是因果关系。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/learn1.png"></p>
+<p>事实上，我们只有在学习过程中付出真正的努力时才能保留信息。学习的困难程度不仅仅是核心活动的副产品，就像跑步时的气喘一样。相反，这正是使学习成为可能的原因。这种关系是因果关系。</p>
+<p><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/learn1.png" alt="learn1"></p>
 <p><strong>简单的学习是不存在的：学习必须是努力的，才能实现。数字产品让你很容易自欺欺人，让你认为自己在学习，而实际上只是在被娱乐。</strong></p>
 <h4 id="学习的神经学原理"><a href="#学习的神经学原理" class="headerlink" title="学习的神经学原理"></a>学习的神经学原理</h4><p>作者不是妄图从底层医学角度解释，而是通过能够理解的大脑结构来进行解释。</p>
 <p>我们的大脑由相互连接的神经元(neuron)网络构成。这些神经元之间的连接称为轴突(axons)：它们是一种长而细的神经纤维投射，用于传递电脉冲。</p>
-<p>在这些轴突周围，有一层被称为髓鞘(myelin)的绝缘膜。它覆盖着许多神经轴突，促进电信号沿着神经回路传播。轴突周围的髓鞘越多，信号传输就会越强、连接越紧密。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/learn2.png"></p>
+<p>在这些轴突周围，有一层被称为髓鞘(myelin)的绝缘膜。它覆盖着许多神经轴突，促进电信号沿着神经回路传播。轴突周围的髓鞘越多，信号传输就会越强、连接越紧密。</p>
+<p><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/learn2.png" alt="learn2"></p>
 <p>髓鞘对神经传递的作用就像氧气对火焰的作用一样。它使得信息能够快速传递长距离，并大大增加了电信号在我们大脑中传播的速度。</p>
 <p>可以将其看作水流通过具有动态、变化容量的管道。容量更大的管道可以比小管道或慢速滴漏更快地输送更多的水。更多的髓鞘支持神经连接，使用该连接就会更容易，从而更容易使用相关的技能或记住相关的主题。</p>
 <p><strong>所以关键就是髓鞘，它是动态的，决定了信息的记忆速度，那它是怎么生成的？</strong></p>
 <p>当我们遇到一个新的主题时，大脑的新区域开始激活。我们越是使用这些新区域，髓鞘就会合成得越多，这使得相关主题（或活动）变得更容易。</p>
-<p>我们都知道俗语“熟能生巧”。我们越是使用大脑的某个特定区域，我们的大脑就越会“优先考虑”和“磨练”这个区域。这就是导致髓鞘形成的原因：活动诱导髓鞘化，从而增强了神经元之间的连接强度和效率。这是一个自我强化的过程。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/learn3.png"></p>
+<p>我们都知道俗语“熟能生巧”。我们越是使用大脑的某个特定区域，我们的大脑就越会“优先考虑”和“磨练”这个区域。这就是导致髓鞘形成的原因：活动诱导髓鞘化，从而增强了神经元之间的连接强度和效率。这是一个自我强化的过程。</p>
+<p><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/learn3.png" alt="learn3"></p>
 <p>看起来，人类的认知根本上是基于感觉运动过程的：当我们将某种物理活动与信息关联起来时，我们会更好地记住它。普遍的直觉是，<strong>运动提供了我们可以用来检索知识的额外线索。</strong></p>
 <p>越来越多的研究表明，通过手写笔记比使用笔记本电脑要有效得多。</p>
 <p>我们没有进化到通过被动观看Masterclass视频来存储信息：这不是我们大脑的工作方式。</p>
@@ -5533,20 +5540,20 @@
 <blockquote>
 <p>被动浏览是一种上瘾：整个信息供应链都优化了在应用程序中花费的时间，而不是为了记忆和积极性。<br>幸运的是，另一方面，随着内容和刺激的丰富，寻找新的主题和学习的理由变得非常容易。<br>我们只需要积极主动地参与我们可以获得的所有内容流。去建立、写作、交流、教授、解释、创造 - 这些都是付出努力的行动，会带来有意义的成长。</p>
 </blockquote>
-<h2 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h2><h3 id="Anna’s-Archive：世界上最大的开源图书馆"><a href="#Anna’s-Archive：世界上最大的开源图书馆" class="headerlink" title="Anna’s Archive：世界上最大的开源图书馆"></a><a href="https://annas-archive.org/">Anna’s Archive：世界上最大的开源图书馆</a></h3><p><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/archive1.png"><br>根据网站介绍，这是世界上最大的开源图书馆，目前包含14704605本书, 86614159份报纸, 2379209本漫画, 407040本杂志。</p>
+<h2 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h2><h3 id="Anna’s-Archive：世界上最大的开源图书馆"><a href="#Anna’s-Archive：世界上最大的开源图书馆" class="headerlink" title="Anna’s Archive：世界上最大的开源图书馆"></a><a href="https://annas-archive.org/">Anna’s Archive：世界上最大的开源图书馆</a></h3><p><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/archive1.png" alt="archive1"><br>根据网站介绍，这是世界上最大的开源图书馆，目前包含14704605本书, 86614159份报纸, 2379209本漫画, 407040本杂志。</p>
 <p>（Anna’s Archive）是一个非营利项目，有两个目标：<br>保存：备份人类的所有知识和文化。<br>获取：使这些知识和文化对全世界任何人都可获得。</p>
-<p>目前网站估计它们囊括了全世界5%的书籍资料。（1400万本书就敢说包含了全世界5%，这未免吹大牛了。。。）<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/archive2.png"></p>
-<p>稍微查了下，书籍确实还是挺全的，用中文或者英文都能查。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/archive3.png"><br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/archive4.png"></p>
+<p>目前网站估计它们囊括了全世界5%的书籍资料。（1400万本书就敢说包含了全世界5%，这未免吹大牛了。。。）<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/archive2.png" alt="archive2"></p>
+<p>稍微查了下，书籍确实还是挺全的，用中文或者英文都能查。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/archive3.png" alt="archive3"><br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/archive4.png" alt="archive4"></p>
 <h3 id="糟糕的房地产广告照片"><a href="#糟糕的房地产广告照片" class="headerlink" title="糟糕的房地产广告照片"></a><a href="https://terriblerealestateagentphotos.com/">糟糕的房地产广告照片</a></h3><p>这个网站列举了一些拍摄的非常糟糕的房地产照片，各有特点，展示了各种奇葩的房产。</p>
-<p>贴满炫目墙纸的厕所。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/terriblephoto1.jpeg"></p>
+<p>贴满炫目墙纸的厕所。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/terriblephoto1.jpeg" alt="terriblephoto1"></p>
 <blockquote>
 <p>有时候，明显缺乏品味反而能帮助房间看起来比实际更大。</p>
 </blockquote>
-<p><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/terriblephoto2.jpeg"></p>
+<p><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/terriblephoto2.jpeg" alt="terriblephoto2"></p>
 <blockquote>
 <p>我始终觉得邻居对于我的万圣节聚会反应过度</p>
 </blockquote>
-<p><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/terriblephoto3.jpeg"></p>
+<p><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/terriblephoto3.jpeg" alt="terriblephoto3"></p>
 <h3 id="Karabiner-Elements：macOS环境下的强大键盘工具"><a href="#Karabiner-Elements：macOS环境下的强大键盘工具" class="headerlink" title="Karabiner-Elements：macOS环境下的强大键盘工具"></a><a href="https://karabiner-elements.pqrs.org/">Karabiner-Elements：macOS环境下的强大键盘工具</a></h3><p>Karabiner-Elements是一个在macOS Sierra或更高版本上进行键盘自定义的强大实用工具。</p>
 <ul>
 <li><p>下载</p>
@@ -5602,17 +5609,17 @@
 <ul>
 <li><p>1985年，任天堂通过标志性的矩形任天堂娱乐系统（NES）手柄，确立了游戏手柄的蓝本。该手柄配备了一个方向键（d-pad）和用于启动、选择、A和B的按钮。30年后，任天堂在switch上又推出了一款复刻版的NES手柄。让我们看下这两者的不同。</p>
 </li>
-<li><p>上面的1985年版的，下面的switch版，外形几乎没有两样。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/controller1.png"></p>
+<li><p>上面的1985年版的，下面的switch版，外形几乎没有两样。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/controller1.png" alt="controller1"></p>
 </li>
-<li><p>Switch手柄的电路板具有更细的线路，密集的元件布局以及更复杂的布线，以适应手柄增加的功能和高级特性，例如与Switch主机之间的电池供电的无线连接。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/controller2.png"></p>
+<li><p>Switch手柄的电路板具有更细的线路，密集的元件布局以及更复杂的布线，以适应手柄增加的功能和高级特性，例如与Switch主机之间的电池供电的无线连接。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/controller2.png" alt="controller2"></p>
 </li>
-<li><p>Switch手柄具有更先进的连接接口。在左侧，我们看到了一种球栅阵列（BGA），这是一种用于集成电路的表面贴装封装。BGA提供了一种更紧凑和高效的方式来连接微控制器和电路板，使得连接密度更高。在BGA的右侧是一种用于一些集成电路的四边平封装（QFP）。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/controller3.png"></p>
+<li><p>Switch手柄具有更先进的连接接口。在左侧，我们看到了一种球栅阵列（BGA），这是一种用于集成电路的表面贴装封装。BGA提供了一种更紧凑和高效的方式来连接微控制器和电路板，使得连接密度更高。在BGA的右侧是一种用于一些集成电路的四边平封装（QFP）。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/controller3.png" alt="controller3"></p>
 </li>
-<li><p>手柄电缆通过焊接的5针接头连接到原始SNES游戏手柄电路板的背面。这个焊接接头确保了导线和电路板之间的安全可靠的电气连接。新的手柄采用了与Switch Joy-Con内部相同的锂离子电池。电池在Switch上可以持续使用长达20小时。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/controller4.png"></p>
+<li><p>手柄电缆通过焊接的5针接头连接到原始SNES游戏手柄电路板的背面。这个焊接接头确保了导线和电路板之间的安全可靠的电气连接。新的手柄采用了与Switch Joy-Con内部相同的锂离子电池。电池在Switch上可以持续使用长达20小时。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/controller4.png" alt="controller4"></p>
 </li>
 </ul>
 <h3 id="当一个app的服务器只部署在美国东部"><a href="#当一个app的服务器只部署在美国东部" class="headerlink" title="当一个app的服务器只部署在美国东部"></a><a href="https://blog.jonlu.ca/posts/us-east-1-latency">当一个app的服务器只部署在美国东部</a></h3><p>us-east-1（位于弗吉尼亚州的“Centreville”附近）是由AWS运营的主要数据中心之一。</p>
-<p>如果是一家初创公司（甚至是一些成熟的公司），很可能会在这里部署应用程序。如果是一个有状态的服务，或者架构不支持分布式计算，很可能只会在此处部署。这种时候如果用户在澳大利亚的悉尼，那么发起的任何网络请求都需要经过15,677公里直线距离上的传输。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/latency1.webp"></p>
+<p>如果是一家初创公司（甚至是一些成熟的公司），很可能会在这里部署应用程序。如果是一个有状态的服务，或者架构不支持分布式计算，很可能只会在此处部署。这种时候如果用户在澳大利亚的悉尼，那么发起的任何网络请求都需要经过15,677公里直线距离上的传输。<br><img src="/2023/07/04/2023/07/daily-tech-blog-collection-20230704/latency1.webp" alt="latency1"></p>
 <p>而这个距离即使在光速下也需要104ms才能达到。而在现实中，需要考虑其他干扰，其他流量和处理请求所花费的时间，基本上需要215ms左右。</p>
 <p>对于许多网站来说，可能会有几十个请求到不同的域，并且每个请求都需要建立和终止连接。这意味着更多的时间处理。</p>
 <p>完整的TLS 1.2握手需要完成2次往返，当与TCP的SYN和SYN-ACK协商结合在一起时，它将扩展到3个完整的往返。虽然TLS 1.3在TCP下将其减少为两个往返，但仍会给每个连接增加相当大的延迟。</p>
@@ -5629,7 +5636,7 @@
   <entry>
     <title>每日文章收集-20230706</title>
     <url>/2023/07/06/2023/07/daily-tech-blog-collection-20230706/</url>
-    <content><![CDATA[<h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h3 id="程序员如何在chatGPT的世界中生存下来"><a href="#程序员如何在chatGPT的世界中生存下来" class="headerlink" title="程序员如何在chatGPT的世界中生存下来"></a><a href="https://spectrum.ieee.org/ai-programming">程序员如何在chatGPT的世界中生存下来</a></h3><p>人工智能，尤其是由大型语言模型（LLM）驱动的生成式人工智能，可能会颠覆许多程序员的职业生涯。然而，“你必须担心那些使用人工智能来替代你的人“，在似乎即将到来的以大型语言模型为核心的编码时代，程序员该如何生存和发展呢？</p>
+    <content><![CDATA[<h2 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h2><h3 id="程序员如何在chatGPT的世界中生存下来"><a href="#程序员如何在chatGPT的世界中生存下来" class="headerlink" title="程序员如何在chatGPT的世界中生存下来"></a><a href="https://spectrum.ieee.org/ai-programming">程序员如何在chatGPT的世界中生存下来</a></h3><p>人工智能，尤其是由大型语言模型（LLM）驱动的生成式人工智能，可能会颠覆许多程序员的职业生涯。然而，“你必须担心那些使用人工智能来替代你的人“，在似乎即将到来的以大型语言模型为核心的编码时代，程序员该如何生存和发展呢？</p>
 <h4 id="坚持基础知识和最佳实践"><a href="#坚持基础知识和最佳实践" class="headerlink" title="坚持基础知识和最佳实践"></a>坚持基础知识和最佳实践</h4><p>尽管有众多基于人工智能的编码助手可以帮助完成代码和生成代码，但编程的基本原则仍然存在：能够阅读和理解自己和他人的代码，以及了解所编写的代码如何融入更大的系统中。</p>
 <p>程序员仍然需要具备对代码进行分析和调试的能力，以及对问题解决和算法设计的理解。</p>
 <p>问题解决仍然是最重要的编程技能之一，仍然属于人类编程人员的领域。分析问题并找到优雅的解决方案仍然是备受推崇的编程专长。</p>
@@ -5661,7 +5668,7 @@
 <p>更大的问题是安全性，因为这些模型可能生成包含漏洞的代码。根据Vaithilingam的说法，软件开发的最佳实践，如代码审查和强大的测试流程，可以帮助防范这种风险。</p>
 <p>“更有经验的软件工程师能够意识到代码中最常见的漏洞和代码容易受到攻击的方式，”Solar-Lezama说道。“他们对需要注意的事项和引起警觉的标志有着直觉。在未来，这些技术将成为软件工程的重要组成部分。”</p>
 <p><strong>为了在生成式人工智能的世界中生存，程序员需要将AI作为一种工具，将其纳入他们的工作流程，并认识到这些工具的机遇和局限性，同时仍然依靠他们的人类编码能力来取得成功。</strong></p>
-<h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="圣保罗：一座没有户外广告的城市"><a href="#圣保罗：一座没有户外广告的城市" class="headerlink" title="圣保罗：一座没有户外广告的城市"></a><a href="https://www.amusingplanet.com/2013/07/sao-paulo-city-with-no-outdoor.html">圣保罗：一座没有户外广告的城市</a></h3><p><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/adremove1.jpeg"><br>在2006年，圣保罗市长宣布了一项“城市清洁法令“，要求移除所有的户外广告，包括广告牌、交通工具上的广告以及商店门前的广告。一年之内，有15000个广告牌被拆除，商店标识也必须缩小，以避免违反新法。</p>
+<h2 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h2><h3 id="圣保罗：一座没有户外广告的城市"><a href="#圣保罗：一座没有户外广告的城市" class="headerlink" title="圣保罗：一座没有户外广告的城市"></a><a href="https://www.amusingplanet.com/2013/07/sao-paulo-city-with-no-outdoor.html">圣保罗：一座没有户外广告的城市</a></h3><p><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/adremove1.jpeg" alt="adremove1"><br>在2006年，圣保罗市长宣布了一项“城市清洁法令“，要求移除所有的户外广告，包括广告牌、交通工具上的广告以及商店门前的广告。一年之内，有15000个广告牌被拆除，商店标识也必须缩小，以避免违反新法。</p>
 <p>这在当时引起反对，主要理由是：</p>
 <ul>
 <li>这将直接导致大约1.3亿美元的损失，2万人将会失业。</li>
@@ -5669,13 +5676,13 @@
 </ul>
 <p>尽管人们预感到不祥的情绪，但圣保罗的经济并未因此崩溃。</p>
 <p>在2011年对该市1100万居民进行的一项调查中，有70%的人认为这项禁令是有益的。意外的是，标志和口号的去除使得之前被忽视的建筑暴露出来，展示了长期以来被隐藏的丰富城市美景。</p>
-<p><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/adremove2.jpeg"><br><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/adremove3.jpeg"></p>
+<p><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/adremove2.jpeg" alt="adremove2"><br><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/adremove3.jpeg" alt="adremove3"></p>
 <h3 id="IMY禁止四家公司使用Google-Analytics"><a href="#IMY禁止四家公司使用Google-Analytics" class="headerlink" title="IMY禁止四家公司使用Google Analytics"></a><a href="https://www.imy.se/en/news/four-companies-must-stop-using-google-analytics/">IMY禁止四家公司使用Google Analytics</a></h3><p>瑞典隐私保护机构（IMY）对四家公司通过Google Analytics向美国转移个人数据的做法进行了审计。接受审计的公司是CDON、Coop、Dagens Industri和Tele2。</p>
 <p>根据数据保护条例GDPR，如果欧洲委员会决定某个第三国（即欧盟/欧洲经济区之外的国家）具有与欧盟/欧洲经济区内相应的个人数据保护水平，个人数据可以转移至该第三国。然而，CJEU在Schrems II判决中裁定，<strong>美国在判决时并不具备这样的适当保护水平。</strong></p>
 <p>在其审计中，IMY认为通过Google的统计工具转移至美国的数据属于个人数据，因为这些数据可以与其他传输的唯一数据相关联。该机构还得出结论，这些公司采取的技术安全措施不足以确保与欧盟/欧洲经济区内的保护水平基本相当。</p>
 <p>根据IMY的审计结果，似乎这些公司的额外技术安全措施都不足够。</p>
 <p>Tele2最近自愿停止使用该统计工具。IMY要求其他三家公司停止使用该工具。</p>
-<h3 id="Bottles：在linux上运行windows软件"><a href="#Bottles：在linux上运行windows软件" class="headerlink" title="Bottles：在linux上运行windows软件"></a><a href="https://usebottles.com/">Bottles：在linux上运行windows软件</a></h3><p>Bottles是一个应用程序，它可以在Linux发行版上轻松管理Windows前缀（windows prefix：一种bottles中的概念，可以看成容器）。<br><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/bottles1.png"></p>
+<h3 id="Bottles：在linux上运行windows软件"><a href="#Bottles：在linux上运行windows软件" class="headerlink" title="Bottles：在linux上运行windows软件"></a><a href="https://usebottles.com/">Bottles：在linux上运行windows软件</a></h3><p>Bottles是一个应用程序，它可以在Linux发行版上轻松管理Windows前缀（windows prefix：一种bottles中的概念，可以看成容器）。<br><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/bottles1.png" alt="bottles1"></p>
 <ul>
 <li>安装：目前仅支持<a href="https://flatpak.org/setup/">flatpak</a>（大致介绍下，这是一种包管理工具，可以解决包依赖的问题，以及沙盒环境下的运行）的安装。有几种安装方式。<ul>
 <li>从<a href="https://flathub.org/apps/com.usebottles.bottles">flathub</a>安装。</li>
@@ -5721,13 +5728,13 @@
 <li>不同时期的人口平均规模。</li>
 <li>每个时期每1000人口的出生人数。</li>
 </ul>
-<p>根据这些指标得出的人类在各个时期的总人口表如下，其中还包括到2050年的预测：<br><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/people1.png"></p>
+<p>根据这些指标得出的人类在各个时期的总人口表如下，其中还包括到2050年的预测：<br><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/people1.png" alt="people1"></p>
 <p>人类历史上，出生时的平均预期寿命可能只有约10岁左右。这种较短的预期寿命意味着人类的人口增长困难重重。</p>
 <p>公元14年时，罗马帝国的人口估计达到4500万，涵盖了西班牙到小亚细亚。</p>
 <p>到1650年，世界人口增长到约5亿，与公元1年的3亿估计相比，并没有大幅增长。</p>
 <p>到1800年，世界人口超过了10亿，此后持续增长到目前的80亿人（截至2022年的最新估计）。这种增长在很大程度上是由公共卫生、医学和营养的进步推动的，降低了死亡率，使更多的人能够活得更久，并进入繁殖年龄。</p>
 <p>对曾经出生的人口数量进行估算需要确定人类史前和历史不同时期的人口规模，并将假设的出生率应用于每个时期。</p>
-<p>这种半科学的方法得出的估计结果是，<strong>自现代人类出现以来大约有1170亿次出生。</strong><br><img src="/2023/07/06/2023/07/daily-tech-blog-collection-20230706/people2.png"></p>
+<p>这种半科学的方法得出的估计结果是，<strong>自现代人类出现以来大约有1170亿次出生。</strong><br>![]people2(people2.png)</p>
 ]]></content>
       <categories>
         <category>每日文章收集</category>
@@ -6504,7 +6511,7 @@
 <p>除了先前提到的新功能之外，我们还引入了新的方法，除了标准的GET方法：POST（1.0）、HEAD（1.0）、PUT（1.1）、PATCH（1.1）、DELETE（1.1）、CONNECT（1.1）、TRACE（1.1）和OPTIONS（1.1）。</p>
 <p>然而，在HTTP 3.0中，这里的主要新特性不是特定的新功能。实际上，HTTP 3.0用一个新的传输层协议QUIC替代了HTTP从其第一个版本开始使用的TCP协议。</p>
 <p>通过用QUIC替代TCP，HTTP的开发者希望在其他改进方面实现本机和标准的加密（不再有HTTP和HTTPS，每个HTTP通信都被加密）以及快速建立连接。</p>
-<p>下面的图片总结了HTTP从其第一个发布版本（版本0.9）到最后一个提议版本（版本3.0）的演变：<br><img src="/2023/09/06/2023/09/daily-blog-20230906/http-versions.webp"></p>
+<p>下面的图片总结了HTTP从其第一个发布版本（版本0.9）到最后一个提议版本（版本3.0）的演变：<br><img src="/2023/09/06/2023/09/daily-blog-20230906/http-versions.webp" alt="http-versions"></p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -6993,149 +7000,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Scrum敏捷开发基本思想</title>
-    <url>/2023/10/29/2023/10/scrum-develop/</url>
-    <content><![CDATA[<h3 id="敏捷开发基本思想"><a href="#敏捷开发基本思想" class="headerlink" title="敏捷开发基本思想"></a>敏捷开发基本思想</h3><h4 id="和传统项目对比"><a href="#和传统项目对比" class="headerlink" title="和传统项目对比"></a>和传统项目对比</h4><p>传统项目管理：瞄准，瞄准，瞄准，射击，命中<br>敏捷项目管理：瞄准，射击，调整弹道，命中</p>
-<ul>
-<li>not command and control, but learn as we go</li>
-<li>not plan in details, but change happens</li>
-<li>not enforce the plan, but embrace change</li>
-<li>not “control” change, but inspect and adapt<br><img src="/2023/10/29/2023/10/scrum-develop/agile1.png"></li>
-</ul>
-<h4 id="敏捷宣言"><a href="#敏捷宣言" class="headerlink" title="敏捷宣言"></a>敏捷宣言</h4><ul>
-<li><strong>Individuals and interactions</strong> over processes and tools. 个体和互动 高于 流程和工具</li>
-<li><strong>Working software</strong> over comprehensive documentation. 工作的软件 高于 详尽的文档</li>
-<li><strong>Customer collaboration</strong> over contract negotiation. 客户合作 高于 合同谈判</li>
-<li><strong>Responding to change</strong> over following a project plan. 响应变化 高于 遵循计划</li>
-</ul>
-<span id="more"></span>
-
-<h4 id="12条原则"><a href="#12条原则" class="headerlink" title="12条原则"></a>12条原则</h4><ul>
-<li>我们最重要的目标，是通过持续不断地及早交付有价值的软件使客户满意。</li>
-<li>欣然面对需求变化，即使在开发后期也一样。为了客户的竞争优势，敏捷过程掌控变化。</li>
-<li>经常地交付可工作的软件，相隔几星期或一两个月，倾向于采取较短的周期。</li>
-<li>业务人员和开发人员必须相互合作，项目中的每一天都不例外。</li>
-<li>激发个体的斗志，以他们为核心搭建项目。提供所需的环境和支援，辅以信任，从而达成目标。</li>
-<li>不论团队内外，传递信息效果最好效率也最高的方式是面对面的交谈。</li>
-<li>可工作的软件是进度的首要度量标准。</li>
-<li>敏捷过程倡导可持续开发。责任人、开发人员和用户要能够共同维持其步调稳定延续。</li>
-<li>坚持不懈地追求技术卓越和良好设计，敏捷能力由此增强。</li>
-<li>以简洁为本，它是极力减少不必要工作量的艺术。</li>
-<li>最好的架构、需求和设计出自自组织团队。</li>
-<li>团队定期地反思如何能提高成效，并依此调整自身的举止表现。</li>
-</ul>
-<h4 id="敏捷是一种状态"><a href="#敏捷是一种状态" class="headerlink" title="敏捷是一种状态"></a>敏捷是一种状态</h4><p>从产出来看：频繁地交付可见的、可用的成果<br>从团队来看：主动、持续地学习和改进</p>
-<h3 id="Agile敏捷流派"><a href="#Agile敏捷流派" class="headerlink" title="Agile敏捷流派"></a>Agile敏捷流派</h3><ul>
-<li>Scrum：3355</li>
-<li>Xp：结对，重构，CI</li>
-<li>TDD：测试驱动开发</li>
-<li>FDD</li>
-<li>kanban</li>
-<li>水晶方法</li>
-<li>DSDM</li>
-</ul>
-<h3 id="Scrum敏捷流派"><a href="#Scrum敏捷流派" class="headerlink" title="Scrum敏捷流派"></a>Scrum敏捷流派</h3><h4 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h4><ul>
-<li>Product Owner<ul>
-<li>产品负责人（Product Owner）：代表利益相关者，负责定义产品的需求、优先级和发布计划。产品负责人与开发团队紧密合作，确保产品的需求得到满足。</li>
-</ul>
-</li>
-<li>Development Team<ul>
-<li>Scrum团队（Scrum Team）：由开发人员组成的自组织团队，负责实现产品的需求。团队通常包括开发人员、测试人员和其他相关角色。团队通过迭代式的开发来交付软件，并在每个迭代中进行持续改进。</li>
-</ul>
-</li>
-<li>ScrumMaster<ul>
-<li>Scrum主管（Scrum Master）：负责促进和支持Scrum团队的实践和过程。Scrum主管帮助团队遵循Scrum框架，解决障碍和问题，并促进团队的自我组织和持续改进。</li>
-</ul>
-</li>
-</ul>
-<h4 id="资产"><a href="#资产" class="headerlink" title="资产"></a>资产</h4><ul>
-<li>Product Backlog</li>
-<li>Scprint Backlog</li>
-<li>Increment</li>
-</ul>
-<h4 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h4><ul>
-<li>Sprint Planning<ul>
-<li>冲刺计划会议（Sprint Planning Meeting）：团队和产品负责人共同决定下一个冲刺中要完成的工作，并制定一个可执行的计划。</li>
-</ul>
-</li>
-<li>Daily Scrum<ul>
-<li>每日站会（Daily Scrum）：每天团队成员在15分钟内汇报工作进展、讨论遇到的问题和计划当天的工作。</li>
-</ul>
-</li>
-<li>Sprint Review<ul>
-<li>冲刺评审会议（Sprint Review）：在每个冲刺结束时，团队向利益相关者展示已完成的工作，并接受反馈和建议。</li>
-</ul>
-</li>
-<li>Sprint Retrospective<ul>
-<li>冲刺回顾会议（Sprint Retrospective）：团队在每个冲刺结束时进行回顾，评估团队的工作方式，识别改进点，并制定下一个冲刺的改进计划。</li>
-</ul>
-</li>
-</ul>
-<h4 id="价值观"><a href="#价值观" class="headerlink" title="价值观"></a>价值观</h4><ul>
-<li>Courage</li>
-<li>Openness</li>
-<li>Focus</li>
-<li>Commitment</li>
-<li>Respect</li>
-</ul>
-<h4 id="开发团队特征"><a href="#开发团队特征" class="headerlink" title="开发团队特征"></a>开发团队特征</h4><ul>
-<li>5-9人</li>
-<li>跨职能<ul>
-<li>具备不同领域的必备技能</li>
-<li>不同层面的成熟度</li>
-<li>T模型人才</li>
-</ul>
-</li>
-<li>全职：Sprints（迭代）之间方可换人</li>
-<li>自组织<ul>
-<li>没有管理者的头衔</li>
-<li><strong>团队决定如何去工作</strong></li>
-<li>全员责任制</li>
-<li>团队承担大部分围观管理工作</li>
-</ul>
-</li>
-</ul>
-<h4 id="产品负责人（Product-Owner）特征"><a href="#产品负责人（Product-Owner）特征" class="headerlink" title="产品负责人（Product Owner）特征"></a>产品负责人（Product Owner）特征</h4><ul>
-<li>“一”个人</li>
-<li>被授予产品（“做什么”）决策权</li>
-<li>驱动产品走向成功</li>
-<li>提供产品领导力</li>
-<li>面向干系人代表团队</li>
-<li>面向团队代表干系人</li>
-<li>和所有合作</li>
-</ul>
-<h4 id="Scrum主管（Scrum-Master）"><a href="#Scrum主管（Scrum-Master）" class="headerlink" title="Scrum主管（Scrum Master）"></a>Scrum主管（Scrum Master）</h4><ul>
-<li>面向管理层代表团队</li>
-<li>面向团队代表管理层</li>
-<li>不是一个项目经理或团队经理</li>
-<li>没有管理头衔，不代表团队做出决定</li>
-<li>是一个仆人式的领导者</li>
-<li>。。。</li>
-</ul>
-<h4 id="产品Backlog"><a href="#产品Backlog" class="headerlink" title="产品Backlog"></a>产品Backlog</h4><ul>
-<li>一份动态的列表，包含了产品可能具备的功能（最好能做开关）</li>
-<li>以及其他为用户带来价值的工作</li>
-<li>一个健康的product backlog应当具备DEEP原则：<ul>
-<li>Detailed appropriately，恰当的详细程度</li>
-<li>Estimated，已估算</li>
-<li>Emergent，涌现式</li>
-<li>Prioritized，优先级排序</li>
-</ul>
-</li>
-<li>对所有人开放但最终由PO（Product Owner）维护</li>
-<li>关注于“什么”带给用户最大的价值</li>
-<li>最优秀的PO从“为什么”开始</li>
-</ul>
-<h4 id="用户故事（user-stories）"><a href="#用户故事（user-stories）" class="headerlink" title="用户故事（user stories）"></a>用户故事（user stories）</h4><p>As a [a user role], I want to [accomplish a result], So that [Business value].<br>作为[用户角色]，我想[实现一个结果]，因为[商业价值]。<br><img src="/2023/10/29/2023/10/scrum-develop/agile2.png"></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>程序架构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>缩写短语概念简单介绍</title>
     <url>/2023/11/07/2023/11/develep-english-shortcut/</url>
     <content><![CDATA[<h3 id="数据库相关"><a href="#数据库相关" class="headerlink" title="数据库相关"></a>数据库相关</h3><h4 id="RBAC-Role-based-access-control"><a href="#RBAC-Role-based-access-control" class="headerlink" title="RBAC(Role-based access control)"></a>RBAC(Role-based access control)</h4><p>RBAC（基于角色的访问控制）是一种针对产品去挖掘需求时所用到的Who（角色）、What（拥有什么资源）、How（有哪些操作）的方式。在RBAC模型中，who、what、how构成了访问权限三元组，也就是“Who对What进行How的操作”。RBAC主要包含四个子模型：RBAC0、RBAC1、RBAC2和RBAC3，整体又叫做RBAC96。用户与会话一对一，会话与角色一对多。在RBAC模型里面，有3个基础组成部分，分别是：用户、角色和权限。RBAC通过定义角色的权限，并对用户授予某个角色从而来控制用户的权限，实现了用户和权限的逻辑分离（区别于ACL模型），极大地方便了权限的管理。</p>
@@ -7223,76 +7087,6 @@
       </categories>
       <tags>
         <tag>缩写</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>分布式文件系统</title>
-    <url>/2023/11/10/2023/11/distribute-system-book/</url>
-    <content><![CDATA[<h3 id="为什么用分布式文件系统"><a href="#为什么用分布式文件系统" class="headerlink" title="为什么用分布式文件系统"></a>为什么用分布式文件系统</h3><ul>
-<li>和业务系统独立</li>
-<li>数据中心化实现服务无状态化</li>
-<li>实现集群的前提</li>
-<li>优点<ul>
-<li>拓展能力: 毫无疑问，扩展能力是一个分布式文件系统最重要的特点</li>
-<li>高可用性: 在分布式文件系统中，高可用性包含两层，一是整个文件系统的可用性，二是数据的完整和一致性</li>
-<li>弹性存储: 可以根据业务需要灵活地增加或缩减数据存储以及增删存储池中的资源，而不需要中断系统运行</li>
-</ul>
-</li>
-<li>实现功能<ul>
-<li>读写分离</li>
-<li>备份容错</li>
-<li>负载均衡</li>
-<li>动态扩容</li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-
-<h3 id="自有搭建系统"><a href="#自有搭建系统" class="headerlink" title="自有搭建系统"></a>自有搭建系统</h3><ul>
-<li>NFS（网络文件系统）FreeBSD支持的一种</li>
-<li>HDFS 大数据</li>
-<li>GFS（Google FS）</li>
-</ul>
-<h4 id="FastDFS"><a href="#FastDFS" class="headerlink" title="FastDFS"></a><a href="https://github.com/happyfish100/fastdfs">FastDFS</a></h4><ul>
-<li>特点<ul>
-<li>分组存储，简单灵活</li>
-<li>对等结构，不存在单点</li>
-<li>文件ID由FastDFS生成，作为文件访问凭证。FastDFS不需要传统的name server或meta server</li>
-<li>大、中、小文件均可以很好支持，可以存储海量小文件</li>
-<li>一台storage支持多块磁盘，支持单盘数据恢复</li>
-<li>提供了nginx扩展模块，可以和nginx无缝衔接</li>
-<li>支持多线程方式上传和下载文件，支持断点续传</li>
-<li>存储服务器上可以保存文件附加属性</li>
-</ul>
-</li>
-<li>架构<ul>
-<li>跟踪服务器（tracker server）：客户端和存储服务器的中间层<ul>
-<li>接收客户端请求，选择存储服务器</li>
-<li>检查存储服务器的状态</li>
-</ul>
-</li>
-<li>存储服务器（storage server）：存储文件的服务器<ul>
-<li>以组（卷，group或volume）为单位组织，一个group内包含多台storage机器，数据互为备份，存储空间以group内容量最小的storage为准，所以建议group内的多个storage尽量配置相同，以免造成存储空间的浪费。</li>
-<li>以group为单位组织存储能方便的进行应用隔离、负载均衡、副本数定制（group内storage server数量即为该group的副本数）</li>
-<li>在storage第一次启动时，会在每个数据存储目录里创建2级子目录，每级256个，总共65536个文件，新写的文件会以hash的方式被路由到其中某个子目录下，然后将文件数据直接作为一个本地文件存储到该目录中</li>
-</ul>
-</li>
-<li>客户端（client）：上传下载的服务器<br><img src="/2023/11/10/2023/11/distribute-system-book/fastdfs1.png"></li>
-</ul>
-</li>
-</ul>
-<h3 id="云存储"><a href="#云存储" class="headerlink" title="云存储"></a>云存储</h3><ul>
-<li>阿里云</li>
-<li>七牛云</li>
-<li>百度云</li>
-<li>AWS</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>分布式</tag>
       </tags>
   </entry>
   <entry>
@@ -7841,115 +7635,6 @@
       </categories>
       <tags>
         <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>dubbo以及zookeeper分布式锁</title>
-    <url>/2023/11/20/2023/11/springboot-add-dubbo-and-zk/</url>
-    <content><![CDATA[<h3 id="dubbo序列化"><a href="#dubbo序列化" class="headerlink" title="dubbo序列化"></a>dubbo序列化</h3><p>Dubbo支持多种序列化方式，用于在网络传输中将对象进行序列化和反序列化。下面介绍Dubbo中常用的几种序列化方式：</p>
-<ol>
-<li>Hessian：Hessian是一种基于二进制的序列化协议，它的优点是序列化后的数据体积相对较小，网络传输效率较高。Dubbo默认使用Hessian进行序列化。</li>
-<li>Java原生序列化：Dubbo也支持使用Java原生的序列化方式（java.io.Serializable）。这种方式简单易用，但序列化后的数据体积较大，传输效率较低。</li>
-<li>JSON：Dubbo可以使用JSON作为序列化方式。JSON是一种文本格式的序列化协议，可以在不同语言之间进行数据交换。它的优点是可读性好，方便调试和跨语言通信。但相比于二进制序列化方式，JSON的序列化和反序列化效率较低。</li>
-<li>Protobuf：Protobuf（Protocol Buffers）是Google开发的一种二进制序列化协议，具有高效、紧凑和跨语言等特点。Dubbo支持使用Protobuf进行序列化，可以在数据传输中节省带宽和存储空间。</li>
-<li>FST：FST（Fast Serialization）是一种快速的Java序列化/反序列化库，它提供了高性能和紧凑的序列化格式。FST在Dubbo中也被用作一种可选的序列化方式。</li>
-<li>Kryo：Kryo是另一种高性能的二进制序列化库，它被广泛用于Java领域。Dubbo也支持使用Kryo进行序列化。</li>
-</ol>
-<span id="more"></span>
-<p>自定义序列化：除了Dubbo支持的默认序列化方式之外，你还可以通过实现Dubbo的Serialization接口来开发自定义的序列化方式。通过自定义序列化，你可以根据业务需求进行优化，例如选择特定的序列化库、自定义序列化算法等。</p>
-<p>性能比较：不同的序列化方式在性能上可能会有所差异。一般来说，基于二进制的序列化方式（如Hessian、Protobuf、FST、Kryo）在性能上往往优于基于文本的序列化方式（如JSON、Java原生序列化）。但具体的性能表现还会受到多个因素的影响，比如对象复杂度、序列化和反序列化的速度、数据体积等。</p>
-<p>在Dubbo中，可以通过配置来选择使用哪种序列化方式。例如，在服务提供者和消费者的Dubbo配置中，可以通过<code>serialization</code>属性来指定序列化方式，如：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dubbo:protocol</span> <span class="attr">name</span>=<span class="string">&quot;dubbo&quot;</span> <span class="attr">serialization</span>=<span class="string">&quot;hessian2&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>上述配置将使用Hessian进行序列化。</p>
-<p>通过选择合适的序列化方式，可以根据具体的应用场景和需求来平衡传输效率、数据体积和跨语言交互的需求。</p>
-<h3 id="Springboot整合步骤"><a href="#Springboot整合步骤" class="headerlink" title="Springboot整合步骤"></a>Springboot整合步骤</h3><p>要在Spring Boot中整合Dubbo，可以按照以下步骤进行操作：</p>
-<ol>
-<li>创建Spring Boot项目：使用Spring Initializr或其他方式创建一个基于Spring Boot的项目。</li>
-<li>引入Dubbo依赖：在项目的pom.xml文件中添加Dubbo依赖，例如：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.dubbo&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;dubbo-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.7.12&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
-<li>创建Dubbo服务提供者：在项目中创建一个Dubbo服务提供者，即提供具体的服务实现。可以使用Dubbo的<code>@Service</code>注解标记服务实现类。</li>
-<li>配置Dubbo服务提供者：在application.properties或application.yml中配置Dubbo服务提供者的相关信息，例如：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Dubbo服务提供者配置</span><br><span class="line">dubbo.application.name=my-provider</span><br><span class="line">dubbo.registry.address=zookeeper://localhost:2181</span><br><span class="line">dubbo.protocol.name=dubbo</span><br><span class="line">dubbo.protocol.port=20880</span><br></pre></td></tr></table></figure></li>
-<li>创建Dubbo服务消费者：在项目中创建一个Dubbo服务消费者，即使用Dubbo调用远程服务。可以使用Dubbo的@Reference注解注入服务接口。</li>
-<li>配置Dubbo服务消费者：在application.properties或application.yml中配置Dubbo服务消费者的相关信息，例如：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Dubbo服务消费者配置</span><br><span class="line">dubbo.application.name=my-consumer</span><br><span class="line">dubbo.registry.address=zookeeper://localhost:2181</span><br></pre></td></tr></table></figure></li>
-<li>运行项目：启动Spring Boot应用程序，Dubbo将自动完成服务的注册与发现，并实现远程服务的调用。</li>
-</ol>
-<p>需要注意的是，上述示例中使用ZooKeeper作为注册中心，你也可以选择其他的注册中心，如Nacos、Consul等。此外，还可以根据需要配置Dubbo的更多属性，如负载均衡策略、超时设置等。</p>
-<h3 id="dubbo服务降级配置"><a href="#dubbo服务降级配置" class="headerlink" title="dubbo服务降级配置"></a>dubbo服务降级配置</h3><p>在Dubbo中，可以通过实现服务降级来应对服务不可用或异常情况，以提高系统的可用性和稳定性。以下是在Dubbo上实现服务降级的一般步骤：</p>
-<ol>
-<li><p>定义服务降级逻辑：在服务提供者端实现服务降级逻辑。当服务出现异常或不可用时，可以返回一个默认的响应结果，或者执行备用逻辑来代替原始的服务实现。</p>
-</li>
-<li><p>服务降级配置：</p>
-<ul>
-<li><p>在服务提供者端，可以通过Dubbo的<code>@Service</code>注解中的<code>mock</code>属性来配置服务降级逻辑的实现类。例如：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service(interfaceClass = UserService.class, mock = &quot;com.example.UserServiceMock&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 实际的服务实现</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在上述示例中，<code>UserServiceMock</code>是实现了服务降级逻辑的类。</p>
-</li>
-<li><p>在服务消费者端，可以通过Dubbo的<code>@Reference</code>注解中的<code>mock</code>属性来配置服务降级的实现类。例如：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Reference(interfaceClass = UserService.class, mock = &quot;com.example.UserServiceMock&quot;)</span></span><br><span class="line"><span class="keyword">private</span> UserService userService;</span><br></pre></td></tr></table></figure>
-<p>在上述示例中，<code>UserServiceMock</code>是实现了服务降级逻辑的类。</p>
-</li>
-</ul>
-</li>
-<li><p>实现服务降级逻辑：创建一个实现了服务接口的服务降级类，并实现相应的降级逻辑。该类需要实现服务接口并提供默认的响应或备用逻辑。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public class UserServiceMock implements UserService &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public User getUserById(String userId) &#123;</span><br><span class="line">        // 服务降级逻辑：返回默认的响应结果或执行备用逻辑</span><br><span class="line">        return new User();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>通过以上步骤，服务提供者和服务消费者都可以配置相应的服务降级逻辑。当服务不可用或异常时，Dubbo将自动调用降级逻辑，返回默认的响应结果或执行备用逻辑，以保证系统的可用性。</p>
-<p>需要注意的是，服务降级只是一种应对异常情况的手段，应该根据具体的业务需求和场景来选择合适的降级策略。在实际应用中，可以根据业务需求选择不同的降级方式，如返回默认值、返回缓存数据、调用备用接口等，以确保系统的可用性和用户体验。</p>
-<h3 id="分布式锁需要满足的条件"><a href="#分布式锁需要满足的条件" class="headerlink" title="分布式锁需要满足的条件"></a>分布式锁需要满足的条件</h3><p>要实现分布式锁，需要满足以下条件：</p>
-<ol>
-<li>可靠的共享存储：分布式锁需要一个可靠的共享存储来存储锁的状态信息。这个共享存储可以是分布式缓存（如Redis、Memcached）、分布式文件系统或数据库等。所有参与分布式锁的节点都能够访问和共享这个存储。</li>
-<li>原子性操作：获取锁和释放锁的操作必须是原子性的，即在一个节点成功获取锁之后，其他节点就不能再获取到该锁，直到锁被释放。原子性操作可以通过共享存储的原子性操作来实现。</li>
-<li>互斥性：分布式锁需要保证在任何时候只有一个节点能够获取到锁。这意味着当一个节点成功获取到锁时，其他节点无法获取该锁。</li>
-<li>高可用性：分布式锁应该是高可用的，即使在节点故障或网络分区的情况下，锁仍然能够正常工作。这可以通过使用分布式存储系统来实现数据的冗余和复制，以及使用选举算法来选择新的锁持有者。</li>
-<li>死锁避免：分布式锁需要能够避免死锁情况的发生。死锁是指多个节点相互等待对方释放锁的情况，导致程序无法继续执行。为了避免死锁，可以使用超时机制、锁续租机制或者基于时间戳的锁等。</li>
-<li>性能和效率：分布式锁需要具备良好的性能和效率，以便在高并发情况下能够快速地获取和释放锁，避免对系统性能造成过大的影响。</li>
-</ol>
-<p>实现分布式锁并满足以上条件是一个复杂的任务，需要考虑分布式系统的各种情况和并发访问的竞争条件。因此，通常建议使用已有的分布式锁实现，如基于Redis的Redlock、ZooKeeper的分布式锁等，它们已经考虑了上述条件并提供了可靠的分布式锁解决方案。</p>
-<h4 id="Redis设置分布式锁"><a href="#Redis设置分布式锁" class="headerlink" title="Redis设置分布式锁"></a>Redis设置分布式锁</h4><ul>
-<li>使用SETNX命令：SETNX（SET if Not eXists）命令可以在键不存在的情况下设置键的值。分布式锁可以使用一个特定的键作为锁的标识，当一个客户端尝试使用SETNX命令设置该键时，如果返回值为1，则表示该客户端成功获取到了锁，可以执行后续操作；如果返回值为0，则表示锁已经被其他客户端持有，当前客户端需要等待或执行其他逻辑。在操作完成后，客户端可以使用DEL命令来释放锁。</li>
-<li>使用SET命令结合EXPIRE命令：SET命令可以设置键的值，并且可以通过EXPIRE命令设置键的过期时间。分布式锁可以使用SET命令设置一个带有过期时间的键，当一个客户端成功设置该键时，表示获取到了锁，其他客户端可以通过GET命令检查该键是否存在以判断锁的状态。当锁不再需要时，客户端可以使用DEL命令来释放锁。</li>
-<li>使用RedLock算法：RedLock是由Redis官方提出的一种分布式锁算法。它通过在多个Redis实例之间协调来实现分布式锁的可靠性和高可用性。RedLock算法要求至少需要多数（majority）的Redis节点达成一致才能获得锁。具体实现上，客户端会尝试在多个Redis实例上使用SET命令设置同一个键，并设置相同的过期时间。如果成功在大多数实例上设置了该键，则表示获取到了锁。释放锁时，客户端需要在所有实例上执行DEL命令来删除该键。</li>
-<li>在业务执行的时候就增加一个守护进程监控锁的过期时间，如果锁即将过期，就将锁的时间延长，防止出现业务执行时间过长导致锁自动到期释放的问题。</li>
-</ul>
-<h4 id="Zookeeper实现分布式锁"><a href="#Zookeeper实现分布式锁" class="headerlink" title="Zookeeper实现分布式锁"></a>Zookeeper实现分布式锁</h4><p>当在Spring Boot中使用ZooKeeper，你需要添加相应的依赖以及编写配置和代码来连接和使用ZooKeeper。以下是一个简单的Spring Boot中使用ZooKeeper的示例：</p>
-<ol>
-<li>添加依赖</li>
-</ol>
-<p>在你的Maven或Gradle配置文件中添加ZooKeeper依赖：</p>
-<p>Maven:</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.zookeeper<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>zookeeper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.6.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>Gradle:</p>
-<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">implementation <span class="string">&#x27;org.apache.zookeeper:zookeeper:3.6.3&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>配置ZooKeeper连接</li>
-</ol>
-<p>在<code>application.properties</code>或<code>application.yml</code>中添加ZooKeeper连接配置：</p>
-<p>application.properties:</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">zookeeper.connectString</span>=<span class="string">localhost:2181</span></span><br><span class="line"><span class="meta">zookeeper.sessionTimeout</span>=<span class="string">5000</span></span><br></pre></td></tr></table></figure>
-
-<p>application.yml:</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">zookeeper:</span></span><br><span class="line">  <span class="attr">connectString:</span> <span class="string">localhost:2181</span></span><br><span class="line">  <span class="attr">sessionTimeout:</span> <span class="number">5000</span></span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>编写ZooKeeper客户端</li>
-</ol>
-<p>创建一个ZooKeeper客户端类，用于连接ZooKeeper，并提供相应的方法来操作ZooKeeper：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.zookeeper.WatchedEvent;</span><br><span class="line"><span class="keyword">import</span> org.apache.zookeeper.Watcher;</span><br><span class="line"><span class="keyword">import</span> org.apache.zookeeper.ZooKeeper;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.annotation.PostConstruct;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CountDownLatch;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZooKeeperClient</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;zookeeper.connectString&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String connectString;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;zookeeper.sessionTimeout&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> sessionTimeout;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ZooKeeper zooKeeper;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 用于确保链接完成后进行后续操作</span></span><br><span class="line">    <span class="keyword">private</span> CountDownLatch connectedLatch;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostConstruct</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">()</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">        connectedLatch = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</span><br><span class="line">        zooKeeper = <span class="keyword">new</span> ZooKeeper(connectString, sessionTimeout, <span class="keyword">new</span> Watcher() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(WatchedEvent event)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (event.getState() == Event.KeeperState.SyncConnected) &#123;</span><br><span class="line">                    connectedLatch.countDown();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        connectedLatch.await();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">createNode</span><span class="params">(String path, <span class="keyword">byte</span>[] data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            zooKeeper.create(path, data, <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">deleteNode</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            zooKeeper.delete(path, -<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>使用ZooKeeper分布式锁</li>
-</ol>
-<p>在需要使用分布式锁的地方，可以注入<code>ZooKeeperClient</code>，并使用它的方法来创建和删除ZooKeeper节点来实现分布式锁的获取和释放：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DistributedLockService</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String LOCK_PATH = <span class="string">&quot;/my-lock&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ZooKeeperClient zooKeeperClient;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">acquireLock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> zooKeeperClient.createNode(LOCK_PATH, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">releaseLock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> zooKeeperClient.deleteNode(LOCK_PATH);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>分布式</tag>
-        <tag>SpringBoot</tag>
-        <tag>dubbo</tag>
-        <tag>zookeeper</tag>
       </tags>
   </entry>
   <entry>
@@ -8896,6 +8581,8 @@
 <h3 id="计算机基本原理"><a href="#计算机基本原理" class="headerlink" title="计算机基本原理"></a>计算机基本原理</h3><p><img src="/2024/04/26/2024/04/quick-remember-exam/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.png" alt="计算机组成"></p>
 <p><img src="/2024/04/26/2024/04/quick-remember-exam/%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84.png" alt="存储结构"></p>
 <h3 id="HTTPS验证过程"><a href="#HTTPS验证过程" class="headerlink" title="HTTPS验证过程"></a>HTTPS验证过程</h3><p><img src="/2024/04/26/2024/04/quick-remember-exam/HTTPS%E9%AA%8C%E8%AF%81%E8%BF%87%E7%A8%8B.webp" alt="HTTPS验证过程.webp"></p>
+<h3 id="版权期限"><a href="#版权期限" class="headerlink" title="版权期限"></a>版权期限</h3><p>保护期限不受限制的有：署名权，修改权，保护作品完整权。保护期限为作者终身及死后50年的，包括：发表权、使用权和获得报酬权。</p>
+<h3 id="网络分层和协议"><a href="#网络分层和协议" class="headerlink" title="网络分层和协议"></a>网络分层和协议</h3><p><img src="/2024/04/26/2024/04/quick-remember-exam/net-layer-protocol.webp" alt="net-layer-protocol"></p>
 ]]></content>
   </entry>
   <entry>
