@@ -117,3 +117,7 @@ ChatGPT的横空出世之后长达一年的时间里，这股AI热潮一直在�
 我非常怀疑AI会是一个巨大的泡沫，真正的AI时代还远未到来，目前的使用场景来看，仅仅是一个比较高效的内容创造工具，还没有办法真正投入到生产能力的提升中。
 
 我在2024年5月5日立下这个flag：如果AI没办法在除了内容创造以外的领域有新的建树，那AI热潮在未来一年就会消退，欢迎回头打脸。
+
+## 一些类似想法的文章
+
+![Did GitHub Copilot really increase my productivity?](https://trace.yshui.dev/2024-05-copilot.html#did-github-copilot-really-increase-my-productivity)
