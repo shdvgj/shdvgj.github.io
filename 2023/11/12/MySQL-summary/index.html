@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.cindyforever.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="WHERE解析顺序 MySQL从左向右解析 Oracle从右往左解析 根据解析顺序把最优筛选用于最先解析 最左原则">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL不定时笔记">
+<meta property="og:url" content="https://blog.cindyforever.com/2023/11/12/MySQL-summary/index.html">
+<meta property="og:site_name" content="Ricky的个人博客">
+<meta property="og:description" content="WHERE解析顺序 MySQL从左向右解析 Oracle从右往左解析 根据解析顺序把最优筛选用于最先解析 最左原则">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-12T05:07:51.000Z">
+<meta property="article:modified_time" content="2023-11-28T03:19:36.989Z">
+<meta property="article:author" content="Ricky">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blog.cindyforever.com/2023/11/12/MySQL-summary/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.cindyforever.com/2023/11/12/MySQL-summary/","path":"2023/11/12/MySQL-summary/","title":"MySQL不定时笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MySQL不定时笔记 | Ricky的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ricky的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#WHERE%E8%A7%A3%E6%9E%90%E9%A1%BA%E5%BA%8F"><span class="nav-text">WHERE解析顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="nav-text">SQL执行顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL%E5%85%B3%E9%94%AE%E5%AD%97%E8%A7%A3%E6%9E%90%E9%A1%BA%E5%BA%8F%EF%BC%88%E4%BB%8E%E4%B8%8A%E5%BE%80%E4%B8%8B%E9%A1%BA%E5%BA%8F%E8%A7%A3%E6%9E%90%EF%BC%89"><span class="nav-text">SQL关键字解析顺序（从上往下顺序解析）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL%E5%85%A8%E6%96%87%E7%B4%A2%E5%BC%95"><span class="nav-text">MySQL全文索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="nav-text">存储引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InnoDB%E4%B8%ADMySQL%E4%B8%AD%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%E6%98%AF%E6%80%8E%E4%B9%88%E5%AD%98%E5%82%A8%E7%9A%84%EF%BC%9F"><span class="nav-text">InnoDB中MySQL中一条记录是怎么存储的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E5%88%86%E7%B1%BB"><span class="nav-text">日志分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%97%A5%E5%BF%97%EF%BC%88Binary-Log%EF%BC%89"><span class="nav-text">二进制日志（Binary Log）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E6%97%A5%E5%BF%97%EF%BC%88Transaction-Log%EF%BC%89"><span class="nav-text">事务日志（Transaction Log）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%EF%BC%88Error-Log%EF%BC%89"><span class="nav-text">错误日志（Error Log）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%97%A5%E5%BF%97%EF%BC%88Query-Log%EF%BC%89"><span class="nav-text">查询日志（Query Log）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%85%A2%E6%9F%A5%E8%AF%A2%E6%97%A5%E5%BF%97%EF%BC%88Slow-Query-Log%EF%BC%89"><span class="nav-text">慢查询日志（Slow Query Log）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%92%A4%E9%94%80%E6%97%A5%E5%BF%97%EF%BC%88Undo-Log%EF%BC%89%EF%BC%9A"><span class="nav-text">撤销日志（Undo Log）：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%8F%82%E6%95%B0%E5%91%BD%E4%BB%A4"><span class="nav-text">查看参数命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD"><span class="nav-text">备份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96"><span class="nav-text">数据库查询优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kill%E6%8E%89%E9%94%81%E8%A1%A8%E8%BF%9B%E7%A8%8B"><span class="nav-text">kill掉锁表进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83"><span class="nav-text">数据库字段设计规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%8C%BA%E8%A1%A8"><span class="nav-text">分区表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E5%8F%AF%E7%94%A8HA%E5%AE%9E%E7%8E%B0"><span class="nav-text">高可用HA实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E4%B8%BB%E5%90%8C%E6%AD%A5%E6%96%B9%E5%BC%8F"><span class="nav-text">双主同步方式</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ricky"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ricky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shdvgj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shdvgj" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:linqianghuang@gmail.com" title="E-Mail → mailto:linqianghuang@gmail.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/RickyLoveCindy" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;RickyLoveCindy" rel="noopener me" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoqianglalala" rel="noopener me" target="_blank"><i class="instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.cindyforever.com/2023/11/12/MySQL-summary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MySQL不定时笔记 | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL不定时笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-12 13:07:51" itemprop="dateCreated datePublished" datetime="2023-11-12T13:07:51+08:00">2023-11-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-28 11:19:36" itemprop="dateModified" datetime="2023-11-28T11:19:36+08:00">2023-11-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/11/12/MySQL-summary/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/11/12/MySQL-summary/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="WHERE解析顺序"><a href="#WHERE解析顺序" class="headerlink" title="WHERE解析顺序"></a>WHERE解析顺序</h3><ul>
+<li>MySQL从左向右解析</li>
+<li>Oracle从右往左解析</li>
+<li>根据解析顺序把最优筛选用于最先解析</li>
+<li><a href="https://blog.cindyforever.com/2019/10/15/tech/%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E8%A7%A3%E9%87%8AMySQL%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D(%E6%9C%80%E5%B7%A6%E5%89%8D%E7%BC%80)%E5%8E%9F%E5%88%99/?highlight=mysql">最左原则</a></li>
+</ul>
+<span id="more"></span>
+<h3 id="SQL执行顺序"><a href="#SQL执行顺序" class="headerlink" title="SQL执行顺序"></a>SQL执行顺序</h3><ul>
+<li>缓存（MySQL8.0移除）<ul>
+<li>MySQL的缓存机制主要包括查询缓存和InnoDB缓冲池（Buffer Pool）。</li>
+<li>查询缓存是MySQL中的一个全局缓存，用于缓存查询语句的结果集。当一个查询语句被执行时，MySQL首先检查查询缓存，如果相同的查询已经被缓存过并且缓存有效，则直接返回缓存的结果，而不需要执行实际的查询操作。（需要查询语句完全相同才能命中缓存）</li>
+<li>InnoDB缓冲池是InnoDB存储引擎中的一个重要组件，用于缓存数据和索引页。它将磁盘上的数据和索引页加载到内存中，以提高数据的访问速度。</li>
+</ul>
+</li>
+<li>分析器<ul>
+<li>词法分析（Lexical Analysis）：将SQL语句分解为一个个的标记（tokens），如关键字、标识符、运算符等。</li>
+<li>语法分析（Syntax Analysis）：根据SQL语句的语法规则，将标记组合成语法树（parse tree）或语法分析树（syntax tree）。</li>
+<li>语义分析（Semantic Analysis）：对语法树进行语义检查，包括检查表名、列名的存在性和合法性，检查语句的权限等。</li>
+</ul>
+</li>
+<li>优化器<ul>
+<li>查询优化（Query Optimization）：对查询语句进行优化，选择最优的执行计划。这涉及到索引选择、连接顺序、连接类型等优化策略。</li>
+</ul>
+</li>
+<li>执行器<ul>
+<li>执行计划生成（Execution Plan Generation）：根据优化后的查询计划，生成实际的执行计划，包括确定表的访问顺序、使用哪些索引等。</li>
+<li>执行计划执行（Execution）：按照生成的执行计划执行查询，包括从磁盘读取数据、进行排序、聚合等操作。</li>
+</ul>
+</li>
+<li>结果返回（Result Retrieval）：将执行结果返回给客户端</li>
+<li>PreparedStatement：节省分析和优化的消耗</li>
+</ul>
+<h3 id="SQL关键字解析顺序（从上往下顺序解析）"><a href="#SQL关键字解析顺序（从上往下顺序解析）" class="headerlink" title="SQL关键字解析顺序（从上往下顺序解析）"></a>SQL关键字解析顺序（从上往下顺序解析）</h3><ul>
+<li>FROM</li>
+<li>ON</li>
+<li>JOIN</li>
+<li>WHRER</li>
+<li>GROUP BY</li>
+<li>HAVING</li>
+<li>SELECT columns</li>
+<li>DISTINCT</li>
+<li>ORDER BY</li>
+<li>LIMIT</li>
+</ul>
+<h3 id="MySQL全文索引"><a href="#MySQL全文索引" class="headerlink" title="MySQL全文索引"></a>MySQL全文索引</h3><p>MySQL中的全文索引是一种用于支持全文搜索的索引类型。它能够提供更高效的文本搜索功能，使得在大量文本数据中进行关键字搜索变得更加快速和准确。</p>
+<ul>
+<li>特点<ul>
+<li>支持全文搜索：全文索引可以对文本数据进行索引，使得可以通过关键字搜索来查找包含指定关键字的文本。</li>
+<li>分词处理：在创建全文索引时，MySQL会对文本进行分词处理，将文本拆分成一个个词语（或称为词项），并将这些词语存储在全文索引中。</li>
+<li>忽略常见词和停用词：全文索引会忽略一些常见词和停用词（如”and”、”the”、”is”等），这些词通常对搜索结果没有实质性的帮助。</li>
+<li>支持关键字匹配：全文索引支持多种关键字匹配模式，如全文匹配、布尔搜索、短语搜索等。</li>
+<li>支持排序和评分：全文索引可以根据搜索结果的相关性进行排序，并为每个搜索结果分配一个评分，以便更好地反映搜索结果的相关性。</li>
+</ul>
+</li>
+<li>要使用全文索引，需要满足以下条件：<ul>
+<li>数据表的存储引擎必须是支持全文索引的引擎，如InnoDB、MyISAM等。注意，InnoDB引擎在MySQL 5.6版本之前不支持全文索引。</li>
+<li>要创建全文索引的列必须是字符类型的列，如VARCHAR、TEXT等。</li>
+</ul>
+</li>
+<li>使用示例：<ul>
+<li>创建全文索引：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> FULLTEXT 索引名 (列名<span class="number">1</span>, 列名<span class="number">2</span>, ...);</span><br></pre></td></tr></table></figure></li>
+<li>执行全文搜索：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> 表名 <span class="keyword">WHERE</span> <span class="keyword">MATCH</span>(列名) AGAINST(<span class="string">&#x27;关键字&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h3><ul>
+<li>查看存储引擎<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> engines;</span><br></pre></td></tr></table></figure></li>
+<li>指定存储引擎<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">  column1 datatype,</span><br><span class="line">  column2 datatype,</span><br><span class="line">  ...</span><br><span class="line">) ENGINE <span class="operator">=</span> engine_name;</span><br></pre></td></tr></table></figure></li>
+<li>存储引擎分类<ul>
+<li>InnoDB：InnoDB是MySQL的默认存储引擎，它支持事务和行级锁定。它提供了高度的并发性和可靠性，并具有较好的崩溃恢复能力。InnoDB还支持外键约束和支持ACID（原子性、一致性、隔离性和持久性）事务。</li>
+<li>MyISAM：MyISAM是MySQL的另一个常用存储引擎。它不支持事务和行级锁定，但具有较高的性能和较小的存储开销。MyISAM适用于读密集型的应用场景，如日志记录、数据仓库等。</li>
+<li>Memory（或者称为Heap）：Memory存储引擎将数据存储在内存中，提供了非常快速的读写操作。但是，由于数据存储在内存中，重启MySQL服务或服务器故障会导致数据丢失。Memory存储引擎适用于需要快速读写操作和临时数据存储的场景，如缓存表、临时表等。</li>
+<li>NDB Cluster：NDB Cluster存储引擎是MySQL集群（MySQL Cluster）的一部分，它提供了高可用性和可扩展性。NDB Cluster存储引擎将数据分布在多个节点上，并提供了分布式事务和高度并发的访问。它适用于大规模的分布式应用，如互联网应用、实时数据处理等。</li>
+<li>Archive引擎：Archive存储引擎是一种用于存储归档数据的引擎。它的设计目标是提供高度的数据压缩和快速的插入操作，适用于需要长期存储大量历史数据的场景。Archive引擎使用了行级别的压缩算法，可以将数据压缩到很小的存储空间。但是，它不支持索引和更新操作，只支持追加插入和查询操作。</li>
+<li>CSV引擎：CSV存储引擎将数据以逗号分隔值（CSV）的格式存储在文本文件中。它适用于需要与其他应用程序或工具进行数据交换的场景，如导入和导出数据。CSV引擎的数据存储在文本文件中，不支持索引和事务，因此在查询和更新操作方面性能较低。它更适合于只需要简单读取数据的场景。</li>
+<li>Blackhole引擎：Blackhole存储引擎是一个特殊的引擎，它不会实际存储数据，而是将所有写入操作都丢弃，只保留了表结构。它适用于数据复制和数据同步的场景，可以用作数据的中转站。通过将数据写入Blackhole引擎，可以快速将数据复制到其他MySQL实例或进行其他处理，而无需实际存储数据。Blackhole引擎对读取操作返回空结果。</li>
+</ul>
+</li>
+</ul>
+<h3 id="InnoDB中MySQL中一条记录是怎么存储的？"><a href="#InnoDB中MySQL中一条记录是怎么存储的？" class="headerlink" title="InnoDB中MySQL中一条记录是怎么存储的？"></a><a target="_blank" rel="noopener" href="https://www.xiaolincoding.com/mysql/base/row_format.html">InnoDB中MySQL中一条记录是怎么存储的？</a></h3><p>在MySQL中，一行记录是按照表的定义和存储引擎的规则进行存储的。具体的存储方式会根据使用的存储引擎而有所不同。下面是一般情况下的存储方式：</p>
+<ul>
+<li>行格式（Row Format）：MySQL支持不同的行格式，如Compact、Redundant和Dynamic等。每种行格式都有不同的存储方式和特性。下面是一般情况下的行记录存储方式：<ul>
+<li>行头信息（Header）：包含了一些元数据，如是否为NULL、是否为变长字段等信息。</li>
+<li>列数据（Column Data）：按照表的定义，将每个列的数据存储在相应的位置上。对于变长字段，可能会有额外的指针来指示实际存储位置。</li>
+<li>记录头信息（Record Header）：包含了一些记录级别的元数据，如版本号、删除标记等。</li>
+<li>记录尾信息（Record Footer）：包含了一些校验和和其他控制信息。</li>
+</ul>
+</li>
+<li>存储引擎的差异：不同的存储引擎可能会有不同的存储方式和优化策略。例如，InnoDB存储引擎使用了聚簇索引的概念，将数据按照主键的顺序进行存储，这样可以提高查询性能。而MyISAM存储引擎则将数据存储在不同的文件中，分别存储数据和索引，以提供更高的并发性能。</li>
+</ul>
+<h3 id="日志分类"><a href="#日志分类" class="headerlink" title="日志分类"></a>日志分类</h3><h4 id="二进制日志（Binary-Log）"><a href="#二进制日志（Binary-Log）" class="headerlink" title="二进制日志（Binary Log）"></a>二进制日志（Binary Log）</h4><p>二进制日志是MySQL中最重要的日志类型之一。它记录了所有对数据库的修改操作，包括插入、更新和删除等，以二进制的形式保存在磁盘上。二进制日志可以用于数据恢复、主从复制和数据库的增量备份等。</p>
+<ul>
+<li>启用：要启用二进制日志，需要在MySQL的配置文件中进行相应的设置。通常，可以在配置文件（如my.cnf或my.ini）中添加以下配置项<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log_bin = /path/to/binlog  # 会生成binlog.000001这样的文件</span><br></pre></td></tr></table></figure></li>
+<li>查看和管理二进制日志<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="type">BINARY</span> LOGS; #查看当前正在使用的二进制日志文件列表。</span><br><span class="line"><span class="keyword">SHOW</span> BINLOG EVENTS <span class="keyword">IN</span> <span class="string">&#x27;binlog.000001&#x27;</span>; # 查看binlog内容</span><br><span class="line"><span class="keyword">SHOW</span> MASTER STATUS; #查看当前正在写入的二进制日志文件和位置。</span><br><span class="line">PURGE <span class="type">BINARY</span> LOGS; #清理旧的二进制日志文件，释放磁盘空间。</span><br></pre></td></tr></table></figure></li>
+<li>二进制日志格式：MySQL提供了多种二进制日志格式，包括Statement、Row和Mixed。不同的格式有不同的特点和适用场景。主从备份的情况下，一般可以主机用Statement模式，从机用Row模式。<ul>
+<li>Statement格式记录SQL语句本身。（缺少每条数据发生变化的细节）</li>
+<li>Row格式记录每一行数据的修改。</li>
+<li>Mixed格式根据具体情况选择使用Statement或Row格式。</li>
+</ul>
+</li>
+<li>使用Binlog恢复数据的步骤<ul>
+<li>确认备份和binlog文件的完整性</li>
+<li>停止mysql服务器<code>sudo systemctl stop mysql</code></li>
+<li>恢复备份文件</li>
+<li>回放binlog，从备份文件最后的时间节点开始回放<code>mysqlbinlog --base64-output=DECODE-ROWS --verbose --start-position=&lt;start_position&gt; --stop-position=&lt;stop_position&gt; &lt;binlog_file&gt;</code> 或者 <code>mysqlbinlog --no-defaults --database=mydb --base64-output=decode-rows -v --start-datetime=&#39;2019-12-11 16:30:00&#39; --stop-datetime=&#39;2019-12-11 16:31:00&#39; mysql-bin.000003</code><ul>
+<li>其中start_position和stop-position取自<code>SHOW BINLOG EVENTS IN &#39;binlog.000001&#39;</code></li>
+<li>如何确定start-position<ul>
+<li>使用SHOW MASTER STATUS命令</li>
+<li>使用mysqlbinlog binlog.000001</li>
+<li>查看备份工具生成的备份日志</li>
+</ul>
+</li>
+<li>docker中使用<ul>
+<li><code>docker exec -it &lt;container_name_or_id&gt; bash</code> 进入容器内命令行</li>
+<li>找到mysql的binlog目录，默认<code>/var/lib/mysql</code></li>
+<li>执行<code>mysqlbinlog --base64-output=DECODE-ROWS --verbose --start-position=&lt;start_position&gt; --stop-position=&lt;stop_position&gt; &lt;binlog_file&gt;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>使用如下命令将回放记录放回到MySQL服务器中：<code>mysqlbinlog --base64-output=DECODE-ROWS --verbose --start-position=&lt;start_position&gt; --stop-position=&lt;stop_position&gt; &lt;binlog_file&gt; | mysql -u &lt;username&gt; -p &lt;database_name&gt;</code></li>
+</ul>
+</li>
+<li>binglog的event_type类型<ul>
+<li>Query：表示SQL语句执行事件，记录了对数据库执行的SQL查询语句。</li>
+<li>Table_map：表示表映射事件，记录了每个表的结构信息，包括表名、列名、列类型等。</li>
+<li>Write_rows：表示写入行事件，记录了向表中插入新行的操作。</li>
+<li>Update_rows：表示更新行事件，记录了对表中行进行更新的操作。</li>
+<li>Delete_rows：表示删除行事件，记录了从表中删除行的操作。</li>
+<li>Xid：表示事务提交事件，记录了事务的提交操作。</li>
+<li>Rotate：表示binlog文件切换事件，记录了binlog文件的切换信息。</li>
+<li>Anonymous_Gtid：当MySQL服务器配置为使用<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/replication-gtids-concepts.html">GTID</a>复制模式时，如果在binlog中记录的事务没有具体的用户事务标识符（即没有指定GTID），则会使用Anonymous_Gtid作为事件类型来表示这些事务。</li>
+</ul>
+</li>
+<li>在<code>mysqldump</code>命令中，<code>--single-transaction</code>确保事务一致性。<ul>
+<li>只适用于使用事务引擎的表，如InnoDB。</li>
+</ul>
+</li>
+</ul>
+<h4 id="事务日志（Transaction-Log）"><a href="#事务日志（Transaction-Log）" class="headerlink" title="事务日志（Transaction Log）"></a>事务日志（Transaction Log）</h4><p>事务日志也称为重做日志（Redo Log），用于记录已提交的事务对数据库的修改操作。事务日志是InnoDB存储引擎特有的日志类型，用于保证数据库的事务持久性和崩溃恢复。它记录了事务对数据的修改操作，以便在数据库崩溃时进行数据恢复。</p>
+<h4 id="错误日志（Error-Log）"><a href="#错误日志（Error-Log）" class="headerlink" title="错误日志（Error Log）"></a>错误日志（Error Log）</h4><p>错误日志记录了MySQL服务器在运行过程中发生的错误和异常信息。它包含了警告、错误、连接问题等相关的日志信息。错误日志对于排查和解决数据库运行中的问题非常有用。</p>
+<h4 id="查询日志（Query-Log）"><a href="#查询日志（Query-Log）" class="headerlink" title="查询日志（Query Log）"></a>查询日志（Query Log）</h4><p>查询日志记录了MySQL服务器接收到的所有查询语句，包括SELECT、INSERT、UPDATE和DELETE等操作。查询日志可以用于分析和优化查询性能，但是在高负载环境下开启查询日志会对性能产生一定的影响。</p>
+<h4 id="慢查询日志（Slow-Query-Log）"><a href="#慢查询日志（Slow-Query-Log）" class="headerlink" title="慢查询日志（Slow Query Log）"></a>慢查询日志（Slow Query Log）</h4><p>慢查询日志记录了执行时间超过指定阈值的查询语句。它可以帮助开发人员和数据库管理员发现慢查询语句，并进行性能优化。慢查询日志对于定位和解决数据库性能问题非常有用。</p>
+<ul>
+<li>启用慢查询<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">slow_query_log = 1</span><br><span class="line">slow_query_log_file = /path/to/slow-query.log</span><br><span class="line">long_query_time = 1</span><br></pre></td></tr></table></figure></li>
+<li>慢查询分析工具<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldumpslow <span class="operator">-</span>s t slow<span class="operator">-</span>query.log</span><br></pre></td></tr></table></figure></li>
+<li><a target="_blank" rel="noopener" href="https://percona.com/software/database-tools/percona-toolkit">percona-toolkit：开源分析数据库工具</a></li>
+</ul>
+<h4 id="撤销日志（Undo-Log）："><a href="#撤销日志（Undo-Log）：" class="headerlink" title="撤销日志（Undo Log）："></a>撤销日志（Undo Log）：</h4><p>撤销日志也是InnoDB存储引擎特有的日志类型，用于支持事务的回滚操作。当事务执行过程中需要回滚时，撤销日志记录了对数据的逆操作，以实现事务的原子性</p>
+<h3 id="查看参数命令"><a href="#查看参数命令" class="headerlink" title="查看参数命令"></a>查看参数命令</h3><ul>
+<li>查看binlog配置 <code>show variables like &#39;%binlog%&#39;;</code></li>
+</ul>
+<h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><ul>
+<li>备份策略<ul>
+<li>全量备份：全量备份将整个数据集完整备份，适用于首次备份和周期性完整备份。</li>
+<li>差异备份：差异备份备份自上次全量备份以来的变化部分，相对于全量备份来说备份时间和存储空间较少。</li>
+<li>增量备份：增量备份备份自上次备份以来的增量变化，备份时间最短，存储空间最小。</li>
+</ul>
+</li>
+<li>备份方式<ul>
+<li>时间点恢复</li>
+<li>热备：不影响数据库读写（MyISAM不能进行热备，InnoDB可以）<ul>
+<li>MyISAM不能进行热备的原因<ul>
+<li>缺乏事务支持：MyISAM是一种非事务性的存储引擎，它不支持ACID（原子性、一致性、隔离性和持久性）特性。在进行备份时，如果数据库正在处理写操作，备份可能会导致数据不一致或损坏。</li>
+<li>表级锁定：MyISAM使用表级锁定来控制并发访问。当备份工具尝试锁定表时，其他查询和写操作将被阻塞，可能导致数据库性能下降。这种锁定机制使得在备份期间无法进行正常的读写操作，因此无法实现热备份。</li>
+<li>数据文件和索引文件分离：MyISAM引擎将数据存储在一个文件中，索引存储在另一个文件中。在备份过程中，如果同时备份数据文件和索引文件，可能会导致备份的不一致性。因此，需要在备份期间停止对数据库的写操作，以确保数据文件和索引文件的一致性。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>温备：数据库只能进行读操作，不能进行写操作</li>
+<li>冷备：数据库需要停机</li>
+<li>物理备份：直接复制数据库文件</li>
+<li>逻辑备份：数据导出方式</li>
+</ul>
+</li>
+<li>备份工具<ul>
+<li>msyqldump<ul>
+<li><code>mysqldump</code>是一个用于备份和恢复MySQL数据库的命令行工具。它可以生成一个包含数据库结构和数据的SQL脚本文件，以便在需要时进行恢复或迁移数据库。</li>
+<li>备份数据库，使用以下命令来备份整个数据库：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u &lt;username&gt; -p &lt;database_name&gt; &gt; backup.sql</span><br></pre></td></tr></table></figure>
+将<code>&lt;username&gt;</code>替换为具有备份权限的MySQL用户名，<code>&lt;database_name&gt;</code>替换为要备份的数据库名称，<code>backup.sql</code>为备份文件的名称和路径。<br>如果只想备份数据库结构而不包括数据，可以添加<code>--no-data</code>选项：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u &lt;username&gt; -p --no-data &lt;database_name&gt; &gt; backup.sql</span><br></pre></td></tr></table></figure></li>
+<li>恢复数据库：<br>使用以下命令将备份文件中的数据恢复到MySQL数据库中：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u &lt;username&gt; -p &lt;database_name&gt; &lt; backup.sql</span><br></pre></td></tr></table></figure>
+将<code>&lt;username&gt;</code>替换为具有恢复权限的MySQL用户名，<code>&lt;database_name&gt;</code>替换为要恢复的数据库名称，<code>backup.sql</code>为备份文件的名称和路径。<br>如果备份文件中只包含数据库结构而不包括数据，可以添加<code>--no-data</code>选项：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u &lt;username&gt; -p --no-data &lt;database_name&gt; &lt; backup.sql</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>xtrabackup<ul>
+<li>percona提供</li>
+<li>物理备份工具</li>
+<li>支持全量，差异，增量备份</li>
+</ul>
+</li>
+<li>select语句备份</li>
+<li>cp命令：物理备份</li>
+</ul>
+</li>
+<li>备份策略实施<ul>
+<li>备份流程<ul>
+<li>备份工具：mysqldump，xtrabackup等</li>
+<li>备份方式：热备，温备，冷备；物理备份，逻辑备份</li>
+</ul>
+</li>
+<li>考虑数据量<ul>
+<li>数据量较小的情况下：逻辑备份，如mysqldump</li>
+<li>数据量较大的情况下：物理备份，如xtrabackup</li>
+</ul>
+</li>
+<li>考虑时间点补偿<ul>
+<li>从上一个全量备份到当前时间的数据</li>
+<li>这部分数据使用binlog进行恢复</li>
+<li>读多写少用建议使用row格式，写多读少使用statement格式<ul>
+<li>statement不能恢复的情况举例：如上次全量备份后误执行了一条update全表的语句，那么从全量备份的时间点到当前时间点，statement日志中只有这一条update语句，也就无法恢复到全量备份时的状态。</li>
+<li>另一种情况：执行了两条sql，第一条+50，第二条-100，但是实际情况中第二条执行失败。而MySQL无论哪种日志格式，都会记录成功和失败的记录，因此在statement格式日志中，就是两条记录，在恢复时就会同时执行两条，导致数据与实际不符。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>备份方案<ul>
+<li>全量备份，使用cron语法执行mysqldump全量备份脚本</li>
+<li>增量备份，使用binlog<br><a href="mysql.pdf">mysql备份.pdf</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据库查询优化"><a href="#数据库查询优化" class="headerlink" title="数据库查询优化"></a>数据库查询优化</h3><ul>
+<li>SQL及索引<ul>
+<li>适合建索引的字段<ul>
+<li>值差异较多的字段（如手机号，不合适：性别字段）</li>
+<li>经常查询的字段</li>
+<li>常用的关联字段</li>
+<li>统计和分组的字段</li>
+<li>非必要不建立索引，会影响插入修改删除性能</li>
+</ul>
+</li>
+<li>explain<ul>
+<li>用法<code>EXPLAIN SELECT * FROM table_name WHERE condition;</code></li>
+<li>返回结果<ul>
+<li>id：查询的唯一标识符，用于标识查询中的每个操作步骤。</li>
+<li>select_type：表示查询的类型，例如SIMPLE表示简单查询，SUBQUERY表示子查询，JOIN表示连接查询等。</li>
+<li>table：表示查询涉及的表名。</li>
+<li>type：表示表的访问类型，常见的类型包括ALL（全表扫描）、index（索引扫描）、range（范围扫描）、ref（基于索引的等值查找）等。</li>
+<li>possible_keys：表示可能使用的索引。</li>
+<li>key：表示实际使用的索引。</li>
+<li>rows：表示估计的扫描行数。</li>
+<li>Extra：包含其他附加信息，如排序、临时表等。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>索引命中规则<ul>
+<li>等值匹配：如果查询条件中使用了等值比较（如=），并且该列上存在索引，那么索引就会被命中。例如，<code>WHERE column_name = value</code>。</li>
+<li>范围查询：如果查询条件中使用了范围查询（如&gt;、&lt;、BETWEEN、IN等），并且该列上存在索引，那么索引的部分会被命中。范围查询只能利用索引的有序性，但在范围的两端之间的值需要进行全表扫描。例如，<code>WHERE column_name &gt; value</code>。</li>
+<li>前缀匹配：如果查询条件中使用了字符串的前缀匹配（如LIKE ‘prefix%’），并且该列上存在索引，那么索引就会被命中。前缀匹配可以利用索引的前缀部分进行查询，加快查询速度。例如，<code>WHERE column_name LIKE &#39;prefix%&#39;</code>。</li>
+<li>最左前缀匹配：如果查询条件中使用了多列索引，并且查询条件从索引的最左边开始匹配，那么索引就会被命中。如果查询条件不满足最左前缀匹配，那么索引将无法被完全利用。例如，如果有一个联合索引 (column1, column2)，查询条件为 <code>WHERE column1 = value AND column2 = value</code>。</li>
+<li>精确匹配：如果查询条件中使用了精确匹配（如主键查询），那么索引就会被命中。主键是一种特殊的索引，它的值是唯一的，因此精确匹配主键时索引命中的几率非常高。</li>
+<li>覆盖索引：当查询结果中有且仅有索引的列时，就会命中索引。如组合索引时（column1，column2），此时查询sql为<code>select column1, column2 from table1</code>，这样就会少了一步<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/401198674">回表操作</a>，无论where条件如何都会命中索引。</li>
+</ul>
+</li>
+<li>索引不命中的情况<ul>
+<li>函数应用于索引字段：如果查询中的函数应用于索引字段，例如 WHERE UPPER(column_name) = ‘VALUE’，索引可能无法被使用。这是因为函数会对索引字段的值进行转换，导致无法直接匹配索引。</li>
+<li>列值表达式：如果查询中使用了列值表达式，例如 <code>WHERE column_name + 1 = 10</code>，索引可能无法被使用。列值表达式会对索引字段的值进行计算，使得无法直接匹配索引。</li>
+<li>隐式类型转换：如果查询中使用了隐式类型转换，例如 <code>WHERE column_name = &#39;10&#39;</code>，而实际上 column_name 的数据类型是整数，索引可能无法被使用。隐式类型转换会导致索引无法直接匹配查询条件。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>精确匹配：如果查询条件中使用了精确匹配（如主键查询），那么索引就会被命中。主键是一种特殊的索引，它的值是唯一的，因此精确匹配主键时索引命中的几率非常高。</p>
+<ul>
+<li>数据库表结构：三范式</li>
+<li>MySQL系统配置，Linux配置</li>
+<li>硬件优化</li>
+</ul>
+<h3 id="kill掉锁表进程"><a href="#kill掉锁表进程" class="headerlink" title="kill掉锁表进程"></a>kill掉锁表进程</h3><ul>
+<li>使用 <code>SHOW PROCESSLIST;</code> 命令来查看当前的 MySQL 进程列表，包括正在执行的查询和锁定的表。这个命令将显示每个连接的详细信息，包括连接ID、用户、执行状态、执行时间等。你可以在执行状态 (State) 列中查找包含 “Waiting for table lock” 或类似信息的进程。然后执行<code>kill pid;</code></li>
+</ul>
+<p><a href="mysql2.pdf">mysql备份优化和数据库架构设计.pdf</a></p>
+<h3 id="数据库字段设计规范"><a href="#数据库字段设计规范" class="headerlink" title="数据库字段设计规范"></a>数据库字段设计规范</h3><ul>
+<li>优先选择符合存储的最小数据类型<ul>
+<li>int来存储时间戳</li>
+<li>varchar(255) 无论存入的数据是多长，都会占用255个字符</li>
+</ul>
+</li>
+<li>避免使用text和blob类型，必要使用的话最好另外建立关联表</li>
+<li>避免使用枚举：修改枚举要用ddl语句</li>
+<li>字段尽量定义为非空字段，否则数据表会在字段表头额外开辟一个空间保存该字段是否为空</li>
+<li>日期尽量不要用字符串存储<ul>
+<li>无法用日期函数比较</li>
+<li>（某些格式）无法直接排序</li>
+<li>占用空间更大（相比数字类型）</li>
+</ul>
+</li>
+<li>财务数据用decimal存储</li>
+</ul>
+<h3 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h3><ul>
+<li>正常表的存放方式<ul>
+<li><code>table.frm</code> 表结构文件，ddl数据</li>
+<li><code>table.ibd</code> innodb的数据和索引文件<ul>
+<li>myisam 会生成两个文件 <code>table.MYD</code> 和 <code>table.MYI</code> 分别是数据文件和索引文件。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>mysql5.1之后就支持分区表<ul>
+<li>查看命令：<code>show plugins;</code></li>
+<li><code>partion</code> 参数</li>
+</ul>
+</li>
+<li>为什么使用分区表<ul>
+<li>数据量过大</li>
+<li>历史数据无需过度关心</li>
+<li>归档<ul>
+<li>常规方式<ul>
+<li>以时间戳方式where条件来获取需要删除的数据<ul>
+<li>mysqldump命令方式也可以</li>
+</ul>
+</li>
+<li>获取到要删除的数据放到备份表或者归档表<ul>
+<li>delete命令删除后不会立刻释放空间，mysql通过B+树方式存储数据，节点上的空间需要留着用于检索</li>
+<li>可通过 <code>optimize table my_table_name</code>命令来立刻释放空间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>分区表方式<ul>
+<li>可以通过时间范围，地点范围等条件对数据进行单独管理和维护</li>
+<li>可以通过删除整个分区来快速删除数据，而不需要逐行删除</li>
+<li>通过将数据分散到多个分区，可以减少查询的数据量，提高查询效率</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>分区类型<ul>
+<li>HASH分区：根据指定的哈希算法对数据进行分区。哈希分区可以均匀地将数据分散到不同的分区中，适用于负载均衡和分布式查询。例如，可以根据用户ID的哈希值将数据分为不同的分区。<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> partitioned_table (</span><br><span class="line">      id <span class="type">INT</span>,</span><br><span class="line">      name <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">      user_id <span class="type">INT</span></span><br><span class="line">  )</span><br><span class="line">  <span class="keyword">PARTITION</span> <span class="keyword">BY</span> HASH (user_id) </span><br><span class="line">  PARTITIONS <span class="number">4</span>;</span><br></pre></td></tr></table></figure></li>
+<li>LIST分区：根据指定的列值列表对数据进行分区。可以根据列的离散取值进行分区。例如，可以根据地区将数据分为不同的分区。<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> partitioned_table (</span><br><span class="line">    id <span class="type">INT</span>,</span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">    region <span class="type">VARCHAR</span>(<span class="number">50</span>)</span><br><span class="line">)</span><br><span class="line"><span class="keyword">PARTITION</span> <span class="keyword">BY</span> LIST (region) (</span><br><span class="line">    <span class="keyword">PARTITION</span> p_east <span class="keyword">VALUES</span> <span class="keyword">IN</span> (<span class="string">&#x27;New York&#x27;</span>, <span class="string">&#x27;Boston&#x27;</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> p_west <span class="keyword">VALUES</span> <span class="keyword">IN</span> (<span class="string">&#x27;Los Angeles&#x27;</span>, <span class="string">&#x27;San Francisco&#x27;</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> p_other <span class="keyword">VALUES</span> <span class="keyword">IN</span> (<span class="keyword">DEFAULT</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></li>
+<li>RANGE分区：根据指定的范围对数据进行分区。可以根据数值、日期或字符串等列的范围进行分区。例如，可以按照日期范围将数据分为不同的分区。<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> partitioned_table (</span><br><span class="line">    id <span class="type">INT</span>,</span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">    date_column <span class="type">DATE</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">PARTITION</span> <span class="keyword">BY</span> <span class="keyword">RANGE</span> (<span class="keyword">YEAR</span>(date_column)) (</span><br><span class="line">    <span class="keyword">PARTITION</span> p0 <span class="keyword">VALUES</span> LESS THAN (<span class="number">2010</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> p1 <span class="keyword">VALUES</span> LESS THAN (<span class="number">2020</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> p2 <span class="keyword">VALUES</span> LESS THAN (<span class="number">2030</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> p3 <span class="keyword">VALUES</span> LESS THAN MAXVALUE</span><br><span class="line">);</span><br></pre></td></tr></table></figure></li>
+<li>KEY分区：类似于哈希分区，但是键分区使用用户指定的表达式来计算分区键的哈希值。可以根据自定义的分区规则对数据进行分区。<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> partitioned_table (</span><br><span class="line">    id <span class="type">INT</span>,</span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">    user_id <span class="type">INT</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">PARTITION</span> <span class="keyword">BY</span> KEY (user_id)</span><br><span class="line">PARTITIONS <span class="number">8</span>;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>分区完成后会生成相应数量的分区文件(ibd文件)，insert的数据会根据分区规则进入到不同的文件中</li>
+<li>查看分区表的详细信息<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> t.TABLE_NAME, t.PARTITION_NAME, t.PARTITION_DESCRIPTION, t.TABLE_ROWS</span><br><span class="line"><span class="keyword">from</span> information_schema.PARTITIONS t <span class="keyword">where</span> t.TABLE_NAME <span class="operator">=</span> <span class="string">&#x27;year_partition&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
+<li>修改分区表结构<ul>
+<li>删除分区：<code>ALTER TABLE partitioned_table DROP PARTITION partition_name;</code></li>
+<li>增加分区：<code>ALTER TABLE year_partition ADD PARTITION (PARTITION p1 VALUES LESS THAN ((2020)));</code><ul>
+<li>注意：如果最后一个分区已经是MAXVALUE了，则不能通过该语句增加分区</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>查询某一分区的数据<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> year_partition <span class="keyword">partition</span> ($partition_name);</span><br></pre></td></tr></table></figure></li>
+<li>分区交换进行快速归档（mysql v5.7之后）<ul>
+<li>两个表结构相同</li>
+<li>归档表不能是分区表，不能有外键约束</li>
+<li>交换<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> orig_table exchange <span class="keyword">partition</span> partition_name <span class="keyword">with</span> archive_table;</span><br></pre></td></tr></table></figure></li>
+<li>更改归档表引擎为archive（归档引擎，只读），压缩空间<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> archive_table engine<span class="operator">=</span>archive;</span><br></pre></td></tr></table></figure></li>
+<li>删除原表分区<code>ALTER TABLE partitioned_table DROP PARTITION partition_name;</code></li>
+</ul>
+</li>
+<li>注意事项<ul>
+<li>如果列表和范围分区没指定所有的值，超出分区范围的值插入就会报错</li>
+<li>已经存在数据的业务表可以增加分区（已存在数据会重排）<ul>
+<li>数据量大的情况下，系统资源会消耗很大</li>
+<li>一般通过创建新的相同结构的分区表，进行重新复制插入来分区</li>
+</ul>
+</li>
+<li>mysql v5.x版本支持最大分区1024个，8.0后根据系统资源决定<ul>
+<li>分区消耗资源，不用建立太多</li>
+</ul>
+</li>
+<li>如果表里有主键，必须包含分区表的分区键</li>
+<li>分区表不支持外键</li>
+<li>分区规则需要提前确定好，有数据后中途修改非常不妥</li>
+<li>Range分区特别适合用于日志</li>
+</ul>
+</li>
+</ul>
+<h3 id="高可用HA实现"><a href="#高可用HA实现" class="headerlink" title="高可用HA实现"></a>高可用HA实现</h3><ul>
+<li>mysql主从复制基本逻辑<ul>
+<li>配置主服务器：首先，在主服务器上需要启用二进制日志（binary log）。二进制日志记录了主服务器上执行的所有数据修改操作，包括插入、更新和删除等操作。</li>
+<li>配置从服务器：在从服务器上需要配置主服务器的连接信息，并启动从服务器的复制进程。从服务器连接到主服务器，并请求从主服务器获取二进制日志的内容。</li>
+<li>复制进程：主服务器将二进制日志中的数据更改事件发送给从服务器。从服务器接收到这些事件后，将它们应用到自己的数据库中，以保持与主服务器上的数据一致。</li>
+<li>日志位置：主服务器会为每个复制事件分配一个唯一的日志位置（log position）。从服务器会跟踪自己复制到的日志位置，以便在下次连接主服务器时，可以继续从上次的位置继续复制。</li>
+<li>异步复制：主从复制是异步的，这意味着主服务器上的数据修改操作可以在稍后的时间应用到从服务器上。主从复制的延迟取决于网络延迟、主服务器的负载和从服务器的性能等因素。</li>
+<li>故障恢复：如果主服务器发生故障，可以将一个从服务器提升为新的主服务器，以继续提供服务。一旦主服务器恢复，它可以重新加入到主从复制的拓扑中，作为一个新的从服务器。</li>
+</ul>
+</li>
+<li>复制方式<ul>
+<li>binlog+position<ul>
+<li>执行导出：<code>mysqlbinlog --base64-output=DECODE-ROWS --verbose --start-position=&lt;start_position&gt; --stop-position=&lt;stop_position&gt; &lt;binlog_file&gt;</code></li>
+<li>执行写入：<code>mysqlbinlog --base64-output=DECODE-ROWS --verbose --start-position=&lt;start_position&gt; --stop-position=&lt;stop_position&gt; &lt;binlog_file&gt; | mysql -u &lt;username&gt; -p &lt;database_name&gt;</code></li>
+</ul>
+</li>
+<li>binglog+GTID</li>
+</ul>
+</li>
+<li><strong>主从配置步骤</strong><ul>
+<li>确保两个MySQL服务器上已经正确安装并且正常运行。主服务器和从服务器可以是不同的物理服务器或虚拟机</li>
+<li>在主服务器上编辑主配置文件（my.cnf）。找到以下行并进行相应修改：<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server-id = 1  </span><br><span class="line">log_bin = /var/log/mysql/mysql-bin.log  </span><br><span class="line">binlog_do_db = your_database_name</span><br></pre></td></tr></table></figure>
+<code>server-id</code> 设置为唯一的ID（例如1），<code>log_bin</code> 启用二进制日志并指定日志文件的路径，<code>binlog_do_db</code> 指定要复制的数据库名称。根据实际情况进行修改。</li>
+<li>重启主服务器以使配置更改生效。</li>
+<li>在从服务器上编辑从配置文件（my.cnf）。找到以下行并进行相应修改：<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server-id = 2  </span><br><span class="line">relay_log = /var/log/mysql/mysql-relay-bin.log  </span><br><span class="line">log_bin = /var/log/mysql/mysql-bin.log  </span><br><span class="line">read_only = 1</span><br></pre></td></tr></table></figure>
+<code>server-id</code> 设置为唯一的ID（例如2），<code>relay_log</code> 启用中继日志并指定日志文件的路径，<code>log_bin</code> 启用二进制日志并指定日志文件的路径，<code>read_only</code> 设置为1以使从服务器只接收来自主服务器的复制。根据实际情况进行修改。</li>
+<li>重启从服务器以使配置更改生效。</li>
+<li>在主服务器上创建一个用于复制的用户，并授予该用户复制权限。打开MySQL命令行客户端，执行以下命令：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;replication_user&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;password&#x27;</span>;  </span><br><span class="line"><span class="keyword">GRANT</span> REPLICATION SLAVE <span class="keyword">ON</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;replication_user&#x27;</span>@<span class="string">&#x27;%&#x27;</span>;  </span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+将 <code>&#39;replication_user&#39;@&#39;%&#39;</code> 替换为适当的用户名和密码。该用户将用于从服务器连接到主服务器并进行复制。</li>
+<li>在从服务器上执行以下命令，设置从服务器的复制密码：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CHANGE MASTER <span class="keyword">TO</span> MASTER_HOST<span class="operator">=</span><span class="string">&#x27;master_ip_address&#x27;</span>, MASTER_USER<span class="operator">=</span><span class="string">&#x27;replication_user&#x27;</span>, MASTER_PASSWORD<span class="operator">=</span><span class="string">&#x27;password&#x27;</span>, MASTER_LOG_FILE<span class="operator">=</span><span class="string">&#x27;mysql-bin.XXXXXX&#x27;</span>, MASTER_LOG_POS<span class="operator">=</span>XXXX;</span><br></pre></td></tr></table></figure>
+将 <code>master_ip_address</code> 替换为主服务器的IP地址，<code>replication_user</code> 和 <code>password</code> 替换为第6步中创建的复制用户的用户名和密码，<code>mysql-bin.XXXXXX</code> 替换为主服务器当前的二进制日志文件名（注意，这里指定的文件路径和下一个参数MASTER_LOG_POS是为了指定同步开始的位置，并不是说只同步该binlog文件），<code>XXXX</code> 替换为对应文件中的位置（可以通过 <code>SHOW MASTER STATUS;</code> 命令在主服务器上获得）。</li>
+<li>在从服务器上启动复制进程：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">START</span> SLAVE;</span><br></pre></td></tr></table></figure></li>
+<li>检查复制状态：在从服务器上执行以下命令：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> SLAVE STATUS\G;</span><br></pre></td></tr></table></figure>
+检查结果中的 <code>Slave_IO_Running</code> 和 <code>Slave_SQL_Running</code> 是否都为 <code>Yes</code>，这表示复制已经成功启动。如果其中一个或两个都为 <code>No</code>，请检查配置和网络连接并重新启动复制进程。<br><a href="mysql3.pdf">数据库高可用实现</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="双主同步方式"><a href="#双主同步方式" class="headerlink" title="双主同步方式"></a>双主同步方式</h3><p><a href="mysql4.pdf">MySQL高可用集群&amp;产品设计流程分析</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/11/07/develep-english-shortcut/" rel="prev" title="缩写短语概念简单介绍">
+                  <i class="fa fa-chevron-left"></i> 缩写短语概念简单介绍
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/11/21/tools-summary/" rel="next" title="工具总结">
+                  工具总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ricky</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"cindyforever","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.cindyforever.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="数据来源历年周最佳的数据来自于NBA数据官网，链接为 http:&#x2F;&#x2F;www.stat-nba.com&#x2F;award&#x2F;item18.html  这里可以看到每个赛季的周最佳球员。然后每个球员旁边有个数据的链接，表示的就是这名球员当周的平均数据。比如11月11日-11月17日的东部周最佳是武切维奇，其数据链接为http:&#x2F;&#x2F;www.stat-nba.com&#x2F;player&#x2F;3672.html  数据处理爬">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python数据爬虫实践-爬取历年东西部周最佳对比">
+<meta property="og:url" content="https://blog.cindyforever.com/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/index.html">
+<meta property="og:site_name" content="Ricky的个人博客">
+<meta property="og:description" content="数据来源历年周最佳的数据来自于NBA数据官网，链接为 http:&#x2F;&#x2F;www.stat-nba.com&#x2F;award&#x2F;item18.html  这里可以看到每个赛季的周最佳球员。然后每个球员旁边有个数据的链接，表示的就是这名球员当周的平均数据。比如11月11日-11月17日的东部周最佳是武切维奇，其数据链接为http:&#x2F;&#x2F;www.stat-nba.com&#x2F;player&#x2F;3672.html  数据处理爬">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/1.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/2.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/3.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/4.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/5.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/6.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/7.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/8.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/9.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/10.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/11.png">
+<meta property="article:published_time" content="2019-11-20T08:43:40.000Z">
+<meta property="article:modified_time" content="2023-03-16T08:44:04.723Z">
+<meta property="article:author" content="Ricky">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.cindyforever.com/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/1.png">
+
+
+<link rel="canonical" href="https://blog.cindyforever.com/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.cindyforever.com/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/","path":"2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/","title":"Python数据爬虫实践-爬取历年东西部周最佳对比"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Python数据爬虫实践-爬取历年东西部周最佳对比 | Ricky的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ricky的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90"><span class="nav-text">数据来源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="nav-text">数据处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%88%AC%E5%8F%96%E5%91%A8%E6%9C%80%E4%BD%B3%E7%90%83%E5%91%98"><span class="nav-text">爬取周最佳球员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%88%AC%E5%8F%96%E5%91%A8%E6%9C%80%E4%BD%B3%E6%95%B0%E6%8D%AE"><span class="nav-text">爬取周最佳数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%95%B0%E6%8D%AE%E5%88%B0Excel"><span class="nav-text">输出数据到Excel</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E6%95%B0%E6%8D%AE"><span class="nav-text">分析数据</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ricky"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ricky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shdvgj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shdvgj" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:linqianghuang@gmail.com" title="E-Mail → mailto:linqianghuang@gmail.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/RickyLoveCindy" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;RickyLoveCindy" rel="noopener me" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoqianglalala" rel="noopener me" target="_blank"><i class="instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.cindyforever.com/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Python数据爬虫实践-爬取历年东西部周最佳对比 | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python数据爬虫实践-爬取历年东西部周最佳对比
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-11-20 16:43:40" itemprop="dateCreated datePublished" datetime="2019-11-20T16:43:40+08:00">2019-11-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2019/11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/11/20/Python数据爬虫实践-爬取历年东西部周最佳对比/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h2><p>历年周最佳的数据来自于NBA数据官网，链接为 <a target="_blank" rel="noopener" href="http://www.stat-nba.com/award/item18.html">http://www.stat-nba.com/award/item18.html</a></p>
+<p><img src="/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/1.png"></p>
+<p>这里可以看到每个赛季的周最佳球员。然后每个球员旁边有个数据的链接，表示的就是这名球员当周的平均数据。比如11月11日-11月17日的东部周最佳是武切维奇，其数据链接为<a target="_blank" rel="noopener" href="http://www.stat-nba.com/player/3672.html">http://www.stat-nba.com/player/3672.html</a></p>
+<p><img src="/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/2.png"></p>
+<h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><h3 id="爬取周最佳球员"><a href="#爬取周最佳球员" class="headerlink" title="爬取周最佳球员"></a>爬取周最佳球员</h3><p>首先看周最佳的页面，链接是<a target="_blank" rel="noopener" href="http://www.stat-nba.com/award/item18.html%EF%BC%8C%E9%80%89%E4%B8%AD%E6%AD%A6%E5%88%87%E7%BB%B4%E5%A5%87%E7%9A%84%E5%90%8D%E5%AD%97%EF%BC%8C%E5%8F%B3%E9%94%AE%E6%89%93%E5%BC%80%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%EF%BC%8C%E9%80%89%E6%8B%A9%E2%80%9C%E6%9F%A5%E7%9C%8B%E9%A1%B5%E9%9D%A2%E5%85%83%E7%B4%A0%E2%80%9D%E3%80%82%E5%87%BA%E7%8E%B0%E5%A6%82%E4%B8%8B%E9%A1%B5%E9%9D%A2%EF%BC%9A">http://www.stat-nba.com/award/item18.html，选中武切维奇的名字，右键打开右键菜单，选择“查看页面元素”。出现如下页面：</a></p>
+<p><img src="/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/3.png"></p>
+<p>注意，我们需要获取到的是<strong>所有的周最佳数据</strong>，而不是某个人的，因此我们需要找到这个页面元素的父元素，因此才能找到这个父元素下面的所有子元素-即所有的周最佳数据。</p>
+<p><img src="/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/4.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如图所示，周最佳数据的节点来自于&lt;td class=&#x27;current&#x27;&gt; -&gt; &lt;table class=&#x27;stat-box&#x27;  style=&#x27;width:170px;border:0&#x27;&gt;  -&gt; &lt;td&gt;</span><br><span class="line"></span><br><span class="line">根据网页上下文的查看，可以知道&quot;&lt;td class=&quot;current&quot;&gt;是赛季的节点，&lt;table class=&quot;stat-box&quot; style=&quot;width:170px;border:0&quot;&gt;是每个赛季下每周的节点，而&lt;td&gt;就是每周下面每个球员的节点。</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>因此我们根据节点的继承关系，可以写出如下的基本的爬虫逻辑。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span> urlopen</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取周最佳页面</span></span><br><span class="line">html = urlopen(<span class="string">&quot;http://www.stat-nba.com/award/item18.html&quot;</span>).read().decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># 格式化为lxml</span></span><br><span class="line">soup = BeautifulSoup(html, features=<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line"><span class="comment"># 查找&lt;td class=&quot;current&quot;&gt; 获取各个赛季</span></span><br><span class="line">outResult = soup.find_all(<span class="string">&quot;td&quot;</span>, &#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;current&quot;</span>&#125;)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(outResult)):</span><br><span class="line">    single = outResult[i]</span><br><span class="line">    <span class="comment"># 获取每赛季数据 </span></span><br><span class="line">    data = single.parent.find_all(<span class="string">&quot;table&quot;</span>, &#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;stat_box&quot;</span>, <span class="string">&quot;style&quot;</span>: <span class="string">&quot;width:170px;border:0&quot;</span>&#125;)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)):</span><br><span class="line">        singleData = data[j]</span><br><span class="line">        <span class="comment"># 获取周</span></span><br><span class="line">        week = singleData.find(<span class="string">&quot;th&quot;</span>)</span><br><span class="line">        tdList = singleData.find_all(<span class="string">&quot;td&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(tdList)):</span><br><span class="line">            singleTd = tdList[k]</span><br><span class="line">            <span class="built_in">print</span>(week.text, singleTd.text)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>输出结果如下：</p>
+<p><img src="/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/5.png"></p>
+<h3 id="爬取周最佳数据"><a href="#爬取周最佳数据" class="headerlink" title="爬取周最佳数据"></a>爬取周最佳数据</h3><p>接下来我们爬取每个球员的周最佳数据，点击球员旁边的“数据”按钮，会跳转到周数据页面。</p>
+<p><img src="/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/6.png"></p>
+<p><img src="/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/7.png"></p>
+<p>根据看到数据页面是在球员td标签下的第二个a标签下</p>
+<p><img src="/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/8.png"></p>
+<p>根据a标签的结构使用如下代码来获取球员数据的链接：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tdData = singleTd.find_all(<span class="string">&quot;a&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(tdData) &gt; <span class="number">1</span>:</span><br><span class="line">    <span class="comment"># 爬取最佳周数据</span></span><br><span class="line">    playerUrl = tdData[<span class="number">1</span>].attrs[<span class="string">&#x27;href&#x27;</span>].replace(<span class="string">&quot;..&quot;</span>, <span class="string">&quot;http://www.stat-nba.com&quot;</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>获取到链接之后，按照前文所述来爬取球员的详细数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 爬取最佳周数据</span></span><br><span class="line">playerUrl = tdData[<span class="number">1</span>].attrs[<span class="string">&#x27;href&#x27;</span>].replace(<span class="string">&quot;..&quot;</span>, <span class="string">&quot;http://www.stat-nba.com&quot;</span>, <span class="number">1</span>)</span><br><span class="line">playerHtml = urlopen(playerUrl).read().decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">playerSoup = BeautifulSoup(playerHtml, features=<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">playerTable = playerSoup.find(<span class="string">&quot;table&quot;</span>, &#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;stat_box&quot;</span>&#125;)</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">hasattr</span>(playerTable, <span class="string">&#x27;find_all&#x27;</span>):</span><br><span class="line">    playerStatList = playerTable.find_all(<span class="string">&quot;td&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">hasattr</span>(playerTable, <span class="string">&#x27;find_all&#x27;</span>):</span><br><span class="line">        <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(playerStatList)):</span><br><span class="line">            playerStat = playerStatList[m]</span><br><span class="line">            <span class="comment"># 打印数据</span></span><br><span class="line">            <span class="built_in">print</span>(playerStat.text)</span><br></pre></td></tr></table></figure>
+
+<h3 id="输出数据到Excel"><a href="#输出数据到Excel" class="headerlink" title="输出数据到Excel"></a>输出数据到Excel</h3><p>将前文进行整合，并将数据输出到Excel，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span> urlopen</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> xlwt <span class="keyword">as</span> xlwt</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义单元格格式</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_style</span>(<span class="params">name=<span class="string">&#x27;Times New Roman&#x27;</span>, height=<span class="number">220</span>, bold=<span class="literal">False</span></span>):</span></span><br><span class="line">    style = xlwt.XFStyle()</span><br><span class="line">    font = xlwt.Font()</span><br><span class="line">    font.name = name</span><br><span class="line">    font.bold = bold</span><br><span class="line">    font.color_index = <span class="number">4</span></span><br><span class="line">    font.height = height</span><br><span class="line">    style.font = font</span><br><span class="line">    <span class="keyword">return</span> style</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">html = urlopen(<span class="string">&quot;http://www.stat-nba.com/award/item18.html&quot;</span>).read().decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">soup = BeautifulSoup(html, features=<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">outResult = soup.find_all(<span class="string">&quot;td&quot;</span>, &#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;current&quot;</span>&#125;)</span><br><span class="line"><span class="comment"># 创建excel</span></span><br><span class="line">f = xlwt.Workbook()</span><br><span class="line">sheet1 = f.add_sheet(<span class="string">&#x27;周最佳数据&#x27;</span>, cell_overwrite_ok=<span class="literal">True</span>)</span><br><span class="line">num = <span class="number">0</span></span><br><span class="line">style = set_style()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(outResult)):</span><br><span class="line">    single = outResult[i]</span><br><span class="line">    <span class="comment"># 2000年以前数据不再显示</span></span><br><span class="line">    <span class="keyword">if</span> single.text.startswith(<span class="string">&quot;19&quot;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="comment"># 获取每赛季数据</span></span><br><span class="line">    data = single.parent.find_all(<span class="string">&quot;table&quot;</span>, &#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;stat_box&quot;</span>, <span class="string">&quot;style&quot;</span>: <span class="string">&quot;width:170px;border:0&quot;</span>&#125;)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)):</span><br><span class="line">        singleData = data[j]</span><br><span class="line">        <span class="comment"># 打印周</span></span><br><span class="line">        week = singleData.find(<span class="string">&quot;th&quot;</span>)</span><br><span class="line">        tdList = singleData.find_all(<span class="string">&quot;td&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(tdList)):</span><br><span class="line">            singleTd = tdList[k]</span><br><span class="line">            <span class="comment"># 暂停随机时间，以避免被反爬虫</span></span><br><span class="line">            sleeptime = random.randint(<span class="number">0</span>, <span class="number">1000</span>)</span><br><span class="line">            time.sleep(sleeptime / <span class="number">1000</span>)</span><br><span class="line">            tdData = singleTd.find_all(<span class="string">&quot;a&quot;</span>)</span><br><span class="line">            <span class="comment"># 获取球员名</span></span><br><span class="line">            playerName = tdData[<span class="number">0</span>].text</span><br><span class="line">            <span class="built_in">print</span>(single.text, week.text, playerName)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(tdData) &gt; <span class="number">1</span>:</span><br><span class="line">                <span class="comment"># 爬取最佳周数据</span></span><br><span class="line">                playerUrl = tdData[<span class="number">1</span>].attrs[<span class="string">&#x27;href&#x27;</span>].replace(<span class="string">&quot;..&quot;</span>, <span class="string">&quot;http://www.stat-nba.com&quot;</span>, <span class="number">1</span>)</span><br><span class="line">                playerHtml = urlopen(playerUrl).read().decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">                playerSoup = BeautifulSoup(playerHtml, features=<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">                playerTable = playerSoup.find(<span class="string">&quot;table&quot;</span>, &#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;stat_box&quot;</span>&#125;)</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">hasattr</span>(playerTable, <span class="string">&#x27;find_all&#x27;</span>):</span><br><span class="line">                    playerStatList = playerTable.find_all(<span class="string">&quot;td&quot;</span>)</span><br><span class="line">                sheet1.write(num, <span class="number">0</span>, single.text, style)</span><br><span class="line">                sheet1.write(num, <span class="number">1</span>, week.text, style)</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">hasattr</span>(playerTable, <span class="string">&#x27;find_all&#x27;</span>):</span><br><span class="line">                    <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(playerStatList)):</span><br><span class="line">                        playerStat = playerStatList[m]</span><br><span class="line">                        <span class="comment"># 打印赛季</span></span><br><span class="line">                        sheet1.write(num, <span class="number">1</span> + m, playerStat.text, style)</span><br><span class="line">                num = num + <span class="number">1</span></span><br><span class="line">f.save(<span class="string">&#x27;nbastat-week.xls&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>输出的结果如下：</p>
+<p><img src="/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/9.png"></p>
+<h2 id="分析数据"><a href="#分析数据" class="headerlink" title="分析数据"></a>分析数据</h2><p>分析过程我就懒得再写一遍了，之前已经将分析结果发布到虎扑，链接是<a target="_blank" rel="noopener" href="https://bbs.hupu.com/30738461.html">https://bbs.hupu.com/30738461.html</a></p>
+<p><img src="/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/10.png"></p>
+<p><img src="/.com//11/20/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/11.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/11/05/logback%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE%E6%A8%A1%E6%9D%BF/" rel="prev" title="logback日志配置模板">
+                  <i class="fa fa-chevron-left"></i> logback日志配置模板
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/04/29/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/" rel="next" title="azkaban简单搭建">
+                  azkaban简单搭建 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ricky</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"cindyforever","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

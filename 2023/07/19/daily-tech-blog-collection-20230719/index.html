@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.cindyforever.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Stable Diffusion的一个网页DEMO这个网页使用的是你本地的内存和GPU来生成AI图片，根据网页介绍：  每个步骤大约需要1分钟+额外的约10秒来运行VAE解码器生成图像。打开DevTools会将所有操作减慢到大约2倍的速度。UNET仅在CPU上运行（速度快10%，在GPU上无法正确生成结果），因此会导致浏览器标签卡顿。 为了得到可接受的结果，最少需要20个步骤。然而，对于演示目的，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日文章收集-20230719">
+<meta property="og:url" content="https://blog.cindyforever.com/2023/07/19/daily-tech-blog-collection-20230719/index.html">
+<meta property="og:site_name" content="Ricky的个人博客">
+<meta property="og:description" content="Stable Diffusion的一个网页DEMO这个网页使用的是你本地的内存和GPU来生成AI图片，根据网页介绍：  每个步骤大约需要1分钟+额外的约10秒来运行VAE解码器生成图像。打开DevTools会将所有操作减慢到大约2倍的速度。UNET仅在CPU上运行（速度快10%，在GPU上无法正确生成结果），因此会导致浏览器标签卡顿。 为了得到可接受的结果，最少需要20个步骤。然而，对于演示目的，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//07/19/daily-tech-blog-collection-20230719/sd1.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//07/19/daily-tech-blog-collection-20230719/sd2.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//07/19/daily-tech-blog-collection-20230719/lazydocker1.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//07/19/daily-tech-blog-collection-20230719/sneakers1.gif">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//07/19/daily-tech-blog-collection-20230719/sneakers2.gif">
+<meta property="article:published_time" content="2023-07-19T01:59:25.000Z">
+<meta property="article:modified_time" content="2023-07-21T07:25:04.939Z">
+<meta property="article:author" content="Ricky">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.cindyforever.com/.com//07/19/daily-tech-blog-collection-20230719/sd1.png">
+
+
+<link rel="canonical" href="https://blog.cindyforever.com/2023/07/19/daily-tech-blog-collection-20230719/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.cindyforever.com/2023/07/19/daily-tech-blog-collection-20230719/","path":"2023/07/19/daily-tech-blog-collection-20230719/","title":"每日文章收集-20230719"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>每日文章收集-20230719 | Ricky的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ricky的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Stable-Diffusion%E7%9A%84%E4%B8%80%E4%B8%AA%E7%BD%91%E9%A1%B5DEMO"><span class="nav-text">Stable Diffusion的一个网页DEMO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lazydocker%EF%BC%9A%E7%AE%A1%E7%90%86Docker%E7%9A%84%E6%87%92%E4%BA%BA%E6%96%B9%E5%BC%8F"><span class="nav-text">lazydocker：管理Docker的懒人方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E6%8F%90"><span class="nav-text">前提</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%B3%95"><span class="nav-text">用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81feature"><span class="nav-text">主要feature</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#no-more-secrets%EF%BC%9A%E4%B8%80%E4%B8%AA%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%EF%BC%8C%E5%AE%83%E5%8F%AF%E4%BB%A5%E9%87%8D%E7%8E%B01992%E5%B9%B4%E7%94%B5%E5%BD%B1%E3%80%8ASneakers%E3%80%8B%E4%B8%AD%E8%91%97%E5%90%8D%E7%9A%84%E6%95%B0%E6%8D%AE%E8%A7%A3%E5%AF%86%E6%95%88%E6%9E%9C%E3%80%82"><span class="nav-text">no-more-secrets：一个命令行工具，它可以重现1992年电影《Sneakers》中著名的数据解密效果。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E9%97%B4%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">前端框架间最重要的区别</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ricky"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ricky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shdvgj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shdvgj" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:linqianghuang@gmail.com" title="E-Mail → mailto:linqianghuang@gmail.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/RickyLoveCindy" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;RickyLoveCindy" rel="noopener me" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoqianglalala" rel="noopener me" target="_blank"><i class="instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.cindyforever.com/2023/07/19/daily-tech-blog-collection-20230719/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="每日文章收集-20230719 | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          每日文章收集-20230719
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-19 09:59:25" itemprop="dateCreated datePublished" datetime="2023-07-19T09:59:25+08:00">2023-07-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-21 15:25:04" itemprop="dateModified" datetime="2023-07-21T15:25:04+08:00">2023-07-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%AF%8F%E6%97%A5%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">每日文章收集</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/07/19/daily-tech-blog-collection-20230719/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/07/19/daily-tech-blog-collection-20230719/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="Stable-Diffusion的一个网页DEMO"><a href="#Stable-Diffusion的一个网页DEMO" class="headerlink" title="Stable Diffusion的一个网页DEMO"></a><a target="_blank" rel="noopener" href="https://islamov.ai/stable-diffusion-webgpu/">Stable Diffusion的一个网页DEMO</a></h3><p><img src="/.com//07/19/daily-tech-blog-collection-20230719/sd1.png"><br>这个网页使用的是你本地的内存和GPU来生成AI图片，根据网页介绍：</p>
+<blockquote>
+<p>每个步骤大约需要1分钟+额外的约10秒来运行VAE解码器生成图像。打开DevTools会将所有操作减慢到大约2倍的速度。UNET仅在CPU上运行（速度快10%，在GPU上无法正确生成结果），因此会导致浏览器标签卡顿。</p>
+<p>为了得到可接受的结果，最少需要20个步骤。然而，对于演示目的，3个步骤就足够了。</p>
+<p>模型文件将被缓存，因此您无需每次下载它们。</p>
+</blockquote>
+<p>另外需要最新版本的chrome，并打开<code>Experimental WebAssembly</code>和<code>Experimental WebAssembly JavaScript Promise Integration (JSPI)</code>的设置。</p>
+<span id="more"></span>
+
+<p>为了生成图像，这个网页还需要下载3.5gb的数据和耗费8gb的内存。</p>
+<p><img src="/.com//07/19/daily-tech-blog-collection-20230719/sd2.png"></p>
+<h3 id="lazydocker：管理Docker的懒人方式"><a href="#lazydocker：管理Docker的懒人方式" class="headerlink" title="lazydocker：管理Docker的懒人方式"></a><a target="_blank" rel="noopener" href="https://github.com/jesseduffield/lazydocker">lazydocker：管理Docker的懒人方式</a></h3><p><img src="/.com//07/19/daily-tech-blog-collection-20230719/lazydocker1.png"><br>这是一个简单的终端UI用于管理docker容器和镜像。</p>
+<h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><ul>
+<li>Docker 版本 &gt;= 1.13 (API &gt;= 1.25)</li>
+<li>Docker-Compose 版本 &gt;= 1.23.2 (optional)</li>
+</ul>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>有多种不同的<a target="_blank" rel="noopener" href="https://github.com/jesseduffield/lazydocker#installation">安装方法</a>，最通用的方法如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash</span><br></pre></td></tr></table></figure>
+
+<h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><p>使用命令<code>echo &quot;alias lzd=&#39;lazydocker&#39;&quot; &gt;&gt; ~/.zshrc</code>来展示lazydocker界面。</p>
+<h4 id="主要feature"><a href="#主要feature" class="headerlink" title="主要feature"></a>主要feature</h4><ul>
+<li>一目了然地查看Docker或Docker Compose容器环境的状态</li>
+<li>查看容器/服务的日志</li>
+<li>查看容器指标的ASCII图表，以便不仅感觉像开发人员，还能看起来像开发人员</li>
+<li>自定义这些图表以测量几乎任何您想要的指标</li>
+<li>附加到容器/服务</li>
+<li>重新启动/删除/重建容器/服务</li>
+<li>查看给定镜像的祖先层</li>
+<li>清理占用磁盘空间的容器、镜像或卷</li>
+</ul>
+<h3 id="no-more-secrets：一个命令行工具，它可以重现1992年电影《Sneakers》中著名的数据解密效果。"><a href="#no-more-secrets：一个命令行工具，它可以重现1992年电影《Sneakers》中著名的数据解密效果。" class="headerlink" title="no-more-secrets：一个命令行工具，它可以重现1992年电影《Sneakers》中著名的数据解密效果。"></a><a target="_blank" rel="noopener" href="https://github.com/bartobri/no-more-secrets">no-more-secrets：一个命令行工具，它可以重现1992年电影《Sneakers》中著名的数据解密效果。</a></h3><p>就是类似于这样的特效：</p>
+<p><img src="/.com//07/19/daily-tech-blog-collection-20230719/sneakers1.gif"></p>
+<ul>
+<li>下载和安装<ul>
+<li>前提是安装了<code>git</code>, <code>gcc</code>, 和 <code>make</code>命令工具</li>
+<li>通过如下命令进行安装：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/bartobri/no-more-secrets.git</span><br><span class="line">$ <span class="built_in">cd</span> ./no-more-secrets</span><br><span class="line">$ make nms</span><br><span class="line">$ make sneakers             <span class="comment">## Optional</span></span><br><span class="line">$ sudo make install</span><br></pre></td></tr></table></figure></li>
+<li>卸载：<code>$ sudo make uninstall</code></li>
+</ul>
+</li>
+<li>使用：<code>nms</code>是一个管道命令，可以输入任意字符来看到解密特效。以下命令是将目录输入到nms进行解密输出。<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l | nms</span><br><span class="line">$ ls -l | nms -a           // Set auto-decrypt flag</span><br><span class="line">$ ls -l | nms -s           // Set flag to mask space characters</span><br><span class="line">$ ls -l | nms -f green     // Set foreground color to green</span><br><span class="line">$ ls -l | nms -c           // Clear screen</span><br><span class="line">$ nms -v                   // Display version</span><br></pre></td></tr></table></figure>
+效果如下：<br><img src="/.com//07/19/daily-tech-blog-collection-20230719/sneakers2.gif"></li>
+</ul>
+<h3 id="前端框架间最重要的区别"><a href="#前端框架间最重要的区别" class="headerlink" title="前端框架间最重要的区别"></a><a target="_blank" rel="noopener" href="https://themer.dev/blog/the-single-most-important-factor-that-differentiates-front-end-frameworks">前端框架间最重要的区别</a></h3><p>在互联网上有大量关于不同框架之间差异及如何为您的下一个Web项目选择合适框架的博客文章。通常，这些文章会涵盖框架的一些方面，比如语法、开发设置和社区规模等。</p>
+<p>而这篇只看一个点，就是<code>变量监测</code>，也就是看前端如何监测到变量的变化并立刻反映到页面上。</p>
+<ul>
+<li>React<blockquote>
+<p>“I’ll manage state so that I know when it changes.”  - 我将管理状态，以便知道它何时发生变化。</p>
+</blockquote>
+</li>
+</ul>
+<p>React的变更检测范式很简单：应用程序状态由框架内部维护（同时向开发者提供API来更新状态），以便React知道何时重新渲染。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount(count - 1)&#125;&gt;decrement<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;count&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount(count + 1)&#125;&gt;increment<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setTimeout(() =&gt; setCount(count + 1), 1000)&#125;&gt;increment later<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">	);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Angular<blockquote>
+<p>“I’ll make the developer do all the work.”  - 我会让开发者完成所有工作。</p>
+</blockquote>
+</li>
+</ul>
+<p>实际上，Angular使用NgZone来观察用户操作，并在每个事件上检查整个组件树。</p>
+<p>对于任何相对较大的应用程序，这会导致性能问题，因为检查整个树很快变得成本过高。因此，Angular提供了一种逃生机制，允许开发者选择不同的变更检测策略：OnPush。OnPush意味着开发者需要通知Angular何时发生了状态变化，以便Angular重新渲染组件。除了默认的朴素策略外，OnPush是Angular提供的唯一其他变更检测策略。启用OnPush后，如果状态异步更新，我们必须手动告诉Angular的变更检测器检查新状态。</p>
+<p>Angular的变更检测机制是一个灾难。开发者面临两个次优的选择：缓慢和朴素的默认实现，或者手动管理变更检测的复杂性。虽然Signals将会使其改进得多，但也感觉很慢。</p>
+<ul>
+<li>VUE<blockquote>
+<p>“I’ll track changes to state and react accordingly.” - 我将跟踪状态的变化并做出相应的反应。</p>
+</blockquote>
+</li>
+</ul>
+<p>Vue对变更检测的方法与React和Angular都有微妙的不同。与调用框架函数来改变状态（React）或改变状态并通知框架它已经被改变（Angular）不同，Vue使用被框架特殊设定的状态对象来进行变更的截取和检测。</p>
+<p>Vue利用JavaScript语言特性，使开发者能够在处理有状态变量时无需考虑变更检测。</p>
+<ul>
+<li>Svelte<blockquote>
+<p>“I’ll figure it out for you at compile time.” - 我将在编译时为您找到解决方法。</p>
+</blockquote>
+</li>
+</ul>
+<p>Svelte对变更检测的方法完全是全新的。在编译时，Svelte分析组件代码的AST（抽象语法树），并在编译输出中注入一些代码，以在必要时对DOM进行精确的更新。</p>
+<p>Svelte取得了一种罕见的双赢平衡：开发者完全无需考虑变更检测，可以直观地与有状态变量交互；同时，由于仅包含了最少量的应用程序（包含了内置的变更检测），用户体验得到了改善，因为这样的应用程序在浏览器中加载更加高效。</p>
+<p>总结：每种方法都会对最终用户的应用程序性能产生影响。React、Vue和Angular都会向用户的浏览器提供需要解析和执行的运行时。而Svelte选择成为一个编译时框架，在大多数情况下消除了这种需要，从而使用户获得更快的加载体验。每个框架都有细微差别，使其更容易受到特定类型的错误（通常是围绕状态管理或变更检测），最终用户将会体验到这些影响。</p>
+<p>找到适合应用程序需求的变更检测范式，一切就会顺利进行。选择不合适的范式，将在整个项目的生命周期内与之作斗争。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/18/how-to-create-a-miniprogram-with-low-fee/" rel="prev" title="如何低成本开发并发布小程序（微信云托管+Cloudflare worker）">
+                  <i class="fa fa-chevron-left"></i> 如何低成本开发并发布小程序（微信云托管+Cloudflare worker）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/21/do-not-develop-in-wechat/" rel="next" title="关于个人开发者为什么应该放弃小程序">
+                  关于个人开发者为什么应该放弃小程序 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ricky</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"cindyforever","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

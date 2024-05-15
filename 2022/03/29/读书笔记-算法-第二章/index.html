@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.cindyforever.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="第二章 排序  初级排序算法 排序就是将数组的主键按照某种方式排序 排序成本模型：我们需要计算比较和交换的数量。对于不交换元素的算法，我们会计算访问数组的次数 java的compareTo方法必须实现一个全序关系： 自反性：对于所有的v，v&#x3D;v 反对称性：对于所有的v&lt;w都有w&gt;v，且v&#x3D;w时w&#x3D;v 传递性：对于所有的v，w和x，如果v&lt;&#x3D;w且w&lt;&#x3D;x，则v&lt;&#x3D;x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读书笔记-算法-第二章">
+<meta property="og:url" content="https://blog.cindyforever.com/2022/03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/index.html">
+<meta property="og:site_name" content="Ricky的个人博客">
+<meta property="og:description" content="第二章 排序  初级排序算法 排序就是将数组的主键按照某种方式排序 排序成本模型：我们需要计算比较和交换的数量。对于不交换元素的算法，我们会计算访问数组的次数 java的compareTo方法必须实现一个全序关系： 自反性：对于所有的v，v&#x3D;v 反对称性：对于所有的v&lt;w都有w&gt;v，且v&#x3D;w时w&#x3D;v 传递性：对于所有的v，w和x，如果v&lt;&#x3D;w且w&lt;&#x3D;x，则v&lt;&#x3D;x">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/basesort.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/selectsort.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/insertsort.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/visualsort.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/hillsort.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/hillsort2.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/mergesort.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/mergesort2.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/mergesort3.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/mergesort4.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/mergesort5.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/mergesort6.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/mergesort7.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/quicksort.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/quicksort2.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/quicksort3.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/quicksort4.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/quicksort5.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/quicksort6.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/sort.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/prioritysort.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/prioritysort2.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/stacksort1.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/stacksort3.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/stacksort5.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/stacksort6.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/stacksort4.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/stacksort2.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/stacksort7.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/stacksort8.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/sort3.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/sort4.png">
+<meta property="og:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/sort5.png">
+<meta property="article:published_time" content="2022-03-29T01:28:29.000Z">
+<meta property="article:modified_time" content="2023-03-16T08:44:04.677Z">
+<meta property="article:author" content="Ricky">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.cindyforever.com/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/basesort.png">
+
+
+<link rel="canonical" href="https://blog.cindyforever.com/2022/03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.cindyforever.com/2022/03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/","path":"2022/03/29/读书笔记-算法-第二章/","title":"读书笔记-算法-第二章"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>读书笔记-算法-第二章 | Ricky的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ricky的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%8E%92%E5%BA%8F"><span class="nav-text">第二章 排序</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ricky"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ricky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shdvgj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shdvgj" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:linqianghuang@gmail.com" title="E-Mail → mailto:linqianghuang@gmail.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/RickyLoveCindy" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;RickyLoveCindy" rel="noopener me" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoqianglalala" rel="noopener me" target="_blank"><i class="instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.cindyforever.com/2022/03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="读书笔记-算法-第二章 | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          读书笔记-算法-第二章
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-29 09:28:29" itemprop="dateCreated datePublished" datetime="2022-03-29T09:28:29+08:00">2022-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/03/29/读书笔记-算法-第二章/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="第二章-排序"><a href="#第二章-排序" class="headerlink" title="第二章 排序"></a>第二章 排序</h2><p><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/basesort.png"></p>
+<ul>
+<li>初级排序算法<ul>
+<li>排序就是将数组的<strong>主键</strong>按照某种方式排序</li>
+<li>排序成本模型：我们需要计算<strong>比较</strong>和<strong>交换</strong>的数量。对于不交换元素的算法，我们会计算访问数组的次数</li>
+<li>java的compareTo方法必须实现一个全序关系：<ul>
+<li>自反性：对于所有的v，v=v</li>
+<li>反对称性：对于所有的v&lt;w都有w&gt;v，且v=w时w=v</li>
+<li>传递性：对于所有的v，w和x，如果v&lt;=w且w&lt;=x，则v&lt;=x</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>选择排序<ul>
+<li>基本步骤<ul>
+<li>找到数组中最小的那个元素</li>
+<li>将它和数组的第一个元素交换位置</li>
+<li>在剩下的元素中找到最小的元素，将它与数组的第二个元素交换位置，如此反复</li>
+</ul>
+</li>
+<li>分析效率<ul>
+<li>对于长度为N的数组，选择排序需要大约N^2/2次比较和N次交换</li>
+<li>为了找出最小的元素而扫描一遍数组并不能为下一遍扫描提供什么信息</li>
+<li>可以看到，对于长度为N的数组，交换次数固定为N次，是所有数组中，交换步数最少的</li>
+<li>简单，但效率颇低<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/selectsort.png"> </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>插入排序<ul>
+<li>基本步骤<ul>
+<li>从索引1开始，对比索引1的数字和索引0的数字，如果索引0数字比索引1数字大，则两个数字交换位置</li>
+<li>索引移到2，对比索引2和索引1所在数字，同样的，如果索引1比索引2数字大，则交换位置</li>
+<li>接下来对比索引1和索引0，以此类推</li>
+</ul>
+</li>
+<li>分析效率<ul>
+<li>对于随机排列的长度为N且主键不重复的数组，平均情况下插入排序需要(N^2)/4次比较以及(N^2)/4次交换。最坏情况下需要(N^2)/2次比较和(N^2)/2次交换，最好情况下需要N-1次比较和0次交换。</li>
+<li>插入排序对于实际应用中常见的某些类型的非随机数组很有效<ul>
+<li>数组中每个元素距离它的最终位置都不远</li>
+<li>一个有序的大数组接一个小数组</li>
+<li>数组中只有几个元素的位置不正确</li>
+<li>当倒置的数量很少时，插入排序很可能比本章中的其他任何算法都要快<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/insertsort.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>排序算法可视化<span id="more"></span>
+<img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/visualsort.png"></li>
+<li>选择排序和插入排序效率对比<ul>
+<li>对于随机排序数组，两者的运行时间都是平方级别的</li>
+<li>从大量数据实验来看，两者的运行时间没有数量级的差别，但是实际跑下来，插入排序会比选择排序快将近2倍</li>
+</ul>
+</li>
+<li>希尔排序<ul>
+<li>基本思路<ul>
+<li>使数组中任意间隔为h的元素都是有序的</li>
+<li>一个h有序数组就是h个互相独立的有序数组编织在一起组成的一个数组</li>
+<li>在进行排序时，如果h很大，我们就能将元素移动到很远的地方，为实现更小的h有序创造方便</li>
+</ul>
+</li>
+<li>基本步骤<ul>
+<li>确定一个间隔值h，一开始可以很大，为了方便，可以根据数组长度来确定h<ul>
+<li>其中一种h的算法，N为数组长度：<ul>
+<li>int h = 1;<br>while(h&lt;N/3) h=3*h+1;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>随后的基本过程和插入排序类似，只不过改成以h为长度<ul>
+<li>从索引h开始，对比索引h的数字和索引0的数字，如果索引0数字比索引h数字大，则两个数字交换位置</li>
+<li>索引移到h+1，对比索引h+1和索引1所在数字，同样的，如果索引1比索引h+1数字大，则交换位置</li>
+<li>接下来对比索引h和索引0，以此类推</li>
+</ul>
+</li>
+<li>完成以此以h为长度的排序后，将h缩减，比如将h/3，在重新开始上述循环，直到h=1的循环结束后，排序完成</li>
+</ul>
+</li>
+<li>分析效率<ul>
+<li>基本上，无法确切的计算出希尔排序的准确效率，只能说在各种实验中都比插入排序更加高效</li>
+<li>即使最坏的情况下，也不会达到平方级别，接近于O((N^3)/2)</li>
+<li>某种情况下，可以认为是性价比极高的排序算法，因为比较简单快速，且不需要用到额外的存储空间</li>
+<li>希尔排序比插入排序和选择排序要快得多，并且数组越大，优势越大<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/hillsort.png"><br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/hillsort2.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>归并排序<ul>
+<li>基本思路<ul>
+<li>将一个大的数组分成两半，分别排序</li>
+<li>将两个小的有序数组合并之后，进行<strong>归并排序</strong></li>
+<li><strong>注意</strong>，归并的前提是两半的数组都已经分别有序</li>
+</ul>
+</li>
+<li>原地归并的基本步骤<ul>
+<li>先将所有元素复制到aux[]中，然后再归并回a[]中</li>
+<li>左半边用尽（取右半边的元素）</li>
+<li>右半边用尽（取左半边的元素）</li>
+<li>右半边的当前元素小于左半边的当前元素（取右半边的元素）</li>
+<li>右半边的当前元素大于等于左半边的当前元素（取左半边的元素）<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/mergesort.png"><br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/mergesort2.png">  </li>
+</ul>
+</li>
+<li>递归的归并<ul>
+<li>和原地归并思路差不多，不过将每个半边再继续分一半，按照递归的思路不断切分成最小的数组进行归并<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/mergesort3.png"><br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/mergesort4.png"><br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/mergesort5.png">  </li>
+</ul>
+</li>
+<li>分析效率<ul>
+<li>将大数组递归成更小数组，这个过程最多需要lgN步</li>
+<li>最小数组只包含两个元素，仅需要进行一次位置交换</li>
+<li>合并成一个大数组后，交换次数最多也是N步</li>
+<li>省略一部分数学推导，时间复杂度是和N*lgN成正比的</li>
+<li>从时间效率来说毫无疑问是高效的，然而缺点是越大的数组需要的额外数组越多，空间复杂度越大</li>
+</ul>
+</li>
+<li>改进空间<ul>
+<li>对于分割出来的小数组，可以不必每次都用归并排序，适当使用插入排序解决小数组，可以使得效率更高</li>
+</ul>
+</li>
+<li><strong>研究一个新问题时，最好的方法是先实现一个你能想到的最简单的程序，当它成为瓶颈的时候再继续改进它</strong></li>
+<li>自下而上的归并排序<ul>
+<li>与原地归并的思路相反，不将大数组分割成小数组，而是直接从小数组出发，先两两归并，再四四归并，如此类推<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/mergesort6.png"><br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/mergesort7.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>排序算法的复杂度</strong><ul>
+<li>排序算法的极限效率是lg(N!)~N*lgN次<ul>
+<li>证明过程和二叉树相关，看不太明白，需要研究的看书P386</li>
+</ul>
+</li>
+<li><strong>准确的上界为软件工程师保证性能提供了空间</strong></li>
+<li><strong>准确的下界可以为我们节省很多时间，避免因不可能的性能改进而投入资源</strong></li>
+<li>尽管归并排序很有可能是最高效的排序，然而现实中也很可能不使用归并排序<ul>
+<li>归并排序的空间复杂度不是最优的</li>
+<li>在实践中不一定会遇到最坏情况</li>
+<li>除了比较，算法的其他操作（例如访问数组）也可能很重要</li>
+<li>不进行比较也能将某些数据排序</li>
+<li>在随机生成的数组中，也证实了归并排序和希尔排序的效率差不多，只会快常数级别的效率  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>快速排序<ul>
+<li>基本思路<ul>
+<li>和归并排序类似的是，将一个大数组分成两个小数组，将两部分独立的排序</li>
+<li>前提是数组需要打乱，并取出一个中间元素</li>
+<li>此时将左右半边进行排序，左半边要求不大于中间元素，右半边要求不小于中间元素</li>
+<li>完成后再将左半边和右半边进行递归处理，按照1-3的步骤<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/quicksort.png"><br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/quicksort2.png"></li>
+</ul>
+</li>
+<li>基本步骤<ul>
+<li>快速排序递归地将子数组a[lo..hi]排序</li>
+<li>先用partition()方法将a[j]放到一个合适位置</li>
+<li>然后再用递归调用将其他位置的元素排序</li>
+</ul>
+</li>
+<li>切分数组<ul>
+<li>如下所示，取出第一个数作为切分元素</li>
+<li>分别维护数组两头的指针，向中间移动</li>
+<li>左边找到比切分元素大的数字，右边找到比切分元素小的数字</li>
+<li>交换两个数字的位置</li>
+<li>不断重复这个过程，直到没有数字可以交换<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/quicksort3.png"></li>
+</ul>
+</li>
+<li>注意事项：快速排序效率高，但是比较脆弱，稍不注意的点可能导致效率骤降<ul>
+<li>原地切分<ul>
+<li>不要在递归的切分方法中创建数组，而是传递初始数组对象进去处理</li>
+</ul>
+</li>
+<li>别越界</li>
+<li>保持随机性<ul>
+<li>数组元素必须是乱序的，如有必要，可以在切分数组时，随机选择一个切分元素</li>
+</ul>
+</li>
+<li>终止循环<ul>
+<li>一个最常见的错误是没有考虑到数组中可能包含和切分元素的值相同的其他元素</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>分析效率<ul>
+<li>切分方法的内循环会用一个递增的索引将数组元素和一个定值比较<ul>
+<li>非常短小精悍的内循环</li>
+</ul>
+</li>
+<li>只要数组是随机的，那么平均而言，切分元素都能落在数组的中间，这样也就能保证快速排序的最好效率</li>
+<li>将长度为N的无重复数组排序，快速排序平均需要2N*lnN次比较</li>
+<li>最糟的情况就是每次选择切分元素都选到了最小的，这样需要(N^2)/2次的比较</li>
+<li>总的来说，可以肯定的是对于大小为N的数组，快速的运行时间在1.39N*lgN的某个常数因子的范围之内。归并排序也能做到这一点，但是快速排序一般会更快（尽管它的比较次数多39%），因为它移动数据的次数更少</li>
+</ul>
+</li>
+<li>快速排序的改进<ul>
+<li>切换到插入排序<ul>
+<li>插入排序对于小数组的处理总是更加高效</li>
+<li>设定数组切分到一定大小的时候，切换为插入排序<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/quicksort4.png"> </li>
+</ul>
+</li>
+<li>三取样切分<ul>
+<li>为防止切分元素的位置过于极端导致的效率下降，采用从小数组中取三个数中的中位数来作为切分元素</li>
+</ul>
+</li>
+<li>熵最优的排序（三向切分）<ul>
+<li>考虑和切分元素相等的情况</li>
+<li>对于存在大量重复元素的数组，这种方法比标准的快速排序的效率高得多</li>
+<li>在实际应用中，不能忽视重复元素的影响<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/quicksort5.png"><br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/quicksort6.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>优先队列<ul>
+<li>不是所有情况下都要数组完全有序，很多情况下我们会收集一些元素，处理当前键值最大的元素，然后再收集更多的元素，再处理当前键值最大的元素</li>
+<li>基于其目的需要实现两种功能：<strong>删除最大元素和插入元素</strong><br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/sort.png"></li>
+<li>初级实现<ul>
+<li>无序数组<ul>
+<li>添加一段类似于选择排序的内循环的代码，将最大元素和边界元素交换然</li>
+</ul>
+</li>
+<li>有序数组<ul>
+<li>最大的元素总会在数组的一边，优先队列的删除最大元素操作就和栈的pop()操作一样了</li>
+</ul>
+</li>
+<li>链表表示法<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/prioritysort.png">  </li>
+</ul>
+</li>
+<li>二叉堆<ul>
+<li>每个元素都要保证大于等于另两个特定位置的元素</li>
+<li>这些位置的元素又至少要大于等于数组中的另两个元素</li>
+<li>当一棵二叉树的每个结点都大于等于它的两个子结点时，它被称为<strong>堆有序</strong><br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/prioritysort2.png">  </li>
+</ul>
+</li>
+<li>堆的算法<ul>
+<li><strong>对于某个节点K，父结点的位置为k/2，而它的两个子结点的位置则分别为2K和2K+1</strong></li>
+<li>用长度N+1的数组pq[]表示一个大小为N的堆，堆元素放在pq[1]至pq[N]中，不从0开始</li>
+<li>当某个结点的优先级上升（或是在堆底加入一个新的元素）时，我们需要由下至上恢复堆的顺序。<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/stacksort1.png"></li>
+<li>如果堆的有序状态因为某个结点变得比它的两个子结点或是其中之一更小了而被打破了，那么我们可以通过将它和它的两个子结点中的较大者交换来恢复堆<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/stacksort3.png"></li>
+<li><strong>插入元素</strong>：我们将新元素加到数组末尾，增加堆的大小并让这个新元素上浮到合适的位置</li>
+<li><strong>删除最大元素</strong>：我们从数组顶端删去最大的元素并将数组的最后一个元素放到顶端，减小堆的大小并让这个元素下沉到合适的位置</li>
+<li>简而言之，插入元素是插到堆的末尾，然后再上浮到合适位置。删除元素，从顶端将最大元素和末尾元素交换位置，然后删除最大元素，再将末尾元素下沉到合适位置。<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/stacksort5.png"><br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/stacksort6.png">       </li>
+<li>sink方法的逻辑<ul>
+<li>输入k之后，将2k和2k+1的值进行比较（这两个值是k的子结点），找到这两个值中更大的那个</li>
+<li>将k和1步骤中找到的更大值进行比较，如果k更小，则k和该值的位置交换</li>
+<li>继续将k和子结点进行比较，重复该过程，直到k不比任何子结点小，或者到达最末尾后结束循环<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/stacksort4.png"></li>
+</ul>
+</li>
+<li>swim方法的逻辑<ul>
+<li>输入k之后，将k和k/2的值进行比较（k/2是k的父节点）</li>
+<li>如果k比k/2更大，则将两个值的位置交换</li>
+<li>继续将k和其父节点比较，重复该过程，直到k不比任何父节点大，或者到达根结点后结束循环<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/stacksort2.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>堆的效率<ul>
+<li>对于一个含有N个元素的基于堆的优先队列，插入元素操作只需不超过（lgN+1）次比较，删除最大元素的操作需要不超过2lgN次比较</li>
+</ul>
+</li>
+<li>多叉堆<ul>
+<li>基于二叉堆的原理可以构建三叉堆<ul>
+<li>对于数组中1至N的N个元素，位置的结点大于等于位于3K-1、3K和3K+1的结点，小于等于位于(k+1)/3的结点</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>索引优先队列<ul>
+<li>给每个元素一个索引，从而使得优先队列中的元素可以被外部引用</li>
+<li>理解这种数据结构的一个较好方法是将它看成一个能够快速访问其中最小元素的数组</li>
+<li>在一个大小为的索引优先队列中，插入元素（insert）、改变优先级（change）、删除（delete）和删除最小元素（removetheminimum）操作所需的比较次数和lgN成正比</li>
+</ul>
+</li>
+<li><strong>堆排序</strong><ul>
+<li>由堆的上浮下沉过程可以对一个数组进行排序</li>
+<li>用swim()保证扫描指针左侧的所有元素已经是一棵堆有序的完全树即可          </li>
+<li>基本思路<ul>
+<li>我们将原始数组重新组织安排进一个堆中</li>
+<li>然后在下沉排序阶段，我们从堆中按递减顺序取出所有元素并得到排序结果</li>
+</ul>
+</li>
+<li>基本步骤<ul>
+<li>输入数组a[]后，先将其构造成堆</li>
+<li>构造堆的方法是将索引小于N/2的元素都进行下沉操作，这样可以保证创造一个深度不超过lgN的堆，同时会把最大值放在头部</li>
+<li>然后遍历堆，第一步将头部元素和末尾元素调换位置，再将末尾元素下沉到合适位置</li>
+<li>第二次循环，将头部元素和倒数第二个元素调换位置，再将倒数第二个元素下沉到合适位置，以此类推<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/stacksort7.png"><br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/stacksort8.png"></li>
+</ul>
+</li>
+<li>效率分析<ul>
+<li>是我们所知的唯一能够同时最优地利用空间和时间的方法</li>
+<li>在最坏的情况下它也能保证使用～2NlgN次比较和恒定的额外空间</li>
+<li>但现代系统的许多应用很少使用它，因为它无法利用缓存(?)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>排序的应用<ul>
+<li>在一个有序的数组中查找一个元素要比在一个无序的数组中查找简单得多</li>
+<li>应用领域：数据压缩、计算机图形学、计算生物学、供应链管理、组合优化、社会选择和投票等</li>
+<li>使用comparator进行排序<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/sort3.png"></li>
+<li>如果一个排序算法能够保留数组中重复元素的相对位置则可以被称为是稳定的</li>
+<li>排序算法比较<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/sort4.png"></li>
+<li><strong>快速排序是最快的通用排序算法</strong><ul>
+<li>内循环的指令很少</li>
+<li>能够利用缓存</li>
+</ul>
+</li>
+<li>Kendall tau距离就是在两组数列中顺序不同的数对的数目<ul>
+<li>例如，0316254和1036425之间的Kendalltau距离是4，因为01、31、24、54这4对数字在两组排列中的相对顺序不同，但其他数字的相对顺序都是相同的</li>
+</ul>
+</li>
+<li>使用快速排序中的切分法来查找中位数    <ul>
+<li>按照快速排序的规则，选择第一个数作为切分元素，切分完成后，左边的数都小于它，右边的数都大于它</li>
+<li>此时检查切分元素所在的位置，如果正好是数组元素的中间位置，则这个切分元素就是中位数，如果位置大于中间位置，则重新切分左半边，如果位置小于中间位置，则重新切分右半边</li>
+<li>以此循环，直到切分元素的位置刚好在中间位置，就找到了中位数<br><img src="/.com//03/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%8C%E7%AB%A0/sort5.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/03/24/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E4%BA%BA%E7%B1%BB%E7%AE%80%E5%8F%B2/" rel="prev" title="读书笔记-人类简史">
+                  <i class="fa fa-chevron-left"></i> 读书笔记-人类简史
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/01/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%B8%89%E7%AB%A0/" rel="next" title="读书笔记-算法-第三章">
+                  读书笔记-算法-第三章 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ricky</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"cindyforever","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
