@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="今天尝试下详细介绍一篇有意思的博文，和若干篇值得一看的技术资讯。 今日关注同时在三个平台上发布我的独立游戏，在财务上却失败了作者讲述了自己在2013到2015年开发了一款独立游戏，叫做Toto Temple，并在2015年9月在PS4, Xbox One, Wii U 和 Steam上发布，最终销售额却不佳，作者回顾这一段经历，并分析可能的原因。 销售额下图是销售额和开发成本的对比。左边是各个平台">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日文章收集-20230621">
+<meta property="og:url" content="http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/index.html">
+<meta property="og:site_name" content="Ricky的个人博客">
+<meta property="og:description" content="今天尝试下详细介绍一篇有意思的博文，和若干篇值得一看的技术资讯。 今日关注同时在三个平台上发布我的独立游戏，在财务上却失败了作者讲述了自己在2013到2015年开发了一款独立游戏，叫做Toto Temple，并在2015年9月在PS4, Xbox One, Wii U 和 Steam上发布，最终销售额却不佳，作者回顾这一段经历，并分析可能的原因。 销售额下图是销售额和开发成本的对比。左边是各个平台">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/revenues.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/tototemple.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/deluxe_puzzle.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/pax_showdown_banner.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/no-online.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/crypto1.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/crypto2.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/devpod.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/config1.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/openresume1.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/openresume2.png">
+<meta property="article:published_time" content="2023-06-20T08:19:48.000Z">
+<meta property="article:modified_time" content="2023-07-03T01:14:09.116Z">
+<meta property="article:author" content="Ricky">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/revenues.png">
+
+
+<link rel="canonical" href="http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/","path":"2023/06/20/2023/06/weekly-tech-blog-collection-202306021/","title":"每日文章收集-20230621"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>每日文章收集-20230621 | Ricky的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ricky的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">28</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8A%E6%97%A5%E5%85%B3%E6%B3%A8"><span class="nav-text">今日关注</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8C%E6%97%B6%E5%9C%A8%E4%B8%89%E4%B8%AA%E5%B9%B3%E5%8F%B0%E4%B8%8A%E5%8F%91%E5%B8%83%E6%88%91%E7%9A%84%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%EF%BC%8C%E5%9C%A8%E8%B4%A2%E5%8A%A1%E4%B8%8A%E5%8D%B4%E5%A4%B1%E8%B4%A5%E4%BA%86"><span class="nav-text">同时在三个平台上发布我的独立游戏，在财务上却失败了</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%80%E5%94%AE%E9%A2%9D"><span class="nav-text">销售额</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B8%AA%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%BA%86%E4%B8%A4%E5%B9%B4%EF%BC%9F"><span class="nav-text">为什么这个游戏开发了两年？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%99%E4%B8%AA%E6%B8%B8%E6%88%8F%E7%9C%9F%E7%9A%84%E5%A5%BD%E7%8E%A9%E5%90%97%EF%BC%9F"><span class="nav-text">这个游戏真的好玩吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E7%8E%A9%E6%B3%95%E5%88%86%E6%9E%90"><span class="nav-text">游戏玩法分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98%EF%BC%8C%E6%A0%87%E9%A2%98%E5%92%8C%E9%A2%84%E5%91%8A%E7%89%87%E5%88%86%E6%9E%90"><span class="nav-text">主题，标题和预告片分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%82%E5%9C%BA%E8%90%A5%E9%94%80"><span class="nav-text">市场营销</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%80%E4%BB%A5%E4%B8%BA%E4%BB%80%E4%B9%88%E6%B8%B8%E6%88%8F%E5%8D%96%E7%9A%84%E4%B8%8D%E5%A5%BD%E5%91%A2%EF%BC%9F"><span class="nav-text">所以为什么游戏卖的不好呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E6%9C%89%E4%B8%8B%E6%AC%A1"><span class="nav-text">如果有下次</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E5%B0%BE%E7%9A%84%E8%AF%9D"><span class="nav-text">结尾的话</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%9A%E6%96%87%E4%B8%80%E8%A7%88"><span class="nav-text">博文一览</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cryptopals-%E5%8A%A0%E5%AF%86%E6%8C%91%E6%88%98"><span class="nav-text">cryptopals 加密挑战</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DevPod%EF%BC%9A%E5%BC%80%E6%BA%90%EF%BC%8C%E6%97%A0%E9%9C%80%E6%9C%8D%E5%8A%A1%E7%AB%AF%EF%BC%8C%E5%8F%AF%E5%A4%8D%E7%8E%B0%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84codespaces"><span class="nav-text">DevPod：开源，无需服务端，可复现的开发环境的codespaces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%80%E6%9C%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E9%83%BD%E5%BA%94%E8%AF%A5%E6%8A%A5%E5%91%8A%E5%85%B6%E6%89%80%E5%9C%A8%E4%BD%8D%E7%BD%AE"><span class="nav-text">所有配置文件都应该报告其所在位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%88%E4%BD%9B%E7%9A%84%E6%96%B0%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E8%80%81%E5%B8%88%E6%98%AF%E4%B8%80%E4%B8%AA%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA"><span class="nav-text">哈佛的新计算机科学老师是一个聊天机器人</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenResume-%E5%BC%80%E6%BA%90%E7%9A%84%E7%AE%80%E5%8E%86%E7%94%9F%E6%88%90%E5%99%A8"><span class="nav-text">OpenResume: 开源的简历生成器</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ricky"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ricky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shdvgj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shdvgj" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:linqianghuang@gmail.com" title="E-Mail → mailto:linqianghuang@gmail.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/RickyLoveCindy" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;RickyLoveCindy" rel="noopener me" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoqianglalala" rel="noopener me" target="_blank"><i class="instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="每日文章收集-20230621 | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          每日文章收集-20230621
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-06-20 16:19:48" itemprop="dateCreated datePublished" datetime="2023-06-20T16:19:48+08:00">2023-06-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-03 09:14:09" itemprop="dateModified" datetime="2023-07-03T09:14:09+08:00">2023-07-03</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/06/20/2023/06/weekly-tech-blog-collection-202306021/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>今天尝试下详细介绍一篇有意思的博文，和若干篇值得一看的技术资讯。</p>
+<h1 id="今日关注"><a href="#今日关注" class="headerlink" title="今日关注"></a>今日关注</h1><h2 id="同时在三个平台上发布我的独立游戏，在财务上却失败了"><a href="#同时在三个平台上发布我的独立游戏，在财务上却失败了" class="headerlink" title="同时在三个平台上发布我的独立游戏，在财务上却失败了"></a><a target="_blank" rel="noopener" href="https://juicybeast.com/2016/01/11/releasing-an-indie-game-on-3-consoles-at-once-and-failing-financially/#2-years">同时在三个平台上发布我的独立游戏，在财务上却失败了</a></h2><p>作者讲述了自己在2013到2015年开发了一款独立游戏，叫做<a target="_blank" rel="noopener" href="https://store.steampowered.com/app/342920/Toto_Temple_Deluxe/">Toto Temple</a>，并在2015年9月在PS4, Xbox One, Wii U 和 Steam上发布，最终销售额却不佳，作者回顾这一段经历，并分析可能的原因。</p>
+<h3 id="销售额"><a href="#销售额" class="headerlink" title="销售额"></a>销售额</h3><p>下图是销售额和开发成本的对比。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/revenues.png"><br>左边是各个平台的销售占比，右边是成本，包括了市场营销，代码开发，移植，图形开发等。到作者发文时，游戏总共卖出了6000份，远远达不到他的开发成本。</p>
+<h3 id="为什么这个游戏开发了两年？"><a href="#为什么这个游戏开发了两年？" class="headerlink" title="为什么这个游戏开发了两年？"></a>为什么这个游戏开发了两年？</h3><p>作者说到开发过程中并没有什么具体的规划，只是抓住了各种机遇。</p>
+<p>他回顾了第一年获得了<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Ouya">Ouya</a>公司(Ouya是2013年成立的一个游戏机公司，已在2019年倒闭)的投资，几乎没花任何自己的钱上线了Toto Temple Deluxe版本。并且初期反馈也相当不错，这让他觉得很有成就感。</p>
+<p>第二年作者和三大平台的游戏巨头进行了接触，并且获得了认可。然而由于游戏已在ouya发行，因此无法获得另一份的独占协议。这种情况下，他的开发团队决定在三大平台发行游戏，基于两点考虑：</p>
+<ul>
+<li>三个平台可以获得三倍销售额。</li>
+<li>同时在三大平台发行可以获得一定的关注，并能够和三大平台的老总进行对话。<span id="more"></span>
+<h3 id="这个游戏真的好玩吗？"><a href="#这个游戏真的好玩吗？" class="headerlink" title="这个游戏真的好玩吗？"></a>这个游戏真的好玩吗？</h3></li>
+</ul>
+<p>游戏的玩法基于多人合作对抗的形式，可以和小伙伴一起在家里玩。作者认为游戏是好玩的，他也放出来一段在游戏展会上玩家玩的很开心的视频。</p>
+<h3 id="游戏玩法分析"><a href="#游戏玩法分析" class="headerlink" title="游戏玩法分析"></a>游戏玩法分析</h3><p>作者不认为游戏销量不佳是因为游戏不好玩。不过他也说到这款游戏在玩法上和别的多人游戏的不同。</p>
+<ul>
+<li>对于新手不友好。游戏上手难度颇高，需要一定的时间适应它的移动方式，除此之外，获胜方式也不那么直观，不是一键击杀或者到达某个点，而是要不断将山羊带到正确的点获取得分。</li>
+<li>画面展示。游戏不好上手或者有难度也不是主要原因，毕竟很多游戏就靠着难度获得乐趣。但是这款游戏的画面往往让新手搞不清楚发生甚么，太过于杂乱而没有重点。即使玩家搞清楚了画面重点，观众也get不到，<strong>这一点颇为重要，这个致命的缺陷导致游戏无法在youtube或twitch等平台上流行起来。</strong><br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/tototemple.png"></li>
+<li>强度变化。多数其他游戏在高强度的击杀或者阶段获胜后会有一段比较轻松的时间，以让玩家获得喘息。但是toto temple需要玩家一直保持高度注意力，直到这一局的最终获胜，因此也让开发者不得不将每局游戏的时间设计到在两分钟以内结束。</li>
+</ul>
+<p>这些玩法因素可能不是导致游戏销量失败的主要原因，但确实让玩家的游玩感受不太友好。</p>
+<h3 id="主题，标题和预告片分析"><a href="#主题，标题和预告片分析" class="headerlink" title="主题，标题和预告片分析"></a>主题，标题和预告片分析</h3><p>主题，标题和预告片这三个因素决定了玩家是不是会对你的游戏感兴趣。作者认为自己在这方面没有做好。</p>
+<ul>
+<li><strong>主题过时</strong>。游戏主题是玛雅神庙寻宝，作者后悔没有在初次讨论后重新决定主题，因为这个主题显然无法引起太多玩家的兴趣，玩家在进入游戏前就大概知道玛雅，神庙，寻宝这样的主题会是什么样的，因此会丧失探索的欲望，直接影响玩家的购买欲。</li>
+<li><strong>标题混淆</strong>。在初次讨论标题的时候，作者的团队认为标题一定要足够吸引人，因此采用了连续的T开头的单词。而这个标题也确实不太差，很快的在google上有了一定的搜索量。然而随着时间推移，作者意识到，这个标题完全没有展现出玩法，尤其是加上“deluxe（豪华版）”之后，让很多的玩家怀疑这是一个小品级的解谜游戏。这导致了很多潜在玩家的流失。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/deluxe_puzzle.png"></li>
+<li><strong>预告片差强人意</strong>。作者分析了自己的两段预告片，指出由于游戏玩法的复杂性，让他非常渴望在预告片中告诉玩家游戏机制和所有的内容，使得预告片画面切换太快，也太过混乱。作者甚至还介绍了另一篇<a target="_blank" rel="noopener" href="http://www.kertgartner.com/making-entertaining-and-engaging-video-game-trailers/">文章</a>，用于说明如何制作一个吸引人的预告片。</li>
+</ul>
+<h3 id="市场营销"><a href="#市场营销" class="headerlink" title="市场营销"></a>市场营销</h3><p>作者说自己并没有太多市场营销的经验，但是也为这款游戏努力做了很多自己以前不曾做过的事。包括参展，公关，真山羊活动，在twitch上组织抽奖活动等。</p>
+<ul>
+<li>Pax展会上支付公关费。公关公司很厚道的给了他们一个折扣价，但是不管由于主观还是客观原因，最终没有任何网站和他们进行接触。</li>
+<li>免费发放了价值17000美元的steam key。确实吸引了很多的玩家，但没有得到足够的媒体关注，因此宣传效果非常有限。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/pax_showdown_banner.png"></li>
+<li>真山羊活动。购买者花费60美元可以获得4份游戏的steam key，同时在慈善网站上以玩家的名义购买一只山羊。然而这个公益性质的活动没有卖出任何一份，究其原因，作者认为有几个：<ul>
+<li>显而易见，价格过高。尽管60美元也只是刚好够买一只山羊，是纯公益的活动，但是玩家并不会因为公益性质就更愿意购买。</li>
+<li>只能在PC上组织这个活动，在更流行的主机上无法发起。</li>
+<li>游戏不支持多人在线游玩，线下一份游戏就可以四人同时玩，因此购买四份游戏对于玩家来说意义不大。</li>
+</ul>
+</li>
+<li>组织机器人赌注比赛。在twitch上发起了一场活动，由四个AI机器人控制角色进行游戏，而观众则是在游戏开始前下注哪个机器人能赢，赌赢的观众可以免费获得一份游戏的steam key。这场活动最终送出了1400份steam key，作者认为这是个有意思的活动，尽管最后并没有给销量带来什么帮助。</li>
+<li>游戏客串角色。在游戏里可以解锁各种其他游戏里的不同角色造型，以替换山羊的造型。这个新的功能给游戏带来了海量的新角色，直到今天依然有更新。很难计算这个功能带来了多少曝光量，但作者对于这个功能确实非常满意。</li>
+<li>新闻系统。这个指的是所有获得免费steam key的玩家需要提供他们的邮箱以订阅开发团队的新闻。最后统计出了有1437个人订阅了邮件，34%的人打开阅读了邮件，5%的人点击了它。这个结果也还算不错。</li>
+</ul>
+<h3 id="所以为什么游戏卖的不好呢？"><a href="#所以为什么游戏卖的不好呢？" class="headerlink" title="所以为什么游戏卖的不好呢？"></a>所以为什么游戏卖的不好呢？</h3><p>可以看到，作者认为游戏还挺好玩的，玩家也充分的参与到了他们组织的各种市场营销活动中，也通过公关公司接触了一些媒体。所以到底是为什么这个游戏卖的不好呢？作者简单说了几点：</p>
+<ul>
+<li><strong>不够吸引人</strong>。像前文所述，不管是主题还是玩法，都使得玩家难以第一时间了解游戏的魅力。</li>
+<li><strong>没有线上模式</strong>。作者团队认为这是最大的原因，游戏需要现实中的朋友来一起玩，这是一个很大的限制。在论坛上也充斥着这样的讨论。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/no-online.png"></li>
+<li><strong>开发周期过长</strong>。在2014年的时候，本地的多人游戏还是比较时兴的，但是这种游戏没多久就过时了，已经没人玩这种类型的游戏了。</li>
+<li><strong>同时在三大平台发行</strong>。移植到各个平台花费了他们大量的时间和精力，在这个过程中基本就是不断的修复bug，产生bug，修复bug。。。</li>
+</ul>
+<h3 id="如果有下次"><a href="#如果有下次" class="headerlink" title="如果有下次"></a>如果有下次</h3><ul>
+<li><strong>不要搞本地多人游戏</strong>。本地多人游戏规划起来是很简单，但是太难市场推广了。</li>
+<li><strong>先签协议</strong>。要跟游戏平台签下独占协议，这样会让后续简单很多。</li>
+<li><strong>只发行一个平台</strong>。和上一条呼应，一次性在多个平台发行游戏成本太高，回报太少。</li>
+<li><strong>从市场角度进行设计</strong>。分析市场需求非常重要，不要埋头苦想。作者推荐看Ryan Clark的的文章<a target="_blank" rel="noopener" href="https://www.gamedeveloper.com/business/what-makes-an-indie-hit-how-to-choose-the-right-design">《What Makes an Indie Hit》</a>进行学习。</li>
+</ul>
+<h3 id="结尾的话"><a href="#结尾的话" class="headerlink" title="结尾的话"></a>结尾的话</h3><p>这篇文章写的情真意切，看得出来作者对这个付出了两年心血的游戏感情复杂，有懊悔一些决定，有欣慰一些活动的成功，有感激团队成员的辛勤付出。而最终，不管是偏见还是事实，他认为游戏并不是不好玩，但确实是个失败的作品。作者写下这篇文章也是为了总结过去的失败教训，为下部作品积累经验。</p>
+<p><strong>而我们做程序员的也应该学习到，开发水平的高低往往并不是决定你的项目成功的关键，最主要还是得搞清楚市场需要什么，这点是程序员的弱项，但是也是必须要解决的，否则只能是像作者这样浪费无数个两年。</strong></p>
+<h1 id="博文一览"><a href="#博文一览" class="headerlink" title="博文一览"></a>博文一览</h1><h3 id="cryptopals-加密挑战"><a href="#cryptopals-加密挑战" class="headerlink" title="cryptopals 加密挑战"></a><a target="_blank" rel="noopener" href="https://cryptopals.com/">cryptopals 加密挑战</a></h3><p>帮助你了解现实世界中用到的加密算法的底层原理以及可能被攻击的方式。目前包含了总共66个挑战题目，从简单到难，对于计算机的加密算法感兴趣的同学可以看看。<br>以下是一些挑战的截图：<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/crypto1.png"><br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/crypto2.png"></p>
+<h3 id="DevPod：开源，无需服务端，可复现的开发环境的codespaces"><a href="#DevPod：开源，无需服务端，可复现的开发环境的codespaces" class="headerlink" title="DevPod：开源，无需服务端，可复现的开发环境的codespaces"></a><a target="_blank" rel="noopener" href="https://devpod.sh/">DevPod：开源，无需服务端，可复现的开发环境的codespaces</a></h3><p>DevPod是一个用于创建可复现的开发者环境的工具。基本流程是通过git下载代码，根据devcontainer.json文件指定代码运行环境。对比docker，codespaces等，优点是开源，无需服务端，轻量级。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/devpod.png"></p>
+<h3 id="所有配置文件都应该报告其所在位置"><a href="#所有配置文件都应该报告其所在位置" class="headerlink" title="所有配置文件都应该报告其所在位置"></a><a target="_blank" rel="noopener" href="https://utcc.utoronto.ca/~cks/space/blog/sysadmin/ReportConfigFileLocations?showcomments#comments">所有配置文件都应该报告其所在位置</a></h3><p>这篇文章指出大部分程序拥有不同的配置文件位置，有些在系统配置文件目录，有些在用户目录，这些程序都自认为将配置文件放在了大部分人知道的位置。这导致了系统中的程序一多，就会让管理员要搜索所有可能的位置去查找配置文件所在。（对于我来说，找配置文件就是google一下，局限就是必须得有网络。）<br>作者认为应该有一个统一直观的方式查到程序的配置文件位置，例如”program –help”。<br>这篇博文引起了一些讨论，大部分都认同，也有人提出不仅如此，同时配置文件也应该统一读取优先级的问题，有些配置以首次读取为准，有些配置又是最后一次配置为准，这就非常混乱。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/config1.png"></p>
+<h3 id="哈佛的新计算机科学老师是一个聊天机器人"><a href="#哈佛的新计算机科学老师是一个聊天机器人" class="headerlink" title="哈佛的新计算机科学老师是一个聊天机器人"></a><a target="_blank" rel="noopener" href="https://www.independent.co.uk/tech/harvard-chatbot-teacher-computer-science-b2363114.html">哈佛的新计算机科学老师是一个聊天机器人</a></h3><p>哈佛计划采用基于chatgpt的聊天机器人用于教授计算机科学课程。哈佛教授David Malan认为机器人教学的好处至少有几点：</p>
+<ul>
+<li>一对一教学</li>
+<li>7天24小时不间断</li>
+<li>针对学生进行个性化教学</li>
+</ul>
+<h3 id="OpenResume-开源的简历生成器"><a href="#OpenResume-开源的简历生成器" class="headerlink" title="OpenResume: 开源的简历生成器"></a><a target="_blank" rel="noopener" href="https://www.open-resume.com/">OpenResume: 开源的简历生成器</a></h3><p>先看看具体效果，个人认为还是比较简洁美观的，可以持续关注。比起市面上一堆花里胡哨的简历，这种简历我认为更能看得下去，关键是<strong>免费</strong>。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/openresume1.png"><br>支持pdf导入已有简历，或者根据他的模版一步步建立。<br><img src="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/openresume2.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/06/19/2023/06/weekly-tech-blog-collection-202306019/" rel="prev" title="一周文章收集-20230619">
+                  <i class="fa fa-chevron-left"></i> 一周文章收集-20230619
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/" rel="next" title="每日文章收集-20230626">
+                  每日文章收集-20230626 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ricky</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"cindyforever","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

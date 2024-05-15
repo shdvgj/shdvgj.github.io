@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="声明 翻译自12 Best Practices for Writing Bash Scripts翻译完发现这篇文章技术价值相当低。。。  Bash shell全称Bourne Again Shell，现在作为大部分的linux发行版本的默认shell。一个Bash脚本是一个包含多行shell命令的文件，用于执行特别的命令。如果你熟知bash脚本，那这篇文章就很适合你，在这篇文章中我写了12种bas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="12例bash脚本最佳实践">
+<meta property="og:url" content="http://shdvgj.github.io/2022/01/18/blog/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E7%BF%BB%E8%AF%91-12%E4%BE%8Bbash%E8%84%9A%E6%9C%AC%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="Ricky的个人博客">
+<meta property="og:description" content="声明 翻译自12 Best Practices for Writing Bash Scripts翻译完发现这篇文章技术价值相当低。。。  Bash shell全称Bourne Again Shell，现在作为大部分的linux发行版本的默认shell。一个Bash脚本是一个包含多行shell命令的文件，用于执行特别的命令。如果你熟知bash脚本，那这篇文章就很适合你，在这篇文章中我写了12种bas">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-18T02:18:17.000Z">
+<meta property="article:modified_time" content="2024-04-08T00:34:04.308Z">
+<meta property="article:author" content="Ricky">
+<meta property="article:tag" content="translate">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://shdvgj.github.io/2022/01/18/blog/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E7%BF%BB%E8%AF%91-12%E4%BE%8Bbash%E8%84%9A%E6%9C%AC%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://shdvgj.github.io/2022/01/18/blog/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E7%BF%BB%E8%AF%91-12%E4%BE%8Bbash%E8%84%9A%E6%9C%AC%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/","path":"2022/01/18/blog/技术博客翻译-12例bash脚本最佳实践/","title":"12例bash脚本最佳实践"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>12例bash脚本最佳实践 | Ricky的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ricky的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">28</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3"><span class="nav-text">注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-text">使用函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E5%BC%95%E7%94%A8%E5%8F%98%E9%87%8F%E4%BD%BF%E7%94%A8%E5%8F%8C%E5%BC%95%E5%8F%B7"><span class="nav-text">对引用变量使用双引号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BA%E7%8E%B0%E9%94%99%E8%AF%AF%E6%97%B6%E7%BB%88%E6%AD%A2%E8%84%9A%E6%9C%AC"><span class="nav-text">出现错误时终止脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%9C%AA%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F%E6%97%B6%E7%BB%88%E6%AD%A2%E8%84%9A%E6%9C%AC"><span class="nav-text">使用未声明变量时终止脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F"><span class="nav-text">声明变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%8A%B1%E6%8B%AC%E5%8F%B7"><span class="nav-text">使用花括号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%9B%BF%E6%8D%A2"><span class="nav-text">命令替换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83"><span class="nav-text">变量命名规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F"><span class="nav-text">声明静态变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-text">比较字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E8%B0%83%E8%AF%95"><span class="nav-text">脚本调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ricky"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ricky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shdvgj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shdvgj" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:linqianghuang@gmail.com" title="E-Mail → mailto:linqianghuang@gmail.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/RickyLoveCindy" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;RickyLoveCindy" rel="noopener me" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoqianglalala" rel="noopener me" target="_blank"><i class="instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/01/18/blog/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E7%BF%BB%E8%AF%91-12%E4%BE%8Bbash%E8%84%9A%E6%9C%AC%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="12例bash脚本最佳实践 | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          12例bash脚本最佳实践
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-01-18 10:18:17" itemprop="dateCreated datePublished" datetime="2022-01-18T10:18:17+08:00">2022-01-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-08 08:34:04" itemprop="dateModified" datetime="2024-04-08T08:34:04+08:00">2024-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/01/18/blog/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E7%BF%BB%E8%AF%91-12%E4%BE%8Bbash%E8%84%9A%E6%9C%AC%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/01/18/blog/技术博客翻译-12例bash脚本最佳实践/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><strong>声明</strong></p>
+<p>翻译自<a target="_blank" rel="noopener" href="https://www.faqforge.com/linux/12-best-practices-for-writing-bash-scripts/">12 Best Practices for Writing Bash Scripts</a><br>翻译完发现这篇文章技术价值相当低。。。</p>
+<hr>
+<p>Bash shell全称Bourne Again Shell，现在作为大部分的linux发行版本的默认shell。一个Bash脚本是一个包含多行shell命令的文件，用于执行特别的命令。如果你熟知bash脚本，那这篇文章就很适合你，在这篇文章中我写了12种bash脚本的最佳实践，可以增加bash脚本的效率并使其更易读。</p>
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><p>注解是一段清晰代码最基础的部分，用于定义或解释复杂代码的不同部分。写脚本的时候，你可以毫不费力的看懂很早之前你写过的代码。同样也能帮助你在一个大的项目组提高工作效率，帮助你理解一个函数或方法的真实用途。</p>
+<h2 id="使用函数"><a href="#使用函数" class="headerlink" title="使用函数"></a>使用函数</h2><p>一个函数是一堆命令联合之后实现一个特定的任务，可以帮助工作流模块化并使得脚本可复用，消除重复的代码。这可以让你维护的代码更加清晰和可读。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">check_root</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;function has been called&quot;</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="对引用变量使用双引号"><a href="#对引用变量使用双引号" class="headerlink" title="对引用变量使用双引号"></a>对引用变量使用双引号</h2><p>使用双引号可以消除不必要的通配符，同时当引用变量包含分割字符和空格时可以将包含空格的单词进行分割。如下例子中，我们可以看出变量用不用双引号的区别。（译者：没有例子，作者估计漏了）</p>
+<h2 id="出现错误时终止脚本"><a href="#出现错误时终止脚本" class="headerlink" title="出现错误时终止脚本"></a>出现错误时终止脚本</h2><p>有时候执行脚本的时候可能会出现一些错误。然而即使一个命令失败了，剩余的脚本也有可能继续运行，从而影响脚本中的其他命令。所以为了避免任何进一步的逻辑错误，我们需要加入<code>set -o errexit</code>或<code>set -e</code>终止错误的命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Terminate the script on command fails</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> -o errexit</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h2 id="使用未声明变量时终止脚本"><a href="#使用未声明变量时终止脚本" class="headerlink" title="使用未声明变量时终止脚本"></a>使用未声明变量时终止脚本</h2><p>脚本执行时，如果存在未声明的变量，可能导致bash使用变量时出现逻辑错误。当bash中存在一个未声明变量时，我们可以用如下命令中止脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Terminate the script on command fails</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> -o nounset</span><br></pre></td></tr></table></figure>
+
+<h2 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h2><p>我们必须对一个变量的数据类型和用法进行声明。当变量未声明，bash可能会因此执行失败。变量可以被声明为全局或在脚本内的本地变量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># variable declaration</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">declare</span> -r -i x=30</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">my_variable</span></span>()&#123;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">local</span> -r name = <span class="variable">$&#123;HOME&#125;</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用花括号"><a href="#使用花括号" class="headerlink" title="使用花括号"></a>使用花括号</h2><p>当使用变量关联字符串时，可以使用花括号将变量圈起来，以避免不必要的变量使用。同样也可用于对字符串的简单定义。比如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Terminate the script on command fails</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> -o errexit</span><br><span class="line"></span><br><span class="line"><span class="comment"># Custom variable</span></span><br><span class="line"></span><br><span class="line">data= <span class="string">&quot;<span class="variable">$&#123;USER&#125;</span>_data is being used&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="命令替换"><a href="#命令替换" class="headerlink" title="命令替换"></a>命令替换</h2><p>当分配命令的输出到变量时，bash使用命令替换的特性。我们需要使用推荐的$()而不是反引号去分配输出到变量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Terminate the script on command fails</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> -o errexit</span><br><span class="line"></span><br><span class="line"><span class="comment">#Displaying Date</span></span><br><span class="line"></span><br><span class="line">date_now = <span class="variable">$&#123;date&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="变量命名规范"><a href="#变量命名规范" class="headerlink" title="变量命名规范"></a>变量命名规范</h2><p>在我们的系统中，所有的环境变量都用大写字母。所以当我们声明一个本地变量时，需要使用小写字母以避免环境变量和本地变量名之间的冲突。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Terminate the script on command fails</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> -o errexit</span><br><span class="line"></span><br><span class="line">user_var = <span class="string">&quot;<span class="variable">$HOME</span> is your system&#x27;s current login user.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="声明静态变量"><a href="#声明静态变量" class="headerlink" title="声明静态变量"></a>声明静态变量</h2><p>如果你拥有一个在整个脚本中都不变的静态数据，你可以将值分配到一个不能被修改的静态变量上。你可以使用<code>readonly</code>命令来分配静态变量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This is nginx test host config</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">readonly</span> test_conf_path = <span class="string">&quot;/etc/nginx/conf.d/test.conf&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="比较字符串"><a href="#比较字符串" class="headerlink" title="比较字符串"></a>比较字符串</h2><p>在多数场景下字符串用<code>==</code>进行比较，但是在bash脚本中，字符串用<code>=</code>就可以完成比较。在如下例子中，我用<code>=</code>比较两个字符串。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># comparing two strings</span></span><br><span class="line"></span><br><span class="line">If [ <span class="string">&quot;<span class="variable">$HOME</span>&quot;</span> = <span class="string">&quot;User1&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;This is test purpose&quot;</span>.</span><br><span class="line"></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="脚本调试"><a href="#脚本调试" class="headerlink" title="脚本调试"></a>脚本调试</h2><p>调试是鉴定问题最重要的部分。我们需要在运行脚本的时候加上<code>-n</code>命令来检查脚本语法错误。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -n script_name</span><br></pre></td></tr></table></figure>
+
+<p>同样的，我们可以使用如下命令打开脚本的debug模式。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -x script_name</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这样，就是12个可以提升你脚本能力的bash脚本实践。当使用命令去完成特殊任务时，bash脚本将是更出色的那个。</p>
+<hr>
+<p>refers to 指的是；全称<br>demonstration （强烈表达）集会示威;游行示威;示范;示范表演;演示;证明;证实;论证;说明;表达<br>effortless 不费力的<br>modularizing 模块化<br>globbing 通配符<br>splitting 分割<br>curly braces 大括号;花括号;大括弧;花括號<br>concatenation 串联<br>substitution 置换;取代;代换;代入<br>assigning 分配<br>syntax 语法</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/translate/" rel="tag"># translate</a>
+              <a href="/tags/linux/" rel="tag"># linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/01/13/news/%E6%96%B0%E9%97%BB%E7%BF%BB%E8%AF%91-%E5%9C%B0%E8%B4%A8%E5%8F%91%E7%8E%B0%E7%BD%95%E8%A7%81%E7%9A%84%E4%B8%AD%E5%8F%A4%E7%AC%A6%E6%96%87/" rel="prev" title="新闻翻译-考古发现罕见的中世纪符文">
+                  <i class="fa fa-chevron-left"></i> 新闻翻译-考古发现罕见的中世纪符文
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/01/19/blog/%E4%B8%80%E5%91%A8%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%94%B6%E9%9B%86-20210117/" rel="next" title="一周文章收集-20220117">
+                  一周文章收集-20220117 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ricky</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"cindyforever","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

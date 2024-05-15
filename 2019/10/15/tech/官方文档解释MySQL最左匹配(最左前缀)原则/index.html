@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="什么是最左匹配原则关于最左匹配原则的解释, 网上找了很多, 但是我感觉都不是特别准确, 于是一怒之下直接找了官网的文档, 一下子就清晰了. 下面贴下官网的解释, 然后我自己翻译了一下.   来自官方文档的解释原文链接    MySQL can create composite indexes (that is, indexes on multiple columns). An index may">
+<meta property="og:type" content="article">
+<meta property="og:title" content="官方文档解释MySQL最左匹配(最左前缀)原则">
+<meta property="og:url" content="http://shdvgj.github.io/2019/10/15/tech/%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E8%A7%A3%E9%87%8AMySQL%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D(%E6%9C%80%E5%B7%A6%E5%89%8D%E7%BC%80)%E5%8E%9F%E5%88%99/index.html">
+<meta property="og:site_name" content="Ricky的个人博客">
+<meta property="og:description" content="什么是最左匹配原则关于最左匹配原则的解释, 网上找了很多, 但是我感觉都不是特别准确, 于是一怒之下直接找了官网的文档, 一下子就清晰了. 下面贴下官网的解释, 然后我自己翻译了一下.   来自官方文档的解释原文链接    MySQL can create composite indexes (that is, indexes on multiple columns). An index may">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-10-15T00:48:10.000Z">
+<meta property="article:modified_time" content="2023-03-16T08:44:04.741Z">
+<meta property="article:author" content="Ricky">
+<meta property="article:tag" content="translate">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://shdvgj.github.io/2019/10/15/tech/%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E8%A7%A3%E9%87%8AMySQL%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D(%E6%9C%80%E5%B7%A6%E5%89%8D%E7%BC%80)%E5%8E%9F%E5%88%99/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://shdvgj.github.io/2019/10/15/tech/%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E8%A7%A3%E9%87%8AMySQL%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D(%E6%9C%80%E5%B7%A6%E5%89%8D%E7%BC%80)%E5%8E%9F%E5%88%99/","path":"2019/10/15/tech/官方文档解释MySQL最左匹配(最左前缀)原则/","title":"官方文档解释MySQL最左匹配(最左前缀)原则"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>官方文档解释MySQL最左匹配(最左前缀)原则 | Ricky的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ricky的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">28</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D%E5%8E%9F%E5%88%99"><span class="nav-text">什么是最左匹配原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A5%E8%87%AA%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%9A%84%E8%A7%A3%E9%87%8A"><span class="nav-text">来自官方文档的解释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E5%B0%8F%E7%BB%93"><span class="nav-text">官方文档小结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%9A%84%E5%85%B6%E4%BB%96%E7%BB%86%E8%8A%82"><span class="nav-text">官方文档的其他细节</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ricky"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ricky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shdvgj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shdvgj" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:linqianghuang@gmail.com" title="E-Mail → mailto:linqianghuang@gmail.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/RickyLoveCindy" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;RickyLoveCindy" rel="noopener me" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoqianglalala" rel="noopener me" target="_blank"><i class="instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2019/10/15/tech/%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E8%A7%A3%E9%87%8AMySQL%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D(%E6%9C%80%E5%B7%A6%E5%89%8D%E7%BC%80)%E5%8E%9F%E5%88%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="官方文档解释MySQL最左匹配(最左前缀)原则 | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          官方文档解释MySQL最左匹配(最左前缀)原则
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-10-15 08:48:10" itemprop="dateCreated datePublished" datetime="2019-10-15T08:48:10+08:00">2019-10-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2019/10/15/tech/%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E8%A7%A3%E9%87%8AMySQL%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D(%E6%9C%80%E5%B7%A6%E5%89%8D%E7%BC%80)%E5%8E%9F%E5%88%99/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/15/tech/官方文档解释MySQL最左匹配(最左前缀)原则/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="什么是最左匹配原则"><a href="#什么是最左匹配原则" class="headerlink" title="什么是最左匹配原则"></a>什么是最左匹配原则</h2><p>关于最左匹配原则的解释, 网上找了很多, 但是我感觉都不是特别准确, 于是一怒之下<br>直接找了官网的文档, 一下子就清晰了. 下面贴下官网的解释, 然后我自己翻译了一下.  </p>
+<h3 id="来自官方文档的解释"><a href="#来自官方文档的解释" class="headerlink" title="来自官方文档的解释"></a>来自官方文档的解释</h3><p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/multiple-column-indexes.html">原文链接</a>  </p>
+<blockquote>
+<p>MySQL can create composite indexes (that is, indexes on multiple columns).<br> An index may consist of up to 16 columns. For certain data types,<br> you can index a prefix of the column (see<br> <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/column-indexes.html">Section 8.3.5, “Column Indexes”</a>).  </p>
+</blockquote>
+<p>MySQL可以创建联合索引(即, 多列的索引). 一个索引可以包含最多16列. 对于<br>某些数据类型, 你可以索引列的前缀(这里说的是对于Blob和Text类型, 索引列的前几位就可以,<br>如INDEX(blob_col(10)), 详见<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/column-indexes.html">索引文档</a>)  </p>
+<blockquote>
+<p>MySQL can use multiple-column indexes for queries that test all the columns in the index,<br>or queries that test just the first column, the first two columns, the first three columns, and so on.<br>If you specify the columns in the right order in the index definition,<br>a single composite index can speed up several kinds of queries on the same table.  </p>
+</blockquote>
+<p>MySQL的联合索引可以用于包含索引中所有列的查询条件的语句, 或者包含索引中的第一列的查询条件的语句,<br>以及索引中前两列, 索引中的前三列, 以此类推. 如果你在索引定义中以正确的顺序指定列,<br>那么联合索引就可以加速同一张表中的多个不同类型的查询.  </p>
+<blockquote>
+<p>A multiple-column index can be considered a sorted array, the rows of<br>which contain values that are created by concatenating the values of the indexed columns.  </p>
+</blockquote>
+<p>一个联合索引可以看作是一个有序队列, 里面有值的列是根据连接索引列的值创建的.(这句可能不准确)  </p>
+<blockquote>
+<p>Note<br>As an alternative to a composite index, you can introduce a column that<br>is “hashed” based on information from other columns. If this column is<br>short, reasonably unique, and indexed, it might be faster than a “wide”<br>index on many columns. In MySQL, it is very easy to use this extra column:  </p>
+</blockquote>
+<p>提示<br>作为联合索引的一个替代项, 你可以采用一个Hash值列, 这个列的Hash值来自其他的列.<br>如果该列简短, 合理唯一, 且被索引, 那该列就可能比一个很”宽”的由多个列构成的索引<br>更快. MySQL里可以很容易的使用这种列:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> tbl_name</span><br><span class="line">  <span class="keyword">WHERE</span> hash_col<span class="operator">=</span>MD5(CONCAT(val1,val2))</span><br><span class="line">  <span class="keyword">AND</span> col1<span class="operator">=</span>val1 <span class="keyword">AND</span> col2<span class="operator">=</span>val2;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<blockquote>
+<p>Suppose that a table has the following specification:</p>
+</blockquote>
+<p>假设有如下表定义:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> test (</span><br><span class="line">    id         <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    last_name  <span class="type">CHAR</span>(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    first_name <span class="type">CHAR</span>(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (id),</span><br><span class="line">    INDEX name (last_name,first_name)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>The name index is an index over the last_name and first_name columns.<br>The index can be used for lookups in queries that specify values in a known<br>range for combinations of last_name and first_name values. It can also be used<br>for queries that specify just a last_name value because that column is a<br>leftmost prefix of the index (as described later in this section).<br>Therefore, the name index is used for lookups in the following queries:  </p>
+</blockquote>
+<p>索引name是一个包含了last_name和first_name列的索引. 该索引可以用于为last_name<br>和first_name值的组合指定一个已知范围内的查询. 同样也可以用于只指定了last_name列值的查询,<br>因为这个列是索引的一个最左前缀(就如下一节所说). 因此, 索引name可以用于下列的查询语句:  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> test <span class="keyword">WHERE</span> last_name<span class="operator">=</span><span class="string">&#x27;Jones&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> test</span><br><span class="line">  <span class="keyword">WHERE</span> last_name<span class="operator">=</span><span class="string">&#x27;Jones&#x27;</span> <span class="keyword">AND</span> first_name<span class="operator">=</span><span class="string">&#x27;John&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> test</span><br><span class="line">  <span class="keyword">WHERE</span> last_name<span class="operator">=</span><span class="string">&#x27;Jones&#x27;</span></span><br><span class="line">  <span class="keyword">AND</span> (first_name<span class="operator">=</span><span class="string">&#x27;John&#x27;</span> <span class="keyword">OR</span> first_name<span class="operator">=</span><span class="string">&#x27;Jon&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> test</span><br><span class="line">  <span class="keyword">WHERE</span> last_name<span class="operator">=</span><span class="string">&#x27;Jones&#x27;</span></span><br><span class="line">  <span class="keyword">AND</span> first_name <span class="operator">&gt;=</span><span class="string">&#x27;M&#x27;</span> <span class="keyword">AND</span> first_name <span class="operator">&lt;</span> <span class="string">&#x27;N&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>However, the name index is not used for lookups in the following queries:  </p>
+</blockquote>
+<p>然而, 索引name不能用于下列的查询:  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> test <span class="keyword">WHERE</span> first_name<span class="operator">=</span><span class="string">&#x27;John&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> test</span><br><span class="line">  <span class="keyword">WHERE</span> last_name<span class="operator">=</span><span class="string">&#x27;Jones&#x27;</span> <span class="keyword">OR</span> first_name<span class="operator">=</span><span class="string">&#x27;John&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Suppose that you issue the following SELECT statement:  </p>
+</blockquote>
+<p>假设存在以下select语句:  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> tbl_name</span><br><span class="line">  <span class="keyword">WHERE</span> col1<span class="operator">=</span>val1 <span class="keyword">AND</span> col2<span class="operator">=</span>val2;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>If a multiple-column index exists on col1 and col2, the appropriate<br>rows can be fetched directly. If separate single-column indexes exist<br>on col1 and col2, the optimizer attempts to use the Index Merge optimization<br>(see Section 8.2.1.3, “Index Merge Optimization”), or attempts to find<br>the most restrictive index by deciding which index excludes more rows<br>and using that index to fetch the rows.  </p>
+</blockquote>
+<p>如果一个联合索引存在于col1和col2, 相应的列会被直接抓取. 如果是分为单独的索引<br>分别存在于col1和col2, 优化器会尝试利用索引联合优化(详见8.2.1.3, <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/index-merge-optimization.html">“索引联合<br>优化”</a>),<br>或者尝试去寻找包含最多列, 最大限制的索引, 并利用该索引去抓取列.  </p>
+<blockquote>
+<p><strong>If the table has a multiple-column index, any leftmost prefix of the<br>index can be used by the optimizer to look up rows. For example,<br>if you have a three-column index on (col1, col2, col3), you have indexed<br>search capabilities on (col1), (col1, col2), and (col1, col2, col3).</strong>  </p>
+</blockquote>
+<p><strong>如果表拥有一个联合索引, 任何一个索引的最左前缀都会被优化器用于查找列. 比如,<br>如果你创建了一个三列的联合索引包含(col1, col2, col3), 你的索引会生效于(col1),<br>(col1, col2), 以及(col1, col2, col3)</strong>  </p>
+<blockquote>
+<p><strong>MySQL cannot use the index to perform lookups if the columns do not<br>form a leftmost prefix of the index. Suppose that you have the SELECT<br>statements shown here:</strong>  </p>
+</blockquote>
+<p><strong>如果查询的列不是索引的最左前缀, 那MySQL不会将索引用于执行查询. 假设你有<br>下列查询语句:</strong> </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> tbl_name <span class="keyword">WHERE</span> col1<span class="operator">=</span>val1;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> tbl_name <span class="keyword">WHERE</span> col1<span class="operator">=</span>val1 <span class="keyword">AND</span> col2<span class="operator">=</span>val2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> tbl_name <span class="keyword">WHERE</span> col2<span class="operator">=</span>val2;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> tbl_name <span class="keyword">WHERE</span> col2<span class="operator">=</span>val2 <span class="keyword">AND</span> col3<span class="operator">=</span>val3;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>If an index exists on (col1, col2, col3), only the first two queries<br>use the index. The third and fourth queries do involve indexed columns,<br>but do not use an index to perform lookups because (col2) and (col2, col3)<br>are not leftmost prefixes of (col1, col2, col3).  </p>
+</blockquote>
+<p>如果索引存在于(col1, col2, col3), 那只有头两个查询语句用到了索引. 第三个和<br>第四个查询包含索引的列, 但是不会用索引去执行查询. 因为(col2)和(col2, col3)<br>不是(col1, col2, col3)的最左前缀  </p>
+<h2 id="官方文档小结"><a href="#官方文档小结" class="headerlink" title="官方文档小结"></a>官方文档小结</h2><p>其实官方文档已经解释的非常详细了, 总结关于最左匹配的解释, 那其实只有这么<br>几句话:<br>1.按照文档, 更准确的说法应该是最左前缀原则, 即如果你创建一个联合索引, 那<br>这个索引的任何前缀都会用于查询, (col1, col2, col3)这个联合索引的所有前缀<br>就是(col1), (col1, col2), (col1, col2, col3), 包含这些列的查询都会启用索<br>引查询.<br>2.其他所有不在最左前缀里的列都不会启用索引, 即使包含了联合索引里的部分列<br>也不行. 即上述中的(col2), (col3), (col2, col3) 都不会启用索引去查询.<br><strong>注意, (col1, col3)会启用(col1)的索引查询</strong>  </p>
+<h3 id="官方文档的其他细节"><a href="#官方文档的其他细节" class="headerlink" title="官方文档的其他细节"></a>官方文档的其他细节</h3><p>读一下官方文档, 还有很多别的发现, 跟最左前缀无关, 关于联合索引的别的细节,<br>总结如下:  </p>
+<ul>
+<li>联合索引最多只能包含16列  </li>
+<li>blob和text也能创建索引, 但是必须指定前面多少位  </li>
+<li>官方推荐了一种联合索引的替代方案: 可以额外创建一列, 其列值由联合索引包含<br>的所有列值所生成的hash值来构成(个人认为似乎破坏了第一范式的设计规则) </li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/translate/" rel="tag"># translate</a>
+              <a href="/tags/mysql/" rel="tag"># mysql</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/10/14/tech/ELK%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E7%9B%B8%E5%85%B3/" rel="prev" title="ELK日常维护相关">
+                  <i class="fa fa-chevron-left"></i> ELK日常维护相关
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/10/16/tech/linux%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E5%91%BD%E4%BB%A4/" rel="next" title="linux日常维护命令">
+                  linux日常维护命令 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ricky</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"cindyforever","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

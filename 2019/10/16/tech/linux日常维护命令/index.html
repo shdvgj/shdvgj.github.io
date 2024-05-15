@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="find删除测试库创建日期在10天以前的日志1find &#x2F;home -ctime +10 -type f -name &quot;*log.log.20*&quot; | xargs rm -rf  查看磁盘空间和大文件查看磁盘剩余空间1df -h  查看目录下大文件1du -h --max-depth&#x3D;1  查看进程中的java程序123ps aux | grep java# 杀死某个进程kil">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux日常维护命令">
+<meta property="og:url" content="http://shdvgj.github.io/2019/10/16/tech/linux%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Ricky的个人博客">
+<meta property="og:description" content="find删除测试库创建日期在10天以前的日志1find &#x2F;home -ctime +10 -type f -name &quot;*log.log.20*&quot; | xargs rm -rf  查看磁盘空间和大文件查看磁盘剩余空间1df -h  查看目录下大文件1du -h --max-depth&#x3D;1  查看进程中的java程序123ps aux | grep java# 杀死某个进程kil">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-10-16T06:32:27.000Z">
+<meta property="article:modified_time" content="2023-03-16T08:44:04.738Z">
+<meta property="article:author" content="Ricky">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://shdvgj.github.io/2019/10/16/tech/linux%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E5%91%BD%E4%BB%A4/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://shdvgj.github.io/2019/10/16/tech/linux%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E5%91%BD%E4%BB%A4/","path":"2019/10/16/tech/linux日常维护命令/","title":"linux日常维护命令"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>linux日常维护命令 | Ricky的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ricky的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">28</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-text">find</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%B5%8B%E8%AF%95%E5%BA%93%E5%88%9B%E5%BB%BA%E6%97%A5%E6%9C%9F%E5%9C%A810%E5%A4%A9%E4%BB%A5%E5%89%8D%E7%9A%84%E6%97%A5%E5%BF%97"><span class="nav-text">删除测试库创建日期在10天以前的日志</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%92%8C%E5%A4%A7%E6%96%87%E4%BB%B6"><span class="nav-text">查看磁盘空间和大文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%A3%81%E7%9B%98%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4"><span class="nav-text">查看磁盘剩余空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%BD%95%E4%B8%8B%E5%A4%A7%E6%96%87%E4%BB%B6"><span class="nav-text">查看目录下大文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E4%B8%AD%E7%9A%84java%E7%A8%8B%E5%BA%8F"><span class="nav-text">查看进程中的java程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9hostname"><span class="nav-text">修改hostname</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6"><span class="nav-text">传输文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MQ%E6%9F%A5%E8%AF%A2%E5%91%BD%E4%BB%A4"><span class="nav-text">MQ查询命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%9F%90%E6%9D%A1%E6%B6%88%E6%81%AF%E7%9A%84%E7%94%9F%E4%BA%A7%E8%80%85%E5%92%8C%E6%B6%88%E8%B4%B9%E8%80%85%EF%BC%8C%E4%BB%A5%E5%8F%8A%E6%B6%88%E6%81%AF%E7%9A%84track%E8%B7%AF%E5%BE%84"><span class="nav-text">查询某条消息的生产者和消费者，以及消息的track路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Btopiclist"><span class="nav-text">查看topiclist</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#curl%E5%8F%91%E9%80%81post%E8%AF%B7%E6%B1%82"><span class="nav-text">curl发送post请求</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ricky"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ricky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shdvgj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shdvgj" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:linqianghuang@gmail.com" title="E-Mail → mailto:linqianghuang@gmail.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/RickyLoveCindy" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;RickyLoveCindy" rel="noopener me" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoqianglalala" rel="noopener me" target="_blank"><i class="instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2019/10/16/tech/linux%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="linux日常维护命令 | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          linux日常维护命令
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-10-16 14:32:27" itemprop="dateCreated datePublished" datetime="2019-10-16T14:32:27+08:00">2019-10-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-16 16:44:04" itemprop="dateModified" datetime="2023-03-16T16:44:04+08:00">2023-03-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2019/10/16/tech/linux%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4%E5%91%BD%E4%BB%A4/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/16/tech/linux日常维护命令/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><h3 id="删除测试库创建日期在10天以前的日志"><a href="#删除测试库创建日期在10天以前的日志" class="headerlink" title="删除测试库创建日期在10天以前的日志"></a>删除测试库创建日期在10天以前的日志</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /home -ctime +10 -type f -name &quot;*log.log.20*&quot; | xargs rm -rf</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看磁盘空间和大文件"><a href="#查看磁盘空间和大文件" class="headerlink" title="查看磁盘空间和大文件"></a>查看磁盘空间和大文件</h2><h3 id="查看磁盘剩余空间"><a href="#查看磁盘剩余空间" class="headerlink" title="查看磁盘剩余空间"></a>查看磁盘剩余空间</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看目录下大文件"><a href="#查看目录下大文件" class="headerlink" title="查看目录下大文件"></a>查看目录下大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -h --max-depth=1</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看进程中的java程序"><a href="#查看进程中的java程序" class="headerlink" title="查看进程中的java程序"></a>查看进程中的java程序</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep java</span><br><span class="line"><span class="meta">#</span><span class="bash"> 杀死某个进程</span></span><br><span class="line">kill -9 pid</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改hostname"><a href="#修改hostname" class="headerlink" title="修改hostname"></a>修改hostname</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network</span><br></pre></td></tr></table></figure>
+
+<h2 id="传输文件"><a href="#传输文件" class="headerlink" title="传输文件"></a>传输文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp C:/Users/Administrator/Downloads/elasticsearch-7.3.1-linux-x86_64.tar.gz root@192.168.15.161:/home/bos-provider/bos-provider-1.0-SNAPSHOT/bin</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="MQ查询命令"><a href="#MQ查询命令" class="headerlink" title="MQ查询命令"></a>MQ查询命令</h2><h4 id="查询某条消息的生产者和消费者，以及消息的track路径"><a href="#查询某条消息的生产者和消费者，以及消息的track路径" class="headerlink" title="查询某条消息的生产者和消费者，以及消息的track路径"></a>查询某条消息的生产者和消费者，以及消息的track路径</h4><p>1.进入/usr/java/rocketmq/bin<br>2.根据key查找</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh mqadmin queryMsgBykey -n 127.0.0.1:9876 -k b6df2c64-4654-409d-b457-ec1db294a606 -t ORDER</span><br></pre></td></tr></table></figure>
+
+<p>3.根据key可以找到ID<br>   根据ID查找消费者和生产者</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh mqadmin queryMsgById -n 127.0.0.1:9876 -i C0A8074100002A9F00000001A2BC9012</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看topiclist"><a href="#查看topiclist" class="headerlink" title="查看topiclist"></a>查看topiclist</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh mqadmin topicList –n 127.0.0.1:9876</span><br></pre></td></tr></table></figure>
+
+<h3 id="curl发送post请求"><a href="#curl发送post请求" class="headerlink" title="curl发送post请求"></a>curl发送post请求</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date=`date +%Y-%m-%d `;curl -H &quot;Content-Type: application/json&quot; -X POST -d &#x27;&#123;&quot;dateBegin&quot;:&quot;&#x27;$date&#x27; 00:00:00&quot;,&quot;dateEnd&quot;:&quot;&#x27;$date&#x27; 23:59:59&quot;&#125;&#x27; &quot;http://192.168.15.162:8082/hr/syncPunchRecordByUser&quot;</span><br></pre></td></tr></table></figure>
+
+<p>参数 内容<br>-H 请求头<br>-d POST内容<br>-X 请求协议</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/10/15/tech/%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E8%A7%A3%E9%87%8AMySQL%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D(%E6%9C%80%E5%B7%A6%E5%89%8D%E7%BC%80)%E5%8E%9F%E5%88%99/" rel="prev" title="官方文档解释MySQL最左匹配(最左前缀)原则">
+                  <i class="fa fa-chevron-left"></i> 官方文档解释MySQL最左匹配(最左前缀)原则
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/10/17/tech/MySql-Document/" rel="next" title="MySql 8.0参考手册中文版（一）">
+                  MySql 8.0参考手册中文版（一） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ricky</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"cindyforever","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

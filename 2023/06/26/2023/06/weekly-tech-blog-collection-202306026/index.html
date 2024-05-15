@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="【今日关注】vrite: 开源无界面内容管理系统（CMS），适用于编程博客、文档等vrite开源的专用于写作技术内容的CMS系统。根据官网介绍，具有几个特点：  简洁的UI 内置看板界面，可以轻松管理任意规模的产品流程 所见即所得，支持markdown和快捷键，协同写作等 对技术写作量身定做，支持高亮，自动补全等 提供API和webhook，与各种前端界面轻松集成 完备的权限管理系统  基本概念介">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日文章收集-20230626">
+<meta property="og:url" content="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/index.html">
+<meta property="og:site_name" content="Ricky的个人博客">
+<meta property="og:description" content="【今日关注】vrite: 开源无界面内容管理系统（CMS），适用于编程博客、文档等vrite开源的专用于写作技术内容的CMS系统。根据官网介绍，具有几个特点：  简洁的UI 内置看板界面，可以轻松管理任意规模的产品流程 所见即所得，支持markdown和快捷键，协同写作等 对技术写作量身定做，支持高亮，自动补全等 提供API和webhook，与各种前端界面轻松集成 完备的权限管理系统  基本概念介">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite2.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite3.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite4.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite5.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite6.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite7.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite8.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite9.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite10.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite11.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/googlebug1.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/wingpt1.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/wingpt2.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/wingpt3.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/hypecycle1.png">
+<meta property="article:published_time" content="2023-06-26T03:43:15.000Z">
+<meta property="article:modified_time" content="2023-07-03T01:14:16.514Z">
+<meta property="article:author" content="Ricky">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite2.png">
+
+
+<link rel="canonical" href="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/","path":"2023/06/26/2023/06/weekly-tech-blog-collection-202306026/","title":"每日文章收集-20230626"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>每日文章收集-20230626 | Ricky的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ricky的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">28</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%80%90%E4%BB%8A%E6%97%A5%E5%85%B3%E6%B3%A8%E3%80%91"><span class="nav-text">【今日关注】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vrite-%E5%BC%80%E6%BA%90%E6%97%A0%E7%95%8C%E9%9D%A2%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%EF%BC%88CMS%EF%BC%89%EF%BC%8C%E9%80%82%E7%94%A8%E4%BA%8E%E7%BC%96%E7%A8%8B%E5%8D%9A%E5%AE%A2%E3%80%81%E6%96%87%E6%A1%A3%E7%AD%89"><span class="nav-text">vrite: 开源无界面内容管理系统（CMS），适用于编程博客、文档等</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D"><span class="nav-text">基本概念介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4"><span class="nav-text">使用工作空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E5%86%85%E5%AE%B9"><span class="nav-text">编辑内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6"><span class="nav-text">插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-SDK"><span class="nav-text">JavaScript SDK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E6%89%98%E7%AE%A1"><span class="nav-text">自托管</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%80%90%E5%8D%9A%E6%96%87%E4%B8%80%E8%A7%88%E3%80%91"><span class="nav-text">【博文一览】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#try%E5%91%BD%E4%BB%A4%EF%BC%9A%E8%AF%95%E4%B8%80%E4%B8%8B%E4%BD%A0%E7%9A%84%E5%91%BD%E4%BB%A4%E5%B9%B6%E7%9C%8B%E4%B8%8B%E6%95%88%E6%9E%9C"><span class="nav-text">try命令：试一下你的命令并看下效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Google%E5%9C%A8%E8%AE%BE%E7%BD%AE%E9%87%8C%E9%9A%90%E8%97%8F%E4%BA%86%E4%B8%80%E4%B8%AA%E7%A7%98%E5%AF%86%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="nav-text">Google在设置里隐藏了一个秘密的浏览器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WinGPT%EF%BC%9Awindows3-1%E4%B8%8A%E7%9A%84AI%E5%8A%A9%E7%90%86"><span class="nav-text">WinGPT：windows3.1上的AI助理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XML%E6%98%AF%E6%9C%AA%E6%9D%A5"><span class="nav-text">XML是未来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mycelite%EF%BC%9A%E4%B8%80%E4%B8%AASQLite%E6%89%A9%E5%B1%95%EF%BC%8C%E5%AE%83%E5%85%81%E8%AE%B8%E4%BD%A0%E5%B0%86%E4%B8%80%E4%B8%AASQLite%E5%AE%9E%E4%BE%8B%E4%B8%AD%E7%9A%84%E6%9B%B4%E6%94%B9%E5%90%8C%E6%AD%A5%E5%88%B0%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%AE%9E%E4%BE%8B%E3%80%82"><span class="nav-text">mycelite：一个SQLite扩展，它允许你将一个SQLite实例中的更改同步到另一个实例。</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ricky"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ricky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shdvgj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shdvgj" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:linqianghuang@gmail.com" title="E-Mail → mailto:linqianghuang@gmail.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/RickyLoveCindy" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;RickyLoveCindy" rel="noopener me" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoqianglalala" rel="noopener me" target="_blank"><i class="instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="每日文章收集-20230626 | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          每日文章收集-20230626
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-06-26 11:43:15" itemprop="dateCreated datePublished" datetime="2023-06-26T11:43:15+08:00">2023-06-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-03 09:14:16" itemprop="dateModified" datetime="2023-07-03T09:14:16+08:00">2023-07-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%AF%8F%E6%97%A5%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">每日文章收集</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/06/26/2023/06/weekly-tech-blog-collection-202306026/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="【今日关注】"><a href="#【今日关注】" class="headerlink" title="【今日关注】"></a>【今日关注】</h1><h2 id="vrite-开源无界面内容管理系统（CMS），适用于编程博客、文档等"><a href="#vrite-开源无界面内容管理系统（CMS），适用于编程博客、文档等" class="headerlink" title="vrite: 开源无界面内容管理系统（CMS），适用于编程博客、文档等"></a><a target="_blank" rel="noopener" href="https://vrite.io/">vrite: 开源无界面内容管理系统（CMS），适用于编程博客、文档等</a></h2><p>vrite开源的专用于写作技术内容的CMS系统。根据官网介绍，具有几个特点：</p>
+<ul>
+<li>简洁的UI</li>
+<li>内置看板界面，可以轻松管理任意规模的产品流程</li>
+<li>所见即所得，支持markdown和快捷键，协同写作等</li>
+<li>对技术写作量身定做，支持高亮，自动补全等</li>
+<li>提供API和webhook，与各种前端界面轻松集成</li>
+<li>完备的权限管理系统</li>
+</ul>
+<h3 id="基本概念介绍"><a href="#基本概念介绍" class="headerlink" title="基本概念介绍"></a>基本概念介绍</h3><p>Vrite使用三个概念来组织管理内容。</p>
+<ul>
+<li>工作空间（Workspaces）：独立的单元，用于存储许多内容组（Content groups）、配置API访问或编辑体验的设置，以及关于整个团队及其角色的详细信息；可以创建或被加入到任意数量的工作区。</li>
+<li>内容组（Content groups）：如果熟悉看板界面的话，这就相当于看板仪表中的列，用于组织内容碎片（Content pieces）。</li>
+<li>内容碎片（Content pieces）：相当于看板界面中的卡片，用于编辑具体的内容，包含实际的内容和相关元数据。</li>
+</ul>
+<h3 id="使用工作空间"><a href="#使用工作空间" class="headerlink" title="使用工作空间"></a>使用工作空间</h3><p>点击侧边栏切换工作空间。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite2.png"><br>在该界面选择或新增工作空间。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite3.png"></p>
+<span id="more"></span>
+<h3 id="编辑内容"><a href="#编辑内容" class="headerlink" title="编辑内容"></a>编辑内容</h3><p>进入工作空间后，左边一栏是内容碎片的属性。右边是内容组和内容碎片。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite4.png"><br>点击内容碎片进入编辑界面后，将看到vrite所见即所得的特性。</p>
+<ul>
+<li>弹起菜单：选择任意内容，会弹出浮动菜单用于选择样式，包括加粗，斜体，代码，链接等<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite5.png"></li>
+<li>段落菜单：在段落前或者空白区域键入“/”键就会弹出段落菜单。可以选择将段落定义为选定的格式。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite6.png"></li>
+<li>链接菜单：将鼠标移动到一个包含超链接的内容上时，会出现该链接网页的预览内容。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite7.png"></li>
+<li>支持任意markdown语法，同时还可使用快捷键快速定义格式。</li>
+<li>特殊格式的内容会弹出一个编辑预览的内容块，例如图片，代码等。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite8.png"></li>
+<li>顶部栏包含三个功能<ul>
+<li>内容统计：统计段落，单词数，字符数，代码行数。</li>
+<li>导出：支持导出json，html，github适用的markdown格式。</li>
+<li>禅模式：仅保留内容，剔除所有的菜单和干扰，专注于内容编辑。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite9.png"></li>
+</ul>
+</li>
+<li>支持协同编辑，团队成员编辑过的内容会显示高亮并展示成员的名字。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite10.png"></li>
+</ul>
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>vrite的插件中心目前并不支持第三方的插件，只包含了四个和功能相关的插件。</p>
+<ul>
+<li>Hashnode：自动发布到<a target="_blank" rel="noopener" href="https://hashnode.com/">Hashnode</a>。</li>
+<li>Dev.to：自动发布到<a target="_blank" rel="noopener" href="https://dev.to/">Dev.to</a>。</li>
+<li>Medium：自动发布到<a target="_blank" rel="noopener" href="https://medium.com/">Medium</a>。</li>
+<li>GPT-3.5: 编辑内容时可以直接让chatGpt生成。</li>
+</ul>
+<h3 id="JavaScript-SDK"><a href="#JavaScript-SDK" class="headerlink" title="JavaScript SDK"></a>JavaScript SDK</h3><p>通过npm安装。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i @vrite/sdk</span><br></pre></td></tr></table></figure>
+<p>安装完成后可以通过sdk提供的工具方法获取内容组和内容碎片等。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/vrite11.png"></p>
+<h3 id="自托管"><a href="#自托管" class="headerlink" title="自托管"></a>自托管</h3><p>网站说明文档暂不建议现在进行自托管，因为vrite的稳定版本到2023年的第三季度才会发布。如果要进行自托管，网站也进行了一些说明。<br>项目结构基于<a target="_blank" rel="noopener" href="https://turbo.build/repo">Turborepo</a></p>
+<ul>
+<li>最重要的依赖是：<ul>
+<li>Typescript</li>
+<li>Solid.js</li>
+<li>Fastify</li>
+<li>tRpc</li>
+<li>Tiptap &amp; ProseMirror </li>
+<li>Y.js &amp; HocusPocus </li>
+<li>Monaco Editor </li>
+<li>Astro </li>
+</ul>
+</li>
+<li>目录结构<ul>
+<li>/package<ul>
+<li>/backend</li>
+<li>/components</li>
+<li>/editor</li>
+<li>/extensions</li>
+<li>/scripts</li>
+<li>/sdk/javascript</li>
+</ul>
+</li>
+<li>/apps<ul>
+<li>/backend/api</li>
+</ul>
+</li>
+<li>…….</li>
+</ul>
+</li>
+<li>环境变量<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Database</span></span><br><span class="line">MONGO_URL=</span><br><span class="line">REDIS_URL=</span><br><span class="line">DATABASE=</span><br><span class="line"><span class="comment"># Security</span></span><br><span class="line">SECRET=</span><br><span class="line"><span class="comment"># Domains</span></span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+目前vrite的数据库基于MongoDB，Redis，S3。</li>
+</ul>
+<h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="try命令：试一下你的命令并看下效果"><a href="#try命令：试一下你的命令并看下效果" class="headerlink" title="try命令：试一下你的命令并看下效果"></a><a target="_blank" rel="noopener" href="https://github.com/binpash/try">try命令：试一下你的命令并看下效果</a></h3><p>安装这个try命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/binpash/try.git</span><br></pre></td></tr></table></figure>
+<p>使用try并执行别的命令，可以看到命令的预期效果。并会在结尾询问是否要真实执行该命令。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">try pip3 install libdash</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">Defaulting to user installation because normal site-packages is not writeable</span><br><span class="line">Collecting libdash</span><br><span class="line">  Downloading libdash-0.3.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (254 kB)</span><br><span class="line">     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 254.6/254.6 KB 2.1 MB/s eta 0:00:00</span><br><span class="line">Installing collected packages: libdash</span><br><span class="line">Successfully installed libdash-0.3.1</span><br><span class="line">WARNING: Running pip as the <span class="string">&#x27;root&#x27;</span> user can result <span class="keyword">in</span> broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv</span><br><span class="line"></span><br><span class="line">Changes detected <span class="keyword">in</span> the following files:</span><br><span class="line"></span><br><span class="line">/tmp/tmp.zHCkY9jtIT/upperdir/home/gliargovas/.<span class="built_in">local</span>/lib/python3.10/site-packages/libdash/ast.py (modified/added)</span><br><span class="line">/tmp/tmp.zHCkY9jtIT/upperdir/home/gliargovas/.<span class="built_in">local</span>/lib/python3.10/site-packages/libdash/_dash.py (modified/added)</span><br><span class="line">/tmp/tmp.zHCkY9jtIT/upperdir/home/gliargovas/.<span class="built_in">local</span>/lib/python3.10/site-packages/libdash/__init__.py (modified/added)</span><br><span class="line">/tmp/tmp.zHCkY9jtIT/upperdir/home/gliargovas/.<span class="built_in">local</span>/lib/python3.10/site-packages/libdash/__pycache__/printer.cpython-310.pyc (modified/added)</span><br><span class="line">/tmp/tmp.zHCkY9jtIT/upperdir/home/gliargovas/.<span class="built_in">local</span>/lib/python3.10/site-packages/libdash/__pycache__/ast.cpython-310.pyc (modified/added)</span><br><span class="line">&lt;snip&gt;</span><br><span class="line"></span><br><span class="line">Commit these changes? [y/N] y</span><br></pre></td></tr></table></figure>
+
+<p>需要注意，这个命令并不是生成一个沙盒，它只是利用了linux系统的命名空间和overlayfs。因此不应该使用try去执行无法信任的命令。</p>
+<h3 id="Google在设置里隐藏了一个秘密的浏览器"><a href="#Google在设置里隐藏了一个秘密的浏览器" class="headerlink" title="Google在设置里隐藏了一个秘密的浏览器"></a><a target="_blank" rel="noopener" href="https://matan-h.com/google-has-a-secret-browser-hidden-inside-the-settings/">Google在设置里隐藏了一个秘密的浏览器</a></h3><p>作者在安卓系统里发现一个惊人的bug，存在于安卓的各种app中，以及系统设置和谷歌适配的app里，这个浏览器甚至可以绕过家长控制！具体复现步骤如下：<br>（由于手头并没有安卓机，暂时无法复现，而且考虑到这篇文章是国外博主发布的，大概率也是原生安卓系统的bug，国内的安卓机应该无法复现。）</p>
+<ul>
+<li>进入“设置”→“Google”（或任何允许选择账户的应用程序），点击“管理我的账户”。</li>
+<li>然后进入“安全”选项卡。在其中，向下滚动直到找到“密码管理器”并点击。</li>
+<li>点击右上角的“设置”图标。</li>
+<li>向下滚动，直到出现“设置设备加密”。点击它，然后点击“了解有关设备加密的更多信息”。</li>
+<li>现在你进入了浏览器。然后点击汉堡菜单（就是类似于“三”这样的按钮），然后点击“隐私政策”。</li>
+<li>在顶部点击九个点，等待5秒钟（加载需要一些时间），然后点击“搜索”（如果你找不到搜索图标，你也可以向下滚动直到找到“Google”，然后点击它）。</li>
+<li>从你的Google账户注销。</li>
+<li>然后就得到了秘密浏览器，可以随意浏览任何网站。</li>
+</ul>
+<p>这个bug作者已经反馈给谷歌，并得到了回复，估计不久就会被修复。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/googlebug1.png"></p>
+<h3 id="WinGPT：windows3-1上的AI助理"><a href="#WinGPT：windows3-1上的AI助理" class="headerlink" title="WinGPT：windows3.1上的AI助理"></a><a target="_blank" rel="noopener" href="https://www.dialup.net/wingpt/">WinGPT：windows3.1上的AI助理</a></h3><p><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/wingpt1.png"><br>作者在古早的windows3.1上开发了一个程序，实现了类似chatgpt的问答功能。在开发过程中克服了相当多的困难：</p>
+<ul>
+<li>通过一系列努力在windows3.1上实现了tls1.3协议来调用chatgpt的接口，关于这部分的工作，看作者的另一篇<a target="_blank" rel="noopener" href="https://www.dialup.net/wingpt/tls.html">文章</a>。</li>
+<li>windows3.1上原生的UI界面非常难画，需要通过C语言代码一点点调试，而且也缺少一些如今通用的UI组件。</li>
+<li>windows3.1没有状态栏，作者甚至询问了chatgpt如何解决，但是chatgpt并没有给出正确的答案。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/wingpt2.png"></li>
+<li>用windows上的画图工具画了一个logo。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/wingpt3.png"></li>
+<li>为了解决内存限制问题，作者将问答的文本数量进行了控制，同时也不去发送上下文内容，这意味着wingpt无法根据前文进行问答。</li>
+</ul>
+<p>作者放出了wingpt的<a target="_blank" rel="noopener" href="https://www.dialup.net/wingpt/download/wingpt10.zip">下载地址</a>和<a target="_blank" rel="noopener" href="https://www.dialup.net/wingpt/tls.html">源码</a>。（国外的hacker真是厚道）当然也有限制，必须运行在16位或者32位的windows3.1上，而且需要你有一个openai的api key。</p>
+<h3 id="XML是未来"><a href="#XML是未来" class="headerlink" title="XML是未来"></a><a target="_blank" rel="noopener" href="https://www.bitecode.dev/p/hype-cycles">XML是未来</a></h3><p>好吧，这是一个标题党。文章很棒，作者的主要目的是吐槽前端技术的爆炸、微服务过度等许多愚蠢的潮流。</p>
+<p>作者初次接触xml的时候，便被告知xml将取代一切：html变为xhtml，验证用dtd，用xslt进行转换和展示，用soap进行通信。当然最后的结果大家都知道，xml并没有取代一切。</p>
+<p>作者从中学到的教训是：没有银弹，所有工具都有其优缺点。而技术人员自认为自己是理性的，其实受到了炒作，营销和情绪的影响，甚至受其影响比起普通人更甚。</p>
+<p>而xml只是许许多多潮流中的普通一员而已，作者吐槽了好几个技术潮流的起伏：</p>
+<ul>
+<li>MangoDB出现时，突然所有东西都要使用NoSQL。新手们不管三七二十一，就把数据一股脑放在了NoSQL中，然而NoSQL没有没有模式、没有一致性，没有完整性验证，这导致大量项目的失败。</li>
+<li>Node出现使得Javascript风靡一时，你必须前后端使用同一种语言，让一切都是异步的。但是javascript本身并不完善，没有命名空间，混乱的作用域，弱类型等等。导致需要用各种额外框架，CoffeeScript，然后是Babel、Webpack、TypeScript、React + JSX等等。</li>
+<li>单页面应用（Single Page Application）变得流行，但是你需要在flux、redux、alt、reflux、flummox、fluxible、fluxxor、marty.js、fynx、MacFly、DeLorean.js、fluxify、fluxury、exim、fluxtore、Redx、fluxx等之间做出选择。</li>
+<li>客户端突然需要所有数据了，于是GraphQL诞生了。这导致了服务端渲染的兴起，也就是所谓的带有额外步骤的CGI。结果证明，这增加了巨大的复杂性，导致了大量失败的项目和金钱的浪费。</li>
+<li>“一切都应该是微服务”的观点变得主流，每个小网站都应该有一个restful API的Docker容器，一个用于前端，一个用于数据库。然后不断增加层级。接着为了更好通信，显然需要一个消息队列，ZeroMQ、RabbitMQ……服务间要更好的交换格式，又有了Protobuf的gRPC。但是这只是让工作变得更加复杂，结果导致了云服务的诞生，你只需要托管然后购买这些服务就可以了，费用变成原来的10倍，但至少比你自己维护多10000倍的维护成本要好。</li>
+<li>接着大数据开始流行，你要存储用户的所有行为，你的数据变得很庞大，即使不够大，你也得相信数据足够大。然后你需要某种形式的Dynamo数据湖，又或者是一个时间序列数据库等等。</li>
+<li>程序运行变慢了？不是因为糟糕的程序设计，不是因为高并发的请求，而是因为语言！所以我们用GO和RUST来重写程序吧！</li>
+</ul>
+<p>作者最后总结，你需要新技术，云, 容器, nosql, go, rust 以及 js 构建的系统等。<strong>但是不需要每一项新技术</strong>，没有什么东西适用于所有情况（Nothing is ever needed for everything）。</p>
+<p>这篇博文的评论区一位老哥也说的很棒，现在人们评价一个人技术好坏并不是看他解决的问题有多复杂，而是看他设计的系统有多复杂，这显然不是一个好趋势。<br><img src="/2023/06/26/2023/06/weekly-tech-blog-collection-202306026/hypecycle1.png"></p>
+<h3 id="mycelite：一个SQLite扩展，它允许你将一个SQLite实例中的更改同步到另一个实例。"><a href="#mycelite：一个SQLite扩展，它允许你将一个SQLite实例中的更改同步到另一个实例。" class="headerlink" title="mycelite：一个SQLite扩展，它允许你将一个SQLite实例中的更改同步到另一个实例。"></a><a target="_blank" rel="noopener" href="https://mycelial.com/docs/get-started/quick-start/">mycelite：一个SQLite扩展，它允许你将一个SQLite实例中的更改同步到另一个实例。</a></h3><ul>
+<li>下载mycelite拓展<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://github.com/mycelial/mycelite/releases/latest/download/aarch64-apple-darwin.tgz --output aarch64-apple-darwin.tgz</span><br><span class="line">tar -xvzf aarch64-apple-darwin.tgz</span><br></pre></td></tr></table></figure></li>
+<li>配置SQLite写实例<ul>
+<li>启动<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlite3</span><br></pre></td></tr></table></figure></li>
+<li>加载插件<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.load ./libmycelite mycelite_writer</span><br></pre></td></tr></table></figure></li>
+<li>打开一个数据库作为写实例<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.open writer.db</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>配置Mycelite：第一次使用Mycelite，需要进行加载和配置<ul>
+<li>加载配置文件 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.load ./libmycelite mycelite_config</span><br></pre></td></tr></table></figure></li>
+<li>注册账号获取user name和secret <a target="_blank" rel="noopener" href="https://hub.mycelial.com/signup">https://hub.mycelial.com/signup</a></li>
+<li>执行插入语句，填入user name和secret<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> mycelite_config <span class="keyword">values</span> </span><br><span class="line">  (<span class="string">&#x27;domain&#x27;</span>, <span class="string">&#x27;&lt;domain&gt;/&lt;db-name&gt;&#x27;</span>),</span><br><span class="line">  (<span class="string">&#x27;client_id&#x27;</span>, <span class="string">&#x27;&lt;your-hub-username&gt;&#x27;</span>),</span><br><span class="line">  (<span class="string">&#x27;secret&#x27;</span>, <span class="string">&#x27;&lt;secret-from-hub&gt;&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>配置SQLite读实例<ul>
+<li>启动<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlite3</span><br></pre></td></tr></table></figure></li>
+<li>加载插件<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.load ./libmycelite mycelite_reader</span><br></pre></td></tr></table></figure></li>
+<li>打开一个数据库作为读实例<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.open reader.db</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>验证同步<ul>
+<li>在写实例执行插入语句<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> test(number <span class="type">integer</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> test(number) <span class="keyword">values</span> (<span class="number">42</span>);</span><br></pre></td></tr></table></figure></li>
+<li>在读实例就能看到数据<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.tables</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> test;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/06/20/2023/06/weekly-tech-blog-collection-202306021/" rel="prev" title="每日文章收集-20230621">
+                  <i class="fa fa-chevron-left"></i> 每日文章收集-20230621
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/" rel="next" title="每日文章收集-20230628">
+                  每日文章收集-20230628 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ricky</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"cindyforever","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

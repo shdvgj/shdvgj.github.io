@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="【博文一览】background-removal-js：免费开源的背景移除脚本通过该脚本可以在浏览器环境中直接移除图片的背景，无需担心多余的性能开销或者隐私顾虑。 其主要的功能特点有：  浏览器上的背景移除：消除了额外的服务器成本。通过利用本地设备的计算能力，用户可以享受快速高效的背景去除过程。 数据保护：完全运行于浏览器端。无需任何数据传输到别的服务器，因此数据是绝对安全的。 与IMG.LY的C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日文章收集-20230629">
+<meta property="og:url" content="http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/index.html">
+<meta property="og:site_name" content="Ricky的个人博客">
+<meta property="og:description" content="【博文一览】background-removal-js：免费开源的背景移除脚本通过该脚本可以在浏览器环境中直接移除图片的背景，无需担心多余的性能开销或者隐私顾虑。 其主要的功能特点有：  浏览器上的背景移除：消除了额外的服务器成本。通过利用本地设备的计算能力，用户可以享受快速高效的背景去除过程。 数据保护：完全运行于浏览器端。无需任何数据传输到别的服务器，因此数据是绝对安全的。 与IMG.LY的C">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/backgroundremove1.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/flyio1.webp">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh1.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh2.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh3.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh4.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh5.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh6.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/css1.png">
+<meta property="article:published_time" content="2023-06-29T05:06:53.000Z">
+<meta property="article:modified_time" content="2023-07-03T01:13:40.241Z">
+<meta property="article:author" content="Ricky">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/backgroundremove1.png">
+
+
+<link rel="canonical" href="http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/","path":"2023/06/29/2023/06/daily-tech-blog-collection-202306029/","title":"每日文章收集-20230629"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>每日文章收集-20230629 | Ricky的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ricky的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">28</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%80%90%E5%8D%9A%E6%96%87%E4%B8%80%E8%A7%88%E3%80%91"><span class="nav-text">【博文一览】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#background-removal-js%EF%BC%9A%E5%85%8D%E8%B4%B9%E5%BC%80%E6%BA%90%E7%9A%84%E8%83%8C%E6%99%AF%E7%A7%BB%E9%99%A4%E8%84%9A%E6%9C%AC"><span class="nav-text">background-removal-js：免费开源的背景移除脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fly-io%EF%BC%9A%E9%9D%A0%E8%BF%91%E7%94%A8%E6%88%B7%E8%BF%90%E8%A1%8C%E7%9A%84%E5%85%A8%E6%A0%88%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">fly.io：靠近用户运行的全栈应用程序和数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TypeID%EF%BC%9A%E4%B8%80%E4%B8%AA%E5%8F%97%E5%88%B0Stripe-ID%E5%90%AF%E5%8F%91%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%AE%89%E5%85%A8%E3%80%81%E5%8F%AF%E6%8E%92%E5%BA%8F%E7%9A%84%E5%85%A8%E5%B1%80%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86%E7%AC%A6%EF%BC%88ID%EF%BC%89"><span class="nav-text">TypeID：一个受到Stripe ID启发的类型安全、可排序的全局唯一标识符（ID）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A2%B5%E9%AB%98%E8%89%BA%E6%9C%AF%E5%B1%95"><span class="nav-text">梵高艺术展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AA%E6%9D%A5%E7%9A%84CSS%EF%BC%9A%E7%8A%B6%E6%80%81%E5%AE%B9%E5%99%A8%E6%9F%A5%E8%AF%A2"><span class="nav-text">未来的CSS：状态容器查询</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ricky"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ricky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shdvgj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shdvgj" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:linqianghuang@gmail.com" title="E-Mail → mailto:linqianghuang@gmail.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/RickyLoveCindy" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;RickyLoveCindy" rel="noopener me" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoqianglalala" rel="noopener me" target="_blank"><i class="instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/06/29/2023/06/daily-tech-blog-collection-202306029/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="每日文章收集-20230629 | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          每日文章收集-20230629
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-06-29 13:06:53" itemprop="dateCreated datePublished" datetime="2023-06-29T13:06:53+08:00">2023-06-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-03 09:13:40" itemprop="dateModified" datetime="2023-07-03T09:13:40+08:00">2023-07-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%AF%8F%E6%97%A5%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">每日文章收集</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/06/29/2023/06/daily-tech-blog-collection-202306029/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="【博文一览】"><a href="#【博文一览】" class="headerlink" title="【博文一览】"></a>【博文一览】</h1><h3 id="background-removal-js：免费开源的背景移除脚本"><a href="#background-removal-js：免费开源的背景移除脚本" class="headerlink" title="background-removal-js：免费开源的背景移除脚本"></a><a target="_blank" rel="noopener" href="https://github.com/imgly/background-removal-js">background-removal-js：免费开源的背景移除脚本</a></h3><p>通过该脚本可以在浏览器环境中直接移除图片的背景，无需担心多余的性能开销或者隐私顾虑。</p>
+<p>其主要的功能特点有：</p>
+<ul>
+<li>浏览器上的背景移除：消除了额外的服务器成本。通过利用本地设备的计算能力，用户可以享受快速高效的背景去除过程。</li>
+<li>数据保护：完全运行于浏览器端。无需任何数据传输到别的服务器，因此数据是绝对安全的。</li>
+<li>与<a target="_blank" rel="noopener" href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=bg-removal">IMG.LY的CE.SDK</a>（作者的另一个项目） 实现了无缝集成，使开发人员能够轻松地将强大的浏览器内图像抠图和背景去除功能整合到他们的项目中。<br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/backgroundremove1.png"></li>
+</ul>
+<p>本地使用安装步骤如下</p>
+<span id="more"></span>
+<ul>
+<li>NPM安装<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @imgly/background-removal</span><br></pre></td></tr></table></figure></li>
+<li>代码引用：注意首次调用需要下载额外模块，因此会花费比较多时间。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> imglyRemoveBackground <span class="keyword">from</span> <span class="string">&quot;@imgly/background-removal&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> image_src: ImageData | <span class="built_in">ArrayBuffer</span> | <span class="built_in">Uint8Array</span> | Blob | URL | string = ...;</span><br><span class="line"></span><br><span class="line">imglyRemoveBackground(image_src).then(<span class="function">(<span class="params">blob: Blob</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// The result is a blob encoded as PNG. It can be converted to an URL to be used as HTMLImage.src</span></span><br><span class="line">  <span class="keyword">const</span> url = URL.createObjectURL(blob);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>进阶设置<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type Config = &#123;</span><br><span class="line">  <span class="attr">publicPath</span>: string; <span class="comment">// The public path used for model and wasm files</span></span><br><span class="line">  debug: bool; <span class="comment">// enable or disable useful console.log outputs</span></span><br><span class="line">  proxyToWorker: bool; <span class="comment">// Wether or wether not to proxy the calculations to a webworker. (Default true)</span></span><br><span class="line">  model: <span class="string">&#x27;small&#x27;</span> | <span class="string">&#x27;medium&#x27;</span>; <span class="comment">// The model to use. (Default &quot;medium&quot;)</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="fly-io：靠近用户运行的全栈应用程序和数据库"><a href="#fly-io：靠近用户运行的全栈应用程序和数据库" class="headerlink" title="fly.io：靠近用户运行的全栈应用程序和数据库"></a><a target="_blank" rel="noopener" href="https://fly.io/">fly.io：靠近用户运行的全栈应用程序和数据库</a></h3><p>fly.io是一个目前流行的云平台，专为运行全栈应用程序和数据库而设计。它的主要目标是使应用程序更靠近用户，以提供更快的响应时间和更好的用户体验，同时简化了开发人员的工作流程。</p>
+<ul>
+<li>安装flyctl<ul>
+<li>macos：运行<code>brew install flyctl</code>或者<code>curl -L https://fly.io/install.sh | sh</code></li>
+<li>linux：运行<code>curl -L https://fly.io/install.sh | sh</code></li>
+<li>windows：powershell运行<code>pwsh -Command &quot;iwr https://fly.io/install.ps1 -useb | iex&quot;</code></li>
+</ul>
+</li>
+<li>注册，输入以下命令跳转到注册页面，或者直接到注册页面进行注册。<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fly auth signup</span><br></pre></td></tr></table></figure></li>
+<li>使用 <code>fly auth login</code> 登陆fly.io的账户</li>
+<li>部署hellofly项目<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 直接拉取docker项目并完成部署</span></span><br><span class="line">fly launch --image flyio/hellofly:latest</span><br></pre></td></tr></table></figure></li>
+<li>部署过程中要求选择地区，就近选择<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Choose a region <span class="keyword">for</span> deployment: Chicago, Illinois (US) (ord)</span><br></pre></td></tr></table></figure></li>
+<li>询问是否需要Postgres或者Redis，按需选择</li>
+<li>最后询问是否需要部署，部署完成后会在本地生成一个fly.toml的配置文件<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app = <span class="string">&quot;hellofly&quot;</span></span><br><span class="line">primary_region = <span class="string">&quot;ord&quot;</span></span><br><span class="line"></span><br><span class="line">[build]</span><br><span class="line">  image = <span class="string">&quot;flyio/hellofly:latest&quot;</span></span><br><span class="line"></span><br><span class="line">[http_service]</span><br><span class="line">  internal_port = 8080</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure></li>
+<li>使用<code>fly deploy</code>部署完成后，可通过<code>fly status</code>命令检查项目状态</li>
+<li>使用<code>fly open /&lt;your-name&gt;</code>命令可以在fly.io的网站访问到刚刚部署的项目<br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/flyio1.webp"></li>
+</ul>
+<h3 id="TypeID：一个受到Stripe-ID启发的类型安全、可排序的全局唯一标识符（ID）"><a href="#TypeID：一个受到Stripe-ID启发的类型安全、可排序的全局唯一标识符（ID）" class="headerlink" title="TypeID：一个受到Stripe ID启发的类型安全、可排序的全局唯一标识符（ID）"></a><a target="_blank" rel="noopener" href="https://github.com/jetpack-io/typeid">TypeID：一个受到Stripe ID启发的类型安全、可排序的全局唯一标识符（ID）</a></h3><p>TypeIDs是UUIDv7的一种现代、类型安全的扩展。它在设计上受到Stripe API中前缀类似用法的启发。包含三个部分：</p>
+<ul>
+<li>类型前缀（由小写字母组成的最多63位的字符串）</li>
+<li>一个下划线</li>
+<li>一个128位的UUIDv7，以26个字符的base32字符串编码（根据Crockford的小写字母表）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user_2x4y6z8a0b1c2d3e4f5g6h7j8k</span><br><span class="line">└──┘ └────────────────────────┘</span><br><span class="line">type    uuid suffix (base32)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>TypeID有以下特性：</p>
+<ul>
+<li>类型安全：您不会意外地在期望使用帖子ID的地方使用用户ID。在调试过程中，通过类型前缀，您可以立即了解TypeID引用的实体类型。</li>
+<li>与UUID兼容：TypeID是UUID的超集。它们基于即将发布的UUIDv7标准。如果您解码TypeID并移除类型信息，您将得到一个有效的UUIDv7。</li>
+<li>可K排序：TypeID是可K排序的，可以用作数据库中的主键，同时确保良好的局部性。与完全随机的全局ID（例如UUIDv4）相比，后者通常在数据库局部性方面表现不佳。</li>
+<li>精心编码：基于base32的编码是URL安全的、不区分大小写的、避免了歧义字符，可以通过双击选择复制粘贴，并且与传统的十六进制编码（UUID使用的编码方式）相比，它是一种更紧凑的编码（26个字符对比36个字符）</li>
+</ul>
+<p>命令列表</p>
+<ul>
+<li>安装命令<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://get.jetpack.io/typeid | bash</span><br></pre></td></tr></table></figure></li>
+<li>创建新的TypeID<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ typeid new prefix</span><br><span class="line">prefix_01h2xcejqtf2nbrexx3vqjhp41</span><br></pre></td></tr></table></figure></li>
+<li>将TypeID解码位UUID<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ typeid decode prefix_01h2xcejqtf2nbrexx3vqjhp41</span><br><span class="line"><span class="built_in">type</span>: prefix</span><br><span class="line">uuid: 0188bac7-4afa-78aa-bc3b-bd1eef28d881</span><br></pre></td></tr></table></figure></li>
+<li>将UUID编码为TypeID<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ typeid encode prefix 0188bac7-4afa-78aa-bc3b-bd1eef28d881</span><br><span class="line">prefix_01h2xcejqtf2nbrexx3vqjhp41</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="梵高艺术展"><a href="#梵高艺术展" class="headerlink" title="梵高艺术展"></a><a target="_blank" rel="noopener" href="https://www.vangoghmuseum.nl/en">梵高艺术展</a></h3><p><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh1.png"><br>这个网站介绍了关于梵高的生平和艺术作品，并还有出售梵高艺术展的门票。</p>
+<p>正在举办的艺术展<br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh2.png"><br>门票也不算贵，成人20欧元，未成年人免费，相比起国内，算是相当厚道。<br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh3.png"></p>
+<p>网站上展示梵高的1515副画作，并提供下载。<br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh4.png"><br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh5.png"></p>
+<p>以及梵高的故事。<br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/vangogh6.png"></p>
+<h3 id="未来的CSS：状态容器查询"><a href="#未来的CSS：状态容器查询" class="headerlink" title="未来的CSS：状态容器查询"></a><a target="_blank" rel="noopener" href="https://ishadeed.com/article/css-state-queries/">未来的CSS：状态容器查询</a></h3><p>状态容器查询。它是一种可以根据元素的状态和属性来应用样式的能力。通过状态容器查询，开发者可以根据元素在不同状态下的宽度、高度、可见性等属性，动态地调整其样式。这项功能将提供更强大的响应式设计和样式控制的能力，使网页设计更加灵活和适应不同设备和交互情境。</p>
+<p>例如这样子进行设置：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.card-wrapper</span> &#123;</span><br><span class="line">  container-type: inline-size;</span><br><span class="line">  container-name: card;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@container</span> card (<span class="attribute">min-width</span>: <span class="number">400px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.card</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上述语法，当容器宽度到达400px时，就会触发<code>.card &#123;display: flex;align-items: center;&#125;</code>的样式。</p>
+<p>下面的图片可以更好的说明该语法的功能。<br><img src="/2023/06/29/2023/06/daily-tech-blog-collection-202306029/css1.png"></p>
+<p>更多的语法说明详见作者的另一篇文章(<a target="_blank" rel="noopener" href="https://ishadeed.com/article/css-container-style-queries/)%E3%80%82">https://ishadeed.com/article/css-container-style-queries/)。</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/" rel="prev" title="每日文章收集-20230628">
+                  <i class="fa fa-chevron-left"></i> 每日文章收集-20230628
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/06/30/2023/06/daily-tech-blog-collection-202306030/" rel="next" title="每日文章收集-20230630">
+                  每日文章收集-20230630 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ricky</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"cindyforever","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

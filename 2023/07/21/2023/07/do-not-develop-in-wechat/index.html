@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="写在前面：个人开发放弃小程序吧😭，毫无希望的一条路。 小程序被打回我好不容易研究出的低成本开发小程序，充满希望的点下发布，结果被毫不留情的打回，打回原因：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于个人开发者为什么应该放弃小程序">
+<meta property="og:url" content="http://shdvgj.github.io/2023/07/21/2023/07/do-not-develop-in-wechat/index.html">
+<meta property="og:site_name" content="Ricky的个人博客">
+<meta property="og:description" content="写在前面：个人开发放弃小程序吧😭，毫无希望的一条路。 小程序被打回我好不容易研究出的低成本开发小程序，充满希望的点下发布，结果被毫不留情的打回，打回原因：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://shdvgj.github.io/2023/07/21/2023/07/do-not-develop-in-wechat/nowechat1.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/07/21/2023/07/do-not-develop-in-wechat/nowechat2.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/07/21/2023/07/do-not-develop-in-wechat/nowechat3.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/07/21/2023/07/do-not-develop-in-wechat/nowechat4.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/07/21/2023/07/do-not-develop-in-wechat/nowechat5.png">
+<meta property="og:image" content="http://shdvgj.github.io/2023/07/21/2023/07/do-not-develop-in-wechat/nowechat6.png">
+<meta property="article:published_time" content="2023-07-21T01:58:38.000Z">
+<meta property="article:modified_time" content="2023-07-21T05:22:49.434Z">
+<meta property="article:author" content="Ricky">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://shdvgj.github.io/2023/07/21/2023/07/do-not-develop-in-wechat/nowechat1.png">
+
+
+<link rel="canonical" href="http://shdvgj.github.io/2023/07/21/2023/07/do-not-develop-in-wechat/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://shdvgj.github.io/2023/07/21/2023/07/do-not-develop-in-wechat/","path":"2023/07/21/2023/07/do-not-develop-in-wechat/","title":"关于个人开发者为什么应该放弃小程序"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>关于个人开发者为什么应该放弃小程序 | Ricky的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ricky的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">28</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%A2%AB%E6%89%93%E5%9B%9E"><span class="nav-text">小程序被打回</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%AB%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="nav-text">别的方法？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93"><span class="nav-text">小程序开发总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ricky"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ricky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shdvgj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shdvgj" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:linqianghuang@gmail.com" title="E-Mail → mailto:linqianghuang@gmail.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/RickyLoveCindy" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;RickyLoveCindy" rel="noopener me" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoqianglalala" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoqianglalala" rel="noopener me" target="_blank"><i class="instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2023/07/21/2023/07/do-not-develop-in-wechat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="关于个人开发者为什么应该放弃小程序 | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于个人开发者为什么应该放弃小程序
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-07-21 09:58:38 / 修改时间：13:22:49" itemprop="dateCreated datePublished" datetime="2023-07-21T09:58:38+08:00">2023-07-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/07/21/2023/07/do-not-develop-in-wechat/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/07/21/2023/07/do-not-develop-in-wechat/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>写在前面：<strong>个人开发放弃小程序吧</strong>😭，毫无希望的一条路。</p>
+<h2 id="小程序被打回"><a href="#小程序被打回" class="headerlink" title="小程序被打回"></a>小程序被打回</h2><p>我好不容易研究出的<a target="_blank" rel="noopener" href="https://blog.cindyforever.com/2023/07/18/2023/07/how-to-create-a-miniprogram-with-low-fee/">低成本开发小程序</a>，充满希望的点下发布，结果被毫不留情的打回，打回原因：<br><img src="/2023/07/21/2023/07/do-not-develop-in-wechat/nowechat1.png"></p>
+<span id="more"></span>
+
+<p>我也是太久没申请小程序了，忘记了要填类目的，结果我上去一看个人开发可填的类目：<br><img src="/2023/07/21/2023/07/do-not-develop-in-wechat/nowechat2.png"><br><img src="/2023/07/21/2023/07/do-not-develop-in-wechat/nowechat3.png"></p>
+<p>具体罗列如下（截止20230721）：</p>
+<ul>
+<li>物流服务<ul>
+<li>查件</li>
+<li>装卸搬运</li>
+</ul>
+</li>
+<li>交通服务<ul>
+<li>代驾服务</li>
+</ul>
+</li>
+<li>生活服务<ul>
+<li>家政服务</li>
+<li>丽人服务</li>
+<li>婚庆服务</li>
+</ul>
+</li>
+<li>餐饮服务<ul>
+<li>餐饮排队</li>
+</ul>
+</li>
+<li>旅游服务<ul>
+<li>出境wifi</li>
+</ul>
+</li>
+<li>工具<ul>
+<li>记账</li>
+<li>日历</li>
+<li>天气</li>
+<li>备忘录</li>
+<li>办公</li>
+<li>图片处理</li>
+<li>计算器</li>
+</ul>
+</li>
+<li>商业服务<ul>
+<li>企业管理</li>
+<li>环保回收/废品回收</li>
+<li>摄影/扩印</li>
+<li>会展服务</li>
+<li>公关/推广/市场调查</li>
+<li>律师</li>
+</ul>
+</li>
+</ul>
+<p>总之就是非常扯，一眼望去就没有适合独立开发者的项目，比如查件和代驾，这种根本不可能会有人点进你的个人小程序去用这种服务啊。再比如餐饮排队，废品回收，律师之类的，这种基本就是要进行客户拓展才能做起来的，但是说回来，你都能线下找到这么多客户了，还做啥小程序。</p>
+<p>唯一有点适合个人开发的就是办公和图片处理，可能稍微能玩出点花来。也就是说独立开发者你想要在小程序上线项目，<strong>路非常非常的窄。</strong></p>
+<p>另外，<strong>这些类目还有进一步缩减的可能</strong>，我N年前在这个小程序上申请的类目是【工具-效率】，现在看这个类目已经不在了，同时原来申请的也失效了。<br><img src="/2023/07/21/2023/07/do-not-develop-in-wechat/nowechat4.png"></p>
+<h2 id="别的方法？"><a href="#别的方法？" class="headerlink" title="别的方法？"></a>别的方法？</h2><p>有没有别的办法呢？有，比如伪造一个审核页面糊弄审核人员，这个方法短时间内是可以的，但是关于微信的审核机制，网上找到这样的说法：</p>
+<blockquote>
+<p>小程序不同用户数数量， 审核机制是有区别的。<br>用户多了， 他会记录这些用户请求的每一个 api ，到下次审核的时候 就会用机器批量扫描 api ，还会有模拟真实用户来请求 api 看你是否有对抗审核行为。<br>总之就算你审核过了，用户量上来，大概率 over。</p>
+</blockquote>
+<p>另外看了下微信的<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/community/develop/doc/000044d4a7c7c0031219da0bc56401">公告</a>，对于这样欺骗审核的行为，微信可能会养肥了杀，总之风险非常大。</p>
+<h2 id="小程序开发总结"><a href="#小程序开发总结" class="headerlink" title="小程序开发总结"></a>小程序开发总结</h2><p>回过头来，当初自己要做小程序有几个原因：</p>
+<ul>
+<li>微信流量大，对于个人开发来说是个不错的起点。</li>
+<li>公众号门槛太低，基本有手就行，没法和这么多自媒体竞争。</li>
+<li>开发小程序不是谁都能干的，筛掉一大批竞争者，相对不那么卷。</li>
+</ul>
+<p>现在看来有几个非常致命的硬伤：</p>
+<ul>
+<li>可发布类目受限，路很窄，而且可能变得更窄。</li>
+<li>无法调用很多国外网站的API，也无法爬取这些网站的数据。</li>
+<li>无法使用国外注册的域名和服务器，因此你只能购买国内服务器或者使用云托管。<ul>
+<li>购买国内服务器方案<ul>
+<li>服务器费用过高，仅首单能够有所优惠，第二年开始这些费用最低要390一年。</li>
+<li>单看服务器费用可能还能接受，但是购买国内服务器你还必须买国内的ssl证书，而这个在<a target="_blank" rel="noopener" href="https://www.namecheap.com/">namecheap</a>只要6美元的泛域名证书，在国内要2000多。<br><img src="/2023/07/21/2023/07/do-not-develop-in-wechat/nowechat5.png"></li>
+<li>至于为什么非要ssl证书，不买不行吗？不行，微信小程序和公众号所有的API调用都必须是https的请求。</li>
+<li>国外呢？看下账单吧，域名加证书15.75刀，100RMB出头。<br><img src="/2023/07/21/2023/07/do-not-develop-in-wechat/nowechat6.png"></li>
+<li>账单为啥没有国外服务器的费用，因为我发现cloudflare的免费套餐比国内最便宜的服务器还良心。</li>
+</ul>
+</li>
+<li>云托管方案<ul>
+<li>按量计费看似划算，其实非常的蛋疼，每一行代码都要精打细算，尤其数据库算力这项，只是做些限量的数据爬取任务，只有我一个人点击测试的情况下，两天也能产生五六元的费用。</li>
+<li>功能非常有限，没有缓存，没有消息队列。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>总结：</p>
+<ul>
+<li>个人开发如果想要在小程序上开发项目，先看下上面的类目，路很窄，估计没啥合适的。</li>
+<li>真要在小程序上开发，费用很高，我认为不适合个人开发用来起步，<strong>除非你不涉及任何后端逻辑</strong>，这样也就不用购买服务器+域名+证书。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/19/2023/07/daily-tech-blog-collection-20230719/" rel="prev" title="每日文章收集-20230719">
+                  <i class="fa fa-chevron-left"></i> 每日文章收集-20230719
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/24/2023/07/daily-tech-blog-collection-20230724/" rel="next" title="每日文章收集-20230724">
+                  每日文章收集-20230724 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ricky</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"cindyforever","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
