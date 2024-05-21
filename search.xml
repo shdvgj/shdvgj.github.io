@@ -8482,8 +8482,8 @@
 <p>腾讯对于个人开发的小程序也发了个新规，要求必须也进行审核，每次审核交300块钱，注意，300块钱不是审核通过的价格，即使审核没通过，你的300块钱也退不回来，还得继续下次审核，如果你不进行这个审核，那么很遗憾，你的小程序搜不到也分享不了，等于就是个扔在垃圾桶里的废物。</p>
 <p>我这时候想要进行一些自我沉淀，进行反思，隐隐约约也觉得可能不得不重新投入职场，开始刷一些培训机构的高级架构师之类的课程，为免广告嫌疑，这里就不说是什么课程了。总之算是有一些收获。</p>
 <h4 id="这段时间的经验教训"><a href="#这段时间的经验教训" class="headerlink" title="这段时间的经验教训"></a>这段时间的经验教训</h4><p>如我前面所说，如果我能提前了解独立开发的种种困难，那我就不用花费如此多的时间在试错上，我至少也可以先找份工作再慢慢去做这些，可以显得更加的从容。像我这样毫无退路的去当一个独立开发，后果就是每一次试错背后付出的都是多达至少一两个月的时间成本，而各方面的压力也让我没办法投入太多时间在每一个选择上，这个失败就要立刻尝试别的做法，这也是导致我每一次尝试没办法成功的一个原因。</p>
-<p>我想要特别强调的一点是，不要迷信自己的技术能力，做好一个项目是综合能力的体现，市场需求，功能布局，UI设计，平台投放，变现方式，等等，每一个方面都是需要深入研究的。在网上看到别人独立开发的经验看起来都很轻松，很诱人，这我不敢下定论说都是骗人或者卖课的，也许他们确实都是技术大牛呢。但是就算他们都是真的成功了，那也是幸存者偏差，独立开发是个远比上班开发需求难上百倍的方向，我没做过调查，但是我不负责任的做个猜想，大部分的独立开发的结果应该都是失败的。</p>
-<p>总之我的这段经历告诉我，不要把独立开发想的太容易，如果你真的打算做独立开发，做好半年，一年甚至更长时间都毫无成果的准备，同时最好还是不要放弃上班。</p>
+<p>我想要特别强调的一点是，<strong>不要迷信自己的技术能力</strong>，做好一个项目是综合能力的体现，市场需求，功能布局，UI设计，平台投放，变现方式，等等，每一个方面都是需要深入研究的。在网上看到别人独立开发的经验看起来都很轻松，很诱人，这我不敢下定论说都是骗人或者卖课的，也许他们确实都是技术大牛呢。但是就算他们都是真的成功了，那也是幸存者偏差，独立开发是个远比上班开发需求难上百倍的方向，我没做过调查，但是我不负责任的做个猜想，大部分的独立开发的结果应该都是失败的。</p>
+<p>不要把独立开发想的太容易，如果你真的打算做独立开发，做好半年，一年甚至更长时间都毫无成果的准备，同时最好还是不要放弃上班。</p>
 <h3 id="重新找工作"><a href="#重新找工作" class="headerlink" title="重新找工作"></a>重新找工作</h3><p>时间是真的过的非常快，不知不觉中，在我发现我的独立开发之路几乎可以宣告失败时，已经过去了8，9个月。</p>
 <p>我确实开始慌张了。我开发反思，我意识到不能在没有工作的情况下，毫无退路的做独立开发。时间成本和试错成本都太高了。</p>
 <p>于是，在所有的尝试都失败了之后，我开始面对现实了，我要开始重新找工作了，而这，又成为了一段惨痛失败的开始。</p>
@@ -8546,7 +8546,7 @@
 </ul>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在打算写这篇文章的时候，着实没有想到我能洋洋洒洒的写出一万字。其实也还有很多的细节想要分享，没有完全展现出来，也许后续还会继续补充。</p>
 <p>最后总结这段让我永生难玩的一年，还是文章开头那八个字吧：<strong>生于忧患，死于安乐</strong>。与大家共勉。</p>
-<h2 id="2024年计划"><a href="#2024年计划" class="headerlink" title="2024年计划"></a>2024年计划</h2><p>[X] 找到工作<br>[] 软考-软件设计师<br>[] 准备HCIA-AI华为认证考试</p>
+<h2 id="2024年计划"><a href="#2024年计划" class="headerlink" title="2024年计划"></a>2024年计划</h2><p>[X] 找到工作<br>[] 软考-软件设计师<br>[] 准备HCIA-AI华为认证考试<br>[] 雅思考试<br>[] 处理好妈妈来住的矛盾</p>
 ]]></content>
   </entry>
   <entry>
@@ -8569,8 +8569,10 @@
 <h3 id="网络分层和协议"><a href="#网络分层和协议" class="headerlink" title="网络分层和协议"></a>网络分层和协议</h3><p><img src="/2024/04/26/2024/04/quick-remember-exam/net-layer-protocol.webp" alt="net-layer-protocol"></p>
 <h3 id="软件开发可靠性"><a href="#软件开发可靠性" class="headerlink" title="软件开发可靠性"></a>软件开发可靠性</h3><p><img src="/2024/04/26/2024/04/quick-remember-exam/soft_dependency.png" alt="soft_dependency"></p>
 <h3 id="软件质量指标"><a href="#软件质量指标" class="headerlink" title="软件质量指标"></a>软件质量指标</h3><p><img src="/2024/04/26/2024/04/quick-remember-exam/quality_figure.png" alt="quality_figure.png"></p>
+<h3 id="浮点数表示"><a href="#浮点数表示" class="headerlink" title="浮点数表示"></a>浮点数表示</h3><p><img src="/2024/04/26/2024/04/quick-remember-exam/float-point1.png" alt="float-point1.png"></p>
 <h3 id="内聚类型"><a href="#内聚类型" class="headerlink" title="内聚类型"></a>内聚类型</h3><p>通信内聚：模块的所有成分都操作<strong>同一数据集</strong>或生成同一数据集。<br>逻辑聚合：模块内部的各个组成在逻辑上具有<strong>相似的处理动作，但功能用途上彼此无关</strong>。<br>过程聚合：模块内部各个组成部分所要完成的动作虽然没有关系，但必须按<strong>特定的次序</strong>执行。<br>内容耦合：一个模块需要涉及另一个模块的内部信息。<br>数据耦合：两个模块彼此间通过数据参数<strong>交换信息</strong>。<br>标记耦合：一组模块通过参数表传递记录信息，这个记录是某一个数据结构的<strong>子结构</strong>，而不是简单变量。<br>控制耦合：两个模块彼此间传递的信息中有<strong>控制信息</strong>。</p>
 <h3 id="开发模型"><a href="#开发模型" class="headerlink" title="开发模型"></a>开发模型</h3><p>瀑布模型：可强迫开发人员采用规范的方法；<strong>严格规定</strong>了各阶段必须提交的文档；要求每个阶段结束后，都要进行严格的评审。前提是<strong>项目需求要明确。</strong><br>原型模型：该模型认为并非所有的需求在系统开发之前都能准确地说明和定义。因此，它不追求也不可能要求对需求的严格定义，而是采用了动态定义需求的方法。它适用于<strong>需求不明确</strong>的开发环境。<br>螺旋模型：综合了瀑布模型和演化模型的优点，还增加了<strong>风险分析</strong>。<br>V模型：在瀑布模型基础上<strong>增加测试</strong>。<br>喷泉模型：喷泉模型认为软件开发过程的各个阶段是相互重叠和多次反复的，功能模块不是一次完成。</p>
+<h3 id="经典算法"><a href="#经典算法" class="headerlink" title="经典算法"></a>经典算法</h3><p><a href="https://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html?20221108102333">KMP算法-字符串匹配</a><br><a href="https://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html">BM算法-字符串匹配</a><br><a href="https://www.hello-algo.com/chapter_dynamic_programming/knapsack_problem/">0-1背包</a><br><a href="https://www.hello-algo.com/chapter_dynamic_programming/unbounded_knapsack_problem/">完全背包</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -8644,7 +8646,7 @@
 <p>总之就目前的现状来说，AI并没有真正改变人们的生活，不可否认知道AI的人更多了，但是对AI热情似火的人比起一年前却更少了。</p>
 <p>我非常怀疑AI会是一个巨大的泡沫，真正的AI时代还远未到来，目前的使用场景来看，仅仅是一个比较高效的内容创造工具，还没有办法真正投入到生产能力的提升中。</p>
 <p>我在2024年5月5日立下这个flag：如果AI没办法在除了内容创造以外的领域有新的建树，那AI热潮在未来一年就会消退，欢迎回头打脸。</p>
-<h2 id="一些类似想法的文章"><a href="#一些类似想法的文章" class="headerlink" title="一些类似想法的文章"></a>一些类似想法的文章</h2><p><img src="https://trace.yshui.dev/2024-05-copilot.html#did-github-copilot-really-increase-my-productivity" alt="Did GitHub Copilot really increase my productivity?"></p>
+<h2 id="一些类似想法的文章"><a href="#一些类似想法的文章" class="headerlink" title="一些类似想法的文章"></a>一些类似想法的文章</h2><p><a href="https://trace.yshui.dev/2024-05-copilot.html#did-github-copilot-really-increase-my-productivity">Did GitHub Copilot really increase my productivity?</a><br><a href="https://piaoyang0.wordpress.com/2024/05/15/llms-are-not-suitable-for-brainstorming/">LLMS ARE NOT SUITABLE FOR BRAINSTORMING</a></p>
 ]]></content>
   </entry>
   <entry>
