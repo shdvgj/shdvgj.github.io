@@ -120,4 +120,5 @@ ChatGPT的横空出世之后长达一年的时间里，这股AI热潮一直在�
 
 ## 一些类似想法的文章
 
-![Did GitHub Copilot really increase my productivity?](https://trace.yshui.dev/2024-05-copilot.html#did-github-copilot-really-increase-my-productivity)
+[Did GitHub Copilot really increase my productivity?](https://trace.yshui.dev/2024-05-copilot.html#did-github-copilot-really-increase-my-productivity)
+[LLMS ARE NOT SUITABLE FOR BRAINSTORMING](https://piaoyang0.wordpress.com/2024/05/15/llms-are-not-suitable-for-brainstorming/)

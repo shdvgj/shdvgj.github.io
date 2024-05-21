@@ -54,6 +54,10 @@ tags:
 
 ![quality_figure.png](quality_figure.png)
 
+### 浮点数表示
+
+![float-point1.png](float-point1.png)
+
 ### 内聚类型
 
 通信内聚：模块的所有成分都操作**同一数据集**或生成同一数据集。
@@ -71,3 +75,10 @@ tags:
 螺旋模型：综合了瀑布模型和演化模型的优点，还增加了**风险分析**。
 V模型：在瀑布模型基础上**增加测试**。
 喷泉模型：喷泉模型认为软件开发过程的各个阶段是相互重叠和多次反复的，功能模块不是一次完成。
+
+### 经典算法
+
+[KMP算法-字符串匹配](https://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html?20221108102333)
+[BM算法-字符串匹配](https://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html)
+[0-1背包](https://www.hello-algo.com/chapter_dynamic_programming/knapsack_problem/)
+[完全背包](https://www.hello-algo.com/chapter_dynamic_programming/unbounded_knapsack_problem/)
