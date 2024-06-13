@@ -83,7 +83,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">28</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">28</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">84</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -190,6 +190,136 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/07/08/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartIV/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ricky">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Ricky的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/08/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartIV/" class="post-title-link" itemprop="url">读书笔记-Redis设计与实现-发布订阅，事务，脚本和其他</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-08 09:30:36" itemprop="dateCreated datePublished" datetime="2022-07-08T09:30:36+08:00">2022-07-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-08 08:38:37" itemprop="dateModified" datetime="2024-04-08T08:38:37+08:00">2024-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/07/08/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartIV/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/07/08/read/读书笔记-Redis设计与实现-PartIV/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="1-发布与订阅"><a href="#1-发布与订阅" class="headerlink" title="1.发布与订阅"></a>1.发布与订阅</h2><ul>
+<li>服务器状态在pubsub_channels字典保存了所有频道的订阅关系：SUBSCRIBE命令负责将客户端和被订阅的频道关联到这个字典里面，而UNSUBSCRIBE命令则负责解除客户端和被退订频道之间的关联。</li>
+<li>服务器状态在pubsub_patterns链表保存了所有模式的订阅关系：PSUBSCRIBE命令负责将客户端和被订阅的模式记录到这个链表中，而PUNSUBSCRIBE命令则负责移除客户端和被退订模式在链表中的记录。</li>
+<li>PUBLISH命令通过访问pubsub_channels字典来向频道的所有订阅者发送消息，通过访问pubsub_patterns链表来向所有匹配频道的模式的订阅者发送消息。</li>
+<li>PUBSUB命令的三个子命令都是通过读取pubsub_channels字典和pubsub_patterns链表中的信息来实现的。</li>
+</ul>
+<h2 id="2-事务"><a href="#2-事务" class="headerlink" title="2.事务"></a>2.事务</h2><ul>
+<li>事务提供了一种将多个命令打包，然后一次性、有序地执行的机制。</li>
+<li>多个命令会被入队到事务队列中，然后按先进先出（FIFO）的顺序执行。</li>
+<li>事务在执行过程中不会被中断，当事务队列中的所有命令都被执行完毕之后，事务才会结束。</li>
+<li>带有WATCH命令的事务会将客户端和被监视的键在数据库的watched_keys字典中进行关联，当键被修改时，程序会将所有监视被修改键的客户端的REDIS_DIRTY_CAS标志打开。</li>
+<li>只有在客户端的REDIS_DIRTY_CAS标志未被打开时，服务器才会执行客户端提交的事务，否则的话，服务器将拒绝执行客户端提交的事务。</li>
+<li>Redis的事务总是具有ACID中的原子性、一致性和隔离性，当服务器运行在AOF持久化模式下，并且appendfsync选项的值为always时，事务也具有耐久性。</li>
+</ul>
+<h2 id="3-Lua脚本"><a href="#3-Lua脚本" class="headerlink" title="3.Lua脚本"></a>3.Lua脚本</h2><ul>
+<li>Redis服务器在启动时，会对内嵌的Lua环境执行一系列修改操作，从而确保内嵌的Lua环境可以满足Redis在功能性、安全性等方面的需要。</li>
+<li>Redis服务器专门使用一个伪客户端来执行Lua脚本中包含的Redis命令。</li>
+<li>Redis使用脚本字典来保存所有被EVAL命令执行过，或者被SCRIPT LOAD命令载入过的Lua脚本，这些脚本可以用于实现SCRIPT EXISTS命令，以及实现脚本复制功能。</li>
+<li>EVAL命令为客户端输入的脚本在Lua环境中定义一个函数，并通过调用这个函数来执行脚本。</li>
+<li>EVALSHA命令通过直接调用Lua环境中已定义的函数来执行脚本。</li>
+<li>SCRIPT FLUSH命令会清空服务器lua_scripts字典中保存的脚本，并重置Lua环境。</li>
+<li>SCRIPT EXISTS命令接受一个或多个SHA1校验和为参数，并通过检查lua_scripts字典来确认校验和对应的脚本是否存在。</li>
+<li>SCRIPT LOAD命令接受一个Lua脚本为参数，为该脚本在Lua环境中创建函数，并将脚本保存到lua_scripts字典中。</li>
+<li>服务器在执行脚本之前，会为Lua环境设置一个超时处理钩子，当脚本出现超时运行</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/08/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartIV/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1271,123 +1401,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shdvgj.github.io/2022/04/07/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E5%9B%9B%E7%AB%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ricky">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Ricky的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/04/07/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E5%9B%9B%E7%AB%A0/" class="post-title-link" itemprop="url">读书笔记-算法-第四章</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-04-07 09:17:10" itemprop="dateCreated datePublished" datetime="2022-04-07T09:17:10+08:00">2022-04-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-08 08:40:58" itemprop="dateModified" datetime="2024-04-08T08:40:58+08:00">2024-04-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2022/04/07/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E5%9B%9B%E7%AB%A0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/04/07/read/读书笔记-算法-第四章/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="第四章-图"><a href="#第四章-图" class="headerlink" title="第四章 图"></a>第四章 图</h2><ul>
-<li>无向图<ul>
-<li>定义<ul>
-<li>图是由一组顶点和一组能够将两个顶点相连的边组成的</li>
-<li>边（edge）仅仅是两个顶点（vertex）之间的连接</li>
-<li>一般使用0至V-1来表示一张含有V个顶点的图中的各个顶点</li>
-<li>我们用v-w的记法来表示连接v和w的边，w-v是这条边的另一种表示方法<br><img src="/2022/04/07/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E5%9B%9B%E7%AB%A0/graph1.png"></li>
-</ul>
-</li>
-<li>特殊的图<ul>
-<li>自环，即一条连接一个顶点和其自身的边</li>
-<li>连接同一对顶点的两条边称为平行边<br><img src="/2022/04/07/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E5%9B%9B%E7%AB%A0/graph2.png">
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/04/07/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E5%9B%9B%E7%AB%A0/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
