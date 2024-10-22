@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -14,23 +14,23 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="声明 翻译自Timing With Curl  当一个http请求花费了太长时间的时候，我经常用下面的命令来查找原因。 12345678curl -L -w &quot;time_namelookup: %&amp;#123;time_namelookup&amp;#125;time_connect: %&amp;#123;time_connect&amp;#125;time_appconnect: %&amp;#123;time_ap">
+    <meta name="description" content="声明 翻译自Timing With Curl  当一个http请求花费了太长时间的时候，我经常用下面的命令来查找原因。 12345678curl -L -w &quot;time_namelookup: %&#123;time_namelookup&#125;time_connect: %&#123;time_connect&#125;time_appconnect: %&#123;time_ap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用curl计算网络请求的时间">
 <meta property="og:url" content="http://shdvgj.github.io/2021/11/29/tech/%E7%94%A8curl%E8%AE%A1%E6%97%B6/index.html">
 <meta property="og:site_name" content="Ricky的个人博客">
-<meta property="og:description" content="声明 翻译自Timing With Curl  当一个http请求花费了太长时间的时候，我经常用下面的命令来查找原因。 12345678curl -L -w &quot;time_namelookup: %&amp;#123;time_namelookup&amp;#125;time_connect: %&amp;#123;time_connect&amp;#125;time_appconnect: %&amp;#123;time_ap">
+<meta property="og:description" content="声明 翻译自Timing With Curl  当一个http请求花费了太长时间的时候，我经常用下面的命令来查找原因。 12345678curl -L -w &quot;time_namelookup: %&#123;time_namelookup&#125;time_connect: %&#123;time_connect&#125;time_appconnect: %&#123;time_ap">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-29T01:51:08.000Z">
 <meta property="article:modified_time" content="2023-03-16T08:44:04.741Z">
 <meta property="article:author" content="Ricky">
-<meta property="article:tag" content="translate">
 <meta property="article:tag" content="linux">
+<meta property="article:tag" content="translate">
 <meta name="twitter:card" content="summary">
 
 
@@ -100,25 +100,25 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -292,7 +292,7 @@
 <p>下面是用一条指令来实现的同样的命令，我可以在未来用到的时候，在这个页面通过三次点击快速复制。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -L -w &quot;time_namelookup: %&#123;time_namelookup&#125;\ntime_connect: %&#123;time_connect&#125;\ntime_appconnect: %&#123;time_appconnect&#125;\ntime_pretransfer: %&#123;time_pretransfer&#125;\ntime_redirect: %&#123;time_redirect&#125;\ntime_starttransfer: %&#123;time_starttransfer&#125;\ntime_total: %&#123;time_total&#125;\n&quot; https://example.com/</span><br></pre></td></tr></table></figure>
 <p>这个命令输入之后，一般能看到以下输出：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> curl -L -w <span class="string">&quot;namelookup: %&#123;time_namelookup&#125;\nconnect: %&#123;time_connect&#125;\nappconnect: %&#123;time_appconnect&#125;\npretransfer: %&#123;time_pretransfer&#125;\nstarttransfer: %&#123;time_starttransfer&#125;\ntotal: %&#123;time_total&#125;\n&quot;</span> https://example.com/</span></span><br><span class="line">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">...</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">time_namelookup: 0.001403</span><br><span class="line">time_connect: 0.245464</span><br><span class="line">time_appconnect: 0.757656</span><br><span class="line">time_pretransfer: 0.757823</span><br><span class="line">time_redirect: 0.000000</span><br><span class="line">time_starttransfer: 0.982111</span><br><span class="line">time_total: 0.982326</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">curl -L -w <span class="string">&quot;namelookup: %&#123;time_namelookup&#125;\nconnect: %&#123;time_connect&#125;\nappconnect: %&#123;time_appconnect&#125;\npretransfer: %&#123;time_pretransfer&#125;\nstarttransfer: %&#123;time_starttransfer&#125;\ntotal: %&#123;time_total&#125;\n&quot;</span> https://example.com/</span></span><br><span class="line">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">...</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">time_namelookup: 0.001403</span><br><span class="line">time_connect: 0.245464</span><br><span class="line">time_appconnect: 0.757656</span><br><span class="line">time_pretransfer: 0.757823</span><br><span class="line">time_redirect: 0.000000</span><br><span class="line">time_starttransfer: 0.982111</span><br><span class="line">time_total: 0.982326</span><br></pre></td></tr></table></figure>
 <p>为了简洁起见，在上面的输出中，我用省略号忽略了大部分的html部分的输出。<br>下面的列表描述了输出中每一个数字的含义。这些信息直接取自curl 7.20.0版本的手册。以下是详情：</p>
 <ul>
 <li><em>time_namelookup</em>: 以秒为单位，表示从命令开始到域名被解析完成所需时间。</li>
@@ -304,10 +304,10 @@
 <li><em>time_total</em>: 以秒为单位，表示整个操作持续到最后所需的总时间。这个时间会精确到毫秒进行展现。</li>
 </ul>
 <p>一个没啥用的关键细节是，<em>time_appconnect</em>和<em>time_connect</em>之间的时间差可以告诉我们SSL／TLS握手所需时间。对于一个没有SSL／TLS的干净连接，这个时间会显示为0。下面的输出证明了这件事：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> curl -L -w <span class="string">&quot;time_namelookup: %&#123;time_namelookup&#125;\ntime_connect: %&#123;time_connect&#125;\ntime_appconnect: %&#123;time_appconnect&#125;\ntime_pretransfer: %&#123;time_pretransfer&#125;\ntime_redirect: %&#123;time_redirect&#125;\ntime_starttransfer: %&#123;time_starttransfer&#125;\ntime_total: %&#123;time_total&#125;\n&quot;</span> http://example.com/</span></span><br><span class="line">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">...</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">time_namelookup: 0.001507</span><br><span class="line">time_connect: 0.247032</span><br><span class="line">time_appconnect: 0.000000</span><br><span class="line">time_pretransfer: 0.247122</span><br><span class="line">time_redirect: 0.000000</span><br><span class="line">time_starttransfer: 0.512645</span><br><span class="line">time_total: 0.512853</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">curl -L -w <span class="string">&quot;time_namelookup: %&#123;time_namelookup&#125;\ntime_connect: %&#123;time_connect&#125;\ntime_appconnect: %&#123;time_appconnect&#125;\ntime_pretransfer: %&#123;time_pretransfer&#125;\ntime_redirect: %&#123;time_redirect&#125;\ntime_starttransfer: %&#123;time_starttransfer&#125;\ntime_total: %&#123;time_total&#125;\n&quot;</span> http://example.com/</span></span><br><span class="line">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">...</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">time_namelookup: 0.001507</span><br><span class="line">time_connect: 0.247032</span><br><span class="line">time_appconnect: 0.000000</span><br><span class="line">time_pretransfer: 0.247122</span><br><span class="line">time_redirect: 0.000000</span><br><span class="line">time_starttransfer: 0.512645</span><br><span class="line">time_total: 0.512853</span><br></pre></td></tr></table></figure>
 
 <p>同样注意<em>time_redirect</em>在上面的输出中也是0。这是因为访问example.com的时候，没有重定向发生。以下是另一个例子，展示了当重定向发生时输出会是什么样子：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> curl -L -w <span class="string">&quot;time_namelookup: %&#123;time_namelookup&#125;\ntime_connect: %&#123;time_connect&#125;\ntime_appconnect: %&#123;time_appconnect&#125;\ntime_pretransfer: %&#123;time_pretransfer&#125;\ntime_redirect: %&#123;time_redirect&#125;\ntime_starttransfer: %&#123;time_starttransfer&#125;\ntime_total: %&#123;time_total&#125;\n&quot;</span> https://susam.in/blog</span></span><br><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">...</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">time_namelookup: 0.001886</span><br><span class="line">time_connect: 0.152445</span><br><span class="line">time_appconnect: 0.465326</span><br><span class="line">time_pretransfer: 0.465413</span><br><span class="line">time_redirect: 0.614289</span><br><span class="line">time_starttransfer: 0.763997</span><br><span class="line">time_total: 0.765413</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">curl -L -w <span class="string">&quot;time_namelookup: %&#123;time_namelookup&#125;\ntime_connect: %&#123;time_connect&#125;\ntime_appconnect: %&#123;time_appconnect&#125;\ntime_pretransfer: %&#123;time_pretransfer&#125;\ntime_redirect: %&#123;time_redirect&#125;\ntime_starttransfer: %&#123;time_starttransfer&#125;\ntime_total: %&#123;time_total&#125;\n&quot;</span> https://susam.in/blog</span></span><br><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">...</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">time_namelookup: 0.001886</span><br><span class="line">time_connect: 0.152445</span><br><span class="line">time_appconnect: 0.465326</span><br><span class="line">time_pretransfer: 0.465413</span><br><span class="line">time_redirect: 0.614289</span><br><span class="line">time_starttransfer: 0.763997</span><br><span class="line">time_total: 0.765413</span><br></pre></td></tr></table></figure>
 
 <p>当网络服务遭遇一个潜在的延迟事件时，我会在多个客户端优先使用这条命令，因为这个命令返回的结果帮助我快速找到网络延迟的原因。</p>
 
@@ -319,8 +319,8 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/translate/" rel="tag"># translate</a>
               <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/translate/" rel="tag"># translate</a>
           </div>
 
         
@@ -328,12 +328,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/2021/11/26/tech/Express%E6%A1%86%E6%9E%B6%E4%B8%AD%E4%BD%BF%E7%94%A8get%E5%92%8Cpost/" rel="prev" title="Express框架中使用get和post">
-                  <i class="fa fa-chevron-left"></i> Express框架中使用get和post
+                  <i class="fa fa-angle-left"></i> Express框架中使用get和post
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2021/12/06/tech/%E7%94%A8ssh%E5%8A%A0%E5%AF%86%E6%96%87%E4%BB%B6/" rel="next" title="用ssh加密文件">
-                  用ssh加密文件 <i class="fa fa-chevron-right"></i>
+                  用ssh加密文件 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -409,7 +409,7 @@
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
 <script src="/js/third-party/search/local-search.js"></script>

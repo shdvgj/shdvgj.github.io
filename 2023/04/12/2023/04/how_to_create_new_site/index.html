@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -14,10 +14,10 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="购买服务器 需要基于流量和内容进行选择，如果打算服务于国内，选择国内的服务器提供商，比如阿里云或者腾讯云等，如果需要某些国内服务器做不到的功能，比如调用openai的接口，则最好是买个国外的服务器。 需要注意的是，如果打算基于微信小程序或者公众号开发，必须要满足域名通过国家备案，而备案的必要条件是所在的服务器是国内供应商。因此如果是为了开发小程序而买了个国外服务器，最终很可能因为无法备案而无法满足">
 <meta property="og:type" content="article">
@@ -109,25 +109,25 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -297,27 +297,27 @@
     <div class="post-body" itemprop="articleBody"><h3 id="购买服务器"><a href="#购买服务器" class="headerlink" title="购买服务器"></a>购买服务器</h3><ul>
 <li>需要基于流量和内容进行选择，如果打算服务于国内，选择国内的服务器提供商，比如阿里云或者腾讯云等，如果需要某些国内服务器做不到的功能，比如调用openai的接口，则最好是买个国外的服务器。</li>
 <li>需要注意的是，如果打算基于微信小程序或者公众号开发，必须要满足域名通过国家备案，而备案的必要条件是所在的服务器是国内供应商。因此如果是为了开发小程序而买了个国外服务器，最终很可能因为无法备案而无法满足你的需求。</li>
-<li>无论国内外，最便宜的套餐普遍都是1核1G，20GB硬盘空间，1Mbps带宽。国外有Vultr，Linode，DigitalOcean，AWS Lightsail等，价格普遍在5美刀/月左右。国内可选择阿里云，百度云，腾讯云，华为云等，价格20-100元人民币/月不等。</li>
+<li>无论国内外，最便宜的套餐普遍都是1核1G，20GB硬盘空间，1Mbps带宽。国外有Vultr，Linode，DigitalOcean，AWS Lightsail等，价格普遍在5美刀&#x2F;月左右。国内可选择阿里云，百度云，腾讯云，华为云等，价格20-100元人民币&#x2F;月不等。</li>
 <li>如果是开发小程序和公众号，有另一种选择，跳过购买域名和服务器，直接使用腾讯的<a target="_blank" rel="noopener" href="https://cloud.weixin.qq.com/">云托管平台</a></li>
 </ul>
 <h3 id="购买域名和ssl证书"><a href="#购买域名和ssl证书" class="headerlink" title="购买域名和ssl证书"></a>购买域名和ssl证书</h3><p>需要注意，目前情况而言，购买域名的同时也几乎必须得购买ssl证书，因为现在http的网站已经不再被各大浏览器所推荐，流量优先级会被调低，甚至小程序直接不支持指向http网站，如果建站的目的是希望获得收入，那拥有ssl证书的https网站是必须的。</p>
 <ul>
 <li><p>国内</p>
 <ul>
-<li>易名中国：域名价格约为50元人民币/年起，SSL证书价格约为100元人民币/年起。</li>
-<li>西部数码：域名价格约为60元人民币/年起，SSL证书价格约为100元人民币/年起。</li>
-<li>新网：域名价格约为50元人民币/年起，SSL证书价格约为200元人民币/年起。</li>
-<li>阿里云：域名价格约为60元人民币/年起，SSL证书价格约为300元人民币/年起。</li>
-<li>巨牛网：域名价格约为50元人民币/年起，SSL证书价格约为150元人民币/年起。</li>
+<li>易名中国：域名价格约为50元人民币&#x2F;年起，SSL证书价格约为100元人民币&#x2F;年起。</li>
+<li>西部数码：域名价格约为60元人民币&#x2F;年起，SSL证书价格约为100元人民币&#x2F;年起。</li>
+<li>新网：域名价格约为50元人民币&#x2F;年起，SSL证书价格约为200元人民币&#x2F;年起。</li>
+<li>阿里云：域名价格约为60元人民币&#x2F;年起，SSL证书价格约为300元人民币&#x2F;年起。</li>
+<li>巨牛网：域名价格约为50元人民币&#x2F;年起，SSL证书价格约为150元人民币&#x2F;年起。</li>
 </ul>
 </li>
 <li><p>国外</p>
 <ul>
-<li>GoDaddy：域名价格约为$12/年起，SSL证书价格约为$70/年起。</li>
-<li>Namecheap：域名价格约为$8/年起，SSL证书价格约为$9/年起。</li>
-<li>Google Domains：域名价格约为$12/年起，SSL证书价格约为$20/年起。</li>
-<li>Network Solutions：域名价格约为$35/年起，SSL证书价格约为$60/年起。</li>
-<li>Name.com：域名价格约为$10/年起，SSL证书价格约为$9/年起。</li>
+<li>GoDaddy：域名价格约为$12&#x2F;年起，SSL证书价格约为$70&#x2F;年起。</li>
+<li>Namecheap：域名价格约为$8&#x2F;年起，SSL证书价格约为$9&#x2F;年起。</li>
+<li>Google Domains：域名价格约为$12&#x2F;年起，SSL证书价格约为$20&#x2F;年起。</li>
+<li>Network Solutions：域名价格约为$35&#x2F;年起，SSL证书价格约为$60&#x2F;年起。</li>
+<li>Name.com：域名价格约为$10&#x2F;年起，SSL证书价格约为$9&#x2F;年起。</li>
 </ul>
 </li>
 </ul>
@@ -333,9 +333,8 @@
 <li><p>通过openssl命令生成<br>有很多种方式生成csr文件，甚至有在线网站可以直接生成，通常不建议在线生成，因为csr是ssl的必要依赖，关联到网站的安全性，最好是不要冒泄露的风险。</p>
 <ul>
 <li>新建.key文件夹，执行如下命令<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install openssl</span><br><span class="line">cd .key</span><br><span class="line">openssl req -nodes -newkey rsa:2048 -keyout $serverName.key -out $serverName.csr</span><br></pre></td></tr></table></figure>
-注意，$serverName用你的网站名替换，会生成两个文件，以你网站名为命名的key文件和csr文件。<br>生成时会要求你填入国家，公司，email等，根据提示填入。</li>
+注意，$serverName用你的网站名替换，会生成两个文件，以你网站名为命名的key文件和csr文件。<br>生成时会要求你填入国家，公司，email等，根据提示填入。<br><em><strong>国内域名商的流程会不太一样，因为是要备案实名制，所以还会要求身份证信息等，而且是界面操作，无需通过以上命令行</strong></em></li>
 </ul>
-<p><em><strong>国内域名商的流程会不太一样，因为是要备案实名制，所以还会要求身份证信息等，而且是界面操作，无需通过以上命令行</strong></em></p>
 </li>
 <li><p>复制csr文件中的内容，通常如下：<br><img src="/2023/04/12/2023/04/how_to_create_new_site/csr-content.png"><br>复制时要包含全部内容，不要略去BEGIN和END那一行。</p>
 </li>
@@ -354,8 +353,8 @@
 </ul>
 <h3 id="安装SSL证书"><a href="#安装SSL证书" class="headerlink" title="安装SSL证书"></a>安装SSL证书</h3><ul>
 <li>收到ssl证书后，通常发放邮件长下面这样，将邮件中的附件解压，包含三个文件，ca-bundle文件，crt文件和p7b文件<br><img src="/2023/04/12/2023/04/how_to_create_new_site/ssl_email.png"></li>
-<li>将ca-bundle文件和crt文件上传到服务器，并执行如下命令<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat your_domain.crt &gt; your_domain_chain.crt ; <span class="built_in">echo</span> &gt;&gt; your_domain_chain.crt ; cat your_domain.ca-bundle &gt;&gt; your_domain_chain.crt</span></span><br></pre></td></tr></table></figure></li>
-<li>服务器安装ssl证书的方式有很多种，最常用的方式是nginx，以nginx为例，安装完nginx之后，进入/etc/nginx/conf.d/目录，新增一个your_domain.conf配置文件，配置文件内容如下<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       <span class="number">80</span>;</span><br><span class="line">    server_name  www.example.com;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">301</span> https:<span class="comment">//$server_name$request_uri;</span></span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen       <span class="number">443</span> ssl;</span><br><span class="line">    # 域名，多个以空格分开</span><br><span class="line">    server_name  www.example.com;</span><br><span class="line">    </span><br><span class="line">    # ssl证书地址</span><br><span class="line">    ssl_certificate     /home/.ssl/example.crt;  # crt文件的路径</span><br><span class="line">    ssl_certificate_key  /home/.key/example.key; # key文件的路径，即生成csr文件步骤中的key文件</span><br><span class="line">    </span><br><span class="line">    # ssl验证相关配置</span><br><span class="line">    ssl_session_timeout  5m;    #缓存有效期</span><br><span class="line">    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;    #加密算法</span><br><span class="line">    ssl_protocols TLSv1 TLSv1<span class="number">.1</span> TLSv1<span class="number">.2</span>;    #安全链接可选的加密协议</span><br><span class="line">    ssl_prefer_server_ciphers on;   #使用服务器端的首选算法</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_pass http:<span class="comment">//localhost:8080/; # 服务器地址</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>将ca-bundle文件和crt文件上传到服务器，并执行如下命令<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cat</span> your_domain.crt &gt; your_domain_chain.crt ; <span class="built_in">echo</span> &gt;&gt; your_domain_chain.crt ; <span class="built_in">cat</span> your_domain.ca-bundle &gt;&gt; your_domain_chain.crt</span></span><br></pre></td></tr></table></figure></li>
+<li>服务器安装ssl证书的方式有很多种，最常用的方式是nginx，以nginx为例，安装完nginx之后，进入&#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;目录，新增一个your_domain.conf配置文件，配置文件内容如下<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       <span class="number">80</span>;</span><br><span class="line">    server_name  www.<span class="property">example</span>.<span class="property">com</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">301</span> <span class="attr">https</span>:<span class="comment">//$server_name$request_uri;</span></span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen       <span class="number">443</span> ssl;</span><br><span class="line">    # 域名，多个以空格分开</span><br><span class="line">    server_name  www.<span class="property">example</span>.<span class="property">com</span>;</span><br><span class="line">    </span><br><span class="line">    # ssl证书地址</span><br><span class="line">    ssl_certificate     /home/.<span class="property">ssl</span>/example.<span class="property">crt</span>;  # crt文件的路径</span><br><span class="line">    ssl_certificate_key  /home/.<span class="property">key</span>/example.<span class="property">key</span>; # key文件的路径，即生成csr文件步骤中的key文件</span><br><span class="line">    </span><br><span class="line">    # ssl验证相关配置</span><br><span class="line">    ssl_session_timeout  5m;    #缓存有效期</span><br><span class="line">    ssl_ciphers <span class="variable constant_">ECDHE</span>-<span class="variable constant_">RSA</span>-<span class="title class_">AES128</span>-<span class="variable constant_">GCM</span>-<span class="title class_">SHA256</span>:<span class="attr">ECDHE</span>:<span class="attr">ECDH</span>:<span class="attr">AES</span>:<span class="attr">HIGH</span>:!<span class="attr">NULL</span>:!<span class="attr">aNULL</span>:!<span class="title class_">MD5</span>:!<span class="attr">ADH</span>:!<span class="title class_">RC4</span>;    #加密算法</span><br><span class="line">    ssl_protocols <span class="title class_">TLSv1</span> <span class="title class_">TLSv1</span><span class="number">.1</span> <span class="title class_">TLSv1</span><span class="number">.2</span>;    #安全链接可选的加密协议</span><br><span class="line">    ssl_prefer_server_ciphers on;   #使用服务器端的首选算法</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_pass <span class="attr">http</span>:<span class="comment">//localhost:8080/; # 服务器地址</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>启动nginx，即可在公网中访问到你的服务器了</li>
 </ul>
 
@@ -375,12 +374,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/2022/07/08/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-PartIV/" rel="prev" title="读书笔记-Redis设计与实现-发布订阅，事务，脚本和其他">
-                  <i class="fa fa-chevron-left"></i> 读书笔记-Redis设计与实现-发布订阅，事务，脚本和其他
+                  <i class="fa fa-angle-left"></i> 读书笔记-Redis设计与实现-发布订阅，事务，脚本和其他
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2023/04/24/2023/04/how-to-receive-stream-data-in-fetch/" rel="next" title="使用fetchAPI获取post请求中的stream数据">
-                  使用fetchAPI获取post请求中的stream数据 <i class="fa fa-chevron-right"></i>
+                  使用fetchAPI获取post请求中的stream数据 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -456,7 +455,7 @@
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
 <script src="/js/third-party/search/local-search.js"></script>

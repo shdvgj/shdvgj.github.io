@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -14,23 +14,23 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="声明 翻译自Andrew Ayer博客翻译水平不佳，自己学习使用  现在可以使用SSH密钥给任意数据加密你知道吗，你可以使用ssh-keygen命令加密和验证任意数据，比如文件和发行软件？尽管这个特性并不是特别新（在2019年随着OpenSSH 8.0发布），依然很少有人知道。这就有点尴尬，因为这个功能非常有用而且可以作为PGP的有效替换用以加密数据。如果你现在在用PGP加密数据，你可以考虑转到S">
+    <meta name="description" content="声明 翻译自Andrew Ayer博客翻译水平不佳，自己学习使用现在可以使用SSH密钥给任意数据加密你知道吗，你可以使用ssh-keygen命令加密和验证任意数据，比如文件和发行软件？尽管这个特性并不是特别新（在2019年随着OpenSSH 8.0发布），依然很少有人知道。这就有点尴尬，因为这个功能非常有用而且可以作为PGP的有效替换用以加密数据。如果你现在在用PGP加密数据，你可以考虑转到SSH">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用ssh加密文件">
 <meta property="og:url" content="http://shdvgj.github.io/2021/12/06/tech/%E7%94%A8ssh%E5%8A%A0%E5%AF%86%E6%96%87%E4%BB%B6/index.html">
 <meta property="og:site_name" content="Ricky的个人博客">
-<meta property="og:description" content="声明 翻译自Andrew Ayer博客翻译水平不佳，自己学习使用  现在可以使用SSH密钥给任意数据加密你知道吗，你可以使用ssh-keygen命令加密和验证任意数据，比如文件和发行软件？尽管这个特性并不是特别新（在2019年随着OpenSSH 8.0发布），依然很少有人知道。这就有点尴尬，因为这个功能非常有用而且可以作为PGP的有效替换用以加密数据。如果你现在在用PGP加密数据，你可以考虑转到S">
+<meta property="og:description" content="声明 翻译自Andrew Ayer博客翻译水平不佳，自己学习使用现在可以使用SSH密钥给任意数据加密你知道吗，你可以使用ssh-keygen命令加密和验证任意数据，比如文件和发行软件？尽管这个特性并不是特别新（在2019年随着OpenSSH 8.0发布），依然很少有人知道。这就有点尴尬，因为这个功能非常有用而且可以作为PGP的有效替换用以加密数据。如果你现在在用PGP加密数据，你可以考虑转到SSH">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-06T07:40:05.000Z">
 <meta property="article:modified_time" content="2023-03-16T08:44:04.742Z">
 <meta property="article:author" content="Ricky">
-<meta property="article:tag" content="translate">
 <meta property="article:tag" content="linux">
+<meta property="article:tag" content="translate">
 <meta name="twitter:card" content="summary">
 
 
@@ -100,25 +100,25 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -140,7 +140,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E5%9C%A8%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8SSH%E5%AF%86%E9%92%A5%E7%BB%99%E4%BB%BB%E6%84%8F%E6%95%B0%E6%8D%AE%E5%8A%A0%E5%AF%86"><span class="nav-text">现在可以使用SSH密钥给任意数据加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%A0%E7%8E%B0%E5%9C%A8%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8SSH%E7%BB%99Git%E6%8F%90%E4%BA%A4%E5%92%8C%E6%A0%87%E7%AD%BE%E5%8A%A0%E7%AD%BE%E5%90%8D"><span class="nav-text">你现在可以使用SSH给Git提交和标签加签名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%AD%BE%E5%90%8D"><span class="nav-text">文件签名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81"><span class="nav-text">签名验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH%E5%AF%86%E9%92%A5%E7%9A%84%E5%A4%8D%E7%94%A8%E5%AE%89%E5%85%A8%E5%90%97%EF%BC%9F"><span class="nav-text">SSH密钥的复用安全吗？</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BF%BB%E8%AF%91%E8%87%AAAndrew-Ayer%E5%8D%9A%E5%AE%A2%E7%BF%BB%E8%AF%91%E6%B0%B4%E5%B9%B3%E4%B8%8D%E4%BD%B3%EF%BC%8C%E8%87%AA%E5%B7%B1%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8"><span class="nav-text">翻译自Andrew Ayer博客翻译水平不佳，自己学习使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E5%9C%A8%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8SSH%E5%AF%86%E9%92%A5%E7%BB%99%E4%BB%BB%E6%84%8F%E6%95%B0%E6%8D%AE%E5%8A%A0%E5%AF%86"><span class="nav-text">现在可以使用SSH密钥给任意数据加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%A0%E7%8E%B0%E5%9C%A8%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8SSH%E7%BB%99Git%E6%8F%90%E4%BA%A4%E5%92%8C%E6%A0%87%E7%AD%BE%E5%8A%A0%E7%AD%BE%E5%90%8D"><span class="nav-text">你现在可以使用SSH给Git提交和标签加签名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%AD%BE%E5%90%8D"><span class="nav-text">文件签名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81"><span class="nav-text">签名验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH%E5%AF%86%E9%92%A5%E7%9A%84%E5%A4%8D%E7%94%A8%E5%AE%89%E5%85%A8%E5%90%97%EF%BC%9F"><span class="nav-text">SSH密钥的复用安全吗？</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -286,17 +286,15 @@
     
     
     <div class="post-body" itemprop="articleBody"><p><strong>声明</strong></p>
-<p>翻译自<a target="_blank" rel="noopener" href="https://www.agwa.name/blog/post/ssh_signatures">Andrew Ayer博客</a><br>翻译水平不佳，自己学习使用</p>
-<hr>
-<h2 id="现在可以使用SSH密钥给任意数据加密"><a href="#现在可以使用SSH密钥给任意数据加密" class="headerlink" title="现在可以使用SSH密钥给任意数据加密"></a>现在可以使用SSH密钥给任意数据加密</h2><p>你知道吗，你可以使用ssh-keygen命令加密和验证任意数据，比如文件和发行软件？尽管这个特性并不是特别新（在2019年随着OpenSSH 8.0发布），依然很少有人知道。<br>这就有点尴尬，因为这个功能非常有用而且可以作为PGP的有效替换用以加密数据。如果你现在在用PGP加密数据，你可以考虑转到SSH签名上。</p>
+<h2 id="翻译自Andrew-Ayer博客翻译水平不佳，自己学习使用"><a href="#翻译自Andrew-Ayer博客翻译水平不佳，自己学习使用" class="headerlink" title="翻译自Andrew Ayer博客翻译水平不佳，自己学习使用"></a>翻译自<a target="_blank" rel="noopener" href="https://www.agwa.name/blog/post/ssh_signatures">Andrew Ayer博客</a><br>翻译水平不佳，自己学习使用</h2><h2 id="现在可以使用SSH密钥给任意数据加密"><a href="#现在可以使用SSH密钥给任意数据加密" class="headerlink" title="现在可以使用SSH密钥给任意数据加密"></a>现在可以使用SSH密钥给任意数据加密</h2><p>你知道吗，你可以使用ssh-keygen命令加密和验证任意数据，比如文件和发行软件？尽管这个特性并不是特别新（在2019年随着OpenSSH 8.0发布），依然很少有人知道。<br>这就有点尴尬，因为这个功能非常有用而且可以作为PGP的有效替换用以加密数据。如果你现在在用PGP加密数据，你可以考虑转到SSH签名上。</p>
 <p>以下是我喜欢用SSH签名的原因：</p>
 <ul>
-<li><strong>不是PGP。</strong> 多年来，安全专家已经<a target="_blank" rel="noopener" href="https://latacora.micro.blog/2019/07/16/the-pgp-problem.html">对PGP做出了警告</a>，包括其最重要的组件GnuPG/GPG。<br>PGP太复杂了，用户体验非常糟糕，而且充斥着门槛很高的粗糙老旧的密码学原理，</li>
+<li><strong>不是PGP。</strong> 多年来，安全专家已经<a target="_blank" rel="noopener" href="https://latacora.micro.blog/2019/07/16/the-pgp-problem.html">对PGP做出了警告</a>，包括其最重要的组件GnuPG&#x2F;GPG。<br>PGP太复杂了，用户体验非常糟糕，而且充斥着门槛很高的粗糙老旧的密码学原理，</li>
 <li><strong>SSH无处不在，而且用户早就有SSH密钥了。</strong> 如果你用的是 Debian Bullseye 或者 Ubuntu 20.04以及更新的版本，你已经有了足够的SSH安装版本。如果你有用Github，<br>或者任何其他的借助SSH命令来验证的服务，你也早就有了一个SSH密钥用于创建签名了。这就是为什么我对SSH签名更热衷，而不是其他PGP的替代品，比如<a target="_blank" rel="noopener" href="https://github.com/aperezdc/signify">signify</a> 或者<br><a target="_blank" rel="noopener" href="https://jedisct1.github.io/minisign/">minisign</a>。后两者很优秀，但是需要你安装新的软件和创建一个新的密钥，这就会阻碍更大范围的兼容性。</li>
 <li><strong>SSH密钥很容易分配。</strong> SSH公钥只用一行代码就可以轻松到处复制。你不需要网络白名单或者费心去配置密钥的”信任等级”。Github作为一个密钥分配服务早就演示过，比起原先的<br>PGP密钥服务器更加简易也更加安全。你可以通过访问网页<a target="_blank" rel="noopener" href="https://github.com/USERNAME.keys%E5%8E%BB%E6%A3%80%E7%B4%A2%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%9A%84SSH%E5%85%AC%E9%92%A5%E3%80%82%EF%BC%88%E6%AF%94%E5%A6%82%EF%BC%8C%E6%88%91%E7%9A%84%E5%85%AC%E9%92%A5%E5%9C%A8[https://github.com/AGWA.keys](https://github.com/AGWA.keys)%EF%BC%89">https://github.com/USERNAME.keys去检索任意用户的SSH公钥。（比如，我的公钥在[https://github.com/AGWA.keys](https://github.com/AGWA.keys)）</a><br>（这个例子可能不适用于所有的情况，毕竟Github在这里作为一个可信任的第三方，而且你也必须相信他们不会对大众的公钥作假。但是依赖于Github这样的专业安全团队作为可信赖的第三方，应该比几乎不可能用到的PGP的网络白名单更好。<br>在实践中，如果你曾经想搞清楚如何审核透明度日志，那第三方的公钥的透明度需要考虑进去。）</li>
-<li><strong>SSH有可选的轻量级证书。</strong> SSH证书不是必需的（而且大部分人也用不到），但是证书可以让你的操作更轻松，SSH有一套比X.509简单很多的轻量级证书系统。这使得SSH签名和S/MIME一样是一个好的选项。</li>
+<li><strong>SSH有可选的轻量级证书。</strong> SSH证书不是必需的（而且大部分人也用不到），但是证书可以让你的操作更轻松，SSH有一套比X.509简单很多的轻量级证书系统。这使得SSH签名和S&#x2F;MIME一样是一个好的选项。</li>
 </ul>
-<h2 id="你现在可以使用SSH给Git提交和标签加签名"><a href="#你现在可以使用SSH给Git提交和标签加签名" class="headerlink" title="你现在可以使用SSH给Git提交和标签加签名"></a>你现在可以使用SSH给Git提交和标签加签名</h2><p>给Git的提交和标签加签名可以帮助你确认你的的仓库在被别人使用的时候，代码未曾被篡改。但是，你必须用PGP或者S/MIME来做到这件事，而我个人从2018年PGP密钥过期后就没在这件事上被困扰过。<br>马上在Git 2.34这些都会改变了，这个版本支持了SSH签名。（TODO 咋翻译都不对。。）</p>
+<h2 id="你现在可以使用SSH给Git提交和标签加签名"><a href="#你现在可以使用SSH给Git提交和标签加签名" class="headerlink" title="你现在可以使用SSH给Git提交和标签加签名"></a>你现在可以使用SSH给Git提交和标签加签名</h2><p>给Git的提交和标签加签名可以帮助你确认你的的仓库在被别人使用的时候，代码未曾被篡改。但是，你必须用PGP或者S&#x2F;MIME来做到这件事，而我个人从2018年PGP密钥过期后就没在这件事上被困扰过。<br>马上在Git 2.34这些都会改变了，这个版本支持了SSH签名。（TODO 咋翻译都不对。。）</p>
 <h2 id="文件签名"><a href="#文件签名" class="headerlink" title="文件签名"></a>文件签名</h2><p>像这样直接对一个文件进行签名：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -Y sign -f ~/.ssh/id_ed25519 -n file file_to_sign</span><br></pre></td></tr></table></figure>
 <p>需要更改的参数如下：</p>
@@ -344,8 +342,8 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/translate/" rel="tag"># translate</a>
               <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/translate/" rel="tag"># translate</a>
           </div>
 
         
@@ -353,12 +351,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/2021/11/29/tech/%E7%94%A8curl%E8%AE%A1%E6%97%B6/" rel="prev" title="用curl计算网络请求的时间">
-                  <i class="fa fa-chevron-left"></i> 用curl计算网络请求的时间
+                  <i class="fa fa-angle-left"></i> 用curl计算网络请求的时间
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2021/12/09/news/%E6%96%B0%E9%97%BB%E7%BF%BB%E8%AF%91-2/" rel="next" title="新闻翻译-2">
-                  新闻翻译-2 <i class="fa fa-chevron-right"></i>
+                  新闻翻译-2 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -434,7 +432,7 @@
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
 <script src="/js/third-party/search/local-search.js"></script>

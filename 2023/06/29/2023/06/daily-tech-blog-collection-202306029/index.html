@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -14,10 +14,10 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="【博文一览】background-removal-js：免费开源的背景移除脚本通过该脚本可以在浏览器环境中直接移除图片的背景，无需担心多余的性能开销或者隐私顾虑。 其主要的功能特点有：  浏览器上的背景移除：消除了额外的服务器成本。通过利用本地设备的计算能力，用户可以享受快速高效的背景去除过程。 数据保护：完全运行于浏览器端。无需任何数据传输到别的服务器，因此数据是绝对安全的。 与IMG.LY的C">
 <meta property="og:type" content="article">
@@ -108,25 +108,25 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -304,8 +304,8 @@
 <span id="more"></span>
 <ul>
 <li>NPM安装<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @imgly/background-removal</span><br></pre></td></tr></table></figure></li>
-<li>代码引用：注意首次调用需要下载额外模块，因此会花费比较多时间。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> imglyRemoveBackground <span class="keyword">from</span> <span class="string">&quot;@imgly/background-removal&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> image_src: ImageData | <span class="built_in">ArrayBuffer</span> | <span class="built_in">Uint8Array</span> | Blob | URL | string = ...;</span><br><span class="line"></span><br><span class="line">imglyRemoveBackground(image_src).then(<span class="function">(<span class="params">blob: Blob</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// The result is a blob encoded as PNG. It can be converted to an URL to be used as HTMLImage.src</span></span><br><span class="line">  <span class="keyword">const</span> url = URL.createObjectURL(blob);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li>进阶设置<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type Config = &#123;</span><br><span class="line">  <span class="attr">publicPath</span>: string; <span class="comment">// The public path used for model and wasm files</span></span><br><span class="line">  debug: bool; <span class="comment">// enable or disable useful console.log outputs</span></span><br><span class="line">  proxyToWorker: bool; <span class="comment">// Wether or wether not to proxy the calculations to a webworker. (Default true)</span></span><br><span class="line">  model: <span class="string">&#x27;small&#x27;</span> | <span class="string">&#x27;medium&#x27;</span>; <span class="comment">// The model to use. (Default &quot;medium&quot;)</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>代码引用：注意首次调用需要下载额外模块，因此会花费比较多时间。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> imglyRemoveBackground <span class="keyword">from</span> <span class="string">&quot;@imgly/background-removal&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">image_src</span>: <span class="title class_">ImageData</span> | <span class="title class_">ArrayBuffer</span> | <span class="title class_">Uint8Array</span> | <span class="title class_">Blob</span> | <span class="variable constant_">URL</span> | string = ...;</span><br><span class="line"></span><br><span class="line"><span class="title function_">imglyRemoveBackground</span>(image_src).<span class="title function_">then</span>(<span class="function">(<span class="params">blob: Blob</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// The result is a blob encoded as PNG. It can be converted to an URL to be used as HTMLImage.src</span></span><br><span class="line">  <span class="keyword">const</span> url = <span class="variable constant_">URL</span>.<span class="title function_">createObjectURL</span>(blob);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>进阶设置<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type <span class="title class_">Config</span> = &#123;</span><br><span class="line">  <span class="attr">publicPath</span>: string; <span class="comment">// The public path used for model and wasm files</span></span><br><span class="line">  <span class="attr">debug</span>: bool; <span class="comment">// enable or disable useful console.log outputs</span></span><br><span class="line">  <span class="attr">proxyToWorker</span>: bool; <span class="comment">// Wether or wether not to proxy the calculations to a webworker. (Default true)</span></span><br><span class="line">  <span class="attr">model</span>: <span class="string">&#x27;small&#x27;</span> | <span class="string">&#x27;medium&#x27;</span>; <span class="comment">// The model to use. (Default &quot;medium&quot;)</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="fly-io：靠近用户运行的全栈应用程序和数据库"><a href="#fly-io：靠近用户运行的全栈应用程序和数据库" class="headerlink" title="fly.io：靠近用户运行的全栈应用程序和数据库"></a><a target="_blank" rel="noopener" href="https://fly.io/">fly.io：靠近用户运行的全栈应用程序和数据库</a></h3><p>fly.io是一个目前流行的云平台，专为运行全栈应用程序和数据库而设计。它的主要目标是使应用程序更靠近用户，以提供更快的响应时间和更好的用户体验，同时简化了开发人员的工作流程。</p>
 <ul>
@@ -368,12 +368,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/2023/06/28/2023/06/weekly-tech-blog-collection-202306028/" rel="prev" title="每日文章收集-20230628">
-                  <i class="fa fa-chevron-left"></i> 每日文章收集-20230628
+                  <i class="fa fa-angle-left"></i> 每日文章收集-20230628
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2023/06/30/2023/06/daily-tech-blog-collection-202306030/" rel="next" title="每日文章收集-20230630">
-                  每日文章收集-20230630 <i class="fa fa-chevron-right"></i>
+                  每日文章收集-20230630 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -449,7 +449,7 @@
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
 <script src="/js/third-party/search/local-search.js"></script>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -14,10 +14,10 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="第五章 字符串 Java字符串 String是由一系列字符组成的。字符的类型是char，可能有个值。 不可变性。String对象是不可变的，因此可以将它们用于赋值语句、作为函数的参数或是返回值，而不用担心它们的值会发生变化 索引。我们最常完成的操作就是从某个字符串中提取一个特定的字符，即Java的String类的charAt()方法。我们希望charAt()方法能够在常数时间内完成，就好像字符串是">
 <meta property="og:type" content="article">
@@ -118,25 +118,25 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -311,29 +311,32 @@
 <li>长度。在Java中，String类型的length()方法实现了获取字符串的长度的操作。同样，我们也希望length()方法能够在常数时间内完成</li>
 <li>子字符串。Java的substring()方法实现了提取特定的子字符串的操作。同样，我们也希望这个方法能够在常数时间内完成，Java的标准实现也做到了这一点</li>
 <li>字符串的连接。在Java中通过将一个字符串追加到另一个字符串的末尾创建一个新字符串的操作是一个内置的操作（使用“+”运算符），所需的时间与结果字符串的长度成正比<ul>
-<li>我们会避免将字符一个一个地追加到字符串中，因为在Java里这个过程所需的时间将会是<strong>平方级别</strong>的<span id="more"></span></li>
+<li>我们会避免将字符一个一个地追加到字符串中，因为在Java里这个过程所需的时间将会是<strong>平方级别</strong>的</li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+<span id="more"></span>
+<ul>
 <li>字母表<ul>
-<li>字母表的API<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string1.png"></li>
-<li>标准字母表<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string2.png"></li>
+<li>字母表的API<br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string1.png"></li>
+<li>标准字母表<br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string2.png"></li>
 </ul>
 </li>
 <li>字符串排序<ul>
 <li>键索引计数法<ul>
 <li>频率统计<ul>
-<li>使用int数组count[]计算每个键出现的频率。<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string3.png"></li>
+<li>使用int数组count[]计算每个键出现的频率。<br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string3.png"></li>
 </ul>
 </li>
 <li>将频率转换为索引<ul>
-<li>使用count[]来计算每个键在排序结果中的<strong>起始索引位置</strong><br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string4.png"></li>
+<li>使用count[]来计算每个键在排序结果中的<strong>起始索引位置</strong><br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string4.png"></li>
 </ul>
 </li>
 <li>数据分类<ul>
 <li>将count[]数组转换为一张索引表之后，将所有元素（学生）移动到一个辅助数组aux[]中以进行排序</li>
-<li>每个键都有起始位置，就是第二步获得的起始位置<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string5.png"></li>
+<li>每个键都有起始位置，就是第二步获得的起始位置<br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string5.png"></li>
 </ul>
 </li>
 <li>回写<ul>
@@ -342,7 +345,7 @@
 </li>
 <li>对于小整数键排序非常有效<ul>
 <li>键索引计数法排序N个键为0到R-1之间的整数的元素需要访问数组11N+4R+1次 </li>
-<li>突破了NlogN的排序算法时间下限<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string6.png"></li>
+<li>突破了NlogN的排序算法时间下限<br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string6.png"></li>
 </ul>
 </li>
 </ul>
@@ -351,8 +354,8 @@
 <li>适用于定长字符串，如车牌号，银行卡，身份证等</li>
 <li>如果将一个字符串看作一个256进制的数字，那么从右向左检查字符串就等价于先检查数字的最低位</li>
 <li><strong>如果字符串的长度均为W，那就从右向左以每个位置的字符作为键，用键索引计数法将字符串排序W遍</strong><ul>
-<li>从右向左排相当于最左边的位数最后排<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string7.png"></li>
-<li>charAt(d) + 1 的作用是将任意字符转换为ASCII数字<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string8.png"></li>
+<li>从右向左排相当于最左边的位数最后排<br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string7.png"></li>
+<li>charAt(d) + 1 的作用是将任意字符转换为ASCII数字<br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string8.png"></li>
 </ul>
 </li>
 </ul>
@@ -364,22 +367,22 @@
 <li>然后（递归地）再将每个首字母所对应的子数组排序（忽略首字母，因为每一类中的所有字符串的首字母都是相同的）</li>
 <li><strong>增加了一个条件语句以在子数组较小时切换插入排序</strong><ul>
 <li>小型子数组对于高位优先的字符串排序的性能至关重要</li>
-<li>考虑不周的程序在从ASCII切换到Unicode后运行时间从几分钟暴涨到几个小时<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string9.png"><br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string10.png"></li>
+<li>考虑不周的程序在从ASCII切换到Unicode后运行时间从几分钟暴涨到几个小时<br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string9.png"><br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string10.png"></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>对于含有大量等值键的子数组的排序会较慢<ul>
 <li>如果相同的子字符串出现得过多，切换排序方法条件将不会出现，那么递归方法就会检查所有相同键中的每一个字符</li>
-<li>键索引计数法无法有效判断字符串中的字符是否全部相同<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string11.png"></li>
+<li>键索引计数法无法有效判断字符串中的字符是否全部相同<br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string11.png"></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>三向字符串快速排序<ul>
-<li>以根据高位优先的字符串排序算法改进快速排序，根据键的首字母进行三向切分，仅在中间子数组中的下一个字符（因为键的首字母都与切分字符相等）继续递归排序<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string12.png"></li>
-<li>三向字符串快速排序能够很好处理等值键、有较长公共前缀的键、取值范围较小的键和小数组——所有高位优先的字符串排序算法不擅长的各种情况<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string13.png"></li>
-<li>在所有的递归算法中，我们都可以通过对小型子数组进行特殊处理（一般来说就是切换为插入排序）来提高效率<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string14.png"></li>
+<li>以根据高位优先的字符串排序算法改进快速排序，根据键的首字母进行三向切分，仅在中间子数组中的下一个字符（因为键的首字母都与切分字符相等）继续递归排序<br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string12.png"></li>
+<li>三向字符串快速排序能够很好处理等值键、有较长公共前缀的键、取值范围较小的键和小数组——所有高位优先的字符串排序算法不擅长的各种情况<br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string13.png"></li>
+<li>在所有的递归算法中，我们都可以通过对小型子数组进行特殊处理（一般来说就是切换为插入排序）来提高效率<br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string14.png"></li>
 <li>性能<ul>
 <li>标准快速排序的性能与字符串的长度乘以2N*lnN成正比</li>
 <li>三向字符串排序的运行时间则与N乘以字符串的长度（需要发现所有的相同开头字母）再加上2N*lnN次比较（对剩下的较短部分进行排序）的和成正比</li>
@@ -387,7 +390,7 @@
 </li>
 </ul>
 </li>
-<li>字符串排序算法的选择<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string15.png"></li>
+<li>字符串排序算法的选择<br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string15.png"></li>
 </ul>
 </li>
 <li>单词查找树<ul>
@@ -396,14 +399,14 @@
 <li>和各种查找树一样，单词查找树也是由链接的结点所组成的数据结构，这些链接可能为<strong>空</strong>，也可能指向其他结点</li>
 <li>每个结点都只可能有一个指向它的结点，称为它的<strong>父结点</strong>（只有一个结点除外，即根结点，没有任何结点指向根结点）</li>
 <li>每个结点都含有条链接，其中为字母表的大小</li>
-<li><strong>值为空的结点在符号表中没有对应的键，它们的存在是为了简化单词查找树中的查找操作</strong><br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string16.png"></li>
+<li><strong>值为空的结点在符号表中没有对应的键，它们的存在是为了简化单词查找树中的查找操作</strong><br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string16.png"></li>
 </ul>
 </li>
 <li>查找操作<ul>
 <li>单词查找树中的每个结点都包含了下一个可能出现的所有字符的链接，直到到达键的最后一个字母所指向的结点或是遇到了一条空链接。这时可能：</li>
 <li>键的尾字符所对应的结点中的值非空（如图shells和she的示例）。这是一次命中的查找——键所对应的值就是键的尾字符所对应的结点中保存的值</li>
 <li>键的尾字符所对应的结点中的值为空（如图shell的示例）。这是一次未命中的查找——符号表中不存在被查找的键</li>
-<li>查找结束于一条空链接（如图shore的示例）。这也是一次未命中的查找<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string17.png"></li>
+<li>查找结束于一条空链接（如图shore的示例）。这也是一次未命中的查找<br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string17.png"></li>
 </ul>
 </li>
 <li>插入操作<ul>
@@ -414,7 +417,7 @@
 </ul>
 </li>
 <li>在遇到空链接之前就到达了键的尾字符<ul>
-<li>在这种情况下，和关联数组一样，将该结点的值设为键所对应的值（无论该值是否为空）<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string18.png"></li>
+<li>在这种情况下，和关联数组一样，将该结点的值设为键所对应的值（无论该值是否为空）<br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string18.png"></li>
 </ul>
 </li>
 </ul>
@@ -423,7 +426,7 @@
 </li>
 <li>结点的表示<ul>
 <li>每个结点都含有R个链接，对应着每个可能出现的字符</li>
-<li>字符和键均隐式地保存在数据结构中<br><img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string19.png"> </li>
+<li>字符和键均隐式地保存在数据结构中<br>  <img src="/2022/04/11/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E4%BA%94%E7%AB%A0/string19.png"></li>
 </ul>
 </li>
 </ul>
@@ -443,12 +446,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/2022/04/07/read/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95-%E7%AC%AC%E5%9B%9B%E7%AB%A0/" rel="prev" title="读书笔记-算法-第四章">
-                  <i class="fa fa-chevron-left"></i> 读书笔记-算法-第四章
+                  <i class="fa fa-angle-left"></i> 读书笔记-算法-第四章
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2022/05/09/blog/leetcode%E7%AE%97%E6%B3%95%E9%A2%98%E6%80%BB%E7%BB%932022-3-2022-5/" rel="next" title="leetcode算法题总结2022.3-2022.5">
-                  leetcode算法题总结2022.3-2022.5 <i class="fa fa-chevron-right"></i>
+                  leetcode算法题总结2022.3-2022.5 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -524,7 +527,7 @@
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
 <script src="/js/third-party/search/local-search.js"></script>

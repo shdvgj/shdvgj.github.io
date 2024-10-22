@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -14,10 +14,10 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="前言：azkaban的用处和好处不再赘述，这里只讲怎么将azkaban在项目中使用起来。另外非常推荐直接看官方的英文文档进行学习，那将是最新最可靠的教程。 下载和安装azkaban下载azkaban方法1：直接到azkaban的github网页下载tar.gz包。截止2020.4.29日最新版本的包地址为(https:&#x2F;&#x2F;github.com&#x2F;azkaban&#x2F;azkaban&#x2F;archive&#x2F;3.8">
 <meta property="og:type" content="article">
@@ -106,25 +106,25 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -306,44 +306,44 @@
 <h3 id="新增azkaban相关表"><a href="#新增azkaban相关表" class="headerlink" title="新增azkaban相关表"></a>新增azkaban相关表</h3><p>复制如下文件内的sql语句，在事先建好的数据库内执行  </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi azkaban-3.81.10/azkaban-db/build/sql/create-all-sql-0.1.0-SNAPSHOT.sql</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>可能有的坑：<br>早期版本的mysql可能不支持长度过长的字段设为索引和主键，遇到这种报错时，需要将对应的字段改短再执行。过长的字段比如 execution_logs.name，sql给设置的长度是varchar(640)，在我的mysql数据库中执行会报错，我改成了varchar(200)，这个字段的含义是任务名，一般来说你正常命名的话完全用不到640个字段的长度，所以可以放心修改。  </p>
+<li>可能有的坑：<br>早期版本的mysql可能不支持长度过长的字段设为索引和主键，遇到这种报错时，需要将对应的字段改短再执行。过长的字段比如 execution_logs.name，sql给设置的长度是varchar(640)，在我的mysql数据库中执行会报错，我改成了varchar(200)，这个字段的含义是任务名，一般来说你正常命名的话完全用不到640个字段的长度，所以可以放心修改。</li>
+</ul>
 <h3 id="编译azkaban"><a href="#编译azkaban" class="headerlink" title="编译azkaban"></a>编译azkaban</h3><p>在azkaban目录下执行  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./gradlew build installDist</span><br></pre></td></tr></table></figure>
 <p>可能有的坑:</p>
-</li>
+<ul>
 <li><p>部分依赖包可能无法下载，修改build.gradle，将repositories指向国内阿里云地址，如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">  repositories &#123;</span><br><span class="line">        maven &#123;</span><br><span class="line">            url &#x27;http://maven.aliyun.com/nexus/content/groups/public/&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">        maven &#123;</span><br><span class="line">            url &#x27;http://maven.aliyun.com/repository/google&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">        maven &#123;</span><br><span class="line">            url &#x27;http://maven.aliyun.com/repository/jcenter&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  dependencies &#123;</span><br><span class="line">    classpath &#x27;com.cinnober.gradle:semver-git:2.2.3&#x27;</span><br><span class="line">    classpath &#x27;net.ltgt.gradle:gradle-errorprone-plugin:0.0.14&#x27;</span><br><span class="line">    classpath  &#x27;com.github.jengelman.gradle.plugins:shadow:4.0.0&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>如果出现编译报错的情况，可以尝试将编译期间的test过程注释掉，或者进入azkaban-executor-server和azkban-web-server目录下单独编译这两个包。  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">  repositories &#123;</span><br><span class="line">        maven &#123;</span><br><span class="line">            url &#x27;http://maven.aliyun.com/nexus/content/groups/public/&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">        maven &#123;</span><br><span class="line">            url &#x27;http://maven.aliyun.com/repository/google&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">        maven &#123;</span><br><span class="line">            url &#x27;http://maven.aliyun.com/repository/jcenter&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  dependencies &#123;</span><br><span class="line">    classpath &#x27;com.cinnober.gradle:semver-git:2.2.3&#x27;</span><br><span class="line">    classpath &#x27;net.ltgt.gradle:gradle-errorprone-plugin:0.0.14&#x27;</span><br><span class="line">    classpath  &#x27;com.github.jengelman.gradle.plugins:shadow:4.0.0&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果出现编译报错的情况，可以尝试将编译期间的test过程注释掉，或者进入azkaban-executor-server和azkban-web-server目录下单独编译这两个包。</p>
 </li>
 </ul>
 <h3 id="启动azkban-executor-server"><a href="#启动azkban-executor-server" class="headerlink" title="启动azkban-executor-server"></a>启动azkban-executor-server</h3><ul>
-<li><p>修改配置文件 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ../azkaban-3.81.0/azkaban-exec-server/build/install/azkaban-exec-server/conf/azkaban.properties</span><br></pre></td></tr></table></figure>
-<p>需要修改的内容如下  </p>
-<blockquote>
-<p>default.timezone.id=Asia/Shanghai # 修改为中国时区<br>azkaban.webserver.url=localhost:8199 # 指向本地的azkaban-web-server地址<br>#数据库配置，指向azkban建表的数据库，根据实际的数据库配置来<br>database.type=mysql<br>mysql.port=3306<br>mysql.host=110.110.110.110<br>mysql.database=azkaban<br>mysql.user=azkaban<br>mysql.password=azkaban  </p>
+<li>修改配置文件 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ../azkaban-3.81.0/azkaban-exec-server/build/install/azkaban-exec-server/conf/azkaban.properties</span><br></pre></td></tr></table></figure>
+需要修改的内容如下  <blockquote>
+<p>default.timezone.id&#x3D;Asia&#x2F;Shanghai # 修改为中国时区<br>azkaban.webserver.url&#x3D;localhost:8199 # 指向本地的azkaban-web-server地址</p>
 </blockquote>
 </li>
-<li><p>启动azkaban-executor-server  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ../azkaban-3.81.0/azkaban-exec-server/build/install/azkaban-exec-server;</span><br><span class="line">bin/start-exec.sh; # 注意一定要按照这个语句执行,不要在bin目录下执行./start-exe.sh，否则某些资源文件会加载不到，导致报错</span><br></pre></td></tr></table></figure></li>
-<li><p> 激活executor</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 指向executor地址和端口</span><br><span class="line">curl localhost:port/executor?action=activate</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>#数据库配置，指向azkban建表的数据库，根据实际的数据库配置来<br>database.type&#x3D;mysql<br>mysql.port&#x3D;3306<br>mysql.host&#x3D;110.110.110.110<br>mysql.database&#x3D;azkaban<br>mysql.user&#x3D;azkaban<br>mysql.password&#x3D;azkaban  </p>
+<ul>
+<li>启动azkaban-executor-server  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ../azkaban-3.81.0/azkaban-exec-server/build/install/azkaban-exec-server;</span><br><span class="line">bin/start-exec.sh; # 注意一定要按照这个语句执行,不要在bin目录下执行./start-exe.sh，否则某些资源文件会加载不到，导致报错</span><br></pre></td></tr></table></figure></li>
+<li>激活executor<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 指向executor地址和端口</span><br><span class="line">curl localhost:port/executor?action=activate</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="启动azkaban-web-server"><a href="#启动azkaban-web-server" class="headerlink" title="启动azkaban-web-server"></a>启动azkaban-web-server</h3><ul>
-<li><p>修改配置文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ../azkaban-3.81.0/azkaban-web-server/build/install/azkaban-exec-server/conf/azkaban.properties</span><br></pre></td></tr></table></figure>
-<p>需要修改的内容如下  </p>
-<blockquote>
-<p>default.timezone.id=Asia/Shanghai # 修改为中国时区<br>#邮件配置<br>mail.sender=<a href="mailto:&#56;&#56;&#x38;&#56;&#x38;&#56;&#x40;&#x71;&#113;&#46;&#x63;&#111;&#109;">&#56;&#56;&#x38;&#56;&#x38;&#56;&#x40;&#x71;&#113;&#46;&#x63;&#111;&#109;</a> # 发送邮件的邮箱<br>mail.host=smtp.qq.com  # 邮件服务器<br>mail.user=<a href="mailto:&#x38;&#56;&#x38;&#x38;&#x38;&#56;&#64;&#113;&#113;&#46;&#99;&#x6f;&#109;">&#x38;&#56;&#x38;&#x38;&#x38;&#56;&#64;&#113;&#113;&#46;&#99;&#x6f;&#109;</a> # 邮件用户<br>mail.password=abc123456 #密码需要取qq邮箱中获取到的授权码<br>job.failure.email=<a href="mailto:&#56;&#x38;&#x38;&#56;&#56;&#x38;&#56;&#x40;&#113;&#x71;&#46;&#99;&#111;&#x6d;">&#56;&#x38;&#x38;&#56;&#56;&#x38;&#56;&#x40;&#113;&#x71;&#46;&#99;&#111;&#x6d;</a> # 定时任务执行失败发送邮件的邮箱<br>#数据库配置，指向azkban建表的数据库，根据实际的数据库配置来<br>database.type=mysql<br>mysql.port=3306<br>mysql.host=110.110.110.110<br>mysql.database=azkaban<br>mysql.user=azkaban<br>mysql.password=azkaban</p>
+<li>修改配置文件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ../azkaban-3.81.0/azkaban-web-server/build/install/azkaban-exec-server/conf/azkaban.properties</span><br></pre></td></tr></table></figure>
+需要修改的内容如下  <blockquote>
+<p>default.timezone.id&#x3D;Asia&#x2F;Shanghai # 修改为中国时区</p>
 </blockquote>
 </li>
-<li><p>启动azkaban-web-server  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ../azkaban-3.81.0/azkaban-web-server/build/install/azkaban-web-server;</span><br><span class="line">bin/start-web.sh;</span><br></pre></td></tr></table></figure>
-<h3 id="访问azkaban"><a href="#访问azkaban" class="headerlink" title="访问azkaban"></a>访问azkaban</h3><p>浏览器输入 localhost:8199，出现如下界面<br><img src="/2020/04/29/tech/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/2.png"><br>用户名密码默认均为azkban，可以在 ../azkaban-3.81.0/azkaban-web-server/build/install/azkaban-web-server/conf/azkaban-users.xml 修改用户和密码  </p>
-</li>
 </ul>
+<p>#邮件配置<br>mail.sender&#x3D;<a href="mailto:&#x38;&#x38;&#x38;&#x38;&#56;&#x38;&#64;&#113;&#113;&#46;&#x63;&#111;&#x6d;">&#x38;&#x38;&#x38;&#x38;&#56;&#x38;&#64;&#113;&#113;&#46;&#x63;&#111;&#x6d;</a> # 发送邮件的邮箱<br>mail.host&#x3D;smtp.qq.com  # 邮件服务器<br>mail.user&#x3D;<a href="mailto:&#x38;&#x38;&#x38;&#56;&#56;&#x38;&#x40;&#x71;&#113;&#x2e;&#x63;&#111;&#x6d;">&#x38;&#x38;&#x38;&#56;&#56;&#x38;&#x40;&#x71;&#113;&#x2e;&#x63;&#111;&#x6d;</a> # 邮件用户<br>mail.password&#x3D;abc123456 #密码需要取qq邮箱中获取到的授权码<br>job.failure.email&#x3D;<a href="mailto:&#56;&#x38;&#56;&#56;&#x38;&#x38;&#x38;&#64;&#x71;&#x71;&#x2e;&#99;&#x6f;&#109;">&#56;&#x38;&#56;&#56;&#x38;&#x38;&#x38;&#64;&#x71;&#x71;&#x2e;&#99;&#x6f;&#109;</a> # 定时任务执行失败发送邮件的邮箱<br>#数据库配置，指向azkban建表的数据库，根据实际的数据库配置来<br>database.type&#x3D;mysql<br>mysql.port&#x3D;3306<br>mysql.host&#x3D;110.110.110.110<br>mysql.database&#x3D;azkaban<br>mysql.user&#x3D;azkaban<br>mysql.password&#x3D;azkaban</p>
+<ul>
+<li>启动azkaban-web-server  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ../azkaban-3.81.0/azkaban-web-server/build/install/azkaban-web-server;</span><br><span class="line">bin/start-web.sh;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="访问azkaban"><a href="#访问azkaban" class="headerlink" title="访问azkaban"></a>访问azkaban</h3><p>浏览器输入 localhost:8199，出现如下界面<br><img src="/2020/04/29/tech/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/2.png"><br>用户名密码默认均为azkban，可以在 ..&#x2F;azkaban-3.81.0&#x2F;azkaban-web-server&#x2F;build&#x2F;install&#x2F;azkaban-web-server&#x2F;conf&#x2F;azkaban-users.xml 修改用户和密码  </p>
 <h2 id="配置定时任务"><a href="#配置定时任务" class="headerlink" title="配置定时任务"></a>配置定时任务</h2><p>1.打开azkaban主页面，点击create project，在弹出页面输入项目名和描述<br><img src="/2020/04/29/tech/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/3.png"><br>2.随后点击项目名进入配置页面，azkaban目前无法在页面直接配置，需要通过上传和下载配置文件来完成对定时任务的增删改，也就是用到页面上的upload和download按钮<br><img src="/2020/04/29/tech/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/4.png"><br>3.在本地新建一个test.flow文件，azkaban的基本配置文件需要用flow后缀的文件进行配置，配置的基本格式如下</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">---</span></span><br><span class="line"><span class="attr">config</span>:<span class="string"></span></span><br><span class="line">  <span class="meta">failure.emails</span>: <span class="string">user@qq.com</span></span><br><span class="line"></span><br><span class="line"><span class="attr">nodes</span>:<span class="string"></span></span><br><span class="line">  <span class="meta">-</span> <span class="string">name: testA</span></span><br><span class="line">    <span class="attr">type</span>: <span class="string">command</span></span><br><span class="line">    <span class="attr">config</span>:<span class="string"></span></span><br><span class="line">      <span class="attr">command</span>: <span class="string">echo &#x27;hello wrold&#x27;</span></span><br><span class="line">  <span class="meta">-</span> <span class="string">name: testB</span></span><br><span class="line">    <span class="attr">type</span>: <span class="string">command</span></span><br><span class="line">    <span class="attr">config</span>:<span class="string"></span></span><br><span class="line">      <span class="attr">command</span>: <span class="string">echo &#x27;hello wrold&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">---</span></span><br><span class="line"><span class="attr">config</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">failure.emails</span>: <span class="string">user@qq.com</span></span><br><span class="line"></span><br><span class="line"><span class="attr">nodes</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">-</span> <span class="string">name: testA</span></span><br><span class="line">    <span class="attr">type</span>: <span class="string">command</span></span><br><span class="line">    <span class="attr">config</span>:<span class="string"></span></span><br><span class="line">      <span class="attr">command</span>: <span class="string">echo &#x27;hello wrold&#x27;</span></span><br><span class="line">  <span class="attr">-</span> <span class="string">name: testB</span></span><br><span class="line">    <span class="attr">type</span>: <span class="string">command</span></span><br><span class="line">    <span class="attr">config</span>:<span class="string"></span></span><br><span class="line">      <span class="attr">command</span>: <span class="string">echo &#x27;hello wrold&#x27;</span></span><br></pre></td></tr></table></figure>
 <p>其中nodes节点下的就是执行的任务，commnad写的就是该任务需要执行的指令，azkaban还支持其他job类型，具体见<a target="_blank" rel="noopener" href="https://azkaban.readthedocs.io/en/latest/jobTypes.html">官方文档</a><br>我暂时只用到commond<br>4.同时新建一个flow20.project文件，里面只需要一条内容，如下<br>azkaban-flow-version: 2.0<br>5.将flow文件和flow20.project文件打包成 <strong>【项目名.zip】</strong>，然后在azkaban页面点击upload，上传该zip文件<br>6.点击项目名就可以看到刚创建的job，然后点击execute flow-schedule，就可以配置cron表达式，设置该任务的运行周期<br><img src="/2020/04/29/tech/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/5.png"><br><img src="/2020/04/29/tech/azkaban%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/6.png"><br>7.以后对于任务的新增和命令修改，都只能通过在azkaban页面点击download下载zip文件，然后修改里面的内容，再重新上传来完成</p>
 <h2 id="清理历史定时任务执行日志"><a href="#清理历史定时任务执行日志" class="headerlink" title="清理历史定时任务执行日志"></a>清理历史定时任务执行日志</h2><p>简单粗暴的方法，在azkaban的数据库执行以下语句：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">truncate</span> execution_flows;</span><br><span class="line"><span class="keyword">truncate</span> execution_jobs;</span><br><span class="line"><span class="keyword">truncate</span> execution_logs;</span><br></pre></td></tr></table></figure>
@@ -364,12 +364,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/2019/11/20/tech/Python%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5-%E7%88%AC%E5%8F%96%E5%8E%86%E5%B9%B4%E4%B8%9C%E8%A5%BF%E9%83%A8%E5%91%A8%E6%9C%80%E4%BD%B3%E5%AF%B9%E6%AF%94/" rel="prev" title="Python数据爬虫实践-爬取历年东西部周最佳对比">
-                  <i class="fa fa-chevron-left"></i> Python数据爬虫实践-爬取历年东西部周最佳对比
+                  <i class="fa fa-angle-left"></i> Python数据爬虫实践-爬取历年东西部周最佳对比
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2020/05/14/tech/jenkins%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/" rel="next" title="jenkins简单搭建">
-                  jenkins简单搭建 <i class="fa fa-chevron-right"></i>
+                  jenkins简单搭建 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -445,7 +445,7 @@
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
 <script src="/js/third-party/search/local-search.js"></script>

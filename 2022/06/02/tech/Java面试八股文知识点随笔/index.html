@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -14,17 +14,17 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="复习关键字  new对象的过程  类加载过程  双亲委派机制  类加载器    Synchronized，Reentrantlock和AQS  Java新版本特性  集合源码  红黑树    两种代理模式  IO模型，三种javaIO模型  数据库主从分离方式  代理方式  组件方式    框架了解  注册中心 Zookeeper, Consul, Eureka, Nacos  客户端&#x2F;进程内负载">
+    <meta name="description" content="复习关键字  new对象的过程  类加载过程  双亲委派机制  类加载器    Synchronized，Reentrantlock和AQS  Java新版本特性  集合源码  红黑树    两种代理模式  IO模型，三种javaIO模型  数据库主从分离方式  代理方式  组件方式    框架了解  注册中心 Zookeeper, Consul, Eureka, Nacos  客户端&#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java面试八股文知识点随笔">
 <meta property="og:url" content="http://shdvgj.github.io/2022/06/02/tech/Java%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9A%8F%E7%AC%94/index.html">
 <meta property="og:site_name" content="Ricky的个人博客">
-<meta property="og:description" content="复习关键字  new对象的过程  类加载过程  双亲委派机制  类加载器    Synchronized，Reentrantlock和AQS  Java新版本特性  集合源码  红黑树    两种代理模式  IO模型，三种javaIO模型  数据库主从分离方式  代理方式  组件方式    框架了解  注册中心 Zookeeper, Consul, Eureka, Nacos  客户端&#x2F;进程内负载">
+<meta property="og:description" content="复习关键字  new对象的过程  类加载过程  双亲委派机制  类加载器    Synchronized，Reentrantlock和AQS  Java新版本特性  集合源码  红黑树    两种代理模式  IO模型，三种javaIO模型  数据库主从分离方式  代理方式  组件方式    框架了解  注册中心 Zookeeper, Consul, Eureka, Nacos  客户端&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://shdvgj.github.io/2022/06/02/tech/Java%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9A%8F%E7%AC%94/javaGuide1.png">
 <meta property="og:image" content="http://shdvgj.github.io/2022/06/02/tech/Java%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9A%8F%E7%AC%94/javaGuide2.png">
@@ -104,25 +104,25 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -312,7 +312,7 @@
 </ul>
 <h2 id="框架了解"><a href="#框架了解" class="headerlink" title="框架了解"></a>框架了解</h2><ul>
 <li><input disabled="" type="checkbox"> 注册中心 <a target="_blank" rel="noopener" href="https://github.com/apache/zookeeper">Zookeeper</a>, <a target="_blank" rel="noopener" href="https://github.com/hashicorp/consul">Consul</a>, <a target="_blank" rel="noopener" href="https://github.com/Netflix/eureka">Eureka</a>, <a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos">Nacos</a></li>
-<li><input disabled="" type="checkbox"> 客户端/进程内负载均衡器 <a target="_blank" rel="noopener" href="https://github.com/Netflix/ribbon">Ribbon</a>, <a target="_blank" rel="noopener" href="https://github.com/nginx/nginx">Nginx</a></li>
+<li><input disabled="" type="checkbox"> 客户端&#x2F;进程内负载均衡器 <a target="_blank" rel="noopener" href="https://github.com/Netflix/ribbon">Ribbon</a>, <a target="_blank" rel="noopener" href="https://github.com/nginx/nginx">Nginx</a></li>
 <li><input disabled="" type="checkbox"> Rpc调用 <a target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-openfeign">OpenFeign</a>, <a target="_blank" rel="noopener" href="https://github.com/apache/dubbo">Dubbo</a>, <a target="_blank" rel="noopener" href="https://github.com/grpc/grpc">Grpc</a></li>
 <li><input disabled="" type="checkbox"> 熔断降级 <a target="_blank" rel="noopener" href="https://github.com/Netflix/Hystrix">Hystrix</a>, <a target="_blank" rel="noopener" href="https://github.com/alibaba/Sentinel">Sentinel</a></li>
 <li><input disabled="" type="checkbox"> 微服务网关 <a target="_blank" rel="noopener" href="https://github.com/Netflix/zuul">Zuul</a>, <a target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-gateway">Spring Cloud Gateway</a>, <a target="_blank" rel="noopener" href="https://github.com/Kong/kong">Kong</a>, <strong><a target="_blank" rel="noopener" href="https://github.com/apache/apisix">APISIX</a></strong>, <a target="_blank" rel="noopener" href="https://github.com/apache/incubator-shenyu">Shenyu</a></li>
@@ -332,13 +332,13 @@
 
 <h2 id="使用-try-with-resources-代替try-catch-finally"><a href="#使用-try-with-resources-代替try-catch-finally" class="headerlink" title="使用 try-with-resources 代替try-catch-finally"></a><a target="_blank" rel="noopener" href="https://javaguide.cn/java/basis/java-basic-questions-03.html#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-try-with-resources-%E4%BB%A3%E6%9B%BFtry-catch-finally">使用 try-with-resources 代替try-catch-finally</a></h2><p>适用于java7之后的特性，针对字节流和网络连接之类的对象，不再需要每次在finally中进行close</p>
 <p>try-catch-finally风格</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//读取文本文件的内容</span></span><br><span class="line">Scanner scanner = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    scanner = <span class="keyword">new</span> Scanner(<span class="keyword">new</span> File(<span class="string">&quot;D://read.txt&quot;</span>));</span><br><span class="line">    <span class="keyword">while</span> (scanner.hasNext()) &#123;</span><br><span class="line">        System.out.println(scanner.nextLine());</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (scanner != <span class="keyword">null</span>) &#123;</span><br><span class="line">        scanner.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//读取文本文件的内容</span></span><br><span class="line"><span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    scanner = <span class="keyword">new</span> <span class="title class_">Scanner</span>(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;D://read.txt&quot;</span>));</span><br><span class="line">    <span class="keyword">while</span> (scanner.hasNext()) &#123;</span><br><span class="line">        System.out.println(scanner.nextLine());</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (scanner != <span class="literal">null</span>) &#123;</span><br><span class="line">        scanner.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>try-with-resources风格</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (BufferedInputStream bin = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">&quot;test.txt&quot;</span>)));</span><br><span class="line">     BufferedOutputStream bout = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">&quot;out.txt&quot;</span>)))) &#123;</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">    <span class="keyword">while</span> ((b = bin.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">        bout.write(b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (<span class="type">BufferedInputStream</span> <span class="variable">bin</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;test.txt&quot;</span>)));</span><br><span class="line">     <span class="type">BufferedOutputStream</span> <span class="variable">bout</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedOutputStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;out.txt&quot;</span>)))) &#123;</span><br><span class="line">    <span class="type">int</span> b;</span><br><span class="line">    <span class="keyword">while</span> ((b = bin.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">        bout.write(b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在 Java 9 之后，在 try-with-resources 语句中可以使用 effectively-final 变量。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// effectively-final简单说就是被初始化后从未变更的变量，如下用final修饰符的scanner和未被final修饰的writer，都未曾改变，因此就是effectively-final变量</span></span><br><span class="line"><span class="keyword">final</span> Scanner scanner = <span class="keyword">new</span> Scanner(<span class="keyword">new</span> File(<span class="string">&quot;testRead.txt&quot;</span>));</span><br><span class="line">PrintWriter writer = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> File(<span class="string">&quot;testWrite.txt&quot;</span>))</span><br><span class="line"><span class="keyword">try</span> (scanner;writer) &#123;</span><br><span class="line">    <span class="comment">// omitted</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// effectively-final简单说就是被初始化后从未变更的变量，如下用final修饰符的scanner和未被final修饰的writer，都未曾改变，因此就是effectively-final变量</span></span><br><span class="line"><span class="keyword">final</span> <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;testRead.txt&quot;</span>));</span><br><span class="line"><span class="type">PrintWriter</span> <span class="variable">writer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PrintWriter</span>(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;testWrite.txt&quot;</span>))</span><br><span class="line"><span class="keyword">try</span> (scanner;writer) &#123;</span><br><span class="line">    <span class="comment">// omitted</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="静态方法为什么不能调用非静态成员"><a href="#静态方法为什么不能调用非静态成员" class="headerlink" title="静态方法为什么不能调用非静态成员?"></a><a target="_blank" rel="noopener" href="https://javaguide.cn/java/basis/java-basic-questions-01.html#%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E8%B0%83%E7%94%A8%E9%9D%9E%E9%9D%99%E6%80%81%E6%88%90%E5%91%98">静态方法为什么不能调用非静态成员?</a></h2><p>简单来说静态方法初始化在类加载时，非静态成员初始化于new 实例对象时</p>
 <h2 id="深拷贝和浅拷贝区别了解吗？什么是引用拷贝？"><a href="#深拷贝和浅拷贝区别了解吗？什么是引用拷贝？" class="headerlink" title="深拷贝和浅拷贝区别了解吗？什么是引用拷贝？"></a><a target="_blank" rel="noopener" href="https://javaguide.cn/java/basis/java-basic-questions-02.html#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%8C%BA%E5%88%AB%E4%BA%86%E8%A7%A3%E5%90%97-%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%95%E7%94%A8%E6%8B%B7%E8%B4%9D">深拷贝和浅拷贝区别了解吗？什么是引用拷贝？</a></h2><p><img src="/2022/06/02/tech/Java%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9A%8F%E7%AC%94/javaGuide1.png"></p>
@@ -351,11 +351,11 @@
 <li>List(对付顺序的好帮手): 存储的元素是有序的、可重复的。</li>
 <li>Set(注重独一无二的性质): 存储的元素是无序的、不可重复的。</li>
 <li>Queue(实现排队功能的叫号机): 按特定的排队规则来确定先后顺序，存储的元素是有序的、可重复的。</li>
-<li>Map(用 key 来搜索的专家): 使用键值对（key-value）存储，类似于数学上的函数 y=f(x)，”x” 代表 key，”y” 代表 value，key 是无序的、不可重复的，value 是无序的、可重复的，每个键最多映射到一个值。</li>
+<li>Map(用 key 来搜索的专家): 使用键值对（key-value）存储，类似于数学上的函数 y&#x3D;f(x)，”x” 代表 key，”y” 代表 value，key 是无序的、不可重复的，value 是无序的、可重复的，每个键最多映射到一个值。</li>
 <li><strong>虽然理论上linkedList的头尾插入和删除比ArrayList更快，但是实际一般都会在中间位置插入，这个时候差别并不大，而ArrayList的其他性能几乎都更好，因此实践中几乎不会用到LinkedList</strong></li>
 <li>ArrayList 实现了 RandomAccess 接口，而 LinkedList 没有实现。RandomAccess更多是一个标示，其接口内容是空的，本质上是因为ArrayList底层实现是数组，因此支持随机访问，而不是实现了RandomAccess才支持随机访问。</li>
 </ul>
-<h2 id="HashMap-的长度为什么是-2-的幂次方"><a href="#HashMap-的长度为什么是-2-的幂次方" class="headerlink" title="HashMap 的长度为什么是 2 的幂次方"></a><a target="_blank" rel="noopener" href="https://javaguide.cn/java/collection/java-collection-questions-02.html#hashmap-%E7%9A%84%E9%95%BF%E5%BA%A6%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF-2-%E7%9A%84%E5%B9%82%E6%AC%A1%E6%96%B9">HashMap 的长度为什么是 2 的幂次方</a></h2><p>hash值通过对数组的长度进行取模运算得到在数组中的位置<br><strong>取余(%)操作中如果除数是 2 的幂次则等价于与其除数减一的与(&amp;)操作（也就是说 hash%length==hash&amp;(length-1)的前提是 length 是 2 的 n 次方；）</strong></p>
+<h2 id="HashMap-的长度为什么是-2-的幂次方"><a href="#HashMap-的长度为什么是-2-的幂次方" class="headerlink" title="HashMap 的长度为什么是 2 的幂次方"></a><a target="_blank" rel="noopener" href="https://javaguide.cn/java/collection/java-collection-questions-02.html#hashmap-%E7%9A%84%E9%95%BF%E5%BA%A6%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF-2-%E7%9A%84%E5%B9%82%E6%AC%A1%E6%96%B9">HashMap 的长度为什么是 2 的幂次方</a></h2><p>hash值通过对数组的长度进行取模运算得到在数组中的位置<br><strong>取余(%)操作中如果除数是 2 的幂次则等价于与其除数减一的与(&amp;)操作（也就是说 hash%length&#x3D;&#x3D;hash&amp;(length-1)的前提是 length 是 2 的 n 次方；）</strong></p>
 <h2 id="ArrayList中ensurecapacity方法"><a href="#ArrayList中ensurecapacity方法" class="headerlink" title="ArrayList中ensurecapacity方法"></a><a target="_blank" rel="noopener" href="https://javaguide.cn/java/collection/arraylist-source-code.html#_3-4-ensurecapacity%E6%96%B9%E6%B3%95">ArrayList中ensurecapacity方法</a></h2><p><strong>最好在 add 大量元素之前用 ensureCapacity 方法，以减少增量重新分配的次数</strong></p>
 <h2 id="说说线程的生命周期和状态"><a href="#说说线程的生命周期和状态" class="headerlink" title="说说线程的生命周期和状态"></a><a target="_blank" rel="noopener" href="https://javaguide.cn/java/concurrent/java-concurrent-questions-01.html#%E8%AF%B4%E8%AF%B4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%92%8C%E7%8A%B6%E6%80%81">说说线程的生命周期和状态</a></h2><p>线程有六种状态：NEW，RUNNABLE，BLOCKED，WAITING，TIME_WAITING，TERMINATED<br>其中RUNNABLE状态包含READY和RUNNING两种状态，由于切换时间很短，因此并未做区分<br><img src="/2022/06/02/tech/Java%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9A%8F%E7%AC%94/javaGuide4.png"></p>
 <h2 id="为什么我们调用-start-方法时会执行-run-方法，为什么我们不能直接调用-run-方法"><a href="#为什么我们调用-start-方法时会执行-run-方法，为什么我们不能直接调用-run-方法" class="headerlink" title="为什么我们调用 start() 方法时会执行 run() 方法，为什么我们不能直接调用 run() 方法"></a><a target="_blank" rel="noopener" href="https://javaguide.cn/java/concurrent/java-concurrent-questions-01.html#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E8%B0%83%E7%94%A8-start-%E6%96%B9%E6%B3%95%E6%97%B6%E4%BC%9A%E6%89%A7%E8%A1%8C-run-%E6%96%B9%E6%B3%95-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E8%B0%83%E7%94%A8-run-%E6%96%B9%E6%B3%95">为什么我们调用 start() 方法时会执行 run() 方法，为什么我们不能直接调用 run() 方法</a></h2><p>调用 start() 方法方可启动线程并使线程进入就绪状态，直接执行 run() 方法的话不会以多线程的方式执行。</p>
@@ -377,12 +377,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/2022/05/09/blog/leetcode%E7%AE%97%E6%B3%95%E9%A2%98%E6%80%BB%E7%BB%932022-3-2022-5/" rel="prev" title="leetcode算法题总结2022.3-2022.5">
-                  <i class="fa fa-chevron-left"></i> leetcode算法题总结2022.3-2022.5
+                  <i class="fa fa-angle-left"></i> leetcode算法题总结2022.3-2022.5
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2022/06/06/blog/%E4%B8%80%E5%91%A8%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%94%B6%E9%9B%86-20220606/" rel="next" title="一周技术博客收集-20220606">
-                  一周技术博客收集-20220606 <i class="fa fa-chevron-right"></i>
+                  一周技术博客收集-20220606 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -458,7 +458,7 @@
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
 <script src="/js/third-party/search/local-search.js"></script>

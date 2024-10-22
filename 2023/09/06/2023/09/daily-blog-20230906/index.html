@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -14,17 +14,17 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="介绍从工程角度来看，网络通常考虑使用OSI模型或TCP&#x2F;IP模型来定义和组织它们的操作。这些模型反过来又包括不同的层次，如网络层、传输层和应用层。 每个网络层都有特定的协议来实现各种功能。例如，网络层有IP协议，传输层有TCP和UDP协议，应用层有HTTP协议。 这些协议在不断演化，随着时间的推移被更新和扩展。因此，网络协议自然而然地有多个版本。 在这个背景下，本教程全面探讨了HTTP应用协议。首">
+    <meta name="description" content="介绍从工程角度来看，网络通常考虑使用OSI模型或TCP&#x2F;IP模型来定义和组织它们的操作。这些模型反过来又包括不同的层次，如网络层、传输层和应用层。 每个网络层都有特定的协议来实现各种功能。例如，网络层有IP协议，传输层有TCP和UDP协议，应用层有HTTP协议。 这些协议在不断演化，随着时间的推移被更新和扩展。因此，网络协议自然而然地有多个版本。 在这个背景下，本教程全面探讨了HTTP应">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTP协议各版本对比：1.0，1.1，2.0和3.0">
 <meta property="og:url" content="http://shdvgj.github.io/2023/09/06/2023/09/daily-blog-20230906/index.html">
 <meta property="og:site_name" content="Ricky的个人博客">
-<meta property="og:description" content="介绍从工程角度来看，网络通常考虑使用OSI模型或TCP&#x2F;IP模型来定义和组织它们的操作。这些模型反过来又包括不同的层次，如网络层、传输层和应用层。 每个网络层都有特定的协议来实现各种功能。例如，网络层有IP协议，传输层有TCP和UDP协议，应用层有HTTP协议。 这些协议在不断演化，随着时间的推移被更新和扩展。因此，网络协议自然而然地有多个版本。 在这个背景下，本教程全面探讨了HTTP应用协议。首">
+<meta property="og:description" content="介绍从工程角度来看，网络通常考虑使用OSI模型或TCP&#x2F;IP模型来定义和组织它们的操作。这些模型反过来又包括不同的层次，如网络层、传输层和应用层。 每个网络层都有特定的协议来实现各种功能。例如，网络层有IP协议，传输层有TCP和UDP协议，应用层有HTTP协议。 这些协议在不断演化，随着时间的推移被更新和扩展。因此，网络协议自然而然地有多个版本。 在这个背景下，本教程全面探讨了HTTP应">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://shdvgj.github.io/2023/09/06/2023/09/daily-blog-20230906/http-versions.webp">
 <meta property="article:published_time" content="2023-09-06T01:50:49.000Z">
@@ -101,25 +101,25 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -286,13 +286,13 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>从工程角度来看，网络通常考虑使用OSI模型或TCP/IP模型来定义和组织它们的操作。这些模型反过来又包括不同的层次，如网络层、传输层和应用层。</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>从工程角度来看，网络通常考虑使用OSI模型或TCP&#x2F;IP模型来定义和组织它们的操作。这些模型反过来又包括不同的层次，如网络层、传输层和应用层。</p>
 <p>每个网络层都有特定的协议来实现各种功能。例如，网络层有IP协议，传输层有<a target="_blank" rel="noopener" href="https://www.baeldung.com/cs/udp-vs-tcp">TCP和UDP</a>协议，应用层有HTTP协议。</p>
 <p>这些协议在不断演化，随着时间的推移被更新和扩展。因此，网络协议自然而然地有多个版本。</p>
 <p>在这个背景下，本教程全面探讨了HTTP应用协议。首先，我们将简要回顾应用协议。然后，我们将研究HTTP的一般目的。最后，我们将查看HTTP各个版本的主要区别，并以系统性摘要进行比较。</p>
 <span id="more"></span>
 
-<h2 id="应用层协议"><a href="#应用层协议" class="headerlink" title="应用层协议"></a>应用层协议</h2><p>应用层协议指的是在不同计算应用程序之间提供端到端通信的抽象网络层。它是OSI模型的第7层和TCP/IP模型的第4层。</p>
+<h2 id="应用层协议"><a href="#应用层协议" class="headerlink" title="应用层协议"></a>应用层协议</h2><p>应用层协议指的是在不同计算应用程序之间提供端到端通信的抽象网络层。它是OSI模型的第7层和TCP&#x2F;IP模型的第4层。</p>
 <p>在实际应用中，应用层是最接近用户的一层。因此，例如电子邮件客户端、流媒体和浏览器等客户端操作都在应用层进行。</p>
 <p>此外，有三种主要的体系结构用于构建应用层系统：</p>
 <ul>
@@ -302,11 +302,11 @@
 </ul>
 <p>自然地，应用层利用了较低层的功能。例如，应用层协议假定其他层会处理与网络中正确目标计算机的通信。</p>
 <p>最后，一些常见的应用层协议示例包括HTTP、FTP、TELNET、POP、DNS和SMTP。</p>
-<h2 id="超文本传输协议"><a href="#超文本传输协议" class="headerlink" title="超文本传输协议"></a>超文本传输协议</h2><p>HTTP是一种应用层协议（OSI第7层和TCP/IP第4层），用于创建分布式超媒体系统。由于它在应用层运行，因此它对于一些网络方面，如寻址和传输，是不可知的。</p>
+<h2 id="超文本传输协议"><a href="#超文本传输协议" class="headerlink" title="超文本传输协议"></a>超文本传输协议</h2><p>HTTP是一种应用层协议（OSI第7层和TCP&#x2F;IP第4层），用于创建分布式超媒体系统。由于它在应用层运行，因此它对于一些网络方面，如寻址和传输，是不可知的。</p>
 <p>从历史上看，HTTP起初是一个简单的协议，用于在互联网上实现客户端和服务器之间的通信。自发布以来，HTTP已成为在万维网上交换信息的最重要的协议之一。</p>
 <p>因此，HTTP自上世纪90年代以来一直被用于互联网。最初的HTTP版本（0.9）非常有限。这个版本只允许客户端使用一个操作（GET）从服务器请求信息。</p>
 <p>第一个HTTP版本只支持传输ASCII数据。然而，在随后的版本中，这种支持扩展到其他数据类型。</p>
-<p>HTTP依赖于TCP/IP来工作。这意味着HTTP是一种基于连接的协议。因此，我们可以将HTTP会话理解为服务器与客户端之间的一系列消息交换。</p>
+<p>HTTP依赖于TCP&#x2F;IP来工作。这意味着HTTP是一种基于连接的协议。因此，我们可以将HTTP会话理解为服务器与客户端之间的一系列消息交换。</p>
 <p>在接下来的子章节中，我们将探讨每个发布的HTTP版本，从1.0到3.0，重点关注它们相对于先前版本的特点和创新。</p>
 <h3 id="HTTP-1-0"><a href="#HTTP-1-0" class="headerlink" title="HTTP 1.0"></a>HTTP 1.0</h3><p>正如之前介绍的，HTTP的第一个版本只允许从服务器获取信息。然而，随着互联网的发展和新功能的出现，这已经不足以满足需求。</p>
 <p>在这个背景下，HTTP的第1.0版本于1996年发布，比第0.9版本发布大约五年。</p>
@@ -323,7 +323,7 @@
 <ul>
 <li><p>主机头部（Host Header）：HTTP 1.0在规范中并没有正式要求主机头部，而HTTP 1.1则要求它。主机头部对于通过代理服务器路由消息特别重要，允许区分指向相同IP的域名。</p>
 </li>
-<li><p>持久连接（Persistent Connections）：在HTTP 1.0中，每个请求/响应对都需要打开一个新连接。而在HTTP 1.1中，可以使用单个连接执行多个请求。</p>
+<li><p>持久连接（Persistent Connections）：在HTTP 1.0中，每个请求&#x2F;响应对都需要打开一个新连接。而在HTTP 1.1中，可以使用单个连接执行多个请求。</p>
 </li>
 <li><p>继续状态（Continue Status）：为了避免服务器拒绝不可处理的请求，现在客户端可以首先只发送请求头，并检查是否收到继续状态码（100）。</p>
 </li>
@@ -375,12 +375,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/2023/08/24/2023/08/daily-blog-20230824/" rel="prev" title="《敌人》- 键入式文本游戏的兴衰">
-                  <i class="fa fa-chevron-left"></i> 《敌人》- 键入式文本游戏的兴衰
+                  <i class="fa fa-angle-left"></i> 《敌人》- 键入式文本游戏的兴衰
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2023/09/12/2023/09/CAP-Theorem-simplified/" rel="next" title="CAP原理简介">
-                  CAP原理简介 <i class="fa fa-chevron-right"></i>
+                  CAP原理简介 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -456,7 +456,7 @@
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
 <script src="/js/third-party/search/local-search.js"></script>

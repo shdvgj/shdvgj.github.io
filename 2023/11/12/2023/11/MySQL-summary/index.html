@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -14,10 +14,10 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shdvgj.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="WHERE解析顺序 MySQL从左向右解析 Oracle从右往左解析 根据解析顺序把最优筛选用于最先解析 最左原则">
 <meta property="og:type" content="article">
@@ -99,25 +99,25 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -534,7 +534,7 @@
 </ul>
 </li>
 <li>索引命中规则<ul>
-<li>等值匹配：如果查询条件中使用了等值比较（如=），并且该列上存在索引，那么索引就会被命中。例如，<code>WHERE column_name = value</code>。</li>
+<li>等值匹配：如果查询条件中使用了等值比较（如&#x3D;），并且该列上存在索引，那么索引就会被命中。例如，<code>WHERE column_name = value</code>。</li>
 <li>范围查询：如果查询条件中使用了范围查询（如&gt;、&lt;、BETWEEN、IN等），并且该列上存在索引，那么索引的部分会被命中。范围查询只能利用索引的有序性，但在范围的两端之间的值需要进行全表扫描。例如，<code>WHERE column_name &gt; value</code>。</li>
 <li>前缀匹配：如果查询条件中使用了字符串的前缀匹配（如LIKE ‘prefix%’），并且该列上存在索引，那么索引就会被命中。前缀匹配可以利用索引的前缀部分进行查询，加快查询速度。例如，<code>WHERE column_name LIKE &#39;prefix%&#39;</code>。</li>
 <li>最左前缀匹配：如果查询条件中使用了多列索引，并且查询条件从索引的最左边开始匹配，那么索引就会被命中。如果查询条件不满足最左前缀匹配，那么索引将无法被完全利用。例如，如果有一个联合索引 (column1, column2)，查询条件为 <code>WHERE column1 = value AND column2 = value</code>。</li>
@@ -543,7 +543,7 @@
 </ul>
 </li>
 <li>索引不命中的情况<ul>
-<li>函数应用于索引字段：如果查询中的函数应用于索引字段，例如 WHERE UPPER(column_name) = ‘VALUE’，索引可能无法被使用。这是因为函数会对索引字段的值进行转换，导致无法直接匹配索引。</li>
+<li>函数应用于索引字段：如果查询中的函数应用于索引字段，例如 WHERE UPPER(column_name) &#x3D; ‘VALUE’，索引可能无法被使用。这是因为函数会对索引字段的值进行转换，导致无法直接匹配索引。</li>
 <li>列值表达式：如果查询中使用了列值表达式，例如 <code>WHERE column_name + 1 = 10</code>，索引可能无法被使用。列值表达式会对索引字段的值进行计算，使得无法直接匹配索引。</li>
 <li>隐式类型转换：如果查询中使用了隐式类型转换，例如 <code>WHERE column_name = &#39;10&#39;</code>，而实际上 column_name 的数据类型是整数，索引可能无法被使用。隐式类型转换会导致索引无法直接匹配查询条件。</li>
 </ul>
@@ -717,12 +717,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/2023/11/07/2023/11/develep-english-shortcut/" rel="prev" title="缩写短语概念简单介绍">
-                  <i class="fa fa-chevron-left"></i> 缩写短语概念简单介绍
+                  <i class="fa fa-angle-left"></i> 缩写短语概念简单介绍
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2023/11/21/2023/11/tools-summary/" rel="next" title="工具总结">
-                  工具总结 <i class="fa fa-chevron-right"></i>
+                  工具总结 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -798,7 +798,7 @@
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
 <script src="/js/third-party/search/local-search.js"></script>
